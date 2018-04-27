@@ -1,0 +1,38 @@
+{
+  "name": "@userappstore/organizations",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "devDependencies": {
+    "dotenv": "^4.0.0"
+  },
+  "scripts": {
+    "test": "mocha src/**/*.test.js --timeout 5000"
+  },
+  "engine": {
+    "node": "8.1.4",
+    "npm": "5.0.3"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@userappstore/dashboard": "^1.0.81"
+  },
+  "dashboard-modules": [
+    "@userappstore/dashboard"
+  ],
+  "dashboard-menus": {
+    "account": [
+      {
+        "href": "/account/organizations",
+        "text": "Manage organizations"
+      }
+    ],
+    "administrator": [
+      {
+        "href": "/administrator/organizations",
+        "text": "Organization administration"
+      }
+    ]
+  }
+}

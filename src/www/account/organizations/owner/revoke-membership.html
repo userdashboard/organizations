@@ -1,0 +1,27 @@
+<html navbar="/account/organizations/owner/navbar-membership.html">
+  <head>
+    <title>Revoke membership</title>
+    <link href="/public/pure-min.css" rel="stylesheet" />
+    <link href="/public/content.css" rel="stylesheet" />
+    <base target="_top" href="/" />
+  </head>
+  <body>
+    <h1>Revoke membership</h1>
+    <div id="messageContainer"></div>
+    <form id="submitForm" method="POST" class="pure-form pure-form-stacked">
+      <div class="pure-control-group">
+        <label for="organizationName">Organization</label>
+        <input id="organizationName" type="text" maxlength="100" readonly />
+      </div>
+      <div class="pure-controls">
+        <button type="submit" id="submitButton" class="pure-button pure-button-primary">Delete membership</button>
+      </div>
+    </form>
+  </body>
+  <template id="success">
+    <div class="error message" error="success">The membership has been permanently deleted.</div>
+  </template>
+  <template id="unknown-error">
+    <div class="error message" error="unknown-error">Error!  An unknown error ocurred.</div>
+  </template>
+</html>

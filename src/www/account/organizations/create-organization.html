@@ -1,0 +1,44 @@
+<html navbar="/account/organizations/navbar.html">
+  <head>
+    <title>Create organization</title>
+    <link href="/public/pure-min.css" rel="stylesheet" />
+    <link href="/public/content.css" rel="stylesheet" />
+    <base target="_top" href="/" />
+  </head>
+  <body>
+    <h1>Create organization</h1>
+    <div id="messageContainer"></div>
+    <p>The email is shared with members.</p>
+    <form id="submitForm" method="POST" class="pure-form pure-form-stacked">
+      <div class="pure-control-group">
+        <label for="name">Organization name</label>
+        <input id="name" name="name" type="text" maxlength="100" />
+      </div>
+      <div class="pure-control-group">
+        <label for="email">Contact email</label>
+        <input id="email" name="email" type="text" maxlength="100" />
+      </div>
+      <div class="pure-controls">
+        <button type="submit" id="submitButton" class="pure-button pure-button-primary">Create organization</button>
+      </div>
+    </form>
+  </body>
+  <template id="invalid-organization-name">
+    <div class="error message" error="invalid-organization-name">Error!  An invalid organization name was provided.</div>
+  </template>
+  <template id="invalid-organization-name-length">
+    <div class="error message" error="invalid-organization-name-length">Error!  Invalid organization name length.</div>
+  </template>
+  <template id="invalid-organization-field">
+    <div class="error message" error="invalid-organization-field">Error!  An invalid field was provided.</div>
+  </template>
+  <template id="invalid-organization-field-length">
+    <div class="error message" error="invalid-organization-field-length">Error!  Invalid field length.</div>
+  </template>
+  <template id="success">
+    <div class="success message" error="success">The organization has been created successfully.</div>
+  </template>
+  <template id="unknown-error">
+    <div class="error message" error="unknown-error">An error occurred creating the organization.</div>
+  </template>
+</html>

@@ -1,0 +1,35 @@
+<!doctype html>
+<html navbar="/administrator/organizations/navbar.html">
+  <head>
+    <title>Organizations administration center</title>
+    <link href="/public/pure-min.css" rel="stylesheet" />
+    <link href="/public/content.css" rel="stylesheet" />
+    <base target="_top" href="/" />
+  </head>
+  <body>
+    <h1>Organizations administration center</h1>
+    <table id="organizations-table" class="pure-table pure-table-striped">
+      <thead>
+        <tr>
+          <th>Organization</th>
+          <th>Contact</th>
+          <th>Invitations</th>
+          <th>Created</th>
+          <th></th>
+        </tr>
+      </thead>
+    </table>
+  </body>
+  <template id="organization-row-template">
+    <tr>
+      <td>${name}</td>
+      <td><a href="mailto:${email}">${email}</a></td>
+      <td title="${created}">${createdRelative}</td>
+      <td class="pure-button-group" role="group">
+        <a href="/administrator/organizations/organization?organizationid=${organizationid}" class="pure-button">Organization</a>
+        <a href="/administrator/organizations/memberships?organizationid=${organizationid}" class="pure-button">Memberships</a>
+        <a href="/administrator/organizations/invitations?organizationid=${organizationid}" class="pure-button">Invitations</a>
+      </td>
+    </tr>
+  </template>
+</html>

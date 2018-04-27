@@ -1,0 +1,24 @@
+<html navbar="/account/organizations/owner/navbar-organization.html">
+  <head>
+    <title>Delete organization</title>
+    <link href="/public/pure-min.css" rel="stylesheet" />
+    <link href="/public/content.css" rel="stylesheet" />
+    <base target="_top" href="/" />
+  </head>
+  <body>
+    <h1>Delete organization</h1>
+    <div id="messageContainer"></div>
+    <form id="submitForm" method="POST" class="pure-form pure-form-stacked">
+      <div class="pure-control-group">
+        <label for="organizationName">Organization</label>
+        <input id="organizationName" type="text" maxlength="100" readonly />
+      </div>
+      <div class="pure-controls">
+        <button type="submit" id="submitButton" class="pure-button pure-button-primary">Delete organization</button>
+      </div>
+    </form>
+  </body>
+  <template id="success">
+    <div class="success message" error="success">The organization has been permanently deleted.</div>
+  </template>
+</html>

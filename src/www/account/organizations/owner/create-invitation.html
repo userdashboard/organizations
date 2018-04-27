@@ -1,0 +1,47 @@
+<html navbar="/account/organizations/owner/navbar-organization.html">
+  <head>
+    <title>Create invitation code</title>
+    <link href="/public/pure-min.css" rel="stylesheet" />
+    <link href="/public/content.css" rel="stylesheet" />
+    <base target="_top" href="/" />
+  </head>
+  <body>
+    <h1>Create invitation code</h1>
+    <p>Share the organization and invitation code with the other person.</p>
+    <div id="messageContainer"></div>
+    <form id="submitForm" method="POST" class="pure-form pure-form-stacked">
+      <div class="pure-control-group">
+        <label for="organizationName">Organization</label>
+        <input id="organizationName" type="text" maxlength="100" readonly />
+      </div>
+      <div class="pure-control-group">
+        <label for="code">Invitation code</label>
+        <input id="code" name="code" type="text" maxlength="100" />
+      </div>
+      <div class="pure-controls">
+        <button type="submit" id="submitButton" class="pure-button pure-button-primary">Create invitation</button>
+      </div>
+    </form>
+  </body>
+  <template id="unknown-error">
+    <div class="error message">
+      The invitation was unable to be sent. 
+    </div>
+  </template>
+  <template id="invalid-invitation-code">
+    <div class="error message" error="invalid-invitation-code">
+      Error!  The invitation code is missing or invalid.
+    </div>
+  </template>
+  <template id="invalid-invitation-code-length">
+    <div class="error message" error="invalid-invitation-code">
+      Error!  The invitation code has an invalid length.
+    </div>
+  </template>
+  <template id="success">
+    <div class="success message" error="success">
+      Your invitation has been created.
+    </div>
+  </template>
+</html>
+</html>

@@ -1,0 +1,32 @@
+<html navbar="/administrator/organizations/navbar.html">
+  <head>
+    <title>Memberships</title>
+    <link href="/public/pure-min.css" rel="stylesheet" />
+    <link href="/public/content.css" rel="stylesheet" />
+    <base target="_top" href="/" />
+  </head>
+  <body>
+    <h1>Memberships</h1>
+    <table id="memberships-table" class="pure-table pure-table-striped">
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th>Created</th>
+          <th>Invitation</th>
+          <th>Organization</th>
+          <th></th>
+        </tr>
+      </thead>
+    </table>
+  </body>
+  <template id="membership-row-template">
+    <tr id="${membershipid}">
+      <td>${email}</td>
+      <td title="${created}">${createdRelative}</td>
+      <td><a href="/administrator/organizations/invitation?invitationid=${invitationid}">Invitation</a></td>
+      <td><a href="/administrator/organizations/organization?organizationid=${organizationid}">Organization</a></td>
+      <td class="pure-button-group" role="group">
+      </td>
+    </tr>
+  </template>
+</html>

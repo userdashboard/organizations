@@ -1,0 +1,44 @@
+<html navbar="/account/organizations/navbar.html">
+  <head>
+    <title>Join organization</title>
+    <link href="/public/pure-min.css" rel="stylesheet" />
+    <link href="/public/content.css" rel="stylesheet" />
+    <base target="_top" href="/" />
+  </head>
+  <body>
+    <h1>Join organization</h1>
+    <div id="messageContainer"></div>
+    <form id="submitForm" class="pure-form pure-form-stacked">
+      <div class="pure-control-group">
+        <label for="organizationName">Organization</label>
+        <input id="organizationName" type="text" maxlength="100" readonly />
+      </div>
+      <div class="pure-control-group">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="text" maxlength="100" />
+      </div>
+      <div class="pure-control-group">
+        <label for="code">Invitation code</label>
+        <input id="code" name="code" type="text" maxlength="100" />
+      </div>
+      <div class="pure-controls">
+        <button type="submit" id="submitButton" class="pure-button pure-button-primary">Join organization</button>
+      </div>
+    </form>
+  </body>
+  <template id="success">
+    <div class="success message" error="success">
+      You are now a member of the organization.
+    </div>
+  </template>
+  <template id="invalid-account">
+    <div class="success message" error="invalid-account">
+      Error!  You own or are a member of this organization.
+    </div>
+  </template>
+  <template id="unknown-error">
+    <div class="error message" error="unknown-error">
+      Error!  An unknown error ocurred.
+    </div>
+  </template>
+</html>

@@ -1,0 +1,62 @@
+<html navbar="/account/organizations/navbar.html">
+  <head>
+    <title>Manage organizations</title>
+    <link href="/public/pure-min.css" rel="stylesheet" />
+    <link href="/public/content.css" rel="stylesheet" />
+    <base target="_top" href="/" />
+  </head>
+  <body>
+    <h1>Manage organizations</h1>
+    <h2>My memberships</h2>
+    <table id="memberships-table" class="pure-table pure-table-striped">
+      <thead>
+        <tr>
+          <th>Organization</th>
+          <th>Their email</th>
+          <th>My email</th>
+          <th>Joined</th>
+          <th>Organization</th>
+          <th>Invitation</th>
+          <th></th>
+        </tr>
+      </thead>
+    </table>
+    <h2>Owned organizations</h2>
+    <table id="organizations-table" class="pure-table pure-table-striped">
+      <thead>
+        <tr>
+          <th>Organizations name</th>
+          <th>Contact email</th>
+          <th>Created</th>
+          <th></th>
+        </tr>
+      </thead>
+    </table>
+  </body>
+  <template id="membership-row-template">
+    <tr>
+      <td>${organizationName}</td>
+      <td><a href="mailto:${organizationEmail}">${organizationEmail}</a></td>
+      <td><a href="mailto:${email}">${email}</a></td>
+      <td title="${created}">${createdRelative}</td>
+      <td><a href="/account/organizations/organization?organizationid=${organizationid}">Organization</a></td>
+      <td><a href="/account/organizations/invitation?invitationid=${invitationid}">Invitation</a></td>
+      <td class="pure-button-group" role="group">
+        <a href="/account/organizations/membership?membershipid=${membershipid}" class="pure-button">Membership</a>
+      </td>
+    </tr>
+  </template>
+  <template id="organization-row-template">
+    <tr>
+      <td>${name}</td>
+      <td><a href="mailto:${email}">${email}</a></td>
+      <td title="${created}">${createdRelative}</td>
+      <td class="pure-button-group" role="group">
+        <a href="/account/organizations/owner/organization?organizationid=${organizationid}" class="pure-button">Organization</a>
+        <a href="/account/organizations/owner/memberships?organizationid=${organizationid}" class="pure-button">Memberships</a>
+        <a href="/account/organizations/owner/invitations?organizationid=${organizationid}" class="pure-button">Invitations</a>
+        <a href="/account/organizations/owner/create-invitation?organizationid=${organizationid}" class="pure-button">Create invitation</a>
+      </td>
+    </tr>
+  </template>
+</html>

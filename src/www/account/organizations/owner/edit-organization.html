@@ -1,0 +1,46 @@
+<html navbar="/account/organizations/owner/navbar-organization.html">
+  <head>
+    <title>Edit organization</title>
+    <link href="/public/pure-min.css" rel="stylesheet" />
+    <link href="/public/content.css" rel="stylesheet" />
+    <base target="_top" href="/" />
+  </head>
+  <body>
+    <h1>Edit organization</h1>
+    <p>The organization contact email address is shared with all members.</p>
+    <div id="messageContainer"></div>
+    <form id="submitForm" method="POST" class="pure-form pure-form-stacked">
+      <div class="pure-control-group">
+        <label for="name">Team name</label>
+        <input id="name" name="name" type="text" maxlength="100" />
+      </div>
+      <div class="pure-control-group">
+        <label for="email">Contact email</label>
+        <input id="email" name="email" type="text" maxlength="100" />
+      </div>
+      <div class="pure-controls">
+        <button type="submit" id="submitButton" class="pure-button pure-button-primary">Update organization</button>
+      </div>
+    </form>
+  </body>
+  <template id="success">
+    <div class="success message" error="success">
+        Success! Your organization information has been updated.
+    </div>
+  </template>
+  <template id="unknown-error">
+    <div class="error message" error="unknown-error">
+      Error! An unknown error ocurred.
+      </div>
+  </template>
+  <template id="invalid-organization-field">
+    <div class="error message" error="invalid-organization-field">
+      Error! An invalid field was provided.
+      </div>
+  </template>
+  <template id="invalid-organization-field-length">
+    <div class="error message" error="invalid-organization-field-length">
+      Error! Invalid field length.
+      </div>
+  </template>
+</html>

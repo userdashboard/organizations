@@ -1,0 +1,38 @@
+<html navbar="/account/organizations/owner/navbar-organization.html">
+  <head>
+    <title>Invitations</title>
+    <link href="/public/pure-min.css" rel="stylesheet" />
+    <link href="/public/content.css" rel="stylesheet" />
+    <base target="_top" href="/" />
+  </head>
+  <body>
+    <h1>Invitations</h1>
+    <table id="invitations-table" class="pure-table pure-table-striped">
+      <thead>
+        <tr>
+          <th>Created</th>
+          <th>IP</th>
+          <th>User agent</th>
+          <th>Accepted</th>
+          <th>Membership</th>
+          <th></th>
+        </tr>
+      </thead>
+    </table>
+  </body>
+  <template id="invitation-row-template">
+    <tr id="${invitationid}">
+      <td title="${created}">${createdRelative}</td>
+      <td>${ip}</td>
+      <td>${userAgent}</td>
+      <td id="accepted-${invitationid}">Yes</td>
+      <td id="not-accepted-${invitationid}">No</td>
+      <td id="membership-${invitationid}"><a href="membership?membershipid=${membershipid}">Membership</a></td>
+      <td id="no-membership-${invitationid}">Nobody</td>
+      <td class="pure-button-group" role="group">
+        <a href="invitation?invitationid=${invitationid}" class="pure-button">Invitation</a>
+        <a href="delete-invitation?invitationid=${invitationid}" class="pure-button">Delete</a>
+      </td>
+    </tr>
+  </template>
+</html>

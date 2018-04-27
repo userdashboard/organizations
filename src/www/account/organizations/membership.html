@@ -1,0 +1,34 @@
+<html navbar="/account/organizations/navbar-membership.html">
+  <head>
+    <title>Membership</title>
+    <link href="/public/pure-min.css" rel="stylesheet" />
+    <link href="/public/content.css" rel="stylesheet" />
+    <base target="_top" href="/" />
+  </head>
+  <body>
+    <h1>Membership</h1>
+    <table id="memberships-table" class="pure-table pure-table-striped">
+      <thead>
+        <tr>
+          <th>Created</th>
+          <th>Email</th>
+          <th>IP</th>
+          <th>User agent</th>
+          <th></th>
+        </tr>
+      </thead>
+    </table>
+  </body>
+  <template id="membership-row-template">
+    <tr id="${membershipid}">
+      <td title="${created}">${createdRelative}</td>
+      <td>${email}</td>
+      <td>${ip}</td>
+      <td>${userAgent}</td>
+      <td class="pure-button-group" role="group">
+        <a href="edit-membership?membershipid=${membershipid}" class="pure-button">Update information</a>
+        <a href="delete-membership?membershipid=${membershipid}" class="pure-button">Delete</a>
+      </td>
+    </tr>
+  </template>
+</html>

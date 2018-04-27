@@ -1,0 +1,35 @@
+<html navbar="/account/organizations/owner/navbar-organization.html">
+  <head>
+    <title>Transfer organization</title>
+    <link href="/public/pure-min.css" rel="stylesheet" />
+    <link href="/public/content.css" rel="stylesheet" />
+    <base target="_top" href="/" />
+  </head>
+  <body>
+    <h1>Transfer organization</h1>
+    <div id="messageContainer"></div>
+    <form id="submitForm" class="pure-form pure-form-stacked">
+      <div class="pure-control-group">
+        <label for="accountid">New organization owner</label>
+        <select id="accountid" name="accountid">
+          <option>Select new owner</option>
+        </select>
+      </div>
+      <div class="pure-controls">
+        <button type="submit" id="submitButton" class="pure-button pure-button-primary">Transfer organization</button>
+      </div>
+    </form>
+  </body>
+  <template id="membership-option-template">
+    <option value="${accountid}">${email}</option>
+  </template>
+  <template id="success">
+    <div class="success message" error="success">You have transferred the organization to the new owner.</div>
+  </template>
+  <template id="unknown-error">
+    <div class="error message" error="unknown-error">An error occurred transferring the organization.</div>
+  </template>
+  <template id="invalid-accountid">
+    <div class="error message" error="invalid-accountid">An invalid recipient was selected or provided.</div>
+  </template>
+</html>

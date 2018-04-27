@@ -1,0 +1,36 @@
+<html navbar="/administrator/organizations/navbar-invitation.html">
+  <head>
+    <title>Invitation</title>
+    <link href="/public/pure-min.css" rel="stylesheet" />
+    <link href="/public/content.css" rel="stylesheet" />
+    <base target="_top" href="/" />
+  </head>
+  <body>
+    <h1>Invitation</h1>
+    <table id="invitations-table" class="pure-table pure-table-striped">
+      <thead>
+        <tr>
+          <th>Created</th>
+          <th>IP</th>
+          <th>User agent</th>
+          <th>Accepted</th>
+          <th>Membership</th>
+          <th></th>
+        </tr>
+      </thead>
+    </table>
+  </body>
+  <template id="invitation-row-template">
+    <tr id="${invitationid}">
+      <td title="${created}">${createdRelative}</td>
+      <td>${ip}</td>
+      <td>${userAgent}</td>
+      <td id="accepted">Yes</td>
+      <td id="not-accepted">No</td>
+      <td id="membership"><a href="membership?membershipid=${membershipid}">Membership</a></td>
+      <td id="no-membership">Nobody</td>
+      <td class="pure-button-group" role="group">
+      </td>
+    </tr>
+  </template>
+</html>
