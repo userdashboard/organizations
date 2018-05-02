@@ -7,6 +7,24 @@ describe(`/account/organizations/accept-invitation`, async () => {
   it('should require an organizationid', TestHelper.requireParameter(`/account/organizations/accept-invitation`, 'organizationid'))
 
   describe('AcceptInvitation#BEFORE', () => {
+    it('should reject owner', async () => {
+      const owner = await TestHelper.createUser()
+      await TestHelper.createOrganization(owner)
+      await TestHelper.createInvitation(owner, owner.organization.organizationid)
+      const req = TestHelper.createRequest(`/account/organizations/accept-invitation?invitationid=${owner.invitation.invitationid}`, 'GET')
+      req.account = owner.account
+      req.session = owner.session
+      const res = TestHelper.createResponse()
+      res.end = async (str) => {
+        const doc = TestHelper.extractDoc(str)
+        const messageContainer = doc.getElementById('messageContainer')
+        assert.notEqual(null, messageContainer)
+        assert.notEqual(null, messageContainer.child)
+        const message = messageContainer.child[0]
+        assert.equal('invalid-account', message.attr.error)
+      }
+    })
+
     it('should reject existing member', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
@@ -16,10 +34,14 @@ describe(`/account/organizations/accept-invitation`, async () => {
       const req = TestHelper.createRequest(`/account/organizations/accept-invitation?invitationid=${owner.invitation.invitationid}`, 'GET')
       req.account = user.account
       req.session = user.session
-      try {
-        await req.route.api.before(req)
-      } catch (error) {
-        assert.equal(error.message, 'invalid-account')
+      const res = TestHelper.createResponse()
+      res.end = async (str) => {
+        const doc = TestHelper.extractDoc(str)
+        const messageContainer = doc.getElementById('messageContainer')
+        assert.notEqual(null, messageContainer)
+        assert.notEqual(null, messageContainer.child)
+        const message = messageContainer.child[0]
+        assert.equal('invalid-account', message.attr.error)
       }
     })
 
