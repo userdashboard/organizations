@@ -101,11 +101,7 @@ describe(`/api/user/organizations/accept-invitation`, () => {
         code: owner.invitation.code
       }
       await req.route.api.patch(req)
-      const req2 = TestHelper.createRequest(`/api/user/session?sessionid=${user.session.sessionid}`, 'GET')
-      req2.account = req.account
-      req2.session = req.session
-      const sessionNow = await req2.route.api.get(req2)
-      assert.equal(sessionNow.lockURL, `/api/user/organizations/accept-invitation?invitationid=${owner.invitation.invitationid}`)
+      assert.equal(req.session.lockURL, `/api/user/organizations/accept-invitation?invitationid=${owner.invitation.invitationid}`)
     })
 
     it('should create authorized membership', async () => {

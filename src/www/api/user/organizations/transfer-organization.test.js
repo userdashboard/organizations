@@ -53,11 +53,7 @@ describe('/api/user/organizations/transfer-organization', () => {
         accountid: user.account.accountid
       }
       await req.route.api.patch(req)
-      const req2 = TestHelper.createRequest(`/api/user/session?sessionid=${owner.session.sessionid}`, 'GET')
-      req2.account = owner.account
-      req2.session = owner.session
-      const sessionNow = await req2.route.api.get(req2)
-      assert.equal(sessionNow.lockURL, `/api/user/organizations/transfer-organization?organizationid=${owner.organization.organizationid}`)
+      assert.equal(req.session.lockURL, `/api/user/organizations/transfer-organization?organizationid=${owner.organization.organizationid}`)
     })
 
     it('should transfer organization after authorization', async () => {

@@ -35,11 +35,7 @@ describe(`/api/user/organizations/create-invitation`, () => {
         code: 'this-is-the-code'
       }
       await req.route.api.post(req)
-      const req2 = TestHelper.createRequest(`/api/user/session?sessionid=${owner.session.sessionid}`, 'GET')
-      req2.account = owner.account
-      req2.session = owner.session
-      const sessionNow = await req2.route.api.get(req2)
-      assert.equal(sessionNow.lockURL, `/api/user/organizations/create-invitation?organizationid=${owner.organization.organizationid}`)
+      assert.equal(req.session.lockURL, `/api/user/organizations/create-invitation?organizationid=${owner.organization.organizationid}`)
     })
 
     it('should create authorized invitation', async () => {
