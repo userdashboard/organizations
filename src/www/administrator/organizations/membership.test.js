@@ -7,7 +7,7 @@ describe(`/administrator/organizations/membership`, () => {
   it('should require a membershipid', TestHelper.requireParameter(`/administrator/organizations/membership`, 'membershipid'))
   describe('Membership#BEFORE', () => {
     it('should bind membership to req', async () => {
-      const administrator = await TestHelper.createUser()
+      const administrator = await TestHelper.createAdministrator()
       await TestHelper.createOrganization(administrator)
       const user = await TestHelper.createUser()
       await TestHelper.createMembership(user, administrator.organization.organizationid)
@@ -23,7 +23,7 @@ describe(`/administrator/organizations/membership`, () => {
 
   describe('Membership#GET', () => {
     it('should have row for membership', async () => {
-      const administrator = await TestHelper.createUser()
+      const administrator = await TestHelper.createAdministrator()
       await TestHelper.createOrganization(administrator)
       const user = await TestHelper.createUser()
       await TestHelper.createMembership(user, administrator.organization.organizationid)

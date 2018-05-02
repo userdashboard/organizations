@@ -8,7 +8,7 @@ describe(`/administrator/organizations/invitations`, () => {
 
   describe('Invitations#BEFORE', () => {
     it('should bind invitations to req', async () => {
-      const administrator = await TestHelper.createUser()
+      const administrator = await TestHelper.createAdministrator()
       await TestHelper.createOrganization(administrator)
       await TestHelper.createInvitation(administrator, administrator.organization.organizationid)
       const req = TestHelper.createRequest(`/administrator/organizations/invitations?organizationid=${administrator.organization.organizationid}`, 'GET')
@@ -24,7 +24,7 @@ describe(`/administrator/organizations/invitations`, () => {
 
   describe('Invitations#GET', () => {
     it('should have row for invitation', async () => {
-      const administrator = await TestHelper.createUser()
+      const administrator = await TestHelper.createAdministrator()
       await TestHelper.createOrganization(administrator)
       await TestHelper.createInvitation(administrator, administrator.organization.organizationid)
       const req = TestHelper.createRequest(`/administrator/organizations/invitations?organizationid=${administrator.organization.organizationid}`, 'GET')

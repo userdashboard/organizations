@@ -6,7 +6,7 @@ describe('/administrator/organizations/organizations', () => {
   it('should require an administrator', TestHelper.requireAdministrator('/administrator/organizations/organizations'))
   describe('Organizations#BEFORE', () => {
     it('should bind owned organizations to req', async () => {
-      const administrator = await TestHelper.createUser()
+      const administrator = await TestHelper.createAdministrator()
       await TestHelper.createOrganization(administrator)
       const req = TestHelper.createRequest('/administrator/organizations/organizations', 'GET')
       req.account = administrator.account
@@ -18,7 +18,7 @@ describe('/administrator/organizations/organizations', () => {
     })
 
     it('should not bind member organizations to req', async () => {
-      const administrator = await TestHelper.createUser()
+      const administrator = await TestHelper.createAdministrator()
       await TestHelper.createOrganization(administrator)
       const user = await TestHelper.createUser()
       await TestHelper.createMembership(user, administrator.organization.organizationid)
@@ -34,7 +34,7 @@ describe('/administrator/organizations/organizations', () => {
 
   describe('Organizations#GET', () => {
     it('should have row for each membership', async () => {
-      const administrator = await TestHelper.createUser()
+      const administrator = await TestHelper.createAdministrator()
       await TestHelper.createOrganization(administrator)
       const req = TestHelper.createRequest('/administrator/organizations/organizations', 'GET')
       req.account = administrator.account
