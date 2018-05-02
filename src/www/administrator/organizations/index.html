@@ -7,7 +7,7 @@
     <base target="_top" href="/" />
   </head>
   <body>
-    <h1>Organizations administration center</h1>
+    <h1>Organizations administration</h1>
     <table id="organizations-table" class="pure-table pure-table-striped">
       <thead>
         <tr>
@@ -19,9 +19,22 @@
         </tr>
       </thead>
     </table>
+
+    <h1>Memberships</h1>
+    <table id="memberships-table" class="pure-table pure-table-striped">
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th>Created</th>
+          <th>Invitation</th>
+          <th>Organization</th>
+          <th></th>
+        </tr>
+      </thead>
+    </table>
   </body>
   <template id="organization-row-template">
-    <tr>
+    <tr id="${organizationid}">
       <td>${name}</td>
       <td><a href="mailto:${email}">${email}</a></td>
       <td title="${created}">${createdRelative}</td>
@@ -29,6 +42,16 @@
         <a href="/administrator/organizations/organization?organizationid=${organizationid}" class="pure-button">Organization</a>
         <a href="/administrator/organizations/memberships?organizationid=${organizationid}" class="pure-button">Memberships</a>
         <a href="/administrator/organizations/invitations?organizationid=${organizationid}" class="pure-button">Invitations</a>
+      </td>
+    </tr>
+  </template>
+  <template id="membership-row-template">
+    <tr id="${membershipid}">
+      <td>${email}</td>
+      <td title="${created}">${createdRelative}</td>
+      <td><a href="/administrator/organizations/invitation?invitationid=${invitationid}">Invitation</a></td>
+      <td><a href="/administrator/organizations/organization?organizationid=${organizationid}">Organization</a></td>
+      <td class="pure-button-group" role="group">
       </td>
     </tr>
   </template>

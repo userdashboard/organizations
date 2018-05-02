@@ -34,7 +34,7 @@
     </table>
   </body>
   <template id="membership-row-template">
-    <tr>
+    <tr id="${membershipid}">
       <td>${organizationName}</td>
       <td><a href="mailto:${organizationEmail}">${organizationEmail}</a></td>
       <td><a href="mailto:${email}">${email}</a></td>
@@ -47,7 +47,7 @@
     </tr>
   </template>
   <template id="organization-row-template">
-    <tr>
+    <tr id="${organizationid}">
       <td>${name}</td>
       <td><a href="mailto:${email}">${email}</a></td>
       <td title="${created}">${createdRelative}</td>

@@ -9,14 +9,14 @@ module.exports = {
 }
 
 async function beforeRequest (req) {
-  const organizations = await Organization.list(req.account.accountid)
+  const organizations = await Organization.listAll()
   if (organizations && organizations.length) {
     for (const organization of organizations) {
       organization.created = dashboard.Timestamp.date(organization.created)
       organization.createdRelative = dashboard.Format.relativePastDate(organization.created)
     }
   }
-  const memberships = await Membership.listByAccount(req.account.accountid)
+  const memberships = await Membership.listAll()
   if (memberships && memberships.length) {
     for (const membership of memberships) {
       membership.created = dashboard.Timestamp.date(membership.created)
