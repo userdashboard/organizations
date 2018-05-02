@@ -41,7 +41,6 @@ module.exports = {
     if (req.session.deleteMembershipRequested === req.query.membershipid && req.session.unlocked >= dashboard.Timestamp.now) {
       await dashboard.Session.removeProperty(req.session.sessionid, 'deleteMembershipRequested')
       await Membership.deleteMembership(req.query.membershipid)
-      req.account = await dashboard.Account.load(req.account.accountid)
       req.session = await dashboard.Session.load(req.session.sessionid)
       return true
     }

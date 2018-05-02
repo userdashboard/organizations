@@ -44,7 +44,6 @@ module.exports = {
       const invitation = await Invitation.create(req.query.organizationid, req.session.newInvitationRequested)
       await Invitation.setProperty(invitation.invitationid, 'ip', req.ip)
       await Invitation.setProperty(invitation.invitationid, 'userAgent', req.headers['user-agent'] || '')
-      req.account = await dashboard.Account.load(req.account.accountid)
       req.session = await dashboard.Session.load(req.session.sessionid)
       return invitation
     }

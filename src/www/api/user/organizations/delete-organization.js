@@ -33,7 +33,6 @@ module.exports = {
     if (req.session.deleteOrganizationRequested === req.query.organizationid && req.session.unlocked >= dashboard.Timestamp.now) {
       await dashboard.Session.removeProperty(req.session.sessionid, 'deleteOrganizationRequested')
       await Organization.deleteOrganization(req.query.organizationid)
-      req.account = await dashboard.Account.load(req.account.accountid)
       req.session = await dashboard.Session.load(req.session.sessionid)
       return true
     }

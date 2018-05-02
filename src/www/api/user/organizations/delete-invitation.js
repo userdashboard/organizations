@@ -37,7 +37,6 @@ module.exports = {
     if (req.session.deleteInvitationRequested === req.query.invitationid && req.session.unlocked >= dashboard.Timestamp.now) {
       await dashboard.Session.removeProperty(req.session.sessionid, 'deleteInvitationRequested')
       await Invitation.deleteInvitation(req.query.invitationid)
-      req.account = await dashboard.Account.load(req.account.accountid)
       req.session = await dashboard.Session.load(req.session.sessionid)
       return true
     }

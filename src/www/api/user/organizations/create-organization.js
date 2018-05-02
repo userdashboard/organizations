@@ -39,7 +39,6 @@ module.exports = {
     const membership = await Membership.create(organization.organizationid, req.account.accountid)
     await Membership.setProperty(membership.membershipid, 'ip', req.ip)
     await Membership.setProperty(membership.membershipid, 'userAgent', req.headers['user-agent'] || '')
-    req.account = await dashboard.Account.load(req.account.accountid)
     return organization
   }
 }

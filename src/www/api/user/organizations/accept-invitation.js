@@ -54,7 +54,6 @@ module.exports = {
       await Membership.setProperty(membership.membershipid, 'userAgent', req.headers['user-agent'] || '')
       await Membership.setProperty(membership.membershipid, 'invitationid', req.session.membershipRequested)
       await Invitation.setProperty(req.session.membershipRequested, 'membershipid', membership.membershipid)
-      req.account = await dashboard.Account.load(req.account.accountid)
       req.session = await dashboard.Session.load(req.session.sessionid)
       return membership
     }
