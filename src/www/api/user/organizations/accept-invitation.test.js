@@ -57,12 +57,32 @@ describe(`/api/user/organizations/accept-invitation`, () => {
       return req.route.api.patch(req, res)
     })
 
+    it('should reject owner', async () => {
+      const owner = await TestHelper.createUser()
+      await TestHelper.createOrganization(owner)
+      await TestHelper.createInvitation(owner, owner.organization.organizationid)
+      const invitation1 = owner.invitation
+      const req = TestHelper.createRequest(`/api/user/organizations/accept-invitation?invitationid=${invitation1.invitationid}`, 'POST')
+      req.account = owner.account
+      req.session = owner.session
+      req.body = {
+        code: owner.invitation.code
+      }
+      const res = TestHelper.createResponse()
+      res.end = async (str) => {
+        const json = JSON.parse(str)
+        assert.equal(json.error, 'invalid-account')
+      }
+      return req.route.api.patch(req, res)
+    })
+
     it('should reject existing members', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       await TestHelper.createInvitation(owner, owner.organization.organizationid)
+      const invitation1 = owner.invitation
       const user = await TestHelper.createUser()
-      const req = TestHelper.createRequest(`/api/user/organizations/accept-invitation?invitationid=${owner.invitation.invitationid}`, 'POST')
+      const req = TestHelper.createRequest(`/api/user/organizations/accept-invitation?invitationid=${invitation1.invitationid}`, 'POST')
       req.account = user.account
       req.session = user.session
       req.body = {
@@ -73,7 +93,8 @@ describe(`/api/user/organizations/accept-invitation`, () => {
         await TestHelper.completeAuthorization(req)
         await req.route.api.patch(req)
         await TestHelper.createInvitation(owner, owner.organization.organizationid)
-        const req2 = TestHelper.createRequest(`/api/user/organizations/accept-invitation?invitationid=${owner.invitation.invitationid}`, 'POST')
+        const invitation2 = owner.invitation
+        const req2 = TestHelper.createRequest(`/api/user/organizations/accept-invitation?invitationid=${invitation2.invitationid}`, 'POST')
         req2.account = req.account
         req2.session = req.session
         req2.body = {

@@ -24,6 +24,22 @@ describe('/api/user/organizations/transfer-organization', () => {
       }
     })
 
+    it('should reject same owner', async () => {
+      const owner = await TestHelper.createUser()
+      await TestHelper.createOrganization(owner)
+      const req = TestHelper.createRequest(`/api/user/organizations/transfer-organization?organizationid=${owner.organization.organizationid}`, 'PATCH')
+      req.account = owner.account
+      req.session = owner.session
+      req.body = {
+        accountid: owner.account.accountid
+      }
+      try {
+        await req.route.api.patch(req)
+      } catch (error) {
+        assert.equal(error.message, 'invalid-account')
+      }
+    })
+
     it('should require new owner is member', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
@@ -37,7 +53,7 @@ describe('/api/user/organizations/transfer-organization', () => {
       try {
         await req.route.api.patch(req)
       } catch (error) {
-        assert.equal(error.message, 'invalid-accountid')
+        assert.equal(error.message, 'invalid-account')
       }
     })
 

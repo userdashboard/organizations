@@ -13,6 +13,9 @@ module.exports = {
     if (!req.query || !req.query.organizationid) {
       throw new Error('invalid-organizationid')
     }
+    if (req.body.accountid === req.account.accountid) {
+      throw new Error('invalid-account')
+    }
     const organization = await Organization.load(req.query.organizationid)
     if (!organization || organization.ownerid !== req.account.accountid) {
       throw new Error('invalid-organization')
@@ -24,11 +27,11 @@ module.exports = {
       }
       const newOwner = await dashboard.Account.load(req.body.accountid)
       if (!newOwner || newOwner.deleted) {
-        throw new Error('invalid-accountid')
+        throw new Error('invalid-account')
       }
       const nonMember = await Membership.isUniqueMembership(req.query.organizationid, req.body.accountid)
       if (nonMember) {
-        throw new Error('invalid-accountid')
+        throw new Error('invalid-account')
       }
       await dashboard.Session.setProperty(req.session.sessionid, `transferOrganizationRequested`, req.query.organizationid)
       await dashboard.Session.setProperty(req.session.sessionid, `transferOrganizationOwnerRequested`, req.body.accountid)
@@ -47,7 +50,6 @@ module.exports = {
       await dashboard.Session.removeProperty(req.session.sessionid, 'transferOrganizationRequested')
       await dashboard.Session.removeProperty(req.session.sessionid, 'transferOrganizationOwnerRequested')
       await Organization.setProperty(req.query.organizationid, 'ownerid', req.session.transferOrganizationOwnerRequested)
-      req.account = await dashboard.Account.load(req.account.accountid)
       req.session = await dashboard.Session.load(req.session.sessionid)
       return true
     }
