@@ -44,7 +44,7 @@ async function renderPage (req, res, messageTemplate) {
   if (messageTemplate) {
     doc.renderTemplate(null, messageTemplate, 'messageContainer')
     if (messageTemplate === 'success') {
-      doc.removeElementById(submitForm)
+      submitForm.remove()
       return dashboard.Response.end(req, res, doc)
     }
   }

@@ -19,43 +19,53 @@ async function beforeRequest (req) {
   if (!invitation || (invitation.accepted && invitation.accepted !== req.account.accountid)) {
     throw new Error('invalid-invitation')
   }
+  console.log('got invitation')
   const organization = await Organization.load(invitation.organizationid)
   if (!organization) {
     throw new Error('invalid-organization')
   }
+  console.log('got organization')
   if (req.account.accountid === organization.ownerid) {
-    throw new Error('invalid-account')
+    req.error = 'invalid-account'
+    return
   }
+  console.log('checking uniqueness')
   const unique = await Membership.isUniqueMembership(invitation.organizationid, req.account.accountid)
   if (!unique) {
+    console.log('membership is not unique')
     throw new Error('invalid-account')
   }
+  console.log('got everything')
+  req.data = { organization }
   if (req.session.membershipRequested && req.session.unlocked >= dashboard.Timestamp.now) {
+    console.log('unlocking authorized invitation acceptance')
     const membership = await API.user.organizations.AcceptInvitation.patch(req)
     if (membership && membership.membershipid) {
       req.success = true
+      req.data.membership = membership
     }
   }
-  req.data = { organization }
 }
 
 async function renderPage (req, res, messageTemplate) {
   if (req.success) {
     messageTemplate = 'success'
+  } else if (req.error === 'invalid-account') {
+    messageTemplate = 'invalid-account'
   }
   const doc = dashboard.HTML.parse(req.route.html)
   await Navigation.render(req, doc)
   const submitForm = doc.getElementById('submitForm')
-  submitForm.setAttribute('action', req.url)
-  const nameField = doc.getElementById('organizationName')
-  nameField.setAttribute('value', req.data.organization.name)
   if (messageTemplate) {
     doc.renderTemplate(null, messageTemplate, 'messageContainer')
-    if (messageTemplate === 'success') {
-      doc.removeElementById(submitForm)
+    if (messageTemplate === 'success' || messageTemplate === 'invalid-account') {
+      submitForm.remove()
       return dashboard.Response.end(req, res, doc)
     }
   }
+  submitForm.setAttribute('action', req.url)
+  const nameField = doc.getElementById('organizationName')
+  nameField.setAttribute('value', req.data.organization.name)
   return dashboard.Response.end(req, res, doc)
 }
 

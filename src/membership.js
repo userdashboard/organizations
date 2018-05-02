@@ -122,10 +122,12 @@ async function listByAccount (accountid) {
 }
 
 async function isUniqueMembership (organizationid, accountid) {
-  const memberships = await global.redisClient.lrangeAsync(`memberships:accounts:${organizationid}`, 0, -1)
+  console.log('loading up memberships')
+  const memberships = listByAccount(accountid)
+  console.log('memberships', memberships)
   if (memberships && memberships.length) {
-    for (const member of memberships) {
-      if (accountid === member) {
+    for (const membership of memberships) {
+      if (organizationid === membership.organizationid) {
         return false
       }
     }

@@ -16,11 +16,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@userappstore/dashboard": "^1.0.81"
+    "@userappstore/dashboard": "^1.0.82"
   },
-  "dashboard-modules": [
-    "@userappstore/dashboard"
-  ],
   "dashboard-menus": {
     "account": [
       {

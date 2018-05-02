@@ -20,13 +20,14 @@ async function beforeRequest (req) {
   if (organization.ownerid !== req.account.accountid) {
     throw new Error('invalid-account')
   }
+  req.data = { organization }
   if (req.session.newInvitationRequested && req.session.unlocked >= dashboard.Timestamp.now) {
     const invitation = await API.user.organizations.CreateInvitation.post(req)
     if (invitation && invitation.invitationid) {
       req.success = true
+      req.data.invitation = invitation
     }
   }
-  req.data = { organization }
 }
 
 async function renderPage (req, res, messageTemplate) {
@@ -38,13 +39,13 @@ async function renderPage (req, res, messageTemplate) {
   doc.getElementById('organizationName').setAttribute('value', req.data.organization.name)
   doc.getElementById('code').setAttribute('value', req.body ? req.body.code : dashboard.UUID.random(10))
   const submitForm = doc.getElementById('submitForm')
+  submitForm.setAttribute('action', req.url)
   if (messageTemplate) {
-    doc.renderTemplate(null, messageTemplate, 'messageContainer')
+    doc.renderTemplate(req.data.invitation, messageTemplate, 'messageContainer')
     if (messageTemplate === 'success') {
-      doc.removeElementById(submitForm)
+      submitForm.remove()
     }
   }
-  submitForm.setAttribute('action', req.url)
   return dashboard.Response.end(req, res, doc)
 }
 
