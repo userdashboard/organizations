@@ -122,9 +122,7 @@ async function listByAccount (accountid) {
 }
 
 async function isUniqueMembership (organizationid, accountid) {
-  console.log('loading up memberships')
   const memberships = listByAccount(accountid)
-  console.log('memberships', memberships)
   if (memberships && memberships.length) {
     for (const membership of memberships) {
       if (organizationid === membership.organizationid) {
