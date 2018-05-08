@@ -3,7 +3,6 @@ const assert = require('assert')
 const TestHelper = require('../../../../test-helper.js')
 
 describe(`/api/administrator/organizations/invitations`, () => {
-  it('should require an administrator', TestHelper.requireAdministrator(`/api/administrator/organizations/invitations`))
   describe('Invitations#GET', () => {
     it('should return invitation list', async () => {
       const administrator = await TestHelper.createAdministrator()

@@ -3,7 +3,6 @@ const assert = require('assert')
 const TestHelper = require('../../../../test-helper.js')
 
 describe('/account/organizations/owner/organizations', () => {
-  it('should require a user', TestHelper.requireAccount('/account/organizations/owner/organizations'))
   describe('Organizations#BEFORE', () => {
     it('should bind owned organizations to req', async () => {
       const owner = await TestHelper.createUser()
@@ -32,7 +31,6 @@ describe('/account/organizations/owner/organizations', () => {
         const membershipRow = doc.getElementById(owner.organization.organizationid)
         assert.notEqual(null, membershipRow)
       }
-      await req.route.api.before(req)
       return req.route.api.get(req, res)
     })
   })

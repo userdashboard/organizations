@@ -3,7 +3,6 @@ const assert = require('assert')
 const TestHelper = require('../../../../test-helper.js')
 
 describe('/api/administrator/organizations/membership', () => {
-  it('should require an administrator', TestHelper.requireAdministrator('/api/administrator/organizations/membership'))
   it('should require a membershipid', TestHelper.requireParameter('/api/administrator/organizations/membership', 'membershipid'))
   describe('Membership#GET', () => {
     it('should return membership data', async () => {

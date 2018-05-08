@@ -33,8 +33,8 @@ These API endpoints will run for each request if you add them to your `afterAuth
 
     "dashboard": {
       "afterAuthentication": [
-        "node_modules/@userappstore/dashboard-user-organizations/src/www/api/user/organizations/proxy-memberships.js",
-        "node_modules/@userappstore/dashboard-user-organizations/src/www/api/user/organizations/proxy-organizations.js"
+        "node_modules/@userappstore/organizations/src/www/api/user/organizations/proxy-memberships.js",
+        "node_modules/@userappstore/organizations/src/www/api/user/organizations/proxy-organizations.js"
       ]
     }
 

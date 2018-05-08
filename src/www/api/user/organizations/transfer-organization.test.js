@@ -3,7 +3,6 @@ const assert = require('assert')
 const TestHelper = require('../../../../test-helper.js')
 
 describe('/api/user/organizations/transfer-organization', () => {
-  it('should require a user', TestHelper.requireAccount('/api/user/organizations/transfer-organization'))
   it('should require an organizationid', TestHelper.requireParameter('/api/user/organizations/transfer-organization', 'organizationid'))
   describe('TransferOrganization#PATCH', () => {
     it('should require own organization', async () => {
@@ -55,21 +54,6 @@ describe('/api/user/organizations/transfer-organization', () => {
       } catch (error) {
         assert.equal(error.message, 'invalid-account')
       }
-    })
-
-    it('should lock session for authorization', async () => {
-      const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner)
-      const user = await TestHelper.createUser()
-      await TestHelper.createMembership(user, owner.organization.organizationid)
-      const req = TestHelper.createRequest(`/api/user/organizations/transfer-organization?organizationid=${owner.organization.organizationid}`, 'PATCH')
-      req.account = owner.account
-      req.session = owner.session
-      req.body = {
-        accountid: user.account.accountid
-      }
-      await req.route.api.patch(req)
-      assert.equal(req.session.lockURL, `/api/user/organizations/transfer-organization?organizationid=${owner.organization.organizationid}`)
     })
 
     it('should transfer organization after authorization', async () => {

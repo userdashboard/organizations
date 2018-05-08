@@ -3,9 +3,7 @@ const assert = require('assert')
 const TestHelper = require('../../../../test-helper.js')
 
 describe(`/account/organizations/owner/transfer-organization`, async () => {
-  it('should require a user', TestHelper.requireAdministrator(`/account/organizations/owner/transfer-organization`))
   it('should require an organizationid', TestHelper.requireParameter(`/account/organizations/owner/transfer-organization`, 'organizationid'))
-
   describe('TransferOrganization#BEFORE', () => {
     it('should require owner', async () => {
       const owner = await TestHelper.createUser()
@@ -68,32 +66,11 @@ describe(`/account/organizations/owner/transfer-organization`, async () => {
         assert.notEqual(null, doc.getElementById('submitForm'))
         assert.notEqual(null, doc.getElementById('submitButton'))
       }
-      await req.route.api.before(req)
       return req.route.api.get(req, res)
     })
   })
 
   describe('TransferOrganization#POST', () => {
-    it('should lock session pending authorization', async () => {
-      const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner)
-      const user = await TestHelper.createUser()
-      await TestHelper.createMembership(user, owner.organization.organizationid)
-      const req = TestHelper.createRequest(`/account/organizations/owner/transfer-organization?organizationid=${owner.organization.organizationid}`, 'POST')
-      req.account = owner.account
-      req.session = owner.session
-      req.body = {
-        accountid: user.account.accountid
-      }
-      const res = TestHelper.createResponse()
-      res.end = async (str) => {
-        assert.notEqual(null, req.session.lock)
-        assert.equal(req.session.lockURL, `/account/organizations/owner/transfer-organization?organizationid=${owner.organization.organizationid}`)
-      }
-      await req.route.api.before(req)
-      return req.route.api.post(req, res)
-    })
-
     it('should apply after authorization', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
@@ -117,10 +94,8 @@ describe(`/account/organizations/owner/transfer-organization`, async () => {
           const message = messageContainer.child[0]
           assert.equal('success', message.attr.error)
         }
-        await req.route.api.before(req)
         return req.route.api.get(req, res2)
       }
-      await req.route.api.before(req)
       return req.route.api.post(req, res)
     })
   })

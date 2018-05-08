@@ -3,9 +3,7 @@ const assert = require('assert')
 const TestHelper = require('../../../test-helper.js')
 
 describe(`/account/organizations/accept-invitation`, async () => {
-  it('should require a user', TestHelper.requireAdministrator(`/account/organizations/accept-invitation`))
   it('should require an organizationid', TestHelper.requireParameter(`/account/organizations/accept-invitation`, 'organizationid'))
-
   describe('AcceptInvitation#BEFORE', () => {
     it('should reject owner', async () => {
       const owner = await TestHelper.createUser()
@@ -14,14 +12,10 @@ describe(`/account/organizations/accept-invitation`, async () => {
       const req = TestHelper.createRequest(`/account/organizations/accept-invitation?invitationid=${owner.invitation.invitationid}`, 'GET')
       req.account = owner.account
       req.session = owner.session
-      const res = TestHelper.createResponse()
-      res.end = async (str) => {
-        const doc = TestHelper.extractDoc(str)
-        const messageContainer = doc.getElementById('messageContainer')
-        assert.notEqual(null, messageContainer)
-        assert.notEqual(null, messageContainer.child)
-        const message = messageContainer.child[0]
-        assert.equal('invalid-account', message.attr.error)
+      try {
+        await req.route.api.before(req)
+      } catch (error) {
+        assert.equal(error.message, 'invalid-account')
       }
     })
 
@@ -34,14 +28,10 @@ describe(`/account/organizations/accept-invitation`, async () => {
       const req = TestHelper.createRequest(`/account/organizations/accept-invitation?invitationid=${owner.invitation.invitationid}`, 'GET')
       req.account = user.account
       req.session = user.session
-      const res = TestHelper.createResponse()
-      res.end = async (str) => {
-        const doc = TestHelper.extractDoc(str)
-        const messageContainer = doc.getElementById('messageContainer')
-        assert.notEqual(null, messageContainer)
-        assert.notEqual(null, messageContainer.child)
-        const message = messageContainer.child[0]
-        assert.equal('invalid-account', message.attr.error)
+      try {
+        await req.route.api.before(req)
+      } catch (error) {
+        assert.equal(error.message, 'invalid-account')
       }
     })
 
@@ -77,32 +67,11 @@ describe(`/account/organizations/accept-invitation`, async () => {
         assert.notEqual(null, doc.getElementById('submitForm'))
         assert.notEqual(null, doc.getElementById('submitButton'))
       }
-      await req.route.api.before(req)
       return req.route.api.get(req, res)
     })
   })
 
   describe('AcceptInvitation#POST', () => {
-    it('should lock session pending authorization', async () => {
-      const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner)
-      await TestHelper.createInvitation(owner, owner.organization.organizationid)
-      const user = await TestHelper.createUser()
-      const req = TestHelper.createRequest(`/account/organizations/accept-invitation?invitationid=${owner.invitation.invitationid}`, 'POST')
-      req.account = user.account
-      req.session = user.session
-      req.body = {
-        code: owner.invitation.code
-      }
-      const res = TestHelper.createResponse()
-      res.end = async (str) => {
-        assert.notEqual(null, req.session.lock)
-        assert.equal(req.session.lockURL, `/account/organizations/accept-invitation?invitationid=${owner.invitation.invitationid}`)
-      }
-      await req.route.api.before(req)
-      return req.route.api.post(req, res)
-    })
-
     it('should apply after authorization', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
@@ -126,10 +95,8 @@ describe(`/account/organizations/accept-invitation`, async () => {
           const message = messageContainer.child[0]
           assert.equal('success', message.attr.error)
         }
-        await req.route.api.before(req)
         return req.route.api.get(req, res2)
       }
-      await req.route.api.before(req)
       return req.route.api.post(req, res)
     })
   })

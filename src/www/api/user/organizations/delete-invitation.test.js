@@ -3,7 +3,6 @@ const assert = require('assert')
 const TestHelper = require('../../../../test-helper.js')
 
 describe('/api/user/organizations/delete-invitation', async () => {
-  it('should require a user', TestHelper.requireAccount('/api/user/organizations/delete-invitation'))
   it('should require an invitationid', TestHelper.requireParameter('/api/user/organizations/delete-invitation', 'invitationid'))
   describe('DeleteInvitation#DELETE', () => {
     it('should require owner', async () => {
@@ -43,19 +42,6 @@ describe('/api/user/organizations/delete-invitation', async () => {
       } catch (error) {
         assert.equal(error.message, 'invalid-invitation')
       }
-    })
-
-    it('should lock session for authorization', async () => {
-      const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner)
-      const req = TestHelper.createRequest(`/api/user/organizations/create-invitation?organizationid=${owner.organization.organizationid}`, 'POST')
-      req.account = owner.account
-      req.session = owner.session
-      req.body = {
-        code: 'this-is-the-code'
-      }
-      await req.route.api.post(req)
-      assert.equal(req.session.lockURL, `/api/user/organizations/create-invitation?organizationid=${owner.organization.organizationid}`)
     })
 
     it('should delete invitation with authorization', async () => {

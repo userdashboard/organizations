@@ -3,7 +3,6 @@ const assert = require('assert')
 const TestHelper = require('../../../../test-helper.js')
 
 describe(`/account/organizations/owner/edit-organization`, () => {
-  it('should require a user', TestHelper.requireAdministrator(`/account/organizations/owner/edit-organization`))
   it('should require an organizationid', TestHelper.requireParameter(`/account/organizations/owner/edit-organization`, 'organizationid'))
   describe('EditOrganization#BEFORE', () => {
     it('should require owner', async () => {
@@ -49,7 +48,6 @@ describe(`/account/organizations/owner/edit-organization`, () => {
         assert.notEqual(null, doc.getElementById('submitForm'))
         assert.notEqual(null, doc.getElementById('submitButton'))
       }
-      await req.route.api.before(req)
       return req.route.api.get(req, res)
     })
   })
@@ -70,7 +68,6 @@ describe(`/account/organizations/owner/edit-organization`, () => {
         const message = doc.getElementById('messageContainer').child[0]
         assert.equal('invalid-organization-field', message.attr.error)
       }
-      await req.route.api.before(req)
       return req.route.api.post(req, res)
     })
 
@@ -90,25 +87,6 @@ describe(`/account/organizations/owner/edit-organization`, () => {
         const message = doc.getElementById('messageContainer').child[0]
         assert.equal('invalid-organization-field-length', message.attr.error)
       }
-      await req.route.api.before(req)
-      return req.route.api.post(req, res)
-    })
-
-    it('should lock session pending authorization', async () => {
-      const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner)
-      const req = TestHelper.createRequest(`/account/organizations/owner/edit-organization?organizationid=${owner.organization.organizationid}`, 'POST')
-      req.account = owner.account
-      req.session = owner.session
-      req.body = {
-        email: 'email@address.com'
-      }
-      const res = TestHelper.createResponse()
-      res.end = async (str) => {
-        assert.notEqual(null, req.session.lock)
-        assert.equal(req.session.lockURL, `/account/organizations/owner/edit-organization?organizationid=${owner.organization.organizationid}`)
-      }
-      await req.route.api.before(req)
       return req.route.api.post(req, res)
     })
 
@@ -133,10 +111,8 @@ describe(`/account/organizations/owner/edit-organization`, () => {
           const message = messageContainer.child[0]
           assert.equal('success', message.attr.error)
         }
-        await req.route.api.before(req)
         return req.route.api.get(req, res)
       }
-      await req.route.api.before(req)
       return req.route.api.post(req, res)
     })
   })

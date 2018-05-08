@@ -2,8 +2,7 @@
 const assert = require('assert')
 const TestHelper = require('../../../test-helper.js')
 
-describe.only(`/administrator/organizations/index`, () => {
-  it('should require an administrator', TestHelper.requireAdministrator(`/administrator/organizations`))
+describe(`/administrator/organizations/index`, () => {
   describe('Index#BEFORE', () => {
     it('should bind memberships to req', async () => {
       const administrator = await TestHelper.createAdministrator()
@@ -49,7 +48,6 @@ describe.only(`/administrator/organizations/index`, () => {
         const organizationRow = doc.getElementById(administrator.organization.organizationid)
         assert.notEqual(null, organizationRow)
       }
-      await req.route.api.before(req)
       return req.route.api.get(req, res)
     })
 
@@ -68,7 +66,6 @@ describe.only(`/administrator/organizations/index`, () => {
         const membershipRow = doc.getElementById(user.membership.organizationid)
         assert.notEqual(null, membershipRow)
       }
-      await req.route.api.before(req)
       return req.route.api.get(req, res)
     })
   })

@@ -3,7 +3,6 @@ const assert = require('assert')
 const TestHelper = require('../../../../test-helper.js')
 
 describe(`/api/user/organizations/proxy-memberships`, () => {
-  it('should require a user', TestHelper.requireAccount('/api/user/proxy-memberships'))
   describe('ProxyMemberships#GET', () => {
     it('should add membership list to header', async () => {
       const owner = await TestHelper.createUser()

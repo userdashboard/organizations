@@ -1,7 +1,4 @@
-const API = require('../../../api/index.js')
-const dashboard = require('@userappstore/dashboard')
 const Navigation = require('./navbar.js')
-const Organization = require('../../../../organization.js')
 
 module.exports = {
   before: beforeRequest,
@@ -13,7 +10,7 @@ async function beforeRequest (req) {
   if (!req.query || !req.query.organizationid) {
     throw new Error('invalid-organizationid')
   }
-  const organization = await Organization.load(req.query.organizationid)
+  const organization = await global.dashboard.organizations.Organization.load(req.query.organizationid)
   if (!organization) {
     throw new Error('invalid-organization')
   }
@@ -21,8 +18,8 @@ async function beforeRequest (req) {
     throw new Error('invalid-account')
   }
   req.data = {organization}
-  if (req.session.organizationUpdateRequested && req.session.unlocked >= dashboard.Timestamp.now) {
-    await API.user.organizations.UpdateOrganization.patch(req)
+  if (req.session.lockURL === req.url && req.session.unlocked >= global.dashboard.Timestamp.now) {
+    await global.api.user.organizations.UpdateOrganization.patch(req)
     req.success = true
   }
 }
@@ -31,7 +28,7 @@ async function renderPage (req, res, messageTemplate) {
   if (req.success) {
     messageTemplate = 'success'
   }
-  const doc = dashboard.HTML.parse(req.route.html)
+  const doc = global.dashboard.HTML.parse(req.route.html)
   await Navigation.render(req, doc)
   const email = req.body ? req.body.email || '' : req.data.organization.email
   const nameField = doc.getElementById('name')
@@ -43,16 +40,27 @@ async function renderPage (req, res, messageTemplate) {
   if (messageTemplate) {
     doc.renderTemplate(null, messageTemplate, 'messageContainer')
   }
-  return dashboard.Response.end(req, res, doc)
+  return global.dashboard.Response.end(req, res, doc)
 }
 
 async function submitForm (req, res) {
+  if (!req.body) {
+    return renderPage(req, res)
+  }
+  for (const property in req.body) {
+    if (global.ORGANIZATION_FIELDS.indexOf(property) === -1) {
+      return renderPage(req, res, 'invalid-organization-field')
+    }
+    if (global.MAXIMUM_ORGANIZATION_FIELD_LENGTH < req.body[property].length) {
+      return renderPage(req, res, 'invalid-organization-field-length')
+    }
+  }
   try {
-    await API.user.organizations.UpdateOrganization.patch(req)
-    if (req.session.unlocked) {
+    await global.api.user.organizations.UpdateOrganization.patch(req)
+    if (req.success) {
       return renderPage(req, res, 'success')
     }
-    return dashboard.Response.redirect(req, res, '/account/authorize')
+    return global.dashboard.Response.redirect(req, res, '/account/authorize')
   } catch (error) {
     switch (error.message) {
       case 'invalid-organization-field':

@@ -1,15 +1,6 @@
-const dashboard = require('@userappstore/dashboard')
-const Membership = require('../../../../membership.js')
-const Organization = require('../../../../organization.js')
-
 module.exports = {
-  post: async (req) => {
-    if (!req || !req.account) {
-      throw new Error('invalid-account')
-    }
-    if (!req.session) {
-      throw new Error('invalid-session')
-    }
+  lock: true,
+  before: async (req) => {
     if (!req.body || !req.body.name) {
       throw new Error('invalid-organization-name')
     }
@@ -28,17 +19,19 @@ module.exports = {
         throw new Error('invalid-organization-field-length')
       }
     }
-    const organization = await Organization.create(req.account.accountid, req.body.name)
-    await Organization.setProperty(organization.organizationid, 'ip', req.ip)
-    await Organization.setProperty(organization.organizationid, 'userAgent', req.headers['user-agent'] || '')
+  },
+  post: async (req) => {
+    const organization = await global.dashboard.organizations.Organization.create(req.account.accountid, req.body.name)
+    await global.dashboard.organizations.Organization.setProperty(organization.organizationid, 'ip', req.ip)
+    await global.dashboard.organizations.Organization.setProperty(organization.organizationid, 'userAgent', req.headers['user-agent'] || '')
     for (const property in req.body) {
       if (global.ORGANIZATION_FIELDS.indexOf(property) > -1) {
-        await Organization.setProperty(organization.organizationid, property, req.body[property])
+        await global.dashboard.organizations.Organization.setProperty(organization.organizationid, property, req.body[property])
       }
     }
-    const membership = await Membership.create(organization.organizationid, req.account.accountid)
-    await Membership.setProperty(membership.membershipid, 'ip', req.ip)
-    await Membership.setProperty(membership.membershipid, 'userAgent', req.headers['user-agent'] || '')
+    const membership = await global.dashboard.organizations.Membership.create(organization.organizationid, req.account.accountid)
+    await global.dashboard.organizations.Membership.setProperty(membership.membershipid, 'ip', req.ip)
+    await global.dashboard.organizations.Membership.setProperty(membership.membershipid, 'userAgent', req.headers['user-agent'] || '')
     return organization
   }
 }

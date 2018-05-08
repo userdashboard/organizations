@@ -3,9 +3,7 @@ const assert = require('assert')
 const TestHelper = require('../../../test-helper.js')
 
 describe(`/administrator/organizations/invitations`, () => {
-  it('should require an administrator', TestHelper.requireAdministrator(`/administrator/organizations/invitation`))
   it('should require an organizationid', TestHelper.requireParameter(`/administrator/organizations/invitations`, 'organizationid'))
-
   describe('Invitations#BEFORE', () => {
     it('should bind invitations to req', async () => {
       const administrator = await TestHelper.createAdministrator()
@@ -37,7 +35,6 @@ describe(`/administrator/organizations/invitations`, () => {
         const invitationRow = doc.getElementById(administrator.invitation.invitationid)
         assert.notEqual(null, invitationRow)
       }
-      await req.route.api.before(req)
       return req.route.api.get(req, res)
     })
   })

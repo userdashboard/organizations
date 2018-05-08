@@ -1,5 +1,3 @@
-const dashboard = require('@userappstore/dashboard')
-
 module.exports = {
   create,
   deleteAccount,
@@ -34,7 +32,7 @@ async function load (membershipid, ignoreDeletedAccounts) {
 
     }
   }
-  const account = await dashboard.Account.load(membership.accountid)
+  const account = await global.dashboard.Account.load(membership.accountid)
   if (!account) {
     throw new Error('invalid-account')
   }
@@ -55,11 +53,11 @@ async function create (organizationid, accountid) {
   if (!organization) {
     throw new Error('invalid-organization')
   }
-  const owner = await dashboard.Account.load(organization.ownerid)
+  const owner = await global.dashboard.Account.load(organization.ownerid)
   if (!owner || owner.deleted) {
     throw new Error('invalid-organization')
   }
-  const account = await dashboard.Account.load(accountid)
+  const account = await global.dashboard.Account.load(accountid)
   if (!account || account.deleted) {
     throw new Error('invalid-account')
   }
@@ -68,19 +66,19 @@ async function create (organizationid, accountid) {
     `accountid`, accountid,
     `membershipid`, membershipid,
     `organizationid`, organizationid,
-    `created`, dashboard.Timestamp.now
+    `created`, global.dashboard.Timestamp.now
   ]
   await global.redisClient.lpushAsync(`memberships:${organizationid}`, membershipid)
   await global.redisClient.lpushAsync(`memberships:account:${accountid}`, membershipid)
   await global.redisClient.lpushAsync(`memberships:accounts:${organizationid}`, accountid)
   await global.redisClient.hmsetAsync(`membership:${membershipid}`, fieldsAndValues)
   await global.redisClient.lpushAsync('memberships', membershipid)
-  await dashboard.Account.setProperty(accountid, 'membership_lastCreated', dashboard.Timestamp.now)
+  await global.dashboard.Account.setProperty(accountid, 'membership_lastCreated', global.dashboard.Timestamp.now)
   return load(membershipid)
 }
 
 async function generateID () {
-  const id = await dashboard.UUID.generateID()
+  const id = await global.dashboard.UUID.generateID()
   return `membership_${id}`
 }
 
@@ -92,7 +90,7 @@ async function deleteMembership (membershipid) {
   if (!membership) {
     throw new Error('invalid-membership')
   }
-  const account = await dashboard.Account.load(membership.accountid)
+  const account = await global.dashboard.Account.load(membership.accountid)
   if (!account || account.deleted) {
     throw new Error('invalid-account')
   }
@@ -100,7 +98,7 @@ async function deleteMembership (membershipid) {
   await global.redisClient.lremAsync(`memberships:account:${membership.accountid}`, 1, membershipid)
   await global.redisClient.lremAsync(`memberships:accounts:${membership.organizationid}`, 1, membership.accountid)
   await global.redisClient.delAsync(`membership:${membershipid}`)
-  await dashboard.Account.setProperty(account.accountid, 'membership_lastDeleted', dashboard.Timestamp.now)
+  await global.dashboard.Account.setProperty(account.accountid, 'membership_lastDeleted', global.dashboard.Timestamp.now)
   await global.redisClient.lremAsync('memberships', 1, membershipid)
   return true
 }

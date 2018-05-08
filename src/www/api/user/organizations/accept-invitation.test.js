@@ -3,7 +3,6 @@ const assert = require('assert')
 const TestHelper = require('../../../../test-helper.js')
 
 describe(`/api/user/organizations/accept-invitation`, () => {
-  it('should require a user', TestHelper.requireAccount('/api/user/organizations/accept-invitation'))
   it('should require an organizationid', TestHelper.requireParameter('/api/user/organizations/accept-invitation', 'organizationid'))
   describe('AcceptInvitation#POST', () => {
     it('should enforce code length', async () => {
@@ -108,21 +107,6 @@ describe(`/api/user/organizations/accept-invitation`, () => {
         return req2.route.api.patch(req2, res2)
       }
       return req.route.api.patch(req, res)
-    })
-
-    it('should lock session for authorization', async () => {
-      const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner)
-      await TestHelper.createInvitation(owner, owner.organization.organizationid)
-      const user = await TestHelper.createUser()
-      const req = TestHelper.createRequest(`/api/user/organizations/accept-invitation?invitationid=${owner.invitation.invitationid}`, 'POST')
-      req.account = user.account
-      req.session = user.session
-      req.body = {
-        code: owner.invitation.code
-      }
-      await req.route.api.patch(req)
-      assert.equal(req.session.lockURL, `/api/user/organizations/accept-invitation?invitationid=${owner.invitation.invitationid}`)
     })
 
     it('should create authorized membership', async () => {

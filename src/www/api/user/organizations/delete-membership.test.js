@@ -3,7 +3,6 @@ const assert = require('assert')
 const TestHelper = require('../../../../test-helper.js')
 
 describe('/api/user/organizations/delete-membership', async () => {
-  it('should require a user', TestHelper.requireAccount('/api/user/organizations/delete-membership'))
   it('should require a membershipid', TestHelper.requireParameter('/api/user/organizations/delete-membership', 'membershipid'))
   describe('DeleteMembership#DELETE', () => {
     it('should reject non-owner non-member', async () => {
@@ -20,18 +19,6 @@ describe('/api/user/organizations/delete-membership', async () => {
       } catch (error) {
         assert.equal(error.message, 'invalid-account')
       }
-    })
-
-    it('should lock session for authorization', async () => {
-      const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner)
-      const user = await TestHelper.createUser()
-      await TestHelper.createMembership(user, owner.organization.organizationid)
-      const req = TestHelper.createRequest(`/api/user/organizations/delete-membership?membershipid=${user.membership.membershipid}`, 'DELETE')
-      req.account = owner.account
-      req.session = owner.session
-      await req.route.api.delete(req)
-      assert.equal(req.session.lockURL, `/api/user/organizations/delete-membership?membershipid=${user.membership.membershipid}`)
     })
 
     it('should delete membership', async () => {

@@ -1,45 +1,25 @@
-const dashboard = require('@userappstore/dashboard')
-const Invitation = require('../../../../invitation.js')
-const Organization = require('../../../../organization.js')
-
 module.exports = {
-  delete: async (req) => {
-    if (!req || !req.account) {
-      throw new Error('invalid-account')
-    }
-    if (!req.session) {
-      throw new Error('invalid-session')
-    }
+  lock: true,
+  before: async (req) => {
     if (!req.query || !req.query.invitationid) {
       throw new Error('invalid-invitationid')
     }
-    const invitation = await Invitation.load(req.query.invitationid)
+    const invitation = await global.dashboard.organizations.Invitation.load(req.query.invitationid)
     if (!invitation || invitation.accepted) {
       throw new Error('invalid-invitation')
     }
-    const organization = await Organization.load(invitation.organizationid)
+    const organization = await global.dashboard.organizations.Organization.load(invitation.organizationid)
     if (!organization || organization.ownerid !== req.account.accountid) {
       throw new Error('invalid-organization')
     }
-    const owner = await dashboard.Account.load(organization.ownerid)
+    const owner = await global.dashboard.Account.load(organization.ownerid)
     if (!owner || owner.deleted) {
       throw new Error('invalid-organization')
     }
-    if (!req.session.deleteInvitationRequested) {
-      await dashboard.Session.setProperty(req.session.sessionid, `deleteInvitationRequested`, req.query.invitationid)
-      await dashboard.Session.lock(req.session.sessionid, req.url)
-      req.session = await dashboard.Session.load(req.session.sessionid)
-      if (!req.session.unlocked) {
-        return
-      }
-    }
-    // apply authorized changes
-    if (req.session.deleteInvitationRequested === req.query.invitationid && req.session.unlocked >= dashboard.Timestamp.now) {
-      await dashboard.Session.removeProperty(req.session.sessionid, 'deleteInvitationRequested')
-      await Invitation.deleteInvitation(req.query.invitationid)
-      req.session = await dashboard.Session.load(req.session.sessionid)
-      return true
-    }
-    throw new Error('invalid-invitation')
+  },
+  delete: async (req) => {
+    await global.dashboard.organizations.Invitation.deleteInvitation(req.query.invitationid)
+    req.session = await global.dashboard.Session.load(req.session.sessionid)
+    req.success = true
   }
 }

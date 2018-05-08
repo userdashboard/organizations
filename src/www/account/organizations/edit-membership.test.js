@@ -3,7 +3,6 @@ const assert = require('assert')
 const TestHelper = require('../../../test-helper.js')
 
 describe(`/account/organizations/edit-membership`, () => {
-  it('should require a user', TestHelper.requireAdministrator(`/account/organizations/edit-membership`))
   it('should require a membershipid', TestHelper.requireParameter(`/account/organizations/edit-membership`, 'membershipid'))
   describe('EditMembership#BEFORE', () => {
     it('should require own membership', async () => {
@@ -54,7 +53,6 @@ describe(`/account/organizations/edit-membership`, () => {
         assert.notEqual(null, doc.getElementById('submitForm'))
         assert.notEqual(null, doc.getElementById('submitButton'))
       }
-      await req.route.api.before(req)
       return req.route.api.get(req, res)
     })
   })
@@ -77,7 +75,6 @@ describe(`/account/organizations/edit-membership`, () => {
         const message = doc.getElementById('messageContainer').child[0]
         assert.equal('invalid-membership-field', message.attr.error)
       }
-      await req.route.api.before(req)
       return req.route.api.post(req, res)
     })
 
@@ -92,35 +89,13 @@ describe(`/account/organizations/edit-membership`, () => {
       req.body = {
         email: 'toooooooo_loooooooooooooooong@email-address.com'
       }
-      global.MAXIMUM_MEMBERSHIP_FIELD_LENGTH = 20
+      global.MAXIMUM_MEMBERSHIP_FIELD_LENGTH = 10
       const res = TestHelper.createResponse()
       res.end = async (str) => {
-        global.MINIMUM_USERNAME_LENGTH = 1
         const doc = TestHelper.extractDoc(str)
         const message = doc.getElementById('messageContainer').child[0]
         assert.equal('invalid-membership-field-length', message.attr.error)
       }
-      await req.route.api.before(req)
-      return req.route.api.post(req, res)
-    })
-
-    it('should lock session pending authorization', async () => {
-      const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner)
-      const user = await TestHelper.createUser()
-      await TestHelper.createMembership(user, owner.organization.organizationid)
-      const req = TestHelper.createRequest(`/account/organizations/edit-membership?membershipid=${user.membership.membershipid}`, 'POST')
-      req.account = user.account
-      req.session = user.session
-      req.body = {
-        email: 'email@address.com'
-      }
-      const res = TestHelper.createResponse()
-      res.end = async (str) => {
-        assert.notEqual(null, req.session.lock)
-        assert.equal(req.session.lockURL, `/account/organizations/edit-membership?membershipid=${user.membership.membershipid}`)
-      }
-      await req.route.api.before(req)
       return req.route.api.post(req, res)
     })
 
@@ -147,10 +122,8 @@ describe(`/account/organizations/edit-membership`, () => {
           const message = messageContainer.child[0]
           assert.equal('success', message.attr.error)
         }
-        await req.route.api.before(req)
         return req.route.api.get(req, res)
       }
-      await req.route.api.before(req)
       return req.route.api.post(req, res)
     })
   })

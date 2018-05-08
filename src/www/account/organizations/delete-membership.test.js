@@ -3,7 +3,6 @@ const assert = require('assert')
 const TestHelper = require('../../../test-helper.js')
 
 describe(`/account/organizations/delete-membership`, async () => {
-  it('should require a user', TestHelper.requireAdministrator(`/account/organizations/delete-membership`))
   it('should require a membershipid', TestHelper.requireParameter(`/account/organizations/delete-membership`, 'membershipid'))
   describe('DeleteMembership#BEFORE', () => {
     it('should require own membership', async () => {
@@ -53,7 +52,6 @@ describe(`/account/organizations/delete-membership`, async () => {
         assert.notEqual(null, doc.getElementById('submitForm'))
         assert.notEqual(null, doc.getElementById('submitButton'))
       }
-      await req.route.api.before(req)
       return req.route.api.get(req, res)
     })
   })
@@ -79,10 +77,8 @@ describe(`/account/organizations/delete-membership`, async () => {
           const message = messageContainer.child[0]
           assert.equal('success', message.attr.error)
         }
-        await req.route.api.before(req)
         return req.route.api.post(req, res2)
       }
-      await req.route.api.before(req)
       return req.route.api.post(req, res)
     })
   })

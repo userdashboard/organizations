@@ -3,7 +3,6 @@ const assert = require('assert')
 const TestHelper = require('../../../../test-helper.js')
 
 describe('/api/user/organizations/organizations', () => {
-  it('should require a user', TestHelper.requireAccount('/api/user/organizations/organizations'))
   it('should require an accountid', TestHelper.requireParameter('/api/user/organizations/organizations', 'accountid'))
   describe('Organizations#GET', () => {
     it('should reject other accountid', async () => {

@@ -3,7 +3,6 @@ const assert = require('assert')
 const TestHelper = require('../../../test-helper.js')
 
 describe(`/administrator/organizations/membership`, () => {
-  it('should require an administrator', TestHelper.requireAdministrator(`/administrator/organizations/membership`))
   it('should require a membershipid', TestHelper.requireParameter(`/administrator/organizations/membership`, 'membershipid'))
   describe('Membership#BEFORE', () => {
     it('should bind membership to req', async () => {
@@ -37,7 +36,6 @@ describe(`/administrator/organizations/membership`, () => {
         const membershipRow = doc.getElementById(user.membership.membershipid)
         assert.notEqual(null, membershipRow)
       }
-      await req.route.api.before(req)
       return req.route.api.get(req, res)
     })
   })

@@ -1,5 +1,3 @@
-const dashboard = require('@userappstore/dashboard')
-
 module.exports = {
   create,
   deleteAccount,
@@ -32,7 +30,7 @@ async function load (organizationid, ignoreDeletedAccounts) {
 
     }
   }
-  const account = await dashboard.Account.load(organization.ownerid)
+  const account = await global.dashboard.Account.load(organization.ownerid)
   if (!account) {
     throw new Error('invalid-account')
   }
@@ -53,7 +51,7 @@ async function create (accountid, name) {
     name.length > global.MAXIMUM_ORGANIZATION_NAME_LENGTH) {
     throw new Error('invalid-organization-name-length')
   }
-  const account = await dashboard.Account.load(accountid)
+  const account = await global.dashboard.Account.load(accountid)
   if (!account || account.deleted) {
     throw new Error('invalid-account')
   }
@@ -62,17 +60,17 @@ async function create (accountid, name) {
     `ownerid`, accountid,
     `organizationid`, organizationid,
     `name`, name,
-    `created`, dashboard.Timestamp.now
+    `created`, global.dashboard.Timestamp.now
   ]
   await global.redisClient.lpushAsync(`organizations:account:${accountid}`, organizationid)
   await global.redisClient.hmsetAsync(`organization:${organizationid}`, fieldsAndValues)
   await global.redisClient.lpushAsync('organizations', organizationid)
-  await dashboard.Account.setProperty(accountid, 'organization_lastCreated', dashboard.Timestamp.now)
+  await global.dashboard.Account.setProperty(accountid, 'organization_lastCreated', global.dashboard.Timestamp.now)
   return load(organizationid)
 }
 
 async function generateID () {
-  const id = await dashboard.UUID.generateID()
+  const id = await global.dashboard.UUID.generateID()
   return `organization_${id}`
 }
 
@@ -84,13 +82,13 @@ async function deleteOrganization (organizationid) {
   if (!organization) {
     throw new Error('invalid-organization')
   }
-  const account = await dashboard.Account.load(organization.ownerid)
+  const account = await global.dashboard.Account.load(organization.ownerid)
   if (!account || account.deleted) {
     throw new Error('invalid-account')
   }
   await global.redisClient.lremAsync(`organizations:account:${organization.ownerid}`, 1, organizationid)
   await global.redisClient.delAsync(`organization:${organizationid}`)
-  await dashboard.Account.setProperty(account.accountid, 'organization_lastDeleted', dashboard.Timestamp.now)
+  await global.dashboard.Account.setProperty(account.accountid, 'organization_lastDeleted', global.dashboard.Timestamp.now)
   await global.redisClient.lremAsync('organizations', 1, organizationid)
   return true
 }
@@ -106,7 +104,7 @@ async function list (accountid) {
 async function listAll (accountid) {
   let organizationids
   if (accountid) {
-    const account = await dashboard.Account.load(accountid)
+    const account = await global.dashboard.Account.load(accountid)
     if (!account || account.deleted) {
       throw new Error('invalid-account')
     }

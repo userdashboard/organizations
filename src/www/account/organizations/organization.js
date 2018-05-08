@@ -1,7 +1,4 @@
-const dashboard = require('@userappstore/dashboard')
-const Membership = require('../../../membership.js')
 const Navigation = require('./navbar.js')
-const Organization = require('../../../organization.js')
 
 module.exports = {
   before: beforeRequest,
@@ -12,23 +9,23 @@ async function beforeRequest (req) {
   if (!req.query || !req.query.organizationid) {
     throw new Error('invalid-organization')
   }
-  const organization = await Organization.load(req.query.organizationid)
+  const organization = await global.dashboard.organizations.Organization.load(req.query.organizationid)
   if (!organization) {
     throw new Error('invalid-organization')
   }
   if (organization.ownerid !== req.account.accountid) {
-    const unique = await Membership.isUniqueMembership(req.query.organizationid, req.account.accountid)
+    const unique = await global.dashboard.organizations.Membership.isUniqueMembership(req.query.organizationid, req.account.accountid)
     if (unique) {
       throw new Error('invalid-account')
     }
   }
-  organization.created = dashboard.Timestamp.date(organization.created)
-  organization.createdRelative = dashboard.Format.relativePastDate(organization.created)
+  organization.created = global.dashboard.Timestamp.date(organization.created)
+  organization.createdRelative = global.dashboard.Format.relativePastDate(organization.created)
   req.data = { organization }
 }
 
 async function renderPage (req, res) {
-  const doc = dashboard.HTML.parse(req.route.html)
+  const doc = global.dashboard.HTML.parse(req.route.html)
   await Navigation.render(req, doc)
   doc.renderTemplate(req.data.organization, 'organization-row-template', 'organizations-table')
   if (req.data.organization.ownerid !== req.account.accountid) {
@@ -38,5 +35,5 @@ async function renderPage (req, res) {
       `delete-organization-link-${req.query.organizationid}`
     ])
   }
-  return dashboard.Response.end(req, res, doc)
+  return global.dashboard.Response.end(req, res, doc)
 }

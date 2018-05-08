@@ -3,7 +3,6 @@ const assert = require('assert')
 const TestHelper = require('../../../../test-helper.js')
 
 describe('/api/user/organizations/create-organization', () => {
-  it('should require a user', TestHelper.requireAccount('/api/user/organizations/create-organization'))
   describe('CreateOrganization#POST', () => {
     it('should enforce name length', async () => {
       const user = await TestHelper.createUser()
@@ -49,7 +48,7 @@ describe('/api/user/organizations/create-organization', () => {
       }
     })
 
-    it('should create an organization', async () => {
+    it('should create authorized organization', async () => {
       const user = await TestHelper.createUser()
       const req = TestHelper.createRequest('/api/user/organizations/create-organization', 'POST')
       req.account = user.account
@@ -58,6 +57,8 @@ describe('/api/user/organizations/create-organization', () => {
         name: 'this is the name',
         email: 'this@address.com'
       }
+      await req.route.api.post(req)
+      await TestHelper.completeAuthorization(req)
       await req.route.api.post(req)
       const req2 = TestHelper.createRequest(`/api/user/organizations/organizations?accountid=${req.account.accountid}`, 'GET')
       req2.account = req.account

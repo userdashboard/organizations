@@ -1,5 +1,3 @@
-const API = require('../../api/index.js')
-const dashboard = require('@userappstore/dashboard')
 const Navigation = require('./navbar.js')
 
 module.exports = {
@@ -8,13 +6,13 @@ module.exports = {
 }
 
 async function renderPage (req, res, messageTemplate) {
-  const doc = dashboard.HTML.parse(req.route.html)
+  const doc = global.dashboard.HTML.parse(req.route.html)
   await Navigation.render(req, doc)
   if (messageTemplate) {
     doc.renderTemplate(null, messageTemplate, 'messageContainer')
     if (messageTemplate === 'success') {
       doc.removeElementById('submitForm')
-      return dashboard.Response.end(req, res, doc)
+      return global.dashboard.Response.end(req, res, doc)
     }
   }
   if (req.body) {
@@ -23,7 +21,7 @@ async function renderPage (req, res, messageTemplate) {
     const emailField = doc.getElementById('email')
     emailField.setAttribute('value', req.body.email || '')
   }
-  return dashboard.Response.end(req, res, doc)
+  return global.dashboard.Response.end(req, res, doc)
 }
 
 async function submitForm (req, res) {
@@ -49,7 +47,7 @@ async function submitForm (req, res) {
     }
   }
   try {
-    await API.user.organizations.CreateOrganization.post(req)
+    await global.api.user.organizations.CreateOrganization.post(req)
     return renderPage(req, res, 'success')
   } catch (error) {
     switch (error.message) {

@@ -3,7 +3,6 @@ const assert = require('assert')
 const TestHelper = require('../../../../test-helper.js')
 
 describe(`/account/organizations/owner/revoke-membership`, async () => {
-  it('should require a user', TestHelper.requireAdministrator(`/account/organizations/owner/revoke-membership`))
   it('should require a membershipid', TestHelper.requireParameter(`/account/organizations/owner/revoke-membership`, 'membershipid'))
   describe('RevokeMembership#BEFORE', () => {
     it('should require owner', async () => {
@@ -52,7 +51,6 @@ describe(`/account/organizations/owner/revoke-membership`, async () => {
         assert.notEqual(null, doc.getElementById('submitForm'))
         assert.notEqual(null, doc.getElementById('submitButton'))
       }
-      await req.route.api.before(req)
       return req.route.api.get(req, res)
     })
   })
@@ -69,7 +67,6 @@ describe(`/account/organizations/owner/revoke-membership`, async () => {
       const res = TestHelper.createResponse()
       res.end = async (str) => {
         await TestHelper.completeAuthorization(req)
-        await req.route.api.before(req)
         const res2 = TestHelper.createResponse()
         res2.end = async (str) => {
           const doc = TestHelper.extractDoc(str)
@@ -81,7 +78,6 @@ describe(`/account/organizations/owner/revoke-membership`, async () => {
         }
         return req.route.api.post(req, res2)
       }
-      await req.route.api.before(req)
       return req.route.api.post(req, res)
     })
   })

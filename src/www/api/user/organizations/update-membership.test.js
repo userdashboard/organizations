@@ -3,7 +3,6 @@ const assert = require('assert')
 const TestHelper = require('../../../../test-helper.js')
 
 describe('/api/user/organizations/update-membership', async () => {
-  it('should require a user', TestHelper.requireAccount('/api/user/organizations/update-membership'))
   it('should require a membershipid', TestHelper.requireParameter('/api/user/organizations/update-membership', 'membershipid'))
   describe('UpdateMembership#PATCH', () => {
     it('should require own membership', async () => {

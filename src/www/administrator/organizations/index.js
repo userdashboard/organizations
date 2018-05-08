@@ -1,7 +1,4 @@
-const dashboard = require('@userappstore/dashboard')
-const Membership = require('../../../membership.js')
 const Navigation = require('./navbar.js')
-const Organization = require('../../../organization.js')
 
 module.exports = {
   before: beforeRequest,
@@ -9,19 +6,19 @@ module.exports = {
 }
 
 async function beforeRequest (req) {
-  const organizations = await Organization.listAll()
+  const organizations = await global.dashboard.organizations.Organization.listAll()
   if (organizations && organizations.length) {
     for (const organization of organizations) {
-      organization.created = dashboard.Timestamp.date(organization.created)
-      organization.createdRelative = dashboard.Format.relativePastDate(organization.created)
+      organization.created = global.dashboard.Timestamp.date(organization.created)
+      organization.createdRelative = global.dashboard.Format.relativePastDate(organization.created)
     }
   }
-  const memberships = await Membership.listAll()
+  const memberships = await global.dashboard.organizations.Membership.listAll()
   if (memberships && memberships.length) {
     for (const membership of memberships) {
-      membership.created = dashboard.Timestamp.date(membership.created)
-      membership.createdRelative = dashboard.Format.relativePastDate(membership.created)
-      const organization = await Organization.load(membership.organizationid)
+      membership.created = global.dashboard.Timestamp.date(membership.created)
+      membership.createdRelative = global.dashboard.Format.relativePastDate(membership.created)
+      const organization = await global.dashboard.organizations.Organization.load(membership.organizationid)
       membership.organizationName = organization.name
       membership.organizationEmail = organization.email
     }
@@ -30,7 +27,7 @@ async function beforeRequest (req) {
 }
 
 async function renderPage (req, res) {
-  const doc = dashboard.HTML.parse(req.route.html)
+  const doc = global.dashboard.HTML.parse(req.route.html)
   await Navigation.render(req, doc)
   if (req.data.memberships && req.data.memberships.length) {
     doc.renderTable(req.data.memberships, 'membership-row-template', 'memberships-table')
@@ -42,5 +39,5 @@ async function renderPage (req, res) {
   } else {
     doc.removeElementById('organizations-table')
   }
-  return dashboard.Response.end(req, res, doc)
+  return global.dashboard.Response.end(req, res, doc)
 }

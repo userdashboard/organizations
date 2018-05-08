@@ -3,7 +3,6 @@ const assert = require('assert')
 const TestHelper = require('../../../../test-helper.js')
 
 describe(`/api/user/organizations/create-invitation`, () => {
-  it('should require a user', TestHelper.requireAccount('/api/user/organizations/create-invitation'))
   it('should require an organizationid', TestHelper.requireParameter('/api/user/organizations/create-invitation', 'organizationid'))
   describe('CreateInvitation#POST', () => {
     it('should enforce code length', async () => {
@@ -23,19 +22,6 @@ describe(`/api/user/organizations/create-invitation`, () => {
       } finally {
         global.MINIMUM_INVITATION_CODE_LENGTH = 1
       }
-    })
-
-    it('should lock session for authorization', async () => {
-      const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner)
-      const req = TestHelper.createRequest(`/api/user/organizations/create-invitation?organizationid=${owner.organization.organizationid}`, 'POST')
-      req.account = owner.account
-      req.session = owner.session
-      req.body = {
-        code: 'this-is-the-code'
-      }
-      await req.route.api.post(req)
-      assert.equal(req.session.lockURL, `/api/user/organizations/create-invitation?organizationid=${owner.organization.organizationid}`)
     })
 
     it('should create authorized invitation', async () => {
