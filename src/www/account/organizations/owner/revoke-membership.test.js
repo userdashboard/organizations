@@ -3,7 +3,6 @@ const assert = require('assert')
 const TestHelper = require('../../../../test-helper.js')
 
 describe(`/account/organizations/owner/revoke-membership`, async () => {
-  it('should require a membershipid', TestHelper.requireParameter(`/account/organizations/owner/revoke-membership`, 'membershipid'))
   describe('RevokeMembership#BEFORE', () => {
     it('should require owner', async () => {
       const owner = await TestHelper.createUser()

@@ -3,7 +3,6 @@ const assert = require('assert')
 const TestHelper = require('../../../../test-helper.js')
 
 describe(`/account/organizations/owner/delete-invitation`, async () => {
-  it('should require an organizationid', TestHelper.requireParameter(`/account/organizations/owner/delete-invitation`, 'organizationid'))
   describe('DeleteInvitation#BEFORE', () => {
     it('should require owner', async () => {
       const owner = await TestHelper.createUser()

@@ -3,7 +3,6 @@ const assert = require('assert')
 const TestHelper = require('../../../../test-helper.js')
 
 describe(`/api/user/organizations/accept-invitation`, () => {
-  it('should require an organizationid', TestHelper.requireParameter('/api/user/organizations/accept-invitation', 'organizationid'))
   describe('AcceptInvitation#POST', () => {
     it('should enforce code length', async () => {
       const owner = await TestHelper.createUser()

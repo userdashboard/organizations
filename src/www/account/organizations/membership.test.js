@@ -3,7 +3,6 @@ const assert = require('assert')
 const TestHelper = require('../../../test-helper.js')
 
 describe(`/account/organizations/membership`, () => {
-  it('should require a membershipid', TestHelper.requireParameter(`/account/organizations/membership`, 'membershipid'))
   describe('Membership#BEFORE', () => {
     it('should reject non-member', async () => {
       const owner = await TestHelper.createUser()
