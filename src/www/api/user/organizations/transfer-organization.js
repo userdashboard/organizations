@@ -29,7 +29,7 @@ module.exports = {
   },
   patch: async (req) => {
     await global.dashboard.organizations.Organization.setProperty(req.query.organizationid, 'ownerid', req.body.accountid)
-    req.session = await global.dashboard.Session.load(req.session.sessionid)
     req.success = true
+    return global.dashboard.organizations.Organization.load(req.query.organizationid)
   }
 }

@@ -45,17 +45,13 @@ describe('/api/user/organizations/update-organization', async () => {
     req.account = owner.account
     req.session = owner.session
     req.body = {
-      name: 'Person',
+      name: 'Organization Name',
       email: 'test@test.com'
     }
     await req.route.api.patch(req)
     await TestHelper.completeAuthorization(req)
-    await req.route.api.patch(req)
-    const req2 = TestHelper.createRequest(`/api/user/organizations/organization?organizationid=${owner.organization.organizationid}`, 'GET')
-    req2.account = owner.account
-    req2.session = owner.session
-    const organizationNow = await req2.route.api.get(req2)
-    assert.equal(organizationNow.name, 'Person')
+    const organizationNow = await req.route.api.patch(req)
+    assert.equal(organizationNow.name, 'Organization Name')
     assert.equal(organizationNow.email, 'test@test.com')
   })
 })

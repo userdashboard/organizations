@@ -1,13 +1,15 @@
 {
   "name": "@userappstore/organizations",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "",
   "main": "index.js",
   "devDependencies": {
     "dotenv": "^4.0.0"
   },
   "scripts": {
-    "test": "mocha src/**/*.test.js --timeout 5000"
+    "test": "mocha src --recursive --timeout 5000",
+    "start": "node main.js",
+    "debug": "node main.js --debug-brk=5858"
   },
   "engine": {
     "node": "8.1.4",
@@ -16,7 +18,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@userappstore/dashboard": "^1.0.93"
+    "@userappstore/dashboard": "^1.0.95"
   },
   "dashboard-menus": {
     "account": [

@@ -59,13 +59,9 @@ describe('/api/user/organizations/create-organization', () => {
       }
       await req.route.api.post(req)
       await TestHelper.completeAuthorization(req)
-      await req.route.api.post(req)
-      const req2 = TestHelper.createRequest(`/api/user/organizations/organizations?accountid=${req.account.accountid}`, 'GET')
-      req2.account = req.account
-      req2.session = req.session
-      const organizationsNow = await req2.route.api.get(req2)
-      assert.notEqual(organizationsNow, null)
-      assert.equal(organizationsNow.length, 1)
+      const organization = await req.route.api.post(req)
+      assert.notEqual(null, organization)
+      assert.notEqual(null, organization.organizationid)
     })
   })
 })

@@ -67,14 +67,10 @@ describe('/api/user/organizations/transfer-organization', () => {
         accountid: user.account.accountid
       }
       await req.route.api.patch(req)
-      const req2 = TestHelper.createRequest(`/api/user/organizations/organization?organizationid=${owner.organization.organizationid}`, 'GET')
-      req2.account = owner.account
-      req2.session = owner.session
-      try {
-        await req2.route.api.get(req2)
-      } catch (error) {
-        assert.equal(error.message, 'invalid-organization')
-      }
+      await TestHelper.completeAuthorization(req)
+      const organizationNow = await req.route.api.patch(req)
+      assert.notEqual(null, organizationNow)
+      assert.equal(user.account.accountid, organizationNow.ownerid)
     })
   })
 })

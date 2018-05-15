@@ -27,5 +27,7 @@ module.exports = {
       }
       await global.dashboard.organizations.Organization.setProperty(req.query.organizationid, property, req.body[property])
     }
+    req.success = true
+    return global.dashboard.organizations.Organization.load(req.query.organizationid)
   }
 }

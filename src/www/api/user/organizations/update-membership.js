@@ -29,5 +29,6 @@ module.exports = {
     }
     req.session = await global.dashboard.Session.load(req.session.sessionid)
     req.success = true
+    return global.dashboard.organizations.Membership.load(req.query.membershipid)
   }
 }

@@ -76,11 +76,7 @@ describe('/api/user/organizations/update-membership', async () => {
       }
       await req.route.api.patch(req)
       await TestHelper.completeAuthorization(req)
-      await req.route.api.patch(req)
-      const req2 = TestHelper.createRequest(`/api/user/organizations/membership?membershipid=${user.membership.membershipid}`, 'GET')
-      req2.account = req.account
-      req2.session = req.session
-      const membershipNow = await req2.route.api.get(req2)
+      const membershipNow = await req.route.api.patch(req)
       assert.equal(membershipNow.name, 'Person')
       assert.equal(membershipNow.email, 'test@test.com')
     })
