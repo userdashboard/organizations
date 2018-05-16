@@ -10,5 +10,5 @@ global.MEMBERSHIP_FIELDS = (process.env.MEMBERSHIP_FIELDS || 'name,email').split
 global.MAXIMUM_ORGANIZATION_FIELD_LENGTH = 100
 global.MAXIMUM_MEMBERSHIP_FIELD_LENGTH = 100
 global.rootPath = path.join(__dirname, 'src/www')
-dashboard.setup()
+dashboard.start()
 global.dashboard.organizations = module.exports

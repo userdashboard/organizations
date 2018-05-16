@@ -42,7 +42,7 @@ describe('internal-api/membership', async () => {
     })
   })
 
-  describe('Membership#deleteglobal.dashboard.organizations.Membership', () => {
+  describe('Membership#delete', () => {
     it('should require a valid membership', async () => {
       try {
         await global.dashboard.organizations.Membership.deleteMembership()

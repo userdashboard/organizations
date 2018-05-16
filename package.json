@@ -1,6 +1,6 @@
 {
   "name": "@userappstore/organizations",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "",
   "main": "index.js",
   "devDependencies": {
@@ -18,7 +18,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@userappstore/dashboard": "^1.0.95"
+    "@userappstore/dashboard": "^1.0.1002"
   },
   "dashboard-menus": {
     "account": [
