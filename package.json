@@ -18,7 +18,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@userappstore/dashboard": "^1.0.1005"
+    "@userappstore/dashboard": "^1.0.1007"
   },
   "dashboard-proxy": [
     "/src/server/x-organizations-header.js",

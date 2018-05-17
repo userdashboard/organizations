@@ -3,8 +3,8 @@ This site map is generated automatically each time the dashboard starts.
 
 | URL | AUTH | LOCK | TEMPLATE | HTTP REQUESTS | NODEJS | HTML |
 |-----|------|------|----------|---------------|--------|------|
-|/|GUEST    |        |FULLSCREEN    |               |STATIC PAGE                |@userappstore/dashboard    
-|/account|         |        |              |               |STATIC PAGE                |@userappstore/dashboard    
+|/|GUEST    |        |FULLSCREEN    |               |static-page                |@userappstore/dashboard    
+|/account|         |        |              |               |static-page                |@userappstore/dashboard    
 |/account/authorize|         |        |FULLSCREEN    |GET POST       |@userappstore/dashboard    |@userappstore/dashboard    
 |/account/change-password|         |        |              |GET POST       |@userappstore/dashboard    |@userappstore/dashboard    
 |/account/change-username|         |        |              |GET POST       |@userappstore/dashboard    |@userappstore/dashboard    
@@ -14,26 +14,26 @@ This site map is generated automatically each time the dashboard starts.
 |/account/delete-reset-code|         |        |              |GET POST       |@userappstore/dashboard    |@userappstore/dashboard    
 |/account/end-all-sessions|         |        |              |GET POST       |@userappstore/dashboard    |@userappstore/dashboard    
 |/account/end-session|         |        |              |GET POST       |@userappstore/dashboard    |@userappstore/dashboard    
-|/account/organizations|         |        |              |GET            |ROOT FILE                  |ROOT FILE                  
-|/account/organizations/accept-invitation|         |        |              |GET POST       |ROOT FILE                  |ROOT FILE                  
-|/account/organizations/create-organization|         |        |              |GET POST       |ROOT FILE                  |ROOT FILE                  
-|/account/organizations/delete-membership|         |        |              |GET POST       |ROOT FILE                  |ROOT FILE                  
-|/account/organizations/edit-membership|         |        |              |GET POST       |ROOT FILE                  |ROOT FILE                  
-|/account/organizations/membership|         |        |              |GET            |ROOT FILE                  |ROOT FILE                  
-|/account/organizations/memberships|         |        |              |GET            |ROOT FILE                  |ROOT FILE                  
-|/account/organizations/organization|         |        |              |GET            |ROOT FILE                  |ROOT FILE                  
-|/account/organizations/owner/create-invitation|         |        |              |GET POST       |ROOT FILE                  |ROOT FILE                  
-|/account/organizations/owner/delete-invitation|         |        |              |GET POST       |ROOT FILE                  |ROOT FILE                  
-|/account/organizations/owner/delete-organization|         |        |              |GET POST       |ROOT FILE                  |ROOT FILE                  
-|/account/organizations/owner/edit-organization|         |        |              |GET POST       |ROOT FILE                  |ROOT FILE                  
-|/account/organizations/owner/invitation|         |        |              |GET            |ROOT FILE                  |ROOT FILE                  
-|/account/organizations/owner/invitations|         |        |              |GET            |ROOT FILE                  |ROOT FILE                  
-|/account/organizations/owner/membership|         |        |              |GET            |ROOT FILE                  |ROOT FILE                  
-|/account/organizations/owner/memberships|         |        |              |GET            |ROOT FILE                  |ROOT FILE                  
-|/account/organizations/owner/organization|         |        |              |GET            |ROOT FILE                  |ROOT FILE                  
-|/account/organizations/owner/organizations|         |        |              |GET            |ROOT FILE                  |ROOT FILE                  
-|/account/organizations/owner/revoke-membership|         |        |              |GET POST       |ROOT FILE                  |ROOT FILE                  
-|/account/organizations/owner/transfer-organization|         |        |              |GET POST       |ROOT FILE                  |ROOT FILE                  
+|/account/organizations|         |        |              |GET            |/src/www                   |/src/www                   
+|/account/organizations/accept-invitation|         |        |              |GET POST       |/src/www                   |/src/www                   
+|/account/organizations/create-organization|         |        |              |GET POST       |/src/www                   |/src/www                   
+|/account/organizations/delete-membership|         |        |              |GET POST       |/src/www                   |/src/www                   
+|/account/organizations/edit-membership|         |        |              |GET POST       |/src/www                   |/src/www                   
+|/account/organizations/membership|         |        |              |GET            |/src/www                   |/src/www                   
+|/account/organizations/memberships|         |        |              |GET            |/src/www                   |/src/www                   
+|/account/organizations/organization|         |        |              |GET            |/src/www                   |/src/www                   
+|/account/organizations/owner/create-invitation|         |        |              |GET POST       |/src/www                   |/src/www                   
+|/account/organizations/owner/delete-invitation|         |        |              |GET POST       |/src/www                   |/src/www                   
+|/account/organizations/owner/delete-organization|         |        |              |GET POST       |/src/www                   |/src/www                   
+|/account/organizations/owner/edit-organization|         |        |              |GET POST       |/src/www                   |/src/www                   
+|/account/organizations/owner/invitation|         |        |              |GET            |/src/www                   |/src/www                   
+|/account/organizations/owner/invitations|         |        |              |GET            |/src/www                   |/src/www                   
+|/account/organizations/owner/membership|         |        |              |GET            |/src/www                   |/src/www                   
+|/account/organizations/owner/memberships|         |        |              |GET            |/src/www                   |/src/www                   
+|/account/organizations/owner/organization|         |        |              |GET            |/src/www                   |/src/www                   
+|/account/organizations/owner/organizations|         |        |              |GET            |/src/www                   |/src/www                   
+|/account/organizations/owner/revoke-membership|         |        |              |GET POST       |/src/www                   |/src/www                   
+|/account/organizations/owner/transfer-organization|         |        |              |GET POST       |/src/www                   |/src/www                   
 |/account/profile|         |        |              |GET POST       |@userappstore/dashboard    |@userappstore/dashboard    
 |/account/register|GUEST    |        |FULLSCREEN    |GET POST       |@userappstore/dashboard    |@userappstore/dashboard    
 |/account/reset-account|GUEST    |        |FULLSCREEN    |GET POST       |@userappstore/dashboard    |@userappstore/dashboard    
@@ -42,8 +42,8 @@ This site map is generated automatically each time the dashboard starts.
 |/account/sessions|         |        |              |GET            |@userappstore/dashboard    |@userappstore/dashboard    
 |/account/signin|GUEST    |        |FULLSCREEN    |GET POST       |@userappstore/dashboard    |@userappstore/dashboard    
 |/account/signout|         |        |FULLSCREEN    |GET            |@userappstore/dashboard    |@userappstore/dashboard    
-|/account/signout-complete|GUEST    |        |FULLSCREEN    |               |STATIC PAGE                |@userappstore/dashboard    
-|/administrator|         |        |              |               |STATIC PAGE                |@userappstore/dashboard    
+|/account/signout-complete|GUEST    |        |FULLSCREEN    |               |static-page                |@userappstore/dashboard    
+|/administrator|         |        |              |               |static-page                |@userappstore/dashboard    
 |/administrator/account|         |        |              |GET            |@userappstore/dashboard    |@userappstore/dashboard    
 |/administrator/accounts|         |        |              |GET            |@userappstore/dashboard    |@userappstore/dashboard    
 |/administrator/administrators|         |        |              |GET            |@userappstore/dashboard    |@userappstore/dashboard    
@@ -51,13 +51,13 @@ This site map is generated automatically each time the dashboard starts.
 |/administrator/create-reset-code|         |        |              |GET POST       |@userappstore/dashboard    |@userappstore/dashboard    
 |/administrator/delete-account|         |        |              |GET POST       |@userappstore/dashboard    |@userappstore/dashboard    
 |/administrator/delete-schedule|         |        |              |GET            |@userappstore/dashboard    |@userappstore/dashboard    
-|/administrator/organizations|         |        |              |GET            |ROOT FILE                  |ROOT FILE                  
-|/administrator/organizations/invitation|         |        |              |GET            |ROOT FILE                  |ROOT FILE                  
-|/administrator/organizations/invitations|         |        |              |GET            |ROOT FILE                  |ROOT FILE                  
-|/administrator/organizations/membership|         |        |              |GET            |ROOT FILE                  |ROOT FILE                  
-|/administrator/organizations/memberships|         |        |              |GET            |ROOT FILE                  |ROOT FILE                  
-|/administrator/organizations/organization|         |        |              |GET            |ROOT FILE                  |ROOT FILE                  
-|/administrator/organizations/organizations|         |        |              |GET            |ROOT FILE                  |ROOT FILE                  
+|/administrator/organizations|         |        |              |GET            |/src/www                   |/src/www                   
+|/administrator/organizations/invitation|         |        |              |GET            |/src/www                   |/src/www                   
+|/administrator/organizations/invitations|         |        |              |GET            |/src/www                   |/src/www                   
+|/administrator/organizations/membership|         |        |              |GET            |/src/www                   |/src/www                   
+|/administrator/organizations/memberships|         |        |              |GET            |/src/www                   |/src/www                   
+|/administrator/organizations/organization|         |        |              |GET            |/src/www                   |/src/www                   
+|/administrator/organizations/organizations|         |        |              |GET            |/src/www                   |/src/www                   
 |/administrator/reset-codes|         |        |              |GET            |@userappstore/dashboard    |@userappstore/dashboard    
 |/administrator/reset-session-key|         |        |              |GET POST       |@userappstore/dashboard    |@userappstore/dashboard    
 |/administrator/revoke-administrator|         |        |              |GET POST       |@userappstore/dashboard    |@userappstore/dashboard    
@@ -71,12 +71,12 @@ This site map is generated automatically each time the dashboard starts.
 |/api/administrator/create-reset-code|         |LOCK    |              |POST           |@userappstore/dashboard    |                           
 |/api/administrator/delete-account|         |LOCK    |              |DELETE         |@userappstore/dashboard    |                           
 |/api/administrator/delete-schedule|         |        |              |GET            |@userappstore/dashboard    |                           
-|/api/administrator/organizations/invitation|         |        |              |GET            |ROOT FILE                  |                           
-|/api/administrator/organizations/invitations|         |        |              |GET            |ROOT FILE                  |                           
-|/api/administrator/organizations/membership|         |        |              |GET            |ROOT FILE                  |                           
-|/api/administrator/organizations/memberships|         |        |              |GET            |ROOT FILE                  |                           
-|/api/administrator/organizations/organization|         |        |              |GET            |ROOT FILE                  |                           
-|/api/administrator/organizations/organizations|         |        |              |GET            |ROOT FILE                  |                           
+|/api/administrator/organizations/invitation|         |        |              |GET            |/src/www                   |                           
+|/api/administrator/organizations/invitations|         |        |              |GET            |/src/www                   |                           
+|/api/administrator/organizations/membership|         |        |              |GET            |/src/www                   |                           
+|/api/administrator/organizations/memberships|         |        |              |GET            |/src/www                   |                           
+|/api/administrator/organizations/organization|         |        |              |GET            |/src/www                   |                           
+|/api/administrator/organizations/organizations|         |        |              |GET            |/src/www                   |                           
 |/api/administrator/profile|         |        |              |GET            |@userappstore/dashboard    |                           
 |/api/administrator/reset-code|         |        |              |GET            |@userappstore/dashboard    |                           
 |/api/administrator/reset-codes|         |        |              |GET            |@userappstore/dashboard    |                           
@@ -95,22 +95,22 @@ This site map is generated automatically each time the dashboard starts.
 |/api/user/delete-account|         |LOCK    |              |DELETE         |@userappstore/dashboard    |                           
 |/api/user/delete-reset-code|         |LOCK    |              |DELETE         |@userappstore/dashboard    |                           
 |/api/user/end-session|         |        |              |PATCH          |@userappstore/dashboard    |                           
-|/api/user/organizations/accept-invitation|         |LOCK    |              |PATCH          |ROOT FILE                  |                           
-|/api/user/organizations/account-memberships|         |        |              |GET            |ROOT FILE                  |                           
-|/api/user/organizations/create-invitation|         |LOCK    |              |POST           |ROOT FILE                  |                           
-|/api/user/organizations/create-organization|         |LOCK    |              |POST           |ROOT FILE                  |                           
-|/api/user/organizations/delete-invitation|         |LOCK    |              |DELETE         |ROOT FILE                  |                           
-|/api/user/organizations/delete-membership|         |LOCK    |              |DELETE         |ROOT FILE                  |                           
-|/api/user/organizations/delete-organization|         |LOCK    |              |DELETE         |ROOT FILE                  |                           
-|/api/user/organizations/invitation|         |        |              |GET            |ROOT FILE                  |                           
-|/api/user/organizations/invitations|         |        |              |GET            |ROOT FILE                  |                           
-|/api/user/organizations/membership|         |        |              |GET            |ROOT FILE                  |                           
-|/api/user/organizations/memberships|         |        |              |GET            |ROOT FILE                  |                           
-|/api/user/organizations/organization|         |        |              |GET            |ROOT FILE                  |                           
-|/api/user/organizations/organizations|         |        |              |GET            |ROOT FILE                  |                           
-|/api/user/organizations/transfer-organization|         |LOCK    |              |PATCH          |ROOT FILE                  |                           
-|/api/user/organizations/update-membership|         |LOCK    |              |PATCH          |ROOT FILE                  |                           
-|/api/user/organizations/update-organization|         |LOCK    |              |PATCH          |ROOT FILE                  |                           
+|/api/user/organizations/accept-invitation|         |LOCK    |              |PATCH          |/src/www                   |                           
+|/api/user/organizations/account-memberships|         |        |              |GET            |/src/www                   |                           
+|/api/user/organizations/create-invitation|         |LOCK    |              |POST           |/src/www                   |                           
+|/api/user/organizations/create-organization|         |LOCK    |              |POST           |/src/www                   |                           
+|/api/user/organizations/delete-invitation|         |LOCK    |              |DELETE         |/src/www                   |                           
+|/api/user/organizations/delete-membership|         |LOCK    |              |DELETE         |/src/www                   |                           
+|/api/user/organizations/delete-organization|         |LOCK    |              |DELETE         |/src/www                   |                           
+|/api/user/organizations/invitation|         |        |              |GET            |/src/www                   |                           
+|/api/user/organizations/invitations|         |        |              |GET            |/src/www                   |                           
+|/api/user/organizations/membership|         |        |              |GET            |/src/www                   |                           
+|/api/user/organizations/memberships|         |        |              |GET            |/src/www                   |                           
+|/api/user/organizations/organization|         |        |              |GET            |/src/www                   |                           
+|/api/user/organizations/organizations|         |        |              |GET            |/src/www                   |                           
+|/api/user/organizations/transfer-organization|         |LOCK    |              |PATCH          |/src/www                   |                           
+|/api/user/organizations/update-membership|         |LOCK    |              |PATCH          |/src/www                   |                           
+|/api/user/organizations/update-organization|         |LOCK    |              |PATCH          |/src/www                   |                           
 |/api/user/profile|         |        |              |GET            |@userappstore/dashboard    |                           
 |/api/user/reset-account|GUEST    |        |              |PATCH          |@userappstore/dashboard    |                           
 |/api/user/reset-code|         |        |              |GET            |@userappstore/dashboard    |                           
@@ -122,4 +122,4 @@ This site map is generated automatically each time the dashboard starts.
 |/api/user/signin|GUEST    |        |              |POST           |@userappstore/dashboard    |                           
 |/api/user/signout|         |        |              |GET            |@userappstore/dashboard    |                           
 |/api/user/update-profile|         |LOCK    |              |PATCH          |@userappstore/dashboard    |                           
-|/home|         |        |              |               |STATIC PAGE                |@userappstore/dashboard    
+|/home|         |        |              |               |static-page                |@userappstore/dashboard    
