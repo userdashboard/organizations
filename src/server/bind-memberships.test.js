@@ -1,11 +1,11 @@
 /* eslint-env mocha */
 const assert = require('assert')
-const Memberships = require('./x-memberships-header.js')
+const Memberships = require('./bind-memberships.js')
 const TestHelper = require('../test-helper.js')
 
-describe(`proxy/x-memberships-header`, () => {
-  describe('Memberships#GET', () => {
-    it('should add membership list to header', async () => {
+describe(`server/bind-memberships`, () => {
+  describe('BindMemberships#GET', () => {
+    it('should bind membership list to req', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const user = await TestHelper.createUser()
@@ -14,10 +14,9 @@ describe(`proxy/x-memberships-header`, () => {
       req.account = user.account
       req.session = user.session
       await Memberships.after(req)
-      assert.notEqual(null, req.headers['x-memberships'])
-      const memberships = JSON.parse(req.headers['x-memberships'])
-      assert.equal(memberships.length, 1)
-      assert.equal(memberships[0].membershipid, user.membership.membershipid)
+      assert.notEqual(null, req.memberships)
+      assert.equal(req.memberships.length, 1)
+      assert.equal(req.memberships[0].membershipid, user.membership.membershipid)
     })
   })
 })

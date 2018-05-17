@@ -3,7 +3,7 @@ const assert = require('assert')
 const Organizations = require('./x-organizations-header.js')
 const TestHelper = require('../test-helper.js')
 
-describe(`/api/user/organizations/proxy-organizations`, () => {
+describe(`proxy/x-organizations-header`, () => {
   describe('ProxyOrganizations#GET', () => {
     it('should add organizations list to header', async () => {
       const owner = await TestHelper.createUser()
