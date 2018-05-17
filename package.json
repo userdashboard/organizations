@@ -1,6 +1,6 @@
 {
   "name": "@userappstore/organizations",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "",
   "main": "index.js",
   "devDependencies": {
@@ -18,8 +18,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@userappstore/dashboard": "^1.0.1002"
-  },
+    "@userappstore/dashboard": "^1.0.1003"
+  },  
+  "dashboard-proxy": [
+    "/src/server/x-organizations-header.js",
+    "/src/server/x-memberships-header.js"
+  ],
+  "dashboard-server": [
+    "/src/server/bind-organizations.js",
+    "/src/server/bind-memberships.js"
+  ],
   "dashboard-menus": {
     "account": [
       {
