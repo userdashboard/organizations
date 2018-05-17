@@ -11,4 +11,4 @@ global.MAXIMUM_ORGANIZATION_FIELD_LENGTH = 100
 global.MAXIMUM_MEMBERSHIP_FIELD_LENGTH = 100
 global.rootPath = path.join(__dirname, 'src/www')
 dashboard.start()
-global.dashboard.organizations = module.exports
+global.dashboard.organizations = require('./index.js')
