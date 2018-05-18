@@ -6,7 +6,7 @@ module.exports = {
     if (req.query.accountid !== req.account.accountid) {
       throw new Error('invalid-account')
     }
-    const memberships = await global.dashboard.organizations.Membership.listByAccount(req.query.accountid)
+    const memberships = await global.organizations.Membership.listByAccount(req.query.accountid)
     if (!memberships || !memberships.length) {
       return null
     }

@@ -10,14 +10,14 @@ async function beforeRequest (req) {
   if (!req.query || !req.query.membershipid) {
     throw new Error('invalid-membershipid')
   }
-  const membership = await global.dashboard.organizations.Membership.load(req.query.membershipid)
+  const membership = await global.organizations.Membership.load(req.query.membershipid)
   if (!membership) {
     throw new Error('invalid-membership')
   }
   if (membership.accountid !== req.account.accountid) {
     throw new Error('invalid-account')
   }
-  const organization = await global.dashboard.organizations.Organization.load(membership.organizationid)
+  const organization = await global.organizations.Organization.load(membership.organizationid)
   if (!organization) {
     throw new Error('invalid-organization')
   }

@@ -11,7 +11,7 @@ module.exports = {
       global.MAXIMUM_INVITATION_CODE_LENGTH < req.body.code.length) {
       throw new Error('invalid-invitation-code-length')
     }
-    const organization = await global.dashboard.organizations.Organization.load(req.query.organizationid)
+    const organization = await global.organizations.Organization.load(req.query.organizationid)
     if (!organization || organization.ownerid !== req.account.accountid) {
       throw new Error('invalid-organizationid')
     }
@@ -22,9 +22,9 @@ module.exports = {
     req.body.code = await global.dashboard.Hash.fixedSaltHash(req.body.code)
   },
   post: async (req) => {
-    const invitation = await global.dashboard.organizations.Invitation.create(req.query.organizationid, req.body.code)
-    await global.dashboard.organizations.Invitation.setProperty(invitation.invitationid, 'ip', req.ip)
-    await global.dashboard.organizations.Invitation.setProperty(invitation.invitationid, 'userAgent', req.headers['user-agent'] || '')
+    const invitation = await global.organizations.Invitation.create(req.query.organizationid, req.body.code)
+    await global.organizations.Invitation.setProperty(invitation.invitationid, 'ip', req.ip)
+    await global.organizations.Invitation.setProperty(invitation.invitationid, 'userAgent', req.headers['user-agent'] || '')
     req.session = await global.dashboard.Session.load(req.session.sessionid)
     req.success = true
     return invitation

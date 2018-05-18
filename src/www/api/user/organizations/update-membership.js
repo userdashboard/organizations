@@ -15,7 +15,7 @@ module.exports = {
         throw new Error('invalid-membership-field-length')
       }
     }
-    const membership = await global.dashboard.organizations.Membership.load(req.query.membershipid)
+    const membership = await global.organizations.Membership.load(req.query.membershipid)
     if (!membership || membership.accountid !== req.account.accountid) {
       throw new Error('invalid-membership')
     }
@@ -25,10 +25,10 @@ module.exports = {
       if (global.MEMBERSHIP_FIELDS.indexOf(property) === -1) {
         continue
       }
-      await global.dashboard.organizations.Membership.setProperty(req.query.membershipid, property, req.body[property])
+      await global.organizations.Membership.setProperty(req.query.membershipid, property, req.body[property])
     }
     req.session = await global.dashboard.Session.load(req.session.sessionid)
     req.success = true
-    return global.dashboard.organizations.Membership.load(req.query.membershipid)
+    return global.organizations.Membership.load(req.query.membershipid)
   }
 }

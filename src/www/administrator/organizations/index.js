@@ -6,19 +6,19 @@ module.exports = {
 }
 
 async function beforeRequest (req) {
-  const organizations = await global.dashboard.organizations.Organization.listAll()
+  const organizations = await global.organizations.Organization.listAll()
   if (organizations && organizations.length) {
     for (const organization of organizations) {
       organization.created = global.dashboard.Timestamp.date(organization.created)
       organization.createdRelative = global.dashboard.Format.relativePastDate(organization.created)
     }
   }
-  const memberships = await global.dashboard.organizations.Membership.listAll()
+  const memberships = await global.organizations.Membership.listAll()
   if (memberships && memberships.length) {
     for (const membership of memberships) {
       membership.created = global.dashboard.Timestamp.date(membership.created)
       membership.createdRelative = global.dashboard.Format.relativePastDate(membership.created)
-      const organization = await global.dashboard.organizations.Organization.load(membership.organizationid)
+      const organization = await global.organizations.Organization.load(membership.organizationid)
       membership.organizationName = organization.name
       membership.organizationEmail = organization.email
     }

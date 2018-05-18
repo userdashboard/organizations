@@ -6,7 +6,7 @@ module.exports = {
 }
 
 async function beforeRequest (req) {
-  const ownedOrganizations = await global.dashboard.organizations.Organization.list(req.account.accountid)
+  const ownedOrganizations = await global.organizations.Organization.list(req.account.accountid)
   if (ownedOrganizations && ownedOrganizations.length) {
     for (const organization of ownedOrganizations) {
       organization.created = global.dashboard.Timestamp.date(organization.created)

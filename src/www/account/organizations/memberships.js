@@ -6,12 +6,12 @@ module.exports = {
 }
 
 async function beforeRequest (req) {
-  const memberships = await global.dashboard.organizations.Membership.listByAccount(req.account.accountid)
+  const memberships = await global.organizations.Membership.listByAccount(req.account.accountid)
   if (memberships && memberships.length) {
     for (const membership of memberships) {
       membership.created = global.dashboard.Timestamp.date(membership.created)
       membership.createdRelative = global.dashboard.Format.relativePastDate(membership.created)
-      const organization = await global.dashboard.organizations.Organization.load(membership.organizationid)
+      const organization = await global.organizations.Organization.load(membership.organizationid)
       membership.organizationName = organization.name
       membership.organizationEmail = organization.email
     }

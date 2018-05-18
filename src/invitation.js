@@ -37,7 +37,7 @@ async function create (organizationid, codeHash) {
   if (!organizationid || !organizationid.length) {
     throw new Error('invalid-organization')
   }
-  const organization = await global.dashboard.organizations.Organization.load(organizationid)
+  const organization = await global.organizations.Organization.load(organizationid)
   if (!organization) {
     throw new Error('invalid-organization')
   }
@@ -75,7 +75,7 @@ async function accept (organizationid, code, accountid) {
   if (!accountid || !accountid.length) {
     throw new Error('invalid-account')
   }
-  const organization = await global.dashboard.organizations.Organization.load(organizationid)
+  const organization = await global.organizations.Organization.load(organizationid)
   if (!organization) {
     throw new Error('invalid-organization')
   }
@@ -112,7 +112,7 @@ async function deleteInvitation (invitationid) {
   if (!invitation) {
     throw new Error('invalid-invitation')
   }
-  const organization = await global.dashboard.organizations.Organization.load(invitation.organizationid)
+  const organization = await global.organizations.Organization.load(invitation.organizationid)
   if (!organization) {
     throw new Error('invalid-organization')
   }
@@ -132,7 +132,7 @@ async function list (organizationid) {
   if (!organizationid || !organizationid.length) {
     throw new Error('invalid-organization')
   }
-  const organization = await global.dashboard.organizations.Organization.load(organizationid)
+  const organization = await global.organizations.Organization.load(organizationid)
   if (!organization) {
     throw new Error('invalid-organization')
   }
@@ -150,7 +150,7 @@ async function list (organizationid) {
 async function listAll (organizationid) {
   let invitationids
   if (organizationid) {
-    const organization = await global.dashboard.organizations.Organization.load(organizationid)
+    const organization = await global.organizations.Organization.load(organizationid)
     if (!organization) {
       throw new Error('invalid-organization')
     }

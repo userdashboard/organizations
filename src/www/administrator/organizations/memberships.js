@@ -7,7 +7,7 @@ module.exports = {
 
 async function beforeRequest (req) {
   const filterid = req.query && req.query.organizationid ? req.query.organizationid : null
-  const memberships = await global.dashboard.organizations.Membership.listAll(filterid)
+  const memberships = await global.organizations.Membership.listAll(filterid)
   if (memberships && memberships.length) {
     for (const membership of memberships) {
       membership.created = global.dashboard.Timestamp.date(membership.created)

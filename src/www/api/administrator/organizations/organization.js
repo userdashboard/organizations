@@ -3,7 +3,7 @@ module.exports = {
     if (!req.query || !req.query.organizationid) {
       throw new Error('invalid-organizationid')
     }
-    const organization = await global.dashboard.organizations.Organization.load(req.query.organizationid)
+    const organization = await global.organizations.Organization.load(req.query.organizationid)
     if (!organization) {
       throw new Error('invalid-organization')
     }

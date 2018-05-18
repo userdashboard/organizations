@@ -9,12 +9,12 @@ module.exports.createOrganization = createOrganization
 
 global.rootPath = path.join(__dirname, 'www')
 dashboard.setup()
-global.dashboard.organizations = require('../index.js')
+global.organizations = require('../index.js')
 
 async function createOrganization (existingUser) {
   const user = existingUser || await module.exports.createUser()
   const name = 'organization-' + new Date().getTime() + '-' + Math.ceil(Math.random() * 1000)
-  user.organization = await global.dashboard.organizations.Organization.create(user.account.accountid, name)
+  user.organization = await global.organizations.Organization.create(user.account.accountid, name)
   return user
 }
 
@@ -22,14 +22,14 @@ async function createInvitation (existingUser, organizationid) {
   const user = existingUser || await module.exports.createUser()
   const code = 'invitation-' + new Date().getTime() + '-' + Math.ceil(Math.random() * 1000)
   const codeHash = global.dashboard.Hash.fixedSaltHash(code)
-  user.invitation = await global.dashboard.organizations.Invitation.create(organizationid, codeHash)
+  user.invitation = await global.organizations.Invitation.create(organizationid, codeHash)
   user.invitation.code = code
   return user
 }
 
 async function createMembership (existingUser, organizationid) {
   const user = existingUser || await module.exports.createUser()
-  user.membership = await global.dashboard.organizations.Membership.create(organizationid, user.account.accountid)
+  user.membership = await global.organizations.Membership.create(organizationid, user.account.accountid)
   return user
 }
 

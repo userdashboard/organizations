@@ -7,7 +7,7 @@ module.exports = {
 
 async function beforeRequest (req) {
   const filterid = req.query && req.query.organizationid ? req.query.organizationid : null
-  const invitations = await global.dashboard.organizations.Invitation.listAll(filterid)
+  const invitations = await global.organizations.Invitation.listAll(filterid)
   if (invitations && invitations.length) {
     for (const invitation of invitations) {
       invitation.created = global.dashboard.Timestamp.date(invitation.created)

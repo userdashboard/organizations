@@ -4,7 +4,7 @@ module.exports = {
     if (!req.query || !req.query.organizationid) {
       throw new Error('invalid-organizationid')
     }
-    const organization = await global.dashboard.organizations.Organization.load(req.query.organizationid)
+    const organization = await global.organizations.Organization.load(req.query.organizationid)
     if (!organization || organization.ownerid !== req.account.accountid) {
       throw new Error('invalid-organization')
     }
@@ -14,7 +14,7 @@ module.exports = {
     }
   },
   delete: async (req) => {
-    await global.dashboard.organizations.Organization.deleteOrganization(req.query.organizationid)
+    await global.organizations.Organization.deleteOrganization(req.query.organizationid)
     req.session = await global.dashboard.Session.load(req.session.sessionid)
     req.success = true
   }

@@ -9,11 +9,11 @@ async function beforeRequest (req) {
   if (!req.query || !req.query.invitationid) {
     throw new Error('invalid-invitationid')
   }
-  const invitation = await global.dashboard.organizations.Invitation.load(req.query.invitationid)
+  const invitation = await global.organizations.Invitation.load(req.query.invitationid)
   if (!invitation) {
     throw new Error('invalid-invitationid')
   }
-  const organization = await global.dashboard.organizations.Organization.load(invitation.organizationid)
+  const organization = await global.organizations.Organization.load(invitation.organizationid)
   if (!organization) {
     throw new Error('invalid-organization')
   }

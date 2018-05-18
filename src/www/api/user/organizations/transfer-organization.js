@@ -7,7 +7,7 @@ module.exports = {
     if (req.body.accountid === req.account.accountid) {
       throw new Error('invalid-account')
     }
-    const organization = await global.dashboard.organizations.Organization.load(req.query.organizationid)
+    const organization = await global.organizations.Organization.load(req.query.organizationid)
     if (!organization || organization.ownerid !== req.account.accountid) {
       throw new Error('invalid-organization')
     }
@@ -18,7 +18,7 @@ module.exports = {
     if (!newOwner || newOwner.deleted) {
       throw new Error('invalid-account')
     }
-    const nonMember = await global.dashboard.organizations.Membership.isUniqueMembership(req.query.organizationid, req.body.accountid)
+    const nonMember = await global.organizations.Membership.isUniqueMembership(req.query.organizationid, req.body.accountid)
     if (nonMember) {
       throw new Error('invalid-account')
     }
@@ -28,8 +28,8 @@ module.exports = {
     }
   },
   patch: async (req) => {
-    await global.dashboard.organizations.Organization.setProperty(req.query.organizationid, 'ownerid', req.body.accountid)
+    await global.organizations.Organization.setProperty(req.query.organizationid, 'ownerid', req.body.accountid)
     req.success = true
-    return global.dashboard.organizations.Organization.load(req.query.organizationid)
+    return global.organizations.Organization.load(req.query.organizationid)
   }
 }

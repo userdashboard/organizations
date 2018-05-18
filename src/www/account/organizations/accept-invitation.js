@@ -10,11 +10,11 @@ async function beforeRequest (req) {
   if (!req.query || !req.query.invitationid) {
     throw new Error('invalid-invitation')
   }
-  const invitation = await global.dashboard.organizations.Invitation.load(req.query.invitationid)
+  const invitation = await global.organizations.Invitation.load(req.query.invitationid)
   if (!invitation || (invitation.accepted && invitation.accepted !== req.account.accountid)) {
     throw new Error('invalid-invitation')
   }
-  const organization = await global.dashboard.organizations.Organization.load(invitation.organizationid)
+  const organization = await global.organizations.Organization.load(invitation.organizationid)
   if (!organization) {
     throw new Error('invalid-organization')
   }
@@ -22,7 +22,7 @@ async function beforeRequest (req) {
     req.error = 'invalid-account'
     return
   }
-  const unique = await global.dashboard.organizations.Membership.isUniqueMembership(invitation.organizationid, req.account.accountid)
+  const unique = await global.organizations.Membership.isUniqueMembership(invitation.organizationid, req.account.accountid)
   if (!unique) {
     throw new Error('invalid-account')
   }

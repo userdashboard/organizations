@@ -9,14 +9,14 @@ async function beforeRequest (req) {
   if (!req.query || !req.query.organizationid) {
     throw new Error('invalid-organizationid')
   }
-  const organization = await global.dashboard.organizations.Organization.load(req.query.organizationid)
+  const organization = await global.organizations.Organization.load(req.query.organizationid)
   if (!organization) {
     throw new Error('invalid-organization')
   }
   if (organization.ownerid !== req.account.accountid) {
     throw new Error('invalid-account')
   }
-  const invitations = await global.dashboard.organizations.Invitation.list(req.query.organizationid)
+  const invitations = await global.organizations.Invitation.list(req.query.organizationid)
   if (invitations && invitations.length) {
     for (const invitation of invitations) {
       invitation.created = global.dashboard.Timestamp.date(invitation.created)
