@@ -12,11 +12,13 @@ describe(`/account/organizations/owner/invitations`, () => {
       const req = TestHelper.createRequest(`/account/organizations/owner/invitations?organizationid=${owner.organization.organizationid}`, 'GET')
       req.account = user.account
       req.session = user.session
+      let errorMessage
       try {
         await req.route.api.before(req)
       } catch (error) {
-        assert.equal(error.message, 'invalid-account')
+        errorMessage = error.message
       }
+      assert.equal(errorMessage, 'invalid-account')
     })
 
     it('should bind invitations to req', async () => {

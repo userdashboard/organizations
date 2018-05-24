@@ -1,3 +1,4 @@
+const dashboard = require('@userappstore/dashboard')
 const Navigation = require('./navbar.js')
 
 module.exports = {
@@ -9,24 +10,22 @@ async function beforeRequest (req) {
   if (!req.query || !req.query.invitationid) {
     throw new Error('invalid-invitationid')
   }
-  const invitation = await global.organizations.Invitation.load(req.query.invitationid)
-  if (!invitation) {
+  const data = await global.api.user.organizations.Invitation.get(req)
+  if (!data) {
     throw new Error('invalid-invitationid')
   }
-  const organization = await global.organizations.Organization.load(invitation.organizationid)
-  if (!organization) {
-    throw new Error('invalid-organization')
-  }
+  const invitation = data.invitation
+  const organization = data.organization
   if (organization.ownerid !== req.account.accountid) {
     throw new Error('invalid-account')
   }
-  invitation.created = global.dashboard.Timestamp.date(invitation.created)
-  invitation.createdRelative = global.dashboard.Format.relativePastDate(invitation.created)
+  invitation.created = dashboard.Timestamp.date(invitation.created)
+  invitation.createdRelative = dashboard.Format.date(invitation.created)
   req.data = { invitation }
 }
 
 async function renderPage (req, res) {
-  const doc = global.dashboard.HTML.parse(req.route.html)
+  const doc = dashboard.HTML.parse(req.route.html)
   await Navigation.render(req, doc)
   doc.renderTemplate(req.data.invitation, 'invitation-row-template', 'invitations-table')
   if (req.data.invitation.accepted) {
@@ -39,5 +38,5 @@ async function renderPage (req, res) {
   } else {
     doc.removeElementById('membership')
   }
-  return global.dashboard.Response.end(req, res, doc)
+  return dashboard.Response.end(req, res, doc)
 }

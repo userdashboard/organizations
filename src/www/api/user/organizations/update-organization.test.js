@@ -12,11 +12,13 @@ describe('/api/user/organizations/update-organization', async () => {
     req.body = {
       invalidField: 'field'
     }
+    let errorMessage
     try {
       await req.route.api.patch(req)
     } catch (error) {
-      assert.equal(error.message, 'invalid-organization-field')
+      errorMessage = error.message
     }
+    assert.equal(errorMessage, 'invalid-organization-field')
   })
 
   it('should enforce field length', async () => {
@@ -30,12 +32,13 @@ describe('/api/user/organizations/update-organization', async () => {
       email: 'test@test.com'
     }
     global.MAXIMUM_ORGANIZATION_FIELD_LENGTH = 10
+    let errorMessage
     try {
       await req.route.api.patch(req)
     } catch (error) {
-      global.MAXIMUM_ORGANIZATION_FIELD_LENGTH = 100
-      assert.equal(error.message, 'invalid-organization-field-length')
+      errorMessage = error.message
     }
+    assert.equal(errorMessage, 'invalid-organization-field-length')
   })
 
   it('should apply new values', async () => {

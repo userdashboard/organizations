@@ -1,3 +1,4 @@
+const dashboard = require('@userappstore/dashboard')
 const Navigation = require('./navbar.js')
 
 module.exports = {
@@ -6,19 +7,22 @@ module.exports = {
 }
 
 async function beforeRequest (req) {
-  const ownedOrganizations = await global.organizations.Organization.list(req.account.accountid)
+  req.query = req.query || {}
+  req.query.accountid = req.account.accountid
+  const ownedOrganizations = await global.api.user.organizations.Organizations.get(req)
   if (ownedOrganizations && ownedOrganizations.length) {
     for (const organization of ownedOrganizations) {
-      organization.created = global.dashboard.Timestamp.date(organization.created)
-      organization.createdRelative = global.dashboard.Format.relativePastDate(organization.created)
+      organization.created = dashboard.Timestamp.date(organization.created)
+      organization.createdRelative = dashboard.Format.date(organization.created)
     }
   }
-  const memberships = await global.organizations.Membership.listByAccount(req.account.accountid)
+  const memberships = await global.api.user.organizations.AccountMemberships.get(req)
   if (memberships && memberships.length) {
     for (const membership of memberships) {
-      membership.created = global.dashboard.Timestamp.date(membership.created)
-      membership.createdRelative = global.dashboard.Format.relativePastDate(membership.created)
-      const organization = await global.organizations.Organization.load(membership.organizationid)
+      membership.created = dashboard.Timestamp.date(membership.created)
+      membership.createdRelative = dashboard.Format.date(membership.created)
+      req.query.organizationid = membership.organizationid
+      const organization = await global.api.user.organizations.Organization.get(req)
       membership.organizationName = organization.name
       membership.organizationEmail = organization.email
     }
@@ -27,7 +31,7 @@ async function beforeRequest (req) {
 }
 
 async function renderPage (req, res) {
-  const doc = global.dashboard.HTML.parse(req.route.html)
+  const doc = dashboard.HTML.parse(req.route.html)
   await Navigation.render(req, doc)
   if (req.data.memberships && req.data.memberships.length) {
     doc.renderTable(req.data.memberships, 'membership-row-template', 'memberships-table')
@@ -39,5 +43,5 @@ async function renderPage (req, res) {
   } else {
     doc.removeElementById('organizations-table')
   }
-  return global.dashboard.Response.end(req, res, doc)
+  return dashboard.Response.end(req, res, doc)
 }

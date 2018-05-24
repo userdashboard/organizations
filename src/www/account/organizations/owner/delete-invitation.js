@@ -1,3 +1,4 @@
+const dashboard = require('@userappstore/dashboard')
 const Navigation = require('./navbar.js')
 
 module.exports = {
@@ -10,18 +11,18 @@ async function beforeRequest (req) {
   if (!req.query || !req.query.invitationid) {
     throw new Error('invalid-invitationid')
   }
-  const invitation = await global.organizations.Invitation.load(req.query.invitationid)
-  if (!invitation || invitation.accepted) {
+  const data = await global.api.user.organizations.Invitation.get(req)
+  if (!data || data.accepted) {
     throw new Error('invalid-invitation')
   }
-  const organization = await global.organizations.Organization.load(invitation.organizationid)
+  const organization = data.organization
   if (!organization) {
     throw new Error('invalid-organization')
   }
   if (organization.ownerid !== req.account.accountid) {
     throw new Error('invalid-account')
   }
-  if (req.session.lockURL === req.url && req.session.unlocked >= global.dashboard.Timestamp.now) {
+  if (req.session.lockURL === req.url && req.session.unlocked >= dashboard.Timestamp.now) {
     await global.api.user.organizations.DeleteInvitation.delete(req)
     req.success = true
   }
@@ -32,7 +33,7 @@ async function renderPage (req, res, messageTemplate) {
   if (req.success) {
     messageTemplate = 'success'
   }
-  const doc = global.dashboard.HTML.parse(req.route.html)
+  const doc = dashboard.HTML.parse(req.route.html)
   await Navigation.render(req, doc)
   const organizationName = doc.getElementById('organizationName')
   organizationName.setAttribute('value', req.data.organization.name)
@@ -42,10 +43,10 @@ async function renderPage (req, res, messageTemplate) {
     doc.renderTemplate(null, messageTemplate, 'messageContainer')
     if (messageTemplate === 'submit-sucess-message') {
       submitForm.remove()
-      return global.dashboard.Response.end(req, res, doc)
+      return dashboard.Response.end(req, res, doc)
     }
   }
-  return global.dashboard.Response.end(req, res, doc)
+  return dashboard.Response.end(req, res, doc)
 }
 
 async function submitForm (req, res) {
@@ -54,7 +55,7 @@ async function submitForm (req, res) {
     if (req.success) {
       return renderPage(req, res, 'success')
     }
-    return global.dashboard.Response.redirect(req, res, '/account/authorize')
+    return dashboard.Response.redirect(req, res, '/account/authorize')
   } catch (error) {
     return renderPage(req, res, 'unknown-error')
   }

@@ -1,3 +1,4 @@
+const dashboard = require('@userappstore/dashboard')
 const Navigation = require('./navbar.js')
 
 module.exports = {
@@ -6,22 +7,21 @@ module.exports = {
 }
 
 async function beforeRequest (req) {
-  const filterid = req.query && req.query.accountid ? req.query.accountid : null
-  let allOrganizations = await global.organizations.Organization.listAll(filterid)
+  let allOrganizations = await global.api.administrator.organizations.Organizations.get(req)
   if (allOrganizations && allOrganizations.length) {
     for (const organization of allOrganizations) {
-      organization.created = global.dashboard.Timestamp.date(organization.created)
-      organization.createdRelative = global.dashboard.Format.relativePastDate(organization.created)
+      organization.created = dashboard.Timestamp.date(organization.created)
+      organization.createdRelative = dashboard.Format.date(organization.created)
     }
   }
   req.data = { organizations: allOrganizations }
 }
 
 async function renderPage (req, res) {
-  const doc = global.dashboard.HTML.parse(req.route.html)
+  const doc = dashboard.HTML.parse(req.route.html)
   await Navigation.render(req, doc)
   if (req.data.organizations && req.data.organizations.length) {
     doc.renderTable(req.data.organizations, 'organization-row-template', 'organizations-table')
   }
-  return global.dashboard.Response.end(req, res, doc)
+  return dashboard.Response.end(req, res, doc)
 }

@@ -6,18 +6,19 @@ describe(`/administrator/organizations/index`, () => {
   describe('Index#BEFORE', () => {
     it('should bind memberships to req', async () => {
       const administrator = await TestHelper.createAdministrator()
-      await TestHelper.createOrganization(administrator)
+      const owner = await TestHelper.createUser()
+      await TestHelper.createOrganization(owner)
       const user = await TestHelper.createUser()
-      await TestHelper.createMembership(user, administrator.organization.organizationid)
+      await TestHelper.createMembership(user, owner.organization.organizationid)
       const user2 = await TestHelper.createUser()
-      await TestHelper.createMembership(user2, administrator.organization.organizationid)
+      await TestHelper.createMembership(user2, owner.organization.organizationid)
       const req = TestHelper.createRequest(`/administrator/organizations`, 'GET')
       req.account = administrator.account
       req.session = administrator.session
       await req.route.api.before(req)
       assert.notEqual(req.data, null)
       assert.notEqual(null, req.data.memberships)
-      assert.equal(req.data.memberships.length, 2)
+      assert.equal(true, req.data.memberships.length >= 2)
     })
 
     it('should bind organizations to req', async () => {
@@ -37,7 +38,8 @@ describe(`/administrator/organizations/index`, () => {
   describe('Index#GET', () => {
     it('should have row for each organization', async () => {
       const administrator = await TestHelper.createAdministrator()
-      await TestHelper.createOrganization(administrator)
+      const owner = await TestHelper.createUser()
+      await TestHelper.createOrganization(owner)
       const req = TestHelper.createRequest(`/administrator/organizations`, 'GET')
       req.account = administrator.account
       req.session = administrator.session
@@ -45,7 +47,7 @@ describe(`/administrator/organizations/index`, () => {
       res.end = async (str) => {
         const doc = TestHelper.extractDoc(str)
         assert.notEqual(null, doc)
-        const organizationRow = doc.getElementById(administrator.organization.organizationid)
+        const organizationRow = doc.getElementById(owner.organization.organizationid)
         assert.notEqual(null, organizationRow)
       }
       return req.route.api.get(req, res)
@@ -53,9 +55,10 @@ describe(`/administrator/organizations/index`, () => {
 
     it('should have row for each membership', async () => {
       const administrator = await TestHelper.createAdministrator()
-      await TestHelper.createOrganization(administrator)
+      const owner = await TestHelper.createUser()
+      await TestHelper.createOrganization(owner)
       const user = await TestHelper.createUser()
-      await TestHelper.createMembership(user, administrator.organization.organizationid)
+      await TestHelper.createMembership(user, owner.organization.organizationid)
       const req = TestHelper.createRequest(`/administrator/organizations`, 'GET')
       req.account = administrator.account
       req.session = administrator.session

@@ -13,21 +13,21 @@ describe('/api/user/organizations/create-organization', () => {
         name: '12345'
       }
       global.MINIMUM_ORGANIZATION_NAME_LENGTH = 100
+      let errorMessage
       try {
         await req.route.api.post(req)
       } catch (error) {
-        assert.equal(error.message, 'invalid-organization-name-length')
-      } finally {
-        global.MINIMUM_ORGANIZATION_NAME_LENGTH = 1
+        errorMessage = error.message
       }
+      assert.equal(errorMessage, 'invalid-organization-name-length')
       global.MAXIMUM_ORGANIZATION_NAME_LENGTH = 1
+      errorMessage = null
       try {
         await req.route.api.post(req)
       } catch (error) {
-        assert.equal(error.message, 'invalid-organization-name-length')
-      } finally {
-        global.MAXIMUM_ORGANIZATION_NAME_LENGTH = 100
+        errorMessage = error.message
       }
+      assert.equal(errorMessage, 'invalid-organization-name-length')
     })
 
     it('should reject invalid fields', async () => {
@@ -41,11 +41,13 @@ describe('/api/user/organizations/create-organization', () => {
         firstName: 'field'
       }
       global.ORGANIZATION_FIELDS = ['email']
+      let errorMessage
       try {
         await req.route.api.post(req)
       } catch (error) {
-        assert.equal(error.message, 'invalid-organization-field')
+        errorMessage = error.message
       }
+      assert.equal(errorMessage, 'invalid-organization-field')
     })
 
     it('should create authorized organization', async () => {

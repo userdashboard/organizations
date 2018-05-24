@@ -12,11 +12,13 @@ describe('/api/user/organizations/delete-invitation', async () => {
       const req = TestHelper.createRequest(`/api/user/organizations/delete-invitation?invitationid=${owner.invitation.invitationid}`, 'DELETE')
       req.account = user.account
       req.session = user.session
+      let errorMessage
       try {
         await req.route.api.delete(req)
       } catch (error) {
-        assert.equal(error.message, 'invalid-organization')
+        errorMessage = error.message
       }
+      assert.equal(errorMessage, 'invalid-organization')
     })
 
     it('should reject accepted invitation', async () => {
@@ -36,11 +38,13 @@ describe('/api/user/organizations/delete-invitation', async () => {
       const req2 = TestHelper.createRequest(`/api/user/organizations/delete-invitation?invitationid=${owner.invitation.invitationid}`, 'DELETE')
       req2.account = owner.account
       req2.session = owner.session
+      let errorMessage
       try {
         await req2.route.api.delete(req2)
       } catch (error) {
-        assert.equal(error.message, 'invalid-invitation')
+        errorMessage = error.message
       }
+      assert.equal(errorMessage, 'invalid-invitation')
     })
 
     it('should delete invitation with authorization', async () => {
@@ -56,11 +60,13 @@ describe('/api/user/organizations/delete-invitation', async () => {
       const req2 = TestHelper.createRequest(`/api/user/organizations/invitation?invitationid=${owner.invitation.invitationid}`, 'GET')
       req2.account = owner.account
       req2.session = owner.session
+      let errorMessage
       try {
         await req2.route.api.get(req2)
       } catch (error) {
-        assert.equal(error.message, 'invalid-invitation')
+        errorMessage = error.message
       }
+      assert.equal(errorMessage, 'invalid-invitationid')
     })
   })
 })

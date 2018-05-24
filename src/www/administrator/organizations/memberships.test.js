@@ -6,10 +6,11 @@ describe('/administrator/organizations/memberships', () => {
   describe('Memberships#BEFORE', () => {
     it('should bind memberships to req', async () => {
       const administrator = await TestHelper.createAdministrator()
-      await TestHelper.createOrganization(administrator)
+      const owner = await TestHelper.createUser()
+      await TestHelper.createOrganization(owner)
       const user = await TestHelper.createUser()
-      await TestHelper.createMembership(user, administrator.organization.organizationid)
-      const req = TestHelper.createRequest(`/administrator/organizations/memberships?organizationid=${administrator.organization.organizationid}`, 'GET')
+      await TestHelper.createMembership(user, owner.organization.organizationid)
+      const req = TestHelper.createRequest(`/administrator/organizations/memberships?organizationid=${owner.organization.organizationid}`, 'GET')
       req.account = administrator.account
       req.session = administrator.session
       await req.route.api.before(req)
@@ -22,10 +23,11 @@ describe('/administrator/organizations/memberships', () => {
   describe('Memberships#GET', () => {
     it('should have row for each membership', async () => {
       const administrator = await TestHelper.createAdministrator()
-      await TestHelper.createOrganization(administrator)
+      const owner = await TestHelper.createUser()
+      await TestHelper.createOrganization(owner)
       const user = await TestHelper.createUser()
-      await TestHelper.createMembership(user, administrator.organization.organizationid)
-      const req = TestHelper.createRequest(`/administrator/organizations/memberships?organizationid=${administrator.organization.organizationid}`, 'GET')
+      await TestHelper.createMembership(user, owner.organization.organizationid)
+      const req = TestHelper.createRequest(`/administrator/organizations/memberships?organizationid=${owner.organization.organizationid}`, 'GET')
       req.account = administrator.account
       req.session = administrator.session
       const res = TestHelper.createResponse()

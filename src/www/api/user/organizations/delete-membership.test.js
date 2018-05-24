@@ -13,11 +13,13 @@ describe('/api/user/organizations/delete-membership', async () => {
       const req = TestHelper.createRequest(`/api/user/organizations/delete-membership?membershipid=${user.membership.membershipid}`, 'DELETE')
       req.account = user2.account
       req.session = user2.session
+      let errorMessage
       try {
         await req.route.api.delete(req)
       } catch (error) {
-        assert.equal(error.message, 'invalid-account')
+        errorMessage = error.message
       }
+      assert.equal(errorMessage, 'invalid-account')
     })
 
     it('should delete membership', async () => {
@@ -34,11 +36,13 @@ describe('/api/user/organizations/delete-membership', async () => {
       const req2 = TestHelper.createRequest(`/api/user/organizations/membership?membershipid=${user.membership.membershipid}`, 'GET')
       req2.account = owner.account
       req2.session = owner.session
+      let errorMessage
       try {
         await req2.route.api.get(req2)
       } catch (error) {
-        assert.equal(error.message, 'invalid-membership')
+        errorMessage = error.message
       }
+      assert.equal(errorMessage, 'invalid-membershipid')
     })
   })
 })

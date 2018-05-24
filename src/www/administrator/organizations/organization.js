@@ -1,3 +1,4 @@
+const dashboard = require('@userappstore/dashboard')
 const Navigation = require('./navbar.js')
 
 module.exports = {
@@ -9,17 +10,17 @@ async function beforeRequest (req) {
   if (!req.query || !req.query.organizationid) {
     throw new Error('invalid-organization')
   }
-  const organization = await global.organizations.Organization.load(req.query.organizationid)
+  const organization = await global.api.administrator.organizations.Organization.get(req)
   if (!organization) {
     throw new Error('invalid-organization')
   }
-  organization.created = global.dashboard.Timestamp.date(organization.created)
-  organization.createdRelative = global.dashboard.Format.relativePastDate(organization.created)
+  organization.created = dashboard.Timestamp.date(organization.created)
+  organization.createdRelative = dashboard.Format.date(organization.created)
   req.data = { organization }
 }
 
 async function renderPage (req, res) {
-  const doc = global.dashboard.HTML.parse(req.route.html)
+  const doc = dashboard.HTML.parse(req.route.html)
   await Navigation.render(req, doc)
   doc.renderTemplate(req.data.organization, 'organization-row-template', 'organizations-table')
   if (req.data.organization.ownerid !== req.account.accountid) {
@@ -29,5 +30,5 @@ async function renderPage (req, res) {
       `delete-organization-link-${req.query.organizationid}`
     ])
   }
-  return global.dashboard.Response.end(req, res, doc)
+  return dashboard.Response.end(req, res, doc)
 }

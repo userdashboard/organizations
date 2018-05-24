@@ -15,11 +15,13 @@ describe('/api/user/organizations/transfer-organization', () => {
       req.body = {
         accountid: other.account.accountid
       }
+      let errorMessage
       try {
         await req.route.api.patch(req)
       } catch (error) {
-        assert.equal(error.message, 'invalid-organization')
+        errorMessage = error.message
       }
+      assert.equal(errorMessage, 'invalid-organization')
     })
 
     it('should reject same owner', async () => {
@@ -31,11 +33,13 @@ describe('/api/user/organizations/transfer-organization', () => {
       req.body = {
         accountid: owner.account.accountid
       }
+      let errorMessage
       try {
         await req.route.api.patch(req)
       } catch (error) {
-        assert.equal(error.message, 'invalid-account')
+        errorMessage = error.message
       }
+      assert.equal(errorMessage, 'invalid-account')
     })
 
     it('should require new owner is member', async () => {
@@ -48,11 +52,13 @@ describe('/api/user/organizations/transfer-organization', () => {
       req.body = {
         accountid: user.account.accountid
       }
+      let errorMessage
       try {
         await req.route.api.patch(req)
       } catch (error) {
-        assert.equal(error.message, 'invalid-account')
+        errorMessage = error.message
       }
+      assert.equal(errorMessage, 'invalid-account')
     })
 
     it('should transfer organization after authorization', async () => {

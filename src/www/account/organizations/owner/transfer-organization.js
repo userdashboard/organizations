@@ -1,3 +1,4 @@
+const dashboard = require('@userappstore/dashboard')
 const Navigation = require('./navbar.js')
 
 module.exports = {
@@ -19,7 +20,7 @@ async function beforeRequest (req) {
   }
   const memberships = await global.api.user.organizations.Memberships.get(req)
   req.data = {organization, memberships}
-  if (req.session.lockURL === req.url && req.session.unlocked >= global.dashboard.Timestamp.now) {
+  if (req.session.lockURL === req.url && req.session.unlocked >= dashboard.Timestamp.now) {
     const transferred = await global.api.user.organizations.TransferOrganization.patch(req)
     if (transferred === true) {
       req.success = true
@@ -34,8 +35,8 @@ async function renderPage (req, res, messageTemplate) {
   if (req.success) {
     messageTemplate = 'success'
   }
-  const doc = global.dashboard.HTML.parse(req.route.html)
-  await global.dashboard.HTML.renderNavigation(doc, req.query)
+  const doc = dashboard.HTML.parse(req.route.html)
+  await dashboard.HTML.renderNavigation(doc, req.query)
   await Navigation.render(req, doc)
   const submitForm = doc.getElementById('submitForm')
   submitForm.setAttribute('action', req.url)
@@ -43,13 +44,13 @@ async function renderPage (req, res, messageTemplate) {
     doc.renderTemplate(null, messageTemplate, 'messageContainer')
     if (messageTemplate === 'success') {
       submitForm.remove()
-      return global.dashboard.Response.end(req, res, doc)
+      return dashboard.Response.end(req, res, doc)
     }
   }
   if (req.data.memberships && req.data.memberships.length) {
     doc.renderList(req.data.memberships, 'membership-option-template', 'accountid')
   }
-  return global.dashboard.Response.end(req, res, doc)
+  return dashboard.Response.end(req, res, doc)
 }
 
 async function submitForm (req, res) {

@@ -1,3 +1,4 @@
+const dashboard = require('@userappstore/dashboard')
 const Navigation = require('./navbar.js')
 
 module.exports = {
@@ -9,23 +10,30 @@ async function beforeRequest (req) {
   if (!req.query || !req.query.organizationid) {
     throw new Error('invalid-organization')
   }
-  const organization = await global.organizations.Organization.load(req.query.organizationid)
+  const organization = await global.api.user.organizations.Organization.get(req)
   if (!organization) {
     throw new Error('invalid-organization')
   }
   if (organization.ownerid !== req.account.accountid) {
-    const unique = await global.organizations.Membership.isUniqueMembership(req.query.organizationid, req.account.accountid)
-    if (unique) {
+    const memberships = await global.api.user.organizations.AccountMemberships.get(req)
+    let isMember = false
+    for (const membership of memberships) {
+      if (membership.organizationid === req.query.organizationid) {
+        isMember = true
+        break
+      }
+    }
+    if (!isMember) {
       throw new Error('invalid-account')
     }
   }
-  organization.created = global.dashboard.Timestamp.date(organization.created)
-  organization.createdRelative = global.dashboard.Format.relativePastDate(organization.created)
+  organization.created = dashboard.Timestamp.date(organization.created)
+  organization.createdRelative = dashboard.Format.date(organization.created)
   req.data = { organization }
 }
 
 async function renderPage (req, res) {
-  const doc = global.dashboard.HTML.parse(req.route.html)
+  const doc = dashboard.HTML.parse(req.route.html)
   await Navigation.render(req, doc)
   doc.renderTemplate(req.data.organization, 'organization-row-template', 'organizations-table')
   if (req.data.organization.ownerid !== req.account.accountid) {
@@ -35,5 +43,5 @@ async function renderPage (req, res) {
       `delete-organization-link-${req.query.organizationid}`
     ])
   }
-  return global.dashboard.Response.end(req, res, doc)
+  return dashboard.Response.end(req, res, doc)
 }

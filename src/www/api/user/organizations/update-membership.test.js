@@ -17,11 +17,13 @@ describe('/api/user/organizations/update-membership', async () => {
         name: 'test',
         email: 'test@test.com'
       }
+      let errorMessage
       try {
         await req.route.api.patch(req)
       } catch (error) {
-        assert.equal(error.message, 'invalid-membership')
+        errorMessage = error.message
       }
+      assert.equal(errorMessage, 'invalid-membership')
     })
 
     it('should reject invalid fields', async () => {
@@ -35,11 +37,13 @@ describe('/api/user/organizations/update-membership', async () => {
       req.body = {
         invalidField: 'field'
       }
+      let errorMessage
       try {
         await req.route.api.patch(req)
       } catch (error) {
-        assert.equal(error.message, 'invalid-membership-field')
+        errorMessage = error.message
       }
+      assert.equal(errorMessage, 'invalid-membership-field')
     })
 
     it('should enforce field length', async () => {
@@ -55,11 +59,13 @@ describe('/api/user/organizations/update-membership', async () => {
         email: 'test@test.com'
       }
       global.MAXIMUM_MEMBERSHIP_FIELD_LENGTH = 10
+      let errorMessage
       try {
         await req.route.api.patch(req)
       } catch (error) {
-        assert.equal(error.message, 'invalid-membership-field-length')
+        errorMessage = error.message
       }
+      assert.equal(errorMessage, 'invalid-membership-field-length')
     })
 
     it('should apply new values', async () => {

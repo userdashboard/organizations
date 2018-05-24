@@ -13,11 +13,13 @@ describe(`/account/organizations/membership`, () => {
       const req = TestHelper.createRequest(`/account/organizations/membership?membershipid=${user.membership.membershipid}`, 'GET')
       req.account = user2.account
       req.session = user2.session
+      let errorMessage
       try {
         await req.route.api.before(req)
       } catch (error) {
-        assert.equal(error.message, 'invalid-account')
+        errorMessage = error.message
       }
+      assert.equal(errorMessage, 'invalid-membership')
     })
 
     it('should bind membership to req', async () => {
@@ -26,8 +28,8 @@ describe(`/account/organizations/membership`, () => {
       const user = await TestHelper.createUser()
       await TestHelper.createMembership(user, owner.organization.organizationid)
       const req = TestHelper.createRequest(`/account/organizations/membership?membershipid=${user.membership.membershipid}`, 'GET')
-      req.account = owner.account
-      req.session = owner.session
+      req.account = user.account
+      req.session = user.session
       await req.route.api.before(req)
       assert.notEqual(req.data, null)
       assert.notEqual(req.data.membership, null)
@@ -42,8 +44,8 @@ describe(`/account/organizations/membership`, () => {
       const user = await TestHelper.createUser()
       await TestHelper.createMembership(user, owner.organization.organizationid)
       const req = TestHelper.createRequest(`/account/organizations/membership?membershipid=${user.membership.membershipid}`, 'GET')
-      req.account = owner.account
-      req.session = owner.session
+      req.account = user.account
+      req.session = user.session
       const res = TestHelper.createResponse()
       res.end = async (str) => {
         const doc = TestHelper.extractDoc(str)

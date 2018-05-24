@@ -6,9 +6,10 @@ describe(`/administrator/organizations/membership`, () => {
   describe('Membership#BEFORE', () => {
     it('should bind membership to req', async () => {
       const administrator = await TestHelper.createAdministrator()
-      await TestHelper.createOrganization(administrator)
+      const owner = await TestHelper.createUser()
+      await TestHelper.createOrganization(owner)
       const user = await TestHelper.createUser()
-      await TestHelper.createMembership(user, administrator.organization.organizationid)
+      await TestHelper.createMembership(user, owner.organization.organizationid)
       const req = TestHelper.createRequest(`/administrator/organizations/membership?membershipid=${user.membership.membershipid}`, 'GET')
       req.account = administrator.account
       req.session = administrator.session
@@ -22,9 +23,10 @@ describe(`/administrator/organizations/membership`, () => {
   describe('Membership#GET', () => {
     it('should have row for membership', async () => {
       const administrator = await TestHelper.createAdministrator()
-      await TestHelper.createOrganization(administrator)
+      const owner = await TestHelper.createUser()
+      await TestHelper.createOrganization(owner)
       const user = await TestHelper.createUser()
-      await TestHelper.createMembership(user, administrator.organization.organizationid)
+      await TestHelper.createMembership(user, owner.organization.organizationid)
       const req = TestHelper.createRequest(`/administrator/organizations/membership?membershipid=${user.membership.membershipid}`, 'GET')
       req.account = administrator.account
       req.session = administrator.session

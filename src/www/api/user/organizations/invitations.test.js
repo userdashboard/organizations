@@ -12,11 +12,13 @@ describe(`/api/user/organizations/invitations`, () => {
       const req = TestHelper.createRequest(`/api/user/organizations/invitations?organizationid=${owner.organization.organizationid}`, 'GET')
       req.account = user.account
       req.session = user.session
+      let errorMessage
       try {
         await req.route.api.get(req)
       } catch (error) {
-        assert.equal(error.message, 'invalid-organization')
+        errorMessage = error.message
       }
+      assert.equal(errorMessage, 'invalid-organization')
     })
 
     it('should return invitation list', async () => {

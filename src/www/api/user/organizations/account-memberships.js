@@ -1,3 +1,5 @@
+const Membership = require('../../../../membership.js')
+
 module.exports = {
   get: async (req) => {
     if (!req.query || !req.query.accountid) {
@@ -6,7 +8,7 @@ module.exports = {
     if (req.query.accountid !== req.account.accountid) {
       throw new Error('invalid-account')
     }
-    const memberships = await global.organizations.Membership.listByAccount(req.query.accountid)
+    const memberships = await Membership.listByAccount(req.query.accountid)
     if (!memberships || !memberships.length) {
       return null
     }

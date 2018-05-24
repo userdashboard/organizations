@@ -14,13 +14,13 @@ describe(`/api/user/organizations/create-invitation`, () => {
         code: '1'
       }
       global.MINIMUM_INVITATION_CODE_LENGTH = 100
+      let errorMessage
       try {
         await req.route.api.post(req)
       } catch (error) {
-        assert.equal(error.message, 'invalid-invitation-code-length')
-      } finally {
-        global.MINIMUM_INVITATION_CODE_LENGTH = 1
+        errorMessage = error.message
       }
+      assert.equal(errorMessage, 'invalid-invitation-code-length')
     })
 
     it('should create authorized invitation', async () => {

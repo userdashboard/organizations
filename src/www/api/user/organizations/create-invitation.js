@@ -1,3 +1,7 @@
+const dashboard = require('@userappstore/dashboard')
+const Invitation = require('../../../../invitation.js')
+const Organization = require('../../../../organization.js')
+
 module.exports = {
   lock: true,
   before: async (req) => {
@@ -11,21 +15,21 @@ module.exports = {
       global.MAXIMUM_INVITATION_CODE_LENGTH < req.body.code.length) {
       throw new Error('invalid-invitation-code-length')
     }
-    const organization = await global.organizations.Organization.load(req.query.organizationid)
+    const organization = await Organization.load(req.query.organizationid)
     if (!organization || organization.ownerid !== req.account.accountid) {
       throw new Error('invalid-organizationid')
     }
-    const owner = await global.dashboard.Account.load(organization.ownerid)
+    const owner = await dashboard.Account.load(organization.ownerid)
     if (!owner || owner.deleted) {
       throw new Error('invalid-organization')
     }
-    req.body.code = await global.dashboard.Hash.fixedSaltHash(req.body.code)
+    req.body.code = await dashboard.Hash.fixedSaltHash(req.body.code)
   },
   post: async (req) => {
-    const invitation = await global.organizations.Invitation.create(req.query.organizationid, req.body.code)
-    await global.organizations.Invitation.setProperty(invitation.invitationid, 'ip', req.ip)
-    await global.organizations.Invitation.setProperty(invitation.invitationid, 'userAgent', req.headers['user-agent'] || '')
-    req.session = await global.dashboard.Session.load(req.session.sessionid)
+    const invitation = await Invitation.create(req.query.organizationid, req.body.code)
+    await Invitation.setProperty(invitation.invitationid, 'ip', req.ip)
+    await Invitation.setProperty(invitation.invitationid, 'userAgent', req.headers['user-agent'] || '')
+    req.session = await dashboard.Session.load(req.session.sessionid)
     req.success = true
     return invitation
   }

@@ -1,10 +1,12 @@
+const Organization = require('../../../../organization.js')
+
 module.exports = {
   lock: true,
   before: async (req) => {
     if (!req.query || !req.query.organizationid) {
       throw new Error('invalid-organizationid')
     }
-    const organization = await global.organizations.Organization.load(req.query.organizationid)
+    const organization = await Organization.load(req.query.organizationid)
     if (!organization || organization.ownerid !== req.account.accountid) {
       throw new Error('invalid-organization')
     }
@@ -25,9 +27,9 @@ module.exports = {
       if (global.ORGANIZATION_FIELDS.indexOf(property) === -1) {
         continue
       }
-      await global.organizations.Organization.setProperty(req.query.organizationid, property, req.body[property])
+      await Organization.setProperty(req.query.organizationid, property, req.body[property])
     }
     req.success = true
-    return global.organizations.Organization.load(req.query.organizationid)
+    return Organization.load(req.query.organizationid)
   }
 }

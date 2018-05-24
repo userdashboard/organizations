@@ -1,6 +1,8 @@
+const Membership = require('../membership.js')
+
 module.exports = {
   after: async (req) => {
-    const memberships = await global.organizations.Membership.listByAccount(req.account.accountid)
+    const memberships = await Membership.listByAccount(req.account.accountid)
     if (!memberships || !memberships.length) {
       req.headers['x-memberships'] = ''
       return

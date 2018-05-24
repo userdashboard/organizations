@@ -12,11 +12,13 @@ describe('/api/user/organizations/delete-organization', async () => {
       const req = TestHelper.createRequest(`/api/user/organizations/delete-organization?organizationid=${other.organization.organizationid}`, 'DELETE')
       req.account = owner.account
       req.session = owner.session
+      let errorMessage
       try {
         await req.route.api.delete(req)
       } catch (error) {
-        assert.equal(error.message, 'invalid-organization')
+        errorMessage = error.message
       }
+      assert.equal(errorMessage, 'invalid-organization')
     })
 
     it('should delete organization', async () => {
@@ -26,14 +28,18 @@ describe('/api/user/organizations/delete-organization', async () => {
       req.account = owner.account
       req.session = owner.session
       await req.route.api.delete(req)
+      await TestHelper.completeAuthorization(req)
+      await req.route.api.delete(req)
       const req2 = TestHelper.createRequest(`/api/user/organizations/organization?organizationid=${owner.organization.organizationid}`, 'GET')
       req2.account = owner.account
       req2.session = owner.session
+      let errorMessage
       try {
         await req2.route.api.get(req2)
       } catch (error) {
-        assert.equal(error.message, 'invalid-organization')
+        errorMessage = error.message
       }
+      assert.equal(errorMessage, 'invalid-organizationid')
     })
   })
 })

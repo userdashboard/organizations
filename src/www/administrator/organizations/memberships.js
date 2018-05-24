@@ -1,3 +1,4 @@
+const dashboard = require('@userappstore/dashboard')
 const Navigation = require('./navbar.js')
 
 module.exports = {
@@ -6,24 +7,23 @@ module.exports = {
 }
 
 async function beforeRequest (req) {
-  const filterid = req.query && req.query.organizationid ? req.query.organizationid : null
-  const memberships = await global.organizations.Membership.listAll(filterid)
+  const memberships = await global.api.administrator.organizations.Memberships.get(req)
   if (memberships && memberships.length) {
     for (const membership of memberships) {
-      membership.created = global.dashboard.Timestamp.date(membership.created)
-      membership.createdRelative = global.dashboard.Format.relativePastDate(membership.created)
+      membership.created = dashboard.Timestamp.date(membership.created)
+      membership.createdRelative = dashboard.Format.date(membership.created)
     }
   }
   req.data = { memberships }
 }
 
 async function renderPage (req, res) {
-  const doc = global.dashboard.HTML.parse(req.route.html)
+  const doc = dashboard.HTML.parse(req.route.html)
   await Navigation.render(req, doc)
   if (req.data.memberships && req.data.memberships.length) {
     doc.renderTable(req.data.memberships, 'membership-row-template', 'memberships-table')
   } else {
     doc.removeElementById('memberships-table')
   }
-  return global.dashboard.Response.end(req, res, doc)
+  return dashboard.Response.end(req, res, doc)
 }

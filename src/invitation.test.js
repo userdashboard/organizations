@@ -1,122 +1,111 @@
 /* eslint-env mocha */
 const assert = require('assert')
+const dashboard = require('@userappstore/dashboard')
+const Invitation = require('./invitation.js')
 const TestHelper = require('./test-helper.js')
 
 describe('internal-api/invitation', () => {
   describe('Invitation#create()', () => {
     it('should require organizationid', async () => {
+      let errorMessage
       try {
-        await global.organizations.Invitation.create()
+        await Invitation.create()
       } catch (error) {
-        assert.equal(error.message, 'invalid-organization')
+        errorMessage = error.message
       }
-    })
-
-    it('should not work for deleted users', async () => {
-      const user = await TestHelper.createUser()
-      await TestHelper.createOrganization(user)
-      await global.dashboard.Account.scheduleDelete(user.account.accountid)
-      try {
-        const codeHash = global.dashboard.Hash.fixedSaltHash('this-is-a-invitation-' + new Date().getTime())
-        await global.organizations.Invitation.create(user.organization.organizationid, codeHash)
-      } catch (error) {
-        assert.equal(error.message, 'invalid-account')
-      }
+      assert.equal(errorMessage, 'invalid-organizationid')
     })
 
     it('should create an invitation', async () => {
       const user = await TestHelper.createUser()
       await TestHelper.createOrganization(user)
-      const invitation = await global.organizations.Invitation.create(user.organization.organizationid, 'a-fake-invitation-hash')
+      const invitation = await Invitation.create(user.organization.organizationid, 'a-fake-invitation-hash')
       assert.notEqual(invitation, null)
     })
 
     it('should update the owner\'s last invitation created date', async () => {
       const user = await TestHelper.createUser()
       await TestHelper.createOrganization(user)
-      const initialLastCreated = await global.dashboard.Account.getProperty(user.account.accountid, 'invitation _lastCreated')
+      const initialLastCreated = await dashboard.Account.getProperty(user.account.accountid, 'invitation _lastCreated')
       assert.equal(initialLastCreated, null)
-      await global.organizations.Invitation.create(user.organization.organizationid, 'a-fake-invitation-hash')
-      const lastCreated = await global.dashboard.Account.getProperty(user.account.accountid, 'invitation_lastCreated')
+      await Invitation.create(user.organization.organizationid, 'a-fake-invitation-hash')
+      const lastCreated = await dashboard.Account.getProperty(user.account.accountid, 'invitation_lastCreated')
       assert.notEqual(lastCreated, null)
     })
   })
 
   describe('Invitation#delete', () => {
-    it('should require an invitation', async () => {
+    it('should require an invitationid', async () => {
+      let errorMessage
       try {
-        await global.organizations.Invitation.deleteInvitation()
+        await Invitation.deleteInvitation()
       } catch (error) {
-        assert.equal(error.message, 'invalid-invitation')
+        errorMessage = error.message
       }
+      assert.equal(errorMessage, 'invalid-invitationid')
     })
 
-    it('should require a valid invitation', async () => {
+    it('should require a valid invitationid', async () => {
       const user = await TestHelper.createUser()
       await TestHelper.createOrganization(user)
-      await global.organizations.Invitation.create(user.organization.organizationid, 'a-fake-invitation-hash')
+      await Invitation.create(user.organization.organizationid, 'a-fake-invitation-hash')
+      let errorMessage
       try {
-        await global.organizations.Invitation.deleteInvitation('asdfasdfsadfasdfasdfasdfasdfasdfasdfasdf')
+        await Invitation.deleteInvitation('asdfasdfsadfasdfasdfasdfasdfasdfasdfasdf')
       } catch (error) {
-        assert.equal(error.message, 'invalid-invitation')
+        errorMessage = error.message
       }
+      assert.equal(errorMessage, 'invalid-invitationid')
     })
 
     it('should delete the invitation', async () => {
       const user = await TestHelper.createUser()
       await TestHelper.createOrganization(user)
-      const codeHash = global.dashboard.Hash.fixedSaltHash('this-is-a-invitation-' + new Date().getTime())
-      const invitation = await global.organizations.Invitation.create(user.organization.organizationid, codeHash)
-      await global.organizations.Invitation.deleteInvitation(invitation.invitationid)
+      const codeHash = dashboard.Hash.fixedSaltHash('this-is-a-invitation-' + new Date().getTime())
+      const invitation = await Invitation.create(user.organization.organizationid, codeHash)
+      await Invitation.deleteInvitation(invitation.invitationid)
+      let errorMessage
       try {
-        await global.organizations.Invitation.load(invitation.invitationid)
+        await Invitation.load(invitation.invitationid)
       } catch (error) {
-        assert.equal(error.message, 'invalid-invitation')
+        errorMessage = error.message
       }
+      assert.equal(errorMessage, 'invalid-invitationid')
     })
 
     it('should update the owner\'s last invitation deleted date', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
-      const initialLastDeleted = await global.dashboard.Account.getProperty(owner.account.accountid, 'invitation_lastDeleted')
+      const initialLastDeleted = await dashboard.Account.getProperty(owner.account.accountid, 'invitation_lastDeleted')
       assert.equal(initialLastDeleted, null)
-      const codeHash = global.dashboard.Hash.fixedSaltHash('this-is-a-invitation-' + new Date().getTime())
-      const invitation = await global.organizations.Invitation.create(owner.organization.organizationid, codeHash)
-      await global.organizations.Invitation.deleteInvitation(invitation.invitationid)
-      const lastDeleted = await global.dashboard.Account.getProperty(owner.account.accountid, 'invitation_lastDeleted')
+      const codeHash = dashboard.Hash.fixedSaltHash('this-is-a-invitation-' + new Date().getTime())
+      const invitation = await Invitation.create(owner.organization.organizationid, codeHash)
+      await Invitation.deleteInvitation(invitation.invitationid)
+      const lastDeleted = await dashboard.Account.getProperty(owner.account.accountid, 'invitation_lastDeleted')
       assert.notEqual(lastDeleted, null)
     })
   })
 
   describe('Invitation#list()', () => {
-    it('should require accountid', async () => {
+    it('should require organizationid', async () => {
+      let errorMessage
       try {
-        await global.organizations.Invitation.list()
+        await Invitation.list(null)
       } catch (error) {
-        assert.equal(error.message, 'invalid-organization')
+        errorMessage = error.message
       }
-    })
-
-    it('should not work for deleted users', async () => {
-      const user = await TestHelper.createUser()
-      await TestHelper.createOrganization(user)
-      await global.dashboard.Account.scheduleDelete(user.account.accountid)
-      try {
-        await global.organizations.Invitation.list(user.organization.organizationid)
-      } catch (error) {
-        assert.equal(error.message, 'invalid-account')
-      }
+      assert.equal(errorMessage, 'invalid-organizationid')
     })
 
     it('should return created invitations', async () => {
       const user = await TestHelper.createUser()
       await TestHelper.createOrganization(user)
       const invitations = [
-        await global.organizations.Invitation.create(user.organization.organizationid, global.dashboard.Hash.fixedSaltHash('1-this-is-a-invitation-' + new Date().getTime())),
-        await global.organizations.Invitation.create(user.organization.organizationid, global.dashboard.Hash.fixedSaltHash('2-this-is-a-invitation-' + new Date().getTime())),
-        await global.organizations.Invitation.create(user.organization.organizationid, global.dashboard.Hash.fixedSaltHash('3-this-is-a-invitation-' + new Date().getTime()))
+        await Invitation.create(user.organization.organizationid, dashboard.Hash.fixedSaltHash('1-this-is-a-invitation-' + new Date().getTime())),
+        await Invitation.create(user.organization.organizationid, dashboard.Hash.fixedSaltHash('2-this-is-a-invitation-' + new Date().getTime())),
+        await Invitation.create(user.organization.organizationid, dashboard.Hash.fixedSaltHash('3-this-is-a-invitation-' + new Date().getTime()))
       ]
-      const listed = await global.organizations.Invitation.list(user.organization.organizationid)
+      const listed = await Invitation.list(user.organization.organizationid)
       listed.reverse()
       assert.equal(invitations.length, listed.length)
       for (const i in invitations) {
@@ -126,73 +115,51 @@ describe('internal-api/invitation', () => {
   })
 
   describe('Invitation#load()', () => {
-    it('should require invitation', async () => {
+    it('should require invitationid', async () => {
+      let errorMessage
       try {
-        await global.organizations.Invitation.load()
+        await Invitation.load()
       } catch (error) {
-        assert.equal(error.message, 'invalid-invitation')
+        errorMessage = error.message
       }
-    })
-
-    it('should not work for deleted users', async () => {
-      const user = await TestHelper.createUser()
-      await TestHelper.createOrganization(user)
-      const codeHash = global.dashboard.Hash.fixedSaltHash('1-this-is-a-invitation-' + new Date().getTime())
-      const invitation = await global.organizations.Invitation.create(user.organization.organizationid, codeHash)
-      await global.dashboard.Account.scheduleDelete(user.account.accountid)
-      try {
-        await global.organizations.Invitation.load(invitation.invitationid)
-      } catch (error) {
-        assert.equal(error.message, 'invalid-account')
-      }
+      assert.equal(errorMessage, 'invalid-invitationid')
     })
 
     it('should return the invitation', async () => {
       const user = await TestHelper.createUser()
       await TestHelper.createOrganization(user)
-      const codeHash = global.dashboard.Hash.fixedSaltHash('1-this-is-a-invitation-' + new Date().getTime())
-      const invitation = await global.organizations.Invitation.create(user.organization.organizationid, codeHash)
-      const loaded = await global.organizations.Invitation.load(invitation.invitationid)
+      const codeHash = dashboard.Hash.fixedSaltHash('1-this-is-a-invitation-' + new Date().getTime())
+      const invitation = await Invitation.create(user.organization.organizationid, codeHash)
+      const loaded = await Invitation.load(invitation.invitationid)
       assert.equal(invitation.invitationid, loaded.invitationid)
     })
   })
 
   describe('Invitation#loadMany()', () => {
     it('should require one or more invitationids', async () => {
+      let errorMessage
       try {
-        await global.organizations.Invitation.loadMany()
+        await Invitation.loadMany()
       } catch (error) {
-        assert.equal(error.message, 'invalid-invitation-code-array')
+        errorMessage = error.message
       }
-    })
-
-    it('should not work for deleted user', async () => {
-      const user = await TestHelper.createUser()
-      await TestHelper.createOrganization(user)
-      const codeHash = global.dashboard.Hash.fixedSaltHash('1-this-is-a-invitation-' + new Date().getTime())
-      const invitation = await global.organizations.Invitation.create(user.organization.organizationid, codeHash)
-      await global.dashboard.Account.scheduleDelete(user.account.accountid)
-      try {
-        await global.organizations.Invitation.loadMany([invitation.invitationid])
-      } catch (error) {
-        assert.equal(error.message, 'invalid-account')
-      }
+      assert.equal(errorMessage, 'invalid-invitationids')
     })
 
     it('should load the invitations', async () => {
       const user = await TestHelper.createUser()
       await TestHelper.createOrganization(user)
       const invitations = [
-        await global.organizations.Invitation.create(user.organization.organizationid, global.dashboard.Hash.fixedSaltHash('1-this-is-a-invitation-' + new Date().getTime())),
-        await global.organizations.Invitation.create(user.organization.organizationid, global.dashboard.Hash.fixedSaltHash('2-this-is-a-invitation-' + new Date().getTime())),
-        await global.organizations.Invitation.create(user.organization.organizationid, global.dashboard.Hash.fixedSaltHash('3-this-is-a-invitation-' + new Date().getTime()))
+        await Invitation.create(user.organization.organizationid, dashboard.Hash.fixedSaltHash('1-this-is-a-invitation-' + new Date().getTime())),
+        await Invitation.create(user.organization.organizationid, dashboard.Hash.fixedSaltHash('2-this-is-a-invitation-' + new Date().getTime())),
+        await Invitation.create(user.organization.organizationid, dashboard.Hash.fixedSaltHash('3-this-is-a-invitation-' + new Date().getTime()))
       ]
       const invitationids = [
         invitations[0].invitationid,
         invitations[1].invitationid,
         invitations[2].invitationid
       ]
-      const loaded = await global.organizations.Invitation.loadMany(invitationids)
+      const loaded = await Invitation.loadMany(invitationids)
       assert.equal(loaded.length, invitationids.length)
       for (const i in invitationids) {
         assert.equal(loaded[i].invitationid, invitationids[i])
@@ -202,208 +169,217 @@ describe('internal-api/invitation', () => {
 
   describe('Invitation#accept()', () => {
     it('should require an organizationid', async () => {
+      let errorMessage
       try {
-        await global.organizations.Invitation.accept()
+        await Invitation.accept()
       } catch (error) {
-        assert.equal(error.message, 'invalid-organization')
+        errorMessage = error.message
       }
+      assert.equal(errorMessage, 'invalid-organizationid')
     })
 
     it('should require an invitation code', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
+      let errorMessage
       try {
-        await global.organizations.Invitation.accept(owner.account.accountid, null)
+        await Invitation.accept(owner.account.accountid, null)
       } catch (error) {
-        assert.equal(error.message, 'invalid-invitation-code')
+        errorMessage = error.message
       }
+      assert.equal(errorMessage, 'invalid-invitation-code')
     })
 
     it('should require a valid invitation code', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
-      const codeHash = global.dashboard.Hash.fixedSaltHash('1-this-is-a-invitation-' + new Date().getTime())
-      await global.organizations.Invitation.create(owner.organization.organizationid, codeHash)
+      const codeHash = dashboard.Hash.fixedSaltHash('1-this-is-a-invitation-' + new Date().getTime())
+      await Invitation.create(owner.organization.organizationid, codeHash)
       const user = await TestHelper.createUser()
+      let errorMessage
       try {
-        await global.organizations.Invitation.accept(owner.organization.organizationid, 'bad invitation', user.account.accountid)
+        await Invitation.accept(owner.organization.organizationid, 'bad invitation', user.account.accountid)
       } catch (error) {
-        assert.equal(error.message, 'invalid-invitation-code')
+        errorMessage = error.message
       }
+      assert.equal(errorMessage, 'invalid-invitation-code')
     })
 
     it('should reject the owner', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const codeText = '1-this-is-a-invitation-' + new Date().getTime()
-      const codeHash = global.dashboard.Hash.fixedSaltHash(codeText)
-      await global.organizations.Invitation.create(owner.organization.organizationid, codeHash)
+      const codeHash = dashboard.Hash.fixedSaltHash(codeText)
+      await Invitation.create(owner.organization.organizationid, codeHash)
+      let errorMessage
       try {
-        await global.organizations.Invitation.accept(owner.organization.organizationid, codeText, owner.account.accountid)
+        await Invitation.accept(owner.organization.organizationid, codeText, owner.account.accountid)
       } catch (error) {
-        assert.equal(error.message, 'invalid-account')
+        errorMessage = error.message
       }
-    })
-
-    it('should reject deleted account', async () => {
-      const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner)
-      const codeText = '2-this-is-a-invitation-' + new Date().getTime()
-      const codeHash = global.dashboard.Hash.fixedSaltHash(codeText)
-      await global.organizations.Invitation.create(owner.organization.organizationid, codeHash)
-      const user = await TestHelper.createUser()
-      await global.dashboard.Account.scheduleDelete(user.account.accountid)
-      try {
-        await global.organizations.Invitation.accept(owner.organization.organizationid, codeText, user.account.accountid)
-      } catch (error) {
-        assert.equal(error.message, 'invalid-account')
-      }
+      assert.equal(errorMessage, 'invalid-account')
     })
 
     it('should reject existing member', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const codeText = '3-this-is-a-invitation-' + new Date().getTime()
-      const codeHash = global.dashboard.Hash.fixedSaltHash(codeText)
+      const codeHash = dashboard.Hash.fixedSaltHash(codeText)
       const user = await TestHelper.createUser()
-      await global.organizations.Invitation.create(owner.organization.organizationid, codeHash)
-      await global.organizations.Invitation.accept(owner.organization.organizationid, codeText, user.account.accountid)
+      await Invitation.create(owner.organization.organizationid, codeHash)
+      await Invitation.accept(owner.organization.organizationid, codeText, user.account.accountid)
+      let errorMessage
       try {
-        await global.organizations.Invitation.accept(owner.organization.organizationid, codeText, user.account.accountid)
+        await Invitation.accept(owner.organization.organizationid, codeText, user.account.accountid)
       } catch (error) {
-        assert.equal(error.message, 'invalid-invitation')
+        errorMessage = error.message
       }
+      assert.equal(errorMessage, 'invalid-invitation')
     })
 
     it('should mark invitation as accepted', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const rawCode = 'this-is-a-invitation-' + new Date().getTime()
-      const codeHash = global.dashboard.Hash.fixedSaltHash(rawCode)
+      const codeHash = dashboard.Hash.fixedSaltHash(rawCode)
       const user = await TestHelper.createUser()
-      const invitation = await global.organizations.Invitation.create(owner.organization.organizationid, codeHash)
-      await global.organizations.Invitation.accept(owner.organization.organizationid, rawCode, user.account.accountid)
-      const invitationNow = await global.organizations.Invitation.load(invitation.invitationid)
+      const invitation = await Invitation.create(owner.organization.organizationid, codeHash)
+      await Invitation.accept(owner.organization.organizationid, rawCode, user.account.accountid)
+      const invitationNow = await Invitation.load(invitation.invitationid)
       assert.equal(invitationNow.accepted, user.account.accountid)
     })
 
     it('should update the owner\'s last invitation accepted date', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
-      const initialLastUsed = await global.dashboard.Account.getProperty(owner.account.accountid, 'invitation_lastAccepted')
+      const initialLastUsed = await dashboard.Account.getProperty(owner.account.accountid, 'invitation_lastAccepted')
       assert.equal(initialLastUsed, null)
       const rawCode = 'this-is-a-invitation-' + new Date().getTime()
-      const codeHash = global.dashboard.Hash.fixedSaltHash(rawCode)
+      const codeHash = dashboard.Hash.fixedSaltHash(rawCode)
       const user = await TestHelper.createUser()
-      await global.organizations.Invitation.create(owner.organization.organizationid, codeHash)
-      await global.organizations.Invitation.accept(owner.organization.organizationid, rawCode, user.account.accountid)
-      const lastUsed = await global.dashboard.Account.getProperty(owner.account.accountid, 'invitation_lastAccepted')
+      await Invitation.create(owner.organization.organizationid, codeHash)
+      await Invitation.accept(owner.organization.organizationid, rawCode, user.account.accountid)
+      const lastUsed = await dashboard.Account.getProperty(owner.account.accountid, 'invitation_lastAccepted')
       assert.notEqual(lastUsed, null)
     })
   })
 
   describe('Invitation#setProperty', () => {
-    it('should require an invitation', async () => {
+    it('should require an invitationid', async () => {
+      let errorMessage
       try {
-        await global.organizations.Invitation.setProperty(null, 'property', 'value')
+        await Invitation.setProperty(null, 'property', 'value')
       } catch (error) {
-        assert.equal(error.message, 'invalid-invitation')
+        errorMessage = error.message
       }
+      assert.equal(errorMessage, 'invalid-invitationid')
     })
 
     it('should require a property', async () => {
       const user = await TestHelper.createUser()
       await TestHelper.createOrganization(user)
+      let errorMessage
       try {
-        await global.organizations.Invitation.setProperty(user.organization.organizationid, null, 'value')
+        await Invitation.setProperty(user.organization.organizationid, null, 'value')
       } catch (error) {
-        assert.equal(error.message, 'invalid-property')
+        errorMessage = error.message
       }
+      assert.equal(errorMessage, 'invalid-property')
     })
 
     it('should require a value', async () => {
       const user = await TestHelper.createUser()
       await TestHelper.createOrganization(user)
+      let errorMessage
       try {
-        await global.organizations.Invitation.setProperty(user.organization.organizationid, 'property', null)
+        await Invitation.setProperty(user.organization.organizationid, 'property', null)
       } catch (error) {
-        assert.equal(error.message, 'invalid-property')
+        errorMessage = error.message
       }
+      assert.equal(errorMessage, 'invalid-property')
     })
 
     it('should set the property', async () => {
       const user = await TestHelper.createUser()
       await TestHelper.createOrganization(user)
-      await global.organizations.Invitation.setProperty(user.organization.organizationid, 'testProperty', 'test-value')
-      const value = await global.organizations.Invitation.getProperty(user.organization.organizationid, 'testProperty')
+      await Invitation.setProperty(user.organization.organizationid, 'testProperty', 'test-value')
+      const value = await Invitation.getProperty(user.organization.organizationid, 'testProperty')
       assert.equal(value, 'test-value')
     })
   })
 
   describe('Invitation#getProperty', () => {
-    it('should require an invitation', async () => {
+    it('should require an invitationid', async () => {
+      let errorMessage
       try {
-        await global.organizations.Invitation.getProperty(null, 'property')
+        await Invitation.getProperty(null, 'propertyid')
       } catch (error) {
-        assert.equal(error.message, 'invalid-invitation')
+        errorMessage = error.message
       }
+      assert.equal(errorMessage, 'invalid-invitationid')
     })
 
     it('should require a property', async () => {
       const user = await TestHelper.createUser()
       await TestHelper.createOrganization(user)
-      const codeHash = global.dashboard.Hash.fixedSaltHash('1-this-is-a-invitation-' + new Date().getTime())
-      const invitation = await global.organizations.Invitation.create(user.organization.organizationid, codeHash)
+      const codeHash = dashboard.Hash.fixedSaltHash('1-this-is-a-invitation-' + new Date().getTime())
+      const invitation = await Invitation.create(user.organization.organizationid, codeHash)
+      let errorMessage
       try {
-        await global.organizations.Invitation.getProperty(invitation.invitationid)
+        await Invitation.getProperty(invitation.invitationid)
       } catch (error) {
-        assert.equal(error.message, 'invalid-property')
+        errorMessage = error.message
       }
+      assert.equal(errorMessage, 'invalid-property')
     })
 
     it('should retrieve the property', async () => {
       const user = await TestHelper.createUser()
       await TestHelper.createOrganization(user)
-      const codeHash = global.dashboard.Hash.fixedSaltHash('2-this-is-a-invitation-' + new Date().getTime())
-      const invitation = await global.organizations.Invitation.create(user.organization.organizationid, codeHash)
-      await global.organizations.Invitation.setProperty(invitation.invitationid, 'testProperty', 'test-value')
-      const stringValue = await global.organizations.Invitation.getProperty(invitation.invitationid, 'testProperty')
+      const codeHash = dashboard.Hash.fixedSaltHash('2-this-is-a-invitation-' + new Date().getTime())
+      const invitation = await Invitation.create(user.organization.organizationid, codeHash)
+      await Invitation.setProperty(invitation.invitationid, 'testProperty', 'test-value')
+      const stringValue = await Invitation.getProperty(invitation.invitationid, 'testProperty')
       assert.equal(stringValue, 'test-value')
-      await global.organizations.Invitation.setProperty(invitation.invitationid, 'testProperty', 1234)
-      const invitationNow = await global.organizations.Invitation.load(invitation.invitationid)
+      await Invitation.setProperty(invitation.invitationid, 'testProperty', 1234)
+      const invitationNow = await Invitation.load(invitation.invitationid)
       assert.strictEqual(invitationNow.testProperty, 1234)
     })
   })
 
   describe('Invitation#removeProperty', () => {
-    it('should require an invitation', async () => {
+    it('should require an invitationid', async () => {
+      let errorMessage
       try {
-        await global.organizations.Invitation.removeProperty(null, 'property')
+        await Invitation.removeProperty(null, 'property')
       } catch (error) {
-        assert.equal(error.message, 'invalid-invitation')
+        errorMessage = error.message
       }
+      assert.equal(errorMessage, 'invalid-invitationid')
     })
 
     it('should require a property', async () => {
       const user = await TestHelper.createUser()
       await TestHelper.createOrganization(user)
-      const codeHash = global.dashboard.Hash.fixedSaltHash('1-this-is-a-invitation-' + new Date().getTime())
-      const invitation = await global.organizations.Invitation.create(user.organization.organizationid, codeHash)
+      const codeHash = dashboard.Hash.fixedSaltHash('1-this-is-a-invitation-' + new Date().getTime())
+      const invitation = await Invitation.create(user.organization.organizationid, codeHash)
+      let errorMessage
       try {
-        await global.organizations.Invitation.removeProperty(invitation.invitationid)
+        await Invitation.removeProperty(invitation.invitationid)
       } catch (error) {
-        assert.equal(error.message, 'invalid-property')
+        errorMessage = error.message
       }
+      assert.equal(errorMessage, 'invalid-property')
     })
 
     it('should remove the property', async () => {
       const user = await TestHelper.createUser()
       await TestHelper.createOrganization(user)
-      const codeHash = global.dashboard.Hash.fixedSaltHash('1-this-is-a-invitation-' + new Date().getTime())
-      const invitation = await global.organizations.Invitation.create(user.organization.organizationid, codeHash)
-      await global.organizations.Invitation.setProperty(invitation.invitationid, 'testProperty', 'test-value')
-      await global.organizations.Invitation.removeProperty(invitation.invitationid, 'testProperty')
-      const stringValue = await global.organizations.Invitation.getProperty(invitation.invitationid, 'testProperty')
+      const codeHash = dashboard.Hash.fixedSaltHash('1-this-is-a-invitation-' + new Date().getTime())
+      const invitation = await Invitation.create(user.organization.organizationid, codeHash)
+      await Invitation.setProperty(invitation.invitationid, 'testProperty', 'test-value')
+      await Invitation.removeProperty(invitation.invitationid, 'testProperty')
+      const stringValue = await Invitation.getProperty(invitation.invitationid, 'testProperty')
       assert.equal(stringValue, null)
     })
   })

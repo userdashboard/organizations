@@ -1,3 +1,4 @@
+const dashboard = require('@userappstore/dashboard')
 const Navigation = require('./navbar.js')
 
 module.exports = {
@@ -10,7 +11,7 @@ async function beforeRequest (req) {
   if (!req.query || !req.query.organizationid) {
     throw new Error('invalid-organization')
   }
-  const organization = await global.organizations.Organization.load(req.query.organizationid)
+  const organization = await global.api.user.organizations.Organization.get(req)
   if (!organization) {
     throw new Error('invalid-organization')
   }
@@ -18,7 +19,7 @@ async function beforeRequest (req) {
     throw new Error('invalid-account')
   }
   req.data = { organization }
-  if (req.session.lockURL === req.url && req.session.unlocked >= global.dashboard.Timestamp.now) {
+  if (req.session.lockURL === req.url && req.session.unlocked >= dashboard.Timestamp.now) {
     await global.api.user.organizations.CreateInvitation.post(req)
   }
 }
@@ -27,10 +28,10 @@ async function renderPage (req, res, messageTemplate) {
   if (req.success) {
     messageTemplate = 'success'
   }
-  const doc = global.dashboard.HTML.parse(req.route.html)
+  const doc = dashboard.HTML.parse(req.route.html)
   await Navigation.render(req, doc)
   doc.getElementById('organizationName').setAttribute('value', req.data.organization.name)
-  doc.getElementById('code').setAttribute('value', req.body ? req.body.code : global.dashboard.UUID.random(10))
+  doc.getElementById('code').setAttribute('value', req.body ? req.body.code : dashboard.UUID.random(10))
   const submitForm = doc.getElementById('submitForm')
   submitForm.setAttribute('action', req.url)
   if (messageTemplate) {
@@ -39,7 +40,7 @@ async function renderPage (req, res, messageTemplate) {
       submitForm.remove()
     }
   }
-  return global.dashboard.Response.end(req, res, doc)
+  return dashboard.Response.end(req, res, doc)
 }
 
 async function submitForm (req, res) {
@@ -54,7 +55,7 @@ async function submitForm (req, res) {
     if (req.success) {
       return renderPage(req, res, 'success')
     }
-    return global.dashboard.Response.redirect(req, res, '/account/authorize')
+    return dashboard.Response.redirect(req, res, '/account/authorize')
   } catch (error) {
     return renderPage(req, res, 'unknown-error')
   }

@@ -1,3 +1,8 @@
+const dashboard = require('@userappstore/dashboard')
+const Invitation = require('../../../../invitation.js')
+const Membership = require('../../../../membership.js')
+const Organization = require('../../../../organization.js')
+
 module.exports = {
   lock: true,
   before: async (req) => {
@@ -11,31 +16,31 @@ module.exports = {
       global.MAXIMUM_INVITATION_CODE_LENGTH < req.body.code.length) {
       throw new Error('invalid-invitation-code-length')
     }
-    const invitation = await global.organizations.Invitation.load(req.query.invitationid)
+    const invitation = await Invitation.load(req.query.invitationid)
     if (!invitation || (invitation.accepted && invitation.accepted !== req.account.accountid)) {
       throw new Error('invalid-invitation')
     }
-    const organization = await global.organizations.Organization.load(invitation.organizationid)
+    const organization = await Organization.load(invitation.organizationid)
     if (!organization) {
       throw new Error('invalid-organizationid')
     }
     if (organization.ownerid === req.account.accountid) {
       throw new Error('invalid-account')
     }
-    const unique = await global.organizations.Membership.isUniqueMembership(organization.organizationid, req.account.accountid)
+    const unique = await Membership.isUniqueMembership(organization.organizationid, req.account.accountid)
     if (!unique) {
       throw new Error('invalid-account')
     }
     req.body.organizationid = invitation.organizationid
   },
   patch: async (req) => {
-    await global.organizations.Invitation.accept(req.body.organizationid, req.body.code, req.account.accountid)
-    const membership = await global.organizations.Membership.create(req.body.organizationid, req.account.accountid)
-    await global.organizations.Membership.setProperty(membership.membershipid, 'ip', req.ip)
-    await global.organizations.Membership.setProperty(membership.membershipid, 'userAgent', req.headers['user-agent'] || '')
-    await global.organizations.Membership.setProperty(membership.membershipid, 'invitationid', req.query.invitationid)
-    await global.organizations.Invitation.setProperty(req.query.invitationid, 'membershipid', membership.membershipid)
-    req.session = await global.dashboard.Session.load(req.session.sessionid)
+    await Invitation.accept(req.body.organizationid, req.body.code, req.account.accountid)
+    const membership = await Membership.create(req.body.organizationid, req.account.accountid)
+    await Membership.setProperty(membership.membershipid, 'ip', req.ip)
+    await Membership.setProperty(membership.membershipid, 'userAgent', req.headers['user-agent'] || '')
+    await Membership.setProperty(membership.membershipid, 'invitationid', req.query.invitationid)
+    await Invitation.setProperty(req.query.invitationid, 'membershipid', membership.membershipid)
+    req.session = await dashboard.Session.load(req.session.sessionid)
     req.success = true
     return membership
   }

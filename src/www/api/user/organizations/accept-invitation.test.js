@@ -16,11 +16,13 @@ describe(`/api/user/organizations/accept-invitation`, () => {
         code: '1'
       }
       global.MINIMUM_INVITATION_CODE_LENGTH = 100
+      let errorMessage
       try {
         await req.route.api.patch(req)
       } catch (error) {
-        assert.equal(error.message, 'invalid-invitation-code-length')
+        errorMessage = error.message
       }
+      assert.equal(errorMessage, 'invalid-invitation-code-length')
     })
 
     it('should reject a used invitation', async () => {

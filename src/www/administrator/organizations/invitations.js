@@ -1,3 +1,4 @@
+const dashboard = require('@userappstore/dashboard')
 const Navigation = require('./navbar.js')
 
 module.exports = {
@@ -6,19 +7,18 @@ module.exports = {
 }
 
 async function beforeRequest (req) {
-  const filterid = req.query && req.query.organizationid ? req.query.organizationid : null
-  const invitations = await global.organizations.Invitation.listAll(filterid)
+  const invitations = await global.api.administrator.organizations.Invitations.get(req)
   if (invitations && invitations.length) {
     for (const invitation of invitations) {
-      invitation.created = global.dashboard.Timestamp.date(invitation.created)
-      invitation.createdRelative = global.dashboard.Format.relativePastDate(invitation.created)
+      invitation.created = dashboard.Timestamp.date(invitation.created)
+      invitation.createdRelative = dashboard.Format.date(invitation.created)
     }
   }
   req.data = { invitations }
 }
 
 async function renderPage (req, res) {
-  const doc = global.dashboard.HTML.parse(req.route.html)
+  const doc = dashboard.HTML.parse(req.route.html)
   await Navigation.render(req, doc)
   if (req.data.invitations && req.data.invitations.length) {
     doc.renderTable(req.data.invitations, 'invitation-row-template', 'invitations-table')
@@ -37,5 +37,5 @@ async function renderPage (req, res) {
     }
     doc.removeElementsById(removeElements)
   }
-  return global.dashboard.Response.end(req, res, doc)
+  return dashboard.Response.end(req, res, doc)
 }

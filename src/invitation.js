@@ -1,3 +1,6 @@
+const dashboard = require('@userappstore/dashboard')
+const Organization = require('./organization.js')
+
 module.exports = {
   accept,
   create,
@@ -12,13 +15,16 @@ module.exports = {
   setProperty
 }
 
-async function load (invitationid, ignoreDeletedAccounts) {
+async function load (invitationid, ignoreDeletedInvitations) {
   if (!invitationid || !invitationid.length) {
-    throw new Error('invalid-invitation')
+    throw new Error('invalid-invitationid')
   }
   const invitation = await global.redisClient.hgetallAsync(`invitation:${invitationid}`)
   if (!invitation) {
-    throw new Error('invalid-invitation')
+    if (!ignoreDeletedInvitations) {
+      throw new Error('invalid-invitationid')
+    }
+    return
   }
   for (const field in invitation) {
     try {
@@ -35,62 +41,50 @@ async function load (invitationid, ignoreDeletedAccounts) {
 
 async function create (organizationid, codeHash) {
   if (!organizationid || !organizationid.length) {
-    throw new Error('invalid-organization')
+    throw new Error('invalid-organizationid')
   }
-  const organization = await global.organizations.Organization.load(organizationid)
+  const organization = await Organization.load(organizationid)
   if (!organization) {
-    throw new Error('invalid-organization')
-  }
-  const account = await global.dashboard.Account.load(organization.ownerid)
-  if (!account || account.deleted) {
-    throw new Error('invalid-organization')
+    throw new Error('invalid-organizationid')
   }
   const invitationid = await generateID()
   const fieldsAndValues = [
     `organizationid`, organizationid,
     `invitationid`, invitationid,
     `code`, codeHash,
-    `created`, global.dashboard.Timestamp.now
+    `created`, dashboard.Timestamp.now
   ]
   await global.redisClient.hsetAsync(`map:invitations:${organizationid}`, codeHash, invitationid)
   await global.redisClient.lpushAsync(`invitations:${organizationid}`, invitationid)
   await global.redisClient.hmsetAsync(`invitation:${invitationid}`, fieldsAndValues)
   await global.redisClient.lpushAsync('invitations', invitationid)
-  await global.dashboard.Account.setProperty(account.accountid, 'invitation_lastCreated', global.dashboard.Timestamp.now)
+  await dashboard.Account.setProperty(organization.ownerid, 'invitation_lastCreated', dashboard.Timestamp.now)
   return load(invitationid)
 }
 
 async function generateID () {
-  const id = await global.dashboard.UUID.generateID()
+  const id = await dashboard.UUID.generateID()
   return `invitation_${id}`
 }
 
 async function accept (organizationid, code, accountid) {
   if (!organizationid || !organizationid.length) {
-    throw new Error('invalid-organization')
+    throw new Error('invalid-organizationid')
   }
   if (!code || !code.length) {
     throw new Error('invalid-invitation-code')
   }
   if (!accountid || !accountid.length) {
-    throw new Error('invalid-account')
+    throw new Error('invalid-accountid')
   }
-  const organization = await global.organizations.Organization.load(organizationid)
+  const organization = await Organization.load(organizationid)
   if (!organization) {
-    throw new Error('invalid-organization')
+    throw new Error('invalid-organizationid')
   }
   if (accountid === organization.ownerid) {
     throw new Error('invalid-account')
   }
-  const account = await global.dashboard.Account.load(accountid)
-  if (!account || account.deleted) {
-    throw new Error('invalid-account')
-  }
-  const owner = await global.dashboard.Account.load(organization.ownerid)
-  if (!owner || owner.deleted) {
-    throw new Error('invalid-organization')
-  }
-  const codeHash = global.dashboard.Hash.fixedSaltHash(code)
+  const codeHash = dashboard.Hash.fixedSaltHash(code)
   const invitationid = await global.redisClient.hgetAsync(`map:invitations:${organizationid}`, codeHash)
   if (!invitationid) {
     throw new Error('invalid-invitation-code')
@@ -99,46 +93,38 @@ async function accept (organizationid, code, accountid) {
   if (!invitation || invitation.accepted) {
     throw new Error('invalid-invitation')
   }
-  await global.dashboard.Account.setProperty(owner.accountid, 'invitation_lastAccepted', global.dashboard.Timestamp.now)
+  await dashboard.Account.setProperty(organization.ownerid, 'invitation_lastAccepted', dashboard.Timestamp.now)
   await setProperty(invitationid, 'accepted', accountid)
   return invitation
 }
 
 async function deleteInvitation (invitationid) {
   if (!invitationid || !invitationid.length) {
-    throw new Error('invalid-invitation')
+    throw new Error('invalid-invitationid')
   }
   const invitation = await global.redisClient.hgetallAsync(`invitation:${invitationid}`)
   if (!invitation) {
-    throw new Error('invalid-invitation')
+    throw new Error('invalid-invitationid')
   }
-  const organization = await global.organizations.Organization.load(invitation.organizationid)
+  const organization = await Organization.load(invitation.organizationid)
   if (!organization) {
     throw new Error('invalid-organization')
-  }
-  const owner = await global.dashboard.Account.load(organization.ownerid)
-  if (!owner || owner.deleted) {
-    throw new Error('invalid-invitation')
   }
   await global.redisClient.lremAsync(`invitations:organization:${invitation.organizationid}`, 1, invitationid)
   await global.redisClient.hdelAsync(`map:invitations:account:${organization.organizationid}`, invitation.code)
   await global.redisClient.delAsync(`invitation:${invitationid}`)
-  await global.dashboard.Account.setProperty(owner.accountid, 'invitation_lastDeleted', global.dashboard.Timestamp.now)
+  await dashboard.Account.setProperty(organization.ownerid, 'invitation_lastDeleted', dashboard.Timestamp.now)
   await global.redisClient.lremAsync('invitations', 1, invitationid)
   return true
 }
 
 async function list (organizationid) {
   if (!organizationid || !organizationid.length) {
-    throw new Error('invalid-organization')
+    throw new Error('invalid-organizationid')
   }
-  const organization = await global.organizations.Organization.load(organizationid)
+  const organization = await Organization.load(organizationid)
   if (!organization) {
-    throw new Error('invalid-organization')
-  }
-  const owner = await global.dashboard.Account.load(organization.ownerid)
-  if (!owner || owner.deleted) {
-    throw new Error('invalid-organization')
+    throw new Error('invalid-organizationid')
   }
   const invitationids = await global.redisClient.lrangeAsync(`invitations:${organizationid}`, 0, -1)
   if (!invitationids || !invitationids.length) {
@@ -150,9 +136,9 @@ async function list (organizationid) {
 async function listAll (organizationid) {
   let invitationids
   if (organizationid) {
-    const organization = await global.organizations.Organization.load(organizationid)
+    const organization = await Organization.load(organizationid)
     if (!organization) {
-      throw new Error('invalid-organization')
+      throw new Error('invalid-organizationid')
     }
     invitationids = await global.redisClient.lrangeAsync(`invitations:${organizationid}`, 0, -1)
   } else {
@@ -164,13 +150,13 @@ async function listAll (organizationid) {
   return loadMany(invitationids, true)
 }
 
-async function loadMany (invitationids, ignoreDeletedAccounts) {
+async function loadMany (invitationids, ignoreDeletedInvitations) {
   if (!invitationids || !invitationids.length) {
-    return
+    throw new Error('invalid-invitationids')
   }
   const invitations = []
   for (let i = 0, len = invitationids.length; i < len; i++) {
-    const invitation = await load(invitationids[i], ignoreDeletedAccounts)
+    const invitation = await load(invitationids[i], ignoreDeletedInvitations)
     if (!invitation) {
       continue
     }
@@ -181,7 +167,7 @@ async function loadMany (invitationids, ignoreDeletedAccounts) {
 
 async function setProperty (invitationid, property, value) {
   if (!invitationid || !invitationid.length) {
-    throw new Error('invalid-invitation')
+    throw new Error('invalid-invitationid')
   }
   if (!property || !property.length || value == null || value === undefined) {
     throw new Error('invalid-property')
@@ -191,7 +177,7 @@ async function setProperty (invitationid, property, value) {
 
 async function getProperty (invitationid, property) {
   if (!invitationid || !invitationid.length) {
-    throw new Error('invalid-invitation')
+    throw new Error('invalid-invitationid')
   }
   if (!property || !property.length) {
     throw new Error('invalid-property')
@@ -201,7 +187,7 @@ async function getProperty (invitationid, property) {
 
 async function removeProperty (invitationid, property) {
   if (!invitationid || !invitationid.length) {
-    throw new Error('invalid-invitation')
+    throw new Error('invalid-invitationid')
   }
   if (!property || !property.length) {
     throw new Error('invalid-property')

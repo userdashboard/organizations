@@ -1,3 +1,6 @@
+const Membership = require('../../../../membership.js')
+const Organization = require('../../../../organization.js')
+
 module.exports = {
   lock: true,
   before: async (req) => {
@@ -21,17 +24,17 @@ module.exports = {
     }
   },
   post: async (req) => {
-    const organization = await global.organizations.Organization.create(req.account.accountid, req.body.name)
-    await global.organizations.Organization.setProperty(organization.organizationid, 'ip', req.ip)
-    await global.organizations.Organization.setProperty(organization.organizationid, 'userAgent', req.headers['user-agent'] || '')
+    const organization = await Organization.create(req.account.accountid, req.body.name)
+    await Organization.setProperty(organization.organizationid, 'ip', req.ip)
+    await Organization.setProperty(organization.organizationid, 'userAgent', req.headers['user-agent'] || '')
     for (const property in req.body) {
       if (global.ORGANIZATION_FIELDS.indexOf(property) > -1) {
-        await global.organizations.Organization.setProperty(organization.organizationid, property, req.body[property])
+        await Organization.setProperty(organization.organizationid, property, req.body[property])
       }
     }
-    const membership = await global.organizations.Membership.create(organization.organizationid, req.account.accountid)
-    await global.organizations.Membership.setProperty(membership.membershipid, 'ip', req.ip)
-    await global.organizations.Membership.setProperty(membership.membershipid, 'userAgent', req.headers['user-agent'] || '')
+    const membership = await Membership.create(organization.organizationid, req.account.accountid)
+    await Membership.setProperty(membership.membershipid, 'ip', req.ip)
+    await Membership.setProperty(membership.membershipid, 'userAgent', req.headers['user-agent'] || '')
     return organization
   }
 }

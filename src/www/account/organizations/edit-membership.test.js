@@ -13,11 +13,13 @@ describe(`/account/organizations/edit-membership`, () => {
       const req = TestHelper.createRequest(`/account/organizations/edit-membership?membershipid=${user.membership.membershipid}`, 'GET')
       req.account = user2.account
       req.session = user2.session
+      let errorMessage
       try {
         await req.route.api.before(req)
       } catch (error) {
-        assert.equal(error.message, 'invalid-account')
+        errorMessage = error.message
       }
+      assert.equal(errorMessage, 'invalid-membership')
     })
 
     it('should bind membership to req', async () => {
