@@ -1,13 +1,13 @@
 {
   "name": "@userappstore/organizations",
-  "version": "1.0.1021",
+  "version": "1.0.1022",
   "description": "",
   "main": "index.js",
   "devDependencies": {
     "dotenv": "^4.0.0"
   },
   "scripts": {
-    "test": "mocha src --recursive --timeout 5000",
+    "test": "mocha src --recursive --timeout 60000",
     "start": "node main.js",
     "debug": "node main.js --debug-brk=5858"
   },
@@ -18,7 +18,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@userappstore/dashboard": "^1.0.1021"
+    "@userappstore/dashboard": "^1.0.1022"
   },
   "dashboard-proxy": [
     "/src/server/x-organizations-header.js",

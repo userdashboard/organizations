@@ -42,7 +42,7 @@ async function renderPage (req, res, messageTemplate) {
   if (messageTemplate) {
     doc.renderTemplate(null, messageTemplate, 'messageContainer')
     if (messageTemplate === 'success' || messageTemplate === 'invalid-account') {
-      submitForm.remove()
+      submitForm.removeElement()
       return dashboard.Response.end(req, res, doc)
     }
   }
