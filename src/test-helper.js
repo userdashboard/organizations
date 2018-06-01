@@ -7,9 +7,7 @@ module.exports = dashboard.loadTestHelper()
 module.exports.createInvitation = createInvitation
 module.exports.createMembership = createMembership
 module.exports.createOrganization = createOrganization
-
-global.rootPath = path.join(__dirname, 'www')
-dashboard.setup()
+dashboard.setup(path.join(__dirname, '..'))
 global.redisClient.select(2)
 
 beforeEach(() => {
