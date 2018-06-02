@@ -4,9 +4,6 @@
     <link href="/public/pure-min.css" rel="stylesheet" />
     <link href="/public/content.css" rel="stylesheet" />
     <base target="_top" href="/" />
-    <style>
-    .link { font-size: 1.2rem; font-weight: normal; color: #07C; padding: 1rem; background-color: #F5F5F5; max-width: 40rem; width: 100% }
-    </style>
   </head>
   <body>
     <h1>Create invitation code</h1>
@@ -44,7 +41,7 @@
   <template id="success">
     <div class="success message" error="success">
       <p>Success!  A new member may use this link to join your organization:</p>
-      <input class="link" type="text" readonly value="https:///account/organizations/accept-invitation?invitationid=${invitationid}" />
+      <input class="link" type="text" readonly value="https://${DOMAIN}/account/organizations/accept-invitation?invitationid=${invitationid}" />
     </div>
   </template>
 </html>

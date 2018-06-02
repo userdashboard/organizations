@@ -35,6 +35,9 @@ async function renderPage (req, res, messageTemplate) {
   const submitForm = doc.getElementById('submitForm')
   submitForm.setAttribute('action', req.url)
   if (messageTemplate) {
+    if (req.data.invitation) {
+      req.data.invitation.DOMAIN = process.env.DOMAIN || 'localhost'
+    }
     doc.renderTemplate(req.data.invitation, messageTemplate, 'messageContainer')
     if (messageTemplate === 'success') {
       submitForm.removeElement()
