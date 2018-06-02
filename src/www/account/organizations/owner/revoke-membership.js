@@ -31,10 +31,10 @@ async function renderPage (req, res, messageTemplate) {
   await Navigation.render(req, doc)
   const organizationName = doc.getElementById('organizationName')
   organizationName.setAttribute('value', req.data.organization.name)
-  const submitForm = doc.getElementById('submitForm')
+  const submitForm = doc.getElementById('submit-form')
   submitForm.setAttribute('action', req.url)
   if (messageTemplate) {
-    doc.renderTemplate(null, messageTemplate, 'messageContainer')
+    doc.renderTemplate(null, messageTemplate, 'message-container')
     if (messageTemplate === 'success') {
       submitForm.removeElement()
       return dashboard.Response.end(req, res, doc)

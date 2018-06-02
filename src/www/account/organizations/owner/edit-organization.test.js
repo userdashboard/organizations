@@ -46,8 +46,8 @@ describe(`/account/organizations/owner/edit-organization`, () => {
         const doc = TestHelper.extractDoc(str)
         assert.notEqual(null, doc)
         assert.notEqual(null, doc.getElementById('email'))
-        assert.notEqual(null, doc.getElementById('submitForm'))
-        assert.notEqual(null, doc.getElementById('submitButton'))
+        assert.notEqual(null, doc.getElementById('submit-form'))
+        assert.notEqual(null, doc.getElementById('submit-button'))
       }
       return req.route.api.get(req, res)
     })
@@ -66,7 +66,7 @@ describe(`/account/organizations/owner/edit-organization`, () => {
       const res = TestHelper.createResponse()
       res.end = async (str) => {
         const doc = TestHelper.extractDoc(str)
-        const message = doc.getElementById('messageContainer').child[0]
+        const message = doc.getElementById('message-container').child[0]
         assert.equal('invalid-organization-field', message.attr.error)
       }
       return req.route.api.post(req, res)
@@ -85,7 +85,7 @@ describe(`/account/organizations/owner/edit-organization`, () => {
       const res = TestHelper.createResponse()
       res.end = async (str) => {
         const doc = TestHelper.extractDoc(str)
-        const message = doc.getElementById('messageContainer').child[0]
+        const message = doc.getElementById('message-container').child[0]
         assert.equal('invalid-organization-field-length', message.attr.error)
       }
       return req.route.api.post(req, res)
@@ -106,7 +106,7 @@ describe(`/account/organizations/owner/edit-organization`, () => {
         const res = TestHelper.createResponse()
         res.end = async (str) => {
           const doc = TestHelper.extractDoc(str)
-          const messageContainer = doc.getElementById('messageContainer')
+          const messageContainer = doc.getElementById('message-container')
           assert.notEqual(null, messageContainer)
           assert.notEqual(null, messageContainer.child)
           const message = messageContainer.child[0]

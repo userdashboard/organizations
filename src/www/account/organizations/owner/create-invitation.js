@@ -32,13 +32,13 @@ async function renderPage (req, res, messageTemplate) {
   await Navigation.render(req, doc)
   doc.getElementById('organizationName').setAttribute('value', req.data.organization.name)
   doc.getElementById('code').setAttribute('value', req.body ? req.body.code : dashboard.UUID.random(10))
-  const submitForm = doc.getElementById('submitForm')
+  const submitForm = doc.getElementById('submit-form')
   submitForm.setAttribute('action', req.url)
   if (messageTemplate) {
     if (req.data.invitation) {
       req.data.invitation.DOMAIN = process.env.DOMAIN || 'localhost'
     }
-    doc.renderTemplate(req.data.invitation, messageTemplate, 'messageContainer')
+    doc.renderTemplate(req.data.invitation, messageTemplate, 'message-container')
     if (messageTemplate === 'success') {
       submitForm.removeElement()
     }

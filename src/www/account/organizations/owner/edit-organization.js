@@ -36,10 +36,10 @@ async function renderPage (req, res, messageTemplate) {
   nameField.setAttribute('value', req.body ? req.body.name || '' : req.data.organization.name)
   const emailField = doc.getElementById('email')
   emailField.setAttribute('value', email)
-  const submitForm = doc.getElementById('submitForm')
+  const submitForm = doc.getElementById('submit-form')
   submitForm.setAttribute('action', req.url)
   if (messageTemplate) {
-    doc.renderTemplate(null, messageTemplate, 'messageContainer')
+    doc.renderTemplate(null, messageTemplate, 'message-container')
   }
   return dashboard.Response.end(req, res, doc)
 }
