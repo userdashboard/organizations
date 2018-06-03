@@ -1,13 +1,13 @@
 {
   "name": "@userappstore/organizations",
-  "version": "1.0.1027",
+  "version": "1.0.1028",
   "description": "",
   "main": "index.js",
   "devDependencies": {
     "dotenv": "^4.0.0"
   },
   "scripts": {
-    "test": "NODE_ENV=testing mocha src --recursive --timeout 60000",
+    "test": "NODE_ENV=testing mocha src --recursive --slow 5000",
     "start": "node main.js",
     "debug": "node main.js --debug-brk=5858"
   },
@@ -18,28 +18,30 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@userappstore/dashboard": "^1.0.1027"
+    "@userappstore/dashboard": "^1.0.1029"
   },
-  "dashboard-proxy": [
-    "/src/server/x-organizations-header.js",
-    "/src/server/x-memberships-header.js"
-  ],
-  "dashboard-server": [
-    "/src/server/bind-organizations.js",
-    "/src/server/bind-memberships.js"
-  ],
-  "dashboard-menus": {
-    "account": [
-      {
-        "href": "/account/organizations",
-        "text": "Manage organizations"
-      }
+  "dashboard": {
+    "proxy": [
+      "/src/server/x-organizations-header.js",
+      "/src/server/x-memberships-header.js"
     ],
-    "administrator": [
-      {
-        "href": "/administrator/organizations",
-        "text": "Organization administration"
-      }
-    ]
+    "server": [
+      "/src/server/bind-organizations.js",
+      "/src/server/bind-memberships.js"
+    ],
+    "menus": {
+      "account": [
+        {
+          "href": "/account/organizations",
+          "text": "Manage organizations"
+        }
+      ],
+      "administrator": [
+        {
+          "href": "/administrator/organizations",
+          "text": "Organization administration"
+        }
+      ]
+    }
   }
 }
