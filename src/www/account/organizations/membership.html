@@ -10,6 +10,7 @@
     <table id="memberships-table" class="pure-table pure-table-striped">
       <thead>
         <tr>
+          <th>ID</th>
           <th>Created</th>
           <th>Email</th>
           <th>IP</th>
@@ -21,6 +22,7 @@
   </body>
   <template id="membership-row-template">
     <tr id="${membershipid}">
+      <td>${membershipid}</td>
       <td title="${created}">${createdRelative}</td>
       <td>${email}</td>
       <td>${ip}</td>

@@ -10,6 +10,7 @@
     <table id="organizations-table" class="pure-table pure-table-striped">
       <thead>
         <tr>
+          <th>ID</th>
           <th>Name</th>
           <th>Email</th>
           <th>IP</th>
@@ -22,6 +23,7 @@
   </body>
   <template id="organization-row-template">
     <tr id="${organizationid}">
+      <td>${organizationid}</td>
       <td>${name}</td>
       <td>${ip}</td>
       <td>${userAgent}</td>

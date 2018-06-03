@@ -10,6 +10,7 @@
     <table id="invitations-table" class="pure-table pure-table-striped">
       <thead>
         <tr>
+          <th>ID</th>
           <th>Created</th>
           <th>Accepted</th>
           <th>Membership</th>
@@ -20,6 +21,7 @@
   </body>
   <template id="invitation-row-template">
     <tr id="${invitationid}">
+      <td><a href="invitation?invitationid=${invitationid}">${invitationid}</a></td>
       <td title="${created}">${createdRelative}</td>
       <td id="accepted-${invitationid}">Yes</td>
       <td id="not-accepted-${invitationid}">No</td>

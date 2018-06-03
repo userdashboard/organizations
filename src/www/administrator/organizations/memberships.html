@@ -10,6 +10,7 @@
     <table id="memberships-table" class="pure-table pure-table-striped">
       <thead>
         <tr>
+          <th>ID</th>
           <th>Email</th>
           <th>Created</th>
           <th>Invitation</th>
@@ -21,6 +22,7 @@
   </body>
   <template id="membership-row-template">
     <tr id="${membershipid}">
+      <td><a href="membership?membershipid=${membershipid}">${membershipid}</a></td>
       <td>${email}</td>
       <td title="${created}">${createdRelative}</td>
       <td><a href="/administrator/organizations/invitation?invitationid=${invitationid}">Invitation</a></td>

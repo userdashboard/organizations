@@ -10,6 +10,7 @@
     <table id="organizations-table" class="pure-table pure-table-striped">
       <thead>
         <tr>
+          <th>ID</th>
           <th>Name</th>
           <th>Email</th>
           <th>Created</th>
@@ -20,6 +21,7 @@
   </body>
   <template id="organization-row-template">
     <tr id="${organizationid}">
+      <td><a href="organization?organizationid=${organizationid}">${organizationid}</a></td>
       <td>${name}</td>
       <td><a href="mailto:${email}">${email}</a></td>
       <td title="${created}">${createdRelative}</td>

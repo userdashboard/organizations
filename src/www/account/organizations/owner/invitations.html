@@ -10,6 +10,7 @@
     <table id="invitations-table" class="pure-table pure-table-striped">
       <thead>
         <tr>
+          <th>ID</th>
           <th>Created</th>
           <th>IP</th>
           <th>User agent</th>
@@ -22,6 +23,7 @@
   </body>
   <template id="invitation-row-template">
     <tr id="${invitationid}">
+      <td><a href="invitation?invitationid=${invitationid}">${invitationid}</a></td>
       <td title="${created}">${createdRelative}</td>
       <td>${ip}</td>
       <td>${userAgent}</td>

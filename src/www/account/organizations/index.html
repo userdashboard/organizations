@@ -11,6 +11,7 @@
     <table id="memberships-table" class="pure-table pure-table-striped">
       <thead>
         <tr>
+          <th>ID</th>
           <th>Organization</th>
           <th>Their email</th>
           <th>My email</th>
@@ -25,6 +26,7 @@
     <table id="organizations-table" class="pure-table pure-table-striped">
       <thead>
         <tr>
+          <th>ID</th>
           <th>Organizations name</th>
           <th>Contact email</th>
           <th>Created</th>
@@ -35,6 +37,7 @@
   </body>
   <template id="membership-row-template">
     <tr id="${membershipid}">
+      <td><a href="membership?membershipid=${membershipid}">${membershipid}</a></td>
       <td>${organizationName}</td>
       <td><a href="mailto:${organizationEmail}">${organizationEmail}</a></td>
       <td><a href="mailto:${email}">${email}</a></td>
@@ -48,6 +51,7 @@
   </template>
   <template id="organization-row-template">
     <tr id="${organizationid}">
+      <td><a href="organization?organizationid=${organizationid}">${organizationid}</a></td>
       <td>${name}</td>
       <td><a href="mailto:${email}">${email}</a></td>
       <td title="${created}">${createdRelative}</td>
