@@ -12,21 +12,19 @@ async function beforeRequest (req) {
     throw new Error('invalid-invitationid')
   }
   const data = await global.api.user.organizations.Invitation.get(req)
-  if (!data || data.accepted) {
+  const invitation = data.invitation
+  if (invitation.accepted) {
     throw new Error('invalid-invitation')
   }
   const organization = data.organization
-  if (!organization) {
-    throw new Error('invalid-organization')
-  }
   if (organization.ownerid !== req.account.accountid) {
     throw new Error('invalid-account')
   }
+  req.data = { organization, invitation }
   if (req.session.lockURL === req.url && req.session.unlocked >= dashboard.Timestamp.now) {
     await global.api.user.organizations.DeleteInvitation.delete(req)
     req.success = true
   }
-  req.data = { organization }
 }
 
 async function renderPage (req, res, messageTemplate) {
@@ -35,6 +33,7 @@ async function renderPage (req, res, messageTemplate) {
   }
   const doc = dashboard.HTML.parse(req.route.html)
   await Navigation.render(req, doc)
+  doc.renderTemplate(req.data.invitation, 'invitation-row-template', 'invitations-table')
   const organizationName = doc.getElementById('organizationName')
   organizationName.setAttribute('value', req.data.organization.name)
   const submitForm = doc.getElementById('submit-form')

@@ -50,6 +50,23 @@ describe(`/account/organizations/owner/delete-organization`, async () => {
       }
       return req.route.api.get(req, res)
     })
+
+    it('should present the organization', async () => {
+      const owner = await TestHelper.createUser()
+      await TestHelper.createOrganization(owner)
+      await TestHelper.createInvitation(owner, owner.organization.organizationid)
+      const req = TestHelper.createRequest(`/account/organizations/owner/delete-organization?organizationid=${owner.organization.organizationid}`, 'GET')
+      req.account = owner.account
+      req.session = owner.session
+      const res = TestHelper.createResponse()
+      res.end = async (str) => {
+        const doc = TestHelper.extractDoc(str)
+        assert.notEqual(null, doc)
+        const row = doc.getElementById(owner.organization.organizationid)
+        assert.notEqual(null, row)
+      }
+      return req.route.api.get(req, res)
+    })
   })
 
   describe('DeleteOrganization#POST', () => {

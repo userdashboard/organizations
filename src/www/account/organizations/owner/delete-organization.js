@@ -24,6 +24,7 @@ async function beforeRequest (req) {
 async function renderPage (req, res, messageTemplate) {
   const doc = dashboard.HTML.parse(req.route.html)
   await Navigation.render(req, doc)
+  doc.renderTemplate(req.data.organization, 'organization-row-template', 'organizations-table')
   const organizationName = doc.getElementById('organizationName')
   organizationName.setAttribute('value', req.data.organization.name)
   const submitForm = doc.getElementById('submit-form')

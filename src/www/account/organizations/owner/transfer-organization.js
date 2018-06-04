@@ -38,6 +38,7 @@ async function renderPage (req, res, messageTemplate) {
   const doc = dashboard.HTML.parse(req.route.html)
   await dashboard.HTML.renderNavigation(doc, req.query)
   await Navigation.render(req, doc)
+  doc.renderTemplate(req.data.organization, 'organization-row-template', 'organizations-table')
   const submitForm = doc.getElementById('submit-form')
   submitForm.setAttribute('action', req.url)
   if (messageTemplate) {

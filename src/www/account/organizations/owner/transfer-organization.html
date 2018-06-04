@@ -8,6 +8,16 @@
   <body>
     <h1>Transfer organization</h1>
     <div id="message-container"></div>
+    <table id="organizations-table" class="pure-table pure-table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Created</th>
+        </tr>
+      </thead>
+    </table>
     <form id="submit-form" class="pure-form pure-form-stacked">
       <div class="pure-control-group">
         <label for="accountid">New organization owner</label>
@@ -31,5 +41,13 @@
   </template>
   <template id="invalid-accountid">
     <div class="error message" error="invalid-accountid">An invalid recipient was selected or provided.</div>
+  </template>
+  <template id="organization-row-template">
+    <tr id="${organizationid}">
+      <td>${organizationid}</td>
+      <td>${name}</td>
+      <td><a href="mailto:${email}">${email}</a></td>
+      <td title="${created}">${createdRelative}</td>
+    </tr>
   </template>
 </html>

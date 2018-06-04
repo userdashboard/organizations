@@ -9,6 +9,16 @@
   <body>
     <h1>Delete membership</h1>
     <div id="message-container"></div>
+    <table id="memberships-table" class="pure-table pure-table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Created</th>
+          <th>Invitation</th>
+          <th>Organization</th>
+        </tr>
+      </thead>
+    </table>
     <form id="submit-form" method="POST" class="pure-form pure-form-stacked">
       <div class="pure-control-group">
         <label for="organizationName">Organization</label>
@@ -24,5 +34,13 @@
   </template>
   <template id="unknown-error">
     <div class="error message" error="unknown-error">Error!  An unknown error ocurred.</div>
+  </template>
+  <template id="membership-row-template">
+    <tr id="${membershipid}">
+      <td>${membershipid}</td>
+      <td title="${created}">${createdRelative}</td>
+      <td><a href="invitation?invitationid=${invitationid}">${invitationid}</a></td>
+      <td><a href="organization?organizationid=${organizationid}">${organizationid}</a></td>
+    </tr>
   </template>
 </html>

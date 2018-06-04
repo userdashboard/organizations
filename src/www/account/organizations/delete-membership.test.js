@@ -55,6 +55,24 @@ describe(`/account/organizations/delete-membership`, async () => {
       }
       return req.route.api.get(req, res)
     })
+
+    it('should present the membership', async () => {
+      const owner = await TestHelper.createUser()
+      await TestHelper.createOrganization(owner)
+      const user = await TestHelper.createUser()
+      await TestHelper.createMembership(user, owner.organization.organizationid)
+      const req = TestHelper.createRequest(`/account/organizations/delete-membership?membershipid=${user.membership.membershipid}`, 'GET')
+      req.account = user.account
+      req.session = user.session
+      const res = TestHelper.createResponse()
+      res.end = async (str) => {
+        const doc = TestHelper.extractDoc(str)
+        assert.notEqual(null, doc)
+        const row = doc.getElementById(user.membership.membershipid)
+        assert.notEqual(null, row)
+      }
+      return req.route.api.get(req, res)
+    })
   })
 
   describe('DeleteMembership#POST', () => {

@@ -28,7 +28,7 @@
       ✓ should require an invitation code
       ✓ should require a valid invitation code
       ✓ should reject the owner
-      ✓ should reject existing member
+      ✓ should reject existing member (2664ms)
       ✓ should mark invitation as accepted
       ✓ should update the owner's last invitation accepted date
     Invitation#setProperty
@@ -114,6 +114,7 @@
       ✓ should bind organization to req
     AcceptInvitation#GET
       ✓ should present the form
+      ✓ should present the organization
     AcceptInvitation#POST
       ✓ should apply after authorization
 
@@ -134,12 +135,13 @@
       ✓ should bind organization to req
     DeleteMembership#GET
       ✓ should present the form
+      ✓ should present the membership
     DeleteMembership#POST
       ✓ should delete membership
 
   /account/organizations/edit-membership
     EditMembership#BEFORE
-      ✓ should require own membership (2759ms)
+      ✓ should require own membership
       ✓ should bind membership to req
     EditMembership#GET
       ✓ should present the form
@@ -159,7 +161,7 @@
   /account/organizations/membership
     Membership#BEFORE
       ✓ should reject non-member
-      ✓ should bind membership to req (2621ms)
+      ✓ should bind membership to req
     Membership#GET
       ✓ should have row for membership
 
@@ -182,6 +184,7 @@
       ✓ should bind organization to req
     CreateInvitation#GET
       ✓ should present the form
+      ✓ should present the organization
     CreateInvitation#POST
       ✓ should apply after authorization
 
@@ -191,6 +194,7 @@
       ✓ should bind organization to req
     DeleteInvitation#GET
       ✓ should present the form
+      ✓ should present the invitation
     DeleteInvitation#POST
       ✓ should delete invitation
 
@@ -200,6 +204,7 @@
       ✓ should bind organization to req
     DeleteOrganization#GET
       ✓ should present the form
+      ✓ should present the organization
     DeleteOrganization#POST
       ✓ should delete organization
 
@@ -260,6 +265,7 @@
       ✓ should bind organization to req
     RevokeMembership#GET
       ✓ should present the form
+      ✓ should present the membership
     RevokeMembership#POST
       ✓ should delete membership
 
@@ -270,12 +276,13 @@
       ✓ should bind memberships to req
     TransferOrganization#GET
       ✓ should present the form
+      ✓ should present the organization
     TransferOrganization#POST
       ✓ should apply after authorization
 
   /administrator/organizations/index
     Index#BEFORE
-      ✓ should bind memberships to req
+      ✓ should bind memberships to req (3553ms)
       ✓ should bind organizations to req
     Index#GET
       ✓ should have row for each organization
@@ -325,8 +332,8 @@
 
   /api/administrator/organizations/invitations
     Invitations#GET
-      ✓ should return invitation list (2919ms)
-      ✓ should filter by organizationid (2938ms)
+      ✓ should return invitation list (2955ms)
+      ✓ should filter by organizationid (3340ms)
 
   /api/administrator/organizations/membership
     Membership#GET
@@ -335,7 +342,7 @@
 
   /api/administrator/organizations/memberships
     Memberships#GET
-      ✓ should return membership list
+      ✓ should return membership list (3152ms)
       ✓ should filter by organizationid
 
   /api/administrator/organizations/organization
@@ -346,7 +353,7 @@
   /api/administrator/organizations/organizations
     Organizations#GET
       ✓ should return organization list
-      ✓ should filter by accountid
+      ✓ should filter by accountid (2529ms)
 
   /api/user/organizations/accept-invitation
     AcceptInvitation#POST
@@ -359,7 +366,7 @@
   /api/user/organizations/account-memberships
     AccountMemberships#GET
       ✓ should reject other account
-      ✓ should return membership list
+      ✓ should return membership list (2631ms)
 
   /api/user/organizations/create-invitation
     CreateInvitation#POST
@@ -443,5 +450,5 @@
     ✓ should apply new values
 
 
-  219 passing (4m)
+  226 passing (4m)
 

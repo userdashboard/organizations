@@ -35,6 +35,7 @@ async function renderPage (req, res, messageTemplate) {
   }
   const doc = dashboard.HTML.parse(req.route.html)
   await Navigation.render(req, doc)
+  doc.renderTemplate(req.data.membership, 'membership-row-template', 'memberships-table')
   const organizationName = doc.getElementById('organizationName')
   organizationName.setAttribute('value', req.data.organization.name)
   const submitForm = doc.getElementById('submit-form')

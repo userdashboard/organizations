@@ -72,6 +72,24 @@ describe(`/account/organizations/accept-invitation`, async () => {
       }
       return req.route.api.get(req, res)
     })
+
+    it('should present the organization', async () => {
+      const owner = await TestHelper.createUser()
+      await TestHelper.createOrganization(owner)
+      await TestHelper.createInvitation(owner, owner.organization.organizationid)
+      const user = await TestHelper.createUser()
+      const req = TestHelper.createRequest(`/account/organizations/accept-invitation?invitationid=${owner.invitation.invitationid}`, 'GET')
+      req.account = user.account
+      req.session = user.session
+      const res = TestHelper.createResponse()
+      res.end = async (str) => {
+        const doc = TestHelper.extractDoc(str)
+        assert.notEqual(null, doc)
+        const row = doc.getElementById(owner.organization.organizationid)
+        assert.notEqual(null, row)
+      }
+      return req.route.api.get(req, res)
+    })
   })
 
   describe('AcceptInvitation#POST', () => {

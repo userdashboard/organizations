@@ -9,6 +9,16 @@
     <h1>Create invitation code</h1>
     <p>Share the organization and invitation code with the other person.</p>
     <div id="message-container"></div>
+    <table id="organizations-table" class="pure-table pure-table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Created</th>
+        </tr>
+      </thead>
+    </table>
     <form id="submit-form" method="POST" class="pure-form pure-form-stacked">
       <div class="pure-control-group">
         <label for="organizationName">Organization</label>
@@ -44,5 +54,12 @@
       <input class="link" type="text" readonly value="https://${DOMAIN}/account/organizations/accept-invitation?invitationid=${invitationid}" />
     </div>
   </template>
-</html>
+  <template id="organization-row-template">
+    <tr id="${organizationid}">
+      <td>${organizationid}</td>
+      <td>${name}</td>
+      <td><a href="mailto:${email}">${email}</a></td>
+      <td title="${created}">${createdRelative}</td>
+    </tr>
+  </template>
 </html>

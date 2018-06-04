@@ -1,13 +1,23 @@
 <html navbar="/account/organizations/navbar.html">
   <head>
-    <title>Join organization</title>
+    <title>Accept invitation</title>
     <link href="/public/pure-min.css" rel="stylesheet" />
     <link href="/public/content.css" rel="stylesheet" />
     <base target="_top" href="/" />
   </head>
   <body>
-    <h1>Join organization</h1>
+    <h1>Accept invitation</h1>
     <div id="message-container"></div>
+    <table id="organizations-table" class="pure-table pure-table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Created</th>
+        </tr>
+      </thead>
+    </table>
     <form id="submit-form" class="pure-form pure-form-stacked">
       <div class="pure-control-group">
         <label for="organizationName">Organization</label>
@@ -40,5 +50,13 @@
     <div class="error message" error="unknown-error">
       Error!  An unknown error ocurred.
     </div>
+  </template>
+  <template id="organization-row-template">
+    <tr id="${organizationid}">
+      <td>${organizationid}</td>
+      <td>${name}</td>
+      <td><a href="mailto:${email}">${email}</a></td>
+      <td title="${created}">${createdRelative}</td>
+    </tr>
   </template>
 </html>

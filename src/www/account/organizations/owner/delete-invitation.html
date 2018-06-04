@@ -8,6 +8,16 @@
   <body>
     <h1>Delete invitation</h1>
     <div id="message-container"></div>
+    <table id="invitations-table" class="pure-table pure-table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Created</th>
+          <th>Accepted</th>
+          <th>Membership</th>
+        </tr>
+      </thead>
+    </table>
     <form id="submit-form" method="POST" class="pure-form pure-form-stacked">
       <div class="pure-controls">
         <div class="pure-control-group">
@@ -20,5 +30,15 @@
   </body>
   <template id="success">
     <div class="success message" error="success">The invitation has been permanently deleted.</div>
+  </template>
+  <template id="invitation-row-template">
+    <tr id="${invitationid}">
+      <td>${invitationid}</td>
+      <td title="${created}">${createdRelative}</td>
+      <td id="accepted">Yes</td>
+      <td id="not-accepted">No</td>
+      <td id="membership"><a href="membership?membershipid=${membershipid}">Membership</a></td>
+      <td id="no-membership">Nobody</td>
+    </tr>
   </template>
 </html>
