@@ -28,7 +28,6 @@ async function beforeRequest (req) {
     }
   }
   organization.created = dashboard.Timestamp.date(organization.created)
-  organization.createdRelative = dashboard.Format.date(organization.created)
   req.data = { organization }
 }
 

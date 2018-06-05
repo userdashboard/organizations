@@ -21,7 +21,6 @@ async function beforeRequest (req) {
   if (memberships && memberships.length) {
     for (const membership of memberships) {
       membership.created = dashboard.Timestamp.date(membership.created)
-      membership.createdRelative = dashboard.Format.date(membership.created)
     }
   }
   req.data = { memberships }

@@ -160,7 +160,7 @@
 
   /account/organizations/membership
     Membership#BEFORE
-      ✓ should reject non-member (3463ms)
+      ✓ should reject non-member
       ✓ should bind membership to req
     Membership#GET
       ✓ should have row for membership
@@ -221,7 +221,7 @@
 
   /account/organizations/owner/invitation
     Invitation#BEFORE
-      ✓ should require owner
+      ✓ should require owner (3815ms)
       ✓ should bind invitation to req
     Invitation#GET
       ✓ should have row for invitation
@@ -267,7 +267,7 @@
       ✓ should present the form
       ✓ should present the membership
     RevokeMembership#POST
-      ✓ should delete membership
+      ✓ should delete membership (2733ms)
 
   /account/organizations/owner/transfer-organization
     TransferOrganization#BEFORE
@@ -282,7 +282,7 @@
 
   /administrator/organizations/index
     Index#BEFORE
-      ✓ should bind memberships to req (2767ms)
+      ✓ should bind memberships to req (3010ms)
       ✓ should bind organizations to req
     Index#GET
       ✓ should have row for each organization
@@ -332,8 +332,8 @@
 
   /api/administrator/organizations/invitations
     Invitations#GET
-      ✓ should return invitation list (3130ms)
-      ✓ should filter by organizationid (3141ms)
+      ✓ should return invitation list (3404ms)
+      ✓ should filter by organizationid (3200ms)
 
   /api/administrator/organizations/membership
     Membership#GET
@@ -342,8 +342,8 @@
 
   /api/administrator/organizations/memberships
     Memberships#GET
-      ✓ should return membership list (2537ms)
-      ✓ should filter by organizationid
+      ✓ should return membership list (2538ms)
+      ✓ should filter by organizationid (2677ms)
 
   /api/administrator/organizations/organization
     Organization#GET
@@ -352,7 +352,7 @@
 
   /api/administrator/organizations/organizations
     Organizations#GET
-      ✓ should return organization list
+      ✓ should return organization list (2588ms)
       ✓ should filter by accountid
 
   /api/user/organizations/accept-invitation
@@ -387,7 +387,7 @@
 
   /api/user/organizations/delete-membership
     DeleteMembership#DELETE
-      ✓ should reject non-owner non-member
+      ✓ should reject non-owner non-member (2682ms)
       ✓ should delete membership
 
   /api/user/organizations/delete-organization
@@ -403,7 +403,7 @@
 
   /api/user/organizations/invitations
     Invitations#GET
-      ✓ should require organization owner
+      ✓ should require organization owner (2501ms)
       ✓ should return invitation list
 
   /api/user/organizations/membership
@@ -450,5 +450,5 @@
     ✓ should apply new values
 
 
-  226 passing (4m)
+  226 passing (5m)
 

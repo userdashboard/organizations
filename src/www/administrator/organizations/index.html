@@ -40,7 +40,7 @@
       <td><a href="organization?organizationid=${organizationid}">${organizationid}</a></td>
       <td>${name}</td>
       <td><a href="mailto:${email}">${email}</a></td>
-      <td title="${created}">${createdRelative}</td>
+      <td>${created}</td>
       <td class="pure-button-group" role="group">
         <a href="/administrator/organizations/organization?organizationid=${organizationid}" class="pure-button">Organization</a>
         <a href="/administrator/organizations/memberships?organizationid=${organizationid}" class="pure-button">Memberships</a>
@@ -52,7 +52,7 @@
     <tr id="${membershipid}">
       <td><a href="membership?membershipid=${membershipid}">${membershipid}</a></td>
       <td>${email}</td>
-      <td title="${created}">${createdRelative}</td>
+      <td>${created}</td>
       <td><a href="/administrator/organizations/invitation?invitationid=${invitationid}">Invitation</a></td>
       <td><a href="/administrator/organizations/organization?organizationid=${organizationid}">Organization</a></td>
       <td class="pure-button-group" role="group">

@@ -11,7 +11,6 @@ async function beforeRequest (req) {
   if (allOrganizations && allOrganizations.length) {
     for (const organization of allOrganizations) {
       organization.created = dashboard.Timestamp.date(organization.created)
-      organization.createdRelative = dashboard.Format.date(organization.created)
     }
   }
   req.data = { organizations: allOrganizations }

@@ -20,7 +20,6 @@ async function beforeRequest (req) {
     throw new Error('invalid-account')
   }
   invitation.created = dashboard.Timestamp.date(invitation.created)
-  invitation.createdRelative = dashboard.Format.date(invitation.created)
   req.data = { invitation }
 }
 

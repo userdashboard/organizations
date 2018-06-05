@@ -23,7 +23,6 @@ async function beforeRequest (req) {
     throw new Error('invalid-account')
   }
   membership.created = dashboard.Timestamp.date(membership.created)
-  membership.createdRelative = dashboard.Format.date(membership.created)
   req.data = { membership }
 }
 

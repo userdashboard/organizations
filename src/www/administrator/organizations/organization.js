@@ -15,7 +15,6 @@ async function beforeRequest (req) {
     throw new Error('invalid-organization')
   }
   organization.created = dashboard.Timestamp.date(organization.created)
-  organization.createdRelative = dashboard.Format.date(organization.created)
   req.data = { organization }
 }
 

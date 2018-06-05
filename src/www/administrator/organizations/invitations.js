@@ -11,7 +11,6 @@ async function beforeRequest (req) {
   if (invitations && invitations.length) {
     for (const invitation of invitations) {
       invitation.created = dashboard.Timestamp.date(invitation.created)
-      invitation.createdRelative = dashboard.Format.date(invitation.created)
     }
   }
   req.data = { invitations }
