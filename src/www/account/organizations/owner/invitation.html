@@ -7,33 +7,42 @@
   </head>
   <body>
     <h1>Invitation</h1>
-    <table id="invitations-table" class="pure-table pure-table-striped">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Created</th>
-          <th>IP</th>
-          <th>User agent</th>
-          <th>Accepted</th>
-          <th>Membership</th>
-          <th></th>
-        </tr>
-      </thead>
-    </table>
-  </body>
+    <table id="invitations-table" class="pure-table pure-table-striped"></table>
+  </body> 
   <template id="invitation-row-template">
-    <tr id="${invitationid}">
-      <td>${invitationid}</td>
-      <td title="${created}">${createdRelative}</td>
-      <td>${ip}</td>
-      <td>${userAgent}</td>
-      <td id="accepted">Yes</td>
-      <td id="not-accepted">No</td>
-      <td id="membership"><a href="membership?membershipid=${membershipid}">Membership</a></td>
-      <td id="no-membership">Nobody</td>
-      <td class="pure-button-group" role="group">
-        <a href="delete-invitation?invitationid=${invitationid}" class="pure-button">Delete</a>
-      </td>
-    </tr>
+    <tbody id="${invitationid}">
+      <tr>
+        <th>ID</th>
+        <td>${invitationid}</td>
+      </tr>
+      <tr>
+        <th>ID</th>
+        <td title="${created}">${createdRelative}</td>
+      </tr>
+      <tr>
+        <th>ID</th>
+        <td>${ip}</td>
+      </tr>
+      <tr>
+        <th>User agent</th>
+        <td>${userAgent}</td>
+      </tr>
+      <tr>
+        <th>Accepted/th>
+        <td id="accepted">Yes</td>
+        <td id="not-accepted">No</td>
+      </tr>
+      <tr>
+        <th>Membership</th>
+        <td id="membership"><a href="membership?membershipid=${membershipid}">${membershipid}</a></td>
+        <td id="no-membership">Nobody</td>
+      </tr>
+      <tr>
+        <th></th>
+        <td class="pure-button-group" role="group">
+          <a href="delete-invitation?invitationid=${invitationid}" class="pure-button">Delete</a>
+        </td>
+      </tr>
+    </tbody>
   </template>
 </html>

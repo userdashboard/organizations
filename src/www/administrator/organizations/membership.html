@@ -7,31 +7,41 @@
   </head>
   <body>
     <h1>Membership</h1>
-    <table id="memberships-table" class="pure-table pure-table-striped">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Email</th>
-          <th>IP</th>
-          <th>User agent</th>
-          <th>Created</th>
-          <th>Invitation</th>
-          <th>Organization</th>
-          <th></th>
-        </tr>
-      </thead>
-    </table>
+    <table id="memberships-table" class="pure-table pure-table-striped"></table>
   </body>
   <template id="membership-row-template">
-    <tr id="${membershipid}">
-      <td>${membershipid}</td>
-      <td>${email}</td>
-      <td>${ip}</td>
-      <td>${userAgent}</td>
-      <td title="${created}">${createdRelative}</td>
-      <td><a href="/administrator/organizations/invitation?invitationid=${invitationid}">Invitation</a></td>
-      <td><a href="/administrator/organizations/organization?organizationid=${organizationid}">Organization</a></td>
-      <td class="pure-button-group" role="group">
-    </tr>
+    <tbody id="${membershipid}">
+      <tr>
+        <th>ID</th>
+        <td>${membershipid}</td>
+      </tr>
+      <tr>
+        <th>Email</th>
+        <td>${email}</td>
+      </tr>
+      <tr>
+        <th>IP address</th>
+        <td>${ip}</td>
+      </tr>
+      <tr>
+        <th>User agent</th>
+        <td>${userAgent}</td>
+      </tr>
+      <tr>
+        <th>Created</th>
+        <td title="${created}">${createdRelative}</td>
+      </tr>
+      <tr>
+        <th>Invitation</th>
+        <td><a href="/administrator/organizations/invitation?invitationid=${invitationid}">${invitationid}</a></td>
+      </tr>
+      <tr>
+        <th>Organization</th>
+        <td><a href="/administrator/organizations/organization?organizationid=${organizationid}">${organizationid}</a></td>
+      </tr>
+      <tr>
+        <th>Email</th>
+        <td class="pure-button-group" role="group">
+    </tbody>
   </template>
 </html>

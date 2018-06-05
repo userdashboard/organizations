@@ -1,5 +1,5 @@
 
-> @userappstore/organizations@1.0.1028 test /Users/benlowry/CloudStation/workspaces/dashboard/organizations
+> @userappstore/organizations@1.0.1031 test /Users/benlowry/CloudStation/workspaces/dashboard/organizations
 > NODE_ENV=testing mocha src --recursive --timeout 10000 --slow 5000
 
 
@@ -28,7 +28,7 @@
       ✓ should require an invitation code
       ✓ should require a valid invitation code
       ✓ should reject the owner
-      ✓ should reject existing member (2664ms)
+      ✓ should reject existing member
       ✓ should mark invitation as accepted
       ✓ should update the owner's last invitation accepted date
     Invitation#setProperty
@@ -160,7 +160,7 @@
 
   /account/organizations/membership
     Membership#BEFORE
-      ✓ should reject non-member
+      ✓ should reject non-member (3463ms)
       ✓ should bind membership to req
     Membership#GET
       ✓ should have row for membership
@@ -282,7 +282,7 @@
 
   /administrator/organizations/index
     Index#BEFORE
-      ✓ should bind memberships to req (3553ms)
+      ✓ should bind memberships to req (2767ms)
       ✓ should bind organizations to req
     Index#GET
       ✓ should have row for each organization
@@ -332,8 +332,8 @@
 
   /api/administrator/organizations/invitations
     Invitations#GET
-      ✓ should return invitation list (2955ms)
-      ✓ should filter by organizationid (3340ms)
+      ✓ should return invitation list (3130ms)
+      ✓ should filter by organizationid (3141ms)
 
   /api/administrator/organizations/membership
     Membership#GET
@@ -342,7 +342,7 @@
 
   /api/administrator/organizations/memberships
     Memberships#GET
-      ✓ should return membership list (3152ms)
+      ✓ should return membership list (2537ms)
       ✓ should filter by organizationid
 
   /api/administrator/organizations/organization
@@ -353,7 +353,7 @@
   /api/administrator/organizations/organizations
     Organizations#GET
       ✓ should return organization list
-      ✓ should filter by accountid (2529ms)
+      ✓ should filter by accountid
 
   /api/user/organizations/accept-invitation
     AcceptInvitation#POST
@@ -366,7 +366,7 @@
   /api/user/organizations/account-memberships
     AccountMemberships#GET
       ✓ should reject other account
-      ✓ should return membership list (2631ms)
+      ✓ should return membership list
 
   /api/user/organizations/create-invitation
     CreateInvitation#POST

@@ -7,30 +7,34 @@
   </head>
   <body>
     <h1>Organization</h1>
-    <table id="organizations-table" class="pure-table pure-table-striped">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Created</th>
-          <th></th>
-        </tr>
-      </thead>
-    </table>
+    <table id="organizations-table" class="pure-table pure-table-striped"></table> 
   </body>
   <template id="organization-row-template">
-    <tr id="${organizationid}">
-      <td>${organizationid}</td>
-      <td>${name}</td>
-      <td><a href="mailto:${email}">${email}</a></td>
-      <td title="${created}">${createdRelative}</td>
-      <td class="pure-button-group" role="group">
-        <a href="invitations?organizationid=${organizationid}" id="invitations-link-${organizationid}" class="pure-button">Invitations</a>
-        <a href="memberships?organizationid=${organizationid}" id="memberships-link-${organizationid}" class="pure-button">Memberships</a>
-        <a href="edit-organization?organizationid=${organizationid}" id="edit-organization-link-${organizationid}" class="pure-button">Edit organization</a>
-        <a href="delete-organization?organizationid=${organizationid}" id="delete-organization-link-${organizationid}" class="pure-button">Delete</a>
-      </td>
-    </tr>
+    <tbody id="${organizationid}">
+      <tr>
+        <th>ID</th>
+        <td>${organizationid}</td>
+      </tr>
+      <tr>
+        <th>Name</th>
+        <td>${name}</td>
+      </tr>
+      <tr>
+        <th>Email</th>
+        <td><a href="mailto:${email}">${email}</a></td>
+      </tr>
+      <tr>
+        <th>Created</th>
+        <td title="${created}">${createdRelative}</td>
+      </tr>
+      <tr>
+        <th></th>
+        <td class="pure-button-group" role="group">
+          <a href="invitations?organizationid=${organizationid}" id="invitations-link-${organizationid}" class="pure-button">Invitations</a>
+          <a href="memberships?organizationid=${organizationid}" id="memberships-link-${organizationid}" class="pure-button">Memberships</a>
+          <a href="edit-organization?organizationid=${organizationid}" id="edit-organization-link-${organizationid}" class="pure-button">Edit organization</a>
+          <a href="delete-organization?organizationid=${organizationid}" id="delete-organization-link-${organizationid}" class="pure-button">Delete</a>
+        </td>
+    </tbody>
   </template>
 </html>
