@@ -1,5 +1,5 @@
 @userappstore/dashboard
-Version: 1.0.1029
+Version: 1.0.1035
 Address:
 http://127.0.0.1:8889
 Root path: /Users/benlowry/CloudStation/workspaces/dashboard/organizations/src/www
@@ -41,6 +41,7 @@ URL ---------------------------------------------- AUTH ---- LOCK --- TEMPLATE -
 /account/edit-profile                                                                GET POST        @userappstore/dashboard     @userappstore/dashboard    
 /account/end-all-sessions                                                            GET POST        @userappstore/dashboard     @userappstore/dashboard    
 /account/end-session                                                                 GET POST        @userappstore/dashboard     @userappstore/dashboard    
+/account/lock-session                                                                GET             @userappstore/dashboard     @userappstore/dashboard    
 /account/organizations                                                               GET             /src/www                    /src/www                   
 /account/organizations/accept-invitation                                             GET POST        /src/www                    /src/www                   
 /account/organizations/create-organization                                           GET POST        /src/www                    /src/www                   
@@ -133,6 +134,7 @@ URL ---------------------------------------------- AUTH ---- LOCK --- TEMPLATE -
 /api/user/delete-profile                                     LOCK                    DELETE          @userappstore/dashboard                                
 /api/user/delete-reset-code                                  LOCK                    DELETE          @userappstore/dashboard                                
 /api/user/end-session                                                                PATCH           @userappstore/dashboard                                
+/api/user/lock-session                                                               PATCH           @userappstore/dashboard                                
 /api/user/organizations/accept-invitation                    LOCK                    PATCH           /src/www                                               
 /api/user/organizations/account-memberships                                          GET             /src/www                                               
 /api/user/organizations/create-invitation                    LOCK                    POST            /src/www                                               

@@ -1,5 +1,5 @@
 
-> @userappstore/organizations@1.0.1034 test /Users/benlowry/CloudStation/workspaces/dashboard/organizations
+> @userappstore/organizations@1.0.1035 test /Users/benlowry/CloudStation/workspaces/dashboard/organizations
 > NODE_ENV=testing mocha src --recursive --timeout 10000 --slow 5000
 
 
@@ -110,7 +110,7 @@
   /account/organizations/accept-invitation
     AcceptInvitation#BEFORE
       ✓ should reject owner
-      ✓ should reject existing member (3009ms)
+      ✓ should reject existing member
       ✓ should bind organization to req
     AcceptInvitation#GET
       ✓ should present the form
@@ -282,7 +282,7 @@
 
   /administrator/organizations/index
     Index#BEFORE
-      ✓ should bind memberships to req (2744ms)
+      ✓ should bind memberships to req (2742ms)
       ✓ should bind organizations to req
     Index#GET
       ✓ should have row for each organization
@@ -302,15 +302,15 @@
 
   /administrator/organizations/membership
     Membership#BEFORE
-      ✓ should bind membership to req
+      ✓ should bind membership to req (5037ms)
     Membership#GET
-      ✓ should have row for membership
+      ✓ should have row for membership (3521ms)
 
   /administrator/organizations/memberships
     Memberships#BEFORE
-      ✓ should bind memberships to req
+      ✓ should bind memberships to req (3170ms)
     Memberships#GET
-      ✓ should have row for each membership
+      ✓ should have row for each membership (3096ms)
 
   /administrator/organizations/organization
     Organization#BEFORE
@@ -332,18 +332,18 @@
 
   /api/administrator/organizations/invitations
     Invitations#GET
-      ✓ should return invitation list (3190ms)
-      ✓ should filter by organizationid (3271ms)
+      ✓ should return invitation list (4855ms)
+      ✓ should filter by organizationid (4829ms)
 
   /api/administrator/organizations/membership
     Membership#GET
       ✓ should return membership data
-      ✓ should redact membership code
+      ✓ should redact membership code (2541ms)
 
   /api/administrator/organizations/memberships
     Memberships#GET
-      ✓ should return membership list (2552ms)
-      ✓ should filter by organizationid
+      ✓ should return membership list (3792ms)
+      ✓ should filter by organizationid (2734ms)
 
   /api/administrator/organizations/organization
     Organization#GET
@@ -352,21 +352,21 @@
 
   /api/administrator/organizations/organizations
     Organizations#GET
-      ✓ should return organization list
-      ✓ should filter by accountid
+      ✓ should return organization list (3541ms)
+      ✓ should filter by accountid (3850ms)
 
   /api/user/organizations/accept-invitation
     AcceptInvitation#POST
       ✓ should enforce code length
-      ✓ should reject a used invitation
+      ✓ should reject a used invitation (2582ms)
       ✓ should reject owner
       ✓ should reject existing members
       ✓ should create authorized membership
 
   /api/user/organizations/account-memberships
     AccountMemberships#GET
-      ✓ should reject other account
-      ✓ should return membership list (2622ms)
+      ✓ should reject other account (2513ms)
+      ✓ should return membership list (3410ms)
 
   /api/user/organizations/create-invitation
     CreateInvitation#POST
@@ -409,7 +409,7 @@
   /api/user/organizations/membership
     Membership#GET
       ✓ should allow organization owner
-      ✓ should allow organization member
+      ✓ should allow organization member (2772ms)
       ✓ should reject non-owner non-members
       ✓ should return membership data
 
@@ -450,5 +450,5 @@
     ✓ should apply new values
 
 
-  226 passing (4m)
+  226 passing (5m)
 
