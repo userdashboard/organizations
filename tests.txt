@@ -53,7 +53,7 @@
       ✓ should update the user's last membership created date
     Membership#delete
       ✓ should require a valid membershipid
-      ✓ should delete membership (3741ms)
+      ✓ should delete membership
     Membership#setProperty
       ✓ should require a membershipid
       ✓ should require a property
@@ -110,34 +110,34 @@
   /account/organizations/accept-invitation
     AcceptInvitation#BEFORE
       ✓ should reject owner
-      ✓ should reject existing member
+      ✓ should reject existing member (3009ms)
       ✓ should bind organization to req
     AcceptInvitation#GET
       ✓ should present the form
       ✓ should present the organization
     AcceptInvitation#POST
-      1) should apply after authorization
+      ✓ should apply after authorization
 
   /account/organizations/create-organization
     CreateOrganization#GET
       ✓ should present the form
     CreateOrganization#POST
-      2) should reject missing name
-      3) should reject short name
-      4) should reject long name
-      5) should reject invalid fields
-      6) should enforce field length
-      7) should create organization
+      ✓ should reject missing name
+      ✓ should reject short name
+      ✓ should reject long name
+      ✓ should reject invalid fields
+      ✓ should enforce field length
+      ✓ should create organization
 
   /account/organizations/delete-membership
     DeleteMembership#BEFORE
-      ✓ should require own membership (2582ms)
+      ✓ should require own membership
       ✓ should bind organization to req
     DeleteMembership#GET
       ✓ should present the form
       ✓ should present the membership
     DeleteMembership#POST
-      8) should delete membership
+      ✓ should delete membership
 
   /account/organizations/edit-membership
     EditMembership#BEFORE
@@ -146,9 +146,9 @@
     EditMembership#GET
       ✓ should present the form
     EditMembership#POST
-      9) should reject invalid fields
-      10) should enforce field length
-      11) should apply after authorization
+      ✓ should reject invalid fields
+      ✓ should enforce field length
+      ✓ should apply after authorization
 
   /account/organizations/index
     Index#BEFORE
@@ -186,7 +186,7 @@
       ✓ should present the form
       ✓ should present the organization
     CreateInvitation#POST
-      12) should apply after authorization
+      ✓ should apply after authorization
 
   /account/organizations/owner/delete-invitation
     DeleteInvitation#BEFORE
@@ -196,7 +196,7 @@
       ✓ should present the form
       ✓ should present the invitation
     DeleteInvitation#POST
-      13) should delete invitation
+      ✓ should delete invitation
 
   /account/organizations/owner/delete-organization
     DeleteOrganization#BEFORE
@@ -206,7 +206,7 @@
       ✓ should present the form
       ✓ should present the organization
     DeleteOrganization#POST
-      14) should delete organization
+      ✓ should delete organization
 
   /account/organizations/owner/edit-organization
     EditOrganization#BEFORE
@@ -215,9 +215,9 @@
     EditOrganization#GET
       ✓ should present the form
     EditOrganization#POST
-      15) should reject invalid fields
-      16) should enforce field length
-      17) should apply after authorization
+      ✓ should reject invalid fields
+      ✓ should enforce field length
+      ✓ should apply after authorization
 
   /account/organizations/owner/invitation
     Invitation#BEFORE
@@ -267,7 +267,7 @@
       ✓ should present the form
       ✓ should present the membership
     RevokeMembership#POST
-      18) should delete membership
+      ✓ should delete membership
 
   /account/organizations/owner/transfer-organization
     TransferOrganization#BEFORE
@@ -278,11 +278,11 @@
       ✓ should present the form
       ✓ should present the organization
     TransferOrganization#POST
-      19) should apply after authorization
+      ✓ should apply after authorization
 
   /administrator/organizations/index
     Index#BEFORE
-      ✓ should bind memberships to req (2512ms)
+      ✓ should bind memberships to req (2744ms)
       ✓ should bind organizations to req
     Index#GET
       ✓ should have row for each organization
@@ -332,8 +332,8 @@
 
   /api/administrator/organizations/invitations
     Invitations#GET
-      ✓ should return invitation list (4269ms)
-      ✓ should filter by organizationid (3737ms)
+      ✓ should return invitation list (3190ms)
+      ✓ should filter by organizationid (3271ms)
 
   /api/administrator/organizations/membership
     Membership#GET
@@ -342,7 +342,7 @@
 
   /api/administrator/organizations/memberships
     Memberships#GET
-      ✓ should return membership list (2753ms)
+      ✓ should return membership list (2552ms)
       ✓ should filter by organizationid
 
   /api/administrator/organizations/organization
@@ -366,7 +366,7 @@
   /api/user/organizations/account-memberships
     AccountMemberships#GET
       ✓ should reject other account
-      ✓ should return membership list (3477ms)
+      ✓ should return membership list (2622ms)
 
   /api/user/organizations/create-invitation
     CreateInvitation#POST
@@ -450,198 +450,5 @@
     ✓ should apply new values
 
 
-  207 passing (5m)
-  19 failing
-
-  1) /account/organizations/accept-invitation
-       AcceptInvitation#POST
-         should apply after authorization:
-     AssertionError [ERR_ASSERTION]: 'success' == undefined
-      at Object.res2.end (src/www/account/organizations/accept-invitation.test.js:117:18)
-      at compress (node_modules/@userappstore/dashboard/src/response.js:111:16)
-      at Object.end (node_modules/@userappstore/dashboard/src/response.js:64:12)
-      at <anonymous>
-      at process._tickCallback (internal/process/next_tick.js:169:7)
-
-  2) /account/organizations/create-organization
-       CreateOrganization#POST
-         should reject missing name:
-     AssertionError [ERR_ASSERTION]: 'invalid-organization-name' == undefined
-      at Object.res.end (src/www/account/organizations/create-organization.test.js:37:16)
-      at compress (node_modules/@userappstore/dashboard/src/response.js:111:16)
-      at Object.end (node_modules/@userappstore/dashboard/src/response.js:64:12)
-      at <anonymous>
-      at process._tickCallback (internal/process/next_tick.js:169:7)
-
-  3) /account/organizations/create-organization
-       CreateOrganization#POST
-         should reject short name:
-     AssertionError [ERR_ASSERTION]: 'invalid-organization-name-length' == undefined
-      at Object.res.end (src/www/account/organizations/create-organization.test.js:54:16)
-      at compress (node_modules/@userappstore/dashboard/src/response.js:111:16)
-      at Object.end (node_modules/@userappstore/dashboard/src/response.js:64:12)
-      at <anonymous>
-      at process._tickCallback (internal/process/next_tick.js:169:7)
-
-  4) /account/organizations/create-organization
-       CreateOrganization#POST
-         should reject long name:
-     AssertionError [ERR_ASSERTION]: 'invalid-organization-name-length' == undefined
-      at Object.res.end (src/www/account/organizations/create-organization.test.js:72:16)
-      at compress (node_modules/@userappstore/dashboard/src/response.js:111:16)
-      at Object.end (node_modules/@userappstore/dashboard/src/response.js:64:12)
-      at <anonymous>
-      at process._tickCallback (internal/process/next_tick.js:169:7)
-
-  5) /account/organizations/create-organization
-       CreateOrganization#POST
-         should reject invalid fields:
-     AssertionError [ERR_ASSERTION]: 'invalid-organization-field' == undefined
-      at Object.res.end (src/www/account/organizations/create-organization.test.js:91:16)
-      at compress (node_modules/@userappstore/dashboard/src/response.js:111:16)
-      at Object.end (node_modules/@userappstore/dashboard/src/response.js:64:12)
-      at <anonymous>
-      at process._tickCallback (internal/process/next_tick.js:169:7)
-
-  6) /account/organizations/create-organization
-       CreateOrganization#POST
-         should enforce field length:
-     AssertionError [ERR_ASSERTION]: 'invalid-organization-field-length' == undefined
-      at Object.res.end (src/www/account/organizations/create-organization.test.js:110:16)
-      at compress (node_modules/@userappstore/dashboard/src/response.js:111:16)
-      at Object.end (node_modules/@userappstore/dashboard/src/response.js:64:12)
-      at <anonymous>
-      at process._tickCallback (internal/process/next_tick.js:169:7)
-
-  7) /account/organizations/create-organization
-       CreateOrganization#POST
-         should create organization:
-     AssertionError [ERR_ASSERTION]: 'success' == undefined
-      at Object.res.end (src/www/account/organizations/create-organization.test.js:131:16)
-      at compress (node_modules/@userappstore/dashboard/src/response.js:111:16)
-      at Object.end (node_modules/@userappstore/dashboard/src/response.js:64:12)
-      at <anonymous>
-      at process._tickCallback (internal/process/next_tick.js:169:7)
-
-  8) /account/organizations/delete-membership
-       DeleteMembership#POST
-         should delete membership:
-     AssertionError [ERR_ASSERTION]: 'success' == undefined
-      at Object.res2.end (src/www/account/organizations/delete-membership.test.js:97:18)
-      at compress (node_modules/@userappstore/dashboard/src/response.js:111:16)
-      at Object.end (node_modules/@userappstore/dashboard/src/response.js:64:12)
-      at <anonymous>
-      at process._tickCallback (internal/process/next_tick.js:169:7)
-
-  9) /account/organizations/edit-membership
-       EditMembership#POST
-         should reject invalid fields:
-     AssertionError [ERR_ASSERTION]: 'invalid-membership-field' == undefined
-      at Object.res.end (src/www/account/organizations/edit-membership.test.js:77:16)
-      at compress (node_modules/@userappstore/dashboard/src/response.js:111:16)
-      at Object.end (node_modules/@userappstore/dashboard/src/response.js:64:12)
-      at <anonymous>
-      at process._tickCallback (internal/process/next_tick.js:169:7)
-
-  10) /account/organizations/edit-membership
-       EditMembership#POST
-         should enforce field length:
-     AssertionError [ERR_ASSERTION]: 'invalid-membership-field-length' == undefined
-      at Object.res.end (src/www/account/organizations/edit-membership.test.js:98:16)
-      at compress (node_modules/@userappstore/dashboard/src/response.js:111:16)
-      at Object.end (node_modules/@userappstore/dashboard/src/response.js:64:12)
-      at <anonymous>
-      at process._tickCallback (internal/process/next_tick.js:169:7)
-
-  11) /account/organizations/edit-membership
-       EditMembership#POST
-         should apply after authorization:
-     AssertionError [ERR_ASSERTION]: 'success' == undefined
-      at Object.res.end (src/www/account/organizations/edit-membership.test.js:124:18)
-      at compress (node_modules/@userappstore/dashboard/src/response.js:111:16)
-      at Object.end (node_modules/@userappstore/dashboard/src/response.js:64:12)
-      at <anonymous>
-      at process._tickCallback (internal/process/next_tick.js:169:7)
-
-  12) /account/organizations/owner/create-invitation
-       CreateInvitation#POST
-         should apply after authorization:
-     AssertionError [ERR_ASSERTION]: 'success' == undefined
-      at Object.res2.end (src/www/account/organizations/owner/create-invitation.test.js:94:18)
-      at compress (node_modules/@userappstore/dashboard/src/response.js:111:16)
-      at Object.end (node_modules/@userappstore/dashboard/src/response.js:64:12)
-      at <anonymous>
-      at process._tickCallback (internal/process/next_tick.js:169:7)
-
-  13) /account/organizations/owner/delete-invitation
-       DeleteInvitation#POST
-         should delete invitation:
-     AssertionError [ERR_ASSERTION]: 'success' == undefined
-      at Object.res2.end (src/www/account/organizations/owner/delete-invitation.test.js:92:18)
-      at compress (node_modules/@userappstore/dashboard/src/response.js:111:16)
-      at Object.end (node_modules/@userappstore/dashboard/src/response.js:64:12)
-      at <anonymous>
-      at process._tickCallback (internal/process/next_tick.js:169:7)
-
-  14) /account/organizations/owner/delete-organization
-       DeleteOrganization#POST
-         should delete organization:
-     AssertionError [ERR_ASSERTION]: 'success' == undefined
-      at Object.res2.end (src/www/account/organizations/owner/delete-organization.test.js:89:18)
-      at compress (node_modules/@userappstore/dashboard/src/response.js:111:16)
-      at Object.end (node_modules/@userappstore/dashboard/src/response.js:64:12)
-      at <anonymous>
-      at process._tickCallback (internal/process/next_tick.js:169:7)
-
-  15) /account/organizations/owner/edit-organization
-       EditOrganization#POST
-         should reject invalid fields:
-     AssertionError [ERR_ASSERTION]: 'invalid-organization-field' == undefined
-      at Object.res.end (src/www/account/organizations/owner/edit-organization.test.js:70:16)
-      at compress (node_modules/@userappstore/dashboard/src/response.js:111:16)
-      at Object.end (node_modules/@userappstore/dashboard/src/response.js:64:12)
-      at <anonymous>
-      at process._tickCallback (internal/process/next_tick.js:169:7)
-
-  16) /account/organizations/owner/edit-organization
-       EditOrganization#POST
-         should enforce field length:
-     AssertionError [ERR_ASSERTION]: 'invalid-organization-field-length' == undefined
-      at Object.res.end (src/www/account/organizations/owner/edit-organization.test.js:89:16)
-      at compress (node_modules/@userappstore/dashboard/src/response.js:111:16)
-      at Object.end (node_modules/@userappstore/dashboard/src/response.js:64:12)
-      at <anonymous>
-      at process._tickCallback (internal/process/next_tick.js:169:7)
-
-  17) /account/organizations/owner/edit-organization
-       EditOrganization#POST
-         should apply after authorization:
-     AssertionError [ERR_ASSERTION]: 'success' == undefined
-      at Object.res.end (src/www/account/organizations/owner/edit-organization.test.js:113:18)
-      at compress (node_modules/@userappstore/dashboard/src/response.js:111:16)
-      at Object.end (node_modules/@userappstore/dashboard/src/response.js:64:12)
-      at <anonymous>
-      at process._tickCallback (internal/process/next_tick.js:169:7)
-
-  18) /account/organizations/owner/revoke-membership
-       RevokeMembership#POST
-         should delete membership:
-     AssertionError [ERR_ASSERTION]: 'success' == undefined
-      at Object.res2.end (src/www/account/organizations/owner/revoke-membership.test.js:96:18)
-      at compress (node_modules/@userappstore/dashboard/src/response.js:111:16)
-      at Object.end (node_modules/@userappstore/dashboard/src/response.js:64:12)
-      at <anonymous>
-      at process._tickCallback (internal/process/next_tick.js:169:7)
-
-  19) /account/organizations/owner/transfer-organization
-       TransferOrganization#POST
-         should apply after authorization:
-     AssertionError [ERR_ASSERTION]: 'success' == undefined
-      at Object.res2.end (src/www/account/organizations/owner/transfer-organization.test.js:113:18)
-      at compress (node_modules/@userappstore/dashboard/src/response.js:111:16)
-      at Object.end (node_modules/@userappstore/dashboard/src/response.js:64:12)
-      at <anonymous>
-      at process._tickCallback (internal/process/next_tick.js:169:7)
-
-
+  226 passing (4m)
 
