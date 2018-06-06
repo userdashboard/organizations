@@ -34,7 +34,7 @@ describe(`/account/organizations/create-organization`, async () => {
       res.end = async (str) => {
         const doc = TestHelper.extractDoc(str)
         const message = doc.getElementById('message-container').child[0]
-        assert.equal('invalid-organization-name', message.attr.error)
+        assert.equal('invalid-organization-name', message.attr.template)
       }
       return req.route.api.post(req, res)
     })
@@ -51,7 +51,7 @@ describe(`/account/organizations/create-organization`, async () => {
       res.end = async (str) => {
         const doc = TestHelper.extractDoc(str)
         const message = doc.getElementById('message-container').child[0]
-        assert.equal('invalid-organization-name-length', message.attr.error)
+        assert.equal('invalid-organization-name-length', message.attr.template)
       }
       global.MINIMUM_ORGANIZATION_NAME_LENGTH = 100
       return req.route.api.post(req, res)
@@ -69,7 +69,7 @@ describe(`/account/organizations/create-organization`, async () => {
       res.end = async (str) => {
         const doc = TestHelper.extractDoc(str)
         const message = doc.getElementById('message-container').child[0]
-        assert.equal('invalid-organization-name-length', message.attr.error)
+        assert.equal('invalid-organization-name-length', message.attr.template)
       }
       global.MAXIMUM_ORGANIZATION_NAME_LENGTH = 1
       return req.route.api.post(req, res)
@@ -88,7 +88,7 @@ describe(`/account/organizations/create-organization`, async () => {
       res.end = async (str) => {
         const doc = TestHelper.extractDoc(str)
         const message = doc.getElementById('message-container').child[0]
-        assert.equal('invalid-organization-field', message.attr.error)
+        assert.equal('invalid-organization-field', message.attr.template)
       }
       return req.route.api.post(req, res)
     })
@@ -107,7 +107,7 @@ describe(`/account/organizations/create-organization`, async () => {
       res.end = async (str) => {
         const doc = TestHelper.extractDoc(str)
         const message = doc.getElementById('message-container').child[0]
-        assert.equal('invalid-organization-field-length', message.attr.error)
+        assert.equal('invalid-organization-field-length', message.attr.template)
       }
       return req.route.api.post(req, res)
     })
@@ -128,7 +128,7 @@ describe(`/account/organizations/create-organization`, async () => {
         assert.notEqual(null, messageContainer)
         assert.notEqual(null, messageContainer.child)
         const message = messageContainer.child[0]
-        assert.equal('success', message.attr.error)
+        assert.equal('success', message.attr.template)
       }
       return req.route.api.post(req, res)
     })

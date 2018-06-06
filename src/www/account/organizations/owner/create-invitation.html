@@ -34,22 +34,16 @@
     </form>
   </body>
   <template id="unknown-error">
-    <div class="error message">
-      The invitation was unable to be sent. 
-    </div>
+    <div class="error message">Error!  An unknown error occurred.</div>
   </template>
   <template id="invalid-invitation-code">
-    <div class="error message" error="invalid-invitation-code">
-      Error!  The invitation code is missing or invalid.
-    </div>
+    <div class="error message">Error!  The invitation code is missing or invalid.</div>
   </template>
   <template id="invalid-invitation-code-length">
-    <div class="error message" error="invalid-invitation-code">
-      Error!  The invitation code has an invalid length.
-    </div>
+    <div class="error message">Error!  The invitation code has an invalid length.</div>
   </template>
   <template id="success">
-    <div class="success message" error="success">
+    <div class="success message">
       <p>Success!  A new member may use this link to join your organization:</p>
       <input class="link" type="text" readonly value="https://${DOMAIN}/account/organizations/accept-invitation?invitationid=${invitationid}" />
     </div>

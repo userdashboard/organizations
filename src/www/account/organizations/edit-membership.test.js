@@ -74,7 +74,7 @@ describe(`/account/organizations/edit-membership`, () => {
       res.end = async (str) => {
         const doc = TestHelper.extractDoc(str)
         const message = doc.getElementById('message-container').child[0]
-        assert.equal('invalid-membership-field', message.attr.error)
+        assert.equal('invalid-membership-field', message.attr.template)
       }
       return req.route.api.post(req, res)
     })
@@ -95,7 +95,7 @@ describe(`/account/organizations/edit-membership`, () => {
       res.end = async (str) => {
         const doc = TestHelper.extractDoc(str)
         const message = doc.getElementById('message-container').child[0]
-        assert.equal('invalid-membership-field-length', message.attr.error)
+        assert.equal('invalid-membership-field-length', message.attr.template)
       }
       return req.route.api.post(req, res)
     })
@@ -121,7 +121,7 @@ describe(`/account/organizations/edit-membership`, () => {
           assert.notEqual(null, messageContainer)
           assert.notEqual(null, messageContainer.child)
           const message = messageContainer.child[0]
-          assert.equal('success', message.attr.error)
+          assert.equal('success', message.attr.template)
         }
         return req.route.api.get(req, res)
       }
