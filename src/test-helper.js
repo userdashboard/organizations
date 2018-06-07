@@ -22,15 +22,13 @@ beforeEach(() => {
   global.MAXIMUM_MEMBERSHIP_FIELD_LENGTH = 100
 })
 
-async function createOrganization (existingUser) {
-  const user = existingUser || await module.exports.createUser()
+async function createOrganization (user) {
   const name = 'organization-' + new Date().getTime() + '-' + Math.ceil(Math.random() * 1000)
   user.organization = await organizations.Organization.create(user.account.accountid, name)
   return user
 }
 
-async function createInvitation (existingUser, organizationid) {
-  const user = existingUser || await module.exports.createUser()
+async function createInvitation (user, organizationid) {
   const code = 'invitation-' + new Date().getTime() + '-' + Math.ceil(Math.random() * 1000)
   const codeHash = dashboard.Hash.fixedSaltHash(code)
   user.invitation = await organizations.Invitation.create(organizationid, codeHash)
@@ -38,8 +36,7 @@ async function createInvitation (existingUser, organizationid) {
   return user
 }
 
-async function createMembership (existingUser, organizationid) {
-  const user = existingUser || await module.exports.createUser()
+async function createMembership (user, organizationid) {
   user.membership = await organizations.Membership.create(organizationid, user.account.accountid)
   return user
 }
