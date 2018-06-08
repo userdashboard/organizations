@@ -18,7 +18,7 @@ async function beforeRequest (req) {
   if (organization.ownerid !== req.account.accountid) {
     throw new Error('invalid-account')
   }
-  const memberships = await global.api.user.organizations.Memberships.get(req)
+  const memberships = await global.api.user.organizations.OrganizationMemberships.get(req)
   req.data = {organization, memberships}
   if (req.session.lockURL === req.url && req.session.unlocked >= dashboard.Timestamp.now) {
     const transferred = await global.api.user.organizations.TransferOrganization.patch(req)

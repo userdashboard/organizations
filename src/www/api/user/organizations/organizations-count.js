@@ -1,4 +1,4 @@
-const Membership = require('../../../../membership.js')
+const orgs = require('../../../../../index.js')
 
 module.exports = {
   get: async (req) => {
@@ -8,10 +8,7 @@ module.exports = {
     if (req.query.accountid !== req.account.accountid) {
       throw new Error('invalid-account')
     }
-    const memberships = await Membership.listByAccount(req.query.accountid)
-    if (!memberships || !memberships.length) {
-      return null
-    }
-    return memberships
+    const count = await orgs.Organization.count(req.query.accountid)
+    return count
   }
 }

@@ -9,17 +9,15 @@ module.exports = {
 async function beforeRequest (req) {
   req.query = req.query || {}
   req.query.accountid = req.account.accountid
-  const memberships = await global.api.user.organizations.AccountMemberships.get(req)
+  const count = await global.api.user.organizations.MembershipsCount.get(req)
+  const memberships = await global.api.user.organizations.Memberships.get(req)
   if (memberships && memberships.length) {
     for (const membership of memberships) {
       membership.created = dashboard.Timestamp.date(membership.created)
-      req.query.organizationid = membership.organizationid
-      const organization = await global.api.user.organizations.Organization.get(req)
-      membership.organizationName = organization.name
-      membership.organizationEmail = organization.email
     }
   }
-  req.data = { memberships }
+  const offset = req.query ? req.query.offset || 0 : 0
+  req.data = { memberships, count, offset }
 }
 
 async function renderPage (req, res) {
@@ -27,6 +25,11 @@ async function renderPage (req, res) {
   await Navigation.render(req, doc)
   if (req.data.memberships && req.data.memberships.length) {
     doc.renderTable(req.data.memberships, 'membership-row-template', 'memberships-table')
+    if (req.data.count < global.PAGE_SIZE) {
+      doc.removeElementById('page-links')
+    } else {
+      doc.renderPagination(req.data.offset, req.data.count)
+    }
   } else {
     doc.removeElementById('memberships-table')
   }

@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 const assert = require('assert')
-const Memberships = require('./bind-memberships.js')
+const BindMemberships = require('./bind-memberships.js')
 const TestHelper = require('../test-helper.js')
 
 describe(`server/bind-memberships`, () => {
@@ -13,7 +13,7 @@ describe(`server/bind-memberships`, () => {
       const req = TestHelper.createRequest(`/api/user/organizations/proxy-memberships`, 'GET')
       req.account = user.account
       req.session = user.session
-      await Memberships.after(req)
+      await BindMemberships.after(req)
       assert.notEqual(null, req.memberships)
       assert.equal(req.memberships.length, 1)
       assert.equal(req.memberships[0].membershipid, user.membership.membershipid)

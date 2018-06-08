@@ -18,7 +18,11 @@
         </tr>
       </thead>
     </table>
+    <ul id="page-links" class="pagination"></ul>
   </body>
+  <template id='page-link-template'>
+    <li><a href="/account/organizations/organizations?offset=${offset}" id="page-link-${pageNumber}">${pageNumber}</a></li>
+  </template>
   <template id="organization-row-template">
     <tr id="${organizationid}">
       <td><a href="organization?organizationid=${organizationid}">${organizationid}</a></td>

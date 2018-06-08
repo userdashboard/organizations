@@ -7,13 +7,15 @@ module.exports = {
 }
 
 async function beforeRequest (req) {
-  let allOrganizations = await global.api.administrator.organizations.Organizations.get(req)
-  if (allOrganizations && allOrganizations.length) {
-    for (const organization of allOrganizations) {
+  const count = await global.api.administrator.organizations.OrganizationsCount.get(req)
+  let organizations = await global.api.administrator.organizations.Organizations.get(req)
+  if (organizations && organizations.length) {
+    for (const organization of organizations) {
       organization.created = dashboard.Timestamp.date(organization.created)
     }
   }
-  req.data = { organizations: allOrganizations }
+  const offset = req.query ? req.query.offset || 0 : 0
+  req.data = { organizations, count, offset }
 }
 
 async function renderPage (req, res) {
@@ -21,6 +23,13 @@ async function renderPage (req, res) {
   await Navigation.render(req, doc)
   if (req.data.organizations && req.data.organizations.length) {
     doc.renderTable(req.data.organizations, 'organization-row-template', 'organizations-table')
+    if (req.data.count < global.PAGE_SIZE) {
+      doc.removeElementById('page-links')
+    } else {
+      doc.renderPagination(req.data.offset, req.data.count)
+    }
+  } else {
+    doc.removeElementById('organizations-table')
   }
   return dashboard.Response.end(req, res, doc)
 }

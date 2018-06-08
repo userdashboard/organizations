@@ -1,4 +1,4 @@
-const Organization = require('../../../../organization.js')
+const orgs = require('../../../../../index.js')
 
 module.exports = {
   lock: true,
@@ -6,7 +6,7 @@ module.exports = {
     if (!req.query || !req.query.organizationid) {
       throw new Error('invalid-organizationid')
     }
-    const organization = await Organization.load(req.query.organizationid)
+    const organization = await orgs.Organization.load(req.query.organizationid)
     if (!organization || organization.ownerid !== req.account.accountid) {
       throw new Error('invalid-organization')
     }
@@ -27,9 +27,9 @@ module.exports = {
       if (global.ORGANIZATION_FIELDS.indexOf(property) === -1) {
         continue
       }
-      await Organization.setProperty(req.query.organizationid, property, req.body[property])
+      await orgs.Organization.setProperty(req.query.organizationid, property, req.body[property])
     }
     req.success = true
-    return Organization.load(req.query.organizationid)
+    return orgs.Organization.load(req.query.organizationid)
   }
 }

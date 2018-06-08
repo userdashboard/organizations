@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 const assert = require('assert')
-const Memberships = require('./x-memberships-header.js')
+const XMembershipsHeader = require('./x-memberships-header.js')
 const TestHelper = require('../test-helper.js')
 
 describe(`proxy/x-memberships-header`, () => {
@@ -13,7 +13,7 @@ describe(`proxy/x-memberships-header`, () => {
       const req = TestHelper.createRequest(`/api/user/organizations/proxy-memberships`, 'GET')
       req.account = user.account
       req.session = user.session
-      await Memberships.after(req)
+      await XMembershipsHeader.after(req)
       assert.notEqual(null, req.headers['x-memberships'])
       const memberships = JSON.parse(req.headers['x-memberships'])
       assert.equal(memberships.length, 1)

@@ -1,11 +1,15 @@
-const Organization = require('../../../../organization.js')
+const orgs = require('../../../../../index.js')
 
 module.exports = {
   get: async (req) => {
-    if (!req.query || !req.query.accountid || req.query.accountid !== req.account.accountid) {
+    if (!req.query || !req.query.accountid) {
       throw new Error('invalid-accountid')
     }
-    const organizations = await Organization.list(req.query.accountid)
+    if (req.query.accountid !== req.account.accountid) {
+      throw new Error('invalid-account')
+    }
+    const offset = req.query && req.query.offset ? parseInt(req.query.offset, 10) : 0
+    const organizations = await orgs.Organization.list(req.query.accountid, offset)
     if (!organizations || !organizations.length) {
       return null
     }

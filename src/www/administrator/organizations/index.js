@@ -12,7 +12,6 @@ async function beforeRequest (req) {
   if (organizations && organizations.length) {
     for (const organization of organizations) {
       organization.created = dashboard.Timestamp.date(organization.created)
-      req.query.organizationid = organization.organizationid
     }
   }
   const memberships = await global.api.administrator.organizations.Memberships.get(req)

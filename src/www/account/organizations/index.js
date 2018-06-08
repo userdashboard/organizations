@@ -15,7 +15,7 @@ async function beforeRequest (req) {
       organization.created = dashboard.Timestamp.date(organization.created)
     }
   }
-  const memberships = await global.api.user.organizations.AccountMemberships.get(req)
+  const memberships = await global.api.user.organizations.Memberships.get(req)
   if (memberships && memberships.length) {
     for (const membership of memberships) {
       membership.created = dashboard.Timestamp.date(membership.created)

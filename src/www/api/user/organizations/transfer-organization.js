@@ -1,6 +1,5 @@
 const dashboard = require('@userappstore/dashboard')
-const Membership = require('../../../../membership.js')
-const Organization = require('../../../../organization.js')
+const orgs = require('../../../../../index.js')
 
 module.exports = {
   lock: true,
@@ -11,7 +10,7 @@ module.exports = {
     if (req.body.accountid === req.account.accountid) {
       throw new Error('invalid-account')
     }
-    const organization = await Organization.load(req.query.organizationid)
+    const organization = await orgs.Organization.load(req.query.organizationid)
     if (!organization || organization.ownerid !== req.account.accountid) {
       throw new Error('invalid-organization')
     }
@@ -22,18 +21,14 @@ module.exports = {
     if (!newOwner || newOwner.deleted) {
       throw new Error('invalid-account')
     }
-    const nonMember = await Membership.isUniqueMembership(req.query.organizationid, req.body.accountid)
-    if (nonMember) {
+    const member = await orgs.Membership.isMember(req.query.organizationid, req.body.accountid)
+    if (!member) {
       throw new Error('invalid-account')
-    }
-    const owner = await dashboard.Account.load(organization.ownerid)
-    if (!owner || owner.deleted) {
-      throw new Error('invalid-organization')
     }
   },
   patch: async (req) => {
-    await Organization.setProperty(req.query.organizationid, 'ownerid', req.body.accountid)
+    await orgs.Organization.setProperty(req.query.organizationid, 'ownerid', req.body.accountid)
     req.success = true
-    return Organization.load(req.query.organizationid)
+    return orgs.Organization.load(req.query.organizationid)
   }
 }

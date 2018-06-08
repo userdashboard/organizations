@@ -1,12 +1,15 @@
 const dashboard = require('@userappstore/dashboard')
-const organizations = require('../index.js')
+const orgs = require('../index.js')
 const path = require('path')
 
 /* eslint-env mocha */
 module.exports = dashboard.loadTestHelper()
+module.exports.acceptInvitation = acceptInvitation
 module.exports.createInvitation = createInvitation
 module.exports.createMembership = createMembership
 module.exports.createOrganization = createOrganization
+module.exports.transferOrganization = transferOrganization
+
 dashboard.setup(path.join(__dirname, '..'))
 global.redisClient.select(2)
 
@@ -24,19 +27,30 @@ beforeEach(() => {
 
 async function createOrganization (user) {
   const name = 'organization-' + new Date().getTime() + '-' + Math.ceil(Math.random() * 1000)
-  user.organization = await organizations.Organization.create(user.account.accountid, name)
-  return user
+  user.organization = await orgs.Organization.create(user.account.accountid, name)
+  return user.organization
 }
 
 async function createInvitation (user, organizationid) {
   const code = 'invitation-' + new Date().getTime() + '-' + Math.ceil(Math.random() * 1000)
   const codeHash = dashboard.Hash.fixedSaltHash(code)
-  user.invitation = await organizations.Invitation.create(organizationid, codeHash)
+  user.invitation = await orgs.Invitation.create(organizationid, codeHash)
   user.invitation.code = code
-  return user
+  return user.invitation
+}
+
+async function acceptInvitation (user, owner) {
+  user.membership = await orgs.Invitation.accept(owner.organization.organizationid, owner.invitation.code, user.account.accountid)
+  return user.membership
 }
 
 async function createMembership (user, organizationid) {
-  user.membership = await organizations.Membership.create(organizationid, user.account.accountid)
-  return user
+  user.membership = await orgs.Membership.create(organizationid, user.account.accountid)
+  return user.membership
+}
+
+async function transferOrganization (user, organizationid) {
+  await orgs.Organization.setProperty(organizationid, `ownerid`, user.account.accountid)
+  user.organization = await orgs.Organization.load(organizationid)
+  return user.organization
 }

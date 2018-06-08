@@ -17,13 +17,15 @@ async function beforeRequest (req) {
   if (organization.ownerid !== req.account.accountid) {
     throw new Error('invalid-account')
   }
-  const invitations = await global.api.user.organizations.Invitations.get(req)
+  const count = await global.api.user.organizations.OrganizationInvitationsCount.get(req)
+  const invitations = await global.api.user.organizations.OrganizationInvitations.get(req)
   if (invitations && invitations.length) {
     for (const invitation of invitations) {
       invitation.created = dashboard.Timestamp.date(invitation.created)
     }
   }
-  req.data = { invitations }
+  const offset = req.query ? req.query.offset || 0 : 0
+  req.data = { invitations, count, offset }
 }
 
 async function renderPage (req, res) {
@@ -45,6 +47,11 @@ async function renderPage (req, res) {
       }
     }
     doc.removeElementsById(removeElements)
+    if (req.data.count < global.PAGE_SIZE) {
+      doc.removeElementById('page-links')
+    } else {
+      doc.renderPagination(req.data.offset, req.data.count)
+    }
   }
   return dashboard.Response.end(req, res, doc)
 }

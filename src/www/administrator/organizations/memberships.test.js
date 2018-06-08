@@ -10,7 +10,7 @@ describe('/administrator/organizations/memberships', () => {
       await TestHelper.createOrganization(owner)
       const user = await TestHelper.createUser()
       await TestHelper.createMembership(user, owner.organization.organizationid)
-      const req = TestHelper.createRequest(`/administrator/organizations/memberships?organizationid=${owner.organization.organizationid}`, 'GET')
+      const req = TestHelper.createRequest(`/administrator/organizations/memberships?accountid=${owner.account.accountid}`, 'GET')
       req.account = administrator.account
       req.session = administrator.session
       await req.route.api.before(req)
@@ -27,7 +27,7 @@ describe('/administrator/organizations/memberships', () => {
       await TestHelper.createOrganization(owner)
       const user = await TestHelper.createUser()
       await TestHelper.createMembership(user, owner.organization.organizationid)
-      const req = TestHelper.createRequest(`/administrator/organizations/memberships?organizationid=${owner.organization.organizationid}`, 'GET')
+      const req = TestHelper.createRequest(`/administrator/organizations/memberships?accountid=${owner.account.accountid}`, 'GET')
       req.account = administrator.account
       req.session = administrator.session
       const res = TestHelper.createResponse()
@@ -36,6 +36,75 @@ describe('/administrator/organizations/memberships', () => {
         assert.notEqual(null, doc)
         const membershipRow = doc.getElementById(user.membership.membershipid)
         assert.notEqual(null, membershipRow)
+      }
+      return req.route.api.get(req, res)
+    })
+
+    it('should limit memberships to one page', async () => {
+      const administrator = await TestHelper.createAdministrator()
+      const user = await TestHelper.createUser()
+      for (let i = 0, len = 20; i < len; i++) {
+        const owner = await TestHelper.createUser()
+        await TestHelper.createOrganization(owner)
+        await TestHelper.createMembership(user, owner.organization.organizationid)
+      }
+      const req = TestHelper.createRequest(`/administrator/organizations/memberships?accountid=${user.account.accountid}`, 'GET')
+      req.account = administrator.account
+      req.session = administrator.session
+      const res = TestHelper.createResponse()
+      res.end = async (str) => {
+        const doc = TestHelper.extractDoc(str)
+        assert.notEqual(null, doc)
+        const table = doc.getElementById('memberships-table')
+        const rows = table.getElementsByTagName('tr')
+        assert.equal(rows.length, global.PAGE_SIZE + 1)
+      }
+      return req.route.api.get(req, res)
+    })
+
+    it('should enforce page size', async () => {
+      const administrator = await TestHelper.createAdministrator()
+      const user = await TestHelper.createUser()
+      for (let i = 0, len = 20; i < len; i++) {
+        const owner = await TestHelper.createUser()
+        await TestHelper.createOrganization(owner)
+        await TestHelper.createMembership(user, owner.organization.organizationid)
+      }
+      const req = TestHelper.createRequest(`/administrator/organizations/memberships?accountid=${user.account.accountid}`, 'GET')
+      req.account = administrator.account
+      req.session = administrator.session
+      global.PAGE_SIZE = 8
+      const res = TestHelper.createResponse()
+      res.end = async (str) => {
+        const doc = TestHelper.extractDoc(str)
+        assert.notEqual(null, doc)
+        const table = doc.getElementById('memberships-table')
+        const rows = table.getElementsByTagName('tr')
+        assert.equal(rows.length, 8 + 1)
+      }
+      return req.route.api.get(req, res)
+    })
+
+    it('should enforce specified offset', async () => {
+      const administrator = await TestHelper.createAdministrator()
+      const user = await TestHelper.createUser()
+      const memberships = []
+      for (let i = 0, len = 20; i < len; i++) {
+        const owner = await TestHelper.createUser()
+        await TestHelper.createOrganization(owner)
+        const membership = await TestHelper.createMembership(user, owner.organization.organizationid)
+        memberships.unshift(membership)
+      }
+      const req = TestHelper.createRequest(`/administrator/organizations/memberships?accountid=${user.account.accountid}&offset=10`, 'GET')
+      req.account = administrator.account
+      req.session = administrator.session
+      const res = TestHelper.createResponse()
+      res.end = async (str) => {
+        const doc = TestHelper.extractDoc(str)
+        assert.notEqual(null, doc)
+        for (let i = 0, len = 10; i < len; i++) {
+          assert.notEqual(null, doc.getElementById(memberships[10 + i].membershipid))
+        }
       }
       return req.route.api.get(req, res)
     })

@@ -1,19 +1,40 @@
 const dashboard = require('@userappstore/dashboard')
 
 module.exports = {
+  count,
+  countAll,
+  countByOrganization,
   create,
   deleteAccount,
   deleteMembership,
   generateID,
   getProperty,
-  isUniqueMembership,
-  list,
+  isMember,
   listAll,
-  listByAccount,
+  listByOrganization,
+  list,
   load,
   loadMany,
   removeProperty,
   setProperty
+}
+
+async function count (accountid) {
+  if (!accountid || !accountid.length) {
+    throw new Error('invalid-accountid')
+  }
+  return global.redisClient.llenAsync(`memberships:account:${accountid}`) || 0
+}
+
+async function countAll () {
+  return global.redisClient.llenAsync(`memberships`) || 0
+}
+
+async function countByOrganization (organizationid) {
+  if (!organizationid || !organizationid.length) {
+    throw new Error('invalid-organizationid')
+  }
+  return global.redisClient.llenAsync(`memberships:organization:${organizationid}`) || 0
 }
 
 async function load (membershipid, ignoreDeletedMemberships) {
@@ -53,18 +74,18 @@ async function create (organizationid, accountid) {
   }
   const membershipid = await generateID()
   const fieldsAndValues = [
-    `accountid`, accountid,
     `membershipid`, membershipid,
     `organizationid`, organizationid,
+    `accountid`, accountid,
     `created`, dashboard.Timestamp.now
   ]
-  await global.redisClient.lpushAsync(`memberships:${organizationid}`, membershipid)
   await global.redisClient.lpushAsync(`memberships:account:${accountid}`, membershipid)
-  await global.redisClient.lpushAsync(`memberships:accounts:${organizationid}`, accountid)
+  await global.redisClient.lpushAsync(`memberships:organization:${organizationid}`, membershipid)
   await global.redisClient.hmsetAsync(`membership:${membershipid}`, fieldsAndValues)
   await global.redisClient.lpushAsync('memberships', membershipid)
   await dashboard.Account.setProperty(accountid, 'membership_lastCreated', dashboard.Timestamp.now)
-  return load(membershipid)
+  const membership = await load(membershipid)
+  return membership
 }
 
 async function generateID () {
@@ -80,49 +101,45 @@ async function deleteMembership (membershipid) {
   if (!membership) {
     throw new Error('invalid-membershipid')
   }
-  await global.redisClient.lremAsync(`memberships:${membership.organizationid}`, 1, membershipid)
+  await global.redisClient.lremAsync(`memberships:organization:${membership.organizationid}`, 1, membershipid)
   await global.redisClient.lremAsync(`memberships:account:${membership.accountid}`, 1, membershipid)
-  await global.redisClient.lremAsync(`memberships:accounts:${membership.organizationid}`, 1, membership.accountid)
   await global.redisClient.delAsync(`membership:${membershipid}`)
   await dashboard.Account.setProperty(membership.accountid, 'membership_lastDeleted', dashboard.Timestamp.now)
   await global.redisClient.lremAsync('memberships', 1, membershipid)
   return true
 }
 
-async function list (organizationid) {
-  const membershipids = await global.redisClient.lrangeAsync(`memberships:${organizationid}`, 0, -1)
+async function listByOrganization (organizationid, offset) {
+  if (!organizationid || !organizationid.length) {
+    throw new Error('invalid-organizationid')
+  }
+  offset = offset || 0
+  const membershipids = await global.redisClient.lrangeAsync(`memberships:organization:${organizationid}`, offset, offset + global.PAGE_SIZE - 1)
   if (!membershipids || !membershipids.length) {
     return
   }
   return loadMany(membershipids)
 }
 
-async function listByAccount (accountid) {
-  const membershipids = await global.redisClient.lrangeAsync(`memberships:account:${accountid}`, 0, -1)
+async function list (accountid, offset) {
+  if (!accountid || !accountid.length) {
+    throw new Error('invalid-accountid')
+  }
+  offset = offset || 0
+  const membershipids = await global.redisClient.lrangeAsync(`memberships:account:${accountid}`, offset, offset + global.PAGE_SIZE - 1)
   if (!membershipids || !membershipids.length) {
     return
   }
   return loadMany(membershipids)
 }
 
-async function isUniqueMembership (organizationid, accountid) {
-  const memberships = await listByAccount(accountid)
-  if (memberships && memberships.length) {
-    for (const membership of memberships) {
-      if (organizationid === membership.organizationid) {
-        return false
-      }
-    }
-  }
-  return true
-}
-
-async function listAll (organizationid) {
+async function listAll (accountid, offset) {
+  offset = offset || 0
   let membershipids
-  if (organizationid) {
-    membershipids = await global.redisClient.lrangeAsync(`memberships:${organizationid}`, 0, -1)
+  if (accountid) {
+    membershipids = await global.redisClient.lrangeAsync(`memberships:account:${accountid}`, offset, offset + global.PAGE_SIZE - 1)
   } else {
-    membershipids = await global.redisClient.lrangeAsync(`memberships`, 0, -1)
+    membershipids = await global.redisClient.lrangeAsync(`memberships`, offset, offset + global.PAGE_SIZE - 1)
   }
   if (!membershipids || !membershipids.length) {
     return
@@ -143,6 +160,18 @@ async function loadMany (membershipids, ignoreDeletedMemberships) {
     memberships.push(membership)
   }
   return memberships
+}
+
+async function isMember (organizationid, accountid) {
+  const memberships = await list(accountid)
+  if (memberships && memberships.length) {
+    for (const membership of memberships) {
+      if (organizationid === membership.organizationid) {
+        return true
+      }
+    }
+  }
+  return false
 }
 
 async function setProperty (membershipid, property, value) {

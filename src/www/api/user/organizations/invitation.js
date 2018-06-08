@@ -1,39 +1,23 @@
-const dashboard = require('@userappstore/dashboard')
-const Invitation = require('../../../../invitation.js')
-const Organization = require('../../../../organization.js')
+const orgs = require('../../../../../index.js')
 
 module.exports = {
   get: async (req) => {
     if (!req.query || !req.query.invitationid) {
       throw new Error('invalid-invitationid')
     }
-    const invitation = await Invitation.load(req.query.invitationid)
+    const invitation = await orgs.Invitation.load(req.query.invitationid)
     if (!invitation) {
       throw new Error('invalid-invitationid')
     }
-    const organization = await Organization.load(invitation.organizationid)
+    const organization = await orgs.Organization.load(invitation.organizationid)
     if (organization.ownerid !== req.account.accountid) {
-      req.query.accountid = req.account.accountid
-      const memberships = await global.api.user.organizations.AccountMemberships.get(req)
-      let found = false
-      if (memberships && memberships.length) {
-        for (const membership of memberships) {
-          if (membership.organizationid === organization.organizationid) {
-            found = true
-            break
-          }
-        }
-      }
-      if (found) {
+      const member = await orgs.Membership.isMember(invitation.organizationid, req.account.accountid)
+      if (member) {
         throw new Error('invalid-account')
       }
     }
-    const owner = await dashboard.Account.load(organization.ownerid)
-    if (!owner || owner.deleted) {
-      throw new Error('invalid-organization')
-    }
-
+    invitation.organization = organization
     delete (invitation.code)
-    return { invitation, organization }
+    return invitation
   }
 }

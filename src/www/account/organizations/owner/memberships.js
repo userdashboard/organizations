@@ -17,13 +17,15 @@ async function beforeRequest (req) {
   if (organization.ownerid !== req.account.accountid) {
     throw new Error('invalid-account')
   }
-  const memberships = await global.api.user.organizations.Memberships.get(req)
+  const count = await global.api.user.organizations.OrganizationMembershipsCount.get(req)
+  const memberships = await global.api.user.organizations.OrganizationMemberships.get(req)
   if (memberships && memberships.length) {
     for (const membership of memberships) {
       membership.created = dashboard.Timestamp.date(membership.created)
     }
   }
-  req.data = { memberships }
+  const offset = req.query ? req.query.offset || 0 : 0
+  req.data = { memberships, count, offset }
 }
 
 async function renderPage (req, res) {
@@ -31,6 +33,11 @@ async function renderPage (req, res) {
   await Navigation.render(req, doc)
   if (req.data.memberships && req.data.memberships.length) {
     doc.renderTable(req.data.memberships, 'membership-row-template', 'memberships-table')
+    if (req.data.count < global.PAGE_SIZE) {
+      doc.removeElementById('page-links')
+    } else {
+      doc.renderPagination(req.data.offset, req.data.count)
+    }
   } else {
     doc.removeElementById('memberships-table')
   }

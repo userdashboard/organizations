@@ -1,12 +1,12 @@
 <html navbar="/account/organizations/owner/navbar-organization.html">
   <head>
-    <title>Memberships</title>
+    <title>Organization memberships</title>
     <link href="/public/pure-min.css" rel="stylesheet" />
     <link href="/public/content.css" rel="stylesheet" />
     <base target="_top" href="/" />
   </head>
   <body>
-    <h1>Memberships</h1>
+    <h1>Organization memberships</h1>
     <table id="memberships-table" class="pure-table pure-table-striped">
       <thead>
         <tr>
@@ -19,7 +19,11 @@
         </tr>
       </thead>
     </table>
+    <ul id="page-links" class="pagination"></ul>
   </body>
+  <template id='page-link-template'>
+    <li><a href="/account/organizations/memberships?offset=${offset}" id="page-link-${pageNumber}">${pageNumber}</a></li>
+  </template>
   <template id="membership-row-template">
     <tr id="${membershipid}">
       <td><a href="membership?membershipid=${membershipid}">${membershipid}</a></td>

@@ -1,13 +1,13 @@
 {
   "name": "@userappstore/organizations",
-  "version": "1.0.1035",
+  "version": "1.0.1036",
   "description": "",
   "main": "index.js",
   "devDependencies": {
     "dotenv": "^4.0.0"
   },
   "scripts": {
-    "test": "NODE_ENV=testing mocha src --recursive --timeout 10000 --slow 5000",
+    "test": "NODE_ENV=testing mocha src --recursive --timeout 60000 --slow 60000",
     "start": "node main.js",
     "debug": "node main.js --debug-brk=5858"
   },

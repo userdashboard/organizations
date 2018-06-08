@@ -1,8 +1,8 @@
-const Membership = require('../../index.js').Membership
+const orgs = require('../../index.js')
 
 module.exports = {
   after: async (req) => {
-    const memberships = await Membership.listByAccount(req.account.accountid)
+    const memberships = await orgs.Membership.list(req.account.accountid)
     if (!memberships || !memberships.length) {
       return
     }

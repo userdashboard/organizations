@@ -7,13 +7,15 @@ module.exports = {
 }
 
 async function beforeRequest (req) {
+  const count = await global.api.administrator.organizations.InvitationsCount.get(req)
   const invitations = await global.api.administrator.organizations.Invitations.get(req)
   if (invitations && invitations.length) {
     for (const invitation of invitations) {
       invitation.created = dashboard.Timestamp.date(invitation.created)
     }
   }
-  req.data = { invitations }
+  const offset = req.query ? req.query.offset || 0 : 0
+  req.data = { invitations, count, offset }
 }
 
 async function renderPage (req, res) {
@@ -35,6 +37,11 @@ async function renderPage (req, res) {
       }
     }
     doc.removeElementsById(removeElements)
+    if (req.data.count < global.PAGE_SIZE) {
+      doc.removeElementById('page-links')
+    } else {
+      doc.renderPagination(req.data.offset, req.data.count)
+    }
   }
   return dashboard.Response.end(req, res, doc)
 }

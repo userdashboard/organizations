@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 const assert = require('assert')
-const Organizations = require('./x-organizations-header.js')
+const XOrganizationsHeader = require('./x-organizations-header.js')
 const TestHelper = require('../test-helper.js')
 
 describe(`proxy/x-organizations-header`, () => {
@@ -11,7 +11,7 @@ describe(`proxy/x-organizations-header`, () => {
       const req = TestHelper.createRequest(`/account/organizations`, 'GET')
       req.account = owner.account
       req.session = owner.session
-      await Organizations.after(req)
+      await XOrganizationsHeader.after(req)
       assert.notEqual(null, req.headers['x-organizations'])
       const organizations = JSON.parse(req.headers['x-organizations'])
       assert.equal(organizations.length, 1)

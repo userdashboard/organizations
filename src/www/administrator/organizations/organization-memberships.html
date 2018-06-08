@@ -1,0 +1,38 @@
+<html navbar="/administrator/organizations/navbar.html">
+  <head>
+    <title>Organization memberships</title>
+    <link href="/public/pure-min.css" rel="stylesheet" />
+    <link href="/public/content.css" rel="stylesheet" />
+    <base target="_top" href="/" />
+  </head>
+  <body>
+    <h1>Organization memberships</h1>
+    <table id="memberships-table" class="pure-table pure-table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Email</th>
+          <th>Created</th>
+          <th>Invitation</th>
+          <th>Organization</th>
+          <th></th>
+        </tr>
+      </thead>
+    </table>
+    <ul id="page-links" class="pagination"></ul>
+  </body>
+  <template id='page-link-template'>
+    <li><a href="/administrator/organizations/organization-memberships?offset=${offset}" id="page-link-${pageNumber}">${pageNumber}</a></li>
+  </template>
+  <template id="membership-row-template">
+    <tr id="${membershipid}">
+      <td><a href="membership?membershipid=${membershipid}">${membershipid}</a></td>
+      <td>${email}</td>
+      <td>${created}</td>
+      <td><a href="/administrator/organizations/invitation?invitationid=${invitationid}">Invitation</a></td>
+      <td><a href="/administrator/organizations/organization?organizationid=${organizationid}">Organization</a></td>
+      <td class="pure-button-group" role="group">
+      </td>
+    </tr>
+  </template>
+</html>

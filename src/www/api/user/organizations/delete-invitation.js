@@ -1,6 +1,5 @@
 const dashboard = require('@userappstore/dashboard')
-const Invitation = require('../../../../invitation.js')
-const Organization = require('../../../../organization.js')
+const orgs = require('../../../../../index.js')
 
 module.exports = {
   lock: true,
@@ -8,24 +7,20 @@ module.exports = {
     if (!req.query || !req.query.invitationid) {
       throw new Error('invalid-invitationid')
     }
-    const invitation = await Invitation.load(req.query.invitationid)
+    const invitation = await orgs.Invitation.load(req.query.invitationid)
     if (!invitation) {
       throw new Error('invalid-invitationid')
     }
     if (invitation.accepted) {
       throw new Error('invalid-invitation')
     }
-    const organization = await Organization.load(invitation.organizationid)
+    const organization = await orgs.Organization.load(invitation.organizationid)
     if (!organization || organization.ownerid !== req.account.accountid) {
-      throw new Error('invalid-organization')
-    }
-    const owner = await dashboard.Account.load(organization.ownerid)
-    if (!owner || owner.deleted) {
       throw new Error('invalid-organization')
     }
   },
   delete: async (req) => {
-    await Invitation.deleteInvitation(req.query.invitationid)
+    await orgs.Invitation.deleteInvitation(req.query.invitationid)
     req.session = await dashboard.Session.load(req.session.sessionid)
     req.success = true
   }

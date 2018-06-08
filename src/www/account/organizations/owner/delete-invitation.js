@@ -11,12 +11,12 @@ async function beforeRequest (req) {
   if (!req.query || !req.query.invitationid) {
     throw new Error('invalid-invitationid')
   }
-  const data = await global.api.user.organizations.Invitation.get(req)
-  const invitation = data.invitation
+  const invitation = await global.api.user.organizations.Invitation.get(req)
   if (invitation.accepted) {
     throw new Error('invalid-invitation')
   }
-  const organization = data.organization
+  req.query.organizationid = invitation.organizationid
+  const organization = await global.api.user.organizations.Organization.get(req)
   if (organization.ownerid !== req.account.accountid) {
     throw new Error('invalid-account')
   }

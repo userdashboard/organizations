@@ -1,28 +1,15 @@
-const Membership = require('../../../../membership.js')
-const Organization = require('../../../../organization.js')
+const orgs = require('../../../../../index.js')
 
 module.exports = {
   get: async (req) => {
-    if (!req.query || !req.query.organizationid) {
-      throw new Error('invalid-organizationid')
+    if (!req.query || !req.query.accountid) {
+      throw new Error('invalid-accountid')
     }
-    const organization = await Organization.load(req.query.organizationid)
-    if (!organization) {
-      throw new Error('invalid-organization')
+    if (req.account.accountid !== req.query.accountid) {
+      throw new Error('invalid-account')
     }
-    const memberships = await Membership.list(req.query.organizationid)
-    if (memberships && memberships.length && organization.ownerid !== req.account.accountid) {
-      let isMember = false
-      for (const membership of memberships) {
-        isMember = membership.accountid === req.account.accountid
-        if (isMember) {
-          break
-        }
-      }
-      if (!isMember) {
-        throw new Error('invalid-membership')
-      }
-    }
+    const offset = req.query && req.query.offset ? parseInt(req.query.offset, 10) : 0
+    const memberships = await orgs.Membership.list(req.query.accountid, offset)
     if (!memberships || !memberships.length) {
       return null
     }

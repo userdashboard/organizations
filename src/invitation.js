@@ -1,14 +1,18 @@
 const dashboard = require('@userappstore/dashboard')
-const Organization = require('./organization.js')
 
 module.exports = {
   accept,
+  count,
+  countAll,
+  countByOrganization,
   create,
   deleteInvitation,
   generateID,
   getProperty,
   list,
   listAll,
+  listAllByOrganization,
+  listByOrganization,
   load,
   loadMany,
   removeProperty,
@@ -39,14 +43,29 @@ async function load (invitationid, ignoreDeletedInvitations) {
   return invitation
 }
 
+async function count (accountid) {
+  if (!accountid || !accountid.length) {
+    throw new Error('invalid-accountid')
+  }
+  return global.redisClient.llenAsync(`invitations:account:${accountid}`) || 0
+}
+
+async function countAll () {
+  return global.redisClient.llenAsync(`invitations`) || 0
+}
+
+async function countByOrganization (organizationid) {
+  if (!organizationid || !organizationid.length) {
+    throw new Error('invalid-organizationid')
+  }
+  return global.redisClient.llenAsync(`invitations:organization:${organizationid}`) || 0
+}
+
 async function create (organizationid, codeHash) {
   if (!organizationid || !organizationid.length) {
     throw new Error('invalid-organizationid')
   }
-  const organization = await Organization.load(organizationid)
-  if (!organization) {
-    throw new Error('invalid-organizationid')
-  }
+  const ownerid = await global.redisClient.hgetAsync(`organization:${organizationid}`, `ownerid`)
   const invitationid = await generateID()
   const fieldsAndValues = [
     `organizationid`, organizationid,
@@ -54,11 +73,12 @@ async function create (organizationid, codeHash) {
     `code`, codeHash,
     `created`, dashboard.Timestamp.now
   ]
-  await global.redisClient.hsetAsync(`map:invitations:${organizationid}`, codeHash, invitationid)
-  await global.redisClient.lpushAsync(`invitations:${organizationid}`, invitationid)
+  await global.redisClient.hsetAsync(`map:invitations:organization:${organizationid}`, codeHash, invitationid)
+  await global.redisClient.lpushAsync(`invitations:organization:${organizationid}`, invitationid)
+  await global.redisClient.lpushAsync(`invitations:account:${ownerid}`, invitationid)
   await global.redisClient.hmsetAsync(`invitation:${invitationid}`, fieldsAndValues)
   await global.redisClient.lpushAsync('invitations', invitationid)
-  await dashboard.Account.setProperty(organization.ownerid, 'invitation_lastCreated', dashboard.Timestamp.now)
+  await dashboard.Account.setProperty(ownerid, 'invitation_lastCreated', dashboard.Timestamp.now)
   return load(invitationid)
 }
 
@@ -77,15 +97,12 @@ async function accept (organizationid, code, accountid) {
   if (!accountid || !accountid.length) {
     throw new Error('invalid-accountid')
   }
-  const organization = await Organization.load(organizationid)
-  if (!organization) {
-    throw new Error('invalid-organizationid')
-  }
-  if (accountid === organization.ownerid) {
+  const ownerid = await global.redisClient.hgetAsync(`organization:${organizationid}`, `ownerid`)
+  if (accountid === ownerid) {
     throw new Error('invalid-account')
   }
   const codeHash = dashboard.Hash.fixedSaltHash(code)
-  const invitationid = await global.redisClient.hgetAsync(`map:invitations:${organizationid}`, codeHash)
+  const invitationid = await global.redisClient.hgetAsync(`map:invitations:organization:${organizationid}`, codeHash)
   if (!invitationid) {
     throw new Error('invalid-invitation-code')
   }
@@ -93,7 +110,7 @@ async function accept (organizationid, code, accountid) {
   if (!invitation || invitation.accepted) {
     throw new Error('invalid-invitation')
   }
-  await dashboard.Account.setProperty(organization.ownerid, 'invitation_lastAccepted', dashboard.Timestamp.now)
+  await dashboard.Account.setProperty(ownerid, 'invitation_lastAccepted', dashboard.Timestamp.now)
   await setProperty(invitationid, 'accepted', accountid)
   return invitation
 }
@@ -106,48 +123,65 @@ async function deleteInvitation (invitationid) {
   if (!invitation) {
     throw new Error('invalid-invitationid')
   }
-  const organization = await Organization.load(invitation.organizationid)
-  if (!organization) {
-    throw new Error('invalid-organization')
-  }
+  const ownerid = await global.redisClient.hgetAsync(`organization:${invitation.organizationid}`, `ownerid`)
   await global.redisClient.lremAsync(`invitations:organization:${invitation.organizationid}`, 1, invitationid)
-  await global.redisClient.hdelAsync(`map:invitations:account:${organization.organizationid}`, invitation.code)
+  await global.redisClient.hdelAsync(`map:invitations:account:${invitation.organizationid}`, invitation.code)
   await global.redisClient.delAsync(`invitation:${invitationid}`)
-  await dashboard.Account.setProperty(organization.ownerid, 'invitation_lastDeleted', dashboard.Timestamp.now)
+  await dashboard.Account.setProperty(ownerid, 'invitation_lastDeleted', dashboard.Timestamp.now)
   await global.redisClient.lremAsync('invitations', 1, invitationid)
   return true
 }
 
-async function list (organizationid) {
-  if (!organizationid || !organizationid.length) {
-    throw new Error('invalid-organizationid')
+async function list (accountid, offset) {
+  if (!accountid || !accountid.length) {
+    throw new Error('invalid-accountid')
   }
-  const organization = await Organization.load(organizationid)
-  if (!organization) {
-    throw new Error('invalid-organizationid')
-  }
-  const invitationids = await global.redisClient.lrangeAsync(`invitations:${organizationid}`, 0, -1)
+  offset = offset || 0
+  const invitationids = await global.redisClient.lrangeAsync(`invitations:account:${accountid}`, offset, offset + global.PAGE_SIZE - 1)
   if (!invitationids || !invitationids.length) {
     return
   }
   return loadMany(invitationids)
 }
 
-async function listAll (organizationid) {
+async function listAll (accountid, offset) {
+  offset = offset || 0
   let invitationids
-  if (organizationid) {
-    const organization = await Organization.load(organizationid)
-    if (!organization) {
-      throw new Error('invalid-organizationid')
-    }
-    invitationids = await global.redisClient.lrangeAsync(`invitations:${organizationid}`, 0, -1)
+  if (accountid) {
+    invitationids = await global.redisClient.lrangeAsync(`invitations:account:${accountid}`, offset, offset + global.PAGE_SIZE - 1)
   } else {
-    invitationids = await global.redisClient.lrangeAsync(`invitations`, 0, -1)
+    invitationids = await global.redisClient.lrangeAsync(`invitations`, offset, offset + global.PAGE_SIZE - 1)
   }
   if (!invitationids || !invitationids.length) {
     return
   }
   return loadMany(invitationids, true)
+}
+
+async function listAllByOrganization (organizationid, offset) {
+  offset = offset || 0
+  let invitationids
+  if (organizationid) {
+    invitationids = await global.redisClient.lrangeAsync(`invitations:organization:${organizationid}`, offset, offset + global.PAGE_SIZE - 1)
+  } else {
+    invitationids = await global.redisClient.lrangeAsync(`invitations`, offset, offset + global.PAGE_SIZE - 1)
+  }
+  if (!invitationids || !invitationids.length) {
+    return
+  }
+  return loadMany(invitationids, true)
+}
+
+async function listByOrganization (organizationid, offset) {
+  if (!organizationid || !organizationid.length) {
+    throw new Error('invalid-organizationid')
+  }
+  offset = offset || 0
+  const invitationids = await global.redisClient.lrangeAsync(`invitations:organization:${organizationid}`, offset, offset + global.PAGE_SIZE - 1)
+  if (!invitationids || !invitationids.length) {
+    return
+  }
+  return loadMany(invitationids)
 }
 
 async function loadMany (invitationids, ignoreDeletedInvitations) {

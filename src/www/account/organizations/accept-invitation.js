@@ -11,20 +11,23 @@ async function beforeRequest (req) {
   if (!req.query || !req.query.invitationid) {
     throw new Error('invalid-invitationid')
   }
-  const data = await global.api.user.organizations.Invitation.get(req)
-  if (!data) {
-    throw new Error('invalid-invitationid')
-  }
+  const data = await global.api.user.organizations.OpenInvitation.get(req)
   const invitation = data.invitation
+  const organization = data.organization
   if (invitation.accepted && invitation.accepted !== req.account.accountid) {
     throw new Error('invalid-invitation')
   }
-  const organization = data.organization
-  if (!organization) {
-    throw new Error('invalid-organization')
-  }
   if (req.account.accountid === organization.ownerid) {
     throw new Error('invalid-account')
+  }
+  req.query.accountid = req.account.accountid
+  const memberships = await global.api.user.organizations.Memberships.get(req)
+  if (memberships && memberships.length) {
+    for (const membership of memberships) {
+      if (membership.organizationid === organization.organizationid) {
+        throw new Error('invalid-account')
+      }
+    }
   }
   req.data = { organization }
   if (req.session.lockURL === req.url && req.session.unlocked >= dashboard.Timestamp.now) {

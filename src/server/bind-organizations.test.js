@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 const assert = require('assert')
-const Organizations = require('./bind-organizations.js')
+const BindOrganizations = require('./bind-organizations.js')
 const TestHelper = require('../test-helper.js')
 
 describe(`server/bind-organizations`, () => {
@@ -11,7 +11,7 @@ describe(`server/bind-organizations`, () => {
       const req = TestHelper.createRequest(`/account/organizations`, 'GET')
       req.account = owner.account
       req.session = owner.session
-      await Organizations.after(req)
+      await BindOrganizations.after(req)
       assert.notEqual(null, req.organizations)
       assert.equal(req.organizations.length, 1)
       assert.equal(req.organizations[0].organizationid, owner.organization.organizationid)

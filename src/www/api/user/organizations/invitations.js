@@ -1,16 +1,15 @@
-const Invitation = require('../../../../invitation.js')
-const Organization = require('../../../../organization.js')
+const orgs = require('../../../../../index.js')
 
 module.exports = {
   get: async (req) => {
-    if (!req.query || !req.query.organizationid) {
-      throw new Error('invalid-organizationid')
+    if (!req.query || !req.query.accountid) {
+      throw new Error('invalid-accountid')
     }
-    const organization = await Organization.load(req.query.organizationid)
-    if (!organization || organization.ownerid !== req.account.accountid) {
-      throw new Error('invalid-organization')
+    if (req.account.accountid !== req.query.accountid) {
+      throw new Error('invalid-account')
     }
-    const invitations = await Invitation.list(req.query.organizationid)
+    const offset = req.query && req.query.offset ? parseInt(req.query.offset, 10) : 0
+    const invitations = await orgs.Invitation.list(req.query.accountid, offset)
     if (!invitations || !invitations.length) {
       return null
     }

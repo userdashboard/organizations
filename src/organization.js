@@ -1,6 +1,8 @@
 const dashboard = require('@userappstore/dashboard')
 
 module.exports = {
+  count,
+  countAll,
   create,
   deleteAccount,
   deleteOrganization,
@@ -36,6 +38,17 @@ async function load (organizationid, ignoreDeletedOrganization) {
     }
   }
   return organization
+}
+
+async function count (accountid) {
+  if (!accountid || !accountid.length) {
+    throw new Error('invalid-accountid')
+  }
+  return global.redisClient.llenAsync(`organizations:account:${accountid}`) || 0
+}
+
+async function countAll () {
+  return global.redisClient.llenAsync(`organizations`) || 0
 }
 
 async function create (accountid, name) {
@@ -83,20 +96,25 @@ async function deleteOrganization (organizationid) {
   return true
 }
 
-async function list (accountid) {
-  const organizationids = await global.redisClient.lrangeAsync(`organizations:account:${accountid}`, 0, -1)
+async function list (accountid, offset) {
+  if (!accountid || !accountid.length) {
+    throw new Error('invalid-accountid')
+  }
+  offset = offset || 0
+  const organizationids = await global.redisClient.lrangeAsync(`organizations:account:${accountid}`, offset, offset + global.PAGE_SIZE - 1)
   if (!organizationids || !organizationids.length) {
     return
   }
   return loadMany(organizationids)
 }
 
-async function listAll (accountid) {
+async function listAll (accountid, offset) {
+  offset = offset || 0
   let organizationids
   if (accountid) {
-    organizationids = await global.redisClient.lrangeAsync(`organizations:account:${accountid}`, 0, -1)
+    organizationids = await global.redisClient.lrangeAsync(`organizations:account:${accountid}`, offset, offset + global.PAGE_SIZE - 1)
   } else {
-    organizationids = await global.redisClient.lrangeAsync(`organizations`, 0, -1)
+    organizationids = await global.redisClient.lrangeAsync(`organizations`, offset, offset + global.PAGE_SIZE - 1)
   }
   if (!organizationids || !organizationids.length) {
     return

@@ -21,15 +21,14 @@ describe('/api/user/organizations/invitation', () => {
       return req.route.api.get(req, res)
     })
 
-    it('should return invitation data', async () => {
+    it('should return invitation', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       await TestHelper.createInvitation(owner, owner.organization.organizationid)
       const req = TestHelper.createRequest(`/api/user/organizations/invitation?invitationid=${owner.invitation.invitationid}`, 'GET')
       req.account = owner.account
       req.session = owner.session
-      const data = await req.route.api.get(req)
-      const invitation = data.invitation
+      const invitation = await req.route.api.get(req)
       assert.notEqual(invitation, null)
       assert.notEqual(invitation.invitationid, null)
     })
@@ -41,8 +40,7 @@ describe('/api/user/organizations/invitation', () => {
       const req = TestHelper.createRequest(`/api/user/organizations/invitation?invitationid=${owner.invitation.invitationid}`, 'GET')
       req.account = owner.account
       req.session = owner.session
-      const data = await req.route.api.get(req)
-      const invitation = data.invitation
+      const invitation = await req.route.api.get(req)
       assert.notEqual(invitation, null)
       assert.notEqual(invitation.invitationid, null)
       assert.equal(invitation.code, null)

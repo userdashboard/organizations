@@ -1,5 +1,5 @@
 const dashboard = require('@userappstore/dashboard')
-const Membership = require('../../../../membership.js')
+const orgs = require('../../../../../index.js')
 
 module.exports = {
   lock: true,
@@ -18,7 +18,7 @@ module.exports = {
         throw new Error('invalid-membership-field-length')
       }
     }
-    const membership = await Membership.load(req.query.membershipid)
+    const membership = await orgs.Membership.load(req.query.membershipid)
     if (!membership || membership.accountid !== req.account.accountid) {
       throw new Error('invalid-membership')
     }
@@ -28,10 +28,10 @@ module.exports = {
       if (global.MEMBERSHIP_FIELDS.indexOf(property) === -1) {
         continue
       }
-      await Membership.setProperty(req.query.membershipid, property, req.body[property])
+      await orgs.Membership.setProperty(req.query.membershipid, property, req.body[property])
     }
     req.session = await dashboard.Session.load(req.session.sessionid)
     req.success = true
-    return Membership.load(req.query.membershipid)
+    return orgs.Membership.load(req.query.membershipid)
   }
 }

@@ -9,13 +9,15 @@ module.exports = {
 async function beforeRequest (req) {
   req.query = req.query || {}
   req.query.accountid = req.account.accountid
-  const ownedOrganizations = await global.api.user.organizations.Organizations.get(req)
-  if (ownedOrganizations && ownedOrganizations.length) {
-    for (const organization of ownedOrganizations) {
+  const count = await global.api.user.organizations.OrganizationsCount.get(req)
+  const organizations = await global.api.user.organizations.Organizations.get(req)
+  if (organizations && organizations.length) {
+    for (const organization of organizations) {
       organization.created = dashboard.Timestamp.date(organization.created)
     }
   }
-  req.data = { organizations: ownedOrganizations }
+  const offset = req.query ? req.query.offset || 0 : 0
+  req.data = { organizations, count, offset }
 }
 
 async function renderPage (req, res) {
@@ -23,6 +25,13 @@ async function renderPage (req, res) {
   await Navigation.render(req, doc)
   if (req.data.organizations && req.data.organizations.length) {
     doc.renderTable(req.data.organizations, 'organization-row-template', 'organizations-table')
+    if (req.data.count < global.PAGE_SIZE) {
+      doc.removeElementById('page-links')
+    } else {
+      doc.renderPagination(req.data.offset, req.data.count)
+    }
+  } else {
+    doc.removeElementById('organizations-table')
   }
   return dashboard.Response.end(req, res, doc)
 }
