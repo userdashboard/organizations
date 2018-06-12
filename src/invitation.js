@@ -111,6 +111,7 @@ async function accept (organizationid, code, accountid) {
     throw new Error('invalid-invitation')
   }
   await dashboard.Account.setProperty(ownerid, 'invitation_lastAccepted', dashboard.Timestamp.now)
+  await global.redisClient.lpushAsync(`invitations:account:${accountid}`, invitationid)
   await setProperty(invitationid, 'accepted', accountid)
   return invitation
 }
@@ -144,14 +145,9 @@ async function list (accountid, offset) {
   return loadMany(invitationids)
 }
 
-async function listAll (accountid, offset) {
+async function listAll (offset) {
   offset = offset || 0
-  let invitationids
-  if (accountid) {
-    invitationids = await global.redisClient.lrangeAsync(`invitations:account:${accountid}`, offset, offset + global.PAGE_SIZE - 1)
-  } else {
-    invitationids = await global.redisClient.lrangeAsync(`invitations`, offset, offset + global.PAGE_SIZE - 1)
-  }
+  const invitationids = await global.redisClient.lrangeAsync(`invitations`, offset, offset + global.PAGE_SIZE - 1)
   if (!invitationids || !invitationids.length) {
     return
   }

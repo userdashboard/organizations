@@ -146,14 +146,6 @@ describe('internal-api/organization', async () => {
       const listed = await orgs.Organization.listAll()
       assert.equal(3, listed.length)
     })
-
-    it('should filter by accountid', async () => {
-      const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner)
-      await TestHelper.createOrganization(owner)
-      const listed = await orgs.Organization.listAll(owner.account.accountid)
-      assert.equal(listed.length, 2)
-    })
   })
 
   describe('Organization#setProperty', () => {

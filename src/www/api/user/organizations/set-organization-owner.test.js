@@ -2,14 +2,14 @@
 const assert = require('assert')
 const TestHelper = require('../../../../test-helper.js')
 
-describe('/api/user/organizations/transfer-organization', () => {
-  describe('TransferOrganization#PATCH', () => {
+describe('/api/user/organizations/set-organization-owner', () => {
+  describe('SetOrganizationOwner#PATCH', () => {
     it('should require own organization', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const other = await TestHelper.createUser()
       await TestHelper.createOrganization(other)
-      const req = TestHelper.createRequest(`/api/user/organizations/transfer-organization?organizationid=${other.organization.organizationid}`, 'PATCH')
+      const req = TestHelper.createRequest(`/api/user/organizations/set-organization-owner?organizationid=${other.organization.organizationid}`, 'PATCH')
       req.account = owner.account
       req.session = owner.session
       req.body = {
@@ -27,7 +27,7 @@ describe('/api/user/organizations/transfer-organization', () => {
     it('should reject same owner', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
-      const req = TestHelper.createRequest(`/api/user/organizations/transfer-organization?organizationid=${owner.organization.organizationid}`, 'PATCH')
+      const req = TestHelper.createRequest(`/api/user/organizations/set-organization-owner?organizationid=${owner.organization.organizationid}`, 'PATCH')
       req.account = owner.account
       req.session = owner.session
       req.body = {
@@ -46,7 +46,7 @@ describe('/api/user/organizations/transfer-organization', () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const user = await TestHelper.createUser()
-      const req = TestHelper.createRequest(`/api/user/organizations/transfer-organization?organizationid=${owner.organization.organizationid}`, 'PATCH')
+      const req = TestHelper.createRequest(`/api/user/organizations/set-organization-owner?organizationid=${owner.organization.organizationid}`, 'PATCH')
       req.account = owner.account
       req.session = owner.session
       req.body = {
@@ -66,7 +66,7 @@ describe('/api/user/organizations/transfer-organization', () => {
       await TestHelper.createOrganization(owner)
       const user = await TestHelper.createUser()
       await TestHelper.createMembership(user, owner.organization.organizationid)
-      const req = TestHelper.createRequest(`/api/user/organizations/transfer-organization?organizationid=${owner.organization.organizationid}`, 'PATCH')
+      const req = TestHelper.createRequest(`/api/user/organizations/set-organization-owner?organizationid=${owner.organization.organizationid}`, 'PATCH')
       req.account = owner.account
       req.session = owner.session
       req.body = {

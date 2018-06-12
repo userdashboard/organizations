@@ -25,26 +25,6 @@ describe('/api/administrator/organizations/memberships', () => {
       assert.equal(memberships[2].membershipid, owner.membership.membershipid)
     })
 
-    it('should filter by accountid', async () => {
-      const administrator = await TestHelper.createAdministrator()
-      const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner)
-      const owner2 = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner2)
-      const owner3 = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner3)
-      const user = await TestHelper.createUser()
-      const membership1 = await TestHelper.createMembership(user, owner.organization.organizationid)
-      const membership2 = await TestHelper.createMembership(user, owner2.organization.organizationid)
-      const req = TestHelper.createRequest(`/api/administrator/organizations/memberships?accountid=${owner.account.accountid}`, 'GET')
-      req.account = administrator.account
-      req.session = administrator.session
-      const memberships = await req.route.api.get(req)
-      assert.equal(memberships.length, 2)
-      assert.equal(memberships[0].membershipid, membership2.membershipid)
-      assert.equal(memberships[1].membershipid, membership1.membershipid)
-    })
-
     it('should enforce page size', async () => {
       const administrator = await TestHelper.createAdministrator()
       for (let i = 0, len = 20; i < len; i++) {

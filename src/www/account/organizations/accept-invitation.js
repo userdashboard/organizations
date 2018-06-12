@@ -31,7 +31,7 @@ async function beforeRequest (req) {
   }
   req.data = { organization }
   if (req.session.lockURL === req.url && req.session.unlocked >= dashboard.Timestamp.now) {
-    await global.api.user.organizations.AcceptInvitation.patch(req)
+    await global.api.user.organizations.SetInvitationAccepted.patch(req)
   }
 }
 
@@ -61,7 +61,7 @@ async function submitForm (req, res) {
     return renderPage(req, res)
   }
   try {
-    await global.api.user.organizations.AcceptInvitation.patch(req)
+    await global.api.user.organizations.SetInvitationAccepted.patch(req)
     if (req.success) {
       return renderPage(req, res, 'success')
     }

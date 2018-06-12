@@ -1,6 +1,6 @@
 
-> @userappstore/organizations@1.0.1036 test /Users/benlowry/CloudStation/workspaces/dashboard/organizations
-> NODE_ENV=testing mocha src --recursive --timeout 60000 --slow 60000
+> @userappstore/organizations@1.0.1037 test /Users/benlowry/CloudStation/workspaces/dashboard/organizations
+> NODE_ENV=testing mocha src --recursive --timeout 90000 --slow 90000
 
 
 
@@ -27,7 +27,6 @@
       ✓ should return created invitations
     Invitation#listAll()
       ✓ should return all invitations
-      ✓ should filter by accountid
     Invitation#listByOrganization()
       ✓ should require organizationid
       ✓ should return organization's invitations
@@ -83,7 +82,6 @@
       ✓ should return all of owner's memberships
     Membership#listAll()
       ✓ should return all memberships
-      ✓ should filter by accountid
     Membership#listByOrganization()
       ✓ should require organizationid
       ✓ should return organization's memberships
@@ -120,7 +118,6 @@
       ✓ should return all of owner's organizations
     Organization#listAll()
       ✓ should return all organizations
-      ✓ should filter by accountid
     Organization#setProperty
       ✓ should require an organizationid
       ✓ should require a property
@@ -403,8 +400,38 @@
       ✓ should bind owned organizations to req
       ✓ should not bind member organizations to req
     Organizations#GET
-      ✓ should have row for each membership
+      ✓ should have row for each organization
       ✓ should limit organizations to one page
+      ✓ should enforce page size
+      ✓ should enforce specified offset
+
+  /api/administrator/organizations/account-invitations-count
+    AccountInvitationsCount#GET
+      ✓ should count account's invitations
+
+  /api/administrator/organizations/account-invitations
+    Invitations#GET
+      ✓ should return account's invitation list
+      ✓ should enforce page size
+      ✓ should enforce specified offset
+
+  /api/administrator/organizations/account-memberships-count
+    AccountMembershipsCount#GET
+      ✓ should count account's memberships
+
+  /api/administrator/organizations/account-memberships
+    AccountMemberships#GET
+      ✓ should return account's membership list
+      ✓ should enforce page size
+      ✓ should enforce specified offset
+
+  /api/administrator/organizations/account-organizations-count
+    AccountOrganizationsCount#GET
+      ✓ should count account's organizations
+
+  /api/administrator/organizations/account-organizations
+    AccountOrganizations#GET
+      ✓ should return account's organization list
       ✓ should enforce page size
       ✓ should enforce specified offset
 
@@ -420,7 +447,6 @@
   /api/administrator/organizations/invitations
     Invitations#GET
       ✓ should return invitation list
-      ✓ should filter by accountid
       ✓ should enforce page size
       ✓ should enforce specified offset
 
@@ -436,7 +462,6 @@
   /api/administrator/organizations/memberships
     Memberships#GET
       ✓ should return membership list
-      ✓ should filter by accountid
       ✓ should enforce page size
       ✓ should enforce specified offset
 
@@ -472,17 +497,8 @@
   /api/administrator/organizations/organizations
     Organizations#GET
       ✓ should return organization list
-      ✓ should filter by accountid
       ✓ should enforce page size
       ✓ should enforce specified offset
-
-  /api/user/organizations/accept-invitation
-    AcceptInvitation#POST
-      ✓ should enforce code length
-      ✓ should reject a used invitation
-      ✓ should reject owner
-      ✓ should reject existing members
-      ✓ should create authorized membership
 
   /api/user/organizations/create-invitation
     CreateInvitation#POST
@@ -524,6 +540,26 @@
   /api/user/organizations/invitations
     Invitations#GET
       ✓ should return invitation list
+      ✓ should enforce page size
+      ✓ should enforce specified offset
+
+  /api/user/organizations/membership-invitations-count
+    AccountSessionsCount#GET
+      ✓ should count membership' invitations
+
+  /api/user/organizations/membership-invitations
+    MembershipInvitations#GET
+      ✓ should return memberships' invitation list
+      ✓ should enforce page size
+      ✓ should enforce specified offset
+
+  /api/user/organizations/membership-organizations-count
+    AccountSessionsCount#GET
+      ✓ should count memeberships' organizations
+
+  /api/user/organizations/membership-organizations
+    MembershipOrganizations#GET
+      ✓ should return memberships' organization list
       ✓ should enforce page size
       ✓ should enforce specified offset
 
@@ -587,8 +623,16 @@
       ✓ should enforce page size
       ✓ should enforce specified offset
 
-  /api/user/organizations/transfer-organization
-    TransferOrganization#PATCH
+  /api/user/organizations/set-invitation-accepted
+    SetInvitationAccepted#POST
+      ✓ should enforce code length
+      ✓ should reject a used invitation
+      ✓ should reject owner
+      ✓ should reject existing members
+      ✓ should create authorized membership
+
+  /api/user/organizations/set-organization-owner
+    SetOrganizationOwner#PATCH
       ✓ should require own organization
       ✓ should reject same owner
       ✓ should require new owner is member
@@ -607,5 +651,5 @@
     ✓ should apply new values
 
 
-  317 passing (13m)
+  331 passing (18m)
 

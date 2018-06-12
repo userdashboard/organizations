@@ -128,19 +128,14 @@ async function list (accountid, offset) {
   offset = offset || 0
   const membershipids = await global.redisClient.lrangeAsync(`memberships:account:${accountid}`, offset, offset + global.PAGE_SIZE - 1)
   if (!membershipids || !membershipids.length) {
-    return
+    return null
   }
   return loadMany(membershipids)
 }
 
-async function listAll (accountid, offset) {
+async function listAll (offset) {
   offset = offset || 0
-  let membershipids
-  if (accountid) {
-    membershipids = await global.redisClient.lrangeAsync(`memberships:account:${accountid}`, offset, offset + global.PAGE_SIZE - 1)
-  } else {
-    membershipids = await global.redisClient.lrangeAsync(`memberships`, offset, offset + global.PAGE_SIZE - 1)
-  }
+  const membershipids = await global.redisClient.lrangeAsync(`memberships`, offset, offset + global.PAGE_SIZE - 1)
   if (!membershipids || !membershipids.length) {
     return
   }

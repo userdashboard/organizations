@@ -2,14 +2,14 @@
 const assert = require('assert')
 const TestHelper = require('../../../../test-helper.js')
 
-describe(`/api/user/organizations/accept-invitation`, () => {
-  describe('AcceptInvitation#POST', () => {
+describe(`/api/user/organizations/set-invitation-accepted`, () => {
+  describe('SetInvitationAccepted#POST', () => {
     it('should enforce code length', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       await TestHelper.createInvitation(owner, owner.organization.organizationid)
       const user = await TestHelper.createUser()
-      const req = TestHelper.createRequest(`/api/user/organizations/accept-invitation?invitationid=${owner.invitation.invitationid}`, 'POST')
+      const req = TestHelper.createRequest(`/api/user/organizations/set-invitation-accepted?invitationid=${owner.invitation.invitationid}`, 'POST')
       req.account = user.account
       req.session = user.session
       req.body = {
@@ -30,7 +30,7 @@ describe(`/api/user/organizations/accept-invitation`, () => {
       await TestHelper.createOrganization(owner)
       await TestHelper.createInvitation(owner, owner.organization.organizationid)
       const user = await TestHelper.createUser()
-      const req = TestHelper.createRequest(`/api/user/organizations/accept-invitation?invitationid=${owner.invitation.invitationid}`, 'POST')
+      const req = TestHelper.createRequest(`/api/user/organizations/set-invitation-accepted?invitationid=${owner.invitation.invitationid}`, 'POST')
       req.account = user.account
       req.session = user.session
       req.body = {
@@ -41,7 +41,7 @@ describe(`/api/user/organizations/accept-invitation`, () => {
         await TestHelper.completeAuthorization(req)
         await req.route.api.patch(req)
         const user2 = await TestHelper.createUser()
-        const req2 = TestHelper.createRequest(`/api/user/organizations/accept-invitation?invitationid=${owner.invitation.invitationid}`, 'POST')
+        const req2 = TestHelper.createRequest(`/api/user/organizations/set-invitation-accepted?invitationid=${owner.invitation.invitationid}`, 'POST')
         req2.account = user2.account
         req2.session = user2.session
         req2.body = {
@@ -62,7 +62,7 @@ describe(`/api/user/organizations/accept-invitation`, () => {
       await TestHelper.createOrganization(owner)
       await TestHelper.createInvitation(owner, owner.organization.organizationid)
       const invitation1 = owner.invitation
-      const req = TestHelper.createRequest(`/api/user/organizations/accept-invitation?invitationid=${invitation1.invitationid}`, 'POST')
+      const req = TestHelper.createRequest(`/api/user/organizations/set-invitation-accepted?invitationid=${invitation1.invitationid}`, 'POST')
       req.account = owner.account
       req.session = owner.session
       req.body = {
@@ -82,7 +82,7 @@ describe(`/api/user/organizations/accept-invitation`, () => {
       await TestHelper.createInvitation(owner, owner.organization.organizationid)
       const invitation1 = owner.invitation
       const user = await TestHelper.createUser()
-      const req = TestHelper.createRequest(`/api/user/organizations/accept-invitation?invitationid=${invitation1.invitationid}`, 'POST')
+      const req = TestHelper.createRequest(`/api/user/organizations/set-invitation-accepted?invitationid=${invitation1.invitationid}`, 'POST')
       req.account = user.account
       req.session = user.session
       req.body = {
@@ -94,7 +94,7 @@ describe(`/api/user/organizations/accept-invitation`, () => {
         await req.route.api.patch(req)
         await TestHelper.createInvitation(owner, owner.organization.organizationid)
         const invitation2 = owner.invitation
-        const req2 = TestHelper.createRequest(`/api/user/organizations/accept-invitation?invitationid=${invitation2.invitationid}`, 'POST')
+        const req2 = TestHelper.createRequest(`/api/user/organizations/set-invitation-accepted?invitationid=${invitation2.invitationid}`, 'POST')
         req2.account = req.account
         req2.session = req.session
         req2.body = {
@@ -115,7 +115,7 @@ describe(`/api/user/organizations/accept-invitation`, () => {
       await TestHelper.createOrganization(owner)
       await TestHelper.createInvitation(owner, owner.organization.organizationid)
       const user = await TestHelper.createUser()
-      const req = TestHelper.createRequest(`/api/user/organizations/accept-invitation?invitationid=${owner.invitation.invitationid}`, 'POST')
+      const req = TestHelper.createRequest(`/api/user/organizations/set-invitation-accepted?invitationid=${owner.invitation.invitationid}`, 'POST')
       req.account = user.account
       req.session = user.session
       req.body = {

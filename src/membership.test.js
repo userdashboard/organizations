@@ -172,26 +172,6 @@ describe('internal-api/membership', async () => {
       const listed = await orgs.Membership.listAll()
       assert.equal(4, listed.length)
     })
-
-    it('should filter by accountid', async () => {
-      const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner)
-      const user1 = await TestHelper.createUser()
-      const membership1 = await TestHelper.createMembership(user1, owner.organization.organizationid)
-      const membership2 = await TestHelper.createMembership(user1, owner.organization.organizationid)
-      const owner2 = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner2)
-      await TestHelper.createMembership(await TestHelper.createUser(), owner2.organization.organizationid)
-      await TestHelper.createMembership(await TestHelper.createUser(), owner2.organization.organizationid)
-      const owner3 = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner3)
-      await TestHelper.createMembership(await TestHelper.createUser(), owner3.organization.organizationid)
-      await TestHelper.createMembership(await TestHelper.createUser(), owner3.organization.organizationid)
-      const listed = await orgs.Membership.listAll(user1.account.accountid)
-      assert.equal(listed.length, 2)
-      assert.equal(listed[0].membershipid, membership2.membershipid)
-      assert.equal(listed[1].membershipid, membership1.membershipid)
-    })
   })
 
   describe('Membership#listByOrganization()', () => {

@@ -26,7 +26,7 @@ describe('/api/user/organizations/delete-invitation', async () => {
       await TestHelper.createOrganization(owner)
       await TestHelper.createInvitation(owner, owner.organization.organizationid)
       const user = await TestHelper.createUser()
-      const req = TestHelper.createRequest(`/api/user/organizations/accept-invitation?invitationid=${owner.invitation.invitationid}`, 'PATCH')
+      const req = TestHelper.createRequest(`/api/user/organizations/set-invitation-accepted?invitationid=${owner.invitation.invitationid}`, 'PATCH')
       req.account = user.account
       req.session = user.session
       req.body = {

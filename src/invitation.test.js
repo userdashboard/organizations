@@ -183,21 +183,6 @@ describe('internal-api/invitation', () => {
       const listed = await orgs.Invitation.listAll()
       assert.equal(4, listed.length)
     })
-
-    it('should filter by accountid', async () => {
-      const user = await TestHelper.createUser()
-      await TestHelper.createOrganization(user)
-      const user2 = await TestHelper.createUser()
-      await TestHelper.createOrganization(user2)
-      const user3 = await TestHelper.createUser()
-      await TestHelper.createOrganization(user3)
-      await TestHelper.createInvitation(user, user.organization.organizationid)
-      await TestHelper.createInvitation(user2, user2.organization.organizationid)
-      await TestHelper.createInvitation(user2, user2.organization.organizationid)
-      await TestHelper.createInvitation(user3, user3.organization.organizationid)
-      const listed = await orgs.Invitation.listAll(user.account.accountid)
-      assert.equal(1, listed.length)
-    })
   })
 
   describe('Invitation#listByOrganization()', () => {

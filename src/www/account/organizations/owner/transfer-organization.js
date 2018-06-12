@@ -21,7 +21,7 @@ async function beforeRequest (req) {
   const memberships = await global.api.user.organizations.OrganizationMemberships.get(req)
   req.data = {organization, memberships}
   if (req.session.lockURL === req.url && req.session.unlocked >= dashboard.Timestamp.now) {
-    const transferred = await global.api.user.organizations.TransferOrganization.patch(req)
+    const transferred = await global.api.user.organizations.SetOrganizationOwner.patch(req)
     if (transferred === true) {
       req.success = true
     }
@@ -62,7 +62,7 @@ async function submitForm (req, res) {
     return renderPage(req, res, 'invalid-accountid')
   }
   try {
-    await global.api.user.organizations.TransferOrganization.patch(req)
+    await global.api.user.organizations.SetOrganizationOwner.patch(req)
     return renderPage(req, res, 'success')
   } catch (error) {
     switch (error.message) {

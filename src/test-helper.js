@@ -23,6 +23,7 @@ beforeEach(() => {
   global.MEMBERSHIP_FIELDS = [ 'name', 'email' ]
   global.MAXIMUM_ORGANIZATION_FIELD_LENGTH = 100
   global.MAXIMUM_MEMBERSHIP_FIELD_LENGTH = 100
+  global.PAGE_SIZE = 10
 })
 
 async function createOrganization (user) {
@@ -40,12 +41,16 @@ async function createInvitation (user, organizationid) {
 }
 
 async function acceptInvitation (user, owner) {
-  user.membership = await orgs.Invitation.accept(owner.organization.organizationid, owner.invitation.code, user.account.accountid)
-  return user.membership
+  user.invitation = await orgs.Invitation.accept(owner.organization.organizationid, owner.invitation.code, user.account.accountid)
+  return user.invitation
 }
 
 async function createMembership (user, organizationid) {
   user.membership = await orgs.Membership.create(organizationid, user.account.accountid)
+  if (user.invitation) {
+    await orgs.Membership.setProperty(user.membership.membershipid, 'invitationid', user.invitation.invitationid)
+    await orgs.Invitation.setProperty(user.invitation.invitationid, 'membershipid', user.membership.membershipid)
+  }
   return user.membership
 }
 
