@@ -38,18 +38,18 @@ async function renderPage (req, res, messageTemplate) {
   const doc = dashboard.HTML.parse(req.route.html)
   await dashboard.HTML.renderNavigation(doc, req.query)
   await Navigation.render(req, doc)
-  doc.renderTemplate(req.data.organization, 'organization-row-template', 'organizations-table')
+  dashboard.HTML.renderTemplate(doc, req.data.organization, 'organization-row-template', 'organizations-table')
   const submitForm = doc.getElementById('submit-form')
   submitForm.setAttribute('action', req.url)
   if (messageTemplate) {
-    doc.renderTemplate(null, messageTemplate, 'message-container')
+    dashboard.HTML.renderTemplate(doc, null, messageTemplate, 'message-container')
     if (messageTemplate === 'success') {
       submitForm.removeElement()
       return dashboard.Response.end(req, res, doc)
     }
   }
   if (req.data.memberships && req.data.memberships.length) {
-    doc.renderList(req.data.memberships, 'membership-option-template', 'accountid')
+    dashboard.HTML.renderList(doc, req.data.memberships, 'membership-option-template', 'accountid')
   }
   return dashboard.Response.end(req, res, doc)
 }

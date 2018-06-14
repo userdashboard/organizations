@@ -40,7 +40,7 @@ describe('/account/organizations/memberships', () => {
 
     it('should limit memberships to one page', async () => {
       const user = await TestHelper.createUser()
-      for (let i = 0, len = 20; i < len; i++) {
+      for (let i = 0, len = 10; i < len; i++) {
         const owner = await TestHelper.createUser()
         await TestHelper.createOrganization(owner)
         await TestHelper.createMembership(user, owner.organization.organizationid)
@@ -61,7 +61,7 @@ describe('/account/organizations/memberships', () => {
 
     it('should enforce page size', async () => {
       const user = await TestHelper.createUser()
-      for (let i = 0, len = 20; i < len; i++) {
+      for (let i = 0, len = 10; i < len; i++) {
         const owner = await TestHelper.createUser()
         await TestHelper.createOrganization(owner)
         await TestHelper.createMembership(user, owner.organization.organizationid)
@@ -76,7 +76,7 @@ describe('/account/organizations/memberships', () => {
         assert.notEqual(null, doc)
         const table = doc.getElementById('memberships-table')
         const rows = table.getElementsByTagName('tr')
-        assert.equal(rows.length, 8 + 1)
+        assert.equal(rows.length, global.PAGE_SIZE + 1)
       }
       return req.route.api.get(req, res)
     })
@@ -84,21 +84,22 @@ describe('/account/organizations/memberships', () => {
     it('should enforce specified offset', async () => {
       const user = await TestHelper.createUser()
       const memberships = []
-      for (let i = 0, len = 30; i < len; i++) {
+      for (let i = 0, len = 10; i < len; i++) {
         const owner = await TestHelper.createUser()
         await TestHelper.createOrganization(owner)
         const membership = await TestHelper.createMembership(user, owner.organization.organizationid)
         memberships.unshift(membership)
       }
-      const req = TestHelper.createRequest('/account/organizations/memberships?offset=10', 'GET')
+      const offset = 3
+      const req = TestHelper.createRequest('/account/organizations/memberships?offset=3', 'GET')
       req.account = user.account
       req.session = user.session
       const res = TestHelper.createResponse()
       res.end = async (str) => {
         const doc = TestHelper.extractDoc(str)
         assert.notEqual(null, doc)
-        for (let i = 0, len = 10; i < len; i++) {
-          assert.notEqual(null, doc.getElementById(memberships[10 + i].membershipid))
+        for (let i = 0, len = global.PAGE_SIZE; i < len; i++) {
+          assert.notEqual(null, doc.getElementById(memberships[offset + i].membershipid))
         }
       }
       return req.route.api.get(req, res)

@@ -24,7 +24,7 @@ async function beforeRequest (req) {
 async function renderPage (req, res) {
   const doc = dashboard.HTML.parse(req.route.html)
   await Navigation.render(req, doc)
-  doc.renderTemplate(req.data.organization, 'organization-row-template', 'organizations-table')
+  dashboard.HTML.renderTemplate(doc, req.data.organization, 'organization-row-template', 'organizations-table')
   if (req.data.organization.ownerid !== req.account.accountid) {
     doc.removeElementsById([
       `invitations-link-${req.query.organizationid}`,

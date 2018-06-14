@@ -24,11 +24,11 @@ async function renderPage (req, res) {
   const doc = dashboard.HTML.parse(req.route.html)
   await Navigation.render(req, doc)
   if (req.data.organizations && req.data.organizations.length) {
-    doc.renderTable(req.data.organizations, 'organization-row-template', 'organizations-table')
+    dashboard.HTML.renderTable(doc, req.data.organizations, 'organization-row-template', 'organizations-table')
     if (req.data.count < global.PAGE_SIZE) {
       doc.removeElementById('page-links')
     } else {
-      doc.renderPagination(req.data.offset, req.data.count)
+      dashboard.HTML.renderPagination(doc, req.data.offset, req.data.count)
     }
   } else {
     doc.removeElementById('organizations-table')

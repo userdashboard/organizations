@@ -22,7 +22,7 @@ async function renderPage (req, res) {
   const doc = dashboard.HTML.parse(req.route.html)
   await Navigation.render(req, doc)
   if (req.data.invitations && req.data.invitations.length) {
-    doc.renderTable(req.data.invitations, 'invitation-row-template', 'invitations-table')
+    dashboard.HTML.renderTable(doc, req.data.invitations, 'invitation-row-template', 'invitations-table')
     const removeElements = []
     for (const invitation of req.data.invitations) {
       if (invitation.accepted) {
@@ -40,7 +40,7 @@ async function renderPage (req, res) {
     if (req.data.count < global.PAGE_SIZE) {
       doc.removeElementById('page-links')
     } else {
-      doc.renderPagination(req.data.offset, req.data.count)
+      dashboard.HTML.renderPagination(doc, req.data.offset, req.data.count)
     }
   }
   return dashboard.Response.end(req, res, doc)

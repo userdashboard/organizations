@@ -19,7 +19,7 @@ describe('/api/administrator/organizations/memberships', () => {
       req.account = administrator.account
       req.session = administrator.session
       const memberships = await req.route.api.get(req)
-      assert.equal(true, memberships.length >= 3)
+      assert.equal(3, memberships.length)
       assert.equal(memberships[0].membershipid, owner3.membership.membershipid)
       assert.equal(memberships[1].membershipid, owner2.membership.membershipid)
       assert.equal(memberships[2].membershipid, owner.membership.membershipid)
@@ -27,7 +27,7 @@ describe('/api/administrator/organizations/memberships', () => {
 
     it('should enforce page size', async () => {
       const administrator = await TestHelper.createAdministrator()
-      for (let i = 0, len = 20; i < len; i++) {
+      for (let i = 0, len = 10; i < len; i++) {
         const user = await TestHelper.createUser()
         await TestHelper.createOrganization(user)
         await TestHelper.createMembership(user, user.organization.organizationid)
@@ -43,18 +43,19 @@ describe('/api/administrator/organizations/memberships', () => {
     it('should enforce specified offset', async () => {
       const administrator = await TestHelper.createAdministrator()
       const memberships = [ ]
-      for (let i = 0, len = 30; i < len; i++) {
+      for (let i = 0, len = 10; i < len; i++) {
         const user = await TestHelper.createUser()
         await TestHelper.createOrganization(user)
         await TestHelper.createMembership(user, user.organization.organizationid)
         memberships.unshift(user.membership)
       }
-      const req = TestHelper.createRequest('/api/administrator/organizations/memberships?offset=10', 'GET')
+      const offset = 3
+      const req = TestHelper.createRequest('/api/administrator/organizations/memberships?offset=3', 'GET')
       req.account = administrator.account
       req.session = administrator.session
       const membershipsNow = await req.route.api.get(req)
-      for (let i = 0, len = 10; i < len; i++) {
-        assert.equal(membershipsNow[i].membershipid, memberships[10 + i].membershipid)
+      for (let i = 0, len = global.PAGE_SIZE; i < len; i++) {
+        assert.equal(membershipsNow[i].membershipid, memberships[offset + i].membershipid)
       }
     })
   })

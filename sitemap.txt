@@ -1,5 +1,5 @@
 @userappstore/dashboard
-Version: 1.0.1037
+Version: 1.0.1039
 Address:
 http://127.0.0.1:8889
 Root path: /Users/benlowry/CloudStation/workspaces/dashboard/organizations/src/www

@@ -26,7 +26,7 @@ async function beforeRequest (req) {
 async function renderPage (req, res) {
   const doc = dashboard.HTML.parse(req.route.html)
   await Navigation.render(req, doc)
-  doc.renderTemplate(req.data.invitation, 'invitation-row-template', 'invitations-table')
+  dashboard.HTML.renderTemplate(doc, req.data.invitation, 'invitation-row-template', 'invitations-table')
   if (req.data.invitation.accepted) {
     doc.removeElementById('not-accepted')
   } else {

@@ -24,7 +24,7 @@ describe(`/api/administrator/organizations/account-invitations`, () => {
     it('should enforce page size', async () => {
       const administrator = await TestHelper.createAdministrator()
       const user = await TestHelper.createUser()
-      for (let i = 0, len = 20; i < len; i++) {
+      for (let i = 0, len = 10; i < len; i++) {
         const owner = await TestHelper.createUser()
         await TestHelper.createOrganization(owner)
         await TestHelper.createInvitation(owner, owner.organization.organizationid)
@@ -43,7 +43,7 @@ describe(`/api/administrator/organizations/account-invitations`, () => {
       const administrator = await TestHelper.createAdministrator()
       const user = await TestHelper.createUser()
       const invitations = []
-      for (let i = 0, len = 30; i < len; i++) {
+      for (let i = 0, len = 10; i < len; i++) {
         const owner = await TestHelper.createUser()
         await TestHelper.createOrganization(owner)
         await TestHelper.createInvitation(owner, owner.organization.organizationid)
@@ -51,12 +51,13 @@ describe(`/api/administrator/organizations/account-invitations`, () => {
         await TestHelper.createMembership(user, owner.organization.organizationid)
         invitations.unshift(user.invitation)
       }
-      const req = TestHelper.createRequest(`/api/administrator/organizations/account-invitations?accountid=${user.account.accountid}&offset=10`, 'GET')
+      const offset = 3
+      const req = TestHelper.createRequest(`/api/administrator/organizations/account-invitations?accountid=${user.account.accountid}&offset=${offset}`, 'GET')
       req.account = administrator.account
       req.session = administrator.session
       const invitationsNow = await req.route.api.get(req)
-      for (let i = 0, len = 10; i < len; i++) {
-        assert.equal(invitationsNow[i].invitationid, invitations[10 + i].invitationid)
+      for (let i = 0, len = global.PAGE_SIZE; i < len; i++) {
+        assert.equal(invitationsNow[i].invitationid, invitations[offset + i].invitationid)
       }
     })
   })

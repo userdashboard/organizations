@@ -29,13 +29,13 @@ async function beforeRequest (req) {
 async function renderPage (req, res, messageTemplate) {
   const doc = dashboard.HTML.parse(req.route.html)
   await Navigation.render(req, doc)
-  doc.renderTemplate(req.data.membership, 'membership-row-template', 'memberships-table')
+  dashboard.HTML.renderTemplate(doc, req.data.membership, 'membership-row-template', 'memberships-table')
   const organizationName = doc.getElementById('organizationName')
   organizationName.setAttribute('value', req.data.organization.name)
   const submitForm = doc.getElementById('submit-form')
   submitForm.setAttribute('action', req.url)
   if (messageTemplate) {
-    doc.renderTemplate(null, messageTemplate, 'message-container')
+    dashboard.HTML.renderTemplate(doc, null, messageTemplate, 'message-container')
     if (messageTemplate === 'success') {
       submitForm.removeElement()
       return dashboard.Response.end(req, res, doc)

@@ -16,7 +16,7 @@ describe('/api/administrator/organizations/organizations', () => {
       req.account = administrator.account
       req.session = administrator.session
       const organizations = await req.route.api.get(req)
-      assert.equal(true, organizations.length >= 3)
+      assert.equal(3, organizations.length)
       assert.equal(organizations[0].organizationid, owner3.organization.organizationid)
       assert.equal(organizations[1].organizationid, owner2.organization.organizationid)
       assert.equal(organizations[2].organizationid, owner.organization.organizationid)
@@ -24,7 +24,7 @@ describe('/api/administrator/organizations/organizations', () => {
 
     it('should enforce page size', async () => {
       const administrator = await TestHelper.createAdministrator()
-      for (let i = 0, len = 20; i < len; i++) {
+      for (let i = 0, len = 10; i < len; i++) {
         const user = await TestHelper.createUser()
         await TestHelper.createOrganization(user)
       }
@@ -39,17 +39,18 @@ describe('/api/administrator/organizations/organizations', () => {
     it('should enforce specified offset', async () => {
       const administrator = await TestHelper.createAdministrator()
       const organizations = [ ]
-      for (let i = 0, len = 30; i < len; i++) {
+      for (let i = 0, len = 10; i < len; i++) {
         const user = await TestHelper.createUser()
         await TestHelper.createOrganization(user)
         organizations.unshift(user.organization)
       }
-      const req = TestHelper.createRequest('/api/administrator/organizations/organizations?offset=10', 'GET')
+      const offset = 3
+      const req = TestHelper.createRequest('/api/administrator/organizations/organizations?offset=3', 'GET')
       req.account = administrator.account
       req.session = administrator.session
       const organizationsNow = await req.route.api.get(req)
-      for (let i = 0, len = 10; i < len; i++) {
-        assert.equal(organizationsNow[i].codeid, organizations[10 + i].codeid)
+      for (let i = 0, len = global.PAGE_SIZE; i < len; i++) {
+        assert.equal(organizationsNow[i].codeid, organizations[offset + i].codeid)
       }
     })
   })

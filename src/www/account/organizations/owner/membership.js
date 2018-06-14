@@ -29,6 +29,6 @@ async function beforeRequest (req) {
 async function renderPage (req, res) {
   const doc = dashboard.HTML.parse(req.route.html)
   await Navigation.render(req, doc)
-  doc.renderTemplate(req.data.membership, 'membership-row-template', 'memberships-table')
+  dashboard.HTML.renderTemplate(doc, req.data.membership, 'membership-row-template', 'memberships-table')
   return dashboard.Response.end(req, res, doc)
 }

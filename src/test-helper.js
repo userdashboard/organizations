@@ -23,7 +23,7 @@ beforeEach(() => {
   global.MEMBERSHIP_FIELDS = [ 'name', 'email' ]
   global.MAXIMUM_ORGANIZATION_FIELD_LENGTH = 100
   global.MAXIMUM_MEMBERSHIP_FIELD_LENGTH = 100
-  global.PAGE_SIZE = 10
+  global.PAGE_SIZE = 3
 })
 
 async function createOrganization (user) {

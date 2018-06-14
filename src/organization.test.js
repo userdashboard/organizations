@@ -20,10 +20,8 @@ describe('internal-api/organization', async () => {
       const user = await TestHelper.createUser()
       await TestHelper.createOrganization(user)
       await TestHelper.createOrganization(user)
-      await TestHelper.createOrganization(user)
-      await TestHelper.createOrganization(user)
       const count = await orgs.Organization.count(user.account.accountid)
-      assert.equal(count, 4)
+      assert.equal(count, 2)
     })
   })
 

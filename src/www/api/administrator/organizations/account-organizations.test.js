@@ -23,7 +23,7 @@ describe('/api/administrator/organizations/account-organizations', () => {
     it('should enforce page size', async () => {
       const administrator = await TestHelper.createAdministrator()
       const user = await TestHelper.createUser()
-      for (let i = 0, len = 20; i < len; i++) {
+      for (let i = 0, len = 10; i < len; i++) {
         await TestHelper.createOrganization(user)
       }
       const req = TestHelper.createRequest(`/api/administrator/organizations/account-organizations?accountid=${user.account.accountid}`, 'GET')
@@ -38,16 +38,17 @@ describe('/api/administrator/organizations/account-organizations', () => {
       const administrator = await TestHelper.createAdministrator()
       const organizations = [ ]
       const user = await TestHelper.createUser()
-      for (let i = 0, len = 30; i < len; i++) {
+      for (let i = 0, len = 10; i < len; i++) {
         await TestHelper.createOrganization(user)
         organizations.unshift(user.organization)
       }
-      const req = TestHelper.createRequest(`/api/administrator/organizations/account-organizations?accountid=${user.account.accountid}&offset=10`, 'GET')
+      const offset = 3
+      const req = TestHelper.createRequest(`/api/administrator/organizations/account-organizations?accountid=${user.account.accountid}&offset=${offset}`, 'GET')
       req.account = administrator.account
       req.session = administrator.session
       const organizationsNow = await req.route.api.get(req)
-      for (let i = 0, len = 10; i < len; i++) {
-        assert.equal(organizationsNow[i].codeid, organizations[10 + i].codeid)
+      for (let i = 0, len = global.PAGE_SIZE; i < len; i++) {
+        assert.equal(organizationsNow[i].codeid, organizations[offset + i].codeid)
       }
     })
   })

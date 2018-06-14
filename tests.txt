@@ -1,5 +1,5 @@
 
-> @userappstore/organizations@1.0.1037 test /Users/benlowry/CloudStation/workspaces/dashboard/organizations
+> @userappstore/organizations@1.0.1040 test /Users/benlowry/CloudStation/workspaces/dashboard/organizations
 > NODE_ENV=testing mocha src --recursive --timeout 90000 --slow 90000
 
 
@@ -651,5 +651,5 @@
     ✓ should apply new values
 
 
-  331 passing (17m)
+  331 passing (11m)
 

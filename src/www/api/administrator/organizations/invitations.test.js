@@ -19,7 +19,7 @@ describe(`/api/administrator/organizations/invitations`, () => {
       req.account = administrator.account
       req.session = administrator.session
       const invitations = await req.route.api.get(req)
-      assert.equal(true, invitations.length >= 3)
+      assert.equal(3, invitations.length)
       assert.equal(invitations[0].invitationid, owner3.invitation.invitationid)
       assert.equal(invitations[1].invitationid, owner2.invitation.invitationid)
       assert.equal(invitations[2].invitationid, owner.invitation.invitationid)
@@ -27,7 +27,7 @@ describe(`/api/administrator/organizations/invitations`, () => {
 
     it('should enforce page size', async () => {
       const administrator = await TestHelper.createAdministrator()
-      for (let i = 0, len = 20; i < len; i++) {
+      for (let i = 0, len = 10; i < len; i++) {
         const user = await TestHelper.createUser()
         await TestHelper.createOrganization(user)
         await TestHelper.createInvitation(user, user.organization.organizationid)
@@ -43,18 +43,19 @@ describe(`/api/administrator/organizations/invitations`, () => {
     it('should enforce specified offset', async () => {
       const administrator = await TestHelper.createAdministrator()
       const invitations = [ ]
-      for (let i = 0, len = 30; i < len; i++) {
+      for (let i = 0, len = 10; i < len; i++) {
         const user = await TestHelper.createUser()
         await TestHelper.createOrganization(user)
         await TestHelper.createInvitation(user, user.organization.organizationid)
         invitations.unshift(user.invitation)
       }
-      const req = TestHelper.createRequest('/api/administrator/organizations/invitations?offset=10', 'GET')
+      const offset = 3
+      const req = TestHelper.createRequest('/api/administrator/organizations/invitations?offset=3', 'GET')
       req.account = administrator.account
       req.session = administrator.session
       const invitationsNow = await req.route.api.get(req)
-      for (let i = 0, len = 10; i < len; i++) {
-        assert.equal(invitationsNow[i].invitationid, invitations[10 + i].invitationid)
+      for (let i = 0, len = global.PAGE_SIZE; i < len; i++) {
+        assert.equal(invitationsNow[i].invitationid, invitations[offset + i].invitationid)
       }
     })
   })

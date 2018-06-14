@@ -19,7 +19,7 @@ describe(`/api/user/organizations/memberships`, () => {
 
     it('should enforce page size', async () => {
       const user = await TestHelper.createUser()
-      for (let i = 0, len = 20; i < len; i++) {
+      for (let i = 0, len = 10; i < len; i++) {
         const owner = await TestHelper.createUser()
         await TestHelper.createOrganization(owner)
         await TestHelper.createMembership(user, owner.organization.organizationid)
@@ -35,18 +35,19 @@ describe(`/api/user/organizations/memberships`, () => {
     it('should enforce specified offset', async () => {
       const user = await TestHelper.createUser()
       const memberships = []
-      for (let i = 0, len = 20; i < len; i++) {
+      for (let i = 0, len = 10; i < len; i++) {
         const owner = await TestHelper.createUser()
         await TestHelper.createOrganization(owner)
         const membership = await TestHelper.createMembership(user, owner.organization.organizationid)
         memberships.unshift(membership)
       }
-      const req = TestHelper.createRequest(`/api/user/organizations/memberships?accountid=${user.account.accountid}&offset=10`, 'GET')
+      const offset = 3
+      const req = TestHelper.createRequest(`/api/user/organizations/memberships?accountid=${user.account.accountid}&offset=${offset}`, 'GET')
       req.account = user.account
       req.session = user.session
       const membershipsNow = await req.route.api.get(req)
-      for (let i = 0, len = 10; i < len; i++) {
-        assert.equal(membershipsNow[i].membershipid, memberships[10 + i].membershipid)
+      for (let i = 0, len = global.PAGE_SIZE; i < len; i++) {
+        assert.equal(membershipsNow[i].membershipid, memberships[offset + i].membershipid)
       }
     })
   })

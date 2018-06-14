@@ -43,7 +43,7 @@ async function renderPage (req, res, messageTemplate) {
   const submitForm = doc.getElementById('submit-form')
   submitForm.setAttribute('action', req.url)
   if (messageTemplate) {
-    doc.renderTemplate(null, messageTemplate, 'message-container')
+    dashboard.HTML.renderTemplate(doc, null, messageTemplate, 'message-container')
   }
   return dashboard.Response.end(req, res, doc)
 }

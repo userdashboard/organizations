@@ -43,7 +43,7 @@ describe('/administrator/organizations/memberships', () => {
     it('should limit memberships to one page', async () => {
       const administrator = await TestHelper.createAdministrator()
       const user = await TestHelper.createUser()
-      for (let i = 0, len = 20; i < len; i++) {
+      for (let i = 0, len = 10; i < len; i++) {
         const owner = await TestHelper.createUser()
         await TestHelper.createOrganization(owner)
         await TestHelper.createMembership(user, owner.organization.organizationid)
@@ -65,12 +65,12 @@ describe('/administrator/organizations/memberships', () => {
     it('should enforce page size', async () => {
       const administrator = await TestHelper.createAdministrator()
       const user = await TestHelper.createUser()
-      for (let i = 0, len = 20; i < len; i++) {
+      for (let i = 0, len = 10; i < len; i++) {
         const owner = await TestHelper.createUser()
         await TestHelper.createOrganization(owner)
         await TestHelper.createMembership(user, owner.organization.organizationid)
       }
-      const req = TestHelper.createRequest(`/administrator/organizations/memberships?accountid=${user.account.accountid}`, 'GET')
+      const req = TestHelper.createRequest(`/administrator/organizations/memberships`, 'GET')
       req.account = administrator.account
       req.session = administrator.session
       global.PAGE_SIZE = 8
@@ -80,7 +80,7 @@ describe('/administrator/organizations/memberships', () => {
         assert.notEqual(null, doc)
         const table = doc.getElementById('memberships-table')
         const rows = table.getElementsByTagName('tr')
-        assert.equal(rows.length, 8 + 1)
+        assert.equal(rows.length, global.PAGE_SIZE + 1)
       }
       return req.route.api.get(req, res)
     })
@@ -89,21 +89,22 @@ describe('/administrator/organizations/memberships', () => {
       const administrator = await TestHelper.createAdministrator()
       const user = await TestHelper.createUser()
       const memberships = []
-      for (let i = 0, len = 20; i < len; i++) {
+      for (let i = 0, len = 10; i < len; i++) {
         const owner = await TestHelper.createUser()
         await TestHelper.createOrganization(owner)
         const membership = await TestHelper.createMembership(user, owner.organization.organizationid)
         memberships.unshift(membership)
       }
-      const req = TestHelper.createRequest(`/administrator/organizations/memberships?accountid=${user.account.accountid}&offset=10`, 'GET')
+      const offset = 3
+      const req = TestHelper.createRequest(`/administrator/organizations/memberships?offset=${offset}`, 'GET')
       req.account = administrator.account
       req.session = administrator.session
       const res = TestHelper.createResponse()
       res.end = async (str) => {
         const doc = TestHelper.extractDoc(str)
         assert.notEqual(null, doc)
-        for (let i = 0, len = 10; i < len; i++) {
-          assert.notEqual(null, doc.getElementById(memberships[10 + i].membershipid))
+        for (let i = 0, len = global.PAGE_SIZE; i < len; i++) {
+          assert.notEqual(null, doc.getElementById(memberships[offset + i].membershipid))
         }
       }
       return req.route.api.get(req, res)

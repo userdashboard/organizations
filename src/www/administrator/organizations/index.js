@@ -27,12 +27,12 @@ async function renderPage (req, res) {
   const doc = dashboard.HTML.parse(req.route.html)
   await Navigation.render(req, doc)
   if (req.data.memberships && req.data.memberships.length) {
-    doc.renderTable(req.data.memberships, 'membership-row-template', 'memberships-table')
+    dashboard.HTML.renderTable(doc, req.data.memberships, 'membership-row-template', 'memberships-table')
   } else {
     doc.removeElementById('memberships-table')
   }
   if (req.data.organizations && req.data.organizations.length) {
-    doc.renderTable(req.data.organizations, 'organization-row-template', 'organizations-table')
+    dashboard.HTML.renderTable(doc, req.data.organizations, 'organization-row-template', 'organizations-table')
   } else {
     doc.removeElementById('organizations-table')
   }

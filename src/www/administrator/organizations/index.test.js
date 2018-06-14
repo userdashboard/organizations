@@ -18,7 +18,7 @@ describe(`/administrator/organizations/index`, () => {
       await req.route.api.before(req)
       assert.notEqual(req.data, null)
       assert.notEqual(null, req.data.memberships)
-      assert.equal(true, req.data.memberships.length >= 2)
+      assert.equal(2, req.data.memberships.length)
     })
 
     it('should bind organizations to req', async () => {
@@ -53,7 +53,7 @@ describe(`/administrator/organizations/index`, () => {
       return req.route.api.get(req, res)
     })
 
-    it('should have row for each membership', async () => {
+    it('should have organization row for each membership', async () => {
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
