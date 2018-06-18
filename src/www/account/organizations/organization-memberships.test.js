@@ -1,15 +1,15 @@
 /* eslint-env mocha */
 const assert = require('assert')
-const TestHelper = require('../../../../test-helper.js')
+const TestHelper = require('../../../test-helper.js')
 
-describe('/account/organizations/owner/memberships', () => {
+describe('/account/organizations/organization-memberships', () => {
   describe('Memberships#BEFORE', () => {
     it('should bind memberships to req', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const user = await TestHelper.createUser()
       await TestHelper.createMembership(user, owner.organization.organizationid)
-      const req = TestHelper.createRequest(`/account/organizations/owner/memberships?organizationid=${owner.organization.organizationid}`, 'GET')
+      const req = TestHelper.createRequest(`/account/organizations/organization-memberships?organizationid=${owner.organization.organizationid}`, 'GET')
       req.account = owner.account
       req.session = owner.session
       await req.route.api.before(req)
@@ -25,7 +25,7 @@ describe('/account/organizations/owner/memberships', () => {
       await TestHelper.createOrganization(owner)
       const user = await TestHelper.createUser()
       await TestHelper.createMembership(user, owner.organization.organizationid)
-      const req = TestHelper.createRequest(`/account/organizations/owner/memberships?organizationid=${owner.organization.organizationid}`, 'GET')
+      const req = TestHelper.createRequest(`/account/organizations/organization-memberships?organizationid=${owner.organization.organizationid}`, 'GET')
       req.account = owner.account
       req.session = owner.session
       const res = TestHelper.createResponse()
@@ -45,7 +45,7 @@ describe('/account/organizations/owner/memberships', () => {
         const user = await TestHelper.createUser()
         await TestHelper.createMembership(user, owner.organization.organizationid)
       }
-      const req = TestHelper.createRequest(`/account/organizations/owner/memberships?organizationid=${owner.organization.organizationid}`, 'GET')
+      const req = TestHelper.createRequest(`/account/organizations/organization-memberships?organizationid=${owner.organization.organizationid}`, 'GET')
       req.account = owner.account
       req.session = owner.session
       const res = TestHelper.createResponse()
@@ -66,7 +66,7 @@ describe('/account/organizations/owner/memberships', () => {
         const user = await TestHelper.createUser()
         await TestHelper.createMembership(user, owner.organization.organizationid)
       }
-      const req = TestHelper.createRequest(`/account/organizations/owner/memberships?organizationid=${owner.organization.organizationid}`, 'GET')
+      const req = TestHelper.createRequest(`/account/organizations/organization-memberships?organizationid=${owner.organization.organizationid}`, 'GET')
       req.account = owner.account
       req.session = owner.session
       global.PAGE_SIZE = 8
@@ -91,7 +91,7 @@ describe('/account/organizations/owner/memberships', () => {
         memberships.unshift(membership)
       }
       const offset = 3
-      const req = TestHelper.createRequest(`/account/organizations/owner/memberships?organizationid=${owner.organization.organizationid}&offset=${offset}`, 'GET')
+      const req = TestHelper.createRequest(`/account/organizations/organization-memberships?organizationid=${owner.organization.organizationid}&offset=${offset}`, 'GET')
       req.account = owner.account
       req.session = owner.session
       const res = TestHelper.createResponse()

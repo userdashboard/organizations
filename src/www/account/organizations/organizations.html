@@ -1,4 +1,4 @@
-<html navbar="/account/organizations/owner/navbar.html">
+<html navbar="/account/organizations/navbar.html">
   <head>
     <title>Organizations</title>
     <link href="/public/pure-min.css" rel="stylesheet" />
@@ -21,7 +21,7 @@
     <ul id="page-links" class="pagination"></ul>
   </body>
   <template id='page-link'>
-    <li><a href="/account/organizations/owner/organizations?offset=${page.offset}" id="page-link-${page.pageNumber}">${page.pageNumber}</a></li>
+    <li><a href="/account/organizations/organizations?offset=${page.offset}" id="page-link-${page.pageNumber}">${page.pageNumber}</a></li>
   </template>
   <template id="organization-row">
     <tr id="${organization.organizationid}">

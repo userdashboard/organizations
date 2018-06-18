@@ -55,18 +55,18 @@ URL ----------------------------------------------------------- AUTH ---- LOCK -
 /account/organizations/membership                                                                 GET             /src/www                    /src/www                   
 /account/organizations/memberships                                                                GET             /src/www                    /src/www                   
 /account/organizations/organization                                                               GET             /src/www                    /src/www                   
-/account/organizations/owner/create-invitation                                                    GET POST        /src/www                    /src/www                   
-/account/organizations/owner/delete-invitation                                                    GET POST        /src/www                    /src/www                   
-/account/organizations/owner/delete-organization                                                  GET POST        /src/www                    /src/www                   
-/account/organizations/owner/edit-organization                                                    GET POST        /src/www                    /src/www                   
-/account/organizations/owner/invitation                                                           GET             /src/www                    /src/www                   
-/account/organizations/owner/invitations                                                          GET             /src/www                    /src/www                   
-/account/organizations/owner/membership                                                           GET             /src/www                    /src/www                   
-/account/organizations/owner/memberships                                                          GET             /src/www                    /src/www                   
-/account/organizations/owner/organization                                                         GET             /src/www                    /src/www                   
-/account/organizations/owner/organizations                                                        GET             /src/www                    /src/www                   
-/account/organizations/owner/revoke-membership                                                    GET POST        /src/www                    /src/www                   
-/account/organizations/owner/transfer-organization                                                GET POST        /src/www                    /src/www                   
+/account/organizations/create-invitation                                                    GET POST        /src/www                    /src/www                   
+/account/organizations/delete-invitation                                                    GET POST        /src/www                    /src/www                   
+/account/organizations/delete-organization                                                  GET POST        /src/www                    /src/www                   
+/account/organizations/edit-organization                                                    GET POST        /src/www                    /src/www                   
+/account/organizations/invitation                                                           GET             /src/www                    /src/www                   
+/account/organizations/invitations                                                          GET             /src/www                    /src/www                   
+/account/organizations/membership                                                           GET             /src/www                    /src/www                   
+/account/organizations/memberships                                                          GET             /src/www                    /src/www                   
+/account/organizations/organization                                                         GET             /src/www                    /src/www                   
+/account/organizations/organizations                                                        GET             /src/www                    /src/www                   
+/account/organizations/revoke-membership                                                    GET POST        /src/www                    /src/www                   
+/account/organizations/transfer-organization                                                GET POST        /src/www                    /src/www                   
 /account/profile                                                                                  GET             @userappstore/dashboard     @userappstore/dashboard    
 /account/profiles                                                                                 GET             @userappstore/dashboard     @userappstore/dashboard    
 /account/register                                               GUEST              FULLSCREEN     GET POST        @userappstore/dashboard     @userappstore/dashboard    

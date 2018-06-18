@@ -159,6 +159,16 @@
     AcceptInvitation#POST
       ✓ should apply after authorization
 
+  /account/organizations/create-invitation
+    CreateInvitation#BEFORE
+      ✓ should require owner
+      ✓ should bind organization to req
+    CreateInvitation#GET
+      ✓ should present the form
+      ✓ should present the organization
+    CreateInvitation#POST
+      ✓ should apply after authorization
+
   /account/organizations/create-organization
     CreateOrganization#GET
       ✓ should present the form
@@ -170,6 +180,16 @@
       ✓ should enforce field length
       ✓ should create organization
 
+  /account/organizations/delete-invitation
+    DeleteInvitation#BEFORE
+      ✓ should require owner
+      ✓ should bind organization to req
+    DeleteInvitation#GET
+      ✓ should present the form
+      ✓ should present the invitation
+    DeleteInvitation#POST
+      ✓ should delete invitation
+
   /account/organizations/delete-membership
     DeleteMembership#BEFORE
       ✓ should require own membership
@@ -179,6 +199,16 @@
       ✓ should present the membership
     DeleteMembership#POST
       ✓ should delete membership
+
+  /account/organizations/delete-organization
+    DeleteOrganization#BEFORE
+      ✓ should require owner
+      ✓ should bind organization to req
+    DeleteOrganization#GET
+      ✓ should present the form
+      ✓ should present the organization
+    DeleteOrganization#POST
+      ✓ should delete organization
 
   /account/organizations/edit-membership
     EditMembership#BEFORE
@@ -191,6 +221,17 @@
       ✓ should enforce field length
       ✓ should apply after authorization
 
+  /account/organizations/edit-organization
+    EditOrganization#BEFORE
+      ✓ should require owner
+      ✓ should bind organization to req
+    EditOrganization#GET
+      ✓ should present the form
+    EditOrganization#POST
+      ✓ should reject invalid fields
+      ✓ should enforce field length
+      ✓ should apply after authorization
+
   /account/organizations/index
     Index#BEFORE
       ✓ should bind memberships to req
@@ -198,6 +239,13 @@
     Index#GET
       ✓ should have row for each organization
       ✓ should have row for each membership
+
+  /account/organizations/invitation
+    Invitation#BEFORE
+      ✓ should require owner
+      ✓ should bind invitation to req
+    Invitation#GET
+      ✓ should have row for invitation
 
   /account/organizations/membership
     Membership#BEFORE
@@ -215,62 +263,7 @@
       ✓ should enforce page size
       ✓ should enforce specified offset
 
-  /account/organizations/organization
-    Organization#BEFORE
-      ✓ should reject non-member
-      ✓ should bind organization to req
-    Organization#GET
-      ✓ should have row for organization
-
-  /account/organizations/owner/create-invitation
-    CreateInvitation#BEFORE
-      ✓ should require owner
-      ✓ should bind organization to req
-    CreateInvitation#GET
-      ✓ should present the form
-      ✓ should present the organization
-    CreateInvitation#POST
-      ✓ should apply after authorization
-
-  /account/organizations/owner/delete-invitation
-    DeleteInvitation#BEFORE
-      ✓ should require owner
-      ✓ should bind organization to req
-    DeleteInvitation#GET
-      ✓ should present the form
-      ✓ should present the invitation
-    DeleteInvitation#POST
-      ✓ should delete invitation
-
-  /account/organizations/owner/delete-organization
-    DeleteOrganization#BEFORE
-      ✓ should require owner
-      ✓ should bind organization to req
-    DeleteOrganization#GET
-      ✓ should present the form
-      ✓ should present the organization
-    DeleteOrganization#POST
-      ✓ should delete organization
-
-  /account/organizations/owner/edit-organization
-    EditOrganization#BEFORE
-      ✓ should require owner
-      ✓ should bind organization to req
-    EditOrganization#GET
-      ✓ should present the form
-    EditOrganization#POST
-      ✓ should reject invalid fields
-      ✓ should enforce field length
-      ✓ should apply after authorization
-
-  /account/organizations/owner/invitation
-    Invitation#BEFORE
-      ✓ should require owner
-      ✓ should bind invitation to req
-    Invitation#GET
-      ✓ should have row for invitation
-
-  /account/organizations/owner/invitations
+  /account/organizations/organization-invitations
     Invitations#BEFORE
       ✓ should require owner
       ✓ should bind invitations to req
@@ -280,14 +273,7 @@
       ✓ should enforce page size
       ✓ should enforce specified offset
 
-  /account/organizations/owner/membership
-    Membership#BEFORE
-      ✓ should require owner
-      ✓ should bind membership to req
-    Membership#GET
-      ✓ should have row for membership
-
-  /account/organizations/owner/memberships
+  /account/organizations/organization-memberships
     Memberships#BEFORE
       ✓ should bind memberships to req
     Memberships#GET
@@ -296,14 +282,14 @@
       ✓ should enforce page size
       ✓ should enforce specified offset
 
-  /account/organizations/owner/organization
+  /account/organizations/organization
     Organization#BEFORE
-      ✓ should require owner
+      ✓ should reject non-member
       ✓ should bind organization to req
     Organization#GET
       ✓ should have row for organization
 
-  /account/organizations/owner/organizations
+  /account/organizations/organizations
     Organizations#BEFORE
       ✓ should bind owned organizations to req
     Organizations#GET
@@ -312,7 +298,7 @@
       ✓ should enforce page size
       ✓ should enforce specified offset
 
-  /account/organizations/owner/revoke-membership
+  /account/organizations/revoke-membership
     RevokeMembership#BEFORE
       ✓ should require owner
       ✓ should bind organization to req
@@ -322,7 +308,7 @@
     RevokeMembership#POST
       ✓ should delete membership
 
-  /account/organizations/owner/transfer-organization
+  /account/organizations/transfer-organization
     TransferOrganization#BEFORE
       ✓ should require owner
       ✓ should bind organization to req
@@ -651,5 +637,5 @@
     ✓ should apply new values
 
 
-  331 passing (10m)
+  325 passing (10m)
 

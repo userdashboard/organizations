@@ -1,15 +1,15 @@
 /* eslint-env mocha */
 const assert = require('assert')
-const TestHelper = require('../../../../test-helper.js')
+const TestHelper = require('../../../test-helper.js')
 
-describe(`/account/organizations/owner/invitations`, () => {
+describe(`/account/organizations/organization-invitations`, () => {
   describe('Invitations#BEFORE', () => {
     it('should require owner', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       await TestHelper.createInvitation(owner, owner.organization.organizationid)
       const user = await TestHelper.createUser()
-      const req = TestHelper.createRequest(`/account/organizations/owner/invitations?organizationid=${owner.organization.organizationid}`, 'GET')
+      const req = TestHelper.createRequest(`/account/organizations/organization-invitations?organizationid=${owner.organization.organizationid}`, 'GET')
       req.account = user.account
       req.session = user.session
       let errorMessage
@@ -25,7 +25,7 @@ describe(`/account/organizations/owner/invitations`, () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       await TestHelper.createInvitation(owner, owner.organization.organizationid)
-      const req = TestHelper.createRequest(`/account/organizations/owner/invitations?organizationid=${owner.organization.organizationid}`, 'GET')
+      const req = TestHelper.createRequest(`/account/organizations/organization-invitations?organizationid=${owner.organization.organizationid}`, 'GET')
       req.account = owner.account
       req.session = owner.session
       await req.route.api.before(req)
@@ -41,7 +41,7 @@ describe(`/account/organizations/owner/invitations`, () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       await TestHelper.createInvitation(owner, owner.organization.organizationid)
-      const req = TestHelper.createRequest(`/account/organizations/owner/invitations?organizationid=${owner.organization.organizationid}`, 'GET')
+      const req = TestHelper.createRequest(`/account/organizations/organization-invitations?organizationid=${owner.organization.organizationid}`, 'GET')
       req.account = owner.account
       req.session = owner.session
       const res = TestHelper.createResponse()
@@ -60,7 +60,7 @@ describe(`/account/organizations/owner/invitations`, () => {
       for (let i = 0, len = 10; i < len; i++) {
         await TestHelper.createInvitation(owner, owner.organization.organizationid)
       }
-      const req = TestHelper.createRequest(`/account/organizations/owner/invitations?organizationid=${owner.organization.organizationid}`, 'GET')
+      const req = TestHelper.createRequest(`/account/organizations/organization-invitations?organizationid=${owner.organization.organizationid}`, 'GET')
       req.account = owner.account
       req.session = owner.session
       const res = TestHelper.createResponse()
@@ -80,7 +80,7 @@ describe(`/account/organizations/owner/invitations`, () => {
       for (let i = 0, len = 10; i < len; i++) {
         await TestHelper.createInvitation(owner, owner.organization.organizationid)
       }
-      const req = TestHelper.createRequest(`/account/organizations/owner/invitations?organizationid=${owner.organization.organizationid}`, 'GET')
+      const req = TestHelper.createRequest(`/account/organizations/organization-invitations?organizationid=${owner.organization.organizationid}`, 'GET')
       req.account = owner.account
       req.session = owner.session
       global.PAGE_SIZE = 8
@@ -104,7 +104,7 @@ describe(`/account/organizations/owner/invitations`, () => {
         invitations.unshift(owner.invitation)
       }
       const offset = 3
-      const req = TestHelper.createRequest(`/account/organizations/owner/invitations?organizationid=${owner.organization.organizationid}&offset=${offset}`, 'GET')
+      const req = TestHelper.createRequest(`/account/organizations/organization-invitations?organizationid=${owner.organization.organizationid}&offset=${offset}`, 'GET')
       req.account = owner.account
       req.session = owner.session
       const res = TestHelper.createResponse()

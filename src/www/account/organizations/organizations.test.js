@@ -1,13 +1,13 @@
 /* eslint-env mocha */
 const assert = require('assert')
-const TestHelper = require('../../../../test-helper.js')
+const TestHelper = require('../../../test-helper.js')
 
-describe('/account/organizations/owner/organizations', () => {
+describe('/account/organizations/organizations', () => {
   describe('Organizations#BEFORE', () => {
     it('should bind owned organizations to req', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
-      const req = TestHelper.createRequest('/account/organizations/owner/organizations', 'GET')
+      const req = TestHelper.createRequest('/account/organizations/organizations', 'GET')
       req.account = owner.account
       req.session = owner.session
       await req.route.api.before(req)
@@ -21,7 +21,7 @@ describe('/account/organizations/owner/organizations', () => {
     it('should have row for each organization', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
-      const req = TestHelper.createRequest('/account/organizations/owner/organizations', 'GET')
+      const req = TestHelper.createRequest('/account/organizations/organizations', 'GET')
       req.account = owner.account
       req.session = owner.session
       const res = TestHelper.createResponse()
@@ -39,7 +39,7 @@ describe('/account/organizations/owner/organizations', () => {
       for (let i = 0, len = 10; i < len; i++) {
         await TestHelper.createOrganization(owner)
       }
-      const req = TestHelper.createRequest('/account/organizations/owner/organizations', 'GET')
+      const req = TestHelper.createRequest('/account/organizations/organizations', 'GET')
       req.account = owner.account
       req.session = owner.session
       const res = TestHelper.createResponse()
@@ -58,7 +58,7 @@ describe('/account/organizations/owner/organizations', () => {
       for (let i = 0, len = 10; i < len; i++) {
         await TestHelper.createOrganization(owner)
       }
-      const req = TestHelper.createRequest('/account/organizations/owner/organizations', 'GET')
+      const req = TestHelper.createRequest('/account/organizations/organizations', 'GET')
       req.account = owner.account
       req.session = owner.session
       global.PAGE_SIZE = 8
@@ -81,7 +81,7 @@ describe('/account/organizations/owner/organizations', () => {
         organizations.unshift(owner.organization)
       }
       const offset = 3
-      const req = TestHelper.createRequest('/account/organizations/owner/organizations?offset=3', 'GET')
+      const req = TestHelper.createRequest('/account/organizations/organizations?offset=3', 'GET')
       req.account = owner.account
       req.session = owner.session
       const res = TestHelper.createResponse()

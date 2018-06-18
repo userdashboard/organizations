@@ -1,15 +1,15 @@
 /* eslint-env mocha */
 const assert = require('assert')
-const TestHelper = require('../../../../test-helper.js')
+const TestHelper = require('../../../test-helper.js')
 
-describe(`/account/organizations/owner/invitation`, () => {
+describe(`/account/organizations/invitation`, () => {
   describe('Invitation#BEFORE', () => {
     it('should require owner', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       await TestHelper.createInvitation(owner, owner.organization.organizationid)
       const user = await TestHelper.createUser()
-      const req = TestHelper.createRequest(`/account/organizations/owner/invitation?invitationid=${owner.invitation.invitationid}`, 'GET')
+      const req = TestHelper.createRequest(`/account/organizations/invitation?invitationid=${owner.invitation.invitationid}`, 'GET')
       req.account = user.account
       req.session = user.session
       let errorMessage
@@ -25,7 +25,7 @@ describe(`/account/organizations/owner/invitation`, () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       await TestHelper.createInvitation(owner, owner.organization.organizationid)
-      const req = TestHelper.createRequest(`/account/organizations/owner/invitation?invitationid=${owner.invitation.invitationid}`, 'GET')
+      const req = TestHelper.createRequest(`/account/organizations/invitation?invitationid=${owner.invitation.invitationid}`, 'GET')
       req.account = owner.account
       req.session = owner.session
       await req.route.api.before(req)
@@ -40,7 +40,7 @@ describe(`/account/organizations/owner/invitation`, () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       await TestHelper.createInvitation(owner, owner.organization.organizationid)
-      const req = TestHelper.createRequest(`/account/organizations/owner/invitation?invitationid=${owner.invitation.invitationid}`, 'GET')
+      const req = TestHelper.createRequest(`/account/organizations/invitation?invitationid=${owner.invitation.invitationid}`, 'GET')
       req.account = owner.account
       req.session = owner.session
       const res = TestHelper.createResponse()
