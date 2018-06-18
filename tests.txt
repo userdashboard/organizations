@@ -275,7 +275,7 @@
       ✓ should require owner
       ✓ should bind invitations to req
     Invitations#GET
-      ✓ should have row for invitation
+      ✓ should have row for each invitation
       ✓ should limit invitations to one page
       ✓ should enforce page size
       ✓ should enforce specified offset
@@ -307,7 +307,7 @@
     Organizations#BEFORE
       ✓ should bind owned organizations to req
     Organizations#GET
-      ✓ should have row for each membership
+      ✓ should have row for each organization
       ✓ should limit organizations to one page
       ✓ should enforce page size
       ✓ should enforce specified offset
@@ -339,7 +339,7 @@
       ✓ should bind organizations to req
     Index#GET
       ✓ should have row for each organization
-      ✓ should have row for each membership
+      ✓ should have organization row for each membership
 
   /administrator/organizations/invitation
     Invitation#BEFORE
@@ -375,7 +375,7 @@
     OrganizationInvitations#BEFORE
       ✓ should bind invitations to req
     OrganizationInvitations#GET
-      ✓ should have row for invitation
+      ✓ should have row for each invitation
       ✓ should limit invitations to one page
       ✓ should enforce page size
       ✓ should enforce specified offset
@@ -651,5 +651,5 @@
     ✓ should apply new values
 
 
-  331 passing (11m)
+  331 passing (10m)
 

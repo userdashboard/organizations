@@ -15,8 +15,8 @@ describe('/api/administrator/organizations/account-invitations-count', async () 
         await TestHelper.createMembership(user, owner.organization.organizationid)
       }
       const req = TestHelper.createRequest(`/api/administrator/organizations/account-invitations-count?accountid=${user.account.accountid}`, 'GET')
-      req.account = administrator.account
-      req.session = administrator.session
+      req.account = req.administrator = administrator.account
+      req.session = req.administratorSession = administrator.session
       const result = await req.route.api.get(req)
       assert.equal(result, 3)
     })

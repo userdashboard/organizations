@@ -16,8 +16,8 @@ describe('/api/administrator/organizations/memberships', () => {
       await TestHelper.createOrganization(owner3)
       await TestHelper.createMembership(owner3, owner3.organization.organizationid)
       const req = TestHelper.createRequest('/api/administrator/organizations/memberships', 'GET')
-      req.account = administrator.account
-      req.session = administrator.session
+      req.account = req.administrator = administrator.account
+      req.session = req.administratorSession = administrator.session
       const memberships = await req.route.api.get(req)
       assert.equal(3, memberships.length)
       assert.equal(memberships[0].membershipid, owner3.membership.membershipid)
@@ -33,8 +33,8 @@ describe('/api/administrator/organizations/memberships', () => {
         await TestHelper.createMembership(user, user.organization.organizationid)
       }
       const req = TestHelper.createRequest('/api/administrator/organizations/memberships', 'GET')
-      req.account = administrator.account
-      req.session = administrator.session
+      req.account = req.administrator = administrator.account
+      req.session = req.administratorSession = administrator.session
       global.PAGE_SIZE = 8
       const membershipsNow = await req.route.api.get(req)
       assert.equal(membershipsNow.length, 8)
@@ -51,8 +51,8 @@ describe('/api/administrator/organizations/memberships', () => {
       }
       const offset = 3
       const req = TestHelper.createRequest('/api/administrator/organizations/memberships?offset=3', 'GET')
-      req.account = administrator.account
-      req.session = administrator.session
+      req.account = req.administrator = administrator.account
+      req.session = req.administratorSession = administrator.session
       const membershipsNow = await req.route.api.get(req)
       for (let i = 0, len = global.PAGE_SIZE; i < len; i++) {
         assert.equal(membershipsNow[i].membershipid, memberships[offset + i].membershipid)

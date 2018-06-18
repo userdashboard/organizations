@@ -1,5 +1,4 @@
 const dashboard = require('@userappstore/dashboard')
-const Navigation = require('./navbar.js')
 
 module.exports = {
   before: beforeRequest,
@@ -32,15 +31,14 @@ async function beforeRequest (req) {
 }
 
 async function renderPage (req, res) {
-  const doc = dashboard.HTML.parse(req.route.html)
-  await Navigation.render(req, doc)
-  dashboard.HTML.renderTemplate(doc, req.data.organization, 'organization-row-template', 'organizations-table')
+  const doc = dashboard.HTML.parse(req.route.html, req.data.organization, 'organization')
   if (req.data.organization.ownerid !== req.account.accountid) {
-    doc.removeElementsById([
-      `invitations-link-${req.query.organizationid}`,
-      `edit-organization-link-${req.query.organizationid}`,
-      `delete-organization-link-${req.query.organizationid}`
-    ])
+    const invitationsLink = doc.getElementById(`invitations-link-${req.query.organizationid}`)
+    invitationsLink.parentNode.removeChild(invitationsLink)
+    const organizationLink = doc.getElementById(`organization-link-${req.query.organizationid}`)
+    organizationLink.parentNode.removeChild(organizationLink)
+    const deleteOrganizationLink = doc.getElementById(`delete-organization-link-${req.query.organizationid}`)
+    deleteOrganizationLink.parentNode.removeChild(deleteOrganizationLink)
   }
   return dashboard.Response.end(req, res, doc)
 }

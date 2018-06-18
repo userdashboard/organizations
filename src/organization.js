@@ -64,6 +64,7 @@ async function create (accountid, name) {
   }
   const organizationid = await generateID()
   const fieldsAndValues = [
+    `object`, `organization`,
     `ownerid`, accountid,
     `organizationid`, organizationid,
     `name`, name,

@@ -1,5 +1,4 @@
 const dashboard = require('@userappstore/dashboard')
-const Navigation = require('./navbar.js')
 
 module.exports = {
   before: beforeRequest,
@@ -31,17 +30,14 @@ async function renderPage (req, res, messageTemplate) {
   if (req.success) {
     messageTemplate = 'success'
   }
-  const doc = dashboard.HTML.parse(req.route.html)
-  await Navigation.render(req, doc)
-  dashboard.HTML.renderTemplate(doc, req.data.invitation, 'invitation-row-template', 'invitations-table')
+  const doc = dashboard.HTML.parse(req.route.html, req.data.invitation, 'invitation')
   const organizationName = doc.getElementById('organizationName')
   organizationName.setAttribute('value', req.data.organization.name)
-  const submitForm = doc.getElementById('submit-form')
-  submitForm.setAttribute('action', req.url)
   if (messageTemplate) {
     dashboard.HTML.renderTemplate(doc, null, messageTemplate, 'message-container')
     if (messageTemplate === 'submit-sucess-message') {
-      submitForm.removeElement()
+      const submitForm = doc.getElementById('submit-form')
+      submitForm.parentNode.removeChild(submitForm)
       return dashboard.Response.end(req, res, doc)
     }
   }

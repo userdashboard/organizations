@@ -1,5 +1,4 @@
 const dashboard = require('@userappstore/dashboard')
-const Navigation = require('./navbar.js')
 
 module.exports = {
   before: beforeRequest,
@@ -24,8 +23,6 @@ async function beforeRequest (req) {
 }
 
 async function renderPage (req, res) {
-  const doc = dashboard.HTML.parse(req.route.html)
-  await Navigation.render(req, doc)
-  dashboard.HTML.renderTemplate(doc, req.data.membership, 'membership-row-template', 'memberships-table')
+  const doc = dashboard.HTML.parse(req.route.html, req.data.membership, 'membership')
   return dashboard.Response.end(req, res, doc)
 }

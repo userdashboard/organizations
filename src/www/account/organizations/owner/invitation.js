@@ -1,5 +1,4 @@
 const dashboard = require('@userappstore/dashboard')
-const Navigation = require('./navbar.js')
 
 module.exports = {
   before: beforeRequest,
@@ -24,18 +23,20 @@ async function beforeRequest (req) {
 }
 
 async function renderPage (req, res) {
-  const doc = dashboard.HTML.parse(req.route.html)
-  await Navigation.render(req, doc)
-  dashboard.HTML.renderTemplate(doc, req.data.invitation, 'invitation-row-template', 'invitations-table')
+  const doc = dashboard.HTML.parse(req.route.html, req.data.invitation, 'invitation')
   if (req.data.invitation.accepted) {
-    doc.removeElementById('not-accepted')
+    const notAccepted = doc.getElementById('not-accepted')
+    notAccepted.parentNode.removeChild(notAccepted)
   } else {
-    doc.removeElementById('accepted')
+    const accepted = doc.getElementById('accepted')
+    accepted.parentNode.removeChild(accepted)
   }
   if (req.data.invitation.membershipid) {
-    doc.removeElementById('no-membership')
+    const noMembership = doc.getElementById('no-membership')
+    noMembership.parentNode.removeChild(noMembership)
   } else {
-    doc.removeElementById('membership')
+    const membership = doc.getElementById('membership')
+    membership.parentNode.removeChild(membership)
   }
   return dashboard.Response.end(req, res, doc)
 }

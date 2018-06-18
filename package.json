@@ -18,7 +18,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@userappstore/dashboard": "^1.0.1040"
+    "@userappstore/dashboard": "^1.0.1044"
   },
   "dashboard": {
     "proxy": [

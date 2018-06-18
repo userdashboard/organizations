@@ -15,8 +15,8 @@ describe('/api/administrator/organizations/memberships-count', async () => {
       const user = await TestHelper.createUser()
       await TestHelper.createMembership(user, owner2.organization.organizationid)
       const req = TestHelper.createRequest('/api/administrator/organizations/memberships-count', 'GET')
-      req.account = administrator.account
-      req.session = administrator.session
+      req.account = req.administrator = administrator.account
+      req.session = req.administratorSession = administrator.session
       const result = await req.route.api.get(req)
       assert.equal(result, 3)
     })

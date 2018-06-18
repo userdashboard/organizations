@@ -1,5 +1,4 @@
 const dashboard = require('@userappstore/dashboard')
-const Navigation = require('./navbar.js')
 
 module.exports = {
   before: beforeRequest,
@@ -34,7 +33,6 @@ async function renderPage (req, res, messageTemplate) {
     messageTemplate = 'success'
   }
   const doc = dashboard.HTML.parse(req.route.html)
-  await Navigation.render(req, doc)
   const userEmail = req.body ? req.body.email || '' : req.data.membership.email
   const nameField = doc.getElementById('organizationName')
   nameField.setAttribute('value', req.data.organization.name)

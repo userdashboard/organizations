@@ -13,8 +13,8 @@ describe('/api/administrator/organizations/account-organizations', () => {
       const owner3 = await TestHelper.createUser()
       await TestHelper.createOrganization(owner3)
       const req = TestHelper.createRequest(`/api/administrator/organizations/account-organizations?accountid=${owner.account.accountid}`, 'GET')
-      req.account = administrator.account
-      req.session = administrator.session
+      req.account = req.administrator = administrator.account
+      req.session = req.administratorSession = administrator.session
       const organizations = await req.route.api.get(req)
       assert.equal(1, organizations.length)
       assert.equal(organizations[0].organizationid, owner.organization.organizationid)
@@ -27,8 +27,8 @@ describe('/api/administrator/organizations/account-organizations', () => {
         await TestHelper.createOrganization(user)
       }
       const req = TestHelper.createRequest(`/api/administrator/organizations/account-organizations?accountid=${user.account.accountid}`, 'GET')
-      req.account = administrator.account
-      req.session = administrator.session
+      req.account = req.administrator = administrator.account
+      req.session = req.administratorSession = administrator.session
       global.PAGE_SIZE = 8
       const organizationsNow = await req.route.api.get(req)
       assert.equal(organizationsNow.length, 8)
@@ -44,8 +44,8 @@ describe('/api/administrator/organizations/account-organizations', () => {
       }
       const offset = 3
       const req = TestHelper.createRequest(`/api/administrator/organizations/account-organizations?accountid=${user.account.accountid}&offset=${offset}`, 'GET')
-      req.account = administrator.account
-      req.session = administrator.session
+      req.account = req.administrator = administrator.account
+      req.session = req.administratorSession = administrator.session
       const organizationsNow = await req.route.api.get(req)
       for (let i = 0, len = global.PAGE_SIZE; i < len; i++) {
         assert.equal(organizationsNow[i].codeid, organizations[offset + i].codeid)

@@ -1,48 +1,42 @@
 <html navbar="/account/organizations/owner/navbar-invitation.html">
   <head>
-    <title>Invitation</title>
+    <title>View ${invitation.invitationid}</title>
     <link href="/public/pure-min.css" rel="stylesheet" />
     <link href="/public/content.css" rel="stylesheet" />
     <base target="_top" href="/" />
   </head>
   <body>
-    <h1>Invitation</h1>
-    <table id="invitations-table" class="pure-table pure-table-striped"></table>
+    <h1>View ${invitation.invitationid}</h1>
+    <table id="invitations-table" class="pure-table pure-table-stacked">
+      <tbody id="${invitation.invitationid}">
+        <tr>
+          <th>ID</th>
+          <td>${invitation.invitationid}</td>
+        </tr>
+        <tr>
+          <th>Created</th>
+          <td>${invitation.created}</td>
+        </tr>
+        <tr>
+          <th>Accepted/th>
+          <td id="accepted">Yes</td>
+          <td id="not-accepted">No</td>
+        </tr>
+        <tr>
+          <th>Membership</th>
+          <td id="membership"><a href="membership?membershipid=${invitation.membershipid}">${invitation.membershipid}</a></td>
+          <td id="no-membership">Nobody</td>
+        </tr>
+        <tr>
+          <th>IP address</th>
+          <td>${invitation.ip}</td>
+        </tr>
+        <tr>
+          <th>User agent</th>
+          <td>${invitation.userAgent}</td>
+        </tr>
+        <tr>
+      </tbody>
+    </table>
   </body> 
-  <template id="invitation-row-template">
-    <tbody id="${invitationid}">
-      <tr>
-        <th>ID</th>
-        <td>${invitationid}</td>
-      </tr>
-      <tr>
-        <th>Created</th>
-        <td>${created}</td>
-      </tr>
-      <tr>
-        <th>Accepted/th>
-        <td id="accepted">Yes</td>
-        <td id="not-accepted">No</td>
-      </tr>
-      <tr>
-        <th>Membership</th>
-        <td id="membership"><a href="membership?membershipid=${membershipid}">${membershipid}</a></td>
-        <td id="no-membership">Nobody</td>
-      </tr>
-      <tr>
-        <th>IP address</th>
-        <td>${ip}</td>
-      </tr>
-      <tr>
-        <th>User agent</th>
-        <td>${userAgent}</td>
-      </tr>
-      <tr>
-        <th></th>
-        <td class="pure-button-group" role="group">
-          <a href="delete-invitation?invitationid=${invitationid}" class="pure-button">Delete</a>
-        </td>
-      </tr>
-    </tbody>
-  </template>
 </html>

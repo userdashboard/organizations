@@ -15,8 +15,8 @@ describe(`/api/administrator/organizations/account-invitations`, () => {
         await TestHelper.createMembership(user, owner.organization.organizationid)
       }
       const req = TestHelper.createRequest(`/api/administrator/organizations/account-invitations?accountid=${user.account.accountid}`, 'GET')
-      req.account = administrator.account
-      req.session = administrator.session
+      req.account = req.administrator = administrator.account
+      req.session = req.administratorSession = administrator.session
       const invitations = await req.route.api.get(req)
       assert.equal(3, invitations.length)
     })
@@ -32,8 +32,8 @@ describe(`/api/administrator/organizations/account-invitations`, () => {
         await TestHelper.createMembership(user, owner.organization.organizationid)
       }
       const req = TestHelper.createRequest(`/api/administrator/organizations/account-invitations?accountid=${user.account.accountid}`, 'GET')
-      req.account = administrator.account
-      req.session = administrator.session
+      req.account = req.administrator = administrator.account
+      req.session = req.administratorSession = administrator.session
       global.PAGE_SIZE = 8
       const invitationsNow = await req.route.api.get(req)
       assert.equal(invitationsNow.length, 8)
@@ -53,8 +53,8 @@ describe(`/api/administrator/organizations/account-invitations`, () => {
       }
       const offset = 3
       const req = TestHelper.createRequest(`/api/administrator/organizations/account-invitations?accountid=${user.account.accountid}&offset=${offset}`, 'GET')
-      req.account = administrator.account
-      req.session = administrator.session
+      req.account = req.administrator = administrator.account
+      req.session = req.administratorSession = administrator.session
       const invitationsNow = await req.route.api.get(req)
       for (let i = 0, len = global.PAGE_SIZE; i < len; i++) {
         assert.equal(invitationsNow[i].invitationid, invitations[offset + i].invitationid)

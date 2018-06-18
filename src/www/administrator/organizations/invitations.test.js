@@ -10,8 +10,8 @@ describe(`/administrator/organizations/invitations`, () => {
       await TestHelper.createOrganization(owner)
       await TestHelper.createInvitation(owner, owner.organization.organizationid)
       const req = TestHelper.createRequest(`/administrator/organizations/invitations`, 'GET')
-      req.account = administrator.account
-      req.session = administrator.session
+      req.account = req.administrator = administrator.account
+      req.session = req.administratorSession = administrator.session
       await req.route.api.before(req)
       assert.notEqual(req.data, null)
       assert.notEqual(req.data.invitations, null)
@@ -30,8 +30,8 @@ describe(`/administrator/organizations/invitations`, () => {
       const invitation2 = await TestHelper.createInvitation(owner, owner.organization.organizationid)
       const invitation3 = await TestHelper.createInvitation(owner, owner.organization.organizationid)
       const req = TestHelper.createRequest(`/administrator/organizations/invitations`, 'GET')
-      req.account = administrator.account
-      req.session = administrator.session
+      req.account = req.administrator = administrator.account
+      req.session = req.administratorSession = administrator.session
       const res = TestHelper.createResponse()
       res.end = async (str) => {
         const doc = TestHelper.extractDoc(str)
@@ -54,8 +54,8 @@ describe(`/administrator/organizations/invitations`, () => {
         await TestHelper.createInvitation(owner, owner.organization.organizationid)
       }
       const req = TestHelper.createRequest(`/administrator/organizations/invitations`, 'GET')
-      req.account = administrator.account
-      req.session = administrator.session
+      req.account = req.administrator = administrator.account
+      req.session = req.administratorSession = administrator.session
       const res = TestHelper.createResponse()
       res.end = async (str) => {
         const doc = TestHelper.extractDoc(str)
@@ -75,8 +75,8 @@ describe(`/administrator/organizations/invitations`, () => {
         await TestHelper.createInvitation(owner, owner.organization.organizationid)
       }
       const req = TestHelper.createRequest(`/administrator/organizations/invitations`, 'GET')
-      req.account = administrator.account
-      req.session = administrator.session
+      req.account = req.administrator = administrator.account
+      req.session = req.administratorSession = administrator.session
       global.PAGE_SIZE = 8
       const res = TestHelper.createResponse()
       res.end = async (str) => {
@@ -100,8 +100,8 @@ describe(`/administrator/organizations/invitations`, () => {
       }
       const offset = 3
       const req = TestHelper.createRequest(`/administrator/organizations/invitations?offset=${offset}`, 'GET')
-      req.account = administrator.account
-      req.session = administrator.session
+      req.account = req.administrator = administrator.account
+      req.session = req.administratorSession = administrator.session
       const res = TestHelper.createResponse()
       res.end = async (str) => {
         const doc = TestHelper.extractDoc(str)

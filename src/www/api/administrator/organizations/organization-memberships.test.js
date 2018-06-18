@@ -11,8 +11,8 @@ describe(`/api/administrator/organizations/organization-memberships`, () => {
       await TestHelper.createMembership(owner, owner.organization.organizationid)
       await TestHelper.createMembership(owner, owner.organization.organizationid)
       const req = TestHelper.createRequest(`/api/administrator/organizations/organization-memberships?organizationid=${owner.organization.organizationid}`, 'GET')
-      req.account = administrator.account
-      req.session = administrator.session
+      req.account = req.administrator = administrator.account
+      req.session = req.administratorSession = administrator.session
       const memberships = await req.route.api.get(req)
       assert.equal(memberships.length, 2)
     })
@@ -26,8 +26,8 @@ describe(`/api/administrator/organizations/organization-memberships`, () => {
         await TestHelper.createMembership(user, owner.organization.organizationid)
       }
       const req = TestHelper.createRequest(`/api/administrator/organizations/organization-memberships?organizationid=${owner.organization.organizationid}`, 'GET')
-      req.account = administrator.account
-      req.session = administrator.session
+      req.account = req.administrator = administrator.account
+      req.session = req.administratorSession = administrator.session
       global.PAGE_SIZE = 8
       const membershipsNow = await req.route.api.get(req)
       assert.equal(membershipsNow.length, 8)
@@ -45,8 +45,8 @@ describe(`/api/administrator/organizations/organization-memberships`, () => {
       }
       const offset = 3
       const req = TestHelper.createRequest(`/api/administrator/organizations/organization-memberships?organizationid=${owner.organization.organizationid}&offset=${offset}`, 'GET')
-      req.account = administrator.account
-      req.session = administrator.session
+      req.account = req.administrator = administrator.account
+      req.session = req.administratorSession = administrator.session
       const membershipsNow = await req.route.api.get(req)
       for (let i = 0, len = global.PAGE_SIZE; i < len; i++) {
         assert.equal(membershipsNow[i].membershipid, memberships[offset + i].membershipid)

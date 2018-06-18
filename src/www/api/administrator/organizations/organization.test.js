@@ -9,8 +9,8 @@ describe('/api/administrator/organizations/organization', () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const req = TestHelper.createRequest(`/api/administrator/organizations/organization?organizationid=${owner.organization.organizationid}`, 'GET')
-      req.account = administrator.account
-      req.session = administrator.session
+      req.account = req.administrator = administrator.account
+      req.session = req.administratorSession = administrator.session
       const organization = await req.route.api.get(req)
       assert.notEqual(organization, null)
       assert.notEqual(organization.organizationid, null)
@@ -21,8 +21,8 @@ describe('/api/administrator/organizations/organization', () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const req = TestHelper.createRequest(`/api/administrator/organizations/organization?organizationid=${owner.organization.organizationid}`, 'GET')
-      req.account = administrator.account
-      req.session = administrator.session
+      req.account = req.administrator = administrator.account
+      req.session = req.administratorSession = administrator.session
       const organization = await req.route.api.get(req)
       assert.notEqual(organization, null)
       assert.notEqual(organization.organizationid, null)

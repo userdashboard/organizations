@@ -10,8 +10,8 @@ describe('/api/administrator/organizations/invitation', () => {
       await TestHelper.createOrganization(owner)
       await TestHelper.createInvitation(owner, owner.organization.organizationid)
       const req = TestHelper.createRequest(`/api/administrator/organizations/invitation?invitationid=${owner.invitation.invitationid}`, 'GET')
-      req.account = administrator.account
-      req.session = administrator.session
+      req.account = req.administrator = administrator.account
+      req.session = req.administratorSession = administrator.session
       const invitation = await req.route.api.get(req)
       assert.notEqual(invitation, null)
       assert.notEqual(invitation.invitationid, null)
@@ -23,8 +23,8 @@ describe('/api/administrator/organizations/invitation', () => {
       await TestHelper.createOrganization(owner)
       await TestHelper.createInvitation(owner, owner.organization.organizationid)
       const req = TestHelper.createRequest(`/api/administrator/organizations/invitation?invitationid=${owner.invitation.invitationid}`, 'GET')
-      req.account = administrator.account
-      req.session = administrator.session
+      req.account = req.administrator = administrator.account
+      req.session = req.administratorSession = administrator.session
       const invitation = await req.route.api.get(req)
       assert.notEqual(invitation, null)
       assert.notEqual(invitation.invitationid, null)

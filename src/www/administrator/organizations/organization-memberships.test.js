@@ -13,8 +13,8 @@ describe(`/administrator/organizations/organization-memberships`, () => {
       const user2 = await TestHelper.createUser()
       await TestHelper.createMembership(user2, owner.organization.organizationid)
       const req = TestHelper.createRequest(`/administrator/organizations/organization-memberships?organizationid=${owner.organization.organizationid}`, 'GET')
-      req.account = administrator.account
-      req.session = administrator.session
+      req.account = req.administrator = administrator.account
+      req.session = req.administratorSession = administrator.session
       await req.route.api.before(req)
       assert.notEqual(req.data, null)
       assert.notEqual(req.data.memberships, null)
@@ -34,8 +34,8 @@ describe(`/administrator/organizations/organization-memberships`, () => {
       const user2 = await TestHelper.createUser()
       await TestHelper.createMembership(user2, owner.organization.organizationid)
       const req = TestHelper.createRequest(`/administrator/organizations/organization-memberships?organizationid=${owner.organization.organizationid}`, 'GET')
-      req.account = administrator.account
-      req.session = administrator.session
+      req.account = req.administrator = administrator.account
+      req.session = req.administratorSession = administrator.session
       const res = TestHelper.createResponse()
       res.end = async (str) => {
         const doc = TestHelper.extractDoc(str)
@@ -57,8 +57,8 @@ describe(`/administrator/organizations/organization-memberships`, () => {
         await TestHelper.createMembership(user, owner.organization.organizationid)
       }
       const req = TestHelper.createRequest(`/administrator/organizations/organization-memberships?organizationid=${owner.organization.organizationid}`, 'GET')
-      req.account = administrator.account
-      req.session = administrator.session
+      req.account = req.administrator = administrator.account
+      req.session = req.administratorSession = administrator.session
       const res = TestHelper.createResponse()
       res.end = async (str) => {
         const doc = TestHelper.extractDoc(str)
@@ -79,8 +79,8 @@ describe(`/administrator/organizations/organization-memberships`, () => {
         await TestHelper.createMembership(user, owner.organization.organizationid)
       }
       const req = TestHelper.createRequest(`/administrator/organizations/organization-memberships?organizationid=${owner.organization.organizationid}`, 'GET')
-      req.account = administrator.account
-      req.session = administrator.session
+      req.account = req.administrator = administrator.account
+      req.session = req.administratorSession = administrator.session
       global.PAGE_SIZE = 8
       const res = TestHelper.createResponse()
       res.end = async (str) => {
@@ -105,8 +105,8 @@ describe(`/administrator/organizations/organization-memberships`, () => {
       }
       const offset = 3
       const req = TestHelper.createRequest(`/administrator/organizations/organization-memberships?organizationid=${owner.organization.organizationid}&offset=${offset}`, 'GET')
-      req.account = administrator.account
-      req.session = administrator.session
+      req.account = req.administrator = administrator.account
+      req.session = req.administratorSession = administrator.session
       const res = TestHelper.createResponse()
       res.end = async (str) => {
         const doc = TestHelper.extractDoc(str)

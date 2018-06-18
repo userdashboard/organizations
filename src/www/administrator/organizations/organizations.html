@@ -20,18 +20,18 @@
     </table>
     <ul id="page-links" class="pagination"></ul>
   </body>
-  <template id='page-link-template'>
-    <li><a href="/account/organizations/organizations?offset=${offset}" id="page-link-${pageNumber}">${pageNumber}</a></li>
+  <template id='page-link'>
+    <li><a href="/account/organizations/organizations?offset=${page.offset}" id="page-link-${page.pageNumber}">${page.pageNumber}</a></li>
   </template>
-  <template id="organization-row-template">
-    <tr id="${organizationid}">
-      <td><a href="organization?organizationid=${organizationid}">${organizationid}</a></td>
-      <td>${name}</td>
-      <td><a href="mailto:${email}">${email}</a></td>
-      <td>${created}</td>
+  <template id="organization-row">
+    <tr id="${organization.organizationid}">
+      <td><a href="organization?organizationid=${organization.organizationid}">${organization.organizationid}</a></td>
+      <td>${organization.name}</td>
+      <td><a href="mailto:${organization.email}">${organization.email}</a></td>
+      <td>${organization.created}</td>
       <td class="pure-button-group" role="group">
-        <a href="/administrator/organizations/memberships?organizationid=${organizationid}" id="memberships-link-${organizationid}" class="pure-button">Memberships</a>
-        <a href="/administrator/organizations/invitations?organizationid=${organizationid}" id="invitations-link-${organizationid}" class="pure-button">Invitations</a>
+        <a href="/administrator/organizations/memberships?organizationid=${organization.organizationid}" id="memberships-link-${organization.organizationid}" class="pure-button">Memberships</a>
+        <a href="/administrator/organizations/invitations?organizationid=${organization.organizationid}" id="invitations-link-${organization.organizationid}" class="pure-button">Invitations</a>
       </td>
     </tr>
   </template>

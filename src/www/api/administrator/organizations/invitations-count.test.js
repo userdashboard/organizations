@@ -14,8 +14,8 @@ describe('/api/administrator/organizations/invitations-count', async () => {
       await TestHelper.createInvitation(owner2, owner2.organization.organizationid)
       await TestHelper.createInvitation(owner2, owner2.organization.organizationid)
       const req = TestHelper.createRequest('/api/administrator/organizations/invitations-count', 'GET')
-      req.account = administrator.account
-      req.session = administrator.session
+      req.account = req.administrator = administrator.account
+      req.session = req.administratorSession = administrator.session
       const result = await req.route.api.get(req)
       assert.equal(result, 3)
     })

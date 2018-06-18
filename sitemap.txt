@@ -1,7 +1,6 @@
 @userappstore/dashboard
-Version: 1.0.1039
-Address:
-http://127.0.0.1:8889
+Version: 1.0.1044
+Address: http://127.0.0.1:8889
 Root path: /Users/benlowry/CloudStation/workspaces/dashboard/organizations/src/www
 Application path: /Users/benlowry/CloudStation/workspaces/dashboard/organizations
 
@@ -14,6 +13,10 @@ Account menu:
 @userappstore/dashboard/src/www/account "My account"
 @userappstore/dashboard/src/www/account/signout "Sign out"
 
+Template handlers:
+@userappstore/dashboard/src/template/session-impersonation-header.js
+@userappstore/dashboard/src/template/session-unlocked-header.js
+
 Server handlers:
 @userappstore/dashboard/src/server/bind-urlpath.js
 @userappstore/dashboard/src/server/bind-route.js
@@ -22,13 +25,15 @@ Server handlers:
 @userappstore/dashboard/src/server/bind-useragent.js
 @userappstore/dashboard/src/server/bind-query.js
 @userappstore/dashboard/src/server/bind-body.js
+@userappstore/dashboard/src/server/bind-cookie.js
+@userappstore/dashboard/src/server/bind-impersonated-session.js
 /src/server/bind-organizations.js
 /src/server/bind-memberships.js
 
 URL ----------------------------------------------------------- AUTH ---- LOCK --- TEMPLATE ----- HTTP REQUESTS - NODEJS -------------------- HTML ----------------------
 
-/                                                               GUEST              FULLSCREEN                     static-page                 @userappstore/dashboard    
-/account                                                                                                          static-page                 @userappstore/dashboard    
+/                                                               GUEST              FULLSCREEN     GET                                         @userappstore/dashboard    
+/account                                                                                          GET                                         @userappstore/dashboard    
 /account/authorize                                                                 FULLSCREEN     GET POST        @userappstore/dashboard     @userappstore/dashboard    
 /account/change-password                                                                          GET POST        @userappstore/dashboard     @userappstore/dashboard    
 /account/change-username                                                                          GET POST        @userappstore/dashboard     @userappstore/dashboard    
@@ -41,7 +46,7 @@ URL ----------------------------------------------------------- AUTH ---- LOCK -
 /account/edit-profile                                                                             GET POST        @userappstore/dashboard     @userappstore/dashboard    
 /account/end-all-sessions                                                                         GET POST        @userappstore/dashboard     @userappstore/dashboard    
 /account/end-session                                                                              GET POST        @userappstore/dashboard     @userappstore/dashboard    
-/account/lock-session                                                                             GET             @userappstore/dashboard     @userappstore/dashboard    
+/account/lock-session                                                                             GET             @userappstore/dashboard                                
 /account/organizations                                                                            GET             /src/www                    /src/www                   
 /account/organizations/accept-invitation                                                          GET POST        /src/www                    /src/www                   
 /account/organizations/create-organization                                                        GET POST        /src/www                    /src/www                   
@@ -74,8 +79,8 @@ URL ----------------------------------------------------------- AUTH ---- LOCK -
 /account/set-default-profile                                                                      GET POST        @userappstore/dashboard     @userappstore/dashboard    
 /account/signin                                                 GUEST              FULLSCREEN     GET POST        @userappstore/dashboard     @userappstore/dashboard    
 /account/signout                                                                   FULLSCREEN     GET             @userappstore/dashboard     @userappstore/dashboard    
-/account/signout-complete                                       GUEST              FULLSCREEN                     static-page                 @userappstore/dashboard    
-/administrator                                                                                                    static-page                 @userappstore/dashboard    
+/account/signout-complete                                       GUEST              FULLSCREEN     GET                                         @userappstore/dashboard    
+/administrator                                                                                    GET                                         @userappstore/dashboard    
 /administrator/account                                                                            GET             @userappstore/dashboard     @userappstore/dashboard    
 /administrator/account-profiles                                                                   GET             @userappstore/dashboard     @userappstore/dashboard    
 /administrator/account-reset-codes                                                                GET             @userappstore/dashboard     @userappstore/dashboard    
@@ -86,6 +91,8 @@ URL ----------------------------------------------------------- AUTH ---- LOCK -
 /administrator/create-reset-code                                                                  GET POST        @userappstore/dashboard     @userappstore/dashboard    
 /administrator/delete-account                                                                     GET POST        @userappstore/dashboard     @userappstore/dashboard    
 /administrator/delete-schedule                                                                    GET             @userappstore/dashboard     @userappstore/dashboard    
+/administrator/end-impersonation                                                                  GET             @userappstore/dashboard                                
+/administrator/impersonate-account                                                                GET POST        @userappstore/dashboard     @userappstore/dashboard    
 /administrator/organizations                                                                      GET             /src/www                    /src/www                   
 /administrator/organizations/invitation                                                           GET             /src/www                    /src/www                   
 /administrator/organizations/invitations                                                          GET             /src/www                    /src/www                   
@@ -146,6 +153,7 @@ URL ----------------------------------------------------------- AUTH ---- LOCK -
 /api/administrator/reset-code                                                                     GET             @userappstore/dashboard                                
 /api/administrator/reset-codes                                                                    GET             @userappstore/dashboard                                
 /api/administrator/reset-codes-count                                                              GET             @userappstore/dashboard                                
+/api/administrator/reset-session-impersonate                                                      GET             @userappstore/dashboard                                
 /api/administrator/reset-session-key                                      LOCK                    PATCH           @userappstore/dashboard                                
 /api/administrator/session                                                                        GET             @userappstore/dashboard                                
 /api/administrator/sessions                                                                       GET             @userappstore/dashboard                                
@@ -153,6 +161,7 @@ URL ----------------------------------------------------------- AUTH ---- LOCK -
 /api/administrator/set-account-administrator                              LOCK                    PATCH           @userappstore/dashboard                                
 /api/administrator/set-account-deleted                                    LOCK                    PATCH           @userappstore/dashboard                                
 /api/administrator/set-owner-account                                      LOCK                    PATCH           @userappstore/dashboard                                
+/api/administrator/set-session-impersonate                                LOCK                    PATCH           @userappstore/dashboard                                
 /api/user/account                                               GUEST                             GET             @userappstore/dashboard                                
 /api/user/create-account                                        GUEST                             POST            @userappstore/dashboard                                
 /api/user/create-profile                                                  LOCK                    POST            @userappstore/dashboard                                
@@ -207,4 +216,4 @@ URL ----------------------------------------------------------- AUTH ---- LOCK -
 /api/user/set-session-ended                                                                       PATCH           @userappstore/dashboard                                
 /api/user/set-session-unlocked                                                                    PATCH           @userappstore/dashboard                                
 /api/user/update-profile                                                  LOCK                    PATCH           @userappstore/dashboard                                
-/home                                                                                                             static-page                 @userappstore/dashboard    
+/home                                                                                             GET                                         @userappstore/dashboard    

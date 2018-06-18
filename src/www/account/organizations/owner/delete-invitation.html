@@ -1,6 +1,6 @@
 <html navbar="/account/organizations/owner/navbar-invitation.html">
   <head>
-    <title>Delete invitation</title>
+    <title>Delete ${invitation.invitationid}</title>
     <link href="/public/pure-min.css" rel="stylesheet" />
     <link href="/public/content.css" rel="stylesheet" />
     <base target="_top" href="/" />
@@ -17,6 +17,14 @@
           <th>Membership</th>
         </tr>
       </thead>
+      <tr id="${invitation.invitationid}">
+        <td>${invitation.invitationid}</td>
+        <td>${invitation.created}</td>
+        <td id="accepted">Yes</td>
+        <td id="not-accepted">No</td>
+        <td id="membership"><a href="membership?membershipid=${invitation.membershipid}">Membership</a></td>
+        <td id="no-membership">Nobody</td>
+      </tr>
     </table>
     <form id="submit-form" method="POST" class="pure-form pure-form-stacked">
       <div class="pure-controls">
@@ -30,15 +38,5 @@
   </body>
   <template id="success">
     <div class="success message">Success!  The invitation has been permanently deleted.</div>
-  </template>
-  <template id="invitation-row-template">
-    <tr id="${invitationid}">
-      <td>${invitationid}</td>
-      <td>${created}</td>
-      <td id="accepted">Yes</td>
-      <td id="not-accepted">No</td>
-      <td id="membership"><a href="membership?membershipid=${membershipid}">Membership</a></td>
-      <td id="no-membership">Nobody</td>
-    </tr>
   </template>
 </html>

@@ -1,5 +1,4 @@
 const dashboard = require('@userappstore/dashboard')
-const Navigation = require('./navbar.js')
 
 module.exports = {
   before: beforeRequest,
@@ -22,16 +21,17 @@ async function beforeRequest (req) {
 
 async function renderPage (req, res) {
   const doc = dashboard.HTML.parse(req.route.html)
-  await Navigation.render(req, doc)
   if (req.data.organizations && req.data.organizations.length) {
-    dashboard.HTML.renderTable(doc, req.data.organizations, 'organization-row-template', 'organizations-table')
+    dashboard.HTML.renderTable(doc, req.data.organizations, 'organization-row', 'organizations-table')
     if (req.data.count < global.PAGE_SIZE) {
-      doc.removeElementById('page-links')
+      const pageLinks = doc.getElementById('page-links')
+      pageLinks.parentNode.removeChild(pageLinks)
     } else {
       dashboard.HTML.renderPagination(doc, req.data.offset, req.data.count)
     }
   } else {
-    doc.removeElementById('organizations-table')
+    const organizationsTable = doc.getElementById('organizations-table')
+    organizationsTable.parentNode.removeChild(organizationsTable)
   }
   return dashboard.Response.end(req, res, doc)
 }

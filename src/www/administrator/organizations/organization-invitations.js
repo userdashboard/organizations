@@ -1,5 +1,4 @@
 const dashboard = require('@userappstore/dashboard')
-const Navigation = require('./navbar.js')
 
 module.exports = {
   before: beforeRequest,
@@ -23,25 +22,27 @@ async function beforeRequest (req) {
 
 async function renderPage (req, res) {
   const doc = dashboard.HTML.parse(req.route.html)
-  await Navigation.render(req, doc)
   if (req.data.invitations && req.data.invitations.length) {
-    dashboard.HTML.renderTable(doc, req.data.invitations, 'invitation-row-template', 'invitations-table')
-    const removeElements = []
+    dashboard.HTML.renderTable(doc, req.data.invitations, 'invitation-row', 'invitations-table')
     for (const invitation of req.data.invitations) {
       if (invitation.accepted) {
-        removeElements.push(`not-accepted-${invitation.invitationid}`)
+        const notAccepted = doc.getElementById(`not-accepted-${invitation.invitationid}`)
+        notAccepted.parentNode.removeChild(notAccepted)
       } else {
-        removeElements.push(`accepted-${invitation.invitationid}`)
+        const acceptedElement = doc.getElementById(`accepted-${invitation.invitationid}`)
+        acceptedElement.parentNode.removeChild(acceptedElement)
       }
       if (invitation.membershipid) {
-        removeElements.push(`no-membership-${invitation.invitationid}`)
+        const noMembership = doc.getElementById(`no-membership-${invitation.invitationid}`)
+        noMembership.parentNode.removeChild(noMembership)
       } else {
-        removeElements.push(`membership-${invitation.invitationid}`)
+        const membership = doc.getElementById(`membership-${invitation.invitationid}`)
+        membership.parentNode.removeChild(membership)
       }
     }
-    doc.removeElementsById(removeElements)
     if (req.data.count < global.PAGE_SIZE) {
-      doc.removeElementById('page-links')
+      const pageLinks = doc.getElementById('page-links')
+      pageLinks.parentNode.removeChild(pageLinks)
     } else {
       dashboard.HTML.renderPagination(doc, req.data.offset, req.data.count)
     }

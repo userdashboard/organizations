@@ -1,6 +1,6 @@
 <html navbar="/account/organizations/owner/navbar-organization.html">
   <head>
-    <title>Create invitation code</title>
+    <title>Create invitation for ${organization.organizationid}</title>
     <link href="/public/pure-min.css" rel="stylesheet" />
     <link href="/public/content.css" rel="stylesheet" />
     <base target="_top" href="/" />
@@ -18,6 +18,12 @@
           <th>Created</th>
         </tr>
       </thead>
+      <tr id="${organization.organizationid}">
+        <td>${organization.organizationid}</td>
+        <td>${organization.name}</td>
+        <td><a href="mailto:${organization.email}">${organization.email}</a></td>
+        <td>${organization.created}</td>
+      </tr>
     </table>
     <form id="submit-form" method="POST" class="pure-form pure-form-stacked">
       <div class="pure-control-group">
@@ -45,15 +51,7 @@
   <template id="success">
     <div class="success message">
       <p>Success!  A new member may use this link to join your organization:</p>
-      <input class="link" type="text" readonly value="https://${DOMAIN}/account/organizations/accept-invitation?invitationid=${invitationid}" />
+      <input class="link" type="text" readonly value="https://${organization.DOMAIN}/account/organizations/accept-invitation?invitationid=${organization.invitationid}" />
     </div>
-  </template>
-  <template id="organization-row-template">
-    <tr id="${organizationid}">
-      <td>${organizationid}</td>
-      <td>${name}</td>
-      <td><a href="mailto:${email}">${email}</a></td>
-      <td>${created}</td>
-    </tr>
   </template>
 </html>

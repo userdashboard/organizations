@@ -1,5 +1,4 @@
 const dashboard = require('@userappstore/dashboard')
-const Navigation = require('./navbar.js')
 
 module.exports = {
   before: beforeRequest,
@@ -28,20 +27,17 @@ async function renderPage (req, res, messageTemplate) {
   if (req.success) {
     messageTemplate = 'success'
   }
-  const doc = dashboard.HTML.parse(req.route.html)
-  await Navigation.render(req, doc)
-  dashboard.HTML.renderTemplate(doc, req.data.organization, 'organization-row-template', 'organizations-table')
+  const doc = dashboard.HTML.parse(req.route.html, req.data.organization, 'organization')
   doc.getElementById('organizationName').setAttribute('value', req.data.organization.name)
   doc.getElementById('code').setAttribute('value', req.body ? req.body.code : dashboard.UUID.random(10))
-  const submitForm = doc.getElementById('submit-form')
-  submitForm.setAttribute('action', req.url)
   if (messageTemplate) {
     if (req.data.invitation) {
       req.data.invitation.DOMAIN = process.env.DOMAIN || 'localhost'
     }
     dashboard.HTML.renderTemplate(doc, req.data.invitation, messageTemplate, 'message-container')
     if (messageTemplate === 'success') {
-      submitForm.removeElement()
+      const submitForm = doc.getElementById('submit-form')
+      submitForm.parentNode.removeChild(submitForm)
     }
   }
   return dashboard.Response.end(req, res, doc)

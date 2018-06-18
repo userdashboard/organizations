@@ -68,6 +68,7 @@ async function create (organizationid, codeHash) {
   const ownerid = await global.redisClient.hgetAsync(`organization:${organizationid}`, `ownerid`)
   const invitationid = await generateID()
   const fieldsAndValues = [
+    `object`, `invitation`,
     `organizationid`, organizationid,
     `invitationid`, invitationid,
     `code`, codeHash,
