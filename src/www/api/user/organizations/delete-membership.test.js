@@ -1,6 +1,7 @@
 /* eslint-env mocha */
 const assert = require('assert')
-const TestHelper = require('../../../../test-helper.js')
+const orgs = require('../../../../../index.js')
+const TestHelper = require('../../../../../test-helper.js')
 
 describe('/api/user/organizations/delete-membership', async () => {
   describe('DeleteMembership#DELETE', () => {
@@ -8,7 +9,8 @@ describe('/api/user/organizations/delete-membership', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const user = await TestHelper.createUser()
-      await TestHelper.createMembership(user, owner.organization.organizationid)
+      await TestHelper.createInvitation(owner)
+      await TestHelper.acceptInvitation(user, owner)
       const user2 = await TestHelper.createUser()
       const req = TestHelper.createRequest(`/api/user/organizations/delete-membership?membershipid=${user.membership.membershipid}`, 'DELETE')
       req.account = user2.account
@@ -24,21 +26,19 @@ describe('/api/user/organizations/delete-membership', async () => {
 
     it('should delete membership', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner)
       const user = await TestHelper.createUser()
-      await TestHelper.createMembership(user, owner.organization.organizationid)
+      await TestHelper.createOrganization(owner)
+      await TestHelper.createInvitation(owner)
+      await TestHelper.acceptInvitation(user, owner)
       const req = TestHelper.createRequest(`/api/user/organizations/delete-membership?membershipid=${user.membership.membershipid}`, 'DELETE')
-      req.account = owner.account
-      req.session = owner.session
+      req.account = user.account
+      req.session = user.session
       await req.route.api.delete(req)
-      await TestHelper.completeAuthorization(req)
+      req.session = await TestHelper.unlockSession(user)
       await req.route.api.delete(req)
-      const req2 = TestHelper.createRequest(`/api/user/organizations/membership?membershipid=${user.membership.membershipid}`, 'GET')
-      req2.account = owner.account
-      req2.session = owner.session
       let errorMessage
       try {
-        await req2.route.api.get(req2)
+        await orgs.Membership.load(user.membership.membershipid)
       } catch (error) {
         errorMessage = error.message
       }

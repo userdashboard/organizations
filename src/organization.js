@@ -1,26 +1,19 @@
 const dashboard = require('@userappstore/dashboard')
 
 module.exports = {
-  count,
-  countAll,
   create,
   deleteAccount,
   deleteOrganization,
   generateID,
-  getProperty,
-  list,
-  listAll,
   load,
-  loadMany,
-  removeProperty,
-  setProperty
+  loadMany
 }
 
 async function load (organizationid, ignoreDeletedOrganization) {
   if (!organizationid || !organizationid.length) {
     throw new Error('invalid-organizationid')
   }
-  const organization = await global.redisClient.hgetallAsync(`organization:${organizationid}`)
+  const organization = await global.redisClient.hgetallAsync(organizationid)
   if (!organization) {
     if (!ignoreDeletedOrganization) {
       throw new Error('invalid-organizationid')
@@ -38,17 +31,6 @@ async function load (organizationid, ignoreDeletedOrganization) {
     }
   }
   return organization
-}
-
-async function count (accountid) {
-  if (!accountid || !accountid.length) {
-    throw new Error('invalid-accountid')
-  }
-  return global.redisClient.llenAsync(`organizations:account:${accountid}`) || 0
-}
-
-async function countAll () {
-  return global.redisClient.llenAsync(`organizations`) || 0
 }
 
 async function create (accountid, name) {
@@ -70,10 +52,7 @@ async function create (accountid, name) {
     `name`, name,
     `created`, dashboard.Timestamp.now
   ]
-  await global.redisClient.lpushAsync(`organizations:account:${accountid}`, organizationid)
-  await global.redisClient.hmsetAsync(`organization:${organizationid}`, fieldsAndValues)
-  await global.redisClient.lpushAsync('organizations', organizationid)
-  await dashboard.Account.setProperty(accountid, 'organization_lastCreated', dashboard.Timestamp.now)
+  await global.redisClient.hmsetAsync(organizationid, fieldsAndValues)
   return load(organizationid)
 }
 
@@ -86,36 +65,12 @@ async function deleteOrganization (organizationid) {
   if (!organizationid || !organizationid.length) {
     throw new Error('invalid-organizationid')
   }
-  const organization = await global.redisClient.hgetallAsync(`organization:${organizationid}`)
+  const organization = await global.redisClient.hgetallAsync(organizationid)
   if (!organization) {
     throw new Error('invalid-organizationid')
   }
-  await global.redisClient.lremAsync(`organizations:account:${organization.ownerid}`, 1, organizationid)
-  await global.redisClient.delAsync(`organization:${organizationid}`)
-  await dashboard.Account.setProperty(organization.ownerid, 'organization_lastDeleted', dashboard.Timestamp.now)
-  await global.redisClient.lremAsync('organizations', 1, organizationid)
+  await global.redisClient.delAsync(organizationid)
   return true
-}
-
-async function list (accountid, offset) {
-  if (!accountid || !accountid.length) {
-    throw new Error('invalid-accountid')
-  }
-  offset = offset || 0
-  const organizationids = await global.redisClient.lrangeAsync(`organizations:account:${accountid}`, offset, offset + global.PAGE_SIZE - 1)
-  if (!organizationids || !organizationids.length) {
-    return
-  }
-  return loadMany(organizationids)
-}
-
-async function listAll (offset) {
-  offset = offset || 0
-  const organizationids = await global.redisClient.lrangeAsync(`organizations`, offset, offset + global.PAGE_SIZE - 1)
-  if (!organizationids || !organizationids.length) {
-    return
-  }
-  return loadMany(organizationids, true)
 }
 
 async function loadMany (organizationids, ignoreDeletedOrganization) {
@@ -133,49 +88,16 @@ async function loadMany (organizationids, ignoreDeletedOrganization) {
   return organizations
 }
 
-async function setProperty (organizationid, property, value) {
-  if (!organizationid || !organizationid.length) {
-    throw new Error('invalid-organizationid')
-  }
-  if (!property || !property.length) {
-    throw new Error('invalid-property')
-  }
-  if (value == null || value === undefined) {
-    throw new Error('invalid-value')
-  }
-  await global.redisClient.hsetAsync(`organization:${organizationid}`, property, value)
-}
-
-async function getProperty (organizationid, property) {
-  if (!organizationid || !organizationid.length) {
-    throw new Error('invalid-organizationid')
-  }
-  if (!property || !property.length) {
-    throw new Error('invalid-property')
-  }
-  return global.redisClient.hgetAsync(`organization:${organizationid}`, property)
-}
-
-async function removeProperty (organizationid, property) {
-  if (!organizationid || !organizationid.length) {
-    throw new Error('invalid-organizationid')
-  }
-  if (!property || !property.length) {
-    throw new Error('invalid-property')
-  }
-  await global.redisClient.hdelAsync(`organization:${organizationid}`, property)
-}
-
 async function deleteAccount (accountid) {
   if (!accountid || !accountid.length) {
     throw new Error('invalid-accountid')
   }
-  const organizationids = await global.redisClient.lrangeAsync(`organizations:account:${accountid}`, 0, -1)
+  const organizationids = await dashboard.RedisList.listAll(`account:organizations:${accountid}`)
   if (organizationids && organizationids.length) {
     for (const organizationid of organizationids) {
-      await global.redisClient.delAsync(`organization:${organizationid}`)
-      await global.redisClient.lremAsync('organizations', 1, organizationid)
+      await global.redisClient.delAsync(organizationid)
+      await dashboard.RedisList.remove('organizations', organizationid)
     }
   }
-  await global.redisClient.delAsync(`organizations:account:${accountid}`)
+  await global.redisClient.delAsync(`account:organizations:${accountid}`)
 }

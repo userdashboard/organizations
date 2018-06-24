@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 const assert = require('assert')
-const TestHelper = require('../../../test-helper.js')
+const TestHelper = require('../../../../test-helper.js')
 
 describe(`/account/organizations/edit-organization`, () => {
   describe('EditOrganization#BEFORE', () => {
@@ -8,7 +8,7 @@ describe(`/account/organizations/edit-organization`, () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const user = await TestHelper.createUser()
-      await TestHelper.createOrganization(user, owner.organization.organizationid)
+      await TestHelper.createOrganization(user, owner)
       const req = TestHelper.createRequest(`/account/organizations/edit-organization?organizationid=${owner.organization.organizationid}`, 'GET')
       req.account = user.account
       req.session = user.session
@@ -102,7 +102,7 @@ describe(`/account/organizations/edit-organization`, () => {
       }
       const res = TestHelper.createResponse()
       res.end = async (str) => {
-        await TestHelper.completeAuthorization(req)
+        req.session = await TestHelper.unlockSession(owner)
         const res = TestHelper.createResponse()
         res.end = async (str) => {
           const doc = TestHelper.extractDoc(str)

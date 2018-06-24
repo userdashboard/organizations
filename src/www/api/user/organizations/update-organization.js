@@ -1,3 +1,4 @@
+const dashboard = require('@userappstore/dashboard')
 const orgs = require('../../../../../index.js')
 
 module.exports = {
@@ -27,7 +28,7 @@ module.exports = {
       if (global.ORGANIZATION_FIELDS.indexOf(property) === -1) {
         continue
       }
-      await orgs.Organization.setProperty(req.query.organizationid, property, req.body[property])
+      await dashboard.RedisObject.setProperty(req.query.organizationid, property, req.body[property])
     }
     req.success = true
     return orgs.Organization.load(req.query.organizationid)

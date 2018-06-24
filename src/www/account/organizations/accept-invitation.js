@@ -10,6 +10,12 @@ async function beforeRequest (req) {
   if (!req.query || !req.query.invitationid) {
     throw new Error('invalid-invitationid')
   }
+  if (req.session.lockURL === req.url && req.session.unlocked) {
+    await global.api.user.organizations.CreateMembership.post(req)
+    if (req.success) {
+      return
+    }
+  }
   const data = await global.api.user.organizations.OpenInvitation.get(req)
   const invitation = data.invitation
   const organization = data.organization
@@ -29,9 +35,6 @@ async function beforeRequest (req) {
     }
   }
   req.data = { organization }
-  if (req.session.lockURL === req.url && req.session.unlocked >= dashboard.Timestamp.now) {
-    await global.api.user.organizations.SetInvitationAccepted.patch(req)
-  }
 }
 
 async function renderPage (req, res, messageTemplate) {
@@ -58,7 +61,7 @@ async function submitForm (req, res) {
     return renderPage(req, res)
   }
   try {
-    await global.api.user.organizations.SetInvitationAccepted.patch(req)
+    await global.api.user.organizations.CreateMembership.post(req)
     if (req.success) {
       return renderPage(req, res, 'success')
     }

@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 const assert = require('assert')
-const TestHelper = require('../../../test-helper.js')
+const TestHelper = require('../../../../test-helper.js')
 
 describe(`/administrator/organizations/index`, () => {
   describe('Index#BEFORE', () => {
@@ -9,12 +9,13 @@ describe(`/administrator/organizations/index`, () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const user = await TestHelper.createUser()
-      await TestHelper.createMembership(user, owner.organization.organizationid)
+      await TestHelper.createInvitation(owner)
+      await TestHelper.acceptInvitation(user, owner)
       const user2 = await TestHelper.createUser()
-      await TestHelper.createMembership(user2, owner.organization.organizationid)
+      await TestHelper.createMembership(user2, owner)
       const req = TestHelper.createRequest(`/administrator/organizations`, 'GET')
-      req.account = req.administrator = administrator.account
-      req.session = req.administratorSession = administrator.session
+      req.administratorAccount = req.account = administrator.account
+      req.administratorSession = req.session = administrator.session
       await req.route.api.before(req)
       assert.notEqual(req.data, null)
       assert.notEqual(null, req.data.memberships)
@@ -26,8 +27,8 @@ describe(`/administrator/organizations/index`, () => {
       const user = await TestHelper.createUser()
       await TestHelper.createOrganization(user)
       const req = TestHelper.createRequest(`/administrator/organizations`, 'GET')
-      req.account = req.administrator = administrator.account
-      req.session = req.administratorSession = administrator.session
+      req.administratorAccount = req.account = administrator.account
+      req.administratorSession = req.session = administrator.session
       await req.route.api.before(req)
       assert.notEqual(req.data, null)
       assert.notEqual(req.data.organizations, null)
@@ -41,8 +42,8 @@ describe(`/administrator/organizations/index`, () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const req = TestHelper.createRequest(`/administrator/organizations`, 'GET')
-      req.account = req.administrator = administrator.account
-      req.session = req.administratorSession = administrator.session
+      req.administratorAccount = req.account = administrator.account
+      req.administratorSession = req.session = administrator.session
       const res = TestHelper.createResponse()
       res.end = async (str) => {
         const doc = TestHelper.extractDoc(str)
@@ -58,10 +59,11 @@ describe(`/administrator/organizations/index`, () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const user = await TestHelper.createUser()
-      await TestHelper.createMembership(user, owner.organization.organizationid)
+      await TestHelper.createInvitation(owner)
+      await TestHelper.acceptInvitation(user, owner)
       const req = TestHelper.createRequest(`/administrator/organizations`, 'GET')
-      req.account = req.administrator = administrator.account
-      req.session = req.administratorSession = administrator.session
+      req.administratorAccount = req.account = administrator.account
+      req.administratorSession = req.session = administrator.session
       const res = TestHelper.createResponse()
       res.end = async (str) => {
         const doc = TestHelper.extractDoc(str)

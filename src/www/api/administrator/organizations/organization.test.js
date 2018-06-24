@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 const assert = require('assert')
-const TestHelper = require('../../../../test-helper.js')
+const TestHelper = require('../../../../../test-helper.js')
 
 describe('/api/administrator/organizations/organization', () => {
   describe('Organization#GET', () => {
@@ -9,8 +9,8 @@ describe('/api/administrator/organizations/organization', () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const req = TestHelper.createRequest(`/api/administrator/organizations/organization?organizationid=${owner.organization.organizationid}`, 'GET')
-      req.account = req.administrator = administrator.account
-      req.session = req.administratorSession = administrator.session
+      req.administratorAccount = req.account = administrator.account
+      req.administratorSession = req.session = administrator.session
       const organization = await req.route.api.get(req)
       assert.notEqual(organization, null)
       assert.notEqual(organization.organizationid, null)
@@ -21,8 +21,8 @@ describe('/api/administrator/organizations/organization', () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const req = TestHelper.createRequest(`/api/administrator/organizations/organization?organizationid=${owner.organization.organizationid}`, 'GET')
-      req.account = req.administrator = administrator.account
-      req.session = req.administratorSession = administrator.session
+      req.administratorAccount = req.account = administrator.account
+      req.administratorSession = req.session = administrator.session
       const organization = await req.route.api.get(req)
       assert.notEqual(organization, null)
       assert.notEqual(organization.organizationid, null)

@@ -22,9 +22,11 @@ module.exports = {
   },
   post: async (req) => {
     const invitation = await orgs.Invitation.create(req.query.organizationid, req.body.code)
-    await orgs.Invitation.setProperty(invitation.invitationid, 'ip', req.ip)
-    await orgs.Invitation.setProperty(invitation.invitationid, 'userAgent', req.headers['user-agent'] || '')
-    req.session = await dashboard.Session.load(req.session.sessionid)
+    await dashboard.RedisObject.setProperty(invitation.invitationid, 'ip', req.ip)
+    await dashboard.RedisObject.setProperty(invitation.invitationid, 'userAgent', req.userAgent)
+    await dashboard.RedisList.add(`invitations`, invitation.invitationid)
+    await dashboard.RedisList.add(`account:invitations:${req.account.accountid}`, invitation.invitationid)
+    await dashboard.RedisList.add(`organization:invitations:${req.query.organizationid}`, invitation.invitationid)
     req.success = true
     return invitation
   }

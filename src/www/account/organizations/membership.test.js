@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 const assert = require('assert')
-const TestHelper = require('../../../test-helper.js')
+const TestHelper = require('../../../../test-helper.js')
 
 describe(`/account/organizations/membership`, () => {
   describe('Membership#BEFORE', () => {
@@ -8,7 +8,8 @@ describe(`/account/organizations/membership`, () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const user = await TestHelper.createUser()
-      await TestHelper.createMembership(user, owner.organization.organizationid)
+      await TestHelper.createInvitation(owner)
+      await TestHelper.acceptInvitation(user, owner)
       const user2 = await TestHelper.createUser()
       const req = TestHelper.createRequest(`/account/organizations/membership?membershipid=${user.membership.membershipid}`, 'GET')
       req.account = user2.account
@@ -26,7 +27,8 @@ describe(`/account/organizations/membership`, () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const user = await TestHelper.createUser()
-      await TestHelper.createMembership(user, owner.organization.organizationid)
+      await TestHelper.createInvitation(owner)
+      await TestHelper.acceptInvitation(user, owner)
       const req = TestHelper.createRequest(`/account/organizations/membership?membershipid=${user.membership.membershipid}`, 'GET')
       req.account = user.account
       req.session = user.session
@@ -42,7 +44,8 @@ describe(`/account/organizations/membership`, () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const user = await TestHelper.createUser()
-      await TestHelper.createMembership(user, owner.organization.organizationid)
+      await TestHelper.createInvitation(owner)
+      await TestHelper.acceptInvitation(user, owner)
       const req = TestHelper.createRequest(`/account/organizations/membership?membershipid=${user.membership.membershipid}`, 'GET')
       req.account = user.account
       req.session = user.session

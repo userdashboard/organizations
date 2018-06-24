@@ -1,30 +1,31 @@
 /* eslint-env mocha */
 const assert = require('assert')
-const TestHelper = require('../../../../test-helper.js')
+const TestHelper = require('../../../../../test-helper.js')
 
 describe('/api/user/organizations/open-invitation', () => {
   describe('Invitation#GET', () => {
     it('should reject accepted invitation', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
-      await TestHelper.createInvitation(owner, owner.organization.organizationid)
+      await TestHelper.createInvitation(owner)
       const user = await TestHelper.createUser()
       await TestHelper.acceptInvitation(user, owner)
       const req = TestHelper.createRequest(`/api/user/organizations/open-invitation?invitationid=${owner.invitation.invitationid}`, 'GET')
       req.account = user.account
       req.session = user.session
-      const res = TestHelper.createResponse()
-      res.end = async (str) => {
-        const json = JSON.parse(str)
-        assert.equal(json.error, 'invalid-invitation')
+      let errorMessage
+      try {
+        await req.route.api.get(req)
+      } catch (error) {
+        errorMessage = error.message
       }
-      return req.route.api.get(req, res)
+      assert.equal(errorMessage, 'invalid-invitation')
     })
 
     it('should return invitation and organization data', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
-      await TestHelper.createInvitation(owner, owner.organization.organizationid)
+      await TestHelper.createInvitation(owner)
       const req = TestHelper.createRequest(`/api/user/organizations/open-invitation?invitationid=${owner.invitation.invitationid}`, 'GET')
       req.account = owner.account
       req.session = owner.session
@@ -37,7 +38,7 @@ describe('/api/user/organizations/open-invitation', () => {
     it('should redact invitation code', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
-      await TestHelper.createInvitation(owner, owner.organization.organizationid)
+      await TestHelper.createInvitation(owner)
       const req = TestHelper.createRequest(`/api/user/organizations/open-invitation?invitationid=${owner.invitation.invitationid}`, 'GET')
       req.account = owner.account
       req.session = owner.session

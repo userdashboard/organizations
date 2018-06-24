@@ -28,9 +28,8 @@ module.exports = {
       if (global.MEMBERSHIP_FIELDS.indexOf(property) === -1) {
         continue
       }
-      await orgs.Membership.setProperty(req.query.membershipid, property, req.body[property])
+      await dashboard.RedisObject.setProperty(req.query.membershipid, property, req.body[property])
     }
-    req.session = await dashboard.Session.load(req.session.sessionid)
     req.success = true
     return orgs.Membership.load(req.query.membershipid)
   }

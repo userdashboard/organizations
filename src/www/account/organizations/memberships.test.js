@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 const assert = require('assert')
-const TestHelper = require('../../../test-helper.js')
+const TestHelper = require('../../../../test-helper.js')
 
 describe('/account/organizations/memberships', () => {
   describe('Memberships#BEFORE', () => {
@@ -8,7 +8,8 @@ describe('/account/organizations/memberships', () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const user = await TestHelper.createUser()
-      await TestHelper.createMembership(user, owner.organization.organizationid)
+      await TestHelper.createInvitation(owner)
+      await TestHelper.acceptInvitation(user, owner)
       const req = TestHelper.createRequest('/account/organizations/memberships', 'GET')
       req.account = user.account
       req.session = user.session
@@ -24,7 +25,8 @@ describe('/account/organizations/memberships', () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const user = await TestHelper.createUser()
-      await TestHelper.createMembership(user, owner.organization.organizationid)
+      await TestHelper.createInvitation(owner)
+      await TestHelper.acceptInvitation(user, owner)
       const req = TestHelper.createRequest('/account/organizations/memberships', 'GET')
       req.account = user.account
       req.session = user.session
@@ -43,7 +45,8 @@ describe('/account/organizations/memberships', () => {
       for (let i = 0, len = 10; i < len; i++) {
         const owner = await TestHelper.createUser()
         await TestHelper.createOrganization(owner)
-        await TestHelper.createMembership(user, owner.organization.organizationid)
+        await TestHelper.createInvitation(owner)
+        await TestHelper.acceptInvitation(user, owner)
       }
       const req = TestHelper.createRequest('/account/organizations/memberships', 'GET')
       req.account = user.account
@@ -64,7 +67,8 @@ describe('/account/organizations/memberships', () => {
       for (let i = 0, len = 10; i < len; i++) {
         const owner = await TestHelper.createUser()
         await TestHelper.createOrganization(owner)
-        await TestHelper.createMembership(user, owner.organization.organizationid)
+        await TestHelper.createInvitation(owner)
+        await TestHelper.acceptInvitation(user, owner)
       }
       const req = TestHelper.createRequest('/account/organizations/memberships', 'GET')
       req.account = user.account
@@ -87,8 +91,8 @@ describe('/account/organizations/memberships', () => {
       for (let i = 0, len = 10; i < len; i++) {
         const owner = await TestHelper.createUser()
         await TestHelper.createOrganization(owner)
-        const membership = await TestHelper.createMembership(user, owner.organization.organizationid)
-        memberships.unshift(membership)
+        await TestHelper.createMembership(user, owner)
+        memberships.unshift(user.membership)
       }
       const offset = 3
       const req = TestHelper.createRequest('/account/organizations/memberships?offset=3', 'GET')

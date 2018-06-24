@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 const assert = require('assert')
-const TestHelper = require('../../../../test-helper.js')
+const TestHelper = require('../../../../../test-helper.js')
 
 describe(`/api/user/organizations/create-invitation`, () => {
   describe('CreateInvitation#POST', () => {
@@ -33,7 +33,7 @@ describe(`/api/user/organizations/create-invitation`, () => {
         code: 'this-is-the-code'
       }
       await req.route.api.post(req)
-      await TestHelper.completeAuthorization(req)
+      req.session = await TestHelper.unlockSession(owner)
       const invitation = await req.route.api.post(req)
       assert.notEqual(invitation, null)
       assert.notEqual(invitation.invitationid, null)

@@ -1,5 +1,5 @@
 @userappstore/dashboard
-Version: 1.0.1044
+Version: 1.0.1047
 Address: http://127.0.0.1:8889
 Root path: /Users/benlowry/CloudStation/workspaces/dashboard/organizations/src/www
 Application path: /Users/benlowry/CloudStation/workspaces/dashboard/organizations
@@ -159,7 +159,7 @@ URL ----------------------------------------------------------- AUTH ---- LOCK -
 /api/administrator/reset-code-count                                                               GET             @userappstore/dashboard                                
 /api/administrator/reset-codes                                                                    GET             @userappstore/dashboard                                
 /api/administrator/reset-codes-count                                                              GET             @userappstore/dashboard                                
-/api/administrator/reset-session-impersonate                                                      GET             @userappstore/dashboard                                
+/api/administrator/reset-session-impersonate                                                      PATCH           @userappstore/dashboard                                
 /api/administrator/reset-session-key                                      LOCK                    PATCH           @userappstore/dashboard                                
 /api/administrator/revoke-administrator                                   LOCK                    DELETE          @userappstore/dashboard                                
 /api/administrator/schedule-account-delete                                LOCK                    DELETE          @userappstore/dashboard                                
@@ -186,6 +186,7 @@ URL ----------------------------------------------------------- AUTH ---- LOCK -
 /api/user/end-session                                                                             PATCH           @userappstore/dashboard                                
 /api/user/lock-session                                                                            PATCH           @userappstore/dashboard                                
 /api/user/organizations/create-invitation                                 LOCK                    POST            /src/www                                               
+/api/user/organizations/create-membership                                 LOCK                    POST            /src/www                                               
 /api/user/organizations/create-organization                               LOCK                    POST            /src/www                                               
 /api/user/organizations/delete-invitation                                 LOCK                    DELETE          /src/www                                               
 /api/user/organizations/delete-membership                                 LOCK                    DELETE          /src/www                                               
@@ -194,10 +195,6 @@ URL ----------------------------------------------------------- AUTH ---- LOCK -
 /api/user/organizations/invitations                                                               GET             /src/www                                               
 /api/user/organizations/invitations-count                                                         GET             /src/www                                               
 /api/user/organizations/membership                                                                GET             /src/www                                               
-/api/user/organizations/membership-invitations                                                    GET             /src/www                                               
-/api/user/organizations/membership-invitations-count                                              GET             /src/www                                               
-/api/user/organizations/membership-organizations                                                  GET             /src/www                                               
-/api/user/organizations/membership-organizations-count                                            GET             /src/www                                               
 /api/user/organizations/memberships                                                               GET             /src/www                                               
 /api/user/organizations/memberships-count                                                         GET             /src/www                                               
 /api/user/organizations/open-invitation                                                           GET             /src/www                                               
@@ -208,7 +205,6 @@ URL ----------------------------------------------------------- AUTH ---- LOCK -
 /api/user/organizations/organization-memberships-count                                            GET             /src/www                                               
 /api/user/organizations/organizations                                                             GET             /src/www                                               
 /api/user/organizations/organizations-count                                                       GET             /src/www                                               
-/api/user/organizations/set-invitation-accepted                           LOCK                    PATCH           /src/www                                               
 /api/user/organizations/set-organization-owner                            LOCK                    PATCH           /src/www                                               
 /api/user/organizations/update-membership                                 LOCK                    PATCH           /src/www                                               
 /api/user/organizations/update-organization                               LOCK                    PATCH           /src/www                                               

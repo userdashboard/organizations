@@ -1,4 +1,4 @@
-const orgs = require('../../../../../index.js')
+const dashboard = require('@userappstore/dashboard')
 
 module.exports = {
   get: async (req) => {
@@ -8,7 +8,7 @@ module.exports = {
     if (req.query.accountid !== req.account.accountid) {
       throw new Error('invalid-account')
     }
-    const count = await orgs.Invitation.count(req.query.accountid)
+    const count = await dashboard.RedisList.count(`account:invitations:${req.query.accountid}`)
     return count
   }
 }

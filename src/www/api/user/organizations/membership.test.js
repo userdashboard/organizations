@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 const assert = require('assert')
-const TestHelper = require('../../../../test-helper.js')
+const TestHelper = require('../../../../../test-helper.js')
 
 describe('/api/user/organizations/membership', () => {
   describe('Membership#GET', () => {
@@ -8,7 +8,7 @@ describe('/api/user/organizations/membership', () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const user = await TestHelper.createUser()
-      await TestHelper.createMembership(user, owner.organization.organizationid)
+      await TestHelper.createMembership(user, owner)
       const req = TestHelper.createRequest(`/api/user/organizations/membership?membershipid=${user.membership.membershipid}`, 'GET')
       req.account = owner.account
       req.session = owner.session
@@ -21,9 +21,9 @@ describe('/api/user/organizations/membership', () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const user = await TestHelper.createUser()
-      await TestHelper.createMembership(user, owner.organization.organizationid)
+      await TestHelper.createMembership(user, owner)
       const user2 = await TestHelper.createUser()
-      await TestHelper.createMembership(user2, owner.organization.organizationid)
+      await TestHelper.createMembership(user2, owner)
       const req = TestHelper.createRequest(`/api/user/organizations/membership?membershipid=${user2.membership.membershipid}`, 'GET')
       req.account = user.account
       req.session = user.session
@@ -36,7 +36,7 @@ describe('/api/user/organizations/membership', () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const user = await TestHelper.createUser()
-      await TestHelper.createMembership(user, owner.organization.organizationid)
+      await TestHelper.createMembership(user, owner)
       const user2 = await TestHelper.createUser()
       const req = TestHelper.createRequest(`/api/user/organizations/membership?membershipid=${user.membership.membershipid}`, 'GET')
       req.account = user2.account
@@ -54,7 +54,7 @@ describe('/api/user/organizations/membership', () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const user = await TestHelper.createUser()
-      await TestHelper.createMembership(user, owner.organization.organizationid)
+      await TestHelper.createMembership(user, owner)
       const req = TestHelper.createRequest(`/api/user/organizations/membership?membershipid=${user.membership.membershipid}`, 'GET')
       req.account = user.account
       req.session = user.session

@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 const assert = require('assert')
-const TestHelper = require('../../../../test-helper.js')
+const TestHelper = require('../../../../../test-helper.js')
 
 describe('/api/user/organizations/update-organization', async () => {
   it('should reject invalid fields', async () => {
@@ -52,7 +52,7 @@ describe('/api/user/organizations/update-organization', async () => {
       email: 'test@test.com'
     }
     await req.route.api.patch(req)
-    await TestHelper.completeAuthorization(req)
+    req.session = await TestHelper.unlockSession(owner)
     const organizationNow = await req.route.api.patch(req)
     assert.equal(organizationNow.name, 'Organization Name')
     assert.equal(organizationNow.email, 'test@test.com')

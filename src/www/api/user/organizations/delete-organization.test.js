@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 const assert = require('assert')
-const TestHelper = require('../../../../test-helper.js')
+const TestHelper = require('../../../../../test-helper.js')
 
 describe('/api/user/organizations/delete-organization', async () => {
   describe('DeleteOrganization#DELETE', () => {
@@ -28,7 +28,7 @@ describe('/api/user/organizations/delete-organization', async () => {
       req.account = owner.account
       req.session = owner.session
       await req.route.api.delete(req)
-      await TestHelper.completeAuthorization(req)
+      req.session = await TestHelper.unlockSession(owner)
       await req.route.api.delete(req)
       const req2 = TestHelper.createRequest(`/api/user/organizations/organization?organizationid=${owner.organization.organizationid}`, 'GET')
       req2.account = owner.account

@@ -10,6 +10,12 @@ async function beforeRequest (req) {
   if (!req.query || !req.query.membershipid) {
     throw new Error('invalid-membershipid')
   }
+  if (req.session.lockURL === req.url && req.session.unlocked) {
+    await global.api.user.organizations.DeleteMembership.delete(req)
+    if (req.success) {
+      return
+    }
+  }
   const membership = await global.api.user.organizations.Membership.get(req)
   if (!membership) {
     throw new Error('invalid-membership')
@@ -26,6 +32,9 @@ async function beforeRequest (req) {
 }
 
 async function renderPage (req, res, messageTemplate) {
+  if (req.success) {
+    messageTemplate = 'success'
+  }
   const doc = dashboard.HTML.parse(req.route.html, req.data.membership, 'membership')
   const organizationName = doc.getElementById('organizationName')
   organizationName.setAttribute('value', req.data.organization.name)

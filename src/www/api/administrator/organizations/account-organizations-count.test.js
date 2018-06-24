@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 const assert = require('assert')
-const TestHelper = require('../../../../test-helper.js')
+const TestHelper = require('../../../../../test-helper.js')
 
 describe('/api/administrator/organizations/account-organizations-count', async () => {
   describe('AccountOrganizationsCount#GET', () => {
@@ -12,8 +12,8 @@ describe('/api/administrator/organizations/account-organizations-count', async (
       const user2 = await TestHelper.createUser()
       await TestHelper.createOrganization(user2)
       const req = TestHelper.createRequest(`/api/administrator/organizations/account-organizations-count?accountid=${user.account.accountid}`, 'GET')
-      req.account = req.administrator = administrator.account
-      req.session = req.administratorSession = administrator.session
+      req.administratorAccount = req.account = administrator.account
+      req.administratorSession = req.session = administrator.session
       const result = await req.route.api.get(req)
       assert.equal(result, 2)
     })

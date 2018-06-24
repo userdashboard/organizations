@@ -14,14 +14,7 @@ module.exports = {
       throw new Error('invalid-membership')
     }
     if (membership.accountid !== req.account.accountid && organization.ownerid !== req.account.accountid) {
-      const memberships = await orgs.Membership.listByOrganization(organization.organizationid)
-      let isMember = false
-      for (const membership of memberships) {
-        isMember = membership.accountid === req.account.accountid
-        if (isMember) {
-          break
-        }
-      }
+      const isMember = await orgs.Membership.isMember(organization.organizationid, req.account.accountid)
       if (!isMember) {
         throw new Error('invalid-membership')
       }

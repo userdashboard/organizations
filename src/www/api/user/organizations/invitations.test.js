@@ -1,15 +1,14 @@
 /* eslint-env mocha */
 const assert = require('assert')
-const TestHelper = require('../../../../test-helper.js')
+const TestHelper = require('../../../../../test-helper.js')
 
 describe(`/api/user/organizations/invitations`, () => {
   describe('Invitations#GET', () => {
     it('should return invitation list', async () => {
       const owner = await TestHelper.createUser()
-      const organization1 = await TestHelper.createOrganization(owner)
-      const invitation1 = await TestHelper.createInvitation(owner, organization1.organizationid)
-      const organization2 = await TestHelper.createOrganization(owner)
-      const invitation2 = await TestHelper.createInvitation(owner, organization2.organizationid)
+      await TestHelper.createOrganization(owner)
+      const invitation1 = await TestHelper.createInvitation(owner)
+      const invitation2 = await TestHelper.createInvitation(owner)
       const req = TestHelper.createRequest(`/api/user/organizations/invitations?accountid=${owner.account.accountid}`, 'GET')
       req.account = owner.account
       req.session = owner.session
@@ -23,7 +22,7 @@ describe(`/api/user/organizations/invitations`, () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       for (let i = 0, len = 10; i < len; i++) {
-        await TestHelper.createInvitation(owner, owner.organization.organizationid)
+        await TestHelper.createInvitation(owner)
       }
       const req = TestHelper.createRequest(`/api/user/organizations/invitations?accountid=${owner.account.accountid}`, 'GET')
       req.account = owner.account
@@ -38,7 +37,7 @@ describe(`/api/user/organizations/invitations`, () => {
       await TestHelper.createOrganization(owner)
       const invitations = []
       for (let i = 0, len = 10; i < len; i++) {
-        const invitation = await TestHelper.createInvitation(owner, owner.organization.organizationid)
+        const invitation = await TestHelper.createInvitation(owner)
         invitations.unshift(invitation)
       }
       const offset = 3

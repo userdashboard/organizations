@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 const assert = require('assert')
-const TestHelper = require('../../../test-helper.js')
+const TestHelper = require('../../../../test-helper.js')
 
 describe(`/account/organizations/edit-membership`, () => {
   describe('EditMembership#BEFORE', () => {
@@ -8,7 +8,8 @@ describe(`/account/organizations/edit-membership`, () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const user = await TestHelper.createUser()
-      await TestHelper.createMembership(user, owner.organization.organizationid)
+      await TestHelper.createInvitation(owner)
+      await TestHelper.acceptInvitation(user, owner)
       const user2 = await TestHelper.createUser()
       const req = TestHelper.createRequest(`/account/organizations/edit-membership?membershipid=${user.membership.membershipid}`, 'GET')
       req.account = user2.account
@@ -26,7 +27,8 @@ describe(`/account/organizations/edit-membership`, () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const user = await TestHelper.createUser()
-      await TestHelper.createMembership(user, owner.organization.organizationid)
+      await TestHelper.createInvitation(owner)
+      await TestHelper.acceptInvitation(user, owner)
       const req = TestHelper.createRequest(`/account/organizations/edit-membership?membershipid=${user.membership.membershipid}`, 'GET')
       req.account = user.account
       req.session = user.session
@@ -42,7 +44,8 @@ describe(`/account/organizations/edit-membership`, () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const user = await TestHelper.createUser()
-      await TestHelper.createMembership(user, owner.organization.organizationid)
+      await TestHelper.createInvitation(owner)
+      await TestHelper.acceptInvitation(user, owner)
       const req = TestHelper.createRequest(`/account/organizations/edit-membership?membershipid=${user.membership.membershipid}`, 'GET')
       req.account = user.account
       req.session = user.session
@@ -63,7 +66,8 @@ describe(`/account/organizations/edit-membership`, () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const user = await TestHelper.createUser()
-      await TestHelper.createMembership(user, owner.organization.organizationid)
+      await TestHelper.createInvitation(owner)
+      await TestHelper.acceptInvitation(user, owner)
       const req = TestHelper.createRequest(`/account/organizations/edit-membership?membershipid=${user.membership.membershipid}`, 'POST')
       req.session = user.session
       req.account = user.account
@@ -83,7 +87,8 @@ describe(`/account/organizations/edit-membership`, () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const user = await TestHelper.createUser()
-      await TestHelper.createMembership(user, owner.organization.organizationid)
+      await TestHelper.createInvitation(owner)
+      await TestHelper.acceptInvitation(user, owner)
       const req = TestHelper.createRequest(`/account/organizations/edit-membership?membershipid=${user.membership.membershipid}`, 'POST')
       req.account = user.account
       req.session = user.session
@@ -104,7 +109,8 @@ describe(`/account/organizations/edit-membership`, () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const user = await TestHelper.createUser()
-      await TestHelper.createMembership(user, owner.organization.organizationid)
+      await TestHelper.createInvitation(owner)
+      await TestHelper.acceptInvitation(user, owner)
       const req = TestHelper.createRequest(`/account/organizations/edit-membership?membershipid=${user.membership.membershipid}`, 'POST')
       req.account = user.account
       req.session = user.session
@@ -113,7 +119,7 @@ describe(`/account/organizations/edit-membership`, () => {
       }
       const res = TestHelper.createResponse()
       res.end = async (str) => {
-        await TestHelper.completeAuthorization(req)
+        req.session = await TestHelper.unlockSession(user)
         const res = TestHelper.createResponse()
         res.end = async (str) => {
           const doc = TestHelper.extractDoc(str)

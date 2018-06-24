@@ -1,13 +1,13 @@
 /* eslint-env mocha */
 const assert = require('assert')
-const TestHelper = require('../../../test-helper.js')
+const TestHelper = require('../../../../test-helper.js')
 
 describe(`/account/organizations/delete-invitation`, async () => {
   describe('DeleteInvitation#BEFORE', () => {
     it('should require owner', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
-      await TestHelper.createInvitation(owner, owner.organization.organizationid)
+      await TestHelper.createInvitation(owner)
       const user = await TestHelper.createUser()
       const req = TestHelper.createRequest(`/account/organizations/delete-invitation?invitationid=${owner.invitation.invitationid}`, 'GET')
       req.account = user.account
@@ -24,7 +24,7 @@ describe(`/account/organizations/delete-invitation`, async () => {
     it('should bind organization to req', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
-      await TestHelper.createInvitation(owner, owner.organization.organizationid)
+      await TestHelper.createInvitation(owner)
       const req = TestHelper.createRequest(`/account/organizations/delete-invitation?invitationid=${owner.invitation.invitationid}`, 'GET')
       req.account = owner.account
       req.session = owner.session
@@ -39,7 +39,7 @@ describe(`/account/organizations/delete-invitation`, async () => {
     it('should present the form', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
-      await TestHelper.createInvitation(owner, owner.organization.organizationid)
+      await TestHelper.createInvitation(owner)
       const req = TestHelper.createRequest(`/account/organizations/delete-invitation?invitationid=${owner.invitation.invitationid}`, 'GET')
       req.account = owner.account
       req.session = owner.session
@@ -56,7 +56,7 @@ describe(`/account/organizations/delete-invitation`, async () => {
     it('should present the invitation', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
-      await TestHelper.createInvitation(owner, owner.organization.organizationid)
+      await TestHelper.createInvitation(owner)
       const req = TestHelper.createRequest(`/account/organizations/delete-invitation?invitationid=${owner.invitation.invitationid}`, 'GET')
       req.account = owner.account
       req.session = owner.session
@@ -75,13 +75,13 @@ describe(`/account/organizations/delete-invitation`, async () => {
     it('should delete invitation', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
-      await TestHelper.createInvitation(owner, owner.organization.organizationid)
+      await TestHelper.createInvitation(owner)
       const req = TestHelper.createRequest(`/account/organizations/delete-invitation?invitationid=${owner.invitation.invitationid}`, 'POST')
       req.account = owner.account
       req.session = owner.session
       const res = TestHelper.createResponse()
       res.end = async (str) => {
-        await TestHelper.completeAuthorization(req)
+        req.session = await TestHelper.unlockSession(owner)
         const res2 = TestHelper.createResponse()
         res2.end = async (str) => {
           const doc = TestHelper.extractDoc(str)

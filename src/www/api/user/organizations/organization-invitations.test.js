@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 const assert = require('assert')
-const TestHelper = require('../../../../test-helper.js')
+const TestHelper = require('../../../../../test-helper.js')
 
 describe(`/api/user/organizations/organization-invitations`, () => {
   describe('OrganizationInvitations#GET', () => {
@@ -8,7 +8,8 @@ describe(`/api/user/organizations/organization-invitations`, () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const user = await TestHelper.createUser()
-      await TestHelper.createMembership(user, owner.organization.organizationid)
+      await TestHelper.createInvitation(owner)
+      await TestHelper.acceptInvitation(user, owner)
       const req = TestHelper.createRequest(`/api/user/organizations/organization-invitations?organizationid=${owner.organization.organizationid}`, 'GET')
       req.account = user.account
       req.session = user.session
@@ -18,13 +19,13 @@ describe(`/api/user/organizations/organization-invitations`, () => {
       } catch (error) {
         errorMessage = error.message
       }
-      assert.equal(errorMessage, 'invalid-organization')
+      assert.equal(errorMessage, 'invalid-account')
     })
 
     it('should return invitation list', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
-      await TestHelper.createInvitation(owner, owner.organization.organizationid)
+      await TestHelper.createInvitation(owner)
       const req = TestHelper.createRequest(`/api/user/organizations/organization-invitations?organizationid=${owner.organization.organizationid}`, 'GET')
       req.account = owner.account
       req.session = owner.session
@@ -37,7 +38,7 @@ describe(`/api/user/organizations/organization-invitations`, () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       for (let i = 0, len = 10; i < len; i++) {
-        await TestHelper.createInvitation(owner, owner.organization.organizationid)
+        await TestHelper.createInvitation(owner)
       }
       const req = TestHelper.createRequest(`/api/user/organizations/organization-invitations?organizationid=${owner.organization.organizationid}`, 'GET')
       req.account = owner.account
@@ -52,7 +53,7 @@ describe(`/api/user/organizations/organization-invitations`, () => {
       await TestHelper.createOrganization(owner)
       const invitations = []
       for (let i = 0, len = 10; i < len; i++) {
-        await TestHelper.createInvitation(owner, owner.organization.organizationid)
+        await TestHelper.createInvitation(owner)
         invitations.unshift(owner.invitation)
       }
       const offset = 3

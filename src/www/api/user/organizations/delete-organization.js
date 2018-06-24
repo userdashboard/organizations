@@ -14,7 +14,8 @@ module.exports = {
   },
   delete: async (req) => {
     await orgs.Organization.deleteOrganization(req.query.organizationid)
-    req.session = await dashboard.Session.load(req.session.sessionid)
+    await dashboard.RedisList.remove(`organizations`, req.query.organizationid)
+    await dashboard.RedisList.remove(`account:organizations:${req.account.accountid}`, req.query.organizationid)
     req.success = true
   }
 }

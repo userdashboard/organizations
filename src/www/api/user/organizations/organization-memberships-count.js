@@ -1,3 +1,4 @@
+const dashboard = require('@userappstore/dashboard')
 const orgs = require('../../../../../index.js')
 
 module.exports = {
@@ -9,7 +10,7 @@ module.exports = {
     if (!organization || organization.ownerid !== req.account.accountid) {
       throw new Error('invalid-organization')
     }
-    const count = await orgs.Membership.countByOrganization(req.query.organizationid)
+    const count = await dashboard.RedisList.count(`organization:memberships:${req.query.organizationid}`)
     return count
   }
 }

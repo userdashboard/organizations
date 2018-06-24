@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 const assert = require('assert')
-const TestHelper = require('../../../../test-helper.js')
+const TestHelper = require('../../../../../test-helper.js')
 
 describe(`/api/administrator/organizations/invitations`, () => {
   describe('Invitations#GET', () => {
@@ -8,16 +8,16 @@ describe(`/api/administrator/organizations/invitations`, () => {
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
-      await TestHelper.createInvitation(owner, owner.organization.organizationid)
+      await TestHelper.createInvitation(owner)
       const owner2 = await TestHelper.createUser()
       await TestHelper.createOrganization(owner2)
-      await TestHelper.createInvitation(owner2, owner2.organization.organizationid)
+      await TestHelper.createInvitation(owner2)
       const owner3 = await TestHelper.createUser()
       await TestHelper.createOrganization(owner3)
-      await TestHelper.createInvitation(owner3, owner3.organization.organizationid)
+      await TestHelper.createInvitation(owner3)
       const req = TestHelper.createRequest(`/api/administrator/organizations/invitations`, 'GET')
-      req.account = req.administrator = administrator.account
-      req.session = req.administratorSession = administrator.session
+      req.administratorAccount = req.account = administrator.account
+      req.administratorSession = req.session = administrator.session
       const invitations = await req.route.api.get(req)
       assert.equal(3, invitations.length)
       assert.equal(invitations[0].invitationid, owner3.invitation.invitationid)
@@ -33,8 +33,8 @@ describe(`/api/administrator/organizations/invitations`, () => {
         await TestHelper.createInvitation(user, user.organization.organizationid)
       }
       const req = TestHelper.createRequest('/api/administrator/organizations/invitations', 'GET')
-      req.account = req.administrator = administrator.account
-      req.session = req.administratorSession = administrator.session
+      req.administratorAccount = req.account = administrator.account
+      req.administratorSession = req.session = administrator.session
       global.PAGE_SIZE = 8
       const invitationsNow = await req.route.api.get(req)
       assert.equal(invitationsNow.length, 8)
@@ -51,8 +51,8 @@ describe(`/api/administrator/organizations/invitations`, () => {
       }
       const offset = 3
       const req = TestHelper.createRequest('/api/administrator/organizations/invitations?offset=3', 'GET')
-      req.account = req.administrator = administrator.account
-      req.session = req.administratorSession = administrator.session
+      req.administratorAccount = req.account = administrator.account
+      req.administratorSession = req.session = administrator.session
       const invitationsNow = await req.route.api.get(req)
       for (let i = 0, len = global.PAGE_SIZE; i < len; i++) {
         assert.equal(invitationsNow[i].invitationid, invitations[offset + i].invitationid)

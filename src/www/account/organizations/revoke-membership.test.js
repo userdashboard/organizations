@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 const assert = require('assert')
-const TestHelper = require('../../../test-helper.js')
+const TestHelper = require('../../../../test-helper.js')
 
 describe(`/account/organizations/revoke-membership`, async () => {
   describe('RevokeMembership#BEFORE', () => {
@@ -8,7 +8,8 @@ describe(`/account/organizations/revoke-membership`, async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const user = await TestHelper.createUser()
-      await TestHelper.createMembership(user, owner.organization.organizationid)
+      await TestHelper.createInvitation(owner)
+      await TestHelper.acceptInvitation(user, owner)
       const req = TestHelper.createRequest(`/account/organizations/revoke-membership?membershipid=${user.membership.membershipid}`, 'GET')
       req.account = user.account
       req.session = user.session
@@ -25,7 +26,8 @@ describe(`/account/organizations/revoke-membership`, async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const user = await TestHelper.createUser()
-      await TestHelper.createMembership(user, owner.organization.organizationid)
+      await TestHelper.createInvitation(owner)
+      await TestHelper.acceptInvitation(user, owner)
       const req = TestHelper.createRequest(`/account/organizations/revoke-membership?membershipid=${user.membership.membershipid}`, 'GET')
       req.account = owner.account
       req.session = owner.session
@@ -41,7 +43,8 @@ describe(`/account/organizations/revoke-membership`, async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const user = await TestHelper.createUser()
-      await TestHelper.createMembership(user, owner.organization.organizationid)
+      await TestHelper.createInvitation(owner)
+      await TestHelper.acceptInvitation(user, owner)
       const req = TestHelper.createRequest(`/account/organizations/revoke-membership?membershipid=${user.membership.membershipid}`, 'GET')
       req.account = owner.account
       req.session = owner.session
@@ -59,7 +62,8 @@ describe(`/account/organizations/revoke-membership`, async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const user = await TestHelper.createUser()
-      await TestHelper.createMembership(user, owner.organization.organizationid)
+      await TestHelper.createInvitation(owner)
+      await TestHelper.acceptInvitation(user, owner)
       const req = TestHelper.createRequest(`/account/organizations/revoke-membership?membershipid=${user.membership.membershipid}`, 'GET')
       req.account = owner.account
       req.session = owner.session
@@ -79,13 +83,13 @@ describe(`/account/organizations/revoke-membership`, async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const user = await TestHelper.createUser()
-      await TestHelper.createMembership(user, owner.organization.organizationid)
+      await TestHelper.createMembership(user, owner)
       const req = TestHelper.createRequest(`/account/organizations/revoke-membership?membershipid=${user.membership.membershipid}`, 'POST')
       req.account = owner.account
       req.session = owner.session
       const res = TestHelper.createResponse()
       res.end = async (str) => {
-        await TestHelper.completeAuthorization(req)
+        req.session = await TestHelper.unlockSession(owner)
         const res2 = TestHelper.createResponse()
         res2.end = async (str) => {
           const doc = TestHelper.extractDoc(str)

@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 const assert = require('assert')
-const TestHelper = require('../../../../test-helper.js')
+const TestHelper = require('../../../../../test-helper.js')
 
 describe('/api/administrator/organizations/invitation', () => {
   describe('Invitation#GET', () => {
@@ -8,10 +8,10 @@ describe('/api/administrator/organizations/invitation', () => {
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
-      await TestHelper.createInvitation(owner, owner.organization.organizationid)
+      await TestHelper.createInvitation(owner)
       const req = TestHelper.createRequest(`/api/administrator/organizations/invitation?invitationid=${owner.invitation.invitationid}`, 'GET')
-      req.account = req.administrator = administrator.account
-      req.session = req.administratorSession = administrator.session
+      req.administratorAccount = req.account = administrator.account
+      req.administratorSession = req.session = administrator.session
       const invitation = await req.route.api.get(req)
       assert.notEqual(invitation, null)
       assert.notEqual(invitation.invitationid, null)
@@ -21,10 +21,10 @@ describe('/api/administrator/organizations/invitation', () => {
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
-      await TestHelper.createInvitation(owner, owner.organization.organizationid)
+      await TestHelper.createInvitation(owner)
       const req = TestHelper.createRequest(`/api/administrator/organizations/invitation?invitationid=${owner.invitation.invitationid}`, 'GET')
-      req.account = req.administrator = administrator.account
-      req.session = req.administratorSession = administrator.session
+      req.administratorAccount = req.account = administrator.account
+      req.administratorSession = req.session = administrator.session
       const invitation = await req.route.api.get(req)
       assert.notEqual(invitation, null)
       assert.notEqual(invitation.invitationid, null)

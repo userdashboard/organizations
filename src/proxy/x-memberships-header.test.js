@@ -1,7 +1,7 @@
 /* eslint-env mocha */
 const assert = require('assert')
 const XMembershipsHeader = require('./x-memberships-header.js')
-const TestHelper = require('../test-helper.js')
+const TestHelper = require('../../test-helper.js')
 
 describe(`proxy/x-memberships-header`, () => {
   describe('Memberships#GET', () => {
@@ -9,7 +9,8 @@ describe(`proxy/x-memberships-header`, () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const user = await TestHelper.createUser()
-      await TestHelper.createMembership(user, owner.organization.organizationid)
+      await TestHelper.createInvitation(owner)
+      await TestHelper.acceptInvitation(user, owner)
       const req = TestHelper.createRequest(`/api/user/organizations/proxy-memberships`, 'GET')
       req.account = user.account
       req.session = user.session

@@ -27,7 +27,7 @@ module.exports = {
     }
   },
   patch: async (req) => {
-    await orgs.Organization.setProperty(req.query.organizationid, 'ownerid', req.body.accountid)
+    await dashboard.RedisObject.setProperty(req.query.organizationid, 'ownerid', req.body.accountid)
     req.success = true
     return orgs.Organization.load(req.query.organizationid)
   }

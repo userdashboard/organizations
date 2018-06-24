@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 const assert = require('assert')
-const TestHelper = require('../../../../test-helper.js')
+const TestHelper = require('../../../../../test-helper.js')
 
 describe('/api/user/organizations/update-membership', async () => {
   describe('UpdateMembership#PATCH', () => {
@@ -8,7 +8,8 @@ describe('/api/user/organizations/update-membership', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const user = await TestHelper.createUser()
-      await TestHelper.createMembership(user, owner.organization.organizationid)
+      await TestHelper.createInvitation(owner)
+      await TestHelper.acceptInvitation(user, owner)
       const user2 = await TestHelper.createUser()
       const req = TestHelper.createRequest(`/api/user/organizations/update-membership?membershipid=${user.membership.membershipid}`, 'PATCH')
       req.account = user2.account
@@ -30,7 +31,8 @@ describe('/api/user/organizations/update-membership', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const user = await TestHelper.createUser()
-      await TestHelper.createMembership(user, owner.organization.organizationid)
+      await TestHelper.createInvitation(owner)
+      await TestHelper.acceptInvitation(user, owner)
       const req = TestHelper.createRequest(`/api/user/organizations/update-membership?membershipid=${user.membership.membershipid}`, 'PATCH')
       req.account = user.account
       req.session = user.session
@@ -50,7 +52,8 @@ describe('/api/user/organizations/update-membership', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const user = await TestHelper.createUser()
-      await TestHelper.createMembership(user, owner.organization.organizationid)
+      await TestHelper.createInvitation(owner)
+      await TestHelper.acceptInvitation(user, owner)
       const req = TestHelper.createRequest(`/api/user/organizations/update-membership?membershipid=${user.membership.membershipid}`, 'PATCH')
       req.account = user.account
       req.session = user.session
@@ -72,7 +75,8 @@ describe('/api/user/organizations/update-membership', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const user = await TestHelper.createUser()
-      await TestHelper.createMembership(user, owner.organization.organizationid)
+      await TestHelper.createInvitation(owner)
+      await TestHelper.acceptInvitation(user, owner)
       const req = TestHelper.createRequest(`/api/user/organizations/update-membership?membershipid=${user.membership.membershipid}`, 'PATCH')
       req.account = user.account
       req.session = user.session
@@ -81,7 +85,7 @@ describe('/api/user/organizations/update-membership', async () => {
         email: 'test@test.com'
       }
       await req.route.api.patch(req)
-      await TestHelper.completeAuthorization(req)
+      req.session = await TestHelper.unlockSession(user)
       const membershipNow = await req.route.api.patch(req)
       assert.equal(membershipNow.name, 'Person')
       assert.equal(membershipNow.email, 'test@test.com')

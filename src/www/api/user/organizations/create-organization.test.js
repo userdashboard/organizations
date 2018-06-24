@@ -1,14 +1,14 @@
 /* eslint-env mocha */
 const assert = require('assert')
-const TestHelper = require('../../../../test-helper.js')
+const TestHelper = require('../../../../../test-helper.js')
 
-describe('/api/user/organizations/create-organization', () => {
+describe(`/api/user/organizations/create-organization`, () => {
   describe('CreateOrganization#POST', () => {
     it('should enforce name length', async () => {
-      const user = await TestHelper.createUser()
-      const req = TestHelper.createRequest('/api/user/organizations/create-organization', 'POST')
-      req.account = user.account
-      req.session = user.session
+      const owner = await TestHelper.createUser()
+      const req = TestHelper.createRequest(`/api/user/organizations/create-organization?accountid=${owner.account.accountid}`, 'POST')
+      req.account = owner.account
+      req.session = owner.session
       req.body = {
         name: '12345'
       }
@@ -33,7 +33,7 @@ describe('/api/user/organizations/create-organization', () => {
     it('should reject invalid fields', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
-      const req = TestHelper.createRequest('/api/user/organizations/create-organization', 'POST')
+      const req = TestHelper.createRequest(`/api/user/organizations/create-organization?accountid=${owner.account.accountid}`, 'POST')
       req.account = owner.account
       req.session = owner.session
       req.body = {
@@ -51,16 +51,16 @@ describe('/api/user/organizations/create-organization', () => {
     })
 
     it('should create authorized organization', async () => {
-      const user = await TestHelper.createUser()
-      const req = TestHelper.createRequest('/api/user/organizations/create-organization', 'POST')
-      req.account = user.account
-      req.session = user.session
+      const owner = await TestHelper.createUser()
+      const req = TestHelper.createRequest(`/api/user/organizations/create-organization?accountid=${owner.account.accountid}`, 'POST')
+      req.account = owner.account
+      req.session = owner.session
       req.body = {
         name: 'this is the name',
         email: 'this@address.com'
       }
       await req.route.api.post(req)
-      await TestHelper.completeAuthorization(req)
+      req.session = await TestHelper.unlockSession(owner)
       const organization = await req.route.api.post(req)
       assert.notEqual(null, organization)
       assert.notEqual(null, organization.organizationid)

@@ -1,8 +1,8 @@
-const orgs = require('../../../../../index.js')
+const dashboard = require('@userappstore/dashboard')
 
 module.exports = {
   get: async (req) => {
-    const count = await orgs.Invitation.countAll()
+    const count = await dashboard.RedisList.count(`invitations`)
     return count
   }
 }

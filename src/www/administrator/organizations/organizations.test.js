@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 const assert = require('assert')
-const TestHelper = require('../../../test-helper.js')
+const TestHelper = require('../../../../test-helper.js')
 
 describe('/administrator/organizations/organizations', () => {
   describe('Organizations#BEFORE', () => {
@@ -9,8 +9,8 @@ describe('/administrator/organizations/organizations', () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const req = TestHelper.createRequest('/administrator/organizations/organizations', 'GET')
-      req.account = req.administrator = administrator.account
-      req.session = req.administratorSession = administrator.session
+      req.administratorAccount = req.account = administrator.account
+      req.administratorSession = req.session = administrator.session
       await req.route.api.before(req)
       assert.notEqual(req.data, null)
       assert.notEqual(req.data.organizations, null)
@@ -22,10 +22,11 @@ describe('/administrator/organizations/organizations', () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const user = await TestHelper.createUser()
-      await TestHelper.createMembership(user, owner.organization.organizationid)
+      await TestHelper.createInvitation(owner)
+      await TestHelper.acceptInvitation(user, owner)
       const req = TestHelper.createRequest('/administrator/organizations/organizations', 'GET')
-      req.account = req.administrator = administrator.account
-      req.session = req.administratorSession = administrator.session
+      req.administratorAccount = req.account = administrator.account
+      req.administratorSession = req.session = administrator.session
       await req.route.api.before(req)
       assert.notEqual(req.data, null)
       assert.notEqual(req.data.organizations, null)
@@ -39,8 +40,8 @@ describe('/administrator/organizations/organizations', () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const req = TestHelper.createRequest('/administrator/organizations/organizations', 'GET')
-      req.account = req.administrator = administrator.account
-      req.session = req.administratorSession = administrator.session
+      req.administratorAccount = req.account = administrator.account
+      req.administratorSession = req.session = administrator.session
       const res = TestHelper.createResponse()
       res.end = async (str) => {
         const doc = TestHelper.extractDoc(str)
@@ -58,8 +59,8 @@ describe('/administrator/organizations/organizations', () => {
         await TestHelper.createOrganization(user)
       }
       const req = TestHelper.createRequest('/administrator/organizations/organizations', 'GET')
-      req.account = req.administrator = administrator.account
-      req.session = req.administratorSession = administrator.session
+      req.administratorAccount = req.account = administrator.account
+      req.administratorSession = req.session = administrator.session
       const res = TestHelper.createResponse()
       res.end = async (str) => {
         const doc = TestHelper.extractDoc(str)
@@ -78,8 +79,8 @@ describe('/administrator/organizations/organizations', () => {
         await TestHelper.createOrganization(user)
       }
       const req = TestHelper.createRequest('/administrator/organizations/organizations', 'GET')
-      req.account = req.administrator = administrator.account
-      req.session = req.administratorSession = administrator.session
+      req.administratorAccount = req.account = administrator.account
+      req.administratorSession = req.session = administrator.session
       global.PAGE_SIZE = 8
       const res = TestHelper.createResponse()
       res.end = async (str) => {
@@ -102,8 +103,8 @@ describe('/administrator/organizations/organizations', () => {
       }
       const offset = 3
       const req = TestHelper.createRequest('/administrator/organizations/organizations?offset=3', 'GET')
-      req.account = req.administrator = administrator.account
-      req.session = req.administratorSession = administrator.session
+      req.administratorAccount = req.account = administrator.account
+      req.administratorSession = req.session = administrator.session
       const res = TestHelper.createResponse()
       res.end = async (str) => {
         const doc = TestHelper.extractDoc(str)

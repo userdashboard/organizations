@@ -10,6 +10,12 @@ async function beforeRequest (req) {
   if (!req.query || !req.query.organizationid) {
     throw new Error('invalid-organization')
   }
+  if (req.session.lockURL === req.url && req.session.unlocked) {
+    await global.api.user.organizations.SetOrganizationOwner.patch(req)
+    if (req.success) {
+      return
+    }
+  }
   const organization = await global.api.user.organizations.Organization.get(req)
   if (!organization) {
     throw new Error('invalid-organization')
@@ -19,12 +25,6 @@ async function beforeRequest (req) {
   }
   const memberships = await global.api.user.organizations.OrganizationMemberships.get(req)
   req.data = {organization, memberships}
-  if (req.session.lockURL === req.url && req.session.unlocked >= dashboard.Timestamp.now) {
-    const transferred = await global.api.user.organizations.SetOrganizationOwner.patch(req)
-    if (transferred === true) {
-      req.success = true
-    }
-  }
 }
 
 async function renderPage (req, res, messageTemplate) {
@@ -58,7 +58,10 @@ async function submitForm (req, res) {
   }
   try {
     await global.api.user.organizations.SetOrganizationOwner.patch(req)
-    return renderPage(req, res, 'success')
+    if (req.success) {
+      return renderPage(req, res, 'success')
+    }
+    return dashboard.Response.redirect(req, res, '/account/authorize')
   } catch (error) {
     switch (error.message) {
       case 'invalid-accountid':

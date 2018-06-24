@@ -47,6 +47,8 @@ async function submitForm (req, res) {
     }
   }
   try {
+    req.query = req.query || {}
+    req.query.accountid = req.account.accountid
     await global.api.user.organizations.CreateOrganization.post(req)
     return renderPage(req, res, 'success')
   } catch (error) {

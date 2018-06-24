@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 const assert = require('assert')
-const TestHelper = require('../../../../test-helper.js')
+const TestHelper = require('../../../../../test-helper.js')
 
 describe(`/api/user/organizations/memberships`, () => {
   describe('Memberships#GET', () => {
@@ -8,7 +8,8 @@ describe(`/api/user/organizations/memberships`, () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const user = await TestHelper.createUser()
-      await TestHelper.createMembership(user, owner.organization.organizationid)
+      await TestHelper.createInvitation(owner)
+      await TestHelper.acceptInvitation(user, owner)
       const req = TestHelper.createRequest(`/api/user/organizations/memberships?accountid=${user.account.accountid}`, 'GET')
       req.account = user.account
       req.session = user.session
@@ -22,7 +23,8 @@ describe(`/api/user/organizations/memberships`, () => {
       for (let i = 0, len = 10; i < len; i++) {
         const owner = await TestHelper.createUser()
         await TestHelper.createOrganization(owner)
-        await TestHelper.createMembership(user, owner.organization.organizationid)
+        await TestHelper.createInvitation(owner)
+        await TestHelper.acceptInvitation(user, owner)
       }
       const req = TestHelper.createRequest(`/api/user/organizations/memberships?accountid=${user.account.accountid}`, 'GET')
       req.account = user.account
@@ -38,7 +40,7 @@ describe(`/api/user/organizations/memberships`, () => {
       for (let i = 0, len = 10; i < len; i++) {
         const owner = await TestHelper.createUser()
         await TestHelper.createOrganization(owner)
-        const membership = await TestHelper.createMembership(user, owner.organization.organizationid)
+        const membership = await TestHelper.createMembership(user, owner)
         memberships.unshift(membership)
       }
       const offset = 3

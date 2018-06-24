@@ -1,7 +1,7 @@
 /* eslint-env mocha */
 const assert = require('assert')
 const XOrganizationsHeader = require('./x-organizations-header.js')
-const TestHelper = require('../test-helper.js')
+const TestHelper = require('../../test-helper.js')
 
 describe(`proxy/x-organizations-header`, () => {
   describe('ProxyOrganizations#GET', () => {

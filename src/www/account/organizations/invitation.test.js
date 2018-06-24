@@ -1,13 +1,13 @@
 /* eslint-env mocha */
 const assert = require('assert')
-const TestHelper = require('../../../test-helper.js')
+const TestHelper = require('../../../../test-helper.js')
 
 describe(`/account/organizations/invitation`, () => {
   describe('Invitation#BEFORE', () => {
     it('should require owner', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
-      await TestHelper.createInvitation(owner, owner.organization.organizationid)
+      await TestHelper.createInvitation(owner)
       const user = await TestHelper.createUser()
       const req = TestHelper.createRequest(`/account/organizations/invitation?invitationid=${owner.invitation.invitationid}`, 'GET')
       req.account = user.account
@@ -24,7 +24,7 @@ describe(`/account/organizations/invitation`, () => {
     it('should bind invitation to req', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
-      await TestHelper.createInvitation(owner, owner.organization.organizationid)
+      await TestHelper.createInvitation(owner)
       const req = TestHelper.createRequest(`/account/organizations/invitation?invitationid=${owner.invitation.invitationid}`, 'GET')
       req.account = owner.account
       req.session = owner.session
@@ -39,7 +39,7 @@ describe(`/account/organizations/invitation`, () => {
     it('should have row for invitation', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
-      await TestHelper.createInvitation(owner, owner.organization.organizationid)
+      await TestHelper.createInvitation(owner)
       const req = TestHelper.createRequest(`/account/organizations/invitation?invitationid=${owner.invitation.invitationid}`, 'GET')
       req.account = owner.account
       req.session = owner.session

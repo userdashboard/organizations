@@ -10,6 +10,10 @@ async function beforeRequest (req) {
   if (!req.query || !req.query.invitationid) {
     throw new Error('invalid-invitationid')
   }
+  if (req.session.lockURL === req.url && req.session.unlocked) {
+    await global.api.user.organizations.DeleteInvitation.delete(req)
+    return
+  }
   const invitation = await global.api.user.organizations.Invitation.get(req)
   if (invitation.accepted) {
     throw new Error('invalid-invitation')
@@ -20,10 +24,6 @@ async function beforeRequest (req) {
     throw new Error('invalid-account')
   }
   req.data = { organization, invitation }
-  if (req.session.lockURL === req.url && req.session.unlocked >= dashboard.Timestamp.now) {
-    await global.api.user.organizations.DeleteInvitation.delete(req)
-    req.success = true
-  }
 }
 
 async function renderPage (req, res, messageTemplate) {

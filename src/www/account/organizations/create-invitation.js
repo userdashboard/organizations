@@ -10,6 +10,9 @@ async function beforeRequest (req) {
   if (!req.query || !req.query.organizationid) {
     throw new Error('invalid-organization')
   }
+  if (req.session.lockURL === req.url && req.session.unlocked) {
+    await global.api.user.organizations.CreateInvitation.post(req)
+  }
   const organization = await global.api.user.organizations.Organization.get(req)
   if (!organization) {
     throw new Error('invalid-organization')
@@ -18,9 +21,6 @@ async function beforeRequest (req) {
     throw new Error('invalid-account')
   }
   req.data = { organization }
-  if (req.session.lockURL === req.url && req.session.unlocked >= dashboard.Timestamp.now) {
-    await global.api.user.organizations.CreateInvitation.post(req)
-  }
 }
 
 async function renderPage (req, res, messageTemplate) {

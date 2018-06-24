@@ -1,37 +1,17 @@
 
-> @userappstore/organizations@1.0.1044 test /Users/benlowry/CloudStation/workspaces/dashboard/organizations
+> @userappstore/organizations@1.0.1047 test /Users/benlowry/CloudStation/workspaces/dashboard/organizations
 > NODE_ENV=testing mocha src --recursive --timeout 90000 --slow 90000
 
 
 
   internal-api/invitation
-    Invitation#count()
-      ✓ should require accountid
-      ✓ should return count of user's invitations
-    Invitation#countAll()
-      ✓ should return all invitations
-    Invitation#countByOrganization()
-      ✓ should require organizationid
-      ✓ should return all organization's invitations
     Invitation#create()
       ✓ should require organizationid
       ✓ should create an invitation
-      ✓ should update the owner's last invitation created date
     Invitation#delete
       ✓ should require an invitationid
       ✓ should require a valid invitationid
       ✓ should delete the invitation
-      ✓ should update the owner's last invitation deleted date
-    Invitation#list()
-      ✓ should require accountid
-      ✓ should return created invitations
-    Invitation#listAll()
-      ✓ should return all invitations
-    Invitation#listByOrganization()
-      ✓ should require organizationid
-      ✓ should return organization's invitations
-    Invitation#listAllByOrganization()
-      ✓ should return all invitations
     Invitation#load()
       ✓ should require invitationid
       ✓ should return the invitation
@@ -45,92 +25,24 @@
       ✓ should reject the owner
       ✓ should reject existing member
       ✓ should mark invitation as accepted
-      ✓ should update the owner's last invitation accepted date
-    Invitation#setProperty
-      ✓ should require an invitationid
-      ✓ should require a property
-      ✓ should require a value
-      ✓ should set the property
-    Invitation#getProperty
-      ✓ should require an invitationid
-      ✓ should require a property
-      ✓ should retrieve the property
-    Invitation#removeProperty
-      ✓ should require an invitationid
-      ✓ should require a property
-      ✓ should remove the property
 
   internal-api/membership
-    Membership#count()
-      ✓ should require accountid
-      ✓ should return count of user's memberships
-    Membership#countAll()
-      ✓ should return all memberships
-    Membership#countByOrganization()
-      ✓ should require organizationid
-      ✓ should return all organization's memberships
     Membership#create()
       ✓ should require an organization
       ✓ should require an accountid
       ✓ should create membership
-      ✓ should update the user's last membership created date
     Membership#delete
       ✓ should require a valid membershipid
       ✓ should delete membership
-    Membership#list()
-      ✓ should require accountid
-      ✓ should return all of owner's memberships
-    Membership#listAll()
-      ✓ should return all memberships
-    Membership#listByOrganization()
-      ✓ should require organizationid
-      ✓ should return organization's memberships
-    Membership#setProperty
-      ✓ should require a membershipid
-      ✓ should require a property
-      ✓ should require a value
-      ✓ should set the property
-    Membership#getProperty
-      ✓ should require a membershipid
-      ✓ should require a property
-      ✓ should retrieve the property
-    Membership#removeProperty
-      ✓ should require a membershipid
-      ✓ should require a property
-      ✓ should remove the property
 
   internal-api/organization
-    Organization#count()
-      ✓ should require accountid
-      ✓ should return count of user's organizations
-    Organization#countAll()
-      ✓ should return all organizations
     Organization#create()
       ✓ should require organization name
       ✓ should force organization name length
       ✓ should create an organization
-      ✓ should update the user's last organization created date
     Organization#delete
       ✓ should require a valid organizationid
       ✓ should delete organization
-    Organization#list()
-      ✓ should require accountid
-      ✓ should return all of owner's organizations
-    Organization#listAll()
-      ✓ should return all organizations
-    Organization#setProperty
-      ✓ should require an organizationid
-      ✓ should require a property
-      ✓ should require a value
-      ✓ should set the property
-    Organization#getProperty
-      ✓ should require an organizationid
-      ✓ should require a property
-      ✓ should retrieve the property
-    Organization#removeProperty
-      ✓ should require an organizationid
-      ✓ should require a property
-      ✓ should remove the property
 
   proxy/x-memberships-header
     Memberships#GET
@@ -448,8 +360,8 @@
   /api/administrator/organizations/memberships
     Memberships#GET
       ✓ should return membership list
-      ✓ should enforce page size
-      ✓ should enforce specified offset
+      ✓ should enforce page size (47250ms)
+      ✓ should enforce specified offset (49490ms)
 
   /api/user/administrator/organizations/organization-invitations-count
     OrganizationInvitationsCount#GET
@@ -491,6 +403,14 @@
       ✓ should enforce code length
       ✓ should create authorized invitation
 
+  /api/user/organizations/create-membership
+    CreateMembership#POST
+      ✓ should enforce code length
+      ✓ should reject a used invitation
+      ✓ should reject owner
+      ✓ should reject existing members
+      ✓ should create authorized membership
+
   /api/user/organizations/create-organization
     CreateOrganization#POST
       ✓ should enforce name length
@@ -526,26 +446,6 @@
   /api/user/organizations/invitations
     Invitations#GET
       ✓ should return invitation list
-      ✓ should enforce page size
-      ✓ should enforce specified offset
-
-  /api/user/organizations/membership-invitations-count
-    AccountSessionsCount#GET
-      ✓ should count membership' invitations
-
-  /api/user/organizations/membership-invitations
-    MembershipInvitations#GET
-      ✓ should return memberships' invitation list
-      ✓ should enforce page size
-      ✓ should enforce specified offset
-
-  /api/user/organizations/membership-organizations-count
-    AccountSessionsCount#GET
-      ✓ should count memeberships' organizations
-
-  /api/user/organizations/membership-organizations
-    MembershipOrganizations#GET
-      ✓ should return memberships' organization list
       ✓ should enforce page size
       ✓ should enforce specified offset
 
@@ -609,14 +509,6 @@
       ✓ should enforce page size
       ✓ should enforce specified offset
 
-  /api/user/organizations/set-invitation-accepted
-    SetInvitationAccepted#POST
-      ✓ should enforce code length
-      ✓ should reject a used invitation
-      ✓ should reject owner
-      ✓ should reject existing members
-      ✓ should create authorized membership
-
   /api/user/organizations/set-organization-owner
     SetOrganizationOwner#PATCH
       ✓ should require own organization
@@ -637,5 +529,5 @@
     ✓ should apply new values
 
 
-  325 passing (11m)
+  255 passing (32m)
 

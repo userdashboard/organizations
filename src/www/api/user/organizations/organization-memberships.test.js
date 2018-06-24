@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 const assert = require('assert')
-const TestHelper = require('../../../../test-helper.js')
+const TestHelper = require('../../../../../test-helper.js')
 
 describe(`/api/user/organizations/organization-memberships`, () => {
   describe('OrganizationMemberships#GET', () => {
@@ -8,9 +8,9 @@ describe(`/api/user/organizations/organization-memberships`, () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const user1 = await TestHelper.createUser()
-      await TestHelper.createMembership(user1, owner.organization.organizationid)
+      await TestHelper.createMembership(user1, owner)
       const user2 = await TestHelper.createUser()
-      await TestHelper.createMembership(user2, owner.organization.organizationid)
+      await TestHelper.createMembership(user2, owner)
       const req = TestHelper.createRequest(`/api/user/organizations/organization-memberships?organizationid=${owner.organization.organizationid}`, 'GET')
       req.account = owner.account
       req.session = owner.session
@@ -23,7 +23,8 @@ describe(`/api/user/organizations/organization-memberships`, () => {
       await TestHelper.createOrganization(owner)
       for (let i = 0, len = 10; i < len; i++) {
         const user = await TestHelper.createUser()
-        await TestHelper.createMembership(user, owner.organization.organizationid)
+        await TestHelper.createInvitation(owner)
+        await TestHelper.acceptInvitation(user, owner)
       }
       const req = TestHelper.createRequest(`/api/user/organizations/organization-memberships?organizationid=${owner.organization.organizationid}`, 'GET')
       req.account = owner.account
@@ -39,7 +40,8 @@ describe(`/api/user/organizations/organization-memberships`, () => {
       const memberships = []
       for (let i = 0, len = 10; i < len; i++) {
         const user = await TestHelper.createUser()
-        await TestHelper.createMembership(user, owner.organization.organizationid)
+        await TestHelper.createInvitation(owner)
+        await TestHelper.acceptInvitation(user, owner)
         memberships.unshift(user.membership)
       }
       const offset = 3

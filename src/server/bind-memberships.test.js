@@ -1,7 +1,7 @@
 /* eslint-env mocha */
 const assert = require('assert')
 const BindMemberships = require('./bind-memberships.js')
-const TestHelper = require('../test-helper.js')
+const TestHelper = require('../../test-helper.js')
 
 describe(`server/bind-memberships`, () => {
   describe('BindMemberships#GET', () => {
@@ -9,7 +9,8 @@ describe(`server/bind-memberships`, () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const user = await TestHelper.createUser()
-      await TestHelper.createMembership(user, owner.organization.organizationid)
+      await TestHelper.createInvitation(owner)
+      await TestHelper.acceptInvitation(user, owner)
       const req = TestHelper.createRequest(`/api/user/organizations/proxy-memberships`, 'GET')
       req.account = user.account
       req.session = user.session

@@ -1,8 +1,15 @@
+const dashboard = require('@userappstore/dashboard')
 const orgs = require('../../../../../index.js')
 
 module.exports = {
   lock: true,
   before: async (req) => {
+    if (!req.query || !req.query.accountid) {
+      throw new Error('invalid-accountid')
+    }
+    if (req.query.accountid !== req.account.accountid) {
+      throw new Error('invalid-account')
+    }
     if (!req.body || !req.body.name) {
       throw new Error('invalid-organization-name')
     }
@@ -24,16 +31,18 @@ module.exports = {
   },
   post: async (req) => {
     const organization = await orgs.Organization.create(req.account.accountid, req.body.name)
-    await orgs.Organization.setProperty(organization.organizationid, 'ip', req.ip)
-    await orgs.Organization.setProperty(organization.organizationid, 'userAgent', req.headers['user-agent'] || '')
+    await dashboard.RedisObject.setProperty(organization.organizationid, 'ip', req.ip)
+    await dashboard.RedisObject.setProperty(organization.organizationid, 'userAgent', req.userAgent)
     for (const property in req.body) {
       if (global.ORGANIZATION_FIELDS.indexOf(property) > -1) {
-        await orgs.Organization.setProperty(organization.organizationid, property, req.body[property])
+        await dashboard.RedisObject.setProperty(organization.organizationid, property, req.body[property])
       }
     }
     const membership = await orgs.Membership.create(organization.organizationid, req.account.accountid)
-    await orgs.Membership.setProperty(membership.membershipid, 'ip', req.ip)
-    await orgs.Membership.setProperty(membership.membershipid, 'userAgent', req.headers['user-agent'] || '')
+    await dashboard.RedisObject.setProperty(membership.membershipid, 'ip', req.ip)
+    await dashboard.RedisObject.setProperty(membership.membershipid, 'userAgent', req.userAgent)
+    await dashboard.RedisList.add(`organizations`, organization.organizationid)
+    await dashboard.RedisList.add(`account:organizations:${req.account.accountid}`, organization.organizationid)
     return organization
   }
 }

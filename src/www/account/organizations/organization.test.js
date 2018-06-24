@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 const assert = require('assert')
-const TestHelper = require('../../../test-helper.js')
+const TestHelper = require('../../../../test-helper.js')
 
 describe(`/account/organizations/organization`, () => {
   describe('Organization#BEFORE', () => {
@@ -24,7 +24,8 @@ describe(`/account/organizations/organization`, () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const user = await TestHelper.createUser()
-      await TestHelper.createMembership(user, owner.organization.organizationid)
+      await TestHelper.createInvitation(owner)
+      await TestHelper.acceptInvitation(user, owner)
       const req = TestHelper.createRequest(`/account/organizations/organization?organizationid=${owner.organization.organizationid}`, 'GET')
       req.account = owner.account
       req.session = owner.session
@@ -40,7 +41,8 @@ describe(`/account/organizations/organization`, () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const user = await TestHelper.createUser()
-      await TestHelper.createMembership(user, owner.organization.organizationid)
+      await TestHelper.createInvitation(owner)
+      await TestHelper.acceptInvitation(user, owner)
       const req = TestHelper.createRequest(`/account/organizations/organization?organizationid=${owner.organization.organizationid}`, 'GET')
       req.account = owner.account
       req.session = owner.session

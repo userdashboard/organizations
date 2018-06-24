@@ -21,7 +21,9 @@ module.exports = {
   },
   delete: async (req) => {
     await orgs.Membership.deleteMembership(req.query.membershipid)
-    req.session = await dashboard.Session.load(req.session.sessionid)
+    await dashboard.RedisList.remove(`memberships`, req.query.membershipid)
+    await dashboard.RedisList.remove(`account:memberships:${req.account.accountid}`, req.query.membershipid)
+    await dashboard.RedisList.remove(`organization:memberships:${req.body.organizationid}`, req.query.membershipid)
     req.success = true
   }
 }

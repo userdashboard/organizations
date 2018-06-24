@@ -1,3 +1,4 @@
+const dashboard = require('@userappstore/dashboard')
 const orgs = require('../../../../../index.js')
 
 module.exports = {
@@ -9,10 +10,11 @@ module.exports = {
       throw new Error('invalid-account')
     }
     const offset = req.query && req.query.offset ? parseInt(req.query.offset, 10) : 0
-    const organizations = await orgs.Organization.list(req.query.accountid, offset)
-    if (!organizations || !organizations.length) {
+    const organizationids = await dashboard.RedisList.list(`account:organizations:${req.query.accountid}`, offset)
+    if (!organizationids || !organizationids.length) {
       return null
     }
+    const organizations = await orgs.Organization.loadMany(organizationids)
     return organizations
   }
 }

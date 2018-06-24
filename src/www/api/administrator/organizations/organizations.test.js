@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 const assert = require('assert')
-const TestHelper = require('../../../../test-helper.js')
+const TestHelper = require('../../../../../test-helper.js')
 
 describe('/api/administrator/organizations/organizations', () => {
   describe('Organizations#GET', () => {
@@ -13,8 +13,8 @@ describe('/api/administrator/organizations/organizations', () => {
       const owner3 = await TestHelper.createUser()
       await TestHelper.createOrganization(owner3)
       const req = TestHelper.createRequest('/api/administrator/organizations/organizations', 'GET')
-      req.account = req.administrator = administrator.account
-      req.session = req.administratorSession = administrator.session
+      req.administratorAccount = req.account = administrator.account
+      req.administratorSession = req.session = administrator.session
       const organizations = await req.route.api.get(req)
       assert.equal(3, organizations.length)
       assert.equal(organizations[0].organizationid, owner3.organization.organizationid)
@@ -29,8 +29,8 @@ describe('/api/administrator/organizations/organizations', () => {
         await TestHelper.createOrganization(user)
       }
       const req = TestHelper.createRequest('/api/administrator/organizations/organizations', 'GET')
-      req.account = req.administrator = administrator.account
-      req.session = req.administratorSession = administrator.session
+      req.administratorAccount = req.account = administrator.account
+      req.administratorSession = req.session = administrator.session
       global.PAGE_SIZE = 8
       const organizationsNow = await req.route.api.get(req)
       assert.equal(organizationsNow.length, 8)
@@ -46,8 +46,8 @@ describe('/api/administrator/organizations/organizations', () => {
       }
       const offset = 3
       const req = TestHelper.createRequest('/api/administrator/organizations/organizations?offset=3', 'GET')
-      req.account = req.administrator = administrator.account
-      req.session = req.administratorSession = administrator.session
+      req.administratorAccount = req.account = administrator.account
+      req.administratorSession = req.session = administrator.session
       const organizationsNow = await req.route.api.get(req)
       for (let i = 0, len = global.PAGE_SIZE; i < len; i++) {
         assert.equal(organizationsNow[i].codeid, organizations[offset + i].codeid)

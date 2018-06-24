@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 const assert = require('assert')
-const TestHelper = require('../../../test-helper.js')
+const TestHelper = require('../../../../test-helper.js')
 
 describe(`/account/organizations/create-invitation`, async () => {
   describe('CreateInvitation#BEFORE', () => {
@@ -8,7 +8,8 @@ describe(`/account/organizations/create-invitation`, async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const user = await TestHelper.createUser()
-      await TestHelper.createMembership(user, owner.organization.organizationid)
+      await TestHelper.createInvitation(owner)
+      await TestHelper.acceptInvitation(user, owner)
       const req = TestHelper.createRequest(`/account/organizations/create-invitation?organizationid=${owner.organization.organizationid}`, 'GET')
       req.account = user.account
       req.session = user.session
@@ -55,7 +56,7 @@ describe(`/account/organizations/create-invitation`, async () => {
     it('should present the organization', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
-      await TestHelper.createInvitation(owner, owner.organization.organizationid)
+      await TestHelper.createInvitation(owner)
       const req = TestHelper.createRequest(`/account/organizations/create-invitation?organizationid=${owner.organization.organizationid}`, 'GET')
       req.account = owner.account
       req.session = owner.session
@@ -74,16 +75,15 @@ describe(`/account/organizations/create-invitation`, async () => {
     it('should apply after authorization', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
-      await TestHelper.createInvitation(owner, owner.organization.organizationid)
       const req = TestHelper.createRequest(`/account/organizations/create-invitation?organizationid=${owner.organization.organizationid}`, 'POST')
       req.account = owner.account
       req.session = owner.session
       req.body = {
-        code: owner.invitation.code
+        code: 'code-' + new Date().getTime() + '-' + Math.floor(Math.random() * 1000)
       }
       const res = TestHelper.createResponse()
       res.end = async (str) => {
-        await TestHelper.completeAuthorization(req)
+        req.session = await TestHelper.unlockSession(owner)
         const res2 = TestHelper.createResponse()
         res2.end = async (str) => {
           const doc = TestHelper.extractDoc(str)

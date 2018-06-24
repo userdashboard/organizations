@@ -1,7 +1,7 @@
 /* eslint-env mocha */
 const assert = require('assert')
 const BindOrganizations = require('./bind-organizations.js')
-const TestHelper = require('../test-helper.js')
+const TestHelper = require('../../test-helper.js')
 
 describe(`server/bind-organizations`, () => {
   describe('BindOrganizations#GET', () => {

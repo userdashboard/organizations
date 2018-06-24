@@ -31,14 +31,18 @@ module.exports = {
     }
     req.body.organizationid = invitation.organizationid
   },
-  patch: async (req) => {
+  post: async (req) => {
     await orgs.Invitation.accept(req.body.organizationid, req.body.code, req.account.accountid)
     const membership = await orgs.Membership.create(req.body.organizationid, req.account.accountid)
-    await orgs.Membership.setProperty(membership.membershipid, 'ip', req.ip)
-    await orgs.Membership.setProperty(membership.membershipid, 'userAgent', req.headers['user-agent'] || '')
-    await orgs.Membership.setProperty(membership.membershipid, 'invitationid', req.query.invitationid)
-    await orgs.Invitation.setProperty(req.query.invitationid, 'membershipid', membership.membershipid)
-    req.session = await dashboard.Session.load(req.session.sessionid)
+    await dashboard.RedisObject.setProperty(membership.membershipid, 'ip', req.ip)
+    await dashboard.RedisObject.setProperty(membership.membershipid, 'userAgent', req.userAgent)
+    await dashboard.RedisObject.setProperty(membership.membershipid, 'invitationid', req.query.invitationid)
+    await dashboard.RedisObject.setProperty(req.query.invitationid, 'membershipid', membership.membershipid)
+    await dashboard.RedisList.add(`memberships`, membership.membershipid)
+    await dashboard.RedisList.add(`account:memberships:${req.account.accountid}`, membership.membershipid)
+    await dashboard.RedisList.add(`account:organizations:${req.account.accountid}`, req.account.accountid)
+    await dashboard.RedisList.add(`account:invitations:${req.account.accountid}`, req.account.accountid)
+    await dashboard.RedisList.add(`organization:memberships:${req.body.organizationid}`, membership.membershipid)
     req.success = true
     return membership
   }

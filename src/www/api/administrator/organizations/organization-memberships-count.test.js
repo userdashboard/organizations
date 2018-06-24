@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 const assert = require('assert')
-const TestHelper = require('../../../../test-helper.js')
+const TestHelper = require('../../../../../test-helper.js')
 
 describe('/api/administrator/organizations/organization-memberships-count', async () => {
   describe('OrganizationMembershipsCount#GET', () => {
@@ -8,15 +8,17 @@ describe('/api/administrator/organizations/organization-memberships-count', asyn
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
-      await TestHelper.createMembership(owner, owner.organization.organizationid)
+      const user1 = await TestHelper.createUser()
+      await TestHelper.createMembership(user1, owner)
       const owner2 = await TestHelper.createUser()
       await TestHelper.createOrganization(owner2)
-      await TestHelper.createMembership(owner2, owner2.organization.organizationid)
-      const user = await TestHelper.createUser()
-      await TestHelper.createMembership(user, owner2.organization.organizationid)
+      const user2 = await TestHelper.createUser()
+      await TestHelper.createMembership(user2, owner2)
+      const user3 = await TestHelper.createUser()
+      await TestHelper.createMembership(user3, owner2)
       const req = TestHelper.createRequest(`/api/administrator/organizations/organization-memberships-count?organizationid=${owner2.organization.organizationid}`, 'GET')
-      req.account = req.administrator = administrator.account
-      req.session = req.administratorSession = administrator.session
+      req.administratorAccount = req.account = administrator.account
+      req.administratorSession = req.session = administrator.session
       const result = await req.route.api.get(req)
       assert.equal(result, 2)
     })
