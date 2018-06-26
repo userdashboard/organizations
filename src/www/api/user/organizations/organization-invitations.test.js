@@ -22,41 +22,46 @@ describe(`/api/user/organizations/organization-invitations`, () => {
       assert.equal(errorMessage, 'invalid-account')
     })
 
-    it('should return invitation list', async () => {
-      const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner)
-      await TestHelper.createInvitation(owner)
-      const req = TestHelper.createRequest(`/api/user/organizations/organization-invitations?organizationid=${owner.organization.organizationid}`, 'GET')
-      req.account = owner.account
-      req.session = owner.session
-      const invitations = await req.route.api.get(req)
-      assert.equal(invitations.length, 1)
-      assert.equal(invitations[0].invitationid, owner.invitation.invitationid)
-    })
-
-    it('should enforce page size', async () => {
-      const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner)
-      for (let i = 0, len = 10; i < len; i++) {
-        await TestHelper.createInvitation(owner)
-      }
-      const req = TestHelper.createRequest(`/api/user/organizations/organization-invitations?organizationid=${owner.organization.organizationid}`, 'GET')
-      req.account = owner.account
-      req.session = owner.session
-      global.PAGE_SIZE = 8
-      const invitationsNow = await req.route.api.get(req)
-      assert.equal(invitationsNow.length, 8)
-    })
-
-    it('should enforce specified offset', async () => {
+    it('should limit invitation list to one page', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const invitations = []
-      for (let i = 0, len = 10; i < len; i++) {
+      for (let i = 0, len = global.PAGE_SIZE + 1; i < len; i++) {
         await TestHelper.createInvitation(owner)
         invitations.unshift(owner.invitation)
       }
-      const offset = 3
+      const req = TestHelper.createRequest(`/api/user/organizations/organization-invitations?organizationid=${owner.organization.organizationid}`, 'GET')
+      req.account = owner.account
+      req.session = owner.session
+      const invitationsNow = await req.route.api.get(req)
+      for (let i = 0, len = global.PAGE_SIZE; i < len; i++) {
+        assert.equal(invitationsNow[i].invitationid, invitations[i].invitationid)
+      }
+    })
+
+    it('should enforce page size', async () => {
+      global.PAGE_SIZE = 3
+      const owner = await TestHelper.createUser()
+      await TestHelper.createOrganization(owner)
+      for (let i = 0, len = global.PAGE_SIZE + 1; i < len; i++) {
+        await TestHelper.createInvitation(owner)
+      }
+      const req = TestHelper.createRequest(`/api/user/organizations/organization-invitations?organizationid=${owner.organization.organizationid}`, 'GET')
+      req.account = owner.account
+      req.session = owner.session
+      const invitationsNow = await req.route.api.get(req)
+      assert.equal(invitationsNow.length, global.PAGE_SIZE)
+    })
+
+    it('should enforce specified offset', async () => {
+      const offset = 1
+      const owner = await TestHelper.createUser()
+      await TestHelper.createOrganization(owner)
+      const invitations = []
+      for (let i = 0, len = global.PAGE_SIZE + offset + 1; i < len; i++) {
+        await TestHelper.createInvitation(owner)
+        invitations.unshift(owner.invitation)
+      }
       const req = TestHelper.createRequest(`/api/user/organizations/organization-invitations?organizationid=${owner.organization.organizationid}&offset=${offset}`, 'GET')
       req.account = owner.account
       req.session = owner.session

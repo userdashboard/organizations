@@ -19,38 +19,44 @@ describe('/api/user/organizations/organizations', () => {
       assert.equal(errorMessage, 'invalid-account')
     })
 
-    it('should return organization list', async () => {
+    it('should limit organization list to one page', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
-      const req = TestHelper.createRequest(`/api/user/organizations/organizations?accountid=${owner.account.accountid}`, 'GET')
-      req.account = owner.account
-      req.session = owner.session
-      const organizations = await req.route.api.get(req)
-      assert.equal(organizations.length, 1)
-      assert.equal(organizations[0].organizationid, owner.organization.organizationid)
-    })
-
-    it('should enforce page size', async () => {
-      const owner = await TestHelper.createUser()
-      for (let i = 0, len = 10; i < len; i++) {
-        await TestHelper.createOrganization(owner)
-      }
-      const req = TestHelper.createRequest(`/api/user/organizations/organizations?accountid=${owner.account.accountid}`, 'GET')
-      req.account = owner.account
-      req.session = owner.session
-      global.PAGE_SIZE = 8
-      const codesNow = await req.route.api.get(req)
-      assert.equal(codesNow.length, 8)
-    })
-
-    it('should enforce specified offset', async () => {
-      const owner = await TestHelper.createUser()
-      const organizations = [ ]
-      for (let i = 0, len = 10; i < len; i++) {
+      const organizations = []
+      for (let i = 0, len = global.PAGE_SIZE + 1; i < len; i++) {
         await TestHelper.createOrganization(owner)
         organizations.unshift(owner.organization)
       }
-      const offset = 3
+      const req = TestHelper.createRequest(`/api/user/organizations/organizations?accountid=${owner.account.accountid}`, 'GET')
+      req.account = owner.account
+      req.session = owner.session
+      const organizationsNow = await req.route.api.get(req)
+      for (let i = 0, len = global.PAGE_SIZE; i < len; i++) {
+        assert.equal(organizationsNow[i].organizationid, organizations[i].organizationid)
+      }
+    })
+
+    it('should enforce page size', async () => {
+      global.PAGE_SIZE = 3
+      const owner = await TestHelper.createUser()
+      for (let i = 0, len = global.PAGE_SIZE + 1; i < len; i++) {
+        await TestHelper.createOrganization(owner)
+      }
+      const req = TestHelper.createRequest(`/api/user/organizations/organizations?accountid=${owner.account.accountid}`, 'GET')
+      req.account = owner.account
+      req.session = owner.session
+      const codesNow = await req.route.api.get(req)
+      assert.equal(codesNow.length, global.PAGE_SIZE)
+    })
+
+    it('should enforce specified offset', async () => {
+      const offset = 1
+      const owner = await TestHelper.createUser()
+      const organizations = [ ]
+      for (let i = 0, len = global.PAGE_SIZE + offset + 1; i < len; i++) {
+        await TestHelper.createOrganization(owner)
+        organizations.unshift(owner.organization)
+      }
       const req = TestHelper.createRequest(`/api/user/organizations/organizations?accountid=${owner.account.accountid}&offset=${offset}`, 'GET')
       req.account = owner.account
       req.session = owner.session

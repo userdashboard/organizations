@@ -21,28 +21,9 @@ describe('/account/organizations/memberships', () => {
   })
 
   describe('Memberships#GET', () => {
-    it('should have row for each membership', async () => {
-      const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner)
-      const user = await TestHelper.createUser()
-      await TestHelper.createInvitation(owner)
-      await TestHelper.acceptInvitation(user, owner)
-      const req = TestHelper.createRequest('/account/organizations/memberships', 'GET')
-      req.account = user.account
-      req.session = user.session
-      const res = TestHelper.createResponse()
-      res.end = async (str) => {
-        const doc = TestHelper.extractDoc(str)
-        assert.notEqual(null, doc)
-        const membershipRow = doc.getElementById(user.membership.membershipid)
-        assert.notEqual(null, membershipRow)
-      }
-      return req.route.api.get(req, res)
-    })
-
     it('should limit memberships to one page', async () => {
       const user = await TestHelper.createUser()
-      for (let i = 0, len = 10; i < len; i++) {
+      for (let i = 0, len = global.PAGE_SIZE + 1; i < len; i++) {
         const owner = await TestHelper.createUser()
         await TestHelper.createOrganization(owner)
         await TestHelper.createInvitation(owner)
@@ -63,8 +44,9 @@ describe('/account/organizations/memberships', () => {
     })
 
     it('should enforce page size', async () => {
+      global.PAGE_SIZE = 3
       const user = await TestHelper.createUser()
-      for (let i = 0, len = 10; i < len; i++) {
+      for (let i = 0, len = global.PAGE_SIZE + 1; i < len; i++) {
         const owner = await TestHelper.createUser()
         await TestHelper.createOrganization(owner)
         await TestHelper.createInvitation(owner)
@@ -73,7 +55,6 @@ describe('/account/organizations/memberships', () => {
       const req = TestHelper.createRequest('/account/organizations/memberships', 'GET')
       req.account = user.account
       req.session = user.session
-      global.PAGE_SIZE = 8
       const res = TestHelper.createResponse()
       res.end = async (str) => {
         const doc = TestHelper.extractDoc(str)
@@ -86,16 +67,16 @@ describe('/account/organizations/memberships', () => {
     })
 
     it('should enforce specified offset', async () => {
+      const offset = 1
       const user = await TestHelper.createUser()
       const memberships = []
-      for (let i = 0, len = 10; i < len; i++) {
+      for (let i = 0, len = global.PAGE_SIZE + offset + 1; i < len; i++) {
         const owner = await TestHelper.createUser()
         await TestHelper.createOrganization(owner)
         await TestHelper.createMembership(user, owner)
         memberships.unshift(user.membership)
       }
-      const offset = 3
-      const req = TestHelper.createRequest('/account/organizations/memberships?offset=3', 'GET')
+      const req = TestHelper.createRequest(`/account/organizations/memberships?offset=${offset}`, 'GET')
       req.account = user.account
       req.session = user.session
       const res = TestHelper.createResponse()

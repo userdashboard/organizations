@@ -40,8 +40,8 @@ module.exports = {
     await dashboard.RedisObject.setProperty(req.query.invitationid, 'membershipid', membership.membershipid)
     await dashboard.RedisList.add(`memberships`, membership.membershipid)
     await dashboard.RedisList.add(`account:memberships:${req.account.accountid}`, membership.membershipid)
-    await dashboard.RedisList.add(`account:organizations:${req.account.accountid}`, req.account.accountid)
-    await dashboard.RedisList.add(`account:invitations:${req.account.accountid}`, req.account.accountid)
+    await dashboard.RedisList.add(`account:organizations:${req.account.accountid}`, req.body.organizationid)
+    await dashboard.RedisList.add(`account:invitations:${req.account.accountid}`, req.query.invitationid)
     await dashboard.RedisList.add(`organization:memberships:${req.body.organizationid}`, membership.membershipid)
     req.success = true
     return membership

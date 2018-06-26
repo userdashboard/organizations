@@ -25,34 +25,11 @@ describe(`/administrator/organizations/organization-memberships`, () => {
   })
 
   describe('OrganizationMemberships#GET', () => {
-    it('should have row for each membership', async () => {
-      const administrator = await TestHelper.createAdministrator()
-      const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner)
-      const user1 = await TestHelper.createUser()
-      await TestHelper.createMembership(user1, owner)
-      const user2 = await TestHelper.createUser()
-      await TestHelper.createMembership(user2, owner)
-      const req = TestHelper.createRequest(`/administrator/organizations/organization-memberships?organizationid=${owner.organization.organizationid}`, 'GET')
-      req.administratorAccount = req.account = administrator.account
-      req.administratorSession = req.session = administrator.session
-      const res = TestHelper.createResponse()
-      res.end = async (str) => {
-        const doc = TestHelper.extractDoc(str)
-        assert.notEqual(null, doc)
-        const membership1Row = doc.getElementById(user1.membership.membershipid)
-        assert.notEqual(null, membership1Row)
-        const membership2Row = doc.getElementById(user2.membership.membershipid)
-        assert.notEqual(null, membership2Row)
-      }
-      return req.route.api.get(req, res)
-    })
-
     it('should limit memberships to one page', async () => {
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
-      for (let i = 0, len = 10; i < len; i++) {
+      for (let i = 0, len = global.PAGE_SIZE + 1; i < len; i++) {
         const user = await TestHelper.createUser()
         await TestHelper.createInvitation(owner)
         await TestHelper.acceptInvitation(user, owner)
@@ -72,10 +49,11 @@ describe(`/administrator/organizations/organization-memberships`, () => {
     })
 
     it('should enforce page size', async () => {
+      global.PAGE_SIZE = 3
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
-      for (let i = 0, len = 10; i < len; i++) {
+      for (let i = 0, len = global.PAGE_SIZE + 1; i < len; i++) {
         const user = await TestHelper.createUser()
         await TestHelper.createInvitation(owner)
         await TestHelper.acceptInvitation(user, owner)
@@ -83,7 +61,6 @@ describe(`/administrator/organizations/organization-memberships`, () => {
       const req = TestHelper.createRequest(`/administrator/organizations/organization-memberships?organizationid=${owner.organization.organizationid}`, 'GET')
       req.administratorAccount = req.account = administrator.account
       req.administratorSession = req.session = administrator.session
-      global.PAGE_SIZE = 8
       const res = TestHelper.createResponse()
       res.end = async (str) => {
         const doc = TestHelper.extractDoc(str)
@@ -96,16 +73,16 @@ describe(`/administrator/organizations/organization-memberships`, () => {
     })
 
     it('should enforce specified offset', async () => {
+      const offset = 1
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const memberships = []
-      for (let i = 0, len = 10; i < len; i++) {
+      for (let i = 0, len = global.PAGE_SIZE + offset + 1; i < len; i++) {
         const user = await TestHelper.createUser()
         await TestHelper.createMembership(user, owner)
         memberships.unshift(user.membership)
       }
-      const offset = 3
       const req = TestHelper.createRequest(`/administrator/organizations/organization-memberships?organizationid=${owner.organization.organizationid}&offset=${offset}`, 'GET')
       req.administratorAccount = req.account = administrator.account
       req.administratorSession = req.session = administrator.session

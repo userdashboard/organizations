@@ -4,43 +4,46 @@ const TestHelper = require('../../../../../test-helper.js')
 
 describe(`/api/user/organizations/invitations`, () => {
   describe('Invitations#GET', () => {
-    it('should return invitation list', async () => {
+    it('should limit invitation list to one page', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
-      const invitation1 = await TestHelper.createInvitation(owner)
-      const invitation2 = await TestHelper.createInvitation(owner)
+      const invitations = []
+      for (let i = 0, len = global.PAGE_SIZE + 1; i < len; i++) {
+        await TestHelper.createInvitation(owner)
+        invitations.unshift(owner.invitation)
+      }
       const req = TestHelper.createRequest(`/api/user/organizations/invitations?accountid=${owner.account.accountid}`, 'GET')
       req.account = owner.account
       req.session = owner.session
-      const invitations = await req.route.api.get(req)
-      assert.equal(invitations.length, 2)
-      assert.equal(invitations[0].invitationid, invitation2.invitationid)
-      assert.equal(invitations[1].invitationid, invitation1.invitationid)
+      const invitationsNow = await req.route.api.get(req)
+      for (let i = 0, len = global.PAGE_SIZE; i < len; i++) {
+        assert.equal(invitationsNow[i].invitationid, invitations[i].invitationid)
+      }
     })
 
     it('should enforce page size', async () => {
+      global.PAGE_SIZE = 3
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
-      for (let i = 0, len = 10; i < len; i++) {
+      for (let i = 0, len = global.PAGE_SIZE + 1; i < len; i++) {
         await TestHelper.createInvitation(owner)
       }
       const req = TestHelper.createRequest(`/api/user/organizations/invitations?accountid=${owner.account.accountid}`, 'GET')
       req.account = owner.account
       req.session = owner.session
-      global.PAGE_SIZE = 8
       const codesNow = await req.route.api.get(req)
-      assert.equal(codesNow.length, 8)
+      assert.equal(codesNow.length, global.PAGE_SIZE)
     })
 
     it('should enforce specified offset', async () => {
+      const offset = 1
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner)
       const invitations = []
-      for (let i = 0, len = 10; i < len; i++) {
+      for (let i = 0, len = global.PAGE_SIZE + offset + 1; i < len; i++) {
         const invitation = await TestHelper.createInvitation(owner)
         invitations.unshift(invitation)
       }
-      const offset = 3
       const req = TestHelper.createRequest(`/api/user/organizations/invitations?accountid=${owner.account.accountid}&offset=${offset}`, 'GET')
       req.account = owner.account
       req.session = owner.session
