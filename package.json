@@ -33,13 +33,15 @@
       "account": [
         {
           "href": "/account/organizations",
-          "text": "Manage organizations"
+          "text": "Manage organizations",
+          "object": "link"
         }
       ],
       "administrator": [
         {
           "href": "/administrator/organizations",
-          "text": "Organization administration"
+          "text": "Organization administration",
+          "object": "link"
         }
       ]
     }
