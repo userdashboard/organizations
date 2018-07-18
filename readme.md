@@ -46,10 +46,10 @@ API endpoints exist to bind memberships and organizations to the request headers
     /api/user/organizations/proxy-memberships
     /api/user/organizations/proxy-organizations
 
-These API endpoints will run for each request if you add them to your `afterAuthentication` handlers in your `package.json`:
+These API endpoints will run for each request if you add them to your `server` handlers in your `package.json`:
 
     "dashboard": {
-      "afterAuthentication": [
+      "server": [
         "node_modules/@userappstore/organizations/src/www/api/user/organizations/proxy-memberships.js",
         "node_modules/@userappstore/organizations/src/www/api/user/organizations/proxy-organizations.js"
       ]
