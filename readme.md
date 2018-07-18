@@ -1,26 +1,43 @@
-# Dashboard User Organizations
+# Organizations for Dashboard
+Dashboard is a NodeJS project that accompanies a web app you build and provides a complete account system for your users and administration tools.  Dashboard divides your application into two components: a header with account and administrative menus and navigation bar; and a frame for serving content.
 
-This is a NodeJS project that accompanies a [Dashboard](https://github.com/userappstore/dashboard) project to provide organizations for users.
+The content can come from Dashboard, Dashboard modules, content you added to Dashboard, or an app you built in any other language hosted separately.
 
-Organizations can be created by any user, and the owner may create invitation codes to give to people to join the organization.
+This module adds a complete user and administrator `Private API` and `Web UI` for basic user organizations.
 
-Owners may transfer organizations, revoke memberships and update the organization name and email.
+#### Dashboard documentation
+- [Introduction](https://github.com/userappstore/dashboard/wiki)
+- [Configuring Dashboard](https://github.com/userappstore/dashboard/wiki/Configuring-Dashboard)
+- [Contributing to Dashboard](https://github.com/userappstore/dashboard/wiki/Contributing-to-Dashboard)
+- [Dashboard code structure](https://github.com/userappstore/dashboard/wiki/Dashboard-code-structure)
+- [Server request lifecycle](https://github.com/userappstore/dashboard/wiki/Server-Request-Lifecycle)
 
-Users may be members of any organizations and delete their own membership at any time and update their membership email.
+#### License
 
-Email addresses are provided by users and organization owners as identifiers and for direct contact.  The email addresses do not get verified and are not required to be unique.
+This is free and unencumbered software released into the public domain.  The MIT License is provided for countries that have not established a public domain.
 
-Administrator pages provide oversight of the organizations, memberships and invitations being created in your application.
+## Installation 
 
-This is free and unencumbered software released into the public domain.
+    $ mkdir project
+    $ cd project
+    $ npm init
+    $ npm install @userappstore/dashboard
+    $ npm install @userappstore/organizations
+    # create a  main.js
+    $ node main.js
 
-## Install the module in your dashboard project
+Your main.js should contain:
 
-    $ npm install @userappstore/user-organizations
-    
-## Activate the module by including it in ENV configuration:
+    const dashboard = require('./index.js')
+    dashboard.start(__dirname)
 
-    global.env.DASHBOARD_MODULES = '@userappstore/user-organizations'
+Your package.json should contain:
+
+    "dashboard": {
+      "dashboard-modules": [
+        "@userappstore/organizations"
+      ]
+    }
 
 ## Pass memberships or owned organizations to your application
 
@@ -37,11 +54,3 @@ These API endpoints will run for each request if you add them to your `afterAuth
         "node_modules/@userappstore/organizations/src/www/api/user/organizations/proxy-organizations.js"
       ]
     }
-
-## Unit tests
-
-Each NodeJS file for the APIs and Browser Interface have an accompanying .test.js file that run via `mocha`:
-
-    $ npm test # shortcut
-    $ mocha src/**/*.test.js --timeout 5000
-
