@@ -5,6 +5,9 @@ The content can come from Dashboard, Dashboard modules, content you added to Das
 
 This module adds a complete user and administrator `Private API` and `Web UI` for basic user organizations.
 
+
+[![Build Status](https://travis-ci.org/userappstore/organizations.svg?branch=release)](https://travis-ci.org/userappstore/organizations)
+
 #### Dashboard documentation
 - [Introduction](https://github.com/userappstore/dashboard/wiki)
 - [Configuring Dashboard](https://github.com/userappstore/dashboard/wiki/Configuring-Dashboard)
