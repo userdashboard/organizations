@@ -1,0 +1,90 @@
+/* eslint-env mocha */
+const assert = require('assert')
+const TestHelper = require('../../../../../test-helper.js')
+
+describe('/api/user/organizations/update-organization', () => {
+  describe('UpdateOrganization#BEFORE', () => {
+    it('should reject missing name', async () => {
+      const owner = await TestHelper.createUser()
+      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      const req = TestHelper.createRequest(`/api/user/organizations/update-organization?organizationid=${owner.organization.organizationid}`)
+      req.account = owner.account
+      req.session = owner.session
+      req.body = {
+        name: '',
+        email: owner.profile.email
+      }
+      let errorMessage
+      try {
+        await req.route.api.before(req)
+      } catch (error) {
+        errorMessage = error.message
+      }
+      assert.strictEqual(errorMessage, 'invalid-organization-name')
+    })
+
+    it('should enforce name length', async () => {
+      const owner = await TestHelper.createUser()
+      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      const req = TestHelper.createRequest(`/api/user/organizations/update-organization?organizationid=${owner.organization.organizationid}`)
+      req.account = owner.account
+      req.session = owner.session
+      req.body = {
+        name: '12345',
+        email: owner.profile.email
+      }
+      global.minimumOrganizationNameLength = 100
+      let errorMessage
+      try {
+        await req.route.api.before(req)
+      } catch (error) {
+        errorMessage = error.message
+      }
+      assert.strictEqual(errorMessage, 'invalid-organization-name-length')
+      global.maximumOrganizationNameLength = 1
+      errorMessage = undefined
+      try {
+        await req.route.api.before(req)
+      } catch (error) {
+        errorMessage = error.message
+      }
+      assert.strictEqual(errorMessage, 'invalid-organization-name-length')
+    })
+
+    it('should reject missing email', async () => {
+      const owner = await TestHelper.createUser()
+      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      const req = TestHelper.createRequest(`/api/user/organizations/update-organization?organizationid=${owner.organization.organizationid}`)
+      req.account = owner.account
+      req.session = owner.session
+      req.body = {
+        name: owner.profile.firstName,
+        email: null
+      }
+      let errorMessage
+      try {
+        await req.route.api.before(req)
+      } catch (error) {
+        errorMessage = error.message
+      }
+      assert.strictEqual(errorMessage, 'invalid-organization-email')
+    })
+  })
+  
+  describe('UpdateOrganization#POST', () => {
+    it('should apply new values', async () => {
+      const owner = await TestHelper.createUser()
+      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      const req = TestHelper.createRequest(`/api/user/organizations/update-organization?organizationid=${owner.organization.organizationid}`)
+      req.account = owner.account
+      req.session = owner.session
+      req.body = {
+        name: 'Organization Name',
+        email: 'test@test.com'
+      }
+      const organizationNow = await req.patch(req)
+      assert.strictEqual(organizationNow.name, 'Organization Name')
+      assert.strictEqual(organizationNow.email, 'test@test.com')
+    })
+  })
+})

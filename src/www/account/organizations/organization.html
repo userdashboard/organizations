@@ -1,0 +1,40 @@
+<!doctype html>
+<html navbar="/account/organizations/navbar-organization.html">
+  <head>
+    <title>View ${organization.organizationid}</title>
+    <link href="/public/pure-min.css" rel="stylesheet" />
+    <link href="/public/content.css" rel="stylesheet" />
+    <base target="_top" href="/" />
+  </head>
+  <body>
+    <h1>View ${organization.organizationid}</h1>
+    <table id="organizations-table" class="pure-table pure-table-striped list-table">
+      <tbody id="${organization.organizationid}">
+        <tr>
+          <th>ID</th>
+          <td>${organization.organizationid}</td>
+        </tr>
+        <tr>
+          <th>Name</th>
+          <td>${organization.name}</td>
+        </tr>
+        <tr>
+          <th>Email</th>
+          <td><a href="mailto:${organization.email}">${organization.email}</a></td>
+        </tr>
+        <tr>
+          <th>Created</th>
+          <td>${organization.createdFormatted}</td>
+        </tr>
+        <tr>
+          <th>IP address</th>
+          <td>${organization.ip}</td>
+        </tr>
+        <tr>
+          <th>User agent</th>
+          <td>${organization.userAgent}</td>
+        </tr>
+      </tbody>
+    </table> 
+  </body>
+</html>

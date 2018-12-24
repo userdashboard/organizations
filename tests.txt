@@ -1,0 +1,496 @@
+
+> @userappstore/organizations@1.0.0 test /home/benlowry/SynologyDrive/workspaces/dashboard/organizations2
+> NODE_ENV=testing mocha src --recursive --timeout 90000 --slow 90000
+
+
+
+  /account/organizations/accept-invitation
+    AcceptInvitation#BEFORE
+      ✓ should reject owner
+      ✓ should reject existing member
+      ✓ should bind organization to req
+    AcceptInvitation#GET
+      ✓ should present the form
+      ✓ should present the organization
+    AcceptInvitation#POST
+      ✓ should reject missing name
+      ✓ should enforce name length
+      ✓ should reject missing email
+      ✓ should apply after authorization
+
+  /account/organizations/create-invitation
+    CreateInvitation#BEFORE
+      ✓ should require owner
+      ✓ should bind organization to req
+    CreateInvitation#GET
+      ✓ should present the form
+      ✓ should present the organization
+    CreateInvitation#POST
+      ✓ should apply after authorization
+
+  /account/organizations/create-organization
+    CreateOrganization#GET
+      ✓ should present the form
+    CreateOrganization#POST
+      ✓ should reject missing name
+      ✓ should enforce name length
+      ✓ should reject missing email
+      ✓ should create organization
+
+  /account/organizations/delete-invitation
+    DeleteInvitation#BEFORE
+      ✓ should require owner
+      ✓ should bind organization to req
+    DeleteInvitation#GET
+      ✓ should present the form
+      ✓ should present the invitation
+    DeleteInvitation#POST
+      ✓ should delete invitation
+
+  /account/organizations/delete-membership
+    DeleteMembership#BEFORE
+      ✓ should reject non-member non-owner
+      ✓ should bind organization to req
+    DeleteMembership#GET
+      ✓ should present the form
+      ✓ should present the membership
+    DeleteMembership#POST
+      ✓ should delete membership for member
+      ✓ should delete membership for organization owner
+
+  /account/organizations/delete-organization
+    DeleteOrganization#BEFORE
+      ✓ should require owner
+      ✓ should bind organization to req
+    DeleteOrganization#GET
+      ✓ should present the form
+      ✓ should present the organization
+    DeleteOrganization#POST
+      ✓ should delete organization
+
+  /account/organizations/edit-membership
+    EditMembership#BEFORE
+      ✓ should require own membership
+      ✓ should bind membership to req
+    EditMembership#GET
+      ✓ should present the form
+    EditMembership#POST
+      ✓ should reject missing name
+      ✓ should enforce name length
+      ✓ should reject missing email
+      ✓ should apply after authorization
+
+  /account/organizations/edit-organization
+    EditOrganization#BEFORE
+      ✓ should require owner
+      ✓ should bind organization to req
+    EditOrganization#GET
+      ✓ should present the form
+    EditOrganization#POST
+      ✓ should reject missing name
+      ✓ should enforce name length
+      ✓ should reject missing email
+      ✓ should apply after authorization
+
+  /account/organizations/index
+    Index#BEFORE
+      ✓ should bind memberships to req
+      ✓ should bind organizations to req
+    Index#GET
+      ✓ should have row for each organization
+      ✓ should have row for each membership
+
+  /account/organizations/invitation
+    Invitation#BEFORE
+      ✓ should require owner
+      ✓ should bind invitation to req
+    Invitation#GET
+      ✓ should have row for invitation
+
+  /account/organizations/membership
+    Membership#BEFORE
+      ✓ should reject non-member
+      ✓ should bind membership to req
+    Membership#GET
+      ✓ should have row for membership
+
+  /account/organizations/memberships
+    Memberships#BEFORE
+      ✓ should bind memberships to req
+    Memberships#GET
+      ✓ should limit memberships to one page
+      ✓ should enforce page size
+      ✓ should enforce specified offset
+
+  /account/organizations/organization-invitations
+    Invitations#BEFORE
+      ✓ should require owner
+      ✓ should bind invitations to req
+    Invitations#GET
+      ✓ should limit invitations to one page
+      ✓ should enforce page size
+      ✓ should enforce specified offset
+
+  /account/organizations/organization-memberships
+    Memberships#BEFORE
+      ✓ should bind memberships to req
+    Memberships#GET
+      ✓ should limit memberships to one page
+      ✓ should enforce page size
+      ✓ should enforce specified offset
+
+  /account/organizations/organization
+    Organization#BEFORE
+      ✓ should reject non-member
+      ✓ should bind organization to req
+    Organization#GET
+      ✓ should have row for organization
+
+  /account/organizations/organizations
+    Organizations#BEFORE
+      ✓ should bind owned organizations to req
+    Organizations#GET
+      ✓ should limit organizations to one page
+      ✓ should enforce page size
+      ✓ should enforce specified offset
+
+  /account/organizations/revoke-membership
+    RevokeMembership#BEFORE
+      ✓ should require owner
+      ✓ should bind organization to req
+    RevokeMembership#GET
+      ✓ should present the form
+      ✓ should present the membership
+    RevokeMembership#POST
+      ✓ should delete membership
+
+  /account/organizations/transfer-organization
+    TransferOrganization#BEFORE
+      ✓ should require owner
+      ✓ should bind organization to req
+      ✓ should bind memberships to req
+    TransferOrganization#GET
+      ✓ should present the form
+      ✓ should present the organization
+    TransferOrganization#POST
+      ✓ should apply after authorization
+
+  /administrator/organizations/index
+    Index#BEFORE
+      ✓ should bind memberships to req
+      ✓ should bind organizations to req
+    Index#GET
+      ✓ should have row for each organization
+      ✓ should have organization row for each membership
+
+  /administrator/organizations/invitation
+    Invitation#BEFORE
+      ✓ should bind invitation to req
+    Invitation#GET
+      ✓ should have row for invitation
+
+  /administrator/organizations/invitations
+    Invitations#BEFORE
+      ✓ should bind invitations to req
+    Invitations#GET
+      ✓ should limit invitations to one page
+      ✓ should enforce page size
+      ✓ should enforce specified offset
+
+  /administrator/organizations/membership
+    Membership#BEFORE
+      ✓ should bind membership to req
+    Membership#GET
+      ✓ should have row for membership
+
+  /administrator/organizations/memberships
+    Memberships#BEFORE
+      ✓ should bind memberships to req
+    Memberships#GET
+      ✓ should limit memberships to one page
+      ✓ should enforce page size
+      ✓ should enforce specified offset
+
+  /administrator/organizations/organization-invitations
+    OrganizationInvitations#BEFORE
+      ✓ should bind invitations to req
+    OrganizationInvitations#GET
+      ✓ should limit invitations to one page
+      ✓ should enforce page size
+      ✓ should enforce specified offset
+
+  /administrator/organizations/organization-memberships
+    OrganizationMemberships#BEFORE
+      ✓ should bind memberships to req
+    OrganizationMemberships#GET
+      ✓ should limit memberships to one page
+      ✓ should enforce page size
+      ✓ should enforce specified offset
+
+  /administrator/organizations/organization
+    Organization#BEFORE
+      ✓ should bind organization to req
+    Organization#GET
+      ✓ should have row for organization
+
+  /administrator/organizations/organizations
+    Organizations#BEFORE
+      ✓ should bind owned organizations to req
+      ✓ should not bind member organizations to req
+    Organizations#GET
+      ✓ should limit organizations to one page
+      ✓ should enforce page size
+      ✓ should enforce specified offset
+
+  /api/administrator/organizations/account-invitations-count
+    AccountInvitationsCount#GET
+      ✓ should count account's invitations
+
+  /api/administrator/organizations/account-invitations
+    Invitations#GET
+      ✓ should limit account's invitation list to one page
+      ✓ should enforce page size
+      ✓ should enforce specified offset
+      ✓ should return all records
+
+  /api/administrator/organizations/account-memberships-count
+    AccountMembershipsCount#GET
+      ✓ should count account's memberships
+
+  /api/administrator/organizations/account-memberships
+    AccountMemberships#GET
+      ✓ should limit account's membership list to one page
+      ✓ should enforce page size
+      ✓ should enforce specified offset
+      ✓ should return all records
+
+  /api/administrator/organizations/account-organizations-count
+    AccountOrganizationsCount#GET
+      ✓ should count account's organizations
+
+  /api/administrator/organizations/account-organizations
+    AccountOrganizations#GET
+      ✓ should limit account's organization list to one page
+      ✓ should enforce page size
+      ✓ should enforce specified offset
+
+  /api/administrator/organizations/invitation
+    Invitation#GET
+      ✓ should return invitation data
+      ✓ should redact invitation code
+
+  /api/administrator/organizations/invitations-count
+    InvitationsCount#GET
+      ✓ should count invitations
+
+  /api/administrator/organizations/invitations
+    Invitations#GET
+      ✓ should limit invitation list to one page
+      ✓ should enforce page size
+      ✓ should enforce specified offset
+      ✓ should return all records
+
+  /api/administrator/organizations/membership
+    Membership#GET
+      ✓ should return membership data
+      ✓ should redact membership code
+
+  /api/administrator/organizations/memberships-count
+    MembershipsCount#GET
+      ✓ should count memberships
+
+  /api/administrator/organizations/memberships
+    Memberships#GET
+      ✓ should limit membership list to one page
+      ✓ should enforce page size
+      ✓ should enforce specified offset
+      ✓ should return all records
+
+  /api/administrator/organizations/organization-invitations-count
+    OrganizationInvitationsCount#GET
+      ✓ should count organization's invitations
+
+  /api/administrator/organizations/organization-invitations
+    OrganizationInvitations#GET
+      ✓ should limit invitation list to one page
+      ✓ should enforce page size
+      ✓ should enforce specified offset
+      ✓ should return all records
+
+  /api/administrator/organizations/organization-memberships-count
+    OrganizationMembershipsCount#GET
+      ✓ should count organization's memberships
+
+  /api/administrator/organizations/organization-memberships
+    OrganizationMembership#GET
+      ✓ should limit membership list to one page
+      ✓ should enforce page size
+      ✓ should enforce specified offset
+      ✓ should return all records
+
+  /api/administrator/organizations/organization
+    Organization#GET
+      ✓ should return organization data
+
+  /api/administrator/organizations/organizations-count
+    OrganizationsCount#GET
+      ✓ should count organizations
+
+  /api/administrator/organizations/organizations
+    Organizations#GET
+      ✓ should limit organization list to one page
+      ✓ should enforce page size
+      ✓ should enforce specified offset
+      ✓ should return all records
+
+  /api/user/organizations/create-invitation
+    CreateInvitation#BEFORE
+      ✓ should enforce code length
+    CreateInvitation#POST
+      ✓ should create authorized invitation
+
+  /api/user/organizations/create-membership
+    CreateMembership#BEFORE
+      ✓ should enforce code length
+      ✓ should reject a used invitation
+      ✓ should reject owner
+      ✓ should reject existing members
+    CreateMembership#POST
+      ✓ should create authorized membership
+
+  /api/user/organizations/create-organization
+    CreateOrganization#BEFORE
+      ✓ should reject missing name
+      ✓ should enforce name length
+      ✓ should reject missing email
+    CreateOrganization#POST
+      ✓ should create authorized organization
+
+  /api/user/organizations/delete-invitation
+    DeleteInvitation#BEFORE
+      ✓ should require owner
+      ✓ should reject accepted invitation
+    DeleteInvitation#DELETE
+      ✓ should delete invitation with authorization
+
+  /api/user/organizations/delete-membership
+    DeleteMembership#BEFORE
+      ✓ should reject non-owner non-member
+    DeleteMembership#DELETE
+      ✓ should delete membership
+
+  /api/user/organizations/delete-organization
+    DeleteOrganization#BEFORE
+      ✓ should require own organization
+    DeleteOrganization#DELETE
+      ✓ should delete organization
+
+  /api/user/organizations/invitation
+    Invitation#GET
+      ✓ should reject non-owner
+      ✓ should return invitation
+      ✓ should redact invitation code
+
+  /api/user/organizations/invitations-count
+    InvitationsCount#GET
+      ✓ should count invitations
+
+  /api/user/organizations/invitations
+    Invitations#GET
+      ✓ should limit invitation list to one page
+      ✓ should enforce page size
+      ✓ should enforce specified offset
+      ✓ should return all records
+
+  /api/user/organizations/membership
+    Membership#GET
+      ✓ should allow organization owner
+      ✓ should allow organization member
+      ✓ should reject non-owner non-members
+      ✓ should return membership data
+
+  /api/user/organizations/memberships-count
+    MembershipsCount#GET
+      ✓ should count memberships
+
+  /api/user/organizations/memberships
+    Memberships#GET
+      ✓ should limit memberships to one page
+      ✓ should enforce page size
+      ✓ should enforce specified offset
+      ✓ should return all records
+
+  /api/user/organizations/open-invitation
+    OpenInvitation#GET
+      ✓ should reject accepted invitation
+      ✓ should return invitation data
+      ✓ should redact invitation code
+
+  /api/user/organizations/organization-invitations-count
+    OrganizationInvitations#GET
+      ✓ should count organization's invitations
+
+  /api/user/organizations/organization-invitations
+    OrganizationInvitations#GET
+      ✓ should require organization owner
+      ✓ should limit invitation list to one page
+      ✓ should enforce page size
+      ✓ should enforce specified offset
+      ✓ should enforce specified offset
+
+  /api/user/organizations/organization-memberships-count
+    OrganizationMembershipsCount#GET
+      ✓ should count organization's memberships
+
+  /api/user/organizations/organization-memberships
+    OrganizationMemberships#GET
+      ✓ should limit membership list to one page
+      ✓ should enforce page size
+      ✓ should enforce specified offset
+      ✓ should enforce specified offset
+
+  /api/user/organizations/organization
+    Organization#GET
+      ✓ should reject non-owner, non-member
+      ✓ should return organization data
+
+  /api/user/organizations/organizations-count
+    OrganizationsCount#GET
+      ✓ should count organizations
+
+  /api/user/organizations/organizations
+    Organizations#GET
+      ✓ should reject other accountid
+      ✓ should limit organization list to one page
+      ✓ should enforce page size
+      ✓ should enforce specified offset
+      ✓ should return all records
+
+  /api/user/organizations/set-organization-owner
+    SetOrganizationOwner#BEFORE
+      ✓ should require own organization
+      ✓ should reject same owner
+      ✓ should require new owner is member
+    SetOrganizationOwner#PATCH
+      ✓ should transfer organization after authorization
+
+  /api/user/organizations/update-membership
+    UpdateMembership#BEFORE
+      ✓ should require own membership
+      ✓ should reject missing name
+      ✓ should enforce name length
+      ✓ should reject missing email
+    UpdateMembership#PATCH
+      ✓ should apply new values
+
+  /api/user/organizations/update-organization
+    UpdateOrganization#BEFORE
+      ✓ should reject missing name
+      ✓ should enforce name length
+      ✓ should reject missing email
+    UpdateOrganization#POST
+      ✓ should apply new values
+
+
+  235 passing (13m)
+

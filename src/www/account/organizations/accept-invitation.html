@@ -1,0 +1,69 @@
+<!doctype html>
+<html navbar="/account/organizations/navbar.html">
+  <head>
+    <title>Accept invitation for ${organization.organizationid}</title>
+    <link href="/public/pure-min.css" rel="stylesheet" />
+    <link href="/public/content.css" rel="stylesheet" />
+    <base target="_top" href="/" />
+  </head>
+  <body>
+    <h1>Accept invitation for ${organization.organizationid}</h1>
+    <p>You will become a member of the organization after entering the code.</p>
+    <div id="message-container"></div>
+    <table id="organizations-table" class="pure-table object-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Created</th>
+        </tr>
+      </thead>
+      <tr id="${organization.organizationid}">
+        <td>${organization.organizationid}</td>
+        <td>${organization.name}</td>
+        <td><a href="mailto:${organization.email}">${organization.email}</a></td>
+        <td>${organization.createdFormatted}</td>
+      </tr>
+    </table>
+    <form id="submit-form" class="pure-form pure-form-stacked">
+      <div class="pure-control-group">
+        <label for="organizationName">Organization</label>
+        <input id="organizationName" type="text" maxlength="100" readonly />
+      </div>
+      <div class="pure-control-group">
+        <label for="name">Name (shared with members)</label>
+        <input id="name" name="name" type="text" maxlength="100" />
+      </div>
+      <div class="pure-control-group">
+        <label for="email">Email (shared with members)</label>
+        <input id="email" name="email" type="text" maxlength="100" />
+      </div>
+      <div class="pure-control-group">
+        <label for="code">Invitation code</label>
+        <input id="code" name="code" type="text" maxlength="100" />
+      </div>
+      <div class="pure-controls">
+        <button type="submit" id="submit-button" class="pure-button pure-button-primary">Join organization</button>
+      </div>
+    </form>
+  </body>
+  <template id="success">
+    <div class="success message">Success! You are now a member of the organization.</div>
+  </template>
+  <template id="invalid-membership-name">
+    <div class="error message">Error! A missing or invalid membership name was provided.</div>
+  </template>
+  <template id="invalid-membership-name-length">
+    <div class="error message">Error! Invalid membership name length.</div>
+  </template>
+  <template id="invalid-membership-email">
+    <div class="error message">Error! A missing or invalid membership email was provided.</div>
+  </template>
+  <template id="invalid-account">
+    <div class="error message">Error! You own or are a member of this organization.</div>
+  </template>
+  <template id="unknown-error">
+    <div class="error message">Error! An unknown error ocurred.</div>
+  </template>
+</html>

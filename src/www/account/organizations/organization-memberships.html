@@ -1,0 +1,42 @@
+<!doctype html>
+<html navbar="/account/organizations/navbar-organization.html">
+  <head>
+    <title>Memberships for ${organization.organizationid}</title>
+    <link href="/public/pure-min.css" rel="stylesheet" />
+    <link href="/public/content.css" rel="stylesheet" />
+    <base target="_top" href="/" />
+  </head>
+  <body>
+    <h1>Memberships for ${organization.organizationid}</h1>
+    <div id="no-memberships">
+      <p>The organization does not have any memberships yet.</p>
+    </div>
+    <table id="memberships-table" class="pure-table pure-table-striped list-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Created</th>
+          <th>User agent</th>
+          <th>Invitation</th>
+          <th>Organization</th>
+          <th></th>
+        </tr>
+      </thead>
+    </table>
+    <ul id="page-links" class="pagination"></ul>
+  </body>
+  <template id='page-link'>
+    <li><a href="/account/organizations/memberships?offset=${page.offset}" id="page-link-${page.pageNumber}">${page.pageNumber}</a></li>
+  </template>
+  <template id="membership-row">
+    <tr id="${membership.membershipid}">
+      <td><a href="/account/organizations/membership?membershipid=${membership.membershipid}">${membership.membershipid}</a></td>
+      <td>${membership.createdFormatted}</td>
+      <td><a href="/account/organizations/invitation?invitationid=${membership.invitationid}">Invitation</a></td>
+      <td><a href="/account/organizations/organization?organizationid=${membership.organizationid}">Organization</a></td>
+      <td class="pure-button-group" role="group">
+        <a href="/account/organizations/delete-invitation?invitationid=${membership.invitationid}" class="pure-button">Delete</a>
+      </td>
+    </tr>
+  </template>
+</html>

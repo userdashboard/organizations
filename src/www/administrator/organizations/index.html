@@ -1,0 +1,61 @@
+<!doctype html>
+<html navbar="/administrator/organizations/navbar.html">
+  <head>
+    <title>Organizations administration</title>
+    <link href="/public/pure-min.css" rel="stylesheet" />
+    <link href="/public/content.css" rel="stylesheet" />
+    <base target="_top" href="/" />
+  </head>
+  <body>
+    <h1>Organizations administration</h1>
+    <table id="organizations-table" class="pure-table pure-table-striped list-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Organization</th>
+          <th>Contact</th>
+          <th>Invitations</th>
+          <th>Created</th>
+          <th></th>
+        </tr>
+      </thead>
+    </table>
+    <h1>Memberships</h1>
+    <table id="memberships-table" class="pure-table pure-table-striped list-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Email</th>
+          <th>Created</th>
+          <th>Invitation</th>
+          <th>Organization</th>
+          <th></th>
+        </tr>
+      </thead>
+    </table>
+  </body>
+  <template id="organization-row">
+    <tr id="${organization.organizationid}">
+      <td><a href="/administrator/organizations/organization?organizationid=${organization.organizationid}">${organization.organizationid}</a></td>
+      <td>${organization.name}</td>
+      <td><a href="mailto:${organization.email}">${organization.email}</a></td>
+      <td>${organization.createdFormatted}</td>
+      <td class="pure-button-group" role="group">
+        <a href="/administrator/organizations/organization?organizationid=${organization.organizationid}" class="pure-button">Organization</a>
+        <a href="/administrator/organizations/memberships?organizationid=${organization.organizationid}" class="pure-button">Memberships</a>
+        <a href="/administrator/organizations/invitations?organizationid=${organization.organizationid}" class="pure-button">Invitations</a>
+      </td>
+    </tr>
+  </template>
+  <template id="membership-row">
+    <tr id="${membership.membershipid}">
+      <td><a href="/administrator/organizations/membership?membershipid=${membership.membershipid}">${membership.membershipid}</a></td>
+      <td><a href="mailto:${membership.email}">${membership.email}</a></td>
+      <td>${membership.createdFormatted}</td>
+      <td><a href="/administrator/organizations/invitation?invitationid=${membership.invitationid}">Invitation</a></td>
+      <td><a href="/administrator/organizations/organization?organizationid=${membership.organizationid}">Organization</a></td>
+      <td class="pure-button-group" role="group">
+      </td>
+    </tr>
+  </template>
+</html>

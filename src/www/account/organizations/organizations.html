@@ -1,0 +1,46 @@
+<!doctype html>
+<html navbar="/account/organizations/navbar.html">
+  <head>
+    <title>Organizations</title>
+    <link href="/public/pure-min.css" rel="stylesheet" />
+    <link href="/public/content.css" rel="stylesheet" />
+    <base target="_top" href="/" />
+  </head>
+  <body>
+    <h1>Organizations</h1>
+    <p>Each organization provides a shared identity for members to access resources.</p>
+    <a href="/account/organizations/create-invitation?organizationid=${organization.organizationid}" class="pure-button">Create organization</a>
+    <div id="no-organizations">
+      <p>You have not created any organizations yet.</p>
+    </div>
+    <table id="organizations-table" class="pure-table pure-table-striped list-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Created</th>
+          <th></th>
+        </tr>
+      </thead>
+    </table>
+    <ul id="page-links" class="pagination"></ul>
+  </body>
+  <template id='page-link'>
+    <li><a href="/account/organizations/organizations?offset=${page.offset}" id="page-link-${page.pageNumber}">${page.pageNumber}</a></li>
+  </template>
+  <template id="organization-row">
+    <tr id="${organization.organizationid}">
+      <td><a href="/account/organizations/organization?organizationid=${organization.organizationid}">${organization.organizationid}</a></td>
+      <td>${organization.name}</td>
+      <td><a href="mailto:${organization.email}">${organization.email}</a></td>
+      <td>${organization.createdFormatted}</td>
+      <td class="pure-button-group" role="group">
+        <a href="/account/organizations/organization-invitations?organizationid=${organization.organizationid}" id="invitations-link-${organization.organizationid}" class="pure-button">Invitations</a>
+        <a href="/account/organizations/organization-memberships?organizationid=${organization.organizationid}" id="memberships-link-${organization.organizationid}" class="pure-button">Memberships</a>
+        <a href="/account/organizations/edit-organization?organizationid=${organization.organizationid}" id="edit-organization-link-${organization.organizationid}" class="pure-button">Edit organization</a>
+        <a href="/account/organizations/delete-organization?organizationid=${organization.organizationid}" id="delete-organization-link-${organization.organizationid}" class="pure-button">Delete</a>
+      </td>
+    </tr>
+  </template>
+</html>

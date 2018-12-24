@@ -1,0 +1,45 @@
+<!doctype html>
+<html navbar="/account/organizations/navbar-membership.html">
+  <head>
+    <title>Delete ${membership.membershipid}</title>
+    <link href="/public/pure-min.css" rel="stylesheet" />
+    <link href="/public/content.css" rel="stylesheet" />
+    <base target="_top" href="/" />
+  </head>
+  <body>
+    <h1>Delete ${membership.membershipid}</h1>
+    <p>The membership will be deleted immediately and cannot be recovered.</p>
+    <div id="message-container"></div>
+    <table id="memberships-table" class="pure-table object-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Created</th>
+          <th>Invitation</th>
+          <th>Organization</th>
+        </tr>
+      </thead>
+      <tr id="${membership.membershipid}">
+        <td>${membership.membershipid}</td>
+        <td>${membership.createdFormatted}</td>
+        <td><a href="/account/organizations/invitation?invitationid=${membership.invitationid}">${membership.invitationid}</a></td>
+        <td><a href="/account/organizations/organization?organizationid=${membership.organizationid}">${membership.organizationid}</a></td>
+      </tr>
+    </table>
+    <form id="submit-form" method="POST" class="pure-form pure-form-stacked">
+      <div class="pure-control-group">
+        <label for="organizationName">Organization</label>
+        <input id="organizationName" type="text" maxlength="100" readonly />
+      </div>
+      <div class="pure-controls">
+        <button type="submit" id="submit-button" class="pure-button pure-button-primary">Delete membership</button>
+      </div>
+    </form>
+  </body>
+  <template id="success">
+    <div class="error message">Error! The membership has been permanently deleted.</div>
+  </template>
+  <template id="unknown-error">
+    <div class="error message">Error! An unknown error ocurred.</div>
+  </template>
+</html>

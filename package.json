@@ -1,0 +1,43 @@
+{
+  "name": "@userappstore/organizations",
+  "version": "1.0.0",
+  "description": "Organizations module for Dashboard",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://gitlab.com/userappstore/organizations.git"
+  },
+  "license": "SPDX(MIT OR Unlicense)",
+  "scripts": {
+    "test": "NODE_ENV=testing mocha src --recursive --timeout 90000 --slow 90000",
+    "start": "node main.js",
+    "debug": "node main.js --debug-brk=5858"
+  },
+  "engines": {
+    "node": "8.12.0",
+    "npm": "6.4.1"
+  },
+  "devDependencies": {
+    "@userappstore/dashboard": "git+https://github.com/userappstore/dashboard.git"
+  },
+  "dashboard": {
+    "server": [],
+    "modules": [],
+    "menus": {
+      "account": [
+        {
+          "href": "/account/organizations",
+          "text": "Manage organizations",
+          "object": "link"
+        }
+      ],
+      "administrator": [
+        {
+          "href": "/administrator/organizations",
+          "text": "Organizations module",
+          "object": "link"
+        }
+      ]
+    }
+  }
+}
