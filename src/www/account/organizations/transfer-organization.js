@@ -85,10 +85,6 @@ async function submitForm (req, res) {
     }
     return dashboard.Response.redirect(req, res, '/account/authorize')
   } catch (error) {
-    switch (error.message) {
-      case 'invalid-accountid':
-        return renderPage(req, res, error.message)
-    }
     return renderPage(req, res, error.message)
   }
 }
