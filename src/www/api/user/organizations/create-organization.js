@@ -43,7 +43,7 @@ module.exports = {
       organizationid: organizationid,
       accountid: req.query.accountid,
       created: dashboard.Timestamp.now,
-      name: profile ? `${profile.firstName} ${profile.lastName.substring(0, 1)}` : req.body.name,
+      name: 'owner',
       email: req.body.email,
     }
     await dashboard.Storage.write(`${req.appid}/${membershipid}`, membershipInfo)
