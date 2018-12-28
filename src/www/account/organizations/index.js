@@ -31,12 +31,16 @@ async function renderPage (req, res) {
   const doc = dashboard.HTML.parse(req.route.html)
   if (req.data.memberships && req.data.memberships.length) {
     dashboard.HTML.renderTable(doc, req.data.memberships, 'membership-row', 'memberships-table')
+    const noMemberships = doc.getElementById('no-memberships')
+    noMemberships.parentNode.removeChild(noMemberships)
   } else {
     const membershipsTable = doc.getElementById('memberships-table')
     membershipsTable.parentNode.removeChild(membershipsTable)
   }
   if (req.data.organizations && req.data.organizations.length) {
     dashboard.HTML.renderTable(doc, req.data.organizations, 'organization-row', 'organizations-table')
+    const noOrganizations = doc.getElementById('no-organizations')
+    noOrganizations.parentNode.removeChild(noOrganizations)
   } else {
     const organizationsTable = doc.getElementById('organizations-table')
     organizationsTable.parentNode.removeChild(organizationsTable)
