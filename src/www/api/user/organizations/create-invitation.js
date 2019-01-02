@@ -24,7 +24,7 @@ module.exports = {
     if (organization.ownerid !== req.account.accountid) {
       throw new Error('invalid-account')
     }
-    req.body.codeHash = await dashboard.Hash.fixedSaltHash(req.body.code, req.alternativeFixedSalt, req.alternativeEncryptionKey)
+    req.body.codeHash = await dashboard.Hash.fixedSaltHash(req.body.code, req.alternativeFixedSalt, req.alternativeDashboardEncryptionKey)
     delete (req.body.code)
   },
   post: async (req) => {
