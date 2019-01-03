@@ -15,7 +15,7 @@ module.exports = {
     }
   },
   delete: async (req) => {
-    await dashboard.Storage.deleteFile(`${req.appid}/${req.query.organizationid}`)
+    await dashboard.Storage.deleteFile(`${req.appid}/organization/${req.query.organizationid}`)
     await dashboard.StorageList.remove(`${req.appid}/organizations`, req.query.organizationid)
     await dashboard.StorageList.remove(`${req.appid}/account/organizations/${req.account.accountid}`, req.query.organizationid)
     req.success = true

@@ -36,7 +36,7 @@ module.exports = {
     req.data = { organization }
   },
   patch: async (req) => {
-    await dashboard.StorageObject.setProperty(`${req.appid}/${req.query.organizationid}`, 'ownerid', req.body.accountid)
+    await dashboard.StorageObject.setProperty(`${req.appid}/organization/${req.query.organizationid}`, 'ownerid', req.body.accountid)
     req.success = true
     req.data.organization.ownerid = req.body.accountid
     return req.data.organization

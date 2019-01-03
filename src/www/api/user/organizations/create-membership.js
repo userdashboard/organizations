@@ -35,7 +35,7 @@ module.exports = {
     if (invitation.accepted) {
       throw new Error('invalid-invitation')
     }
-    const invitationCodeHash = await dashboard.StorageObject.getProperty(`${req.appid}/${req.query.invitationid}`, 'codeHash')
+    const invitationCodeHash = await dashboard.StorageObject.getProperty(`${req.appid}/invitation/${req.query.invitationid}`, 'codeHash')
     if (invitationCodeHash !== req.body.codeHash) {
       throw new Error('invalid-invitation-code')
     }
@@ -58,7 +58,7 @@ module.exports = {
     req.data = { organization, invitation }
   },
   post: async (req) => {
-    await dashboard.StorageObject.setProperty(`${req.appid}/${req.query.invitationid}`, 'accepted', dashboard.Timestamp.now)
+    await dashboard.StorageObject.setProperty(`${req.appid}/invitation/${req.query.invitationid}`, 'accepted', dashboard.Timestamp.now)
     const membershipid = `membership_${await dashboard.UUID.generateID()}`
     const membershipInfo = {
       object: `membership`,
@@ -70,8 +70,8 @@ module.exports = {
       email: req.body.email,
       invitationid: req.query.invitationid
     }
-    await dashboard.Storage.write(`${req.appid}/${membershipid}`, membershipInfo)
-    await dashboard.StorageObject.setProperty(`${req.appid}/${req.query.invitationid}`, 'membershipid', membershipid)
+    await dashboard.Storage.write(`${req.appid}/membership/${membershipid}`, membershipInfo)
+    await dashboard.StorageObject.setProperty(`${req.appid}/invitation/${req.query.invitationid}`, 'membershipid', membershipid)
     await dashboard.StorageList.add(`${req.appid}/memberships`, membershipid)
     await dashboard.StorageList.add(`${req.appid}/account/memberships/${req.account.accountid}`, membershipid)
     await dashboard.StorageList.add(`${req.appid}/account/organizations/${req.account.accountid}`, req.data.organization.organizationid)

@@ -5,7 +5,7 @@ module.exports = {
     if (!req.query || !req.query.organizationid) {
       throw new Error('invalid-organizationid')
     }
-    let organization = await dashboard.Storage.read(`${req.appid}/${req.query.organizationid}`)
+    let organization = await dashboard.Storage.read(`${req.appid}/organization/${req.query.organizationid}`)
     if (!organization) {
       throw new Error('invalid-organizationid')
     }
@@ -17,7 +17,7 @@ module.exports = {
     if (!membershipid || !membershipid.length) {
       throw new Error('invalid-organization')
     }
-    let membership = await dashboard.Storage.read(`${req.appid}/${membershipid}`)
+    let membership = await dashboard.Storage.read(`${req.appid}/membership/${membershipid}`)
     if (!membership) {
       throw new Error('invalid-membershipid')
     }

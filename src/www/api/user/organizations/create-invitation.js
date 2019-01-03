@@ -36,7 +36,7 @@ module.exports = {
       codeHash: req.body.codeHash,
       created: dashboard.Timestamp.now
     }
-    await dashboard.Storage.write(`${req.appid}/${invitationid}`, invitationInfo)
+    await dashboard.Storage.write(`${req.appid}/invitation/${invitationid}`, invitationInfo)
     await dashboard.StorageList.add(`${req.appid}/invitations`, invitationid)
     await dashboard.StorageList.add(`${req.appid}/account/invitations/${req.account.accountid}`, invitationid)
     await dashboard.StorageList.add(`${req.appid}/organization/invitations/${req.query.organizationid}`, invitationid)

@@ -5,7 +5,7 @@ module.exports = {
     if (!req.query || !req.query.membershipid) {
       throw new Error('invalid-membershipid')
     }
-    let membership = await dashboard.Storage.read(`${req.appid}/${req.query.membershipid}`)
+    let membership = await dashboard.Storage.read(`${req.appid}/membership/${req.query.membershipid}`)
     if (!membership) {
       throw new Error('invalid-membershipid')
     }

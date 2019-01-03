@@ -5,7 +5,7 @@ module.exports = {
     if (!req.query || !req.query.organizationid) {
       throw new Error('invalid-organizationid')
     }
-    let organization = await dashboard.Storage.read(`${req.appid}/${req.query.organizationid}`)
+    let organization = await dashboard.Storage.read(`${req.appid}/organization/${req.query.organizationid}`)
     if (!organization) {
       throw new Error('invalid-organizationid')
     }

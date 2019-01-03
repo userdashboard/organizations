@@ -30,7 +30,7 @@ module.exports = {
       email: req.body.email,
       created: dashboard.Timestamp.now
     }
-    await dashboard.Storage.write(`${req.appid}/${organizationid}`, organizationInfo)
+    await dashboard.Storage.write(`${req.appid}/organization/${organizationid}`, organizationInfo)
     let profile
     if (req.account.profileid) {
       req.query.profileid = req.account.profileid
@@ -46,7 +46,7 @@ module.exports = {
       name: 'owner',
       email: req.body.email,
     }
-    await dashboard.Storage.write(`${req.appid}/${membershipid}`, membershipInfo)
+    await dashboard.Storage.write(`${req.appid}/membership/${membershipid}`, membershipInfo)
     await dashboard.StorageList.add(`${req.appid}/organizations`, organizationid)
     await dashboard.StorageList.add(`${req.appid}/account/organizations/${req.query.accountid}`, organizationid)
     await dashboard.StorageList.add(`${req.appid}/memberships`, membershipid)
