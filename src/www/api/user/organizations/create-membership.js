@@ -15,7 +15,7 @@ module.exports = {
         global.maximumInvitationCodeLength < req.body.code.length) {
         throw new Error('invalid-invitation-code-length')
       }
-      req.body.codeHash = dashboard.Hash.fixedSaltHash(req.body.code, req.alternativeFixedSalt, req.alternativeDashboardEncryptionKey)
+      req.body.codeHash = await dashboard.Hash.fixedSaltHash(req.body.code, req.alternativeFixedSalt, req.alternativeDashboardEncryptionKey)
       delete (req.body.code)
       if (!req.body.name || !req.body.name.length) {
         throw new Error('invalid-membership-name')
