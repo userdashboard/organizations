@@ -1,5 +1,5 @@
 @userappstore/dashboard 1.0.0
-
+http://localhost:8003
 
 Administrator menu:
 /administrator/organizations "Organizations module"
@@ -14,13 +14,6 @@ Special HTML files:
 @userappstore/dashboard/src/template.html
 @userappstore/dashboard/src/error.html
 @userappstore/dashboard/src/redirect.html
-
-Dashboard modules:
-@userappstore/dashboard
-
-Content handlers:
-@userappstore/dashboard/src/content/session-impersonation-header.js
-@userappstore/dashboard/src/content/session-unlocked-header.js
 
 URL ----------------------------------------------------------- AUTH ---- LOCK --- TEMPLATE ----- HTTP REQUESTS - NODEJS -------------------- HTML ----------------------
 /                                                               GUEST              FULLSCREEN     GET                                         /src/www                   
@@ -80,8 +73,6 @@ URL ----------------------------------------------------------- AUTH ---- LOCK -
 /administrator/create-reset-code                                                                  GET POST        @userappstore/dashboard     @userappstore/dashboard    
 /administrator/delete-account                                                                     GET POST        @userappstore/dashboard     @userappstore/dashboard    
 /administrator/delete-schedule                                                                    GET             @userappstore/dashboard     @userappstore/dashboard    
-/administrator/end-impersonation                                                                  GET             @userappstore/dashboard                                
-/administrator/impersonate-account                                                                GET POST        @userappstore/dashboard     @userappstore/dashboard    
 /administrator/organizations                                                                      GET             /src/www                    /src/www                   
 /administrator/organizations/invitation                                                           GET             /src/www                    /src/www                   
 /administrator/organizations/invitations                                                          GET             /src/www                    /src/www                   
@@ -142,7 +133,6 @@ URL ----------------------------------------------------------- AUTH ---- LOCK -
 /api/administrator/reset-code                                                                     GET             @userappstore/dashboard                                
 /api/administrator/reset-codes                                                                    GET             @userappstore/dashboard                                
 /api/administrator/reset-codes-count                                                              GET             @userappstore/dashboard                                
-/api/administrator/reset-session-impersonate                                                      PATCH           @userappstore/dashboard                                
 /api/administrator/reset-session-key                                      LOCK                    PATCH           @userappstore/dashboard                                
 /api/administrator/session                                                                        GET             @userappstore/dashboard                                
 /api/administrator/sessions                                                                       GET             @userappstore/dashboard                                
@@ -150,7 +140,6 @@ URL ----------------------------------------------------------- AUTH ---- LOCK -
 /api/administrator/set-account-administrator                              LOCK                    PATCH           @userappstore/dashboard                                
 /api/administrator/set-account-deleted                                    LOCK                    PATCH           @userappstore/dashboard                                
 /api/administrator/set-owner-account                                      LOCK                    PATCH           @userappstore/dashboard                                
-/api/administrator/set-session-impersonate                                LOCK                    PATCH           @userappstore/dashboard                                
 /api/user/account                                                                                 GET             @userappstore/dashboard                                
 /api/user/create-account                                        GUEST                             POST            @userappstore/dashboard                                
 /api/user/create-profile                                                  LOCK                    POST            @userappstore/dashboard                                

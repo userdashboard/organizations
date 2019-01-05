@@ -1,5 +1,5 @@
 
-> @userappstore/organizations@1.0.0 test /home/benlowry/SynologyDrive/workspaces/dashboard/organizations2
+> @userappstore/organizations@1.0.0 test /home/benlowry/SynologyDrive/workspaces/dashboard/organizations
 > NODE_ENV=testing mocha src --recursive --timeout 90000 --slow 90000
 
 
@@ -427,7 +427,7 @@
       ✓ should redact invitation code
 
   /api/user/organizations/organization-invitations-count
-    OrganizationInvitations#GET
+    OrganizationInvitationsCount#GET
       ✓ should count organization's invitations
 
   /api/user/organizations/organization-invitations
@@ -492,5 +492,5 @@
       ✓ should apply new values
 
 
-  235 passing (13m)
+  235 passing (16m)
 
