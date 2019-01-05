@@ -49,7 +49,7 @@ module.exports = {
     }
     let membership
     try {
-      membership = await global.api.user.organizations.OrganizationMembership._get(req)
+      membership = await global.api.user.organizations.OrganizationMembership.get(req)
     } catch (error) {
     }
     if (membership) {

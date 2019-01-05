@@ -21,15 +21,16 @@ module.exports = {
     }
     let membership
     try {
-      const membershipReq = { query: { organizationid: req.query.organizationid }, account: { accountid: req.body.accountid }, appid: req.appid }
-      membership = await global.api.user.organizations.OrganizationMembership._get(membershipReq)
+      membership = await global.api.user.organizations.OrganizationMembership.get(req)
     } catch (error) {
     }
     if (!membership) {
       throw new Error('invalid-account')
     }
-    const accountReq = { query: { accountid: req.body.accountid }, account: { accountid: req.body.accountid }, appid: req.appid }
-    const newOwner = await global.api.user.Account._get(accountReq)
+    const query = req.query
+    req.query.accountid = req.body.accountid
+    const newOwner = await global.api.administrator.Account._get(req)
+    req.query = query
     if (!newOwner || newOwner.deleted) {
       throw new Error('invalid-account')
     }
