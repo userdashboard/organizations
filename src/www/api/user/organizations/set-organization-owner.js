@@ -20,10 +20,13 @@ module.exports = {
       throw new Error('invalid-accountid')
     }
     let membership
+    const account = req.account
     try {
+      req.account = { accountid: req.body.accountid }
       membership = await global.api.user.organizations.OrganizationMembership.get(req)
     } catch (error) {
     }
+    req.account = account
     if (!membership) {
       throw new Error('invalid-account')
     }
