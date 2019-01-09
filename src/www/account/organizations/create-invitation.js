@@ -10,9 +10,10 @@ async function beforeRequest (req) {
   if (!req.query || !req.query.organizationid) {
     throw new Error('invalid-organization')
   }
+  let invitation
   if (req.session.lockURL === req.url && req.session.unlocked) {
     try {
-      await global.api.user.organizations.CreateInvitation.post(req)
+      invitation = await global.api.user.organizations.CreateInvitation.post(req)
     } catch (error) {
       req.error = error.message
     }
@@ -25,7 +26,7 @@ async function beforeRequest (req) {
     throw new Error('invalid-account')
   }
   organization.createdFormatted = dashboard.Timestamp.date(organization.created)
-  req.data = { organization }
+  req.data = { organization, invitation }
 }
 
 async function renderPage (req, res, messageTemplate) {
