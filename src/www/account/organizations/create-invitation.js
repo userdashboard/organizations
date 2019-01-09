@@ -41,6 +41,7 @@ async function renderPage (req, res, messageTemplate) {
   doc.getElementById('organizationName').setAttribute('value', req.data.organization.name)
   doc.getElementById('code').setAttribute('value', req.body ? req.body.code : dashboard.UUID.random(10))
   if (messageTemplate) {
+    req.data.invitation.dashboardServer = global.dashboardServer
     dashboard.HTML.renderTemplate(doc, req.data.invitation, messageTemplate, 'message-container')
     if (messageTemplate === 'success') {
       const submitForm = doc.getElementById('submit-form')
@@ -58,10 +59,11 @@ async function submitForm (req, res) {
     return renderPage(req, res, 'invalid-invitation-code')
   }
   try {
-    await global.api.user.organizations.CreateInvitation.post(req)
+    const invitation = await global.api.user.organizations.CreateInvitation.post(req)
     if (req.success) {
       return renderPage(req, res, 'success')
     }
+    req.data.invitation = invitation
     return dashboard.Response.redirect(req, res, '/account/authorize')
   } catch (error) {
     return renderPage(req, res, req.error)

@@ -55,7 +55,7 @@
   <template id="success">
     <div class="success message">
       <p>Success! A new member may use this link to join your organization:</p>
-      <input class="link" type="text" readonly value="${global.dashboardServer}/account/organizations/accept-invitation?invitationid=${organization.invitationid}" />
+      <input class="link" type="text" readonly value="${invitation.dashboardServer}/account/organizations/accept-invitation?invitationid=${invitation.organizationid}" />
     </div>
   </template>
 </html>
