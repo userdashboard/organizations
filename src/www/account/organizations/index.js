@@ -34,16 +34,21 @@ async function renderPage (req, res) {
     const noMemberships = doc.getElementById('no-memberships')
     noMemberships.parentNode.removeChild(noMemberships)
   } else {
-    const membershipsTable = doc.getElementById('memberships-table')
-    membershipsTable.parentNode.removeChild(membershipsTable)
+    const membershipsContainer = doc.getElementById('memberships-container')
+    membershipsContainer.parentNode.removeChild(membershipsContainer)
   }
   if (req.data.organizations && req.data.organizations.length) {
     dashboard.HTML.renderTable(doc, req.data.organizations, 'organization-row', 'organizations-table')
     const noOrganizations = doc.getElementById('no-organizations')
     noOrganizations.parentNode.removeChild(noOrganizations)
   } else {
-    const organizationsTable = doc.getElementById('organizations-table')
-    organizationsTable.parentNode.removeChild(organizationsTable)
+    const organizationsContainer = doc.getElementById('organizations-container')
+    organizationsContainer.parentNode.removeChild(organizationsContainer)
+  }
+  if ((req.data.organizations && req.data.organizations.length) || 
+      (req.data.memberships && req.data.memberships.length)) {
+    const noData = doc.getElementById('no-data')
+    noData.parentNode.removeChild(noData)
   }
   return dashboard.Response.end(req, res, doc)
 }

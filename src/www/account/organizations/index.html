@@ -8,40 +8,47 @@
   </head>
   <body>
     <h1>Organizations</h1>
-    <h2>My memberships</h2>
-    <div id="no-memberships">
-      <p>You have not accepted any invitations to join organizations yet.</p>
+    <p><a href="/account/organizations/create-organization" class="pure-button pure-button-primary">Create organization</a></p>
+    <div id="no-data">
+      <p>You have not created or joined any organizations yet.</p>
     </div>
-    <table id="memberships-table" class="pure-table pure-table-striped list-table">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Organization</th>
-          <th>Their email</th>
-          <th>My email</th>
-          <th>Joined</th>
-          <th>Organization</th>
-          <th>Invitation</th>
-          <th></th>
-        </tr>
-      </thead>
-    </table>
-    <h2>My organizations</h2>
-    <a href="/account/organizations/create-organization" class="pure-button">Create organization</a>
-    <div id="no-organizations">
-      <p>You have not created any organizations yet.</p>
+    <div id="memberships-container">
+      <h2>My memberships</h2>
+      <div id="no-memberships">
+        <p>You have not accepted any invitations to join organizations yet.</p>
+      </div>
+      <table id="memberships-table" class="pure-table pure-table-striped list-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Organization</th>
+            <th>Their email</th>
+            <th>My email</th>
+            <th>Joined</th>
+            <th>Organization</th>
+            <th>Invitation</th>
+            <th></th>
+          </tr>
+        </thead>
+      </table>
     </div>
-    <table id="organizations-table" class="pure-table pure-table-striped list-table">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Organizations name</th>
-          <th>Contact email</th>
-          <th>Created</th>
-          <th></th>
-        </tr>
-      </thead>
-    </table>
+    <div id="organizations-container">
+      <h2>My organizations</h2>
+      <div id="no-organizations">
+        <p>You have not created any organizations yet.</p>
+      </div>
+      <table id="organizations-table" class="pure-table pure-table-striped list-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Organizations name</th>
+            <th>Contact email</th>
+            <th>Created</th>
+            <th></th>
+          </tr>
+        </thead>
+      </table>
+    </div>
   </body>
   <template id="membership-row">
     <tr id="${membership.membershipid}">
