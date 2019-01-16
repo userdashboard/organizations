@@ -1,13 +1,18 @@
 /* eslint-env mocha */
-global.applicationPath = __dirname
-const dashboard = require('@userappstore/dashboard')
-const TestHelper = module.exports = dashboard.loadTestHelper()
+global.applicationPath = global.applicationPath || __dirname
+const TestHelper = require('@userappstore/dashboard/test-helper.js')
 
-module.exports.acceptInvitation = acceptInvitation
-module.exports.createInvitation = createInvitation
-module.exports.createMembership = createMembership
-module.exports.createOrganization = createOrganization
+module.exports = {
+  acceptInvitation,
+  createInvitation,
+  createMembership,
+  createOrganization
+}
 
+for (const x in TestHelper) {
+  module.exports[x] = TestHelper[x]
+}
+ 
 beforeEach((callback) => {
   global.minimumOrganizationNameLength = 1
   global.maximumOrganizationNameLength = 100
