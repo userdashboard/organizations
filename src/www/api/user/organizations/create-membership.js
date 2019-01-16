@@ -28,7 +28,7 @@ module.exports = {
         throw new Error('invalid-membership-email')
       }
     }
-    const invitation = await global.api.user.organizations.OpenInvitation.get(req)
+    const invitation = await global.api.user.organizations.OpenInvitation._get(req)
     if (!invitation) {
       throw new Error('invalid-invitationid')
     }
@@ -40,7 +40,7 @@ module.exports = {
       throw new Error('invalid-invitation-code')
     }
     req.query.organizationid = invitation.organizationid
-    const organization = await global.api.user.organizations.OpenInvitationOrganization.get(req)
+    const organization = await global.api.user.organizations.OpenInvitationOrganization._get(req)
     if (!organization) {
       throw new Error('invalid-organizationid')
     }
@@ -49,7 +49,7 @@ module.exports = {
     }
     let membership
     try {
-      membership = await global.api.user.organizations.OrganizationMembership.get(req)
+      membership = await global.api.user.organizations.OrganizationMembership._get(req)
     } catch (error) {
     }
     if (membership) {

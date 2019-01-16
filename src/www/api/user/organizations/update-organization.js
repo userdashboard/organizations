@@ -7,7 +7,7 @@ module.exports = {
     if (!req.query || !req.query.organizationid) {
       throw new Error('invalid-organizationid')
     }
-    const organization = await global.api.user.organizations.Organization.get(req)
+    const organization = await global.api.user.organizations.Organization._get(req)
     if (!organization) {
       throw new Error('invalid-organizationid')
     }
@@ -31,6 +31,6 @@ module.exports = {
       email: req.body.email
     })
     req.success = true
-    return global.api.user.organizations.Organization.get(req)
+    return global.api.user.organizations.Organization._get(req)
   }
 }

@@ -6,8 +6,8 @@ module.exports = {
 }
 
 async function beforeRequest (req) {
-  const total = await global.api.administrator.organizations.InvitationsCount.get(req)
-  const invitations = await global.api.administrator.organizations.Invitations.get(req)
+  const total = await global.api.administrator.organizations.InvitationsCount._get(req)
+  const invitations = await global.api.administrator.organizations.Invitations._get(req)
   if (invitations && invitations.length) {
     for (const invitation of invitations) {
       invitation.createdFormatted = dashboard.Timestamp.date(invitation.created)

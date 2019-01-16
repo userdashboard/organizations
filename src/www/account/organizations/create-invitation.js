@@ -13,12 +13,12 @@ async function beforeRequest (req) {
   let invitation
   if (req.session.lockURL === req.url && req.session.unlocked) {
     try {
-      invitation = await global.api.user.organizations.CreateInvitation.post(req)
+      invitation = await global.api.user.organizations.CreateInvitation._post(req)
     } catch (error) {
       req.error = error.message
     }
   }
-  const organization = await global.api.user.organizations.Organization.get(req)
+  const organization = await global.api.user.organizations.Organization._get(req)
   if (!organization) {
     throw new Error('invalid-organization')
   }
@@ -60,7 +60,7 @@ async function submitForm (req, res) {
     return renderPage(req, res, 'invalid-invitation-code')
   }
   try {
-    const invitation = await global.api.user.organizations.CreateInvitation.post(req)
+    const invitation = await global.api.user.organizations.CreateInvitation._post(req)
     if (req.success) {
       return renderPage(req, res, 'success')
     }

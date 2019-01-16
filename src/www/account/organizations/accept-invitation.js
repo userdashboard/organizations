@@ -12,22 +12,22 @@ async function beforeRequest (req) {
   }
   if (req.session.lockURL === req.url && req.session.unlocked) {
     try {
-      await global.api.user.organizations.CreateMembership.post(req)
+      await global.api.user.organizations.CreateMembership._post(req)
     } catch (error) {
       req.error = error.message
     }
   }
   if (!req.success) {
-    const invitation = await global.api.user.organizations.OpenInvitation.get(req)
+    const invitation = await global.api.user.organizations.OpenInvitation._get(req)
     if (invitation.accepted) {
       throw new Error('invalid-invitation')
     }
   }
   let organization
   if (req.success) {
-    organization = await global.api.user.organizations.Organization.get(req)
+    organization = await global.api.user.organizations.Organization._get(req)
   } else {
-    organization = await global.api.user.organizations.OpenInvitationOrganization.get(req)
+    organization = await global.api.user.organizations.OpenInvitationOrganization._get(req)
   }
   // prevent organization owner
   if (req.account.accountid === organization.ownerid) {
@@ -38,7 +38,7 @@ async function beforeRequest (req) {
     let membership
     try {
       req.query.organizationid = organization.organizationid
-      membership = await global.api.user.organizations.OrganizationMembership.get(req)
+      membership = await global.api.user.organizations.OrganizationMembership._get(req)
     } catch (error) {
     }
     if (membership) {
@@ -93,7 +93,7 @@ async function submitForm (req, res) {
     return renderPage(req, res, 'invalid-membership-email')
   }
   try {
-    await global.api.user.organizations.CreateMembership.post(req)
+    await global.api.user.organizations.CreateMembership._post(req)
     if (req.success) {
       return renderPage(req, res, 'success')
     }

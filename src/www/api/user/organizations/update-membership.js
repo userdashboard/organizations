@@ -20,7 +20,7 @@ module.exports = {
     if (!req.body.email || !req.body.email.length) {
       throw new Error('invalid-membership-email')
     }
-    const membership = await global.api.user.organizations.Membership.get(req)
+    const membership = await global.api.user.organizations.Membership._get(req)
     if (!membership || membership.accountid !== req.account.accountid) {
       throw new Error('invalid-membership')
     }
@@ -31,6 +31,6 @@ module.exports = {
       email: req.body.email
     })
     req.success = true
-    return global.api.user.organizations.Membership.get(req)
+    return global.api.user.organizations.Membership._get(req)
   }
 }

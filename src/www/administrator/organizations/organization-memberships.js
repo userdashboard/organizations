@@ -10,8 +10,8 @@ async function beforeRequest (req) {
   if (!req.query || !req.query.organizationid) {
     throw new Error('invalid-organizationid)')
   }
-  const total = await global.api.administrator.organizations.OrganizationMembershipsCount.get(req)
-  const memberships = await global.api.administrator.organizations.OrganizationMemberships.get(req)
+  const total = await global.api.administrator.organizations.OrganizationMembershipsCount._get(req)
+  const memberships = await global.api.administrator.organizations.OrganizationMemberships._get(req)
   if (memberships && memberships.length) {
     for (const membership of memberships) {
       membership.createdFormatted = dashboard.Timestamp.date(membership.created)

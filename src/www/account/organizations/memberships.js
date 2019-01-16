@@ -8,8 +8,8 @@ module.exports = {
 async function beforeRequest (req) {
   req.query = req.query || {}
   req.query.accountid = req.account.accountid
-  const total = await global.api.user.organizations.MembershipsCount.get(req)
-  const memberships = await global.api.user.organizations.Memberships.get(req)
+  const total = await global.api.user.organizations.MembershipsCount._get(req)
+  const memberships = await global.api.user.organizations.Memberships._get(req)
   if (memberships && memberships.length) {
     for (const membership of memberships) {
       membership.createdFormatted = dashboard.Timestamp.date(membership.created)

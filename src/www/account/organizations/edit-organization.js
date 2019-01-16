@@ -12,12 +12,12 @@ async function beforeRequest (req) {
   }
   if (req.session.lockURL === req.url && req.session.unlocked) {
     try {
-      return global.api.user.organizations.UpdateOrganization.patch(req)
+      return global.api.user.organizations.UpdateOrganization._patch(req)
     } catch (error) {
       req.error = error.message
     }
   }
-  const organization = await global.api.user.organizations.Organization.get(req)
+  const organization = await global.api.user.organizations.Organization._get(req)
   if (!organization) {
     throw new Error('invalid-organization')
   }
@@ -65,7 +65,7 @@ async function submitForm (req, res) {
     return renderPage(req, res, 'invalid-organization-email')
   }
   try {
-    await global.api.user.organizations.UpdateOrganization.patch(req)
+    await global.api.user.organizations.UpdateOrganization._patch(req)
     if (req.success) {
       return renderPage(req, res, 'success')
     }

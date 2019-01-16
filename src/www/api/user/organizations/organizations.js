@@ -22,7 +22,7 @@ module.exports = {
     const items = []
     for (const organizationid of organizationids) {
       req.query.organizationid = organizationid
-      const organization = await global.api.user.organizations.Organization.get(req)
+      const organization = await global.api.user.organizations.Organization._get(req)
       items.push(organization)
     }
     return items

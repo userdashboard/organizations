@@ -492,5 +492,5 @@
       ✓ should apply new values
 
 
-  235 passing (16m)
+  235 passing (31s)
 

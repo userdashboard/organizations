@@ -8,18 +8,18 @@ module.exports = {
 async function beforeRequest (req) {
   req.query = req.query || {}
   req.query.accountid = req.account.accountid
-  const ownedOrganizations = await global.api.user.organizations.Organizations.get(req)
+  const ownedOrganizations = await global.api.user.organizations.Organizations._get(req)
   if (ownedOrganizations && ownedOrganizations.length) {
     for (const organization of ownedOrganizations) {
       organization.createdFormatted = dashboard.Timestamp.date(organization.created)
     }
   }
-  const memberships = await global.api.user.organizations.Memberships.get(req)
+  const memberships = await global.api.user.organizations.Memberships._get(req)
   if (memberships && memberships.length) {
     for (const membership of memberships) {
       membership.createdFormatted = dashboard.Timestamp.date(membership.created)
       req.query.organizationid = membership.organizationid
-      const organization = await global.api.user.organizations.Organization.get(req)
+      const organization = await global.api.user.organizations.Organization._get(req)
       membership.organizationName = organization.name
       membership.organizationEmail = organization.email
     }

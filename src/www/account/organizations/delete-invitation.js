@@ -12,17 +12,17 @@ async function beforeRequest (req) {
   }
   if (req.session.lockURL === req.url && req.session.unlocked) {
     try {
-      return global.api.user.organizations.DeleteInvitation.delete(req)
+      return global.api.user.organizations.DeleteInvitation._delete(req)
     } catch (error) {
       req.error = error.message
     }
   }
-  const invitation = await global.api.user.organizations.Invitation.get(req)
+  const invitation = await global.api.user.organizations.Invitation._get(req)
   if (invitation.accepted) {
     throw new Error('invalid-invitation')
   }
   req.query.organizationid = invitation.organizationid
-  const organization = await global.api.user.organizations.Organization.get(req)
+  const organization = await global.api.user.organizations.Organization._get(req)
   if (organization.ownerid !== req.account.accountid) {
     throw new Error('invalid-account')
   }
@@ -55,7 +55,7 @@ async function renderPage (req, res, messageTemplate) {
 
 async function submitForm (req, res) {
   try {
-    await global.api.user.organizations.DeleteInvitation.delete(req)
+    await global.api.user.organizations.DeleteInvitation._delete(req)
     if (req.success) {
       return renderPage(req, res, 'success')
     }

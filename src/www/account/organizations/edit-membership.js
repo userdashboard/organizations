@@ -13,12 +13,12 @@ async function beforeRequest (req) {
   }
   if (req.session.lockURL === req.url && req.session.unlocked) {
     try {
-      await global.api.user.organizations.UpdateMembership.patch(req)
+      await global.api.user.organizations.UpdateMembership._patch(req)
     } catch (error) {
       req.error = error.message
     }
   }
-  const membership = await global.api.user.organizations.Membership.get(req)
+  const membership = await global.api.user.organizations.Membership._get(req)
   if (!membership) {
     throw new Error('invalid-membershipid')
   }
@@ -26,7 +26,7 @@ async function beforeRequest (req) {
     throw new Error('invalid-account')
   }
   req.query.organizationid = membership.organizationid
-  const organization = await global.api.user.organizations.Organization.get(req)
+  const organization = await global.api.user.organizations.Organization._get(req)
   if (!organization) {
     throw new Error('invalid-organization')
   }
@@ -75,7 +75,7 @@ async function submitForm (req, res) {
     return renderPage(req, res, 'invalid-membership-email')
   }
   try {
-    await global.api.user.organizations.UpdateMembership.patch(req)
+    await global.api.user.organizations.UpdateMembership._patch(req)
     if (req.success) {
       return renderPage(req, res, 'success')
     }

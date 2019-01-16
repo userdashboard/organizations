@@ -9,7 +9,7 @@ module.exports = {
     if (req.body.accountid === req.account.accountid) {
       throw new Error('invalid-account')
     }
-    const organization = await global.api.user.organizations.Organization.get(req)
+    const organization = await global.api.user.organizations.Organization._get(req)
     if (!organization) {
       throw new Error('invalid-organizationid')
     }
@@ -23,7 +23,7 @@ module.exports = {
     const account = req.account
     try {
       req.account = { accountid: req.body.accountid }
-      membership = await global.api.user.organizations.OrganizationMembership.get(req)
+      membership = await global.api.user.organizations.OrganizationMembership._get(req)
     } catch (error) {
     }
     req.account = account
