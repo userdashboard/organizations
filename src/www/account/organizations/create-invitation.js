@@ -62,9 +62,9 @@ async function submitForm (req, res) {
   try {
     const invitation = await global.api.user.organizations.CreateInvitation._post(req)
     if (req.success) {
+      req.data.invitation = invitation
       return renderPage(req, res, 'success')
     }
-    req.data.invitation = invitation
     return dashboard.Response.redirect(req, res, '/account/authorize')
   } catch (error) {
     return renderPage(req, res, req.error)
