@@ -34,7 +34,7 @@ async function renderPage (req, res, messageTemplate) {
     if (req.query && req.query.returnURL) {
       return dashboard.Response.redirect(req, res, req.query.returnURL)
     }
-    z
+    messageTemplate = 'success'
   } else if (req.error) {
     messageTemplate = req.error
   }
