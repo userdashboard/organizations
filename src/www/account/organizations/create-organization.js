@@ -11,7 +11,10 @@ async function beforeRequest (req) {
     req.query = req.query || {}
     req.query.accountid = req.account.accountid
     try {
-      await global.api.user.organizations.CreateOrganization._post(req)
+      const organization = await global.api.user.organizations.CreateOrganization._post(req)
+      if (req.success) {
+        req.data = { organization }
+      }
     } catch (error) {
       req.error = error.message
     }
@@ -23,7 +26,7 @@ async function renderPage (req, res, messageTemplate) {
     if (req.query && req.query.returnURL) {
       return dashboard.Response.redirect(req, res, req.query.returnURL)
     }
-    messageTemplate = 'success'
+    return dashboard.Response.redirect(req, res, `/account/organizations/organization?organizationid=${req.data.organization.organizationid}`)
   } else if (req.error) {
     messageTemplate = req.error
   }
@@ -62,8 +65,9 @@ async function submitForm (req, res) {
   try {
     req.query = req.query || {}
     req.query.accountid = req.account.accountid
-    await global.api.user.organizations.CreateOrganization._post(req)
+    const organization = await global.api.user.organizations.CreateOrganization._post(req)
     if (req.success) {
+      req.data = { organization }
       return renderPage(req, res, 'success')
     }
     return dashboard.Response.redirect(req, res, '/account/authorize')

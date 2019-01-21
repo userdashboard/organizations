@@ -34,7 +34,7 @@ async function renderPage (req, res, messageTemplate) {
     if (req.query && req.query.returnURL) {
       return dashboard.Response.redirect(req, res, req.query.returnURL)
     }
-    messageTemplate = 'success'
+    return dashboard.Response.redirect(req, res, `/account/organizations/invitation?invitationid=${req.data.invitation.invitationid}`)
   } else if (req.error) {
     messageTemplate = req.error
   }
@@ -62,6 +62,7 @@ async function submitForm (req, res) {
   try {
     const invitation = await global.api.user.organizations.CreateInvitation._post(req)
     if (req.success) {
+      req.data = { invitation }
       return renderPage(req, res, 'success')
     }
     req.data.invitation = invitation

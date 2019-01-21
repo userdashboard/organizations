@@ -10,9 +10,10 @@ async function beforeRequest (req) {
   if (!req.query || !req.query.invitationid) {
     throw new Error('invalid-invitationid')
   }
+  let membership
   if (req.session.lockURL === req.url && req.session.unlocked) {
     try {
-      await global.api.user.organizations.CreateMembership._post(req)
+      membership = await global.api.user.organizations.CreateMembership._post(req)
     } catch (error) {
       req.error = error.message
     }
@@ -45,7 +46,7 @@ async function beforeRequest (req) {
       throw new Error('invalid-account')
     }
   }
-  req.data = { organization }
+  req.data = { organization, membership }
 }
 
 async function renderPage (req, res, messageTemplate) {
@@ -53,7 +54,7 @@ async function renderPage (req, res, messageTemplate) {
     if (req.query && req.query.returnURL) {
       return dashboard.Response.redirect(req, res, req.query.returnURL)
     }
-    messageTemplate = 'success'
+    return dashboard.Response.redirect(req, res, `/account/organizations/membership?membershipid=${req.data.membership.membershipid}`)
   } else if (req.error) {
     messageTemplate = req.error
   }
@@ -93,8 +94,9 @@ async function submitForm (req, res) {
     return renderPage(req, res, 'invalid-membership-email')
   }
   try {
-    await global.api.user.organizations.CreateMembership._post(req)
+    const membership = await global.api.user.organizations.CreateMembership._post(req)
     if (req.success) {
+      req.data = { membership }
       return renderPage(req, res, 'success')
     }
     return dashboard.Response.redirect(req, res, '/account/authorize')
