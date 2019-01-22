@@ -1,35 +1,19 @@
 <!doctype html>
 <html navbar="/account/organizations/navbar.html">
   <head>
-    <title>Accept invitation for ${organization.organizationid}</title>
+    <title>Accept invitation</title>
     <link href="/public/pure-min.css" rel="stylesheet" />
     <link href="/public/content.css" rel="stylesheet" />
     <base target="_top" href="/" />
   </head>
   <body>
-    <h1>Accept invitation for ${organization.organizationid}</h1>
+    <h1>Accept invitation</h1>
     <p>You will become a member of the organization after entering the code.</p>
     <div id="message-container"></div>
-    <table id="organizations-table" class="pure-table object-table">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Created</th>
-        </tr>
-      </thead>
-      <tr id="${organization.organizationid}">
-        <td>${organization.organizationid}</td>
-        <td>${organization.name}</td>
-        <td><a href="mailto:${organization.email}">${organization.email}</a></td>
-        <td>${organization.createdFormatted}</td>
-      </tr>
-    </table>
     <form id="submit-form" class="pure-form pure-form-stacked">
       <div class="pure-control-group">
-        <label for="organizationName">Organization</label>
-        <input id="organizationName" type="text" maxlength="100" readonly />
+        <label for="invitationid">Invitation ID</label>
+        <input id="invitationid" type="text" maxlength="100" />
       </div>
       <div class="pure-control-group">
         <label for="name">Name (shared with members)</label>
@@ -59,6 +43,12 @@
   </template>
   <template id="invalid-membership-email">
     <div class="error message">Error! A missing or invalid membership email was provided.</div>
+  </template>
+  <template id="invalid-invitation">
+    <div class="error message">Error! The invitation is no longer available.</div>
+  </template>
+  <template id="invalid-invitationid">
+    <div class="error message">Error! A missing or invalid invitation was provided.</div>
   </template>
   <template id="invalid-account">
     <div class="error message">Error! You own or are a member of this organization.</div>

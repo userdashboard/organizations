@@ -7,46 +7,16 @@ module.exports = {
 }
 
 async function beforeRequest (req) {
-  if (!req.query || !req.query.invitationid) {
-    throw new Error('invalid-invitationid')
-  }
-  let membership
   if (req.session.lockURL === req.url && req.session.unlocked) {
     try {
-      membership = await global.api.user.organizations.CreateMembership._post(req)
+      const membership = await global.api.user.organizations.CreateMembership._post(req)
+      if (req.success) {
+        req.data = { membership }
+      }
     } catch (error) {
       req.error = error.message
     }
   }
-  if (!req.success) {
-    const invitation = await global.api.user.organizations.OpenInvitation._get(req)
-    if (invitation.accepted) {
-      throw new Error('invalid-invitation')
-    }
-  }
-  let organization
-  if (req.success) {
-    organization = await global.api.user.organizations.Organization._get(req)
-  } else {
-    organization = await global.api.user.organizations.OpenInvitationOrganization._get(req)
-  }
-  // prevent organization owner
-  if (req.account.accountid === organization.ownerid) {
-    throw new Error('invalid-account')
-  }
-  if (!req.success) {
-    // prevent organization members
-    let membership
-    try {
-      req.query.organizationid = organization.organizationid
-      membership = await global.api.user.organizations.OrganizationMembership._get(req)
-    } catch (error) {
-    }
-    if (membership) {
-      throw new Error('invalid-account')
-    }
-  }
-  req.data = { organization, membership }
 }
 
 async function renderPage (req, res, messageTemplate) {
@@ -58,7 +28,7 @@ async function renderPage (req, res, messageTemplate) {
   } else if (req.error) {
     messageTemplate = req.error
   }
-  const doc = dashboard.HTML.parse(req.route.html, req.data.organization, 'organization')
+  const doc = dashboard.HTML.parse(req.route.html)
   const submitForm = doc.getElementById('submit-form')
   if (messageTemplate) {
     dashboard.HTML.renderTemplate(doc, null, messageTemplate, 'message-container')
@@ -68,14 +38,15 @@ async function renderPage (req, res, messageTemplate) {
     }
   }
   if (req.body) {
+    const idField = doc.getElementById('invitationid')
+    idField.setAttribute('value', req.body.invitationid || '')
     const nameField = doc.getElementById('name')
     nameField.setAttribute('value', req.body.name || '')
     const emailField = doc.getElementById('email')
     emailField.setAttribute('value', req.body.email || '')
+    const codeField = doc.getElementById('code')
+    codeField.setAttribute('value', req.body.code || '')
   }
-  submitForm.setAttribute('action', req.url)
-  const nameField = doc.getElementById('organizationName')
-  nameField.setAttribute('value', req.data.organization.name)
   return dashboard.Response.end(req, res, doc)
 }
 
@@ -92,6 +63,34 @@ async function submitForm (req, res) {
   }
   if (!req.body.email || !req.body.email.length) {
     return renderPage(req, res, 'invalid-membership-email')
+  }
+  req.query = req.query || {}
+  req.query.invitationid = req.body.invitationid
+  try {
+    const invitation = await global.api.user.organizations.OpenInvitation._get(req)
+    if (invitation.accepted) {
+      return renderPage(req, res, 'invalid-invitation')
+    }
+    req.query.organizationid = invitation.organizationid
+    const organization = await global.api.user.organizations.OpenInvitationOrganization._get(req)
+    // prevent organization owner
+    if (req.account.accountid === organization.ownerid) {
+      return renderPage(req, res, 'invalid-account')
+    }
+    if (!req.success) {
+      // prevent organization members
+      let membership
+      try {
+        req.query.organizationid = organization.organizationid
+        membership = await global.api.user.organizations.OrganizationMembership._get(req)
+      } catch (error) {
+      }
+      if (membership) {
+        return renderPage(req, res, 'invalid-account')
+      }
+    }
+  } catch (error) {
+    return renderPage(req, res, error.message)
   }
   try {
     const membership = await global.api.user.organizations.CreateMembership._post(req)

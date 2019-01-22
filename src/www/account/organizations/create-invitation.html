@@ -6,7 +6,7 @@
     <link href="/public/content.css" rel="stylesheet" />
     <base target="_top" href="/" />
     <style>
-      .link { padding: 0.5rem; background-color: #EEE; color: #07C; border: 1px solid #CCC; width: 40rem; font-size: 0.8rem; font-weight: normal; border-radius:  0.5rem; }
+      .link { padding: 1rem; background-color: #EEE; color: #000; border: 1px solid #CCC; width: 40rem; font-size: 1.2rem; font-weight: normal; border-radius: 0.5rem }
     </style>
   </head>
   <body>
@@ -54,8 +54,8 @@
   </template>
   <template id="success">
     <div class="success message">
-      <p>Success! A new member may use this link to join your organization:</p>
-      <input class="link" type="text" readonly value="${invitation.dashboardServer}/account/organizations/accept-invitation?invitationid=${invitation.invitationid}" />
+      <p>Success! Someone may use the code and invitation ID to join:</p>
+      <input class="link" type="text" readonly value="${invitation.invitationid}" />
     </div>
   </template>
 </html>
