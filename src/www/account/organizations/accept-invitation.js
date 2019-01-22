@@ -96,6 +96,10 @@ async function submitForm (req, res) {
     return renderPage(req, res, error.message)
   }
   try {
+    req.url = `${req.urlPath}?invitationid=${req.body.invitationid}`
+    if (req.query.returnURL) {
+      req.url += `&returnURL=${req.query.returnURL}`
+    }
     const membership = await global.api.user.organizations.CreateMembership._post(req)
     if (req.success) {
       req.data = { membership }
