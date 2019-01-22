@@ -9,6 +9,8 @@ module.exports = {
 async function beforeRequest (req) {
   if (req.session.lockURL === req.url && req.session.unlocked) {
     try {
+      req.query = req.query || {}
+      req.query.invitationid = req.body.invitationid
       const membership = await global.api.user.organizations.CreateMembership._post(req)
       if (req.success) {
         req.data = { membership }
@@ -96,10 +98,6 @@ async function submitForm (req, res) {
     return renderPage(req, res, error.message)
   }
   try {
-    req.url = `${req.urlPath}?invitationid=${req.body.invitationid}`
-    if (req.query.returnURL) {
-      req.url += `&returnURL=${req.query.returnURL}`
-    }
     const membership = await global.api.user.organizations.CreateMembership._post(req)
     if (req.success) {
       req.data = { membership }
