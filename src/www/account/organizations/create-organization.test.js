@@ -85,10 +85,8 @@ describe(`/account/organizations/create-organization`, async () => {
         email: 'test@test.com'
       }
       const page = await req.post(req)
-      const doc = TestHelper.extractDoc(page)
-      const messageContainer = doc.getElementById('message-container')
-      const message = messageContainer.child[0]
-      assert.strictEqual(message.attr.template, 'success')
+      const redirectURL = await TestHelper.extractRedirectURL(page)
+      assert.strictEqual(true, redirectURL.startsWith(`/account/organizations/organization?organizationid=`))
     })
   })
 })
