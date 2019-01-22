@@ -64,6 +64,9 @@ async function submitForm (req, res) {
   if (!req.body.email || !req.body.email.length) {
     return renderPage(req, res, 'invalid-membership-email')
   }
+  if (!req.body.invitationid || !req.body.invitationid.length) {
+    return renderPage(req, res, 'invalid-invitationid')
+  }
   req.query = req.query || {}
   req.query.invitationid = req.body.invitationid
   try {
