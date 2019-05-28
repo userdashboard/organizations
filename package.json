@@ -5,7 +5,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git://gitlab.com/userappstore/organizations.git"
+    "url": "git://github.com/userappstore/organizations.git"
   },
   "license": "SPDX(MIT OR Unlicense)",
   "scripts": {
