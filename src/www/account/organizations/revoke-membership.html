@@ -26,7 +26,7 @@
         <td>${membership.email}</td>
       </tr>
     </table>
-    <form id="submit-form" method="POST" class="pure-form pure-form-stacked">
+    <form id="submit-form" method="POST" class="pure-form pure-form-stacked" action="/account/organizations/revoke-membership?membershipid=${membership.membershipid}">
       <div class="pure-control-group">
         <label for="organizationName">Organization</label>
         <input id="organizationName" type="text" maxlength="100" readonly />

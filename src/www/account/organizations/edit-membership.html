@@ -10,7 +10,7 @@
     <h1>Edit ${membership.membershipid}</h1>
     <p>Keep your contact information correct and up-to-date.</p>
     <div id="message-container"></div>
-    <form id="submit-form" method="POST" class="pure-form pure-form-stacked">
+    <form id="submit-form" method="POST" class="pure-form pure-form-stacked" action="/account/organizations/edit-membership?membershipid=${membership.membershipid}">
       <div class="pure-control-group">
         <label for="organizationName">Organization</label>
         <input id="organizationName" type="text" maxlength="100" readonly />

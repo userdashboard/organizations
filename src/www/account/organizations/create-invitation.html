@@ -29,7 +29,7 @@
         <td>${organization.createdFormatted}</td>
       </tr>
     </table>
-    <form id="submit-form" method="POST" class="pure-form pure-form-stacked">
+    <form id="submit-form" method="POST" class="pure-form pure-form-stacked" action="/account/organizations/create-invitation?invitationid=${invitation.invitationid}">
       <div class="pure-control-group">
         <label for="organizationName">Organization</label>
         <input id="organizationName" type="text" maxlength="100" readonly />

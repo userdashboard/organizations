@@ -26,7 +26,7 @@
         <td>${organization.createdFormatted}</td>
       </tr>
     </table>
-    <form id="submit-form" class="pure-form pure-form-stacked">
+    <form id="submit-form" class="pure-form pure-form-stacked" action="/account/organizations/transfer-organization?organizationid=${organization.organizationid}">
       <div class="pure-control-group">
         <label for="accountid">New organization owner</label>
         <select id="accountid" name="accountid">
