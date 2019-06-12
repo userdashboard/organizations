@@ -49,8 +49,8 @@ async function renderPage (req, res, messageTemplate) {
     throw new Error('invalid-organization')
   }
   if (req.success) {
-    if (req.query && req.query.returnURL) {
-      return dashboard.Response.redirect(req, res, req.query.returnURL)
+    if (req.query && req.query.returnURL && req.query.returnURL.indexOf('/') === 0) {
+      return dashboard.Response.redirect(req, res, decodeURI(req.query.returnURL))
     }
     messageTemplate = 'success'
   } else if (req.error) {
