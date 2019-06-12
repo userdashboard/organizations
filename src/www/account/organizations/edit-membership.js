@@ -46,7 +46,7 @@ async function renderPage (req, res, messageTemplate) {
   if (!messageTemplate && req.method === 'GET' && req.query && req.query.returnURL) {
     const submitForm = doc.getElementById('submit-form')
     const divider = submitForm.attr.action.indexOf('?') > -1 ? '&' : '?'
-    submitForm.attr.action += `${divider}returnURL=${req.query.returnURL}`
+    submitForm.attr.action += `${divider}returnURL=${encodeURI(req.query.returnURL).split('?').join('%3E')}`
   }
   await navbar.setup(doc, req)
   const userEmail = req.body ? req.body.email || '' : req.data.membership.email
