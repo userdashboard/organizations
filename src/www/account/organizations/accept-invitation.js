@@ -41,7 +41,7 @@ async function renderPage (req, res, messageTemplate) {
   }
   if (!messageTemplate && req.method === 'GET' && req.query && req.query.returnURL) {
     const divider = submitForm.attr.action.indexOf('?') > -1 ? '&' : '?'
-    submitForm.attr.action += `${divider}returnURL=${encodeURI(req.query.returnURL).split('?').join('%3E')}`
+    submitForm.attr.action += `${divider}returnURL=${encodeURI(req.query.returnURL).split('?').join('%3F')}`
   }
   if (req.body) {
     const idField = doc.getElementById('invitationid')

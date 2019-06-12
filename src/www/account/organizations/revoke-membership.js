@@ -47,7 +47,7 @@ async function renderPage (req, res, messageTemplate) {
   if (!messageTemplate && req.method === 'GET' && req.query && req.query.returnURL) {
     const submitForm = doc.getElementById('submit-form')
     const divider = submitForm.attr.action.indexOf('?') > -1 ? '&' : '?'
-    submitForm.attr.action += `${divider}returnURL=${encodeURI(req.query.returnURL).split('?').join('%3E')}`
+    submitForm.attr.action += `${divider}returnURL=${encodeURI(req.query.returnURL).split('?').join('%3F')}`
   }
   await navbar.setup(doc, req)
   const organizationName = doc.getElementById('organizationName')

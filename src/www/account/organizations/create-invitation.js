@@ -42,7 +42,7 @@ async function renderPage (req, res, messageTemplate) {
   if (!messageTemplate && req.method === 'GET' && req.query && req.query.returnURL) {
     const submitForm = doc.getElementById('submit-form')
     const divider = submitForm.attr.action.indexOf('?') > -1 ? '&' : '?'
-    submitForm.attr.action += `${divider}returnURL=${encodeURI(req.query.returnURL).split('?').join('%3E')}`
+    submitForm.attr.action += `${divider}returnURL=${encodeURI(req.query.returnURL).split('?').join('%3F')}`
   }
   doc.getElementById('organizationName').setAttribute('value', req.data.organization.name)
   doc.getElementById('code').setAttribute('value', req.body ? req.body.code : dashboard.UUID.random(10))
