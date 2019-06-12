@@ -43,6 +43,11 @@ async function renderPage (req, res, messageTemplate) {
     messageTemplate = req.error
   }
   const doc = dashboard.HTML.parse(req.route.html, req.data.membership, 'membership')
+  if (!messageTemplate && req.method === 'GET' && req.query && req.query.returnURL) {
+    const submitForm = doc.getElementById('submit-form')
+    const divider = submitForm.attr.action.indexOf('?') > -1 ? '&' : '?'
+    submitForm.attr.action += `${divider}returnURL=${req.query.returnURL}`
+  }
   await navbar.setup(doc, req)
   const userEmail = req.body ? req.body.email || '' : req.data.membership.email
   const userName = req.body ? req.body.name || '' : req.data.membership.name

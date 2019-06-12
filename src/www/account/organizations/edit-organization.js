@@ -37,6 +37,11 @@ async function renderPage (req, res, messageTemplate) {
     messageTemplate = req.error
   }
   const doc = dashboard.HTML.parse(req.route.html)
+  if (!messageTemplate && req.method === 'GET' && req.query && req.query.returnURL) {
+    const submitForm = doc.getElementById('submit-form')
+    const divider = submitForm.attr.action.indexOf('?') > -1 ? '&' : '?'
+    submitForm.attr.action += `${divider}returnURL=${req.query.returnURL}`
+  }
   const email = req.body ? req.body.email || '' : req.data.organization.email
   const nameField = doc.getElementById('name')
   nameField.setAttribute('value', req.body ? req.body.name || '' : req.data.organization.name)
