@@ -51,7 +51,7 @@ Your `main.js` should contain:
 Add this code to require the module in your `package.json`:
 
     "dashboard": {
-      "dashboard-modules": [
+      "modules": [
         "@userappstore/organizations"
       ]
     }
