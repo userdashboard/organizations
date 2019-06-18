@@ -5,17 +5,14 @@
 
 
   /account/organizations/accept-invitation
-    AcceptInvitation#BEFORE
-      ✓ should reject owner
-      ✓ should reject existing member
-      ✓ should bind organization to req
     AcceptInvitation#GET
       ✓ should present the form
-      ✓ should present the organization
     AcceptInvitation#POST
       ✓ should reject missing name
       ✓ should enforce name length
       ✓ should reject missing email
+      ✓ should reject owner
+      ✓ should reject existing member
       ✓ should apply after authorization
 
   /account/organizations/create-invitation
@@ -492,5 +489,5 @@
       ✓ should apply new values
 
 
-  235 passing (31s)
+  233 passing (33s)
 
