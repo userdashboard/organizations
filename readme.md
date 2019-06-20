@@ -1,126 +1,105 @@
 # Organizations for Dashboard
 
-This module adds a complete user and administrator `Private API` and `Web UI` for user organizations.
+[Dashboard](https://github.com/userappstore/dashboard) is a NodeJS project that provides a reusable account management system for web applications.  This module adds a complete user and administrator `Private API` and `Web UI` for user organizations.
 
-# Dashboard
-Dashboard is a NodeJS project that provides a user account system and administration tools for web applications.  A traditional web application has a tailor-made user login and management system often grievously lacking in functionality that will be added later, or forfeits very priviliged information to Google and Facebook.  When you use Dashboard you start with a complete UI for your users and administrators to manage the beaurocacy of web apps. 
+## Access organization information from your application server
 
-You can use your preferred language, database and tools to write your application with Dashboard hosted seperately.  Dashboard will proxy your content as the user requests it, and your server can access Dashboard's comprehensive API to retrieve account-related data.
+| URL                                                             | Method | Querystring         | POST data  |
+|-----------------------------------------------------------------|--------|---------------------|------------|
+|/api/administrator/organizations/account-invitations             | GET    | accountid=          |            |
+|/api/administrator/organizations/account-invitations-count       | GET    | accountid=          |            |
+|/api/administrator/organizations/account-memberships             | GET    | accountid=          |            |
+|/api/administrator/organizations/account-memberships-count       | GET    | accountid=          |            |
+|/api/administrator/organizations/account-organizations           | GET    | accountid=          |            |
+|/api/administrator/organizations/account-organizations-count     | GET    | accountid=          |            |
+|/api/administrator/organizations/invitation                      | GET    | invitationid=       |            |
+|/api/administrator/organizations/invitations                     | GET    | -                   |            |
+|/api/administrator/organizations/invitations-count               | GET    | -                   |            |
+|/api/administrator/organizations/membership                      | GET    | membershipid=       |            |
+|/api/administrator/organizations/memberships                     | GET    | -                   |            |
+|/api/administrator/organizations/memberships-count               | GET    | -                   |            |
+|/api/administrator/organizations/organization                    | GET    | organizationid=     |            |
+|/api/administrator/organizations/organization-invitations        | GET    | organizationid=     |            |
+|/api/administrator/organizations/organization-invitations-count  | GET    |organizationid=      |            |
+|/api/administrator/organizations/organization-memberships        | GET    | organizationid=     |            |
+|/api/administrator/organizations/organization-memberships-count  | GET    | organizationid=     |            |
+|/api/administrator/organizations/organizations                   | GET    | -                   |            |
+|/api/administrator/organizations/organizations-count             | GET    | -                   |            |
+|/api/user/organizations/create-invitation                        | POST   | organizationid=     | code=      |
+|/api/user/organizations/create-membership                        | POST   | invitationid=       | code=&name=&email= |
+|/api/user/organizations/create-organization                      | POST   | accountid=          | name=&email= |
+|/api/user/organizations/delete-invitation                        | DELETE | invitationid=       |            |
+|/api/user/organizations/delete-membership                        | DELETE | membershipid=       |            |
+|/api/user/organizations/delete-organization                      | DELETE | organizationid=     |            |
+|/api/user/organizations/invitation                               | GET    | invitationid=       |            |
+|/api/user/organizations/invitations                              | GET    | accountid=          |            |
+|/api/user/organizations/invitations-count                        | GET    | accountid=          |            |
+|/api/user/organizations/membership                               | GET    | membershipid=       |            |
+|/api/user/organizations/memberships                              | GET    | accountid=          |            |
+|/api/user/organizations/memberships-count                        | GET    | accountid=          |            |
+|/api/user/organizations/open-invitation                          | GET    | invitationid=       |            |
+|/api/user/organizations/open-invitation-organization             | GET    | invitationid=       |            |
+|/api/user/organizations/organization                             | GET    | organizationid=     |            |
+|/api/user/organizations/organization-invitations                 | GET    | organizationid=     |            |
+|/api/user/organizations/organization-invitations-count           | GET    | organizationid=     |            |
+|/api/user/organizations/organization-membership                  | GET    | organizationid=     |            |
+|/api/user/organizations/organization-memberships                 | GET    | organizationid=     |            |
+|/api/user/organizations/organization-memberships-count           | GET    | organizationid=     |            |
+|/api/user/organizations/organizations                            | GET    | accountid=          |            |
+|/api/user/organizations/organizations-count                      | GET    | accountid=          |            |
+|/api/user/organizations/set-organization-owner                   | PATCH  | organizationid=     | accountid= |
+|/api/user/organizations/update-membership                        | PATCH  | membershipid=       | name=&email= |
+|/api/user/organizations/update-organization                      | PATCH  | organizationid=     | name=&email= |
 
-NodeJS developers may embed Dashboard as a module `@userappstore/dashboard` and share the hosting, or host Dashboard seperately too
+## Access organization information from the dashboard server
 
-### Demonstrations
-
-- [Dashboard](https://dashboard-demo-2344.herokuapp.com)
-- [Dashboard + Organizations module](https://organizations-demo-7933.herokuapp.com)
-- [Dashboard + Stripe Subscriptions module](https://stripe-subscriptions-5701.herokuapp.com)
-- [Dashboard + Stripe Connect module](https://stripe-connect-8509.herokuapp.com)
-
-### UserAppStore
-
-If you are building a SaaS with Dashboard consider publishing it on [UserAppStore](https://userappstore.com), an app store for subscriptions.   UserAppStore is powered by Dashboard and open source too.
-
-#### Dashboard documentation
-- [Introduction](https://github.com/userappstore/dashboard/wiki)
-- [Configuring Dashboard](https://github.com/userappstore/dashboard/wiki/Configuring-Dashboard)
-- [Contributing to Dashboard](https://github.com/userappstore/dashboard/wiki/Contributing-to-Dashboard)
-- [Dashboard code structure](https://github.com/userappstore/dashboard/wiki/Dashboard-code-structure)
-- [Server request lifecycle](https://github.com/userappstore/dashboard/wiki/Server-Request-Lifecycle)
-
-#### License
+| Method                                                                       | Querystring         | POST data  |
+|------------------------------------------------------------------------------|---------------------|------------|
+|global.api.administrator.organizations.AccountInvitations.get(req)            | accountid=          |            |
+|global.api.administrator.organizations.AccountInvitationsCount.get(req)       | accountid=          |            |
+|global.api.administrator.organizations.AccountMemberships.get(req)            | accountid=          |            |
+|global.api.administrator.organizations.AccountMembershipsCount.get(req)       | accountid=          |            |
+|global.api.administrator.organizations.AccountOrganizations.get(req)          | accountid=          |            |
+|global.api.administrator.organizations.AccountOrganizationsCount.get(req)     | accountid=          |            |
+|global.api.administrator.organizations.Invitation.get(req)                    | invitationid=       |            |
+|global.api.administrator.organizations.Invitations.get(req)                   | -                   |            |
+|global.api.administrator.organizations.InvitationsCount.get(req)              | -                   |            |
+|global.api.administrator.organizations.Membership.get(req)                    | membershipid=       |            |
+|global.api.administrator.organizations.Memberships.get(req)                   | -                   |            |
+|global.api.administrator.organizations.MembershipsCount.get(req)              | -                   |            |
+|global.api.administrator.organizations.Organization.get(req)                  | organizationid=     |            |
+|global.api.administrator.organizations.OrganizationInvitations.get(req)       | organizationid=     |            |
+|global.api.administrator.organizations.OrganizationInvitationsCount.get(req)  | organizationid=     |            |
+|global.api.administrator.organizations.OrganizationMemberships.get(req)       | organizationid=     |            |
+|global.api.administrator.organizations.OrganizationMembershipsCount.get(req)  | organizationid=     |            |
+|global.api.administrator.organizations.Organizations.get(req)                 | -                   |            |
+|global.api.administrator.organizations.OrganizationsCount.get(req)            | -                   |            |
+|global.api.user.organizations.CreateInvitation.post(req)                      | organizationid=     | code=      |
+|global.api.user.organizations.CreateMembership.post(req)                      | invitationid=       | code=&name=&email= |
+|global.api.user.organizations.CreateOrganization.post(req)                    | accountid=          | name=&email= |
+|global.api.user.organizations.DeleteInvitation.delete(req)                    | invitationid=       |            |
+|global.api.user.organizations.DeleteMembership.delete(req)                    | membershipid=       |            |
+|global.api.user.organizations.DeleteOrganization.delete(req)                  | organizationid=     |            |
+|global.api.user.organizations.Invitation.get(req)                             | invitationid=       |            |
+|global.api.user.organizations.Invitations.get(req)                            | accountid=          |            |
+|global.api.user.organizations.InvitationsCount.get(req)                       | accountid=          |            |
+|global.api.user.organizations.Membership.get(req)                             | membershipid=       |            |
+|global.api.user.organizations.Memberships.get(req)                            | accountid=          |            |
+|global.api.user.organizations.MembershipsCount.get(req)                       | accountid=          |            |
+|global.api.user.organizations.OpenInvitation.get(req)                         | invitationid=       |            |
+|global.api.user.organizations.OpenInvitationOrganization.get(req)             | invitationid=       |            |
+|global.api.user.organizations.Organization.get(req)                           | organizationid=     |            |
+|global.api.user.organizations.OrganizationInvitations.get(req)                | organizationid=     |            |
+|global.api.user.organizations.OrganizationInvitationsCount.get(req)           | organizationid=     |            |
+|global.api.user.organizations.OrganizationMembership.get(req)                 | organizationid=     |            |
+|global.api.user.organizations.OrganizationMemberships.get(req)                | organizationid=     |            |
+|global.api.user.organizations.OrganizationMembershipsCount.get(req)           | organizationid=     |            |
+|global.api.user.organizations.Organizations.get(req)                          | accountid=          |            |
+|global.api.user.organizations.OrganizationsCount.get(req)                     | accountid=          |            |
+|global.api.user.organizations.SetOrganizationOwner.patch(req)                 | organizationid=     | accountid= |
+|global.api.user.organizations.UpdateMembership.patch(req)                     | membershipid=       | name=&email= |
+|global.api.user.organizations.UpdateOrganization.patch(req)                   | organizationid=     | name=&email= |
+ 
+ #### License
 
 This is free and unencumbered software released into the public domain.  The MIT License is provided for countries that have not established a public domain.
-
-## Installation
-
-You must install [NodeJS](https://nodejs.org) 8.12.0+ prior to these steps.
-
-    $ mkdir project
-    $ cd project
-    $ npm init
-    $ npm install @userappstore/dashboard
-    $ npm install @userappstore/organizations
-    # create a main.js
-    $ node main.js
-
-Your `main.js` should contain:
-
-    const dashboard = require('./index.js')
-    dashboard.start(__dirname)
-
-Add this code to require the module in your `package.json`:
-
-    "dashboard": {
-      "modules": [
-        "@userappstore/organizations"
-      ]
-    }
-
-Your sitemap will output the server address, by default you can access it at:
-
-    http://localhost:8000
-
-The first account to register will be the owner and an administrator.
-
-## Access memberships or owned organizations in your application
-
-When Dashboard requests something from your application server it passes the user account and session information to you.  You can use that information to access the API and retrieve organization information for a user.  This example uses NodeJS but the API is HTTP and can be accessed using any language.
-
-        // your application
-        const Proxy = require('./proxy.js)
-        const util = require('util')
-        const pass = util.promisify(Proxy.pass)
-        const organizations = await pass('GET', `/api/user/organizations/organizations?accountid=${accountid}`, accountid, sessionid)
-        const memberships = await pass('GET', `/api/user/organizations/memberships?accountid=${accountid}`, accountid, sessionid)
-
-        // proxy.js file
-        const http = require('http')
-        const https = require('https')
-        const util = require('util')
-
-        module.exports = {
-            dashboard: util.promisify(pass)
-        }
-
-        function pass (method, path, accountid, sessionid, callback) {
-            let baseURL = process.env.DASHBOARD_SERVER.split('://')[1]
-            const baseSlash = baseURL.indexOf('/')
-            if (baseSlash > -1) {
-                baseURL = baseURL.substring(0, baseSlash)
-            }
-            let port = 80
-            const colon = baseURL.indexOf(':')
-            if (colon > -1) {
-                port = baseURL.substring(colon + 1)
-                baseURL = baseURL.substring(0, colon)
-            }
-            const requestOptions = {
-                host: baseURL,
-                path: path,
-                method: method,
-                headers: {
-                    'x-application-server-token': process.env.APPLICATION_SERVER_TOKEN,
-                    'x-accountid': accountid,
-                    'x-sessionid': sessionid,
-                    'referer': process.env.APPLICATION_SERVER
-                }
-            }
-            const protocol = process.env.DASHBOARD_SERVER.startsWith('https') ? https : http
-            if (protocol === https) {
-                requestOptions.port = 443
-            } else {
-                requestOptions.port = port
-            }
-            return protocol.request(requestOptions, (proxyResponse) => {
-                let body = ''
-                proxyResponse.on('data', (chunk) => {
-                    body += chunk
-                })
-                proxyResponse.on('end', () => {
-                    return callback(null, JSON.parse(body))
-                })
-                proxyResponse.on('error', (error) => {
-                    return callback(error)
-                })
-            })
-        }
