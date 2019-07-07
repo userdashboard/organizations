@@ -3,7 +3,7 @@ const assert = require('assert')
 const TestHelper = require('../../../../../test-helper.js')
 
 describe('/api/user/organizations/delete-invitation', async () => {
-  describe('DeleteInvitation#BEFORE', () => {
+  describe('DeleteInvitation#DELETE', () => {
     it('should require owner', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
@@ -14,7 +14,7 @@ describe('/api/user/organizations/delete-invitation', async () => {
       req.session = user.session
       let errorMessage
       try {
-        await req.route.api.before(req)
+        await req.route.api.delete(req)
       } catch (error) {
         errorMessage = error.message
       }
@@ -32,15 +32,13 @@ describe('/api/user/organizations/delete-invitation', async () => {
       req.session = owner.session
       let errorMessage
       try {
-        await req.route.api.before(req)
+        await req.route.api.delete(req)
       } catch (error) {
         errorMessage = error.message
       }
       assert.strictEqual(errorMessage, 'invalid-invitation')
     })
-  })
 
-  describe('DeleteInvitation#DELETE', () => {
     it('should delete invitation with authorization', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })

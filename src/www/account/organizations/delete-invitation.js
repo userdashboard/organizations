@@ -10,13 +10,6 @@ async function beforeRequest (req) {
   if (!req.query || !req.query.invitationid) {
     throw new Error('invalid-invitationid')
   }
-  if (req.session.lockURL === req.url && req.session.unlocked) {
-    try {
-      return global.api.user.organizations.DeleteInvitation._delete(req)
-    } catch (error) {
-      req.error = error.message
-    }
-  }
   const invitation = await global.api.user.organizations.Invitation._get(req)
   if (invitation.accepted) {
     throw new Error('invalid-invitation')
@@ -64,7 +57,7 @@ async function submitForm (req, res) {
     if (req.success) {
       return renderPage(req, res, 'success')
     }
-    return dashboard.Response.redirect(req, res, '/account/authorize')
+    return renderPage(req, res, 'unknown-error')
   } catch (error) {
     return renderPage(req, res, error.message)
   }

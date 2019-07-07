@@ -79,7 +79,7 @@ describe(`/account/organizations/transfer-organization`, async () => {
   })
 
   describe('TransferOrganization#POST', () => {
-    it('should apply after authorization', async () => {
+    it('should transfer ownership', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
       const user = await TestHelper.createUser()

@@ -3,7 +3,7 @@ const assert = require('assert')
 const TestHelper = require('../../../../../test-helper.js')
 
 describe('/api/user/organizations/delete-membership', async () => {
-  describe('DeleteMembership#BEFORE', () => {
+  describe('DeleteMembership#DELETE', () => {
     it('should reject non-owner non-member', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
@@ -16,15 +16,13 @@ describe('/api/user/organizations/delete-membership', async () => {
       req.session = user2.session
       let errorMessage
       try {
-        await req.route.api.before(req)
+        await req.route.api.delete(req)
       } catch (error) {
         errorMessage = error.message
       }
       assert.strictEqual(errorMessage, 'invalid-account')
     })
-  })
 
-  describe('DeleteMembership#DELETE', () => {
     it('should delete membership', async () => {
       const owner = await TestHelper.createUser()
       const user = await TestHelper.createUser()

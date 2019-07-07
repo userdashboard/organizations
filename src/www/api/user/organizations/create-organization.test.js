@@ -3,7 +3,7 @@ const assert = require('assert')
 const TestHelper = require('../../../../../test-helper.js')
 
 describe(`/api/user/organizations/create-organization`, () => {
-  describe('CreateOrganization#BEFORE', () => {
+  describe('CreateOrganization#POST', () => {
     it('should reject missing name', async () => {
       const user = await TestHelper.createUser()
       const req = TestHelper.createRequest(`/api/user/organizations/create-organization?accountid=${user.account.accountid}`)
@@ -15,7 +15,7 @@ describe(`/api/user/organizations/create-organization`, () => {
       }
       let errorMessage
       try {
-        await req.route.api.before(req)
+        await req.route.api.post(req)
       } catch (error) {
         errorMessage = error.message
       }
@@ -34,7 +34,7 @@ describe(`/api/user/organizations/create-organization`, () => {
       global.minimumOrganizationNameLength = 100
       let errorMessage
       try {
-        await req.route.api.before(req)
+        await req.route.api.post(req)
       } catch (error) {
         errorMessage = error.message
       }
@@ -42,7 +42,7 @@ describe(`/api/user/organizations/create-organization`, () => {
       global.maximumOrganizationNameLength = 1
       errorMessage = null
       try {
-        await req.route.api.before(req)
+        await req.route.api.post(req)
       } catch (error) {
         errorMessage = error.message
       }
@@ -60,15 +60,13 @@ describe(`/api/user/organizations/create-organization`, () => {
       }
       let errorMessage
       try {
-        await req.route.api.before(req)
+        await req.route.api.post(req)
       } catch (error) {
         errorMessage = error.message
       }
       assert.strictEqual(errorMessage, 'invalid-organization-email')
     })
-  })
 
-  describe('CreateOrganization#POST', () => {
     it('should create authorized organization', async () => {
       const owner = await TestHelper.createUser()
       const req = TestHelper.createRequest(`/api/user/organizations/create-organization?accountid=${owner.account.accountid}`)

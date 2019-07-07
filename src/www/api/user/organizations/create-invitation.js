@@ -1,14 +1,9 @@
 const dashboard = require('@userappstore/dashboard')
-const orgs = require('../../../../../index.js')
 
 module.exports = {
-  lock: true,
-  before: async (req) => {
+  post: async (req) => {
     if (!req.query || !req.query.organizationid) {
       throw new Error('invalid-organizationid')
-    }
-    if (req.body && req.body.codeHash) {
-      return
     }
     if (!req.body || !req.body.code) {
       throw new Error('invalid-invitation-code')
@@ -24,16 +19,13 @@ module.exports = {
     if (organization.ownerid !== req.account.accountid) {
       throw new Error('invalid-account')
     }
-    req.body.codeHash = await dashboard.Hash.fixedSaltHash(req.body.code, req.alternativeFixedSalt, req.alternativeDashboardEncryptionKey)
-    delete (req.body.code)
-  },
-  post: async (req) => {
+    const codeHash = await dashboard.Hash.fixedSaltHash(req.body.code, req.alternativeFixedSalt, req.alternativeDashboardEncryptionKey)
     const invitationid = `invitation_${await dashboard.UUID.generateID()}`
     const invitationInfo = {
       object: `invitation`,
       organizationid: req.query.organizationid,
-      invitationid: invitationid,
-      codeHash: req.body.codeHash,
+      invitationid,
+      codeHash,
       created: dashboard.Timestamp.now
     }
     await dashboard.Storage.write(`${req.appid}/invitation/${invitationid}`, invitationInfo)

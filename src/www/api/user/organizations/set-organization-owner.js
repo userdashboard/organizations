@@ -1,8 +1,7 @@
 const dashboard = require('@userappstore/dashboard')
 
 module.exports = {
-  lock: true,
-  before: async (req) => {
+  patch: async (req) => {
     if (!req.query || !req.query.organizationid) {
       throw new Error('invalid-organizationid')
     }
@@ -37,12 +36,9 @@ module.exports = {
     if (!newOwner || newOwner.deleted) {
       throw new Error('invalid-account')
     }
-    req.data = { organization }
-  },
-  patch: async (req) => {
     await dashboard.StorageObject.setProperty(`${req.appid}/organization/${req.query.organizationid}`, 'ownerid', req.body.accountid)
     req.success = true
-    req.data.organization.ownerid = req.body.accountid
-    return req.data.organization
+    organization.ownerid = req.body.accountid
+    return organization
   }
 }

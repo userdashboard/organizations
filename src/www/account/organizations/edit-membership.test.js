@@ -123,7 +123,7 @@ describe(`/account/organizations/edit-membership`, () => {
       assert.strictEqual(message.attr.template, 'invalid-organization-email')
     })
 
-    it('should apply after authorization', async () => {
+    it('should apply membership update', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
       const user = await TestHelper.createUser()

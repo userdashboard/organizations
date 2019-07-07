@@ -1,8 +1,7 @@
 const dashboard = require('@userappstore/dashboard')
 
 module.exports = {
-  lock: true,
-  before: async (req) => {
+  post: async (req) => {
     if (!req.query || !req.query.accountid) {
       throw new Error('invalid-accountid')
     }
@@ -19,8 +18,6 @@ module.exports = {
     if (!req.body.email || !req.body.email.length) {
       throw new Error('invalid-organization-email')
     }
-  },
-  post: async (req) => {
     const organizationid = `organization_${await dashboard.UUID.generateID()}`
     const organizationInfo = {
       object: `organization`,

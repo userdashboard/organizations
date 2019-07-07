@@ -3,7 +3,7 @@ const assert = require('assert')
 const TestHelper = require('../../../../../test-helper.js')
 
 describe('/api/user/organizations/update-membership', async () => {
-  describe('UpdateMembership#BEFORE', () => {
+  describe('UpdateMembership#PATCH', () => {
     it('should require own membership', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
@@ -20,7 +20,7 @@ describe('/api/user/organizations/update-membership', async () => {
       }
       let errorMessage
       try {
-        await req.route.api.before(req)
+        await req.route.api.patch(req)
       } catch (error) {
         errorMessage = error.message
       }
@@ -42,7 +42,7 @@ describe('/api/user/organizations/update-membership', async () => {
       }
       let errorMessage
       try {
-        await req.route.api.before(req)
+        await req.route.api.patch(req)
       } catch (error) {
         errorMessage = error.message
       }
@@ -65,7 +65,7 @@ describe('/api/user/organizations/update-membership', async () => {
       global.minimumMembershipNameLength = 100
       let errorMessage
       try {
-        await req.route.api.before(req)
+        await req.route.api.patch(req)
       } catch (error) {
         errorMessage = error.message
       }
@@ -73,7 +73,7 @@ describe('/api/user/organizations/update-membership', async () => {
       global.maximumMembershipNameLength = 1
       errorMessage = null
       try {
-        await req.route.api.before(req)
+        await req.route.api.patch(req)
       } catch (error) {
         errorMessage = error.message
       }
@@ -95,15 +95,13 @@ describe('/api/user/organizations/update-membership', async () => {
       }
       let errorMessage
       try {
-        await req.route.api.before(req)
+        await req.route.api.patch(req)
       } catch (error) {
         errorMessage = error.message
       }
       assert.strictEqual(errorMessage, 'invalid-membership-email')
     })
-  })
-
-  describe('UpdateMembership#PATCH', () => {
+    
     it('should apply new values', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })

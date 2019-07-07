@@ -1,9 +1,7 @@
 const dashboard = require('@userappstore/dashboard')
-const orgs = require('../../../../../index.js')
 
 module.exports = {
-  lock: true,
-  before: async (req) => {
+  post: async (req) => {
     if (!req.query || !req.query.invitationid) {
       throw new Error('invalid-invitationid')
     }
@@ -55,15 +53,12 @@ module.exports = {
     if (membership) {
       throw new Error('invalid-account')
     }
-    req.data = { organization, invitation }
-  },
-  post: async (req) => {
     await dashboard.StorageObject.setProperty(`${req.appid}/invitation/${req.query.invitationid}`, 'accepted', dashboard.Timestamp.now)
     const membershipid = `membership_${await dashboard.UUID.generateID()}`
     const membershipInfo = {
       object: `membership`,
       membershipid: membershipid,
-      organizationid: req.data.invitation.organizationid,
+      organizationid: invitation.organizationid,
       accountid: req.account.accountid,
       created: dashboard.Timestamp.now,
       name: req.body.name,
@@ -74,10 +69,10 @@ module.exports = {
     await dashboard.StorageObject.setProperty(`${req.appid}/invitation/${req.query.invitationid}`, 'membershipid', membershipid)
     await dashboard.StorageList.add(`${req.appid}/memberships`, membershipid)
     await dashboard.StorageList.add(`${req.appid}/account/memberships/${req.account.accountid}`, membershipid)
-    await dashboard.StorageList.add(`${req.appid}/account/organizations/${req.account.accountid}`, req.data.organization.organizationid)
+    await dashboard.StorageList.add(`${req.appid}/account/organizations/${req.account.accountid}`, organization.organizationid)
     await dashboard.StorageList.add(`${req.appid}/account/invitations/${req.account.accountid}`, req.query.invitationid)
-    await dashboard.StorageList.add(`${req.appid}/organization/memberships/${req.data.organization.organizationid}`, membershipid)
-    await dashboard.Storage.write(`${req.appid}/map/organizationid/membershipid/${req.account.accountid}/${req.data.organization.organizationid}`, membershipid)
+    await dashboard.StorageList.add(`${req.appid}/organization/memberships/${organization.organizationid}`, membershipid)
+    await dashboard.Storage.write(`${req.appid}/map/organizationid/membershipid/${req.account.accountid}/${organization.organizationid}`, membershipid)
     req.success = true
     return membershipInfo
   }

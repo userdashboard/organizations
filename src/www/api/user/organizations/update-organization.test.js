@@ -3,7 +3,7 @@ const assert = require('assert')
 const TestHelper = require('../../../../../test-helper.js')
 
 describe('/api/user/organizations/update-organization', () => {
-  describe('UpdateOrganization#BEFORE', () => {
+  describe('UpdateOrganization#PATCH', () => {
     it('should reject missing name', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
@@ -16,7 +16,7 @@ describe('/api/user/organizations/update-organization', () => {
       }
       let errorMessage
       try {
-        await req.route.api.before(req)
+        await req.route.api.patch(req)
       } catch (error) {
         errorMessage = error.message
       }
@@ -36,7 +36,7 @@ describe('/api/user/organizations/update-organization', () => {
       global.minimumOrganizationNameLength = 100
       let errorMessage
       try {
-        await req.route.api.before(req)
+        await req.route.api.patch(req)
       } catch (error) {
         errorMessage = error.message
       }
@@ -44,7 +44,7 @@ describe('/api/user/organizations/update-organization', () => {
       global.maximumOrganizationNameLength = 1
       errorMessage = undefined
       try {
-        await req.route.api.before(req)
+        await req.route.api.patch(req)
       } catch (error) {
         errorMessage = error.message
       }
@@ -63,15 +63,13 @@ describe('/api/user/organizations/update-organization', () => {
       }
       let errorMessage
       try {
-        await req.route.api.before(req)
+        await req.route.api.patch(req)
       } catch (error) {
         errorMessage = error.message
       }
       assert.strictEqual(errorMessage, 'invalid-organization-email')
     })
-  })
-  
-  describe('UpdateOrganization#POST', () => {
+    
     it('should apply new values', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })

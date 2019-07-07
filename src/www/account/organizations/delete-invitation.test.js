@@ -69,7 +69,8 @@ describe(`/account/organizations/delete-invitation`, async () => {
       const req = TestHelper.createRequest(`/account/organizations/delete-invitation?invitationid=${owner.invitation.invitationid}`)
       req.account = owner.account
       req.session = owner.session
-      await req.post(req)
+      const res = { setHeader: () => { }, end: () => { } }
+      await req.post(req, res)
       const req2 = TestHelper.createRequest(`/api/user/organizations/invitation?invitationid=${owner.invitation.invitationid}`)
       req2.account = owner.account
       req2.session = owner.session

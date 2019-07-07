@@ -3,7 +3,7 @@ const assert = require('assert')
 const TestHelper = require('../../../../../test-helper.js')
 
 describe('/api/user/organizations/set-organization-owner', () => {
-  describe('SetOrganizationOwner#BEFORE', () => {
+  describe('SetOrganizationOwner#PATCH', () => {
     it('should require own organization', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
@@ -17,7 +17,7 @@ describe('/api/user/organizations/set-organization-owner', () => {
       }
       let errorMessage
       try {
-        await req.route.api.before(req)
+        await req.route.api.patch(req)
       } catch (error) {
         errorMessage = error.message
       }
@@ -35,7 +35,7 @@ describe('/api/user/organizations/set-organization-owner', () => {
       }
       let errorMessage
       try {
-        await req.route.api.before(req)
+        await req.route.api.patch(req)
       } catch (error) {
         errorMessage = error.message
       }
@@ -54,15 +54,13 @@ describe('/api/user/organizations/set-organization-owner', () => {
       }
       let errorMessage
       try {
-        await req.route.api.before(req)
+        await req.route.api.patch(req)
       } catch (error) {
         errorMessage = error.message
       }
       assert.strictEqual(errorMessage, 'invalid-account')
     })
-  })
 
-  describe('SetOrganizationOwner#PATCH', () => {
     it('should transfer organization after authorization', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })

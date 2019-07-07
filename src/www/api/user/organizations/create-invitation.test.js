@@ -3,7 +3,7 @@ const assert = require('assert')
 const TestHelper = require('../../../../../test-helper.js')
 
 describe(`/api/user/organizations/create-invitation`, () => {
-  describe('CreateInvitation#BEFORE', () => {
+  describe('CreateInvitation#POST', () => {
     it('should enforce code length', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
@@ -16,15 +16,13 @@ describe(`/api/user/organizations/create-invitation`, () => {
       global.minimumInvitationCodeLength = 100
       let errorMessage
       try {
-        await req.route.api.before(req)
+        await req.route.api.post(req)
       } catch (error) {
         errorMessage = error.message
       }
       assert.strictEqual(errorMessage, 'invalid-invitation-code-length')
     })
-  })
 
-  describe('CreateInvitation#POST', () => {
     it('should create authorized invitation', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })

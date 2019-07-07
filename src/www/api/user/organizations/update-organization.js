@@ -1,9 +1,7 @@
 const dashboard = require('@userappstore/dashboard')
-const orgs = require('../../../../../index.js')
 
 module.exports = {
-  lock: true,
-  before: async (req) => {
+  patch: async (req) => {
     if (!req.query || !req.query.organizationid) {
       throw new Error('invalid-organizationid')
     }
@@ -24,8 +22,6 @@ module.exports = {
     if (!req.body.email || !req.body.email.length) {
       throw new Error('invalid-organization-email')
     }
-  },
-  patch: async (req) => {
     await dashboard.StorageObject.setProperties(`${req.appid}/organization/${req.query.organizationid}`, {
       name: req.body.name,
       email: req.body.email

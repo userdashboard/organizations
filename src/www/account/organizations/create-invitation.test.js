@@ -61,7 +61,7 @@ describe(`/account/organizations/create-invitation`, async () => {
   })
 
   describe('CreateInvitation#POST', () => {
-    it('should apply after authorization', async () => {
+    it('should create invitation', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
       const req = TestHelper.createRequest(`/account/organizations/create-invitation?organizationid=${owner.organization.organizationid}`)

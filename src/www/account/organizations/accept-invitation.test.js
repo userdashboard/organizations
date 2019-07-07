@@ -136,7 +136,7 @@ describe(`/account/organizations/accept-invitation`, () => {
       assert.strictEqual(message.attr.template, 'invalid-account')
     })
 
-    it('should apply after authorization', async () => {
+    it('should accept invitation', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
       await TestHelper.createInvitation(owner)

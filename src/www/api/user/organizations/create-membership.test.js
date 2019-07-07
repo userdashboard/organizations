@@ -3,7 +3,7 @@ const assert = require('assert')
 const TestHelper = require('../../../../../test-helper.js')
 
 describe(`/api/user/organizations/create-membership`, () => {
-  describe('CreateMembership#BEFORE', () => {
+  describe('CreateMembership#POST', () => {
     it('should enforce code length', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
@@ -20,7 +20,7 @@ describe(`/api/user/organizations/create-membership`, () => {
       global.minimumInvitationCodeLength = 100
       let errorMessage
       try {
-        await req.route.api.before(req)
+        await req.route.api.post(req)
       } catch (error) {
         errorMessage = error.message
       }
@@ -44,7 +44,7 @@ describe(`/api/user/organizations/create-membership`, () => {
       }
       let errorMessage
       try {
-        await req.route.api.before(req)
+        await req.route.api.post(req)
       } catch (error) {
         errorMessage = error.message
       }
@@ -65,8 +65,8 @@ describe(`/api/user/organizations/create-membership`, () => {
       }
       let errorMessage
       try {
-        await req.route.api.before(req)
-      } catch (error) {before
+        await req.route.api.post(req)
+      } catch (error) {
         errorMessage = error.message
       }
       assert.strictEqual(errorMessage, 'invalid-account')
@@ -89,15 +89,13 @@ describe(`/api/user/organizations/create-membership`, () => {
       }
       let errorMessage
       try {
-        await req.route.api.before(req)
+        await req.route.api.post(req)
       } catch (error) {
         errorMessage = error.message
       }
       assert.strictEqual(errorMessage, 'invalid-account')
     })
-  })
 
-  describe('CreateMembership#POST', () => {
     it('should create authorized membership', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })

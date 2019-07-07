@@ -11,13 +11,6 @@ async function beforeRequest (req) {
     throw new Error('invalid-organization')
   }
   let invitation
-  if (req.session.lockURL === req.url && req.session.unlocked) {
-    try {
-      invitation = await global.api.user.organizations.CreateInvitation._post(req)
-    } catch (error) {
-      req.error = error.message
-    }
-  }
   const organization = await global.api.user.organizations.Organization._get(req)
   if (!organization) {
     throw new Error('invalid-organization')
@@ -72,7 +65,7 @@ async function submitForm (req, res) {
       req.data.invitation = invitation
       return renderPage(req, res, 'success')
     }
-    return dashboard.Response.redirect(req, res, '/account/authorize')
+    return renderPage(req, res, 'unknown-error')
   } catch (error) {
     return renderPage(req, res, req.error)
   }
