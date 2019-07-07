@@ -13,7 +13,7 @@
       ✓ should reject missing email
       ✓ should reject owner
       ✓ should reject existing member
-      ✓ should apply after authorization
+      ✓ should accept invitation
 
   /account/organizations/create-invitation
     CreateInvitation#BEFORE
@@ -23,7 +23,7 @@
       ✓ should present the form
       ✓ should present the organization
     CreateInvitation#POST
-      ✓ should apply after authorization
+      ✓ should create invitation
 
   /account/organizations/create-organization
     CreateOrganization#GET
@@ -75,7 +75,7 @@
       ✓ should reject missing name
       ✓ should enforce name length
       ✓ should reject missing email
-      ✓ should apply after authorization
+      ✓ should apply membership update
 
   /account/organizations/edit-organization
     EditOrganization#BEFORE
@@ -87,7 +87,7 @@
       ✓ should reject missing name
       ✓ should enforce name length
       ✓ should reject missing email
-      ✓ should apply after authorization
+      ✓ should apply organization update
 
   /account/organizations/index
     Index#BEFORE
@@ -170,7 +170,7 @@
       ✓ should present the form
       ✓ should present the organization
     TransferOrganization#POST
-      ✓ should apply after authorization
+      ✓ should transfer ownership
 
   /administrator/organizations/index
     Index#BEFORE
@@ -341,45 +341,39 @@
       ✓ should return all records
 
   /api/user/organizations/create-invitation
-    CreateInvitation#BEFORE
-      ✓ should enforce code length
     CreateInvitation#POST
+      ✓ should enforce code length
       ✓ should create authorized invitation
 
   /api/user/organizations/create-membership
-    CreateMembership#BEFORE
+    CreateMembership#POST
       ✓ should enforce code length
       ✓ should reject a used invitation
       ✓ should reject owner
       ✓ should reject existing members
-    CreateMembership#POST
       ✓ should create authorized membership
 
   /api/user/organizations/create-organization
-    CreateOrganization#BEFORE
+    CreateOrganization#POST
       ✓ should reject missing name
       ✓ should enforce name length
       ✓ should reject missing email
-    CreateOrganization#POST
       ✓ should create authorized organization
 
   /api/user/organizations/delete-invitation
-    DeleteInvitation#BEFORE
+    DeleteInvitation#DELETE
       ✓ should require owner
       ✓ should reject accepted invitation
-    DeleteInvitation#DELETE
       ✓ should delete invitation with authorization
 
   /api/user/organizations/delete-membership
-    DeleteMembership#BEFORE
-      ✓ should reject non-owner non-member
     DeleteMembership#DELETE
+      ✓ should reject non-owner non-member
       ✓ should delete membership
 
   /api/user/organizations/delete-organization
-    DeleteOrganization#BEFORE
-      ✓ should require own organization
     DeleteOrganization#DELETE
+      ✓ should require own organization
       ✓ should delete organization
 
   /api/user/organizations/invitation
@@ -464,30 +458,27 @@
       ✓ should return all records
 
   /api/user/organizations/set-organization-owner
-    SetOrganizationOwner#BEFORE
+    SetOrganizationOwner#PATCH
       ✓ should require own organization
       ✓ should reject same owner
       ✓ should require new owner is member
-    SetOrganizationOwner#PATCH
       ✓ should transfer organization after authorization
 
   /api/user/organizations/update-membership
-    UpdateMembership#BEFORE
+    UpdateMembership#PATCH
       ✓ should require own membership
       ✓ should reject missing name
       ✓ should enforce name length
       ✓ should reject missing email
-    UpdateMembership#PATCH
       ✓ should apply new values
 
   /api/user/organizations/update-organization
-    UpdateOrganization#BEFORE
+    UpdateOrganization#PATCH
       ✓ should reject missing name
       ✓ should enforce name length
       ✓ should reject missing email
-    UpdateOrganization#POST
       ✓ should apply new values
 
 
-  233 passing (33s)
+  233 passing (43s)
 
