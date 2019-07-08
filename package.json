@@ -17,9 +17,6 @@
     "node": "8.12.0",
     "npm": "6.4.1"
   },
-  "devDependencies": {
-    "@userdashboard/dashboard": "git+https://github.com/userdashboard/dashboard.git"
-  },
   "dashboard": {
     "server": [],
     "modules": [],
@@ -39,5 +36,8 @@
         }
       ]
     }
+  },
+  "devDependencies": {
+    "@userdashboard/dashboard": "^1.0.0"
   }
 }
