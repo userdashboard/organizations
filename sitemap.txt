@@ -1,4 +1,4 @@
-@userappstore/dashboard 1.0.0
+@userdashboard/dashboard 1.0.0
 http://localhost:8003
 
 Administrator menu:
@@ -11,24 +11,24 @@ Account menu:
 /account/signout "Sign out"
 
 Special HTML files:
-@userappstore/dashboard/src/template.html
-@userappstore/dashboard/src/error.html
-@userappstore/dashboard/src/redirect.html
+@userdashboard/dashboard/src/template.html
+@userdashboard/dashboard/src/error.html
+@userdashboard/dashboard/src/redirect.html
 
 URL ----------------------------------------------------------- AUTH ---- TEMPLATE ----- HTTP REQUESTS - NODEJS -------------------- HTML ----------------------
 /                                                               GUEST     FULLSCREEN     GET                                         /src/www                   
-/account                                                                                 GET             @userappstore/dashboard     @userappstore/dashboard    
-/account/change-password                                                                 GET POST        @userappstore/dashboard     @userappstore/dashboard    
-/account/change-username                                                                 GET POST        @userappstore/dashboard     @userappstore/dashboard    
-/account/create-profile                                                                  GET POST        @userappstore/dashboard     @userappstore/dashboard    
-/account/create-reset-code                                                               GET POST        @userappstore/dashboard     @userappstore/dashboard    
-/account/delete-account                                                                  GET POST        @userappstore/dashboard     @userappstore/dashboard    
-/account/delete-account-complete                                GUEST     FULLSCREEN     GET             @userappstore/dashboard     @userappstore/dashboard    
-/account/delete-profile                                                                  GET POST        @userappstore/dashboard     @userappstore/dashboard    
-/account/delete-reset-code                                                               GET POST        @userappstore/dashboard     @userappstore/dashboard    
-/account/edit-profile                                                                    GET POST        @userappstore/dashboard     @userappstore/dashboard    
-/account/end-all-sessions                                                                GET POST        @userappstore/dashboard     @userappstore/dashboard    
-/account/end-session                                                                     GET POST        @userappstore/dashboard     @userappstore/dashboard    
+/account                                                                                 GET             @userdashboard/dashboard     @userdashboard/dashboard    
+/account/change-password                                                                 GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
+/account/change-username                                                                 GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
+/account/create-profile                                                                  GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
+/account/create-reset-code                                                               GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
+/account/delete-account                                                                  GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
+/account/delete-account-complete                                GUEST     FULLSCREEN     GET             @userdashboard/dashboard     @userdashboard/dashboard    
+/account/delete-profile                                                                  GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
+/account/delete-reset-code                                                               GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
+/account/edit-profile                                                                    GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
+/account/end-all-sessions                                                                GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
+/account/end-session                                                                     GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
 /account/organizations                                                                   GET             /src/www                    /src/www                   
 /account/organizations/accept-invitation                                                 GET POST        /src/www                    /src/www                   
 /account/organizations/create-invitation                                                 GET POST        /src/www                    /src/www                   
@@ -47,30 +47,30 @@ URL ----------------------------------------------------------- AUTH ---- TEMPLA
 /account/organizations/organizations                                                     GET             /src/www                    /src/www                   
 /account/organizations/revoke-membership                                                 GET POST        /src/www                    /src/www                   
 /account/organizations/transfer-organization                                             GET POST        /src/www                    /src/www                   
-/account/profile                                                                         GET             @userappstore/dashboard     @userappstore/dashboard    
-/account/profiles                                                                        GET             @userappstore/dashboard     @userappstore/dashboard    
-/account/register                                               GUEST     FULLSCREEN     GET POST        @userappstore/dashboard     @userappstore/dashboard    
-/account/reset-account                                          GUEST     FULLSCREEN     GET POST        @userappstore/dashboard     @userappstore/dashboard    
-/account/reset-code                                                                      GET             @userappstore/dashboard     @userappstore/dashboard    
-/account/reset-codes                                                                     GET             @userappstore/dashboard     @userappstore/dashboard    
-/account/restore-account                                        GUEST     FULLSCREEN     GET POST        @userappstore/dashboard     @userappstore/dashboard    
-/account/session                                                                         GET             @userappstore/dashboard     @userappstore/dashboard    
-/account/sessions                                                                        GET             @userappstore/dashboard     @userappstore/dashboard    
-/account/set-default-profile                                                             GET POST        @userappstore/dashboard     @userappstore/dashboard    
-/account/signin                                                 GUEST     FULLSCREEN     GET POST        @userappstore/dashboard     @userappstore/dashboard    
-/account/signout                                                          FULLSCREEN     GET             @userappstore/dashboard     @userappstore/dashboard    
-/account/signout-complete                                       GUEST     FULLSCREEN     GET                                         @userappstore/dashboard    
-/administrator                                                                           GET                                         @userappstore/dashboard    
-/administrator/account                                                                   GET             @userappstore/dashboard     @userappstore/dashboard    
-/administrator/account-profiles                                                          GET             @userappstore/dashboard     @userappstore/dashboard    
-/administrator/account-reset-codes                                                       GET             @userappstore/dashboard     @userappstore/dashboard    
-/administrator/account-sessions                                                          GET             @userappstore/dashboard     @userappstore/dashboard    
-/administrator/accounts                                                                  GET             @userappstore/dashboard     @userappstore/dashboard    
-/administrator/administrators                                                            GET             @userappstore/dashboard     @userappstore/dashboard    
-/administrator/assign-administrator                                                      GET POST        @userappstore/dashboard     @userappstore/dashboard    
-/administrator/create-reset-code                                                         GET POST        @userappstore/dashboard     @userappstore/dashboard    
-/administrator/delete-account                                                            GET POST        @userappstore/dashboard     @userappstore/dashboard    
-/administrator/delete-schedule                                                           GET             @userappstore/dashboard     @userappstore/dashboard    
+/account/profile                                                                         GET             @userdashboard/dashboard     @userdashboard/dashboard    
+/account/profiles                                                                        GET             @userdashboard/dashboard     @userdashboard/dashboard    
+/account/register                                               GUEST     FULLSCREEN     GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
+/account/reset-account                                          GUEST     FULLSCREEN     GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
+/account/reset-code                                                                      GET             @userdashboard/dashboard     @userdashboard/dashboard    
+/account/reset-codes                                                                     GET             @userdashboard/dashboard     @userdashboard/dashboard    
+/account/restore-account                                        GUEST     FULLSCREEN     GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
+/account/session                                                                         GET             @userdashboard/dashboard     @userdashboard/dashboard    
+/account/sessions                                                                        GET             @userdashboard/dashboard     @userdashboard/dashboard    
+/account/set-default-profile                                                             GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
+/account/signin                                                 GUEST     FULLSCREEN     GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
+/account/signout                                                          FULLSCREEN     GET             @userdashboard/dashboard     @userdashboard/dashboard    
+/account/signout-complete                                       GUEST     FULLSCREEN     GET                                         @userdashboard/dashboard    
+/administrator                                                                           GET                                         @userdashboard/dashboard    
+/administrator/account                                                                   GET             @userdashboard/dashboard     @userdashboard/dashboard    
+/administrator/account-profiles                                                          GET             @userdashboard/dashboard     @userdashboard/dashboard    
+/administrator/account-reset-codes                                                       GET             @userdashboard/dashboard     @userdashboard/dashboard    
+/administrator/account-sessions                                                          GET             @userdashboard/dashboard     @userdashboard/dashboard    
+/administrator/accounts                                                                  GET             @userdashboard/dashboard     @userdashboard/dashboard    
+/administrator/administrators                                                            GET             @userdashboard/dashboard     @userdashboard/dashboard    
+/administrator/assign-administrator                                                      GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
+/administrator/create-reset-code                                                         GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
+/administrator/delete-account                                                            GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
+/administrator/delete-schedule                                                           GET             @userdashboard/dashboard     @userdashboard/dashboard    
 /administrator/organizations                                                             GET             /src/www                    /src/www                   
 /administrator/organizations/invitation                                                  GET             /src/www                    /src/www                   
 /administrator/organizations/invitations                                                 GET             /src/www                    /src/www                   
@@ -80,31 +80,31 @@ URL ----------------------------------------------------------- AUTH ---- TEMPLA
 /administrator/organizations/organization-invitations                                    GET             /src/www                    /src/www                   
 /administrator/organizations/organization-memberships                                    GET             /src/www                    /src/www                   
 /administrator/organizations/organizations                                               GET             /src/www                    /src/www                   
-/administrator/profile                                                                   GET             @userappstore/dashboard     @userappstore/dashboard    
-/administrator/profiles                                                                  GET             @userappstore/dashboard     @userappstore/dashboard    
-/administrator/reset-code                                                                GET             @userappstore/dashboard     @userappstore/dashboard    
-/administrator/reset-codes                                                               GET             @userappstore/dashboard     @userappstore/dashboard    
-/administrator/reset-session-key                                                         GET POST        @userappstore/dashboard     @userappstore/dashboard    
-/administrator/revoke-administrator                                                      GET POST        @userappstore/dashboard     @userappstore/dashboard    
-/administrator/schedule-account-delete                                                   GET POST        @userappstore/dashboard     @userappstore/dashboard    
-/administrator/session                                                                   GET             @userappstore/dashboard     @userappstore/dashboard    
-/administrator/sessions                                                                  GET             @userappstore/dashboard     @userappstore/dashboard    
-/administrator/transfer-ownership                                                        GET POST        @userappstore/dashboard     @userappstore/dashboard    
-/api/administrator/account                                                               GET             @userappstore/dashboard                                
-/api/administrator/account-profiles                                                      GET             @userappstore/dashboard                                
-/api/administrator/account-profiles-count                                                GET             @userappstore/dashboard                                
-/api/administrator/account-reset-codes                                                   GET             @userappstore/dashboard                                
-/api/administrator/account-reset-codes-count                                             GET             @userappstore/dashboard                                
-/api/administrator/account-sessions                                                      GET             @userappstore/dashboard                                
-/api/administrator/account-sessions-count                                                GET             @userappstore/dashboard                                
-/api/administrator/accounts                                                              GET             @userappstore/dashboard                                
-/api/administrator/accounts-count                                                        GET             @userappstore/dashboard                                
-/api/administrator/administrator-accounts                                                GET             @userappstore/dashboard                                
-/api/administrator/administrator-accounts-count                                          GET             @userappstore/dashboard                                
-/api/administrator/create-reset-code                                                     POST            @userappstore/dashboard                                
-/api/administrator/delete-account                                                        DELETE          @userappstore/dashboard                                
-/api/administrator/deleted-accounts                                                      GET             @userappstore/dashboard                                
-/api/administrator/deleted-accounts-count                                                GET             @userappstore/dashboard                                
+/administrator/profile                                                                   GET             @userdashboard/dashboard     @userdashboard/dashboard    
+/administrator/profiles                                                                  GET             @userdashboard/dashboard     @userdashboard/dashboard    
+/administrator/reset-code                                                                GET             @userdashboard/dashboard     @userdashboard/dashboard    
+/administrator/reset-codes                                                               GET             @userdashboard/dashboard     @userdashboard/dashboard    
+/administrator/reset-session-key                                                         GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
+/administrator/revoke-administrator                                                      GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
+/administrator/schedule-account-delete                                                   GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
+/administrator/session                                                                   GET             @userdashboard/dashboard     @userdashboard/dashboard    
+/administrator/sessions                                                                  GET             @userdashboard/dashboard     @userdashboard/dashboard    
+/administrator/transfer-ownership                                                        GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
+/api/administrator/account                                                               GET             @userdashboard/dashboard                                
+/api/administrator/account-profiles                                                      GET             @userdashboard/dashboard                                
+/api/administrator/account-profiles-count                                                GET             @userdashboard/dashboard                                
+/api/administrator/account-reset-codes                                                   GET             @userdashboard/dashboard                                
+/api/administrator/account-reset-codes-count                                             GET             @userdashboard/dashboard                                
+/api/administrator/account-sessions                                                      GET             @userdashboard/dashboard                                
+/api/administrator/account-sessions-count                                                GET             @userdashboard/dashboard                                
+/api/administrator/accounts                                                              GET             @userdashboard/dashboard                                
+/api/administrator/accounts-count                                                        GET             @userdashboard/dashboard                                
+/api/administrator/administrator-accounts                                                GET             @userdashboard/dashboard                                
+/api/administrator/administrator-accounts-count                                          GET             @userdashboard/dashboard                                
+/api/administrator/create-reset-code                                                     POST            @userdashboard/dashboard                                
+/api/administrator/delete-account                                                        DELETE          @userdashboard/dashboard                                
+/api/administrator/deleted-accounts                                                      GET             @userdashboard/dashboard                                
+/api/administrator/deleted-accounts-count                                                GET             @userdashboard/dashboard                                
 /api/administrator/organizations/account-invitations                                     GET             /src/www                                               
 /api/administrator/organizations/account-invitations-count                               GET             /src/www                                               
 /api/administrator/organizations/account-memberships                                     GET             /src/www                                               
@@ -124,27 +124,27 @@ URL ----------------------------------------------------------- AUTH ---- TEMPLA
 /api/administrator/organizations/organization-memberships-count                          GET             /src/www                                               
 /api/administrator/organizations/organizations                                           GET             /src/www                                               
 /api/administrator/organizations/organizations-count                                     GET             /src/www                                               
-/api/administrator/profile                                                               GET             @userappstore/dashboard                                
-/api/administrator/profiles                                                              GET             @userappstore/dashboard                                
-/api/administrator/profiles-count                                                        GET             @userappstore/dashboard                                
-/api/administrator/reset-account-administrator                                           PATCH           @userappstore/dashboard                                
-/api/administrator/reset-code                                                            GET             @userappstore/dashboard                                
-/api/administrator/reset-codes                                                           GET             @userappstore/dashboard                                
-/api/administrator/reset-codes-count                                                     GET             @userappstore/dashboard                                
-/api/administrator/reset-session-key                                                     PATCH           @userappstore/dashboard                                
-/api/administrator/session                                                               GET             @userappstore/dashboard                                
-/api/administrator/sessions                                                              GET             @userappstore/dashboard                                
-/api/administrator/sessions-count                                                        GET             @userappstore/dashboard                                
-/api/administrator/set-account-administrator                                             PATCH           @userappstore/dashboard                                
-/api/administrator/set-account-deleted                                                   PATCH           @userappstore/dashboard                                
-/api/administrator/set-owner-account                                                     PATCH           @userappstore/dashboard                                
-/api/user/account                                                                        GET             @userappstore/dashboard                                
-/api/user/create-account                                        GUEST                    POST            @userappstore/dashboard                                
-/api/user/create-profile                                                                 POST            @userappstore/dashboard                                
-/api/user/create-reset-code                                                              POST            @userappstore/dashboard                                
-/api/user/create-session                                        GUEST                    POST            @userappstore/dashboard                                
-/api/user/delete-profile                                                                 DELETE          @userappstore/dashboard                                
-/api/user/delete-reset-code                                                              DELETE          @userappstore/dashboard                                
+/api/administrator/profile                                                               GET             @userdashboard/dashboard                                
+/api/administrator/profiles                                                              GET             @userdashboard/dashboard                                
+/api/administrator/profiles-count                                                        GET             @userdashboard/dashboard                                
+/api/administrator/reset-account-administrator                                           PATCH           @userdashboard/dashboard                                
+/api/administrator/reset-code                                                            GET             @userdashboard/dashboard                                
+/api/administrator/reset-codes                                                           GET             @userdashboard/dashboard                                
+/api/administrator/reset-codes-count                                                     GET             @userdashboard/dashboard                                
+/api/administrator/reset-session-key                                                     PATCH           @userdashboard/dashboard                                
+/api/administrator/session                                                               GET             @userdashboard/dashboard                                
+/api/administrator/sessions                                                              GET             @userdashboard/dashboard                                
+/api/administrator/sessions-count                                                        GET             @userdashboard/dashboard                                
+/api/administrator/set-account-administrator                                             PATCH           @userdashboard/dashboard                                
+/api/administrator/set-account-deleted                                                   PATCH           @userdashboard/dashboard                                
+/api/administrator/set-owner-account                                                     PATCH           @userdashboard/dashboard                                
+/api/user/account                                                                        GET             @userdashboard/dashboard                                
+/api/user/create-account                                        GUEST                    POST            @userdashboard/dashboard                                
+/api/user/create-profile                                                                 POST            @userdashboard/dashboard                                
+/api/user/create-reset-code                                                              POST            @userdashboard/dashboard                                
+/api/user/create-session                                        GUEST                    POST            @userdashboard/dashboard                                
+/api/user/delete-profile                                                                 DELETE          @userdashboard/dashboard                                
+/api/user/delete-reset-code                                                              DELETE          @userdashboard/dashboard                                
 /api/user/organizations/create-invitation                                                POST            /src/www                                               
 /api/user/organizations/create-membership                                                POST            /src/www                                               
 /api/user/organizations/create-organization                                              POST            /src/www                                               
@@ -170,22 +170,22 @@ URL ----------------------------------------------------------- AUTH ---- TEMPLA
 /api/user/organizations/set-organization-owner                                           PATCH           /src/www                                               
 /api/user/organizations/update-membership                                                PATCH           /src/www                                               
 /api/user/organizations/update-organization                                              PATCH           /src/www                                               
-/api/user/profile                                                                        GET             @userappstore/dashboard                                
-/api/user/profiles                                                                       GET             @userappstore/dashboard                                
-/api/user/profiles-count                                                                 GET             @userappstore/dashboard                                
-/api/user/reset-account-deleted                                 GUEST                    PATCH           @userappstore/dashboard                                
-/api/user/reset-account-password                                GUEST                    PATCH           @userappstore/dashboard                                
-/api/user/reset-code                                                                     GET             @userappstore/dashboard                                
-/api/user/reset-codes                                                                    GET             @userappstore/dashboard                                
-/api/user/reset-codes-count                                                              GET             @userappstore/dashboard                                
-/api/user/reset-session-key                                                              PATCH           @userappstore/dashboard                                
-/api/user/session                                                                        GET             @userappstore/dashboard                                
-/api/user/sessions                                                                       GET             @userappstore/dashboard                                
-/api/user/sessions-count                                                                 GET             @userappstore/dashboard                                
-/api/user/set-account-deleted                                                            PATCH           @userappstore/dashboard                                
-/api/user/set-account-password                                                           PATCH           @userappstore/dashboard                                
-/api/user/set-account-profile                                                            PATCH           @userappstore/dashboard                                
-/api/user/set-account-username                                                           PATCH           @userappstore/dashboard                                
-/api/user/set-session-ended                                                              PATCH           @userappstore/dashboard                                
-/api/user/update-profile                                                                 PATCH           @userappstore/dashboard                                
-/home                                                                                    GET                                         @userappstore/dashboard    
+/api/user/profile                                                                        GET             @userdashboard/dashboard                                
+/api/user/profiles                                                                       GET             @userdashboard/dashboard                                
+/api/user/profiles-count                                                                 GET             @userdashboard/dashboard                                
+/api/user/reset-account-deleted                                 GUEST                    PATCH           @userdashboard/dashboard                                
+/api/user/reset-account-password                                GUEST                    PATCH           @userdashboard/dashboard                                
+/api/user/reset-code                                                                     GET             @userdashboard/dashboard                                
+/api/user/reset-codes                                                                    GET             @userdashboard/dashboard                                
+/api/user/reset-codes-count                                                              GET             @userdashboard/dashboard                                
+/api/user/reset-session-key                                                              PATCH           @userdashboard/dashboard                                
+/api/user/session                                                                        GET             @userdashboard/dashboard                                
+/api/user/sessions                                                                       GET             @userdashboard/dashboard                                
+/api/user/sessions-count                                                                 GET             @userdashboard/dashboard                                
+/api/user/set-account-deleted                                                            PATCH           @userdashboard/dashboard                                
+/api/user/set-account-password                                                           PATCH           @userdashboard/dashboard                                
+/api/user/set-account-profile                                                            PATCH           @userdashboard/dashboard                                
+/api/user/set-account-username                                                           PATCH           @userdashboard/dashboard                                
+/api/user/set-session-ended                                                              PATCH           @userdashboard/dashboard                                
+/api/user/update-profile                                                                 PATCH           @userdashboard/dashboard                                
+/home                                                                                    GET                                         @userdashboard/dashboard    

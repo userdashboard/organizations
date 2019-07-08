@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 global.applicationPath = global.applicationPath || __dirname
-const TestHelper = require('@userappstore/dashboard/test-helper.js')
+const TestHelper = require('@userdashboard/dashboard/test-helper.js')
 
 module.exports = {
   acceptInvitation,

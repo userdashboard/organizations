@@ -1,11 +1,11 @@
 {
-  "name": "@userappstore/organizations",
+  "name": "@userdashboard/organizations",
   "version": "1.0.0",
   "description": "Organizations module for Dashboard",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/userappstore/organizations.git"
+    "url": "git://github.com/userdashboard/organizations.git"
   },
   "license": "SPDX(MIT OR Unlicense)",
   "scripts": {
@@ -18,7 +18,7 @@
     "npm": "6.4.1"
   },
   "devDependencies": {
-    "@userappstore/dashboard": "git+https://github.com/userappstore/dashboard.git"
+    "@userdashboard/dashboard": "git+https://github.com/userdashboard/dashboard.git"
   },
   "dashboard": {
     "server": [],

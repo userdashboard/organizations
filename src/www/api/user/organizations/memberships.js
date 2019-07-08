@@ -1,4 +1,4 @@
-const dashboard = require('@userappstore/dashboard')
+const dashboard = require('@userdashboard/dashboard')
 const orgs = require('../../../../../index.js')
 
 module.exports = {

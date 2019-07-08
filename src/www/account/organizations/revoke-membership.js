@@ -1,4 +1,4 @@
-const dashboard = require('@userappstore/dashboard')
+const dashboard = require('@userdashboard/dashboard')
 const navbar = require('./navbar-membership.js')
 
 module.exports = {
