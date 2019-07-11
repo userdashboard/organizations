@@ -188,4 +188,4 @@ URL ----------------------------------------------------------- AUTH ---- TEMPLA
 /api/user/set-account-username                                                           PATCH           @userdashboard/dashboard                                 
 /api/user/set-session-ended                                                              PATCH           @userdashboard/dashboard                                 
 /api/user/update-profile                                                                 PATCH           @userdashboard/dashboard                                 
-/home                                                                                    GET                                          @userdashboard/dashboard    
+/home                                                                                    GET                                          /src/www                    
