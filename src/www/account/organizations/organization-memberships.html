@@ -16,6 +16,8 @@
         <tr>
           <th>ID</th>
           <th>Created</th>
+          <th>Name</th>
+          <th>Email</th>
           <th>Invitation</th>
           <th></th>
         </tr>
@@ -30,9 +32,11 @@
     <tr id="${membership.membershipid}">
       <td><a href="/account/organizations/membership?membershipid=${membership.membershipid}">${membership.membershipid}</a></td>
       <td>${membership.createdFormatted}</td>
+      <td>${membership.name}</td>
+      <td>${membership.email}</td>
       <td><a href="/account/organizations/invitation?invitationid=${membership.invitationid}">Invitation</a></td>
       <td class="pure-button-group" role="group">
-        <a href="/account/organizations/revoke-membership?invitationid=${membership.membershipid}" class="pure-button">Revoke</a>
+        <a href="/account/organizations/revoke-membership?membershipid=${membership.membershipid}" class="pure-button">Revoke</a>
       </td>
     </tr>
   </template>

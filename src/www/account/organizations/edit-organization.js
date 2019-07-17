@@ -29,7 +29,7 @@ async function renderPage (req, res, messageTemplate) {
   } else if (req.error) {
     messageTemplate = req.error
   }
-  const doc = dashboard.HTML.parse(req.route.html)
+  const doc = dashboard.HTML.parse(req.route.html, req.data.organization, 'organization')
   if (!messageTemplate && req.method === 'GET' && req.query && req.query.returnURL) {
     const submitForm = doc.getElementById('submit-form')
     const divider = submitForm.attr.action.indexOf('?') > -1 ? '&' : '?'
