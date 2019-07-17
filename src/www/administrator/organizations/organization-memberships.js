@@ -10,6 +10,10 @@ async function beforeRequest (req) {
   if (!req.query || !req.query.organizationid) {
     throw new Error('invalid-organizationid)')
   }
+  const organization = await global.api.administrator.organizations.Organization._get(req)
+  if (!organization) {
+    throw new Error('invalid-organization')
+  }
   const total = await global.api.administrator.organizations.OrganizationMembershipsCount._get(req)
   const memberships = await global.api.administrator.organizations.OrganizationMemberships._get(req)
   if (memberships && memberships.length) {
@@ -18,11 +22,11 @@ async function beforeRequest (req) {
     }
   }
   const offset = req.query ? req.query.offset || 0 : 0
-  req.data = { memberships, total, offset }
+  req.data = { organization, memberships, total, offset }
 }
 
 async function renderPage (req, res) {
-  const doc = dashboard.HTML.parse(req.route.html)
+  const doc = dashboard.HTML.parse(req.route.html, req.data.organization, 'organization')
   if (req.data.memberships && req.data.memberships.length) {
     dashboard.HTML.renderTable(doc, req.data.memberships, 'membership-row', 'memberships-table')
     if (req.data.total <= global.pageSize) {
