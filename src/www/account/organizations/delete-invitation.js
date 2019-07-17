@@ -48,6 +48,20 @@ async function renderPage (req, res, messageTemplate) {
       return dashboard.Response.end(req, res, doc)
     }
   }
+  if (req.data.invitation.accepted) {
+    const notAccepted = doc.getElementById('not-accepted')
+    notAccepted.parentNode.removeChild(notAccepted)
+  } else {
+    const accepted = doc.getElementById('accepted')
+    accepted.parentNode.removeChild(accepted)
+  }
+  if (req.data.invitation.membershipid) {
+    const noMembership = doc.getElementById('no-membership')
+    noMembership.parentNode.removeChild(noMembership)
+  } else {
+    const membership = doc.getElementById('membership')
+    membership.parentNode.removeChild(membership)
+  }
   return dashboard.Response.end(req, res, doc)
 }
 
