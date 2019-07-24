@@ -14,7 +14,7 @@ async function beforeRequest (req) {
   if (!organization) {
     throw new Error('invalid-organization')
   }
-  if (!req.success && organization.ownerid !== req.account.accountid) {
+  if (organization.ownerid !== req.account.accountid) {
     throw new Error('invalid-account')
   }
   organization.createdFormatted = dashboard.Timestamp.date(organization.created)
