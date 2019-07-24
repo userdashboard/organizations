@@ -10,7 +10,7 @@ async function beforeRequest (req) {
   if (!req.query || !req.query.organizationid) {
     throw new Error('invalid-organization')
   }
-  const organization = await global.api.user.organizations.Organization._get(req)
+  const organization = await global.api.user.organizations.Organization.get(req)
   if (!organization) {
     throw new Error('invalid-organization')
   }
@@ -24,9 +24,9 @@ async function beforeRequest (req) {
   }
   req.query.offset = 0
   let memberships = []
-  let total = await global.api.user.organizations.OrganizationMembershipsCount._get(req)
+  let total = await global.api.user.organizations.OrganizationMembershipsCount.get(req)
   while (total > 0) {
-    const more = await global.api.user.organizations.OrganizationMemberships._get(req)
+    const more = await global.api.user.organizations.OrganizationMemberships.get(req)
     req.query.offset += global.pageSize
 
     total -= global.pageSize
@@ -77,7 +77,7 @@ async function submitForm (req, res) {
     return renderPage(req, res, 'invalid-accountid')
   }
   try {
-    await global.api.user.organizations.SetOrganizationOwner._patch(req)
+    await global.api.user.organizations.SetOrganizationOwner.patch(req)
     if (req.success) {
       return renderPage(req, res, 'success')
     }

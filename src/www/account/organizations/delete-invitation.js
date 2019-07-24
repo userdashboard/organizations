@@ -10,12 +10,12 @@ async function beforeRequest (req) {
   if (!req.query || !req.query.invitationid) {
     throw new Error('invalid-invitationid')
   }
-  const invitation = await global.api.user.organizations.Invitation._get(req)
+  const invitation = await global.api.user.organizations.Invitation.get(req)
   if (invitation.accepted) {
     throw new Error('invalid-invitation')
   }
   req.query.organizationid = invitation.organizationid
-  const organization = await global.api.user.organizations.Organization._get(req)
+  const organization = await global.api.user.organizations.Organization.get(req)
   if (organization.ownerid !== req.account.accountid) {
     throw new Error('invalid-account')
   }
@@ -67,7 +67,7 @@ async function renderPage (req, res, messageTemplate) {
 
 async function submitForm (req, res) {
   try {
-    await global.api.user.organizations.DeleteInvitation._delete(req)
+    await global.api.user.organizations.DeleteInvitation.delete(req)
     if (req.success) {
       return renderPage(req, res, 'success')
     }

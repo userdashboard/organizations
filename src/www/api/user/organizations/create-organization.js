@@ -31,7 +31,7 @@ module.exports = {
     let profile
     if (req.account.profileid) {
       req.query.profileid = req.account.profileid
-      profile = await global.api.user.Profile._get(req)
+      profile = await global.api.user.Profile.get(req)
     }
     const membershipid = `membership_${await dashboard.UUID.generateID()}`
     const membershipInfo = {

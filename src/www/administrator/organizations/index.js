@@ -6,13 +6,13 @@ module.exports = {
 
 async function beforeRequest (req) {
   req.query = req.query || {}
-  const organizations = await global.api.administrator.organizations.Organizations._get(req)
+  const organizations = await global.api.administrator.organizations.Organizations.get(req)
   if (organizations && organizations.length) {
     for (const organization of organizations) {
       organization.createdFormatted = dashboard.Timestamp.date(organization.created)
     }
   }
-  const memberships = await global.api.administrator.organizations.Memberships._get(req)
+  const memberships = await global.api.administrator.organizations.Memberships.get(req)
   if (memberships && memberships.length) {
     for (const membership of memberships) {
       membership.createdFormatted = dashboard.Timestamp.date(membership.created)

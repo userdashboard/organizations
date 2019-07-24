@@ -9,14 +9,14 @@ async function beforeRequest (req) {
   if (!req.query || !req.query.organizationid) {
     throw new Error('invalid-organization')
   }
-  const organization = await global.api.user.organizations.Organization._get(req)
+  const organization = await global.api.user.organizations.Organization.get(req)
   if (!organization) {
     throw new Error('invalid-organization')
   }
   if (organization.ownerid !== req.account.accountid) {
     let membership
     try {
-      membership = await global.api.user.organizations.OrganizationMembership._get(req)
+      membership = await global.api.user.organizations.OrganizationMembership.get(req)
     } catch (error) {
     }
     if (!membership) {

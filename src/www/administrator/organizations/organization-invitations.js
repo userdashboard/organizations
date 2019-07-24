@@ -9,12 +9,12 @@ async function beforeRequest (req) {
   if (!req.query || !req.query.organizationid) {
     throw new Error('invalid-organizationid')
   }
-  const organization = await global.api.administrator.organizations.Organization._get(req)
+  const organization = await global.api.administrator.organizations.Organization.get(req)
   if (!organization) {
     throw new Error('invalid-organization')
   }
-  const total = await global.api.administrator.organizations.OrganizationInvitationsCount._get(req)
-  const invitations = await global.api.administrator.organizations.OrganizationInvitations._get(req)
+  const total = await global.api.administrator.organizations.OrganizationInvitationsCount.get(req)
+  const invitations = await global.api.administrator.organizations.OrganizationInvitations.get(req)
   if (invitations && invitations.length) {
     for (const invitation of invitations) {
       invitation.createdFormatted = dashboard.Timestamp.date(invitation.created)

@@ -5,7 +5,7 @@ module.exports = {
     if (!req.query || !req.query.organizationid) {
       throw new Error('invalid-organizationid')
     }
-    const organization = await global.api.user.organizations.Organization._get(req)
+    const organization = await global.api.user.organizations.Organization.get(req)
     if (!organization) {
       throw new Error('invalid-organizationid')
     }

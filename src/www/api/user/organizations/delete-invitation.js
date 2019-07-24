@@ -6,7 +6,7 @@ module.exports = {
     if (!req.query || !req.query.invitationid) {
       throw new Error('invalid-invitationid')
     }
-    const invitation = await global.api.user.organizations.Invitation._get(req)
+    const invitation = await global.api.user.organizations.Invitation.get(req)
     if (!invitation) {
       throw new Error('invalid-invitationid')
     }
@@ -14,7 +14,7 @@ module.exports = {
       throw new Error('invalid-invitation')
     }
     req.query.organizationid = invitation.organizationid
-    const organization = await global.api.user.organizations.Organization._get(req)
+    const organization = await global.api.user.organizations.Organization.get(req)
     if (!organization) {
       throw new Error('invalid-organizationid')
     }

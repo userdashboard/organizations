@@ -11,7 +11,7 @@ async function beforeRequest (req) {
     throw new Error('invalid-organization')
   }
   let invitation
-  const organization = await global.api.user.organizations.Organization._get(req)
+  const organization = await global.api.user.organizations.Organization.get(req)
   if (!organization) {
     throw new Error('invalid-organization')
   }
@@ -60,7 +60,7 @@ async function submitForm (req, res) {
     return renderPage(req, res, 'invalid-invitation-code')
   }
   try {
-    const invitation = await global.api.user.organizations.CreateInvitation._post(req)
+    const invitation = await global.api.user.organizations.CreateInvitation.post(req)
     if (req.success) {
       req.data.invitation = invitation
       return renderPage(req, res, 'success')

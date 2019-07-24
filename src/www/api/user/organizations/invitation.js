@@ -14,7 +14,7 @@ module.exports = {
       throw new Error('invalid-invitationid')
     }
     req.query.organizationid = invitation.organizationid
-    const organization = await global.api.user.organizations.Organization._get(req)
+    const organization = await global.api.user.organizations.Organization.get(req)
     if (!organization) {
       throw new Error('invalid-organizationid')
     }

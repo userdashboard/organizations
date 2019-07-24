@@ -12,7 +12,7 @@ module.exports = {
       global.maximumInvitationCodeLength < req.body.code.length) {
       throw new Error('invalid-invitation-code-length')
     }
-    const organization = await global.api.user.organizations.Organization._get(req)
+    const organization = await global.api.user.organizations.Organization.get(req)
     if (!organization) {
       throw new Error('invalid-organizationid')
     }

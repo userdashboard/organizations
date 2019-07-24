@@ -6,8 +6,8 @@ module.exports = {
 }
 
 async function beforeRequest (req) {
-  const total = await global.api.administrator.organizations.OrganizationsCount._get(req)
-  let organizations = await global.api.administrator.organizations.Organizations._get(req)
+  const total = await global.api.administrator.organizations.OrganizationsCount.get(req)
+  let organizations = await global.api.administrator.organizations.Organizations.get(req)
   if (organizations && organizations.length) {
     for (const organization of organizations) {
       organization.createdFormatted = dashboard.Timestamp.date(organization.created)

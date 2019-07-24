@@ -54,7 +54,7 @@ async function submitForm (req, res) {
   try {
     req.query = req.query || {}
     req.query.accountid = req.account.accountid
-    const organization = await global.api.user.organizations.CreateOrganization._post(req)
+    const organization = await global.api.user.organizations.CreateOrganization.post(req)
     if (req.success) {
       req.data = { organization }
       return renderPage(req, res, 'success')

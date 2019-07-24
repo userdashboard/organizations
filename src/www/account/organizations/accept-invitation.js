@@ -60,12 +60,12 @@ async function submitForm (req, res) {
   req.query = req.query || {}
   req.query.invitationid = req.body.invitationid
   try {
-    const invitation = await global.api.user.organizations.OpenInvitation._get(req)
+    const invitation = await global.api.user.organizations.OpenInvitation.get(req)
     if (invitation.accepted) {
       return renderPage(req, res, 'invalid-invitation')
     }
     req.query.organizationid = invitation.organizationid
-    const organization = await global.api.user.organizations.OpenInvitationOrganization._get(req)
+    const organization = await global.api.user.organizations.OpenInvitationOrganization.get(req)
     // prevent organization owner
     if (req.account.accountid === organization.ownerid) {
       return renderPage(req, res, 'invalid-account')
@@ -75,7 +75,7 @@ async function submitForm (req, res) {
       let membership
       try {
         req.query.organizationid = organization.organizationid
-        membership = await global.api.user.organizations.OrganizationMembership._get(req)
+        membership = await global.api.user.organizations.OrganizationMembership.get(req)
       } catch (error) {
       }
       if (membership) {
@@ -86,7 +86,7 @@ async function submitForm (req, res) {
     return renderPage(req, res, error.message)
   }
   try {
-    const membership = await global.api.user.organizations.CreateMembership._post(req)
+    const membership = await global.api.user.organizations.CreateMembership.post(req)
     if (req.success) {
       req.data = { membership }
       return renderPage(req, res, 'success')

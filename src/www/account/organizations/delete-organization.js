@@ -10,7 +10,7 @@ async function beforeRequest (req) {
   if (!req.query || !req.query.organizationid) {
     throw new Error('invalid-organization')
   }
-  const organization = await global.api.user.organizations.Organization._get(req)
+  const organization = await global.api.user.organizations.Organization.get(req)
   if (!organization) {
     throw new Error('invalid-organization')
   }
@@ -51,7 +51,7 @@ async function renderPage (req, res, messageTemplate) {
 
 async function submitForm (req, res) {
   try {
-    await global.api.user.organizations.DeleteOrganization._delete(req)
+    await global.api.user.organizations.DeleteOrganization.delete(req)
     if (req.success) {
       return renderPage(req, res, 'success')
     }

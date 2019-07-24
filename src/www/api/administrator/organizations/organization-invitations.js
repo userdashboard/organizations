@@ -18,7 +18,7 @@ module.exports = {
     const items = []
     for (const invitationid of invitationids) {
       req.query.invitationid = invitationid
-      const invitation = await global.api.administrator.organizations.Invitation._get(req)
+      const invitation = await global.api.administrator.organizations.Invitation.get(req)
       items.push(invitation)
     }
     return items

@@ -15,7 +15,7 @@ module.exports = {
     }
     if (membership.accountid !== req.account.accountid) {
       req.query.organizationid = membership.organizationid
-      const organization = await global.api.user.organizations.Organization._get(req)
+      const organization = await global.api.user.organizations.Organization.get(req)
       if (!organization) {
         throw new Error('invalid-membershipid')
       }
