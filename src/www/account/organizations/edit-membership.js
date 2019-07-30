@@ -42,6 +42,14 @@ async function renderPage (req, res, messageTemplate) {
     submitForm.attr.action += `${divider}returnURL=${encodeURI(req.query.returnURL).split('?').join('%3F')}`
   }
   await navbar.setup(doc, req)
+  if (messageTemplate) {
+    dashboard.HTML.renderTemplate(doc, null, messageTemplate, 'message-container')
+    if (messageTemplate === 'success') {
+      const submitForm = doc.getElementById('submit-form')
+      submitForm.parentNode.removeChild(submitForm)
+      return dashboard.Response.end(req, res, doc)
+    }
+  }
   const userEmail = req.body ? req.body.email || '' : req.data.membership.email
   const userName = req.body ? req.body.name || '' : req.data.membership.name
   const organizationField = doc.getElementById('organizationName')
@@ -52,9 +60,6 @@ async function renderPage (req, res, messageTemplate) {
   emailField.setAttribute('value', userEmail)
   const submitForm = doc.getElementById('submit-form')
   submitForm.setAttribute('action', req.url)
-  if (messageTemplate) {
-    dashboard.HTML.renderTemplate(doc, null, messageTemplate, 'message-container')
-  }
   return dashboard.Response.end(req, res, doc)
 }
 

@@ -18,6 +18,7 @@
     "npm": "6.4.1"
   },
   "dashboard": {
+    "title": "Dashboard",
     "server": [],
     "modules": [],
     "menus": {
