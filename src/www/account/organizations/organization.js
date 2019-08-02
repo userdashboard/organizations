@@ -23,7 +23,7 @@ async function beforeRequest (req) {
       throw new Error('invalid-account')      
     }
   }
-  organization.createdFormatted = dashboard.Timestamp.date(organization.created)
+  organization.createdFormatted = dashboard.Format.date(organization.created)
   req.data = { organization }
 }
 

@@ -16,10 +16,9 @@
       <thead>
         <tr>
           <th>ID</th>
+          <th>Membership</th>
           <th>Created</th>
           <th>Accepted</th>
-          <th>Membership</th>
-          <th></th>
         </tr>
       </thead>
     </table>
@@ -31,14 +30,11 @@
   <template id="invitation-row">
     <tr id="${invitation.invitationid}">
       <td><a href="/administrator/organizations/invitation?invitationid=${invitation.invitationid}">${invitation.invitationid}</a></td>
-      <td>${invitation.createdFormatted}</td>
-      <td id="accepted-${invitation.invitationid}">Yes</td>
-      <td id="not-accepted-${invitation.invitationid}">No</td>
       <td id="membership-${invitation.invitationid}"><a href="/administrator/organizations/membership?membershipid=${invitation.membershipid}">Membership</a></td>
       <td id="no-membership-${invitation.invitationid}">Nobody</td>
-      <td class="pure-button-group" role="group">
-        <a href="/administrator/organizations/invitation?invitationid=${invitation.invitationid}" class="pure-button">Invitation</a>
-      </td>
+      <td>${invitation.createdFormatted}</td>
+      <td id="accepted-${invitation.invitationid}">${invitation.acceptedFormatted}</td>
+      <td id="not-accepted-${invitation.invitationid}"></td>
     </tr>
   </template>
 </html>

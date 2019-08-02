@@ -20,18 +20,13 @@
         </tr>
         <tr>
           <th>Accepted</th>
-          <td id="accepted">Yes</td>
+          <td id="accepted">${invitation.acceptedFormatted}</td>
           <td id="not-accepted">No</td>
         </tr>
         <tr>
           <th>Membership</th>
           <td id="membership"><a href="/administrator/organizations/membership?membershipid=${invitation.membershipid}">${invitation.membershipid}</a></td>
           <td id="no-membership">Nobody</td>
-        </tr>
-        <tr>
-          <th></th>
-          <td class="pure-button-group" role="group">
-          </td>
         </tr>
       </tbody>
     </table>

@@ -11,13 +11,13 @@ async function beforeRequest (req) {
   const ownedOrganizations = await global.api.user.organizations.Organizations.get(req)
   if (ownedOrganizations && ownedOrganizations.length) {
     for (const organization of ownedOrganizations) {
-      organization.createdFormatted = dashboard.Timestamp.date(organization.created)
+      organization.createdFormatted = dashboard.Format.date(organization.created)
     }
   }
   const memberships = await global.api.user.organizations.Memberships.get(req)
   if (memberships && memberships.length) {
     for (const membership of memberships) {
-      membership.createdFormatted = dashboard.Timestamp.date(membership.created)
+      membership.createdFormatted = dashboard.Format.date(membership.created)
       req.query.organizationid = membership.organizationid
       const organization = await global.api.user.organizations.Organization.get(req)
       membership.organizationName = organization.name

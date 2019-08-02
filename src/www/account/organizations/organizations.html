@@ -19,7 +19,6 @@
           <th>Name</th>
           <th>Email</th>
           <th>Created</th>
-          <th></th>
         </tr>
       </thead>
     </table>
@@ -34,12 +33,6 @@
       <td>${organization.name}</td>
       <td><a href="mailto:${organization.email}">${organization.email}</a></td>
       <td>${organization.createdFormatted}</td>
-      <td class="pure-button-group" role="group">
-        <a href="/account/organizations/organization-invitations?organizationid=${organization.organizationid}" id="invitations-link-${organization.organizationid}" class="pure-button">Invitations</a>
-        <a href="/account/organizations/organization-memberships?organizationid=${organization.organizationid}" id="memberships-link-${organization.organizationid}" class="pure-button">Memberships</a>
-        <a href="/account/organizations/edit-organization?organizationid=${organization.organizationid}" id="edit-organization-link-${organization.organizationid}" class="pure-button">Edit organization</a>
-        <a href="/account/organizations/delete-organization?organizationid=${organization.organizationid}" id="delete-organization-link-${organization.organizationid}" class="pure-button">Delete</a>
-      </td>
     </tr>
   </template>
 </html>

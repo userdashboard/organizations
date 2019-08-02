@@ -18,7 +18,7 @@ async function beforeRequest (req) {
   const memberships = await global.api.administrator.organizations.OrganizationMemberships.get(req)
   if (memberships && memberships.length) {
     for (const membership of memberships) {
-      membership.createdFormatted = dashboard.Timestamp.date(membership.created)
+      membership.createdFormatted = dashboard.Format.date(membership.created)
     }
   }
   const offset = req.query ? req.query.offset || 0 : 0

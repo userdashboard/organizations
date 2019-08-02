@@ -22,12 +22,9 @@
           <tr>
             <th>ID</th>
             <th>Organization</th>
-            <th>Their email</th>
-            <th>My email</th>
+            <th>Name</th>
+            <th>Email</th>
             <th>Joined</th>
-            <th>Organization</th>
-            <th>Invitation</th>
-            <th></th>
           </tr>
         </thead>
       </table>
@@ -41,10 +38,9 @@
         <thead>
           <tr>
             <th>ID</th>
-            <th>Organizations name</th>
-            <th>Contact email</th>
+            <th>Name</th>
+            <th>Email</th>
             <th>Created</th>
-            <th></th>
           </tr>
         </thead>
       </table>
@@ -53,15 +49,10 @@
   <template id="membership-row">
     <tr id="${membership.membershipid}">
       <td><a href="/account/organizations/membership?membershipid=${membership.membershipid}">${membership.membershipid}</a></td>
+      <td><a href="/account/organizations/organization?organizationid=${membership.organizationid}">${membership.organizationid}</a></td>
       <td>${membership.organizationName}</td>
       <td><a href="mailto:${membership.organizationEmail}">${membership.organizationEmail}</a></td>
-      <td><a href="mailto:${membership.email}">${membership.email}</a></td>
       <td>${membership.createdFormatted}</td>
-      <td><a href="/account/organizations/organization?organizationid=${membership.organizationid}">Organization</a></td>
-      <td><a href="/account/organizations/invitation?invitationid=${membership.invitationid}">Invitation</a></td>
-      <td class="pure-button-group" role="group">
-        <a href="/account/organizations/membership?membershipid=${membership.membershipid}" class="pure-button">Membership</a>
-      </td>
     </tr>
   </template>
   <template id="organization-row">
@@ -70,12 +61,6 @@
       <td>${organization.name}</td>
       <td><a href="mailto:${organization.email}">${organization.email}</a></td>
       <td>${organization.createdFormatted}</td>
-      <td class="pure-button-group" role="group">
-        <a href="/account/organizations/organization?organizationid=${organization.organizationid}" class="pure-button">Organization</a>
-        <a href="/account/organizations/organization-memberships?organizationid=${organization.organizationid}" class="pure-button">Memberships</a>
-        <a href="/account/organizations/organization-invitations?organizationid=${organization.organizationid}" class="pure-button">Invitations</a>
-        <a href="/account/organizations/create-invitation?organizationid=${organization.organizationid}" class="pure-button">Create invitation</a>
-      </td>
     </tr>
   </template>
 </html>

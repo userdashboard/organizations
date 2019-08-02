@@ -19,7 +19,7 @@ async function beforeRequest (req) {
   if (organization.ownerid !== req.account.accountid) {
     throw new Error('invalid-account')
   }
-  invitation.createdFormatted = dashboard.Timestamp.date(invitation.created)
+  invitation.createdFormatted = dashboard.Format.date(invitation.created)
   req.data = { organization, invitation }
 }
 

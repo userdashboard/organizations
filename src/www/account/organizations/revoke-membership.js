@@ -23,7 +23,7 @@ async function beforeRequest (req) {
   if (organization.ownerid !== req.account.accountid) {
     throw new Error('invalid-account')
   }
-  membership.createdFormatted = dashboard.Timestamp.date(membership.created)
+  membership.createdFormatted = dashboard.Format.date(membership.created)
   req.data = { organization, membership }
 }
 
@@ -42,7 +42,7 @@ async function renderPage (req, res, messageTemplate) {
     const divider = submitForm.attr.action.indexOf('?') > -1 ? '&' : '?'
     submitForm.attr.action += `${divider}returnURL=${encodeURI(req.query.returnURL).split('?').join('%3F')}`
   }
-  await navbar.setup(doc, req)
+  await navbar.setup(doc, req.data.organization, req.account)
   const organizationName = doc.getElementById('organizationName')
   organizationName.setAttribute('value', req.data.organization.name)
   if (messageTemplate) {

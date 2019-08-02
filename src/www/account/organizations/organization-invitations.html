@@ -19,7 +19,6 @@
           <th>Created</th>
           <th>Accepted</th>
           <th>Membership</th>
-          <th></th>
         </tr>
       </thead>
     </table>
@@ -36,10 +35,6 @@
       <td id="not-accepted-${invitation.invitationid}">No</td>
       <td id="membership-${invitation.invitationid}"><a href="/account/organizations/membership?membershipid=${invitation.membershipid}">Membership</a></td>
       <td id="no-membership-${invitation.invitationid}">Nobody</td>
-      <td class="pure-button-group" role="group">
-        <a href="/account/organizations/invitation?invitationid=${invitation.invitationid}" class="pure-button">Invitation</a>
-        <a href="/account/organizations/delete-invitation?invitationid=${invitation.invitationid}" class="pure-button">Delete</a>
-      </td>
     </tr>
   </template>
 </html>

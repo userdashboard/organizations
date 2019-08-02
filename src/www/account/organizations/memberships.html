@@ -21,7 +21,6 @@
           <th>Email</th>
           <th>Invitation</th>
           <th>Organization</th>
-          <th></th>
         </tr>
       </thead>
     </table>
@@ -38,11 +37,6 @@
       <td>${membership.email}</td>
       <td><a href="/account/organizations/invitation?invitationid=${membership.invitationid}">Invitation</a></td>
       <td><a href="/account/organizations/organization?organizationid=${membership.organizationid}">Organization</a></td>
-      <td class="pure-button-group" role="group">
-        <a href="/account/organizations/membership?membershipid=${membership.membershipid}" class="pure-button">Membership</a>
-        <a href="/account/organizations/edit-membership?membershipid=${membership.membershipid}" class="pure-button">Edit</a>
-        <a href="/account/organizations/delete-membership?membershipid=${membership.membershipid}" class="pure-button">Delete</a>
-      </td>
     </tr>
   </template>
 </html>

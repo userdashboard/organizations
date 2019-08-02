@@ -19,7 +19,6 @@
           <th>Name</th>
           <th>Email</th>
           <th>Invitation</th>
-          <th></th>
         </tr>
       </thead>
     </table>
@@ -35,9 +34,6 @@
       <td>${membership.name}</td>
       <td>${membership.email}</td>
       <td><a href="/account/organizations/invitation?invitationid=${membership.invitationid}">Invitation</a></td>
-      <td class="pure-button-group" role="group">
-        <a href="/account/organizations/revoke-membership?membershipid=${membership.membershipid}" class="pure-button">Revoke</a>
-      </td>
     </tr>
   </template>
 </html>

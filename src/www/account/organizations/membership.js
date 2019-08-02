@@ -22,12 +22,12 @@ async function beforeRequest (req) {
   if (membership.accountid !== req.account.accountid && organization.ownerid !== req.account.accountid) {
     throw new Error('invalid-account')
   }
-  membership.createdFormatted = dashboard.Timestamp.date(membership.created)
+  membership.createdFormatted = dashboard.Format.date(membership.created)
   req.data = { organization, membership }
 }
 
 async function renderPage (req, res) {
   const doc = dashboard.HTML.parse(req.route.html, req.data.membership, 'membership')
-  await navbar.setup(doc, req)
+  await navbar.setup(doc, req.data.organization, req.account)
   return dashboard.Response.end(req, res, doc)
 }

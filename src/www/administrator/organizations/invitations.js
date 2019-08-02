@@ -10,7 +10,10 @@ async function beforeRequest (req) {
   const invitations = await global.api.administrator.organizations.Invitations.get(req)
   if (invitations && invitations.length) {
     for (const invitation of invitations) {
-      invitation.createdFormatted = dashboard.Timestamp.date(invitation.created)
+      invitation.createdFormatted = dashboard.Format.date(invitation.created)
+      if (invitation.accepted) {
+        invitation.acceptedFormatted = dashboard.Format.date(invitation.accepted)
+      }
     }
   }
   const offset = req.query ? req.query.offset || 0 : 0

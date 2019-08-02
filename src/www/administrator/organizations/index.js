@@ -9,13 +9,13 @@ async function beforeRequest (req) {
   const organizations = await global.api.administrator.organizations.Organizations.get(req)
   if (organizations && organizations.length) {
     for (const organization of organizations) {
-      organization.createdFormatted = dashboard.Timestamp.date(organization.created)
+      organization.createdFormatted = dashboard.Format.date(organization.created)
     }
   }
   const memberships = await global.api.administrator.organizations.Memberships.get(req)
   if (memberships && memberships.length) {
     for (const membership of memberships) {
-      membership.createdFormatted = dashboard.Timestamp.date(membership.created)
+      membership.createdFormatted = dashboard.Format.date(membership.created)
     }
   }
   req.data = { memberships, organizations }

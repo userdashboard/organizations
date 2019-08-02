@@ -13,7 +13,7 @@ async function beforeRequest (req) {
   if (!organization) {
     throw new Error('invalid-organization')
   }
-  organization.createdFormatted = dashboard.Timestamp.date(organization.created)
+  organization.createdFormatted = dashboard.Format.date(organization.created)
   req.data = { organization }
 }
 

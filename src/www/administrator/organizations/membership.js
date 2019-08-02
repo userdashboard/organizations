@@ -18,7 +18,7 @@ async function beforeRequest (req) {
   if (!organization) {
     throw new Error('invalid-organization')
   }
-  membership.createdFormatted = dashboard.Timestamp.date(membership.created)
+  membership.createdFormatted = dashboard.Format.date(membership.created)
   req.data = { membership }
 }
 

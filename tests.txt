@@ -1,7 +1,8 @@
 
-> @userdashboard/organizations@1.0.0 test /home/benlowry/SynologyDrive/workspaces/dashboard/organizations
+> @userdashboard/organizations@1.0.1 test /home/benlowry/SynologyDrive/workspaces/dashboard/organizations
 > NODE_ENV=testing mocha src --recursive --timeout 90000 --slow 90000
 
+setting id length undefined
 
 
   /account/organizations/accept-invitation
@@ -480,5 +481,5 @@
       ✓ should apply new values
 
 
-  233 passing (43s)
+  233 passing (32s)
 
