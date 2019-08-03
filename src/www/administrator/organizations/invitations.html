@@ -30,7 +30,7 @@
   <template id="invitation-row">
     <tr id="${invitation.invitationid}">
       <td><a href="/administrator/organizations/invitation?invitationid=${invitation.invitationid}">${invitation.invitationid}</a></td>
-      <td id="membership-${invitation.invitationid}"><a href="/administrator/organizations/membership?membershipid=${invitation.membershipid}">Membership</a></td>
+      <td id="membership-${invitation.invitationid}"><a href="/administrator/organizations/membership?membershipid=${invitation.membershipid}">${invitation.membershipid}</a></td>
       <td id="no-membership-${invitation.invitationid}">Nobody</td>
       <td>${invitation.createdFormatted}</td>
       <td id="accepted-${invitation.invitationid}">${invitation.acceptedFormatted}</td>
