@@ -39,6 +39,6 @@
     }
   },
   "devDependencies": {
-    "@userdashboard/dashboard": "^1.0.7"
+    "@userdashboard/dashboard": "^1.0.8"
   }
 }
