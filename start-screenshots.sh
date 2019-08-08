@@ -1,9 +1,0 @@
-NODE_ENV=development \
-PAGE_SIZE=3 \
-PORT=8003 \
-DASHBOARD_SERVER="http://localhost:8003" \
-STORAGE_PATH=/tmp/organizations \
-REQUIRE_PROFILE_EMAIL=true \
-REQUIRE_PROFILE_NAME=true \
-ID_LENGTH=8 \
-node main.js
