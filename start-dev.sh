@@ -70,7 +70,7 @@ node main.js
 # ip default localhost
 # start server on a public IP address
 
-# PORT=8001 
+# PORT=8000
 # number
 # start server on a specific port
 
