@@ -76,4 +76,4 @@ Development takes place on [Github](https://github.com/userdashboard/organizatio
 
 #### License
 
-This is free and unencumbered software released into the public domain.  The MIT License is provided for countries that have not established a public domain.
+This software is distributed under the MIT license.
