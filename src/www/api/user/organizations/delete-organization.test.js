@@ -20,7 +20,7 @@ describe('/api/user/organizations/delete-organization', async () => {
       }
       assert.strictEqual(errorMessage, 'invalid-account')
     })
-    
+
     it('should delete organization', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })

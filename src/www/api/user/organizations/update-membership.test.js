@@ -101,7 +101,7 @@ describe('/api/user/organizations/update-membership', async () => {
       }
       assert.strictEqual(errorMessage, 'invalid-membership-email')
     })
-    
+
     it('should apply new values', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })

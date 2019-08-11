@@ -11,7 +11,7 @@ module.exports = {
     }
     invitation = JSON.parse(invitation)
     if (invitation.object !== 'invitation') {
-      throw new Error('invalid-invitationid') 
+      throw new Error('invalid-invitationid')
     }
     req.query.organizationid = invitation.organizationid
     const organization = await global.api.administrator.organizations.Organization.get(req)

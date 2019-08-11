@@ -69,7 +69,7 @@ describe('/api/user/organizations/update-organization', () => {
       }
       assert.strictEqual(errorMessage, 'invalid-organization-email')
     })
-    
+
     it('should apply new values', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })

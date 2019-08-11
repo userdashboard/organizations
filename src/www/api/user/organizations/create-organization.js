@@ -41,7 +41,7 @@ module.exports = {
       accountid: req.query.accountid,
       created: dashboard.Timestamp.now,
       name: 'owner',
-      email: req.body.email,
+      email: req.body.email
     }
     await dashboard.Storage.write(`${req.appid}/membership/${membershipid}`, membershipInfo)
     await dashboard.StorageList.add(`${req.appid}/organizations`, organizationid)

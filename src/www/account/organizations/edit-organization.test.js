@@ -90,7 +90,6 @@ describe(`/account/organizations/edit-organization`, () => {
       const doc2 = TestHelper.extractDoc(page2)
       const message2 = doc2.getElementById('message-container').child[0]
       assert.strictEqual(message2.attr.template, 'invalid-organization-name-length')
-
     })
 
     it('should reject missing email', async () => {

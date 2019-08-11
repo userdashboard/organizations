@@ -29,7 +29,6 @@ describe(`/account/organizations/create-organization`, async () => {
       const doc = TestHelper.extractDoc(page)
       const message = doc.getElementById('message-container').child[0]
       assert.strictEqual(message.attr.template, 'invalid-organization-name')
-
     })
 
     it('should enforce name length', async () => {
@@ -72,7 +71,6 @@ describe(`/account/organizations/create-organization`, async () => {
       const doc = TestHelper.extractDoc(page)
       const message = doc.getElementById('message-container').child[0]
       assert.strictEqual(message.attr.template, 'invalid-organization-email')
-
     })
 
     it('should create organization', async () => {

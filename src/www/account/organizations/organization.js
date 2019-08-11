@@ -20,7 +20,7 @@ async function beforeRequest (req) {
     } catch (error) {
     }
     if (!membership) {
-      throw new Error('invalid-account')      
+      throw new Error('invalid-account')
     }
   }
   organization.createdFormatted = dashboard.Format.date(organization.created)

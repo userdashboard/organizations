@@ -45,7 +45,7 @@ async function renderPage (req, res) {
     const organizationsContainer = doc.getElementById('organizations-container')
     organizationsContainer.parentNode.removeChild(organizationsContainer)
   }
-  if ((req.data.organizations && req.data.organizations.length) || 
+  if ((req.data.organizations && req.data.organizations.length) ||
       (req.data.memberships && req.data.memberships.length)) {
     const noData = doc.getElementById('no-data')
     noData.parentNode.removeChild(noData)

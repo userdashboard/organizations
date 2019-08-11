@@ -44,7 +44,6 @@ describe(`/account/organizations/delete-organization`, async () => {
       const doc = TestHelper.extractDoc(page)
       assert.strictEqual(doc.getElementById('submit-form').tag, 'form')
       assert.strictEqual(doc.getElementById('submit-button').tag, 'button')
-
     })
 
     it('should present the organization', async () => {
