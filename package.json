@@ -20,7 +20,9 @@
   "dashboard": {
     "title": "Dashboard",
     "server": [],
-    "modules": [],
+    "modules": [
+      "@userdashboard/organizations"
+    ],
     "menus": {
       "account": [
         {
