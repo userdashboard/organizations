@@ -462,7 +462,7 @@
       ✓ should require own organization
       ✓ should reject same owner
       ✓ should require new owner is member
-      ✓ should transfer organization after authorization
+      ✓ should transfer organization
 
   /api/user/organizations/update-membership
     UpdateMembership#PATCH

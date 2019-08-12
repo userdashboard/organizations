@@ -23,7 +23,7 @@
 - updated Dashboard to 2018.9.5-1
 
 # 2018.9.4-1
-- fixed user deleting organization after authorization
+- fixed user deleting organization
 - fixed user deleting membership and invitation error
 - updated Dashboard to 2018.9.4-1
 

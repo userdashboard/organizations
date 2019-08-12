@@ -61,7 +61,7 @@ describe('/api/user/organizations/set-organization-owner', () => {
       assert.strictEqual(errorMessage, 'invalid-account')
     })
 
-    it('should transfer organization after authorization', async () => {
+    it('should transfer organization', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
       const user = await TestHelper.createUser()
