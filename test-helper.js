@@ -12,7 +12,7 @@ module.exports = {
 for (const x in TestHelper) {
   module.exports[x] = TestHelper[x]
 }
- 
+
 beforeEach((callback) => {
   global.minimumOrganizationNameLength = 1
   global.maximumOrganizationNameLength = 100
@@ -58,10 +58,10 @@ async function acceptInvitation (user, owner) {
   const req = TestHelper.createRequest(`/api/user/organizations/create-membership?invitationid=${owner.invitation.invitationid}`, 'POST')
   req.account = user.account
   req.session = user.session
-  req.body = { 
-    code: owner.invitation.code, 
-    name: user.profile.firstName, 
-    email: user.profile.email 
+  req.body = {
+    code: owner.invitation.code,
+    name: user.profile.firstName,
+    email: user.profile.email
   }
   user.membership = await req.post()
   return user.membership

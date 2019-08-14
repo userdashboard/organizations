@@ -3,6 +3,7 @@ const dashboard = require('@userdashboard/dashboard')
 module.exports = {
   get: async (req) => {
     req.query = req.query || {}
+    let organizationids
     if (req.query.all) {
       organizationids = await dashboard.StorageList.listAll(`${req.appid}/organizations`)
     } else {

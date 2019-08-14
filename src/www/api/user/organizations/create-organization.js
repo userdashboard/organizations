@@ -28,11 +28,6 @@ module.exports = {
       created: dashboard.Timestamp.now
     }
     await dashboard.Storage.write(`${req.appid}/organization/${organizationid}`, organizationInfo)
-    let profile
-    if (req.account.profileid) {
-      req.query.profileid = req.account.profileid
-      profile = await global.api.user.Profile.get(req)
-    }
     const membershipid = `membership_${await dashboard.UUID.generateID()}`
     const membershipInfo = {
       object: `membership`,

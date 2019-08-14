@@ -1,5 +1,4 @@
 const dashboard = require('@userdashboard/dashboard')
-const orgs = require('../../../../../index.js')
 
 module.exports = {
   delete: async (req) => {
