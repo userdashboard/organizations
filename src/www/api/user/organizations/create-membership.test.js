@@ -96,7 +96,7 @@ describe(`/api/user/organizations/create-membership`, () => {
       assert.strictEqual(errorMessage, 'invalid-account')
     })
 
-    it('should create authorized membership', async () => {
+    it('should create membership', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
       await TestHelper.createInvitation(owner)

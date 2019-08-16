@@ -23,7 +23,7 @@ describe(`/api/user/organizations/create-invitation`, () => {
       assert.strictEqual(errorMessage, 'invalid-invitation-code-length')
     })
 
-    it('should create authorized invitation', async () => {
+    it('should create invitation', async () => {
       const owner = await TestHelper.createUser()
       await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
       const req = TestHelper.createRequest(`/api/user/organizations/create-invitation?organizationid=${owner.organization.organizationid}`)

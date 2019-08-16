@@ -67,7 +67,7 @@ describe(`/api/user/organizations/create-organization`, () => {
       assert.strictEqual(errorMessage, 'invalid-organization-email')
     })
 
-    it('should create authorized organization', async () => {
+    it('should create organization', async () => {
       const owner = await TestHelper.createUser()
       const req = TestHelper.createRequest(`/api/user/organizations/create-organization?accountid=${owner.account.accountid}`)
       req.account = owner.account
