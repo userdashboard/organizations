@@ -1,5 +1,5 @@
 
-> @userdashboard/organizations@1.0.11 test /home/benlowry/SynologyDrive/workspaces/dashboard/organizations
+> @userdashboard/organizations@1.0.12 test /home/benlowry/SynologyDrive/workspaces/dashboard/organizations
 > NODE_ENV=testing mocha src --recursive --timeout 90000 --slow 90000
 
 
@@ -343,7 +343,7 @@
   /api/user/organizations/create-invitation
     CreateInvitation#POST
       ✓ should enforce code length
-      ✓ should create authorized invitation
+      ✓ should create invitation
 
   /api/user/organizations/create-membership
     CreateMembership#POST
@@ -351,14 +351,14 @@
       ✓ should reject a used invitation
       ✓ should reject owner
       ✓ should reject existing members
-      ✓ should create authorized membership
+      ✓ should create membership
 
   /api/user/organizations/create-organization
     CreateOrganization#POST
       ✓ should reject missing name
       ✓ should enforce name length
       ✓ should reject missing email
-      ✓ should create authorized organization
+      ✓ should create organization
 
   /api/user/organizations/delete-invitation
     DeleteInvitation#DELETE
