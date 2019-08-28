@@ -7,7 +7,7 @@ describe('/api/administrator/organizations/organization', () => {
     it('should return organization data', async () => {
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const req = TestHelper.createRequest(`/api/administrator/organizations/organization?organizationid=${owner.organization.organizationid}`)
       req.account = administrator.account
       req.session = administrator.session

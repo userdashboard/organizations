@@ -6,9 +6,9 @@ describe('/api/user/organizations/delete-organization', async () => {
   describe('DeleteOrganization#DELETE', () => {
     it('should require own organization', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const other = await TestHelper.createUser()
-      await TestHelper.createOrganization(other, { email: other.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(other, { email: other.profile.contactEmail, name: 'My organization' })
       const req = TestHelper.createRequest(`/api/user/organizations/delete-organization?organizationid=${other.organization.organizationid}`, 'DELETE')
       req.account = owner.account
       req.session = owner.session
@@ -23,7 +23,7 @@ describe('/api/user/organizations/delete-organization', async () => {
 
     it('should delete organization', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const req = TestHelper.createRequest(`/api/user/organizations/delete-organization?organizationid=${owner.organization.organizationid}`, 'DELETE')
       req.account = owner.account
       req.session = owner.session

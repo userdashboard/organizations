@@ -6,7 +6,7 @@ describe(`/api/user/organizations/invitations`, () => {
   describe('Invitations#GET', () => {
     it('should limit invitation list to one page', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const invitations = []
       for (let i = 0, len = global.pageSize + 1; i < len; i++) {
         await TestHelper.createInvitation(owner)
@@ -24,7 +24,7 @@ describe(`/api/user/organizations/invitations`, () => {
     it('should enforce page size', async () => {
       global.pageSize = 3
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       for (let i = 0, len = global.pageSize + 1; i < len; i++) {
         await TestHelper.createInvitation(owner)
       }
@@ -38,7 +38,7 @@ describe(`/api/user/organizations/invitations`, () => {
     it('should enforce specified offset', async () => {
       const offset = 1
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const invitations = []
       for (let i = 0, len = global.pageSize + offset + 1; i < len; i++) {
         const invitation = await TestHelper.createInvitation(owner)
@@ -55,7 +55,7 @@ describe(`/api/user/organizations/invitations`, () => {
 
     it('should return all records', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const invitations = []
       for (let i = 0, len = global.pageSize + 1; i < len; i++) {
         const invitation = await TestHelper.createInvitation(owner)

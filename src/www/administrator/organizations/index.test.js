@@ -7,7 +7,7 @@ describe(`/administrator/organizations/index`, () => {
     it('should bind memberships to req', async () => {
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const user = await TestHelper.createUser()
       await TestHelper.createInvitation(owner)
       await TestHelper.acceptInvitation(user, owner)
@@ -23,7 +23,7 @@ describe(`/administrator/organizations/index`, () => {
     it('should bind organizations to req', async () => {
       const administrator = await TestHelper.createAdministrator()
       const user = await TestHelper.createUser()
-      await TestHelper.createOrganization(user, { email: user.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(user, { email: user.profile.contactEmail, name: 'My organization' })
       const req = TestHelper.createRequest(`/administrator/organizations`)
       req.account = administrator.account
       req.session = administrator.session
@@ -36,7 +36,7 @@ describe(`/administrator/organizations/index`, () => {
     it('should have row for each organization', async () => {
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const req = TestHelper.createRequest(`/administrator/organizations`)
       req.account = administrator.account
       req.session = administrator.session
@@ -49,7 +49,7 @@ describe(`/administrator/organizations/index`, () => {
     it('should have organization row for each membership', async () => {
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const user = await TestHelper.createUser()
       await TestHelper.createInvitation(owner)
       await TestHelper.acceptInvitation(user, owner)

@@ -6,7 +6,7 @@ describe(`/account/organizations/index`, () => {
   describe('Index#BEFORE', () => {
     it('should bind memberships to req', async () => {
       const owner = await TestHelper.createOwner()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const user = await TestHelper.createUser()
       await TestHelper.createInvitation(owner)
       await TestHelper.acceptInvitation(user, owner)
@@ -19,7 +19,7 @@ describe(`/account/organizations/index`, () => {
 
     it('should bind organizations to req', async () => {
       const owner = await TestHelper.createOwner()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const req = TestHelper.createRequest(`/account/organizations`)
       req.account = owner.account
       req.session = owner.session
@@ -31,7 +31,7 @@ describe(`/account/organizations/index`, () => {
   describe('Index#GET', () => {
     it('should have row for each organization', async () => {
       const owner = await TestHelper.createOwner()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const req = TestHelper.createRequest(`/account/organizations`)
       req.account = owner.account
       req.session = owner.session
@@ -43,7 +43,7 @@ describe(`/account/organizations/index`, () => {
 
     it('should have row for each membership', async () => {
       const owner = await TestHelper.createOwner()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const user = await TestHelper.createUser()
       await TestHelper.createInvitation(owner)
       await TestHelper.acceptInvitation(user, owner)

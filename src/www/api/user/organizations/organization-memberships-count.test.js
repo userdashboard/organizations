@@ -6,7 +6,7 @@ describe('/api/user/organizations/organization-memberships-count', async () => {
   describe('OrganizationMembershipsCount#GET', () => {
     it('should count organization\'s memberships', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const user1 = await TestHelper.createUser()
       await TestHelper.createMembership(user1, owner)
       const user2 = await TestHelper.createUser()

@@ -6,7 +6,7 @@ describe('/api/user/organizations/open-invitation', () => {
   describe('OpenInvitation#GET', () => {
     it('should reject accepted invitation', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       await TestHelper.createInvitation(owner)
       const user = await TestHelper.createUser()
       await TestHelper.acceptInvitation(user, owner)
@@ -19,7 +19,7 @@ describe('/api/user/organizations/open-invitation', () => {
 
     it('should return invitation data', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       await TestHelper.createInvitation(owner)
       const user = await TestHelper.createUser()
       const req = TestHelper.createRequest(`/api/user/organizations/open-invitation?invitationid=${owner.invitation.invitationid}`)
@@ -31,7 +31,7 @@ describe('/api/user/organizations/open-invitation', () => {
 
     it('should redact invitation code', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       await TestHelper.createInvitation(owner)
       const user = await TestHelper.createUser()
       const req = TestHelper.createRequest(`/api/user/organizations/open-invitation?invitationid=${owner.invitation.invitationid}`)

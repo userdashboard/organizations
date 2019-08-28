@@ -6,7 +6,7 @@ describe('/api/user/organizations/membership', () => {
   describe('Membership#GET', () => {
     it('should allow organization owner', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const user = await TestHelper.createUser()
       await TestHelper.createMembership(user, owner)
       const req = TestHelper.createRequest(`/api/user/organizations/membership?membershipid=${user.membership.membershipid}`)
@@ -18,7 +18,7 @@ describe('/api/user/organizations/membership', () => {
 
     it('should allow organization member', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const user = await TestHelper.createUser()
       await TestHelper.createMembership(user, owner)
       const user2 = await TestHelper.createUser()
@@ -32,7 +32,7 @@ describe('/api/user/organizations/membership', () => {
 
     it('should reject non-owner non-members', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const user = await TestHelper.createUser()
       await TestHelper.createMembership(user, owner)
       const user2 = await TestHelper.createUser()
@@ -45,7 +45,7 @@ describe('/api/user/organizations/membership', () => {
 
     it('should return membership data', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const user = await TestHelper.createUser()
       await TestHelper.createMembership(user, owner)
       const req = TestHelper.createRequest(`/api/user/organizations/membership?membershipid=${user.membership.membershipid}`)

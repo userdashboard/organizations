@@ -6,7 +6,7 @@ describe('/account/organizations/organizations', () => {
   describe('Organizations#BEFORE', () => {
     it('should bind owned organizations to req', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const req = TestHelper.createRequest('/account/organizations/organizations')
       req.account = owner.account
       req.session = owner.session
@@ -19,7 +19,7 @@ describe('/account/organizations/organizations', () => {
     it('should limit organizations to one page', async () => {
       const owner = await TestHelper.createUser()
       for (let i = 0, len = global.pageSize + 1; i < len; i++) {
-        await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+        await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       }
       const req = TestHelper.createRequest('/account/organizations/organizations')
       req.account = owner.account
@@ -35,7 +35,7 @@ describe('/account/organizations/organizations', () => {
       global.pageSize = 3
       const owner = await TestHelper.createUser()
       for (let i = 0, len = global.pageSize + 1; i < len; i++) {
-        await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+        await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       }
       const req = TestHelper.createRequest('/account/organizations/organizations')
       req.account = owner.account
@@ -52,7 +52,7 @@ describe('/account/organizations/organizations', () => {
       const owner = await TestHelper.createUser()
       const organizations = []
       for (let i = 0, len = global.pageSize + offset + 1; i < len; i++) {
-        await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+        await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
         organizations.unshift(owner.organization)
       }
       const req = TestHelper.createRequest(`/account/organizations/organizations?offset=${offset}`)

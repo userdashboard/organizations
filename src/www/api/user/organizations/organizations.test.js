@@ -16,10 +16,10 @@ describe('/api/user/organizations/organizations', () => {
 
     it('should limit organization list to one page', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const organizations = []
       for (let i = 0, len = global.pageSize + 1; i < len; i++) {
-        await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+        await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
         organizations.unshift(owner.organization)
       }
       const req = TestHelper.createRequest(`/api/user/organizations/organizations?accountid=${owner.account.accountid}`)
@@ -35,7 +35,7 @@ describe('/api/user/organizations/organizations', () => {
       global.pageSize = 3
       const owner = await TestHelper.createUser()
       for (let i = 0, len = global.pageSize + 1; i < len; i++) {
-        await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+        await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       }
       const req = TestHelper.createRequest(`/api/user/organizations/organizations?accountid=${owner.account.accountid}`)
       req.account = owner.account
@@ -49,7 +49,7 @@ describe('/api/user/organizations/organizations', () => {
       const owner = await TestHelper.createUser()
       const organizations = [ ]
       for (let i = 0, len = global.pageSize + offset + 1; i < len; i++) {
-        await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+        await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
         organizations.unshift(owner.organization)
       }
       const req = TestHelper.createRequest(`/api/user/organizations/organizations?accountid=${owner.account.accountid}&offset=${offset}`)
@@ -65,7 +65,7 @@ describe('/api/user/organizations/organizations', () => {
       const owner = await TestHelper.createUser()
       const organizations = []
       for (let i = 0, len = global.pageSize + 1; i < len; i++) {
-        await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+        await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
         organizations.unshift(owner.organization)
       }
       const req = TestHelper.createRequest(`/api/user/organizations/organizations?accountid=${owner.account.accountid}&all=true`)

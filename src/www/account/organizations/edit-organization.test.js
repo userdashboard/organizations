@@ -6,9 +6,9 @@ describe(`/account/organizations/edit-organization`, () => {
   describe('EditOrganization#BEFORE', () => {
     it('should require owner', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'Owner\'s organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'Owner\'s organization' })
       const user = await TestHelper.createUser()
-      await TestHelper.createOrganization(user, { email: user.profile.email, name: 'User\'s organization' })
+      await TestHelper.createOrganization(user, { email: user.profile.contactEmail, name: 'User\'s organization' })
       const req = TestHelper.createRequest(`/account/organizations/edit-organization?organizationid=${owner.organization.organizationid}`)
       req.account = user.account
       req.session = user.session
@@ -23,7 +23,7 @@ describe(`/account/organizations/edit-organization`, () => {
 
     it('should bind organization to req', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const req = TestHelper.createRequest(`/account/organizations/edit-organization?organizationid=${owner.organization.organizationid}`)
       req.account = owner.account
       req.session = owner.session
@@ -35,7 +35,7 @@ describe(`/account/organizations/edit-organization`, () => {
   describe('EditOrganization#GET', () => {
     it('should present the form', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const req = TestHelper.createRequest(`/account/organizations/edit-organization?organizationid=${owner.organization.organizationid}`)
       req.account = owner.account
       req.session = owner.session
@@ -49,7 +49,7 @@ describe(`/account/organizations/edit-organization`, () => {
   describe('EditOrganization#POST', () => {
     it('should reject missing name', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const req = TestHelper.createRequest(`/account/organizations/edit-organization?organizationid=${owner.organization.organizationid}`)
       req.account = owner.account
       req.session = owner.session
@@ -64,13 +64,13 @@ describe(`/account/organizations/edit-organization`, () => {
 
     it('should enforce name length', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const req = TestHelper.createRequest(`/account/organizations/edit-organization?organizationid=${owner.organization.organizationid}`)
       req.account = owner.account
       req.session = owner.session
       req.body = {
         name: '1',
-        email: owner.profile.email
+        email: owner.profile.contactEmail
       }
       global.minimumOrganizationNameLength = 2
       const page = await req.post(req)
@@ -84,7 +84,7 @@ describe(`/account/organizations/edit-organization`, () => {
       req2.session = owner.session
       req2.body = {
         name: '1234567890',
-        email: owner.profile.email
+        email: owner.profile.contactEmail
       }
       const page2 = await req2.post(req2)
       const doc2 = TestHelper.extractDoc(page2)
@@ -94,7 +94,7 @@ describe(`/account/organizations/edit-organization`, () => {
 
     it('should reject missing email', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const req = TestHelper.createRequest(`/account/organizations/edit-organization?organizationid=${owner.organization.organizationid}`)
       req.session = owner.session
       req.account = owner.account
@@ -110,12 +110,12 @@ describe(`/account/organizations/edit-organization`, () => {
 
     it('should apply organization update', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const req = TestHelper.createRequest(`/account/organizations/edit-organization?organizationid=${owner.organization.organizationid}`)
       req.account = owner.account
       req.session = owner.session
       req.body = {
-        email: owner.profile.email,
+        email: owner.profile.contactEmail,
         name: 'Organization name'
       }
       const page = await req.post(req)

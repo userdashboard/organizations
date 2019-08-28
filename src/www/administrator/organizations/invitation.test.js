@@ -7,7 +7,7 @@ describe(`/administrator/organizations/invitation`, () => {
     it('should bind invitation to req', async () => {
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       await TestHelper.createInvitation(owner)
       const req = TestHelper.createRequest(`/administrator/organizations/invitation?invitationid=${owner.invitation.invitationid}`)
       req.account = administrator.account
@@ -21,7 +21,7 @@ describe(`/administrator/organizations/invitation`, () => {
     it('should have row for invitation', async () => {
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       await TestHelper.createInvitation(owner)
       const req = TestHelper.createRequest(`/administrator/organizations/invitation?invitationid=${owner.invitation.invitationid}`)
       req.account = administrator.account

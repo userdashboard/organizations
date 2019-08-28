@@ -6,7 +6,7 @@ describe(`/account/organizations/transfer-organization`, async () => {
   describe('TransferOrganization#BEFORE', () => {
     it('should require owner', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const user = await TestHelper.createUser()
       await TestHelper.createInvitation(owner)
       await TestHelper.acceptInvitation(user, owner)
@@ -24,7 +24,7 @@ describe(`/account/organizations/transfer-organization`, async () => {
 
     it('should bind organization to req', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const user = await TestHelper.createUser()
       await TestHelper.createInvitation(owner)
       await TestHelper.acceptInvitation(user, owner)
@@ -37,7 +37,7 @@ describe(`/account/organizations/transfer-organization`, async () => {
 
     it('should bind memberships to req', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const user = await TestHelper.createUser()
       await TestHelper.createInvitation(owner)
       await TestHelper.acceptInvitation(user, owner)
@@ -52,7 +52,7 @@ describe(`/account/organizations/transfer-organization`, async () => {
   describe('TransferOrganization#GET', () => {
     it('should present the form', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const user = await TestHelper.createUser()
       await TestHelper.createInvitation(owner)
       await TestHelper.acceptInvitation(user, owner)
@@ -67,7 +67,7 @@ describe(`/account/organizations/transfer-organization`, async () => {
 
     it('should present the organization', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const req = TestHelper.createRequest(`/account/organizations/transfer-organization?organizationid=${owner.organization.organizationid}`)
       req.account = owner.account
       req.session = owner.session
@@ -81,7 +81,7 @@ describe(`/account/organizations/transfer-organization`, async () => {
   describe('TransferOrganization#POST', () => {
     it('should transfer ownership', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const user = await TestHelper.createUser()
       await TestHelper.createMembership(user, owner)
       const req = TestHelper.createRequest(`/account/organizations/transfer-organization?organizationid=${owner.organization.organizationid}`)

@@ -6,9 +6,9 @@ describe('/api/user/organizations/set-organization-owner', () => {
   describe('SetOrganizationOwner#PATCH', () => {
     it('should require own organization', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const other = await TestHelper.createUser()
-      await TestHelper.createOrganization(other, { email: other.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(other, { email: other.profile.contactEmail, name: 'My organization' })
       const req = TestHelper.createRequest(`/api/user/organizations/set-organization-owner?organizationid=${other.organization.organizationid}`)
       req.account = owner.account
       req.session = owner.session
@@ -26,7 +26,7 @@ describe('/api/user/organizations/set-organization-owner', () => {
 
     it('should reject same owner', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const req = TestHelper.createRequest(`/api/user/organizations/set-organization-owner?organizationid=${owner.organization.organizationid}`)
       req.account = owner.account
       req.session = owner.session
@@ -44,7 +44,7 @@ describe('/api/user/organizations/set-organization-owner', () => {
 
     it('should require new owner is member', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const user = await TestHelper.createUser()
       const req = TestHelper.createRequest(`/api/user/organizations/set-organization-owner?organizationid=${owner.organization.organizationid}`)
       req.account = owner.account
@@ -63,7 +63,7 @@ describe('/api/user/organizations/set-organization-owner', () => {
 
     it('should transfer organization', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const user = await TestHelper.createUser()
       await TestHelper.createMembership(user, owner)
       const req = TestHelper.createRequest(`/api/user/organizations/set-organization-owner?organizationid=${owner.organization.organizationid}`)

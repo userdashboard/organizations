@@ -19,7 +19,7 @@ describe(`/account/organizations/accept-invitation`, () => {
   describe('AcceptInvitation#POST', () => {
     it('should reject missing name', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       await TestHelper.createInvitation(owner)
       const user = await TestHelper.createUser()
       const req = TestHelper.createRequest(`/account/organizations/accept-invitation?invitationid=${owner.invitation.invitationid}`)
@@ -27,7 +27,7 @@ describe(`/account/organizations/accept-invitation`, () => {
       req.session = user.session
       req.body = {
         code: owner.invitation.code,
-        email: user.profile.email,
+        email: user.profile.contactEmail,
         name: null,
         invitationid: owner.invitation.invitationid
       }
@@ -39,7 +39,7 @@ describe(`/account/organizations/accept-invitation`, () => {
 
     it('should enforce name length', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       await TestHelper.createInvitation(owner)
       const user = await TestHelper.createUser()
       const req = TestHelper.createRequest(`/account/organizations/accept-invitation?invitationid=${owner.invitation.invitationid}`)
@@ -47,7 +47,7 @@ describe(`/account/organizations/accept-invitation`, () => {
       req.session = user.session
       req.body = {
         code: owner.invitation.code,
-        email: user.profile.email,
+        email: user.profile.contactEmail,
         name: `1`,
         invitationid: owner.invitation.invitationid
       }
@@ -62,7 +62,7 @@ describe(`/account/organizations/accept-invitation`, () => {
       req2.session = user.session
       req2.body = {
         code: owner.invitation.code,
-        email: user.profile.email,
+        email: user.profile.contactEmail,
         name: `1234567890`,
         invitationid: owner.invitation.invitationid
       }
@@ -75,7 +75,7 @@ describe(`/account/organizations/accept-invitation`, () => {
 
     it('should reject missing email', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       await TestHelper.createInvitation(owner)
       const user = await TestHelper.createUser()
       const req = TestHelper.createRequest(`/account/organizations/accept-invitation?invitationid=${owner.invitation.invitationid}`)
@@ -95,14 +95,14 @@ describe(`/account/organizations/accept-invitation`, () => {
 
     it('should reject owner', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       await TestHelper.createInvitation(owner)
       const req = TestHelper.createRequest(`/account/organizations/accept-invitation?invitationid=${owner.invitation.invitationid}`)
       req.account = owner.account
       req.session = owner.session
       req.body = {
         code: owner.invitation.code,
-        email: owner.profile.email,
+        email: owner.profile.contactEmail,
         name: `${owner.profile.firstName} ${owner.profile.lastName.substring(0, 1)}`,
         invitationid: owner.invitation.invitationid
       }
@@ -115,7 +115,7 @@ describe(`/account/organizations/accept-invitation`, () => {
 
     it('should reject existing member', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       await TestHelper.createInvitation(owner)
       const user = await TestHelper.createUser()
       await TestHelper.createMembership(user, owner)
@@ -125,7 +125,7 @@ describe(`/account/organizations/accept-invitation`, () => {
       req.session = user.session
       req.body = {
         code: owner.invitation.code,
-        email: user.profile.email,
+        email: user.profile.contactEmail,
         name: `${user.profile.firstName} ${user.profile.lastName.substring(0, 1)}`,
         invitationid: owner.invitation.invitationid
       }
@@ -138,7 +138,7 @@ describe(`/account/organizations/accept-invitation`, () => {
 
     it('should accept invitation', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       await TestHelper.createInvitation(owner)
       const user = await TestHelper.createUser()
       const req = TestHelper.createRequest(`/account/organizations/accept-invitation?invitationid=${owner.invitation.invitationid}`)
@@ -146,7 +146,7 @@ describe(`/account/organizations/accept-invitation`, () => {
       req.session = user.session
       req.body = {
         code: owner.invitation.code,
-        email: user.profile.email,
+        email: user.profile.contactEmail,
         name: `${user.profile.firstName} ${user.profile.lastName.substring(0, 1)}`,
         invitationid: owner.invitation.invitationid
       }

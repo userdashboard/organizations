@@ -7,7 +7,7 @@ describe('/administrator/organizations/organizations', () => {
     it('should bind owned organizations to req', async () => {
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const req = TestHelper.createRequest('/administrator/organizations/organizations')
       req.account = administrator.account
       req.session = administrator.session
@@ -19,7 +19,7 @@ describe('/administrator/organizations/organizations', () => {
     it('should not bind member organizations to req', async () => {
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const user = await TestHelper.createUser()
       await TestHelper.createInvitation(owner)
       await TestHelper.acceptInvitation(user, owner)
@@ -36,7 +36,7 @@ describe('/administrator/organizations/organizations', () => {
       const administrator = await TestHelper.createAdministrator()
       const user = await TestHelper.createUser()
       for (let i = 0, len = global.pageSize + 1; i < len; i++) {
-        await TestHelper.createOrganization(user, { email: user.profile.email, name: 'My organization' })
+        await TestHelper.createOrganization(user, { email: user.profile.contactEmail, name: 'My organization' })
       }
       const req = TestHelper.createRequest('/administrator/organizations/organizations')
       req.account = administrator.account
@@ -53,7 +53,7 @@ describe('/administrator/organizations/organizations', () => {
       const administrator = await TestHelper.createAdministrator()
       const user = await TestHelper.createUser()
       for (let i = 0, len = global.pageSize + 1; i < len; i++) {
-        await TestHelper.createOrganization(user, { email: user.profile.email, name: 'My organization' })
+        await TestHelper.createOrganization(user, { email: user.profile.contactEmail, name: 'My organization' })
       }
       const req = TestHelper.createRequest('/administrator/organizations/organizations')
       req.account = administrator.account
@@ -71,7 +71,7 @@ describe('/administrator/organizations/organizations', () => {
       const organizations = []
       for (let i = 0, len = global.pageSize + offset + 1; i < len; i++) {
         const user = await TestHelper.createUser()
-        const organization = await TestHelper.createOrganization(user, { email: user.profile.email, name: 'My organization' })
+        const organization = await TestHelper.createOrganization(user, { email: user.profile.contactEmail, name: 'My organization' })
         organizations.unshift(organization)
       }
       const req = TestHelper.createRequest(`/administrator/organizations/organizations?offset=${offset}`)

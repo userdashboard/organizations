@@ -6,7 +6,7 @@ describe(`/account/organizations/organization`, () => {
   describe('Organization#BEFORE', () => {
     it('should reject non-member', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const user = await TestHelper.createUser()
       const req = TestHelper.createRequest(`/account/organizations/organization?organizationid=${owner.organization.organizationid}`)
       req.account = user.account
@@ -22,7 +22,7 @@ describe(`/account/organizations/organization`, () => {
 
     it('should bind organization to req', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const user = await TestHelper.createUser()
       await TestHelper.createInvitation(owner)
       await TestHelper.acceptInvitation(user, owner)
@@ -37,7 +37,7 @@ describe(`/account/organizations/organization`, () => {
   describe('Organization#GET', () => {
     it('should have row for organization', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const user = await TestHelper.createUser()
       await TestHelper.createInvitation(owner)
       await TestHelper.acceptInvitation(user, owner)

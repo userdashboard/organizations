@@ -6,7 +6,7 @@ describe('/api/user/organizations/delete-invitation', async () => {
   describe('DeleteInvitation#DELETE', () => {
     it('should require owner', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       await TestHelper.createInvitation(owner)
       const user = await TestHelper.createUser()
       const req = TestHelper.createRequest(`/api/user/organizations/delete-invitation?invitationid=${owner.invitation.invitationid}`, 'DELETE')
@@ -24,7 +24,7 @@ describe('/api/user/organizations/delete-invitation', async () => {
     it('should reject accepted invitation', async () => {
       const owner = await TestHelper.createUser()
       const user = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       await TestHelper.createInvitation(owner)
       await TestHelper.acceptInvitation(user, owner)
       const req = TestHelper.createRequest(`/api/user/organizations/delete-invitation?invitationid=${owner.invitation.invitationid}`, 'DELETE')
@@ -41,7 +41,7 @@ describe('/api/user/organizations/delete-invitation', async () => {
 
     it('should delete invitation with authorization', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       await TestHelper.createInvitation(owner)
       const req = TestHelper.createRequest(`/api/user/organizations/delete-invitation?invitationid=${owner.invitation.invitationid}`, 'DELETE')
       req.account = owner.account

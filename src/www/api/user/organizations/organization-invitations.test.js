@@ -6,7 +6,7 @@ describe(`/api/user/organizations/organization-invitations`, () => {
   describe('OrganizationInvitations#GET', () => {
     it('should require organization owner', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const user = await TestHelper.createUser()
       await TestHelper.createInvitation(owner)
       await TestHelper.acceptInvitation(user, owner)
@@ -19,7 +19,7 @@ describe(`/api/user/organizations/organization-invitations`, () => {
 
     it('should limit invitation list to one page', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       for (let i = 0, len = global.pageSize + 1; i < len; i++) {
         await TestHelper.createInvitation(owner)
       }
@@ -33,7 +33,7 @@ describe(`/api/user/organizations/organization-invitations`, () => {
     it('should enforce page size', async () => {
       global.pageSize = 3
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       for (let i = 0, len = global.pageSize + 1; i < len; i++) {
         await TestHelper.createInvitation(owner)
       }
@@ -47,7 +47,7 @@ describe(`/api/user/organizations/organization-invitations`, () => {
     it('should enforce specified offset', async () => {
       const offset = 1
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const invitations = []
       for (let i = 0, len = global.pageSize + offset + 1; i < len; i++) {
         await TestHelper.createInvitation(owner)
@@ -64,7 +64,7 @@ describe(`/api/user/organizations/organization-invitations`, () => {
 
     it('should enforce specified offset', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const invitations = []
       for (let i = 0, len = global.pageSize + 1; i < len; i++) {
         await TestHelper.createInvitation(owner)

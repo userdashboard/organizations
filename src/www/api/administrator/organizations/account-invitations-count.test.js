@@ -9,7 +9,7 @@ describe('/api/administrator/organizations/account-invitations-count', async () 
       const user = await TestHelper.createUser()
       for (let i = 0, len = 3; i < len; i++) {
         const owner = await TestHelper.createUser()
-        await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+        await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
         await TestHelper.createInvitation(owner)
         await TestHelper.acceptInvitation(user, owner)
       }

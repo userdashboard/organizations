@@ -11,7 +11,7 @@ describe(`/api/user/organizations/create-organization`, () => {
       req.session = user.session
       req.body = {
         name: '',
-        email: user.profile.email
+        email: user.profile.contactEmail
       }
       let errorMessage
       try {
@@ -29,7 +29,7 @@ describe(`/api/user/organizations/create-organization`, () => {
       req.session = owner.session
       req.body = {
         name: '12345',
-        email: owner.profile.email
+        email: owner.profile.contactEmail
       }
       global.minimumOrganizationNameLength = 100
       let errorMessage

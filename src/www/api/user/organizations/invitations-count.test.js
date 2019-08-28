@@ -6,7 +6,7 @@ describe('/api/user/organizations/invitations-count', async () => {
   describe('InvitationsCount#GET', () => {
     it('should count invitations', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       await TestHelper.createInvitation(owner)
       await TestHelper.createInvitation(owner)
       await TestHelper.createInvitation(owner)

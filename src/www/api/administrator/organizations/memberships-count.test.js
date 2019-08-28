@@ -7,11 +7,11 @@ describe('/api/administrator/organizations/memberships-count', async () => {
     it('should count memberships', async () => {
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const user1 = await TestHelper.createUser()
       await TestHelper.createMembership(user1, owner)
       const owner2 = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner2, { email: owner2.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner2, { email: owner2.profile.contactEmail, name: 'My organization' })
       const user2 = await TestHelper.createUser()
       await TestHelper.createMembership(user2, owner2)
       const user3 = await TestHelper.createUser()

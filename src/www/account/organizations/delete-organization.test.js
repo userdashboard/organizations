@@ -6,7 +6,7 @@ describe(`/account/organizations/delete-organization`, async () => {
   describe('DeleteOrganization#BEFORE', () => {
     it('should require owner', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const user = await TestHelper.createUser()
       await TestHelper.createInvitation(owner)
       await TestHelper.acceptInvitation(user, owner)
@@ -24,7 +24,7 @@ describe(`/account/organizations/delete-organization`, async () => {
 
     it('should bind organization to req', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const req = TestHelper.createRequest(`/account/organizations/delete-organization?organizationid=${owner.organization.organizationid}`)
       req.account = owner.account
       req.session = owner.session
@@ -36,7 +36,7 @@ describe(`/account/organizations/delete-organization`, async () => {
   describe('DeleteOrganization#GET', () => {
     it('should present the form', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const req = TestHelper.createRequest(`/account/organizations/delete-organization?organizationid=${owner.organization.organizationid}`)
       req.account = owner.account
       req.session = owner.session
@@ -48,7 +48,7 @@ describe(`/account/organizations/delete-organization`, async () => {
 
     it('should present the organization', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       await TestHelper.createInvitation(owner)
       const req = TestHelper.createRequest(`/account/organizations/delete-organization?organizationid=${owner.organization.organizationid}`)
       req.account = owner.account
@@ -65,7 +65,7 @@ describe(`/account/organizations/delete-organization`, async () => {
   describe('DeleteOrganization#POST', () => {
     it('should delete organization', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const req = TestHelper.createRequest(`/account/organizations/delete-organization?organizationid=${owner.organization.organizationid}`)
       req.account = owner.account
       req.session = owner.session

@@ -6,13 +6,13 @@ describe('/api/user/organizations/update-organization', () => {
   describe('UpdateOrganization#PATCH', () => {
     it('should reject missing name', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const req = TestHelper.createRequest(`/api/user/organizations/update-organization?organizationid=${owner.organization.organizationid}`)
       req.account = owner.account
       req.session = owner.session
       req.body = {
         name: '',
-        email: owner.profile.email
+        email: owner.profile.contactEmail
       }
       let errorMessage
       try {
@@ -25,13 +25,13 @@ describe('/api/user/organizations/update-organization', () => {
 
     it('should enforce name length', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const req = TestHelper.createRequest(`/api/user/organizations/update-organization?organizationid=${owner.organization.organizationid}`)
       req.account = owner.account
       req.session = owner.session
       req.body = {
         name: '12345',
-        email: owner.profile.email
+        email: owner.profile.contactEmail
       }
       global.minimumOrganizationNameLength = 100
       let errorMessage
@@ -53,7 +53,7 @@ describe('/api/user/organizations/update-organization', () => {
 
     it('should reject missing email', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const req = TestHelper.createRequest(`/api/user/organizations/update-organization?organizationid=${owner.organization.organizationid}`)
       req.account = owner.account
       req.session = owner.session
@@ -72,7 +72,7 @@ describe('/api/user/organizations/update-organization', () => {
 
     it('should apply new values', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const req = TestHelper.createRequest(`/api/user/organizations/update-organization?organizationid=${owner.organization.organizationid}`)
       req.account = owner.account
       req.session = owner.session

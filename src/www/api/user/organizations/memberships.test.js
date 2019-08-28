@@ -9,7 +9,7 @@ describe(`/api/user/organizations/memberships`, () => {
       const memberships = []
       for (let i = 0, len = global.pageSize + 1; i < len; i++) {
         const owner = await TestHelper.createUser()
-        await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+        await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
         await TestHelper.createMembership(user, owner)
         memberships.unshift(user.membership)
       }
@@ -27,7 +27,7 @@ describe(`/api/user/organizations/memberships`, () => {
       const user = await TestHelper.createUser()
       for (let i = 0, len = global.pageSize + 1; i < len; i++) {
         const owner = await TestHelper.createUser()
-        await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+        await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
         await TestHelper.createInvitation(owner)
         await TestHelper.acceptInvitation(user, owner)
       }
@@ -44,7 +44,7 @@ describe(`/api/user/organizations/memberships`, () => {
       const memberships = []
       for (let i = 0, len = global.pageSize + offset + 1; i < len; i++) {
         const owner = await TestHelper.createUser()
-        await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+        await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
         const membership = await TestHelper.createMembership(user, owner)
         memberships.unshift(membership)
       }
@@ -62,7 +62,7 @@ describe(`/api/user/organizations/memberships`, () => {
       const memberships = []
       for (let i = 0, len = global.pageSize + 1; i < len; i++) {
         const owner = await TestHelper.createUser()
-        await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+        await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
         const membership = await TestHelper.createMembership(user, owner)
         memberships.unshift(membership)
       }

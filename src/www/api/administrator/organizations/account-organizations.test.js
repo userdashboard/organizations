@@ -10,7 +10,7 @@ describe('/api/administrator/organizations/account-organizations', () => {
       const organizations = []
       for (let i = 0, len = global.pageSize + 1; i < len; i++) {
         const owner = await TestHelper.createUser()
-        await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+        await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
         await TestHelper.createMembership(user, owner)
         organizations.unshift(owner.organization)
       }
@@ -28,7 +28,7 @@ describe('/api/administrator/organizations/account-organizations', () => {
       const administrator = await TestHelper.createAdministrator()
       const user = await TestHelper.createUser()
       for (let i = 0, len = global.pageSize + 1; i < len; i++) {
-        await TestHelper.createOrganization(user, { email: user.profile.email, name: 'My organization' })
+        await TestHelper.createOrganization(user, { email: user.profile.contactEmail, name: 'My organization' })
       }
       const req = TestHelper.createRequest(`/api/administrator/organizations/account-organizations?accountid=${user.account.accountid}`)
       req.account = administrator.account
@@ -43,7 +43,7 @@ describe('/api/administrator/organizations/account-organizations', () => {
       const organizations = [ ]
       const user = await TestHelper.createUser()
       for (let i = 0, len = global.pageSize + offset + 1; i < len; i++) {
-        await TestHelper.createOrganization(user, { email: user.profile.email, name: 'My organization' })
+        await TestHelper.createOrganization(user, { email: user.profile.contactEmail, name: 'My organization' })
         organizations.unshift(user.organization)
       }
       const req = TestHelper.createRequest(`/api/administrator/organizations/account-organizations?accountid=${user.account.accountid}&offset=${offset}`)

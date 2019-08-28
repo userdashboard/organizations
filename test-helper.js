@@ -61,7 +61,7 @@ async function acceptInvitation (user, owner) {
   req.body = {
     code: owner.invitation.code,
     name: user.profile.firstName,
-    email: user.profile.email
+    email: user.profile.contactEmail
   }
   user.membership = await req.post()
   return user.membership

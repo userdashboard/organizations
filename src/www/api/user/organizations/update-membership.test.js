@@ -6,7 +6,7 @@ describe('/api/user/organizations/update-membership', async () => {
   describe('UpdateMembership#PATCH', () => {
     it('should require own membership', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const user = await TestHelper.createUser()
       await TestHelper.createInvitation(owner)
       await TestHelper.acceptInvitation(user, owner)
@@ -29,7 +29,7 @@ describe('/api/user/organizations/update-membership', async () => {
 
     it('should reject missing name', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const user = await TestHelper.createUser()
       await TestHelper.createInvitation(owner)
       await TestHelper.acceptInvitation(user, owner)
@@ -38,7 +38,7 @@ describe('/api/user/organizations/update-membership', async () => {
       req.session = owner.session
       req.body = {
         name: '',
-        email: owner.profile.email
+        email: owner.profile.contactEmail
       }
       let errorMessage
       try {
@@ -51,7 +51,7 @@ describe('/api/user/organizations/update-membership', async () => {
 
     it('should enforce name length', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const user = await TestHelper.createUser()
       await TestHelper.createInvitation(owner)
       await TestHelper.acceptInvitation(user, owner)
@@ -60,7 +60,7 @@ describe('/api/user/organizations/update-membership', async () => {
       req.session = owner.session
       req.body = {
         name: '12345',
-        email: owner.profile.email
+        email: owner.profile.contactEmail
       }
       global.minimumMembershipNameLength = 100
       let errorMessage
@@ -82,7 +82,7 @@ describe('/api/user/organizations/update-membership', async () => {
 
     it('should reject missing email', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const user = await TestHelper.createUser()
       await TestHelper.createInvitation(owner)
       await TestHelper.acceptInvitation(user, owner)
@@ -104,7 +104,7 @@ describe('/api/user/organizations/update-membership', async () => {
 
     it('should apply new values', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const user = await TestHelper.createUser()
       await TestHelper.createInvitation(owner)
       await TestHelper.acceptInvitation(user, owner)

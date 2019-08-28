@@ -7,7 +7,7 @@ describe(`/api/administrator/organizations/invitations`, () => {
     it('should limit invitation list to one page', async () => {
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.email, name: 'My organization' })
+      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const invitations = []
       for (let i = 0, len = global.pageSize + 1; i < len; i++) {
         await TestHelper.createInvitation(owner)
@@ -27,7 +27,7 @@ describe(`/api/administrator/organizations/invitations`, () => {
       const administrator = await TestHelper.createAdministrator()
       for (let i = 0, len = global.pageSize + 1; i < len; i++) {
         const user = await TestHelper.createUser()
-        await TestHelper.createOrganization(user, { email: user.profile.email, name: 'My organization' })
+        await TestHelper.createOrganization(user, { email: user.profile.contactEmail, name: 'My organization' })
         await TestHelper.createInvitation(user, user.organization.organizationid)
       }
       const req = TestHelper.createRequest('/api/administrator/organizations/invitations')
@@ -43,7 +43,7 @@ describe(`/api/administrator/organizations/invitations`, () => {
       const invitations = [ ]
       for (let i = 0, len = global.pageSize + offset + 1; i < len; i++) {
         const user = await TestHelper.createUser()
-        await TestHelper.createOrganization(user, { email: user.profile.email, name: 'My organization' })
+        await TestHelper.createOrganization(user, { email: user.profile.contactEmail, name: 'My organization' })
         await TestHelper.createInvitation(user, user.organization.organizationid)
         invitations.unshift(user.invitation)
       }
@@ -61,7 +61,7 @@ describe(`/api/administrator/organizations/invitations`, () => {
       const invitations = []
       for (let i = 0, len = global.pageSize + 1; i < len; i++) {
         const user = await TestHelper.createUser()
-        await TestHelper.createOrganization(user, { email: user.profile.email, name: 'My organization' })
+        await TestHelper.createOrganization(user, { email: user.profile.contactEmail, name: 'My organization' })
         await TestHelper.createInvitation(user, user.organization.organizationid)
         invitations.unshift(user.invitation)
       }
