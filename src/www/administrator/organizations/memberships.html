@@ -17,10 +17,18 @@
       <thead>
         <tr>
           <th>ID</th>
-          <th>Name</th>
-          <th>Email</th>
           <th>Invitation</th>
           <th>Organization</th>
+          <th id="full-name">Full name</th>
+          <th id="contact-email">Contact email</th>
+          <th id="display-name">Display name</th>
+          <th id="display-email">Display email</th>
+          <th id="dob">DOB</th>
+          <th id="phone">Phone</th>
+          <th id="occupation">Occupation</th>
+          <th id="location">Location</th>
+          <th id="company-name">Company name</th>
+          <th id="website">Website</th>
           <th>Created</th>
         </tr>
       </thead>
@@ -33,10 +41,18 @@
   <template id="membership-row">
     <tr id="${membership.membershipid}">
       <td><a href="/administrator/organizations/membership?membershipid=${membership.membershipid}">${membership.membershipid}</a></td>
-      <td><a href="mailto:${membership.name}">${membership.name}</a></td>
-      <td><a href="mailto:${membership.email}">${membership.email}</a></td>
       <td><a href="/administrator/organizations/invitation?invitationid=${membership.invitationid}">${membership.invitationid}</a></td>
       <td><a href="/administrator/organizations/organization?organizationid=${membership.organizationid}">${membership.organizationid}</a></td>
+      <td id="full-name-${membership.membershipid}">${membership.firstName} ${membership.lastName}</td>
+      <td id="contact-email-${membership.membershipid}"><a href="mailto:${membership.contactEmail}">${membership.contactEmail}</a></td>
+      <td id="display-name-${membership.membershipid}">${membership.displayName}</td>
+      <td id="display-email-${membership.membershipid}"><a href="mailto:${membership.displayEmail}">${membership.displayEmail}</a></td>
+      <td id="dob-${membership.membershipid}">${membership.dob}</td>
+      <td id="phone-${membership.membershipid}">${membership.phone}</td>
+      <td id="occupation-${membership.membershipid}">${membership.occupation}</td>
+      <td id="location-${membership.membershipid}">${membership.location}</td>
+      <td id="company-name-${membership.membershipid}">${membership.companyName}</td>
+      <td id="website-${membership.membershipid}"><a href="${membership.website}">${membership.website}</a></td>
       <td>${membership.createdFormatted}</td>
     </tr>
   </template>

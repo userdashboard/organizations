@@ -6,7 +6,16 @@ describe(`/account/organizations/delete-invitation`, async () => {
   describe('DeleteInvitation#BEFORE', () => {
     it('should require owner', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
+      global.userProfileFields = [ 'display-name', 'display-email' ]
+      await TestHelper.createProfile(owner, {
+        'display-name': owner.profile.firstName,
+        'display-email': owner.profile.contactEmail
+      })
+      await TestHelper.createOrganization(owner, {
+        email: owner.profile.displayEmail,
+        name: 'My organization',
+        profileid: owner.profile.profileid
+      })
       await TestHelper.createInvitation(owner)
       const user = await TestHelper.createUser()
       const req = TestHelper.createRequest(`/account/organizations/delete-invitation?invitationid=${owner.invitation.invitationid}`)
@@ -23,7 +32,16 @@ describe(`/account/organizations/delete-invitation`, async () => {
 
     it('should bind organization to req', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
+      global.userProfileFields = [ 'display-name', 'display-email' ]
+      await TestHelper.createProfile(owner, {
+        'display-name': owner.profile.firstName,
+        'display-email': owner.profile.contactEmail
+      })
+      await TestHelper.createOrganization(owner, {
+        email: owner.profile.displayEmail,
+        name: 'My organization',
+        profileid: owner.profile.profileid
+      })
       await TestHelper.createInvitation(owner)
       const req = TestHelper.createRequest(`/account/organizations/delete-invitation?invitationid=${owner.invitation.invitationid}`)
       req.account = owner.account
@@ -36,12 +54,21 @@ describe(`/account/organizations/delete-invitation`, async () => {
   describe('DeleteInvitation#GET', () => {
     it('should present the form', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
+      global.userProfileFields = [ 'display-name', 'display-email' ]
+      await TestHelper.createProfile(owner, {
+        'display-name': owner.profile.firstName,
+        'display-email': owner.profile.contactEmail
+      })
+      await TestHelper.createOrganization(owner, {
+        email: owner.profile.displayEmail,
+        name: 'My organization',
+        profileid: owner.profile.profileid
+      })
       await TestHelper.createInvitation(owner)
       const req = TestHelper.createRequest(`/account/organizations/delete-invitation?invitationid=${owner.invitation.invitationid}`)
       req.account = owner.account
       req.session = owner.session
-      const page = await req.get(req)
+      const page = await req.get()
       const doc = TestHelper.extractDoc(page)
       assert.strictEqual(doc.getElementById('submit-form').tag, 'form')
       assert.strictEqual(doc.getElementById('submit-button').tag, 'button')
@@ -49,12 +76,21 @@ describe(`/account/organizations/delete-invitation`, async () => {
 
     it('should present the invitation', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
+      global.userProfileFields = [ 'display-name', 'display-email' ]
+      await TestHelper.createProfile(owner, {
+        'display-name': owner.profile.firstName,
+        'display-email': owner.profile.contactEmail
+      })
+      await TestHelper.createOrganization(owner, {
+        email: owner.profile.displayEmail,
+        name: 'My organization',
+        profileid: owner.profile.profileid
+      })
       await TestHelper.createInvitation(owner)
       const req = TestHelper.createRequest(`/account/organizations/delete-invitation?invitationid=${owner.invitation.invitationid}`)
       req.account = owner.account
       req.session = owner.session
-      const page = await req.get(req)
+      const page = await req.get()
       const doc = TestHelper.extractDoc(page)
       const row = doc.getElementById(owner.invitation.invitationid)
       assert.strictEqual(row.tag, 'tr')
@@ -64,7 +100,16 @@ describe(`/account/organizations/delete-invitation`, async () => {
   describe('DeleteInvitation#POST', () => {
     it('should delete invitation', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
+      global.userProfileFields = [ 'display-name', 'display-email' ]
+      await TestHelper.createProfile(owner, {
+        'display-name': owner.profile.firstName,
+        'display-email': owner.profile.contactEmail
+      })
+      await TestHelper.createOrganization(owner, {
+        email: owner.profile.displayEmail,
+        name: 'My organization',
+        profileid: owner.profile.profileid
+      })
       await TestHelper.createInvitation(owner)
       const req = TestHelper.createRequest(`/account/organizations/delete-invitation?invitationid=${owner.invitation.invitationid}`)
       req.account = owner.account

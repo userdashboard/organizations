@@ -19,9 +19,45 @@
           <th>Created</th>
           <td>${membership.createdFormatted}</td>
         </tr>
-        <tr>
-          <th>Email</th>
-          <td>${membership.email}</td>
+        <tr id="full-name">
+          <th>Full name</th>
+          <td>${membership.firstName} ${membership.lastName}</td>
+        </tr>
+        <tr id="contact-email">
+          <th>Contact email</th>
+          <td><a href="mailto:${membership.contactEmail}">${membership.contactEmail}</a></td>
+        </tr>
+        <tr id="display-name">
+          <th>Display name</th>
+          <td>${membership.displayName}</td>
+        </tr>
+        <tr id="display-email">
+          <th>Display email</th>
+          <td><a href="mailto:${membership.displayEmail}">${membership.displayEmail}</a></td>
+        </tr>
+        <tr id="dob">
+          <th>Date of birth</th>
+          <td>${membership.dob}</td>
+        </tr>
+        <tr id="phone">
+          <th>Phone</th>
+          <td>${membership.phone}</td>
+        </tr>
+        <tr id="occupation">
+          <th>Occupation</th>
+          <td>${membership.occupation}</td>
+        </tr>
+        <tr id="location">
+          <th>Location</th>
+          <td>${membership.location}</td>
+        </tr>
+        <tr id="company-name">
+          <th>Company name</th>
+          <td>${membership.companyName}</td>
+        </tr>
+        <tr id="website">
+          <th>Website</th>
+          <td><a href="${membership.website}">${membership.website}</a></td>
         </tr>
       </body>
     </table> 

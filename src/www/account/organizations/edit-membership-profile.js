@@ -50,16 +50,33 @@ async function renderPage (req, res, messageTemplate) {
       return dashboard.Response.end(req, res, doc)
     }
   }
-  const userEmail = req.body ? req.body.email || '' : req.data.membership.email
-  const userName = req.body ? req.body.name || '' : req.data.membership.name
-  const organizationField = doc.getElementById('organizationName')
-  organizationField.setAttribute('value', req.data.organization.name)
-  const nameField = doc.getElementById('name')
-  nameField.setAttribute('value', userName)
-  const emailField = doc.getElementById('email')
-  emailField.setAttribute('value', userEmail)
-  const submitForm = doc.getElementById('submit-form')
-  submitForm.setAttribute('action', req.url)
+  const removeFields = [].concat(global.profileFields)
+  const profileFields = req.profileFields || global.membershipProfileFields
+  for (const field of profileFields) {
+    removeFields.splice(removeFields.indexOf(`${field}-container`))
+  }
+  if (messageTemplate) {
+    dashboard.HTML.renderTemplate(doc, null, messageTemplate, 'message-container')
+    if (messageTemplate === 'success') {
+      removeFields.push('submit-form')
+    }
+  }
+  for (const id of removeFields) {
+    const element = doc.getElementById(`${id}-container`)
+    if (!element || !element.parentNode) {
+      continue
+    }
+    element.parentNode.removeChild(element)
+  }
+  if (req.method === 'GET') {
+    for (const field in req.data.membership) {
+      const element = doc.getElementById(field)
+      if (!element) {
+        continue
+      }
+      element.attr.value = req.data.membership[field]
+    }
+  }
   return dashboard.Response.end(req, res, doc)
 }
 
@@ -67,18 +84,9 @@ async function submitForm (req, res) {
   if (!req.body) {
     return renderPage(req, res)
   }
-  if (!req.body.name || !req.body.name.length) {
-    return renderPage(req, res, 'invalid-membership-name')
-  }
-  if (global.minimumMembershipNameLength > req.body.name.length ||
-    global.maximumMembershipNameLength < req.body.name.length) {
-    return renderPage(req, res, 'invalid-membership-name-length')
-  }
-  if (!req.body.email || !req.body.email.length) {
-    return renderPage(req, res, 'invalid-membership-email')
-  }
+  req.profileFields = req.profileFields || global.membershipProfileFields
   try {
-    await global.api.user.organizations.UpdateMembership.patch(req)
+    await global.api.user.UpdateProfile.patch(req)
     if (req.success) {
       return renderPage(req, res, 'success')
     }

@@ -6,7 +6,16 @@ describe(`/api/user/organizations/create-membership`, () => {
   describe('CreateMembership#POST', () => {
     it('should enforce code length', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
+      global.userProfileFields = [ 'display-name', 'display-email' ]
+      await TestHelper.createProfile(owner, {
+        'display-name': owner.profile.firstName,
+        'display-email': owner.profile.contactEmail
+      })
+      await TestHelper.createOrganization(owner, {
+        email: owner.profile.displayEmail,
+        name: 'My organization',
+        profileid: owner.profile.profileid
+      })
       await TestHelper.createInvitation(owner)
       const user = await TestHelper.createUser()
       const req = TestHelper.createRequest(`/api/user/organizations/create-membership?invitationid=${owner.invitation.invitationid}`)
@@ -14,7 +23,7 @@ describe(`/api/user/organizations/create-membership`, () => {
       req.session = user.session
       req.body = {
         code: '1',
-        email: user.profile.contactEmail,
+        email: user.profile.displayEmail,
         name: user.profile.firstName
       }
       global.minimumInvitationCodeLength = 100
@@ -29,11 +38,28 @@ describe(`/api/user/organizations/create-membership`, () => {
 
     it('should reject a used invitation', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
+      global.userProfileFields = [ 'display-name', 'display-email' ]
+      await TestHelper.createProfile(owner, {
+        'display-name': owner.profile.firstName,
+        'display-email': owner.profile.contactEmail
+      })
+      await TestHelper.createOrganization(owner, {
+        email: owner.profile.displayEmail,
+        name: 'My organization',
+        profileid: owner.profile.profileid
+      })
       await TestHelper.createInvitation(owner)
       const user = await TestHelper.createUser()
+      await TestHelper.createProfile(user, {
+        'display-name': user.profile.firstName,
+        'display-email': user.profile.contactEmail
+      })
       await TestHelper.acceptInvitation(user, owner)
       const user2 = await TestHelper.createUser()
+      await TestHelper.createProfile(user2, {
+        'display-name': user2.profile.firstName,
+        'display-email': user2.profile.contactEmail
+      })
       const req = TestHelper.createRequest(`/api/user/organizations/create-membership?invitationid=${owner.invitation.invitationid}`)
       req.account = user2.account
       req.session = user2.session
@@ -53,7 +79,16 @@ describe(`/api/user/organizations/create-membership`, () => {
 
     it('should reject owner', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
+      global.userProfileFields = [ 'display-name', 'display-email' ]
+      await TestHelper.createProfile(owner, {
+        'display-name': owner.profile.firstName,
+        'display-email': owner.profile.contactEmail
+      })
+      await TestHelper.createOrganization(owner, {
+        email: owner.profile.displayEmail,
+        name: 'My organization',
+        profileid: owner.profile.profileid
+      })
       await TestHelper.createInvitation(owner)
       const req = TestHelper.createRequest(`/api/user/organizations/create-membership?invitationid=${owner.invitation.invitationid}`)
       req.account = owner.account
@@ -75,7 +110,21 @@ describe(`/api/user/organizations/create-membership`, () => {
     it('should reject existing members', async () => {
       const owner = await TestHelper.createUser()
       const user = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
+      global.userProfileFields = ['display-name', 'display-email']
+      await TestHelper.createProfile(owner, {
+        'display-name': owner.profile.firstName,
+        'display-email': owner.profile.contactEmail
+      })
+      await TestHelper.createProfile(user, {
+        'display-name': user.profile.firstName,
+        'display-email': user.profile.contactEmail
+      })
+      global.userProfileFields = ['display-email', 'display-name']
+      await TestHelper.createOrganization(owner, {
+        email: owner.profile.displayEmail,
+        name: 'My organization',
+        profileid: owner.profile.profileid
+      })
       await TestHelper.createInvitation(owner)
       await TestHelper.acceptInvitation(user, owner)
       await TestHelper.createInvitation(owner)
@@ -84,8 +133,7 @@ describe(`/api/user/organizations/create-membership`, () => {
       req.session = user.session
       req.body = {
         code: owner.invitation.code,
-        email: user.profile.contactEmail,
-        name: user.profile.firstName
+        profileid: user.profile.profileid
       }
       let errorMessage
       try {
@@ -98,16 +146,28 @@ describe(`/api/user/organizations/create-membership`, () => {
 
     it('should create membership', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
-      await TestHelper.createInvitation(owner)
       const user = await TestHelper.createUser()
+      global.userProfileFields = ['display-name', 'display-email']
+      await TestHelper.createProfile(owner, {
+        'display-name': owner.profile.firstName,
+        'display-email': owner.profile.contactEmail
+      })
+      await TestHelper.createProfile(user, {
+        'display-name': user.profile.firstName,
+        'display-email': user.profile.contactEmail
+      })
+      await TestHelper.createOrganization(owner, {
+        email: owner.profile.displayEmail,
+        name: 'My organization',
+        profileid: owner.profile.profileid
+      })
+      await TestHelper.createInvitation(owner)
       const req = TestHelper.createRequest(`/api/user/organizations/create-membership?invitationid=${owner.invitation.invitationid}`)
       req.account = user.account
       req.session = user.session
       req.body = {
         code: owner.invitation.code,
-        email: user.profile.contactEmail,
-        name: user.profile.firstName
+        profileid: user.profile.profileid
       }
       const membership = await req.post(req)
       assert.strictEqual(membership.object, 'membership')

@@ -6,7 +6,16 @@ describe('/account/organizations/organizations', () => {
   describe('Organizations#BEFORE', () => {
     it('should bind owned organizations to req', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
+      global.userProfileFields = [ 'display-name', 'display-email' ]
+      await TestHelper.createProfile(owner, {
+        'display-name': owner.profile.firstName,
+        'display-email': owner.profile.contactEmail
+      })
+      await TestHelper.createOrganization(owner, {
+        email: owner.profile.displayEmail,
+        name: 'My organization',
+        profileid: owner.profile.profileid
+      })
       const req = TestHelper.createRequest('/account/organizations/organizations')
       req.account = owner.account
       req.session = owner.session
@@ -18,13 +27,22 @@ describe('/account/organizations/organizations', () => {
   describe('Organizations#GET', () => {
     it('should limit organizations to one page', async () => {
       const owner = await TestHelper.createUser()
+      global.userProfileFields = ['display-email', 'display-name']
+      await TestHelper.createProfile(owner, {
+        'display-name': owner.profile.firstName,
+        'display-email': owner.profile.contactEmail
+      })
       for (let i = 0, len = global.pageSize + 1; i < len; i++) {
-        await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
+        await TestHelper.createOrganization(owner, {
+          email: owner.profile.displayEmail,
+          name: 'My organization',
+          profileid: owner.profile.profileid
+        })
       }
       const req = TestHelper.createRequest('/account/organizations/organizations')
       req.account = owner.account
       req.session = owner.session
-      const page = await req.get(req)
+      const page = await req.get()
       const doc = TestHelper.extractDoc(page)
       const table = doc.getElementById('organizations-table')
       const rows = table.getElementsByTagName('tr')
@@ -34,13 +52,22 @@ describe('/account/organizations/organizations', () => {
     it('should enforce page size', async () => {
       global.pageSize = 3
       const owner = await TestHelper.createUser()
+      global.userProfileFields = ['display-email', 'display-name']
+      await TestHelper.createProfile(owner, {
+        'display-name': owner.profile.firstName,
+        'display-email': owner.profile.contactEmail
+      })
       for (let i = 0, len = global.pageSize + 1; i < len; i++) {
-        await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
+        await TestHelper.createOrganization(owner, {
+          email: owner.profile.displayEmail,
+          name: 'My organization',
+          profileid: owner.profile.profileid
+        })
       }
       const req = TestHelper.createRequest('/account/organizations/organizations')
       req.account = owner.account
       req.session = owner.session
-      const page = await req.get(req)
+      const page = await req.get()
       const doc = TestHelper.extractDoc(page)
       const table = doc.getElementById('organizations-table')
       const rows = table.getElementsByTagName('tr')
@@ -50,15 +77,24 @@ describe('/account/organizations/organizations', () => {
     it('should enforce specified offset', async () => {
       const offset = 1
       const owner = await TestHelper.createUser()
+      global.userProfileFields = ['display-email', 'display-name']
+      await TestHelper.createProfile(owner, {
+        'display-name': owner.profile.firstName,
+        'display-email': owner.profile.contactEmail
+      })
       const organizations = []
       for (let i = 0, len = global.pageSize + offset + 1; i < len; i++) {
-        await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
+        await TestHelper.createOrganization(owner, {
+          email: owner.profile.displayEmail,
+          name: 'My organization',
+          profileid: owner.profile.profileid
+        })
         organizations.unshift(owner.organization)
       }
       const req = TestHelper.createRequest(`/account/organizations/organizations?offset=${offset}`)
       req.account = owner.account
       req.session = owner.session
-      const page = await req.get(req)
+      const page = await req.get()
       const doc = TestHelper.extractDoc(page)
       for (let i = 0, len = global.pageSize; i < len; i++) {
         assert.strictEqual(doc.getElementById(organizations[offset + i].organizationid).tag, 'tr')

@@ -7,7 +7,16 @@ describe(`/administrator/organizations/invitation`, () => {
     it('should bind invitation to req', async () => {
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
+      global.userProfileFields = [ 'display-name', 'display-email' ]
+      await TestHelper.createProfile(owner, {
+        'display-name': owner.profile.firstName,
+        'display-email': owner.profile.contactEmail
+      })
+      await TestHelper.createOrganization(owner, {
+        email: owner.profile.displayEmail,
+        name: 'My organization',
+        profileid: owner.profile.profileid
+      })
       await TestHelper.createInvitation(owner)
       const req = TestHelper.createRequest(`/administrator/organizations/invitation?invitationid=${owner.invitation.invitationid}`)
       req.account = administrator.account
@@ -21,12 +30,21 @@ describe(`/administrator/organizations/invitation`, () => {
     it('should have row for invitation', async () => {
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
+      global.userProfileFields = [ 'display-name', 'display-email' ]
+      await TestHelper.createProfile(owner, {
+        'display-name': owner.profile.firstName,
+        'display-email': owner.profile.contactEmail
+      })
+      await TestHelper.createOrganization(owner, {
+        email: owner.profile.displayEmail,
+        name: 'My organization',
+        profileid: owner.profile.profileid
+      })
       await TestHelper.createInvitation(owner)
       const req = TestHelper.createRequest(`/administrator/organizations/invitation?invitationid=${owner.invitation.invitationid}`)
       req.account = administrator.account
       req.session = administrator.session
-      const page = await req.get(req)
+      const page = await req.get()
       const doc = TestHelper.extractDoc(page)
       const tbody = doc.getElementById(owner.invitation.invitationid)
       assert.strictEqual(tbody.tag, 'tbody')

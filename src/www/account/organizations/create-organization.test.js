@@ -9,7 +9,7 @@ describe(`/account/organizations/create-organization`, async () => {
       const req = TestHelper.createRequest(`/account/organizations/create-organization`)
       req.account = owner.account
       req.session = owner.session
-      const page = await req.get(req)
+      const page = await req.get()
       const doc = TestHelper.extractDoc(page)
       assert.strictEqual(doc.getElementById('submit-form').tag, 'form')
       assert.strictEqual(doc.getElementById('submit-button').tag, 'button')
@@ -73,6 +73,42 @@ describe(`/account/organizations/create-organization`, async () => {
       assert.strictEqual(message.attr.template, 'invalid-organization-email')
     })
 
+    it('should reject invalid existing profile', async () => {
+      const owner = await TestHelper.createUser()
+      const req = TestHelper.createRequest(`/account/organizations/create-organization`)
+      req.account = owner.account
+      req.session = owner.session
+      req.body = {
+        name: 'org-name',
+        email: 'test@test.com',
+        profileid: owner.profile.profileid
+      }
+      const page = await req.post(req)
+      const doc = TestHelper.extractDoc(page)
+      const message = doc.getElementById('message-container').child[0]
+      assert.strictEqual(message.attr.template, 'invalid-profileid')
+    })
+
+    it('should accept valid existing profile', async () => {
+      const owner = await TestHelper.createUser()
+      global.userProfileFields = [ 'display-name', 'display-email' ]
+      await TestHelper.createProfile(owner, {
+        'display-name': 'Person',
+        'display-email': 'person@email.com'
+      })
+      const req = TestHelper.createRequest(`/account/organizations/create-organization`)
+      req.account = owner.account
+      req.session = owner.session
+      req.body = {
+        name: 'org-name',
+        email: 'test@test.com',
+        profileid: owner.profile.profileid
+      }
+      const page = await req.post(req)
+      const redirectURL = await TestHelper.extractRedirectURL(page)
+      assert.strictEqual(true, redirectURL.startsWith(`/account/organizations/organization?organizationid=`))
+    })
+
     it('should create organization', async () => {
       const owner = await TestHelper.createUser()
       const req = TestHelper.createRequest(`/account/organizations/create-organization`)
@@ -80,7 +116,9 @@ describe(`/account/organizations/create-organization`, async () => {
       req.session = owner.session
       req.body = {
         name: 'org-name',
-        email: 'test@test.com'
+        email: 'test@test.com',
+        'display-name': owner.profile.firstName,
+        'display-email': owner.profile.contactEmail
       }
       const page = await req.post(req)
       const redirectURL = await TestHelper.extractRedirectURL(page)

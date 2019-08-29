@@ -7,7 +7,16 @@ describe(`/api/administrator/organizations/organization-invitations`, () => {
     it('should limit invitation list to one page', async () => {
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
+      global.userProfileFields = [ 'display-name', 'display-email' ]
+      await TestHelper.createProfile(owner, {
+        'display-name': owner.profile.firstName,
+        'display-email': owner.profile.contactEmail
+      })
+      await TestHelper.createOrganization(owner, {
+        email: owner.profile.displayEmail,
+        name: 'My organization',
+        profileid: owner.profile.profileid
+      })
       const invitations = []
       for (let i = 0, len = global.pageSize + 1; i < len; i++) {
         await TestHelper.createInvitation(owner)
@@ -16,7 +25,7 @@ describe(`/api/administrator/organizations/organization-invitations`, () => {
       const req = TestHelper.createRequest(`/api/administrator/organizations/organization-invitations?organizationid=${owner.organization.organizationid}`)
       req.account = administrator.account
       req.session = administrator.session
-      const invitationsNow = await req.get(req)
+      const invitationsNow = await req.get()
       for (let i = 0, len = global.pageSize; i < len; i++) {
         assert.strictEqual(invitationsNow[i].invitationid, invitations[i].invitationid)
       }
@@ -26,14 +35,23 @@ describe(`/api/administrator/organizations/organization-invitations`, () => {
       global.pageSize = 3
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
+      global.userProfileFields = [ 'display-name', 'display-email' ]
+      await TestHelper.createProfile(owner, {
+        'display-name': owner.profile.firstName,
+        'display-email': owner.profile.contactEmail
+      })
+      await TestHelper.createOrganization(owner, {
+        email: owner.profile.displayEmail,
+        name: 'My organization',
+        profileid: owner.profile.profileid
+      })
       for (let i = 0, len = global.pageSize + 1; i < len; i++) {
         await TestHelper.createInvitation(owner)
       }
       const req = TestHelper.createRequest(`/api/administrator/organizations/organization-invitations?organizationid=${owner.organization.organizationid}`)
       req.account = administrator.account
       req.session = administrator.session
-      const invitationsNow = await req.get(req)
+      const invitationsNow = await req.get()
       assert.strictEqual(invitationsNow.length, global.pageSize)
     })
 
@@ -41,7 +59,16 @@ describe(`/api/administrator/organizations/organization-invitations`, () => {
       const offset = 1
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
+      global.userProfileFields = [ 'display-name', 'display-email' ]
+      await TestHelper.createProfile(owner, {
+        'display-name': owner.profile.firstName,
+        'display-email': owner.profile.contactEmail
+      })
+      await TestHelper.createOrganization(owner, {
+        email: owner.profile.displayEmail,
+        name: 'My organization',
+        profileid: owner.profile.profileid
+      })
       const invitations = []
       for (let i = 0, len = global.pageSize + offset + 1; i < len; i++) {
         await TestHelper.createInvitation(owner)
@@ -50,7 +77,7 @@ describe(`/api/administrator/organizations/organization-invitations`, () => {
       const req = TestHelper.createRequest(`/api/administrator/organizations/organization-invitations?organizationid=${owner.organization.organizationid}&offset=${offset}`)
       req.account = administrator.account
       req.session = administrator.session
-      const invitationsNow = await req.get(req)
+      const invitationsNow = await req.get()
       for (let i = 0, len = global.pageSize; i < len; i++) {
         assert.strictEqual(invitationsNow[i].invitationid, invitations[offset + i].invitationid)
       }
@@ -59,7 +86,16 @@ describe(`/api/administrator/organizations/organization-invitations`, () => {
     it('should return all records', async () => {
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
+      global.userProfileFields = [ 'display-name', 'display-email' ]
+      await TestHelper.createProfile(owner, {
+        'display-name': owner.profile.firstName,
+        'display-email': owner.profile.contactEmail
+      })
+      await TestHelper.createOrganization(owner, {
+        email: owner.profile.displayEmail,
+        name: 'My organization',
+        profileid: owner.profile.profileid
+      })
       const invitations = []
       for (let i = 0, len = global.pageSize + 1; i < len; i++) {
         await TestHelper.createInvitation(owner)
@@ -68,7 +104,7 @@ describe(`/api/administrator/organizations/organization-invitations`, () => {
       const req = TestHelper.createRequest(`/api/administrator/organizations/organization-invitations?organizationid=${owner.organization.organizationid}&all=true`)
       req.account = administrator.account
       req.session = administrator.session
-      const invitationsNow = await req.get(req)
+      const invitationsNow = await req.get()
       for (let i = 0, len = global.pageSize + 1; i < len; i++) {
         assert.strictEqual(invitationsNow[i].invitationid, invitations[i].invitationid)
       }

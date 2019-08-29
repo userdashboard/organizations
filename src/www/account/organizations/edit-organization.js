@@ -48,8 +48,6 @@ async function renderPage (req, res, messageTemplate) {
   nameField.setAttribute('value', req.body ? req.body.name || '' : req.data.organization.name)
   const emailField = doc.getElementById('email')
   emailField.setAttribute('value', email)
-  const submitForm = doc.getElementById('submit-form')
-  submitForm.setAttribute('action', req.url)
   return dashboard.Response.end(req, res, doc)
 }
 

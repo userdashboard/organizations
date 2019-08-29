@@ -6,13 +6,22 @@ describe('/api/user/organizations/organization-invitations-count', async () => {
   describe('OrganizationInvitationsCount#GET', () => {
     it('should count organization\'s invitations', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
+      global.userProfileFields = [ 'display-name', 'display-email' ]
+      await TestHelper.createProfile(owner, {
+        'display-name': owner.profile.firstName,
+        'display-email': owner.profile.contactEmail
+      })
+      await TestHelper.createOrganization(owner, {
+        email: owner.profile.displayEmail,
+        name: 'My organization',
+        profileid: owner.profile.profileid
+      })
       await TestHelper.createInvitation(owner)
       await TestHelper.createInvitation(owner)
       const req = TestHelper.createRequest(`/api/user/organizations/organization-invitations-count?organizationid=${owner.organization.organizationid}`)
       req.account = owner.account
       req.session = owner.session
-      const result = await req.get(req)
+      const result = await req.get()
       assert.strictEqual(result, 2)
     })
   })

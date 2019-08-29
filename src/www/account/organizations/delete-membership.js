@@ -20,7 +20,8 @@ async function beforeRequest (req) {
   if (!organization) {
     throw new Error('invalid-organization')
   }
-  if (membership.accountid !== req.account.accountid && organization.ownerid !== req.account.accountid) {
+  if (membership.accountid !== req.account.accountid &&
+      organization.ownerid !== req.account.accountid) {
     throw new Error('invalid-account')
   }
   membership.createdFormatted = dashboard.Format.date(membership.created)

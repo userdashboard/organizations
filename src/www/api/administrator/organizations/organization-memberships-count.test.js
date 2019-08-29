@@ -7,13 +7,29 @@ describe('/api/administrator/organizations/organization-memberships-count', asyn
     it('should count organization\'s memberships', async () => {
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
+      global.userProfileFields = [ 'display-name', 'display-email' ]
+      await TestHelper.createProfile(owner, {
+        'display-name': owner.profile.firstName,
+        'display-email': owner.profile.contactEmail
+      })
+      await TestHelper.createOrganization(owner, {
+        email: owner.profile.displayEmail,
+        name: 'My organization',
+        profileid: owner.profile.profileid
+      })
+      global.userProfileFields = ['full-name', 'contact-email']
       const user1 = await TestHelper.createUser()
-      await TestHelper.createMembership(user1, owner)
+      global.userProfileFields = ['display-name', 'display-email']
+      await TestHelper.createProfile(user1, {
+        'display-name': user1.profile.firstName,
+        'display-email': user1.profile.contactEmail
+      })
+      await await TestHelper.createInvitation(owner)
+      await TestHelper.acceptInvitation(user1, owner)
       const req = TestHelper.createRequest(`/api/administrator/organizations/organization-memberships-count?organizationid=${owner.organization.organizationid}`)
       req.account = administrator.account
       req.session = administrator.session
-      const result = await req.get(req)
+      const result = await req.get()
       assert.strictEqual(result, 2)
     })
   })

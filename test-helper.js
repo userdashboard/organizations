@@ -5,7 +5,6 @@ const TestHelper = require('@userdashboard/dashboard/test-helper.js')
 module.exports = {
   acceptInvitation,
   createInvitation,
-  createMembership,
   createOrganization
 }
 
@@ -14,6 +13,8 @@ for (const x in TestHelper) {
 }
 
 beforeEach((callback) => {
+  global.userProfileFields = ['full-name', 'contact-email']
+  global.membershipProfileFields = ['display-name', 'display-email']
   global.minimumOrganizationNameLength = 1
   global.maximumOrganizationNameLength = 100
   global.minimumMembershipNameLength = 1
@@ -29,7 +30,8 @@ async function createOrganization (user, organization) {
   req.session = user.session
   req.body = {
     name: organization.name,
-    email: organization.email
+    email: organization.email,
+    profileid: user.profile.profileid
   }
   user.organization = await req.post()
   const req2 = TestHelper.createRequest(`/api/user/organizations/organization-membership?organizationid=${user.organization.organizationid}`, 'POST')
@@ -60,14 +62,8 @@ async function acceptInvitation (user, owner) {
   req.session = user.session
   req.body = {
     code: owner.invitation.code,
-    name: user.profile.firstName,
-    email: user.profile.contactEmail
+    profileid: user.profile.profileid
   }
   user.membership = await req.post()
   return user.membership
-}
-
-async function createMembership (user, owner) {
-  await createInvitation(owner)
-  return acceptInvitation(user, owner)
 }

@@ -1,32 +1,17 @@
 <!doctype html>
-<html navbar="/account/organizations/navbar.html">
+<html navbar="/account/organizations/navbar-membership.html">
   <head>
-    <title>Accept invitation</title>
+    <title>Edit ${membership.membershipid} profile</title>
     <link href="/public/pure-min.css" rel="stylesheet" />
     <link href="/public/content.css" rel="stylesheet" />
     <link href="/public/content-additional.css" rel="stylesheet" />
     <base target="_top" href="/" />
   </head>
   <body>
-    <h1>Accept invitation</h1>
-    <p>You will become a member of the organization after entering the code.</p>
+    <h1>Edit ${membership.membershipid} profile</h1>
+    <p>Any other membership sharing this profile, or other usage of it, will be updated too.</p>
     <div id="message-container"></div>
-    <form id="submit-form" class="pure-form pure-form-stacked" action="/account/organizations/accept-invitation">
-      <div class="pure-control-group">
-        <label for="invitationid">Invitation ID</label>
-        <input id="invitationid" name="invitationid" type="text" maxlength="100" />
-      </div>
-      <div class="pure-control-group">
-        <label for="code">Invitation code</label>
-        <input id="code" name="code" type="text" maxlength="100" />
-      </div>
-      <h2>Membership information</h2>
-      <div class="pure-control-group">
-        <label for="profileid">Existing information</label>
-        <select id="profileid" name="profileid">
-          <option value="">Select an existing profile</option>
-        </select>
-      </div>
+    <form id="submit-form" method="POST" class="pure-form pure-form-stacked" action="/account/organizations/edit-membership-profile?membershipid=${membership.membershipid}">
       <div id="display-name-container" class="pure-control-group">
         <label for="display-name">Display name</label>
         <input require id="display-name" name="display-name" type="text" maxlength="1000" />
@@ -76,45 +61,15 @@
         <input require id="website" name="website" type="text" maxlength="1000" />
       </div>
       <div class="pure-controls">
-        <button type="submit" id="submit-button" class="pure-button pure-button-primary">Create organization</button>
+        <button type="submit" id="submit-button" class="pure-button pure-button-primary">Update membership</button>
       </div>
     </form>
   </body>
   <template id="success">
-    <div class="success message">Success! You are now a member of the organization</div>
-  </template>
-  <template id="invalid-invitation">
-    <div class="error message">Error! The invitation is no longer available</div>
-  </template>
-  <template id="invalid-invitation-code">
-    <div class="error message">Error! The invitation code is incorrect</div>
-  </template>
-  <template id="invalid-invitationid">
-    <div class="error message">Error! A missing or invalid invitation was provided</div>
-  </template>
-  <template id="invalid-account">
-    <div class="error message">Error! You own or are a member of this organization</div>
+    <div class="success message">Success! Your membership information has been updated</div>
   </template>
   <template id="unknown-error">
     <div class="error message">Error! An unknown error ocurred</div>
-  </template>
-  <template id="profile-option">
-    <option value="${profile.profileid}">${profile.displayName} / ${profile.displayEmail}</option>
-  </template>
-  <template id="invalid-organization-name">
-    <div class="error message">Error! A missing or invalid organization name was provided</div>
-  </template>
-  <template id="invalid-organization-name-length">
-    <div class="error message">Error! Invalid organization name length</div>
-  </template>
-  <template id="invalid-organization-email">
-    <div class="error message">Error! A missing or invalid organization email was provided</div>
-  </template>
-  <template id="success">
-    <div class="success message">Success! The organization has been created successfully</div>
-  </template>
-  <template id="unknown-error">
-    <div class="error message">Error! An error occurred creating the organization</div>
   </template>
   <template id="invalid-first-name">
     <div class="error message">Error! A missing or invalid first name provided</div>
@@ -157,8 +112,5 @@
   </template>
   <template id="invalid-display-name-length">
     <div class="error message">Error! A missing or invalid display name was provided</div>
-  </template>
-  <template id="invalid-profileid">
-    <div class="error message">Error! A missing or invalid profile was selected.</div>
   </template>
 </html>

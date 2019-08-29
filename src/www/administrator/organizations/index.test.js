@@ -7,12 +7,32 @@ describe(`/administrator/organizations/index`, () => {
     it('should bind memberships to req', async () => {
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const user = await TestHelper.createUser()
+      global.userProfileFields = [ 'display-name', 'display-email' ]
+      await TestHelper.createProfile(owner, {
+        'display-name': owner.profile.firstName,
+        'display-email': owner.profile.contactEmail
+      })
+      await TestHelper.createProfile(user, {
+        'display-name': user.profile.firstName,
+        'display-email': user.profile.contactEmail
+      })
+      await TestHelper.createOrganization(owner, {
+        email: owner.profile.displayEmail,
+        name: 'My organization',
+        profileid: owner.profile.profileid
+      })
       await TestHelper.createInvitation(owner)
       await TestHelper.acceptInvitation(user, owner)
+      global.userProfileFields = ['contact-email', 'full-name']
       const user2 = await TestHelper.createUser()
-      await TestHelper.createMembership(user2, owner)
+      global.userProfileFields = ['display-name', 'display-email']
+      await TestHelper.createProfile(user2, {
+        'display-name': user2.profile.firstName,
+        'display-email': user2.profile.contactEmail
+      })
+      await await TestHelper.createInvitation(owner)
+      await TestHelper.acceptInvitation(user2, owner)
       const req = TestHelper.createRequest(`/administrator/organizations`)
       req.account = administrator.account
       req.session = administrator.session
@@ -23,7 +43,16 @@ describe(`/administrator/organizations/index`, () => {
     it('should bind organizations to req', async () => {
       const administrator = await TestHelper.createAdministrator()
       const user = await TestHelper.createUser()
-      await TestHelper.createOrganization(user, { email: user.profile.contactEmail, name: 'My organization' })
+      global.userProfileFields = ['display-email', 'display-name']
+      await TestHelper.createProfile(user, {
+        'display-name': user.profile.firstName,
+        'display-email': user.profile.contactEmail
+      })
+      await TestHelper.createOrganization(user, {
+        email: user.profile.displayEmail,
+        name: 'My organization',
+        profileid: user.profile.profileid
+      })
       const req = TestHelper.createRequest(`/administrator/organizations`)
       req.account = administrator.account
       req.session = administrator.session
@@ -36,11 +65,20 @@ describe(`/administrator/organizations/index`, () => {
     it('should have row for each organization', async () => {
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
+      global.userProfileFields = [ 'display-name', 'display-email' ]
+      await TestHelper.createProfile(owner, {
+        'display-name': owner.profile.firstName,
+        'display-email': owner.profile.contactEmail
+      })
+      await TestHelper.createOrganization(owner, {
+        email: owner.profile.displayEmail,
+        name: 'My organization',
+        profileid: owner.profile.profileid
+      })
       const req = TestHelper.createRequest(`/administrator/organizations`)
       req.account = administrator.account
       req.session = administrator.session
-      const page = await req.get(req)
+      const page = await req.get()
       const doc = TestHelper.extractDoc(page)
       const row = doc.getElementById(owner.organization.organizationid)
       assert.strictEqual(row.tag, 'tr')
@@ -49,14 +87,27 @@ describe(`/administrator/organizations/index`, () => {
     it('should have organization row for each membership', async () => {
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, { email: owner.profile.contactEmail, name: 'My organization' })
       const user = await TestHelper.createUser()
+      global.userProfileFields = [ 'display-name', 'display-email' ]
+      await TestHelper.createProfile(owner, {
+        'display-name': owner.profile.firstName,
+        'display-email': owner.profile.contactEmail
+      })
+      await TestHelper.createProfile(user, {
+        'display-name': user.profile.firstName,
+        'display-email': user.profile.contactEmail
+      })
+      await TestHelper.createOrganization(owner, {
+        email: owner.profile.displayEmail,
+        name: 'My organization',
+        profileid: owner.profile.profileid
+      })
       await TestHelper.createInvitation(owner)
       await TestHelper.acceptInvitation(user, owner)
       const req = TestHelper.createRequest(`/administrator/organizations`)
       req.account = administrator.account
       req.session = administrator.session
-      const page = await req.get(req)
+      const page = await req.get()
       const doc = TestHelper.extractDoc(page)
       const row = doc.getElementById(user.membership.organizationid)
       assert.strictEqual(row.tag, 'tr')
