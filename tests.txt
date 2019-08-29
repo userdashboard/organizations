@@ -1,5 +1,5 @@
 
-> @userdashboard/organizations@1.0.16 test /home/benlowry/SynologyDrive/workspaces/dashboard/organizations
+> @userdashboard/organizations@1.0.17 test /home/benlowry/SynologyDrive/workspaces/dashboard/organizations
 > NODE_ENV=testing mocha src --recursive --timeout 90000 --slow 90000
 
 
@@ -8,12 +8,11 @@
     AcceptInvitation#GET
       ✓ should present the form
     AcceptInvitation#POST
-      ✓ should reject missing name
-      ✓ should enforce name length
-      ✓ should reject missing email
       ✓ should reject owner
       ✓ should reject existing member
-      ✓ should accept invitation
+      ✓ should reject invalid existing profile
+      ✓ should accept valid existing profile
+      ✓ should accept invitation and create profile
 
   /account/organizations/create-invitation
     CreateInvitation#BEFORE
@@ -32,6 +31,8 @@
       ✓ should reject missing name
       ✓ should enforce name length
       ✓ should reject missing email
+      ✓ should reject invalid existing profile
+      ✓ should accept valid existing profile
       ✓ should create organization
 
   /account/organizations/delete-invitation
@@ -65,16 +66,15 @@
     DeleteOrganization#POST
       ✓ should delete organization
 
-  /account/organizations/edit-membership
-    EditMembership#BEFORE
+  /account/organizations/edit-membership-profile
+    EditMembershipProfile#BEFORE
       ✓ should require own membership
       ✓ should bind membership to req
-    EditMembership#GET
+    EditMembershipProfile#GET
       ✓ should present the form
-    EditMembership#POST
-      ✓ should reject missing name
-      ✓ should enforce name length
-      ✓ should reject missing email
+    EditMembershipProfile#POST
+      ✓ should reject missing display name
+      ✓ should reject missing display email
       ✓ should apply membership update
 
   /account/organizations/edit-organization
@@ -110,6 +110,7 @@
       ✓ should bind membership to req
     Membership#GET
       ✓ should have row for membership
+      ✓ should show profile fields if data exists
 
   /account/organizations/memberships
     Memberships#BEFORE
@@ -118,6 +119,7 @@
       ✓ should limit memberships to one page
       ✓ should enforce page size
       ✓ should enforce specified offset
+      ✓ should show profile fields if data exists
 
   /account/organizations/organization-invitations
     Invitations#BEFORE
@@ -129,7 +131,7 @@
       ✓ should enforce specified offset
 
   /account/organizations/organization-memberships
-    Memberships#BEFORE
+    OrganizationMemberships#BEFORE
       ✓ should bind memberships to req
     Memberships#GET
       ✓ should limit memberships to one page
@@ -207,6 +209,7 @@
       ✓ should limit memberships to one page
       ✓ should enforce page size
       ✓ should enforce specified offset
+      ✓ should show profile fields if data exists
 
   /administrator/organizations/organization-invitations
     OrganizationInvitations#BEFORE
@@ -358,6 +361,8 @@
       ✓ should reject missing name
       ✓ should enforce name length
       ✓ should reject missing email
+      ✓ should reject invalid profileid
+      ✓ should reject profile missing fields
       ✓ should create organization
 
   /api/user/organizations/delete-invitation
@@ -464,14 +469,6 @@
       ✓ should require new owner is member
       ✓ should transfer organization
 
-  /api/user/organizations/update-membership
-    UpdateMembership#PATCH
-      ✓ should require own membership
-      ✓ should reject missing name
-      ✓ should enforce name length
-      ✓ should reject missing email
-      ✓ should apply new values
-
   /api/user/organizations/update-organization
     UpdateOrganization#PATCH
       ✓ should reject missing name
@@ -480,5 +477,5 @@
       ✓ should apply new values
 
 
-  233 passing (28s)
+  233 passing (2m)
 

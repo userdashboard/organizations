@@ -1,4 +1,4 @@
-@userdashboard/dashboard 1.0.25
+@userdashboard/dashboard 1.0.26
 http://localhost:8003
 
 Administrator menu:
@@ -16,7 +16,7 @@ Special HTML files:
 @userdashboard/dashboard/src/redirect.html
 
 Dashboard modules:
-@userdashboard/organizations (1.0.16)
+@userdashboard/organizations (1.0.17)
 
 URL ----------------------------------------------------------- AUTH ---- TEMPLATE ----- HTTP REQUESTS - NODEJS --------------------- HTML -----------------------
 /                                                               GUEST     FULLSCREEN     GET                                          /src/www                    
@@ -39,7 +39,7 @@ URL ----------------------------------------------------------- AUTH ---- TEMPLA
 /account/organizations/delete-invitation                                                 GET POST        /src/www                     /src/www                    
 /account/organizations/delete-membership                                                 GET POST        /src/www                     /src/www                    
 /account/organizations/delete-organization                                               GET POST        /src/www                     /src/www                    
-/account/organizations/edit-membership                                                   GET POST        /src/www                     /src/www                    
+/account/organizations/edit-membership-profile                                           GET POST        /src/www                     /src/www                    
 /account/organizations/edit-organization                                                 GET POST        /src/www                     /src/www                    
 /account/organizations/invitation                                                        GET             /src/www                     /src/www                    
 /account/organizations/membership                                                        GET             /src/www                     /src/www                    
@@ -172,7 +172,6 @@ URL ----------------------------------------------------------- AUTH ---- TEMPLA
 /api/user/organizations/organizations                                                    GET             /src/www                                                 
 /api/user/organizations/organizations-count                                              GET             /src/www                                                 
 /api/user/organizations/set-organization-owner                                           PATCH           /src/www                                                 
-/api/user/organizations/update-membership                                                PATCH           /src/www                                                 
 /api/user/organizations/update-organization                                              PATCH           /src/www                                                 
 /api/user/profile                                                                        GET             @userdashboard/dashboard                                 
 /api/user/profiles                                                                       GET             @userdashboard/dashboard                                 
