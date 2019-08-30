@@ -38,6 +38,7 @@
     <li><a href="/administrator/organizations/organization-memberships?offset=${page.offset}" id="page-link-${page.pageNumber}">${page.pageNumber}</a></li>
   </template>
   <template id="membership-row">
+    <tr id="${membership.membershipid}">
       <td><a href="/account/organizations/membership?membershipid=${membership.membershipid}">${membership.membershipid}</a></td>
       <td><a href="/account/organizations/invitation?invitationid=${membership.invitationid}">${membership.invitationid}</a></td>
       <td id="full-name-${membership.membershipid}">${membership.firstName} ${membership.lastName}</td>
