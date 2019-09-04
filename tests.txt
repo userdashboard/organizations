@@ -1,5 +1,5 @@
 
-> @userdashboard/organizations@1.0.19 test /home/benlowry/SynologyDrive/workspaces/dashboard/organizations
+> @userdashboard/organizations@1.0.20 test /home/benlowry/SynologyDrive/workspaces/dashboard/organizations
 > NODE_ENV=testing mocha src --recursive --timeout 90000 --slow 90000
 
 
@@ -477,5 +477,5 @@
       ✓ should apply new values
 
 
-  233 passing (2m)
+  233 passing (1m)
 
