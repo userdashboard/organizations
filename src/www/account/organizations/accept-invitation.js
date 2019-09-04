@@ -63,7 +63,7 @@ async function renderPage (req, res, messageTemplate) {
       return dashboard.Response.end(req, res, doc)
     }
   }
-  if (!messageTemplate && req.method === 'GET' && req.query && req.query.returnURL) {
+  if (req.query && req.query.returnURL) {
     const divider = submitForm.attr.action.indexOf('?') > -1 ? '&' : '?'
     submitForm.attr.action += `${divider}returnURL=${encodeURI(req.query.returnURL).split('?').join('%3F')}`
   }
