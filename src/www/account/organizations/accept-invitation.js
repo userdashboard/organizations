@@ -28,8 +28,14 @@ async function beforeRequest (req) {
             displayName = displayName[0] + displayName[1].substring(0, 1).toUpperCase() + displayName[1].substring(1) + displayName[2].substring(0, 1).toUpperCase() + displayName[2].substring(1)
           }
         }
+        if (field === 'full-name') {
+          if (!profile.firstName || !profile.lastName) {
+            include = false
+            break
+          }
+        }
         include = profile[displayName] && profile[displayName].length
-        if (include) {
+        if (!include) {
           break
         }
       }
@@ -78,7 +84,7 @@ async function renderPage (req, res, messageTemplate) {
     if (req.body.profileid) {
       dashboard.HTML.setSelectedOptionByValue(doc, 'profileid', req.body.profileid)
     } else {
-      const profileFields = global.membershipProfileFields
+      const profileFields = req.profileFields || global.membershipProfileFields
       for (const field of profileFields) {
         if (req.body[field]) {
           const element = doc.getElementById(field)
@@ -135,10 +141,24 @@ async function submitForm (req, res) {
       }
     }
     if (!found) {
-      return renderPage(req, res, 'invalid-profileid')
+      req.query.profileid = req.body.profileid
+      let profile
+      try {
+        profile = await global.api.user.Profile.get(req)
+      } catch (error) {
+        return renderPage(req, res, error.message)
+      }
+      if (!profile) {
+        return renderPage(req, res, 'invalid-profileid')
+      }
     }
   } else {
     req.profileFields = req.profileFields || global.membershipProfileFields
+    for (const field of req.profileFields) {
+      if (req.body[field] && req.body[field].trim) {
+        req.body[field] = req.body[field].trim()
+      }
+    }
     try {
       const profile = await global.api.user.CreateProfile.post(req)
       req.body.profileid = profile.profileid

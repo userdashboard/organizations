@@ -55,6 +55,7 @@ async function submitForm (req, res) {
   if (!req.body) {
     return renderPage(req, res)
   }
+  req.body.name = req.body.name && req.body.name.trim ? req.body.name.trim() : req.body.name
   if (!req.body.name || !req.body.name.length) {
     return renderPage(req, res, 'invalid-organization-name')
   }
@@ -62,6 +63,7 @@ async function submitForm (req, res) {
     global.maximumOrganizationNameLength < req.body.name.length) {
     return renderPage(req, res, 'invalid-organization-name-length')
   }
+  req.body.email = req.body.email && req.body.email.trim ? req.body.email.trim() : req.body.email
   if (!req.body.email || !req.body.email.length) {
     return renderPage(req, res, 'invalid-organization-email')
   }
