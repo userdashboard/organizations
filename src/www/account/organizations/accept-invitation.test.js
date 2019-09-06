@@ -14,6 +14,25 @@ describe(`/account/organizations/accept-invitation`, () => {
       assert.strictEqual(doc.getElementById('submit-form').tag, 'form')
       assert.strictEqual(doc.getElementById('submit-button').tag, 'button')
     })
+
+    it('should exclude invalid profiles', async () => {
+      const owner = await TestHelper.createUser()
+      await TestHelper.createOrganization(owner, {
+        email: owner.profile.displayEmail,
+        name: 'My organization',
+        profileid: owner.profile.profileid
+      })
+      await TestHelper.createInvitation(owner)
+      const user = await TestHelper.createUser()
+      global.membershipProfileFields = ['full-name', 'contact-email']
+      const req = TestHelper.createRequest(`/account/organizations/accept-invitation?invitationid=${owner.invitation.invitationid}`)
+      req.account = user.account
+      req.session = user.session
+      const page = await req.get(req)
+      const doc = TestHelper.extractDoc(page)
+      assert.strictEqual(doc.toString().indexOf(user.profile.profileid), -1)
+    })
+
   })
 
   describe('AcceptInvitation#POST', () => {
@@ -78,34 +97,6 @@ describe(`/account/organizations/accept-invitation`, () => {
       const messageContainer = doc.getElementById('message-container')
       const message = messageContainer.child[0]
       assert.strictEqual(message.attr.template, 'invalid-account')
-    })
-
-    it('should reject invalid existing profile', async () => {
-      const owner = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
-      await TestHelper.createProfile(owner, {
-        'display-name': owner.profile.firstName,
-        'display-email': owner.profile.contactEmail
-      })
-      await TestHelper.createOrganization(owner, {
-        email: owner.profile.displayEmail,
-        name: 'My organization',
-        profileid: owner.profile.profileid
-      })
-      await TestHelper.createInvitation(owner)
-      const user = await TestHelper.createUser()
-      const req = TestHelper.createRequest(`/account/organizations/accept-invitation?invitationid=${owner.invitation.invitationid}`)
-      req.account = user.account
-      req.session = user.session
-      req.body = {
-        code: owner.invitation.code,
-        invitationid: owner.invitation.invitationid,
-        profileid: user.profile.profileid
-      }
-      const page = await req.post(req)
-      const doc = TestHelper.extractDoc(page)
-      const message = doc.getElementById('message-container').child[0]
-      assert.strictEqual(message.attr.template, 'invalid-profileid')
     })
 
     it('should accept valid existing profile', async () => {

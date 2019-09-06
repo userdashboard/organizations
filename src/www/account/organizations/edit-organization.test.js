@@ -88,7 +88,8 @@ describe(`/account/organizations/edit-organization`, () => {
       req.account = owner.account
       req.session = owner.session
       req.body = {
-        name: ''
+        name: ' ',
+        email: owner.profile.displayEmail
       }
       const page = await req.post(req)
       const doc = TestHelper.extractDoc(page)
@@ -152,7 +153,7 @@ describe(`/account/organizations/edit-organization`, () => {
       req.account = owner.account
       req.body = {
         name: 'org-name',
-        email: null
+        email: ' '
       }
       const page = await req.post(req)
       const doc = TestHelper.extractDoc(page)

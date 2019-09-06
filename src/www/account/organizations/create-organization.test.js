@@ -23,7 +23,8 @@ describe(`/account/organizations/create-organization`, async () => {
       req.account = user.account
       req.session = user.session
       req.body = {
-        name: ' '
+        name: '',
+        email: 'org@email.com'
       }
       const page = await req.post(req)
       const doc = TestHelper.extractDoc(page)
@@ -37,7 +38,10 @@ describe(`/account/organizations/create-organization`, async () => {
       req.account = user.account
       req.session = user.session
       req.body = {
-        name: '1'
+        name: '1',
+        email: 'org@email.com',
+        'display-name': 'administrator',
+        'display-email': 'org-admin@email.com'
       }
       global.minimumOrganizationNameLength = 2
       const page = await req.post(req)
@@ -49,7 +53,8 @@ describe(`/account/organizations/create-organization`, async () => {
       req2.account = user.account
       req2.session = user.session
       req2.body = {
-        name: '1234567890'
+        name: '1234567890',
+        email: 'org@email.com'
       }
       global.maximumOrganizationNameLength = 1
       const page2 = await req2.post(req2)
@@ -65,28 +70,14 @@ describe(`/account/organizations/create-organization`, async () => {
       req.account = user.account
       req.body = {
         name: 'org-name',
-        email: ' '
+        email: '',
+        'display-name': 'administrator',
+        'display-email': 'org-admin@email.com'
       }
       const page = await req.post(req)
       const doc = TestHelper.extractDoc(page)
       const message = doc.getElementById('message-container').child[0]
       assert.strictEqual(message.attr.template, 'invalid-organization-email')
-    })
-
-    it('should reject invalid existing profile', async () => {
-      const owner = await TestHelper.createUser()
-      const req = TestHelper.createRequest(`/account/organizations/create-organization`)
-      req.account = owner.account
-      req.session = owner.session
-      req.body = {
-        name: 'org-name',
-        email: 'test@test.com',
-        profileid: owner.profile.profileid
-      }
-      const page = await req.post(req)
-      const doc = TestHelper.extractDoc(page)
-      const message = doc.getElementById('message-container').child[0]
-      assert.strictEqual(message.attr.template, 'invalid-profileid')
     })
 
     it('should accept valid existing profile', async () => {
