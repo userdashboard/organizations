@@ -1,5 +1,5 @@
 
-> @userdashboard/organizations@1.0.21 test /home/benlowry/SynologyDrive/workspaces/dashboard/organizations
+> @userdashboard/organizations@1.0.22 test /home/benlowry/SynologyDrive/workspaces/dashboard/organizations
 > NODE_ENV=testing mocha src --recursive --timeout 90000 --slow 90000
 
 
