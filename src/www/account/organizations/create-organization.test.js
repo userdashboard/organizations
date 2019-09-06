@@ -23,7 +23,7 @@ describe(`/account/organizations/create-organization`, async () => {
       req.account = user.account
       req.session = user.session
       req.body = {
-        name: ''
+        name: ' '
       }
       const page = await req.post(req)
       const doc = TestHelper.extractDoc(page)
@@ -65,7 +65,7 @@ describe(`/account/organizations/create-organization`, async () => {
       req.account = user.account
       req.body = {
         name: 'org-name',
-        email: null
+        email: ' '
       }
       const page = await req.post(req)
       const doc = TestHelper.extractDoc(page)
