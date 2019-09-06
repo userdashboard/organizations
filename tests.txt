@@ -1,5 +1,5 @@
 
-> @userdashboard/organizations@1.0.20 test /home/benlowry/SynologyDrive/workspaces/dashboard/organizations
+> @userdashboard/organizations@1.0.21 test /home/benlowry/SynologyDrive/workspaces/dashboard/organizations
 > NODE_ENV=testing mocha src --recursive --timeout 90000 --slow 90000
 
 
@@ -7,10 +7,10 @@
   /account/organizations/accept-invitation
     AcceptInvitation#GET
       ✓ should present the form
+      ✓ should exclude invalid profiles
     AcceptInvitation#POST
       ✓ should reject owner
       ✓ should reject existing member
-      ✓ should reject invalid existing profile
       ✓ should accept valid existing profile
       ✓ should accept invitation and create profile
 
@@ -31,7 +31,6 @@
       ✓ should reject missing name
       ✓ should enforce name length
       ✓ should reject missing email
-      ✓ should reject invalid existing profile
       ✓ should accept valid existing profile
       ✓ should create organization
 
@@ -477,5 +476,5 @@
       ✓ should apply new values
 
 
-  233 passing (1m)
+  232 passing (2m)
 
