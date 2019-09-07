@@ -3,7 +3,7 @@ PAGE_SIZE=3 \
 PORT=8003 \
 DASHBOARD_SERVER="http://localhost:8003" \
 STORAGE_PATH=/tmp/organizations \
-node main.js
+node main.js --debug-brk=5858
 
 # Organizations module startup parameters
 # These ENV variables let you tweak certain parts of the Organizations module to your preference.

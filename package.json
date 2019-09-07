@@ -9,9 +9,7 @@
   },
   "license": "SPDX(MIT OR Unlicense)",
   "scripts": {
-    "test": "NODE_ENV=testing mocha src --recursive --timeout 90000 --slow 90000",
-    "start": "node main.js",
-    "debug": "node main.js --debug-brk=5858"
+    "test": "mocha src --recursive --no-colors --retries 3 --timeout 120000 --slow 120000"
   },
   "engines": {
     "node": "8.12.0",
@@ -41,7 +39,7 @@
     }
   },
   "devDependencies": {
-    "@userdashboard/dashboard": "^1.0.33",
+    "@userdashboard/dashboard": "^1.0.35",
     "puppeteer": "^1.19.0"
   }
 }
