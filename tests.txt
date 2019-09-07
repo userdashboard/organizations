@@ -1,6 +1,6 @@
 
-> @userdashboard/organizations@1.0.24 test /home/benlowry/SynologyDrive/workspaces/dashboard/organizations
-> NODE_ENV=testing mocha src --recursive --timeout 90000 --slow 90000
+> @userdashboard/organizations@1.0.25 test /home/benlowry/SynologyDrive/workspaces/dashboard/organizations
+> mocha src --recursive --no-colors --retries 3 --timeout 120000 --slow 120000
 
 
 
