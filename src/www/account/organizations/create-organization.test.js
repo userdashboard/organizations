@@ -48,7 +48,6 @@ describe(`/account/organizations/create-organization`, async () => {
       const doc = TestHelper.extractDoc(page)
       const message = doc.getElementById('message-container').child[0]
       assert.strictEqual(message.attr.template, 'invalid-organization-name-length')
-      // too long
       const req2 = TestHelper.createRequest('/account/organizations/create-organization')
       req2.account = user.account
       req2.session = user.session

@@ -112,11 +112,9 @@ async function submitForm (req, res) {
     }
     req.query.organizationid = invitation.organizationid
     const organization = await global.api.user.organizations.OpenInvitationOrganization.get(req)
-    // prevent organization owner
     if (req.account.accountid === organization.ownerid) {
       return renderPage(req, res, 'invalid-account')
     }
-    // prevent organization members
     let membership
     try {
       req.query.organizationid = organization.organizationid

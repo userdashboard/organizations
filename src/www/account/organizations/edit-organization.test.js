@@ -121,7 +121,6 @@ describe(`/account/organizations/edit-organization`, () => {
       const doc = TestHelper.extractDoc(page)
       const message = doc.getElementById('message-container').child[0]
       assert.strictEqual(message.attr.template, 'invalid-organization-name-length')
-      // too long
       global.maximumOrganizationNameLength = 1
       const req2 = TestHelper.createRequest(`/account/organizations/edit-organization?organizationid=${owner.organization.organizationid}`)
       req2.account = owner.account
