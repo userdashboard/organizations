@@ -20,8 +20,13 @@ describe('/api/user/organizations/organization', () => {
       const req = TestHelper.createRequest(`/api/user/organizations/organization?organizationid=${owner.organization.organizationid}`)
       req.account = user.account
       req.session = user.session
-      const organization = await req.get()
-      assert.strictEqual(organization.message, 'invalid-account')
+      let errorMessage
+      try {
+        await req.get(req)
+      } catch (error) {
+        errorMessage = error.message
+      }
+      assert.strictEqual(errorMessage, 'invalid-account')
     })
 
     it('should return organization data', async () => {

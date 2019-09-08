@@ -97,8 +97,13 @@ describe(`/account/organizations/delete-organization`, async () => {
       const req2 = TestHelper.createRequest(`/api/user/organizations/organization?organizationid=${owner.organization.organizationid}`)
       req2.account = owner.account
       req2.session = owner.session
-      const organization = await req2.get(req2)
-      assert.strictEqual(organization.message, 'invalid-organizationid')
+      let errorMessage
+      try {
+        await req2.get(req2)
+      } catch (error) {
+        errorMessage = error.message
+      }
+      assert.strictEqual(errorMessage, 'invalid-organizationid')
     })
   })
 
@@ -122,8 +127,13 @@ describe(`/account/organizations/delete-organization`, async () => {
       const req2 = TestHelper.createRequest(`/api/user/organizations/organization?organizationid=${owner.organization.organizationid}`)
       req2.account = owner.account
       req2.session = owner.session
-      const organization = await req2.get(req2)
-      assert.strictEqual(organization.message, 'invalid-organizationid')
+      let errorMessage
+      try {
+        await req2.get(req2)
+      } catch (error) {
+        errorMessage = error.message
+      }
+      assert.strictEqual(errorMessage, 'invalid-organizationid')
     })
   })
 })

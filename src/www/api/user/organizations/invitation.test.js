@@ -6,10 +6,15 @@ describe('/api/user/organizations/invitation', () => {
   describe('Invitation#GET', () => {
     it('should reject non-owner', async () => {
       const owner = await TestHelper.createUser()
+      const user = await TestHelper.createUser()
       global.userProfileFields = [ 'display-name', 'display-email' ]
       await TestHelper.createProfile(owner, {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail
+      })
+      await TestHelper.createProfile(user, {
+        'display-name': user.profile.firstName,
+        'display-email': user.profile.contactEmail
       })
       await TestHelper.createOrganization(owner, {
         email: owner.profile.displayEmail,
@@ -17,7 +22,6 @@ describe('/api/user/organizations/invitation', () => {
         profileid: owner.profile.profileid
       })
       await TestHelper.createInvitation(owner)
-      const user = await TestHelper.createUser()
       await TestHelper.createInvitation(owner)
       await TestHelper.acceptInvitation(user, owner)
       const req = TestHelper.createRequest(`/api/user/organizations/invitation?invitationid=${owner.invitation.invitationid}`)

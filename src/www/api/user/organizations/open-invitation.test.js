@@ -28,8 +28,13 @@ describe('/api/user/organizations/open-invitation', () => {
       const req = TestHelper.createRequest(`/api/user/organizations/open-invitation?invitationid=${owner.invitation.invitationid}`)
       req.account = user.account
       req.session = user.session
-      const invitation = await req.get()
-      assert.strictEqual(invitation.message, 'invalid-invitation')
+      let errorMessage
+      try {
+        await req.route.api.get(req)
+      } catch (error) {
+        errorMessage = error.message
+      }
+      assert.strictEqual(errorMessage, 'invalid-invitation')
     })
 
     it('should return invitation data', async () => {

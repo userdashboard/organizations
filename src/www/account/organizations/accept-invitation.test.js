@@ -17,13 +17,18 @@ describe(`/account/organizations/accept-invitation`, () => {
 
     it('should exclude invalid profiles', async () => {
       const owner = await TestHelper.createUser()
-      await TestHelper.createOrganization(owner, {
-        email: owner.profile.displayEmail,
-        name: 'My organization',
+      const user = await TestHelper.createUser()
+      global.userProfileFields = ['display-name', 'display-email']
+      await TestHelper.createProfile(owner, {
+        'display-name': owner.profile.firstName,
+        'display-email': owner.profile.contactEmail
+      })
+       await TestHelper.createOrganization(owner, {
+        name: 'org-name',
+        email: 'test@test.com',
         profileid: owner.profile.profileid
       })
       await TestHelper.createInvitation(owner)
-      const user = await TestHelper.createUser()
       global.membershipProfileFields = ['full-name', 'contact-email']
       const req = TestHelper.createRequest(`/account/organizations/accept-invitation?invitationid=${owner.invitation.invitationid}`)
       req.account = user.account

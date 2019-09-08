@@ -10,8 +10,13 @@ describe('/api/user/organizations/organizations', () => {
       const req = TestHelper.createRequest(`/api/user/organizations/organizations?accountid=${user2.account.accountid}`)
       req.account = user.account
       req.session = user.session
-      const organizations = await req.get()
-      assert.strictEqual(organizations.message, 'invalid-account')
+      let errorMessage
+      try {
+        await req.get(req)
+      } catch (error) {
+        errorMessage = error.message
+      }
+      assert.strictEqual(errorMessage, 'invalid-account')
     })
 
     it('should limit organization list to one page', async () => {

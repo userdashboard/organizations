@@ -26,8 +26,13 @@ describe(`/api/user/organizations/organization-invitations`, () => {
       const req = TestHelper.createRequest(`/api/user/organizations/organization-invitations?organizationid=${owner.organization.organizationid}`)
       req.account = user.account
       req.session = user.session
-      const invitations = await req.get()
-      assert.strictEqual(invitations.message, 'invalid-account')
+      let errorMessage
+      try {
+        await req.get(req)
+      } catch (error) {
+        errorMessage = error.message
+      }
+      assert.strictEqual(errorMessage, 'invalid-account')
     })
 
     it('should limit invitation list to one page', async () => {

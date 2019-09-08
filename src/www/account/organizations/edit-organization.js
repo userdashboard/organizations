@@ -38,11 +38,7 @@ async function renderPage (req, res, messageTemplate) {
       return dashboard.Response.end(req, res, doc)
     }
   }
-  if (req.query && req.query.returnURL) {
-    const submitForm = doc.getElementById('submit-form')
-    const divider = submitForm.attr.action.indexOf('?') > -1 ? '&' : '?'
-    submitForm.attr.action += `${divider}returnURL=${encodeURI(req.query.returnURL).split('?').join('%3F')}`
-  }
+
   const email = req.body ? req.body.email || '' : req.data.organization.email
   const nameField = doc.getElementById('name')
   nameField.setAttribute('value', req.body ? req.body.name || '' : req.data.organization.name)

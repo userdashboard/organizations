@@ -6,6 +6,7 @@ describe(`/account/organizations/edit-organization`, () => {
   describe('EditOrganization#BEFORE', () => {
     it('should require owner', async () => {
       const owner = await TestHelper.createUser()
+      const user = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
         'display-name': owner.profile.firstName,
@@ -13,9 +14,9 @@ describe(`/account/organizations/edit-organization`, () => {
       })
       await TestHelper.createOrganization(owner, { 
         email: owner.profile.displayEmail, 
-        name: 'Owner\'s organization' 
+        name: 'Owner\'s organization',
+        profileid: owner.profile.profileid
       })
-      const user = await TestHelper.createUser()
       const req = TestHelper.createRequest(`/account/organizations/edit-organization?organizationid=${owner.organization.organizationid}`)
       req.account = user.account
       req.session = user.session

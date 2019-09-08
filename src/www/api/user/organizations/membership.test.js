@@ -89,8 +89,13 @@ describe('/api/user/organizations/membership', () => {
       const req = TestHelper.createRequest(`/api/user/organizations/membership?membershipid=${user.membership.membershipid}`)
       req.account = user2.account
       req.session = user2.session
-      const membership = await req.get()
-      assert.strictEqual(membership.message, 'invalid-account')
+      let errorMessage
+      try {
+        await req.get(req)
+      } catch (error) {
+        errorMessage = error.message
+      }
+      assert.strictEqual(errorMessage, 'invalid-account')
     })
 
     it('should return membership data', async () => {
