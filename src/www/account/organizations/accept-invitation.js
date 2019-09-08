@@ -69,10 +69,6 @@ async function renderPage (req, res, messageTemplate) {
       return dashboard.Response.end(req, res, doc)
     }
   }
-  if (req.query && req.query.returnURL) {
-    const divider = submitForm.attr.action.indexOf('?') > -1 ? '&' : '?'
-    submitForm.attr.action += `${divider}returnURL=${encodeURI(req.query.returnURL).split('?').join('%3F')}`
-  }
   if (req.data && req.data.profiles && req.data.profiles.length) {
     dashboard.HTML.renderList(doc, req.data.profiles, 'profile-option', 'profileid')
   }

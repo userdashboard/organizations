@@ -32,11 +32,7 @@ async function renderPage (req, res, messageTemplate) {
     messageTemplate = req.error
   }
   const doc = dashboard.HTML.parse(req.route.html, req.data.organization, 'organization')
-  if (req.query && req.query.returnURL) {
-    const submitForm = doc.getElementById('submit-form')
-    const divider = submitForm.attr.action.indexOf('?') > -1 ? '&' : '?'
-    submitForm.attr.action += `${divider}returnURL=${encodeURI(req.query.returnURL).split('?').join('%3F')}`
-  }
+
   doc.getElementById('organizationName').setAttribute('value', req.data.organization.name)
   doc.getElementById('code').setAttribute('value', req.body ? req.body.code : dashboard.UUID.random(10))
   if (messageTemplate) {
