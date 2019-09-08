@@ -39,7 +39,7 @@
     }
   },
   "devDependencies": {
-    "@userdashboard/dashboard": "^1.0.36",
+    "@userdashboard/dashboard": "^1.0.37",
     "puppeteer": "^1.19.0"
   }
 }
