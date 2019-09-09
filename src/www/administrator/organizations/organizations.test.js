@@ -53,8 +53,8 @@ describe('/administrator/organizations/organizations', () => {
     })
   })
 
-  describe('Organizations#GET', () => {
-    it('should return one page by default', async () => {
+  describe('returns', () => {
+    it('array', async () => {
       const administrator = await TestHelper.createAdministrator()
       const user = await TestHelper.createUser()
       global.userProfileFields = ['display-email', 'display-name']

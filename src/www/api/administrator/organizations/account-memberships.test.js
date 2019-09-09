@@ -3,69 +3,7 @@ const assert = require('assert')
 const TestHelper = require('../../../../../test-helper.js')
 
 describe('/api/administrator/organizations/account-memberships', () => {
-  describe('AccountMemberships#GET', () => {
-    it('should limit account\'s membership list to one page', async () => {
-      const administrator = await TestHelper.createAdministrator()
-      const user = await TestHelper.createUser()
-      global.userProfileFields = ['display-email', 'display-name']
-      await TestHelper.createProfile(user, {
-        'display-name': user.profile.firstName,
-        'display-email': user.profile.contactEmail
-      })
-      for (let i = 0, len = global.pageSize + 1; i < len; i++) {
-        global.userProfileFields = ['contact-email', 'full-name']
-        const owner = await TestHelper.createUser()
-        global.userProfileFields = ['display-email', 'display-name']
-        await TestHelper.createProfile(owner, {
-          'display-name': owner.profile.firstName,
-          'display-email': owner.profile.contactEmail
-        })
-        await TestHelper.createOrganization(owner, {
-          email: owner.profile.displayEmail,
-          name: 'My organization',
-          profileid: owner.profile.profileid
-        })
-        await TestHelper.createInvitation(owner)
-        await TestHelper.acceptInvitation(user, owner)
-      }
-      const req = TestHelper.createRequest(`/api/administrator/organizations/account-memberships?accountid=${user.account.accountid}`)
-      req.account = administrator.account
-      req.session = administrator.session
-      const memberships = await req.get()
-      assert.strictEqual(memberships.length, global.pageSize)
-    })
-
-    it('environment PAGE_SIZE', async () => {
-      global.pageSize = 3
-      const administrator = await TestHelper.createAdministrator()
-      const user = await TestHelper.createUser()
-      global.userProfileFields = ['display-email', 'display-name']
-      await TestHelper.createProfile(user, {
-        'display-name': user.profile.firstName,
-        'display-email': user.profile.contactEmail
-      })
-      for (let i = 0, len = global.pageSize + 1; i < len; i++) {
-        global.userProfileFields = ['contact-email', 'full-name']
-        const owner = await TestHelper.createUser()
-        global.userProfileFields = ['display-email', 'display-name']
-        await TestHelper.createProfile(owner, {
-          'display-name': owner.profile.firstName,
-          'display-email': owner.profile.contactEmail
-        })
-        await TestHelper.createOrganization(owner, {
-          email: owner.profile.displayEmail,
-          name: 'My organization',
-          profileid: owner.profile.profileid
-        })
-        await TestHelper.createInvitation(owner)
-        await TestHelper.acceptInvitation(user, owner)
-      }
-      const req = TestHelper.createRequest(`/api/administrator/organizations/account-memberships?accountid=${user.account.accountid}`)
-      req.account = administrator.account
-      req.session = administrator.session
-      const membershipsNow = await req.get()
-      assert.strictEqual(membershipsNow.length, global.pageSize)
-    })
+  describe('receives', () => {
 
     it('optional querystring offset (integer)', async () => {
       const offset = 1
@@ -136,6 +74,72 @@ describe('/api/administrator/organizations/account-memberships', () => {
       for (let i = 0, len = global.pageSize + 1; i < len; i++) {
         assert.strictEqual(membershipsNow[i].membershipid, memberships[i].membershipid)
       }
+    })
+  })
+  describe('returns', () => {
+    it('array', async () => {
+      const administrator = await TestHelper.createAdministrator()
+      const user = await TestHelper.createUser()
+      global.userProfileFields = ['display-email', 'display-name']
+      await TestHelper.createProfile(user, {
+        'display-name': user.profile.firstName,
+        'display-email': user.profile.contactEmail
+      })
+      for (let i = 0, len = global.pageSize + 1; i < len; i++) {
+        global.userProfileFields = ['contact-email', 'full-name']
+        const owner = await TestHelper.createUser()
+        global.userProfileFields = ['display-email', 'display-name']
+        await TestHelper.createProfile(owner, {
+          'display-name': owner.profile.firstName,
+          'display-email': owner.profile.contactEmail
+        })
+        await TestHelper.createOrganization(owner, {
+          email: owner.profile.displayEmail,
+          name: 'My organization',
+          profileid: owner.profile.profileid
+        })
+        await TestHelper.createInvitation(owner)
+        await TestHelper.acceptInvitation(user, owner)
+      }
+      const req = TestHelper.createRequest(`/api/administrator/organizations/account-memberships?accountid=${user.account.accountid}`)
+      req.account = administrator.account
+      req.session = administrator.session
+      const memberships = await req.get()
+      assert.strictEqual(memberships.length, global.pageSize)
+    })
+  })
+
+  describe('configuration', () => {
+    it('environment PAGE_SIZE', async () => {
+      global.pageSize = 3
+      const administrator = await TestHelper.createAdministrator()
+      const user = await TestHelper.createUser()
+      global.userProfileFields = ['display-email', 'display-name']
+      await TestHelper.createProfile(user, {
+        'display-name': user.profile.firstName,
+        'display-email': user.profile.contactEmail
+      })
+      for (let i = 0, len = global.pageSize + 1; i < len; i++) {
+        global.userProfileFields = ['contact-email', 'full-name']
+        const owner = await TestHelper.createUser()
+        global.userProfileFields = ['display-email', 'display-name']
+        await TestHelper.createProfile(owner, {
+          'display-name': owner.profile.firstName,
+          'display-email': owner.profile.contactEmail
+        })
+        await TestHelper.createOrganization(owner, {
+          email: owner.profile.displayEmail,
+          name: 'My organization',
+          profileid: owner.profile.profileid
+        })
+        await TestHelper.createInvitation(owner)
+        await TestHelper.acceptInvitation(user, owner)
+      }
+      const req = TestHelper.createRequest(`/api/administrator/organizations/account-memberships?accountid=${user.account.accountid}`)
+      req.account = administrator.account
+      req.session = administrator.session
+      const membershipsNow = await req.get()
+      assert.strictEqual(membershipsNow.length, global.pageSize)
     })
   })
 })

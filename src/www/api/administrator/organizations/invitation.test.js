@@ -3,8 +3,8 @@ const assert = require('assert')
 const TestHelper = require('../../../../../test-helper.js')
 
 describe('/api/administrator/organizations/invitation', () => {
-  describe('Invitation#GET', () => {
-    it('should return invitation data', async () => {
+  describe('returns', () => {
+    it('object', async () => {
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
       global.userProfileFields = [ 'display-name', 'display-email' ]
@@ -24,8 +24,10 @@ describe('/api/administrator/organizations/invitation', () => {
       const invitation = await req.get()
       assert.strictEqual(invitation.object, 'invitation')
     })
-
-    it('redacts invitation code', async () => {
+  })
+  
+  describe('redacts', () => {
+    it('secret code hash', async () => {
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
       global.userProfileFields = [ 'display-name', 'display-email' ]

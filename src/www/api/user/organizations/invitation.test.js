@@ -35,8 +35,10 @@ describe('/api/user/organizations/invitation', () => {
       }
       assert.strictEqual(errorMessage, 'invalid-account')
     })
+  })
 
-    it('should return invitation', async () => {
+  describe('returns', () => {
+    it('object', async () => {
       const owner = await TestHelper.createUser()
       global.userProfileFields = [ 'display-name', 'display-email' ]
       await TestHelper.createProfile(owner, {
@@ -55,8 +57,10 @@ describe('/api/user/organizations/invitation', () => {
       const invitation = await req.get()
       assert.strictEqual(invitation.object, 'invitation')
     })
+  })
 
-    it('redacts invitation code', async () => {
+  describe('redacts', () => {
+    it('secret code hash', async () => {
       const owner = await TestHelper.createUser()
       global.userProfileFields = [ 'display-name', 'display-email' ]
       await TestHelper.createProfile(owner, {

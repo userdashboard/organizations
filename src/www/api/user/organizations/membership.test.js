@@ -97,8 +97,10 @@ describe('/api/user/organizations/membership', () => {
       }
       assert.strictEqual(errorMessage, 'invalid-account')
     })
+  })
 
-    it('should return membership data', async () => {
+  describe('returns', () => {
+    it('object', async () => {
       const owner = await TestHelper.createUser()
       const user = await TestHelper.createUser()
       global.userProfileFields = [ 'display-name', 'display-email' ]

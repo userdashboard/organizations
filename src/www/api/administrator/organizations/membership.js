@@ -13,7 +13,6 @@ module.exports = {
     if (membership.object !== 'membership') {
       throw new Error('invalid-membershipid')
     }
-    delete (membership.code)
     req.query.profileid = membership.profileid
     const profile = await global.api.administrator.Profile.get(req)
     const requireProfileFields = global.membershipProfileFields

@@ -3,8 +3,8 @@ const assert = require('assert')
 const TestHelper = require('../../../../../test-helper.js')
 
 describe('/api/user/organizations/organization-invitations-count', async () => {
-  describe('OrganizationInvitationsCount#GET', () => {
-    it('should count organization\'s invitations', async () => {
+  describe('returns', () => {
+    it('integer', async () => {
       const owner = await TestHelper.createUser()
       global.userProfileFields = [ 'display-name', 'display-email' ]
       await TestHelper.createProfile(owner, {

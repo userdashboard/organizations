@@ -28,8 +28,10 @@ describe('/api/user/organizations/organization', () => {
       }
       assert.strictEqual(errorMessage, 'invalid-account')
     })
+  })
 
-    it('should return organization data', async () => {
+  describe('returns', () => {
+    it('object', async () => {
       const owner = await TestHelper.createUser()
       global.userProfileFields = [ 'display-name', 'display-email' ]
       await TestHelper.createProfile(owner, {

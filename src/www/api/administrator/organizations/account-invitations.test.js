@@ -3,8 +3,65 @@ const assert = require('assert')
 const TestHelper = require('../../../../../test-helper.js')
 
 describe(`/api/administrator/organizations/account-invitations`, () => {
-  describe('Invitations#GET', () => {
-    it('should limit account\'s invitation list to one page', async () => {
+describe('receives', () => {
+  it('optional querystring offset (integer)', async () => {
+    const offset = 1
+    const administrator = await TestHelper.createAdministrator()
+    const owner = await TestHelper.createUser()
+    global.userProfileFields = ['display-name', 'display-email']
+    await TestHelper.createProfile(owner, {
+      'display-name': owner.profile.firstName,
+      'display-email': owner.profile.contactEmail
+    })
+    await TestHelper.createOrganization(owner, {
+      email: owner.profile.displayEmail,
+      name: 'My organization',
+      profileid: owner.profile.profileid
+    })
+    const invitations = []
+    for (let i = 0, len = global.pageSize + offset + 1; i < len; i++) {
+      await TestHelper.createInvitation(owner)
+      invitations.unshift(owner.invitation)
+    }
+    const req = TestHelper.createRequest(`/api/administrator/organizations/account-invitations?accountid=${owner.account.accountid}&offset=${offset}`)
+    req.account = administrator.account
+    req.session = administrator.session
+    const invitationsNow = await req.get()
+    for (let i = 0, len = global.pageSize; i < len; i++) {
+      assert.strictEqual(invitationsNow[i].invitationid, invitations[offset + i].invitationid)
+    }
+  })
+
+  it('optional querystring all (boolean)', async () => {
+    const administrator = await TestHelper.createAdministrator()
+    const owner = await TestHelper.createUser()
+    global.userProfileFields = ['display-name', 'display-email']
+    await TestHelper.createProfile(owner, {
+      'display-name': owner.profile.firstName,
+      'display-email': owner.profile.contactEmail
+    })
+    await TestHelper.createOrganization(owner, {
+      email: owner.profile.displayEmail,
+      name: 'My organization',
+      profileid: owner.profile.profileid
+    })
+    const invitations = []
+    for (let i = 0, len = global.pageSize + 1; i < len; i++) {
+      await TestHelper.createInvitation(owner)
+      invitations.unshift(owner.invitation)
+    }
+    const req = TestHelper.createRequest(`/api/administrator/organizations/account-invitations?accountid=${owner.account.accountid}&all=true`)
+    req.account = administrator.account
+    req.session = administrator.session
+    const invitationsNow = await req.get()
+    for (let i = 0, len = global.pageSize + 1; i < len; i++) {
+      assert.strictEqual(invitationsNow[i].invitationid, invitations[i].invitationid)
+    }
+  })
+})
+  
+  describe('returns', () => {
+    it('array', async () => {
       const administrator = await TestHelper.createAdministrator()
       const user = await TestHelper.createUser()
       global.userProfileFields = ['display-email', 'display-name']
@@ -34,7 +91,9 @@ describe(`/api/administrator/organizations/account-invitations`, () => {
       const invitations = await req.get()
       assert.strictEqual(invitations.length, global.pageSize)
     })
+  })
 
+  describe('configuration', () => {
     it('environment PAGE_SIZE', async () => {
       global.pageSize = 3
       const administrator = await TestHelper.createAdministrator()
@@ -65,61 +124,6 @@ describe(`/api/administrator/organizations/account-invitations`, () => {
       req.session = administrator.session
       const invitationsNow = await req.get()
       assert.strictEqual(invitationsNow.length, global.pageSize)
-    })
-
-    it('optional querystring offset (integer)', async () => {
-      const offset = 1
-      const administrator = await TestHelper.createAdministrator()
-      const owner = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
-      await TestHelper.createProfile(owner, {
-        'display-name': owner.profile.firstName,
-        'display-email': owner.profile.contactEmail
-      })
-      await TestHelper.createOrganization(owner, {
-        email: owner.profile.displayEmail,
-        name: 'My organization',
-        profileid: owner.profile.profileid
-      })
-      const invitations = []
-      for (let i = 0, len = global.pageSize + offset + 1; i < len; i++) {
-        await TestHelper.createInvitation(owner)
-        invitations.unshift(owner.invitation)
-      }
-      const req = TestHelper.createRequest(`/api/administrator/organizations/account-invitations?accountid=${owner.account.accountid}&offset=${offset}`)
-      req.account = administrator.account
-      req.session = administrator.session
-      const invitationsNow = await req.get()
-      for (let i = 0, len = global.pageSize; i < len; i++) {
-        assert.strictEqual(invitationsNow[i].invitationid, invitations[offset + i].invitationid)
-      }
-    })
-
-    it('optional querystring all (boolean)', async () => {
-      const administrator = await TestHelper.createAdministrator()
-      const owner = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
-      await TestHelper.createProfile(owner, {
-        'display-name': owner.profile.firstName,
-        'display-email': owner.profile.contactEmail
-      })
-      await TestHelper.createOrganization(owner, {
-        email: owner.profile.displayEmail,
-        name: 'My organization',
-        profileid: owner.profile.profileid
-      })
-      const invitations = []
-      for (let i = 0, len = global.pageSize + 1; i < len; i++) {
-        await TestHelper.createInvitation(owner)
-        invitations.unshift(owner.invitation)
-      }
-      const req = TestHelper.createRequest(`/api/administrator/organizations/account-invitations?accountid=${owner.account.accountid}&all=true`)
-      req.account = administrator.account
-      req.session = administrator.session
-      const invitationsNow = await req.get()
-      for (let i = 0, len = global.pageSize + 1; i < len; i++) {
-        assert.strictEqual(invitationsNow[i].invitationid, invitations[i].invitationid)
-      }
     })
   })
 })

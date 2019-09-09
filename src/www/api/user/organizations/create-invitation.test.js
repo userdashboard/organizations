@@ -11,13 +11,11 @@ describe(`/api/user/organizations/create-invitation`, () => {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail
       })
-      console.log(owner.profile)
       await TestHelper.createOrganization(owner, {
         email: owner.profile.displayEmail,
         name: 'My organization',
         profileid: owner.profile.profileid
       })
-      console.log(owner.organization)
       const req = TestHelper.createRequest(`/api/user/organizations/create-invitation?organizationid=${owner.organization.organizationid}`)
       req.account = owner.account
       req.session = owner.session

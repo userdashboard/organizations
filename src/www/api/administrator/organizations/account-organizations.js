@@ -9,8 +9,13 @@ module.exports = {
     if (!account) {
       throw new Error('invalid-account')
     }
-    const offset = req.query.offset ? parseInt(req.query.offset, 10) : 0
-    const organizationids = await dashboard.StorageList.list(`${req.appid}/account/organizations/${req.query.accountid}`, offset)
+    let organizationids
+    if (req.query.all) {
+      organizationids = await dashboard.StorageList.listAll(`${req.appid}/account/organizations/${req.query.accountid}`)
+    } else {
+      const offset = req.query.offset ? parseInt(req.query.offset, 10) : 0
+      organizationids = await dashboard.StorageList.list(`${req.appid}/account/organizations/${req.query.accountid}`, offset)
+    }
     if (!organizationids || !organizationids.length) {
       return null
     }
