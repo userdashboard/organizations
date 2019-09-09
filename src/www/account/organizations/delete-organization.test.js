@@ -93,7 +93,7 @@ describe(`/account/organizations/delete-organization`, async () => {
       const req = TestHelper.createRequest(`/account/organizations/delete-organization?organizationid=${owner.organization.organizationid}`)
       req.account = owner.account
       req.session = owner.session
-      await req.post(req)
+      await req.post()
       const req2 = TestHelper.createRequest(`/api/user/organizations/organization?organizationid=${owner.organization.organizationid}`)
       req2.account = owner.account
       req2.session = owner.session
@@ -123,7 +123,7 @@ describe(`/account/organizations/delete-organization`, async () => {
       const req = TestHelper.createRequest(`/account/organizations/delete-organization?organizationid=${owner.organization.organizationid}`)
       req.account = owner.account
       req.session = owner.session
-      await req.post(req)
+      await req.post()
       const req2 = TestHelper.createRequest(`/api/user/organizations/organization?organizationid=${owner.organization.organizationid}`)
       req2.account = owner.account
       req2.session = owner.session

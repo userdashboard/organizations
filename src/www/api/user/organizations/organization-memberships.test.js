@@ -38,7 +38,7 @@ describe(`/api/user/organizations/organization-memberships`, () => {
       }
     })
 
-    it('should enforce page size', async () => {
+    it('environment PAGE_SIZE', async () => {
       global.pageSize = 3
       const owner = await TestHelper.createUser()
       global.userProfileFields = [ 'display-name', 'display-email' ]
@@ -69,7 +69,7 @@ describe(`/api/user/organizations/organization-memberships`, () => {
       assert.strictEqual(codesNow.length, global.pageSize)
     })
 
-    it('should enforce specified offset', async () => {
+    it('optional querystring offset (integer)', async () => {
       const offset = 1
       const owner = await TestHelper.createUser()
       global.userProfileFields = [ 'display-name', 'display-email' ]
@@ -104,7 +104,7 @@ describe(`/api/user/organizations/organization-memberships`, () => {
       }
     })
 
-    it('should enforce specified offset', async () => {
+    it('optional querystring offset (integer)', async () => {
       const owner = await TestHelper.createUser()
       global.userProfileFields = [ 'display-name', 'display-email' ]
       await TestHelper.createProfile(owner, {

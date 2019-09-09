@@ -25,7 +25,7 @@ describe('/api/user/organizations/update-organization', () => {
       }
       let errorMessage
       try {
-        await req.route.api.patch(req)
+        await req.patch(req)
       } catch (error) {
         errorMessage = error.message
       }
@@ -54,7 +54,7 @@ describe('/api/user/organizations/update-organization', () => {
       global.minimumOrganizationNameLength = 100
       let errorMessage
       try {
-        await req.route.api.patch(req)
+        await req.patch(req)
       } catch (error) {
         errorMessage = error.message
       }
@@ -62,7 +62,7 @@ describe('/api/user/organizations/update-organization', () => {
       global.maximumOrganizationNameLength = 1
       errorMessage = undefined
       try {
-        await req.route.api.patch(req)
+        await req.patch(req)
       } catch (error) {
         errorMessage = error.message
       }
@@ -90,7 +90,7 @@ describe('/api/user/organizations/update-organization', () => {
       }
       let errorMessage
       try {
-        await req.route.api.patch(req)
+        await req.patch(req)
       } catch (error) {
         errorMessage = error.message
       }
@@ -116,7 +116,7 @@ describe('/api/user/organizations/update-organization', () => {
         name: 'Organization Name',
         email: 'test@test.com'
       }
-      const organizationNow = await req.patch(req)
+      const organizationNow = await req.patch()
       assert.strictEqual(organizationNow.name, 'Organization Name')
       assert.strictEqual(organizationNow.email, 'test@test.com')
     })

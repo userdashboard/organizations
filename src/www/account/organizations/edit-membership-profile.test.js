@@ -121,7 +121,7 @@ describe(`/account/organizations/edit-membership-profile`, () => {
         'display-name': '',
         'display-email': user.profile.displayEmail
       }
-      const page = await req.post(req)
+      const page = await req.post()
       const doc = TestHelper.extractDoc(page)
       const message = doc.getElementById('message-container').child[0]
       assert.strictEqual(message.attr.template, 'invalid-display-name')
@@ -153,7 +153,7 @@ describe(`/account/organizations/edit-membership-profile`, () => {
         'display-name': user.profile.displayName,
         'display-email': null
       }
-      const page = await req.post(req)
+      const page = await req.post()
       const doc = TestHelper.extractDoc(page)
       const message = doc.getElementById('message-container').child[0]
       assert.strictEqual(message.attr.template, 'invalid-display-email')
@@ -185,7 +185,7 @@ describe(`/account/organizations/edit-membership-profile`, () => {
         'display-email': 'email@address.com',
         'display-name': 'tester'
       }
-      const page = await req.post(req)
+      const page = await req.post()
       const doc = TestHelper.extractDoc(page)
       const messageContainer = doc.getElementById('message-container')
       const message = messageContainer.child[0]

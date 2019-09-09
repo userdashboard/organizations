@@ -32,12 +32,12 @@
     </table>
     <form id="submit-form" method="POST" class="pure-form pure-form-stacked" action="/account/organizations/create-invitation?organizationid=${organization.organizationid}">
       <div class="pure-control-group">
-        <label for="organizationName">Organization</label>
-        <input id="organizationName" type="text" maxlength="100" readonly />
+        <label for="organization-name">Organization</label>
+        <input id="organization-name" type="text" maxlength="100" readonly />
       </div>
       <div class="pure-control-group">
-        <label for="code">Invitation code</label>
-        <input id="code" name="code" type="text" maxlength="100" />
+        <label for="secret-code">Secret code</label>
+        <input id="secret-code" name="secret-code" type="text" maxlength="100" />
       </div>
       <div class="pure-controls">
         <button type="submit" id="submit-button" class="pure-button pure-button-primary">Create invitation</button>
@@ -47,11 +47,11 @@
   <template id="unknown-error">
     <div class="error message">Error! An unknown error occurred</div>
   </template>
-  <template id="invalid-invitation-code">
-    <div class="error message">Error! The invitation code is missing or invalid</div>
+  <template id="invalid-secret-code">
+    <div class="error message">Error! The secret code is missing or invalid</div>
   </template>
-  <template id="invalid-invitation-code-length">
-    <div class="error message">Error! The invitation code has an invalid length</div>
+  <template id="invalid-secret-code-length">
+    <div class="error message">Error! The secret code has an invalid length</div>
   </template>
   <template id="success">
     <div class="success message">

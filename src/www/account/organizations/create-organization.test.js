@@ -26,7 +26,7 @@ describe(`/account/organizations/create-organization`, async () => {
         name: '',
         email: 'org@email.com'
       }
-      const page = await req.post(req)
+      const page = await req.post()
       const doc = TestHelper.extractDoc(page)
       const message = doc.getElementById('message-container').child[0]
       assert.strictEqual(message.attr.template, 'invalid-organization-name')
@@ -44,7 +44,7 @@ describe(`/account/organizations/create-organization`, async () => {
         'display-email': 'org-admin@email.com'
       }
       global.minimumOrganizationNameLength = 2
-      const page = await req.post(req)
+      const page = await req.post()
       const doc = TestHelper.extractDoc(page)
       const message = doc.getElementById('message-container').child[0]
       assert.strictEqual(message.attr.template, 'invalid-organization-name-length')
@@ -73,7 +73,7 @@ describe(`/account/organizations/create-organization`, async () => {
         'display-name': 'administrator',
         'display-email': 'org-admin@email.com'
       }
-      const page = await req.post(req)
+      const page = await req.post()
       const doc = TestHelper.extractDoc(page)
       const message = doc.getElementById('message-container').child[0]
       assert.strictEqual(message.attr.template, 'invalid-organization-email')
@@ -94,7 +94,7 @@ describe(`/account/organizations/create-organization`, async () => {
         email: 'test@test.com',
         profileid: owner.profile.profileid
       }
-      const page = await req.post(req)
+      const page = await req.post()
       const redirectURL = await TestHelper.extractRedirectURL(page)
       assert.strictEqual(true, redirectURL.startsWith(`/account/organizations/organization?organizationid=`))
     })
@@ -110,7 +110,7 @@ describe(`/account/organizations/create-organization`, async () => {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail
       }
-      const page = await req.post(req)
+      const page = await req.post()
       const redirectURL = await TestHelper.extractRedirectURL(page)
       assert.strictEqual(true, redirectURL.startsWith(`/account/organizations/organization?organizationid=`))
     })

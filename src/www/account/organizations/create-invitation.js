@@ -33,8 +33,8 @@ async function renderPage (req, res, messageTemplate) {
   }
   const doc = dashboard.HTML.parse(req.route.html, req.data.organization, 'organization')
 
-  doc.getElementById('organizationName').setAttribute('value', req.data.organization.name)
-  doc.getElementById('code').setAttribute('value', req.body ? req.body.code : dashboard.UUID.random(10))
+  doc.getElementById('organization-name').setAttribute('value', req.data.organization.name)
+  doc.getElementById('secret-code').setAttribute('value', req.body ? req.body['secret-code'] : dashboard.UUID.random(10))
   if (messageTemplate) {
     req.data.invitation.dashboardServer = global.dashboardServer
     dashboard.HTML.renderTemplate(doc, req.data.invitation, messageTemplate, 'message-container')
@@ -52,8 +52,8 @@ async function submitForm (req, res) {
   if (!req.body) {
     return renderPage(req, res)
   }
-  if (!req.body.code) {
-    return renderPage(req, res, 'invalid-invitation-code')
+  if (!req.body['secret-code']) {
+    return renderPage(req, res, 'invalid-secret-code')
   }
   try {
     const invitation = await global.api.user.organizations.CreateInvitation.post(req)

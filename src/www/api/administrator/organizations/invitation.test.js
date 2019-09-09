@@ -25,7 +25,7 @@ describe('/api/administrator/organizations/invitation', () => {
       assert.strictEqual(invitation.object, 'invitation')
     })
 
-    it('should redact invitation code', async () => {
+    it('redacts invitation code', async () => {
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
       global.userProfileFields = [ 'display-name', 'display-email' ]

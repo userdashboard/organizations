@@ -30,7 +30,7 @@ describe('/api/user/organizations/delete-membership', async () => {
       req.session = user2.session
       let errorMessage
       try {
-        await req.route.api.delete(req)
+        await req.delete()
       } catch (error) {
         errorMessage = error.message
       }
@@ -59,7 +59,7 @@ describe('/api/user/organizations/delete-membership', async () => {
       const req = TestHelper.createRequest(`/api/user/organizations/delete-membership?membershipid=${user.membership.membershipid}`, 'DELETE')
       req.account = user.account
       req.session = user.session
-      await req.delete(req)
+      await req.delete()
       const req2 = TestHelper.createRequest(`/api/user/organizations/membership?membershipid=${user.membership.membershipid}`, 'DELETE')
       req2.account = req.account
       req2.session = req.session

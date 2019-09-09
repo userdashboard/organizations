@@ -43,7 +43,9 @@ async function createInvitation (owner) {
   const req = TestHelper.createRequest(`/api/user/organizations/create-invitation?organizationid=${owner.organization.organizationid}`, 'POST')
   req.account = owner.account
   req.session = owner.session
-  req.body = { code }
+  req.body = { 
+    'secret-code': code
+  }
   owner.invitation = await req.post()
   owner.invitation.code = code
   return owner.invitation
@@ -54,7 +56,7 @@ async function acceptInvitation (user, owner) {
   req.account = user.account
   req.session = user.session
   req.body = {
-    code: owner.invitation.code,
+    'secret-code': owner.invitation.code,
     profileid: user.profile.profileid
   }
   user.membership = await req.post()

@@ -23,7 +23,7 @@ describe('/api/user/organizations/delete-invitation', async () => {
       req.session = user.session
       let errorMessage
       try {
-        await req.route.api.delete(req)
+        await req.delete()
       } catch (error) {
         errorMessage = error.message
       }
@@ -54,7 +54,7 @@ describe('/api/user/organizations/delete-invitation', async () => {
       req.session = owner.session
       let errorMessage
       try {
-        await req.route.api.delete(req)
+        await req.delete()
       } catch (error) {
         errorMessage = error.message
       }
@@ -77,7 +77,7 @@ describe('/api/user/organizations/delete-invitation', async () => {
       const req = TestHelper.createRequest(`/api/user/organizations/delete-invitation?invitationid=${owner.invitation.invitationid}`, 'DELETE')
       req.account = owner.account
       req.session = owner.session
-      await req.delete(req)
+      await req.delete()
       const req2 = TestHelper.createRequest(`/api/user/organizations/invitation?invitationid=${owner.invitation.invitationid}`)
       req2.account = owner.account
       req2.session = owner.session

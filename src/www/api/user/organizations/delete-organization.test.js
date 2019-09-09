@@ -33,7 +33,7 @@ describe('/api/user/organizations/delete-organization', async () => {
       req.session = owner.session
       let errorMessage
       try {
-        await req.route.api.delete(req)
+        await req.delete()
       } catch (error) {
         errorMessage = error.message
       }
@@ -55,7 +55,7 @@ describe('/api/user/organizations/delete-organization', async () => {
       const req = TestHelper.createRequest(`/api/user/organizations/delete-organization?organizationid=${owner.organization.organizationid}`, 'DELETE')
       req.account = owner.account
       req.session = owner.session
-      await req.delete(req)
+      await req.delete()
       const req2 = TestHelper.createRequest(`/api/user/organizations/organization?organizationid=${owner.organization.organizationid}`)
       req2.account = owner.account
       req2.session = owner.session

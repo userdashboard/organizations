@@ -91,7 +91,7 @@ describe('/api/user/organizations/membership', () => {
       req.session = user2.session
       let errorMessage
       try {
-        await req.get(req)
+        await req.get()
       } catch (error) {
         errorMessage = error.message
       }

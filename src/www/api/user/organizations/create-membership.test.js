@@ -22,18 +22,18 @@ describe(`/api/user/organizations/create-membership`, () => {
       req.account = user.account
       req.session = user.session
       req.body = {
-        code: '1',
+        'secret-code': '1',
         email: user.profile.displayEmail,
         name: user.profile.firstName
       }
       global.minimumInvitationCodeLength = 100
       let errorMessage
       try {
-        await req.route.api.post(req)
+        await req.post()
       } catch (error) {
         errorMessage = error.message
       }
-      assert.strictEqual(errorMessage, 'invalid-invitation-code-length')
+      assert.strictEqual(errorMessage, 'invalid-secret-code-length')
     })
 
     it('should reject a used invitation', async () => {
@@ -64,13 +64,13 @@ describe(`/api/user/organizations/create-membership`, () => {
       req.account = user2.account
       req.session = user2.session
       req.body = {
-        code: owner.invitation.code,
+        'secret-code': owner.invitation.code,
         email: user2.profile.contactEmail,
         name: user2.profile.firstName
       }
       let errorMessage
       try {
-        await req.route.api.post(req)
+        await req.post()
       } catch (error) {
         errorMessage = error.message
       }
@@ -94,13 +94,13 @@ describe(`/api/user/organizations/create-membership`, () => {
       req.account = owner.account
       req.session = owner.session
       req.body = {
-        code: owner.invitation.code,
+        'secret-code': owner.invitation.code,
         email: owner.profile.contactEmail,
         name: owner.profile.firstName
       }
       let errorMessage
       try {
-        await req.route.api.post(req)
+        await req.post()
       } catch (error) {
         errorMessage = error.message
       }
@@ -132,12 +132,12 @@ describe(`/api/user/organizations/create-membership`, () => {
       req.account = user.account
       req.session = user.session
       req.body = {
-        code: owner.invitation.code,
+        'secret-code': owner.invitation.code,
         profileid: user.profile.profileid
       }
       let errorMessage
       try {
-        await req.route.api.post(req)
+        await req.post()
       } catch (error) {
         errorMessage = error.message
       }
@@ -166,10 +166,10 @@ describe(`/api/user/organizations/create-membership`, () => {
       req.account = user.account
       req.session = user.session
       req.body = {
-        code: owner.invitation.code,
+        'secret-code': owner.invitation.code,
         profileid: user.profile.profileid
       }
-      const membership = await req.post(req)
+      const membership = await req.post()
       assert.strictEqual(membership.object, 'membership')
     })
   })

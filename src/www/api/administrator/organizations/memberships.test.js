@@ -4,7 +4,7 @@ const TestHelper = require('../../../../../test-helper.js')
 
 describe('/api/administrator/organizations/memberships', () => {
   describe('Memberships#GET', () => {
-    it('should limit membership list to one page', async () => {
+    it('array', async () => {
       const administrator = await TestHelper.createAdministrator()
       const memberships = []
       for (let i = 0, len = global.pageSize + 1; i < len; i++) {
@@ -40,7 +40,7 @@ describe('/api/administrator/organizations/memberships', () => {
       }
     })
 
-    it('should enforce page size', async () => {
+    it('environment PAGE_SIZE', async () => {
       global.pageSize = 3
       const administrator = await TestHelper.createAdministrator()
       for (let i = 0, len = global.pageSize + 1; i < len; i++) {
@@ -73,7 +73,7 @@ describe('/api/administrator/organizations/memberships', () => {
       assert.strictEqual(membershipsNow.length, global.pageSize)
     })
 
-    it('should enforce specified offset', async () => {
+    it('optional querystring offset (integer)', async () => {
       const offset = 1
       const administrator = await TestHelper.createAdministrator()
       const memberships = [ ]
@@ -111,7 +111,7 @@ describe('/api/administrator/organizations/memberships', () => {
       }
     })
 
-    it('should return all records', async () => {
+    it('optional querystring all (boolean)', async () => {
       const administrator = await TestHelper.createAdministrator()
       const memberships = []
       for (let i = 0, len = global.pageSize + 1; i < len; i++) {

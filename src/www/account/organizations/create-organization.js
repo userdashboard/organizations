@@ -13,27 +13,17 @@ async function beforeRequest (req) {
   const profiles = await global.api.user.Profiles.get(req)
   const validProfiles = []
   if (profiles && profiles.length) {
-    const requiredFields = req.profileFields || global.membershipProfileFields
+    const requiredFields = req.userProfileFields || global.membershipProfileFields
     for (const profile of profiles) {
       let include = true
       for (const field of requiredFields) {
-        let displayName = field
-        if (displayName.indexOf('-') > -1) {
-          displayName = displayName.split('-')
-          if (displayName.length === 1) {
-            displayName = displayName[0]
-          } else if (displayName.length === 2) {
-            displayName = displayName[0] + displayName[1].substring(0, 1).toUpperCase() + displayName[1].substring(1)
-          } else if (displayName.length === 3) {
-            displayName = displayName[0] + displayName[1].substring(0, 1).toUpperCase() + displayName[1].substring(1) + displayName[2].substring(0, 1).toUpperCase() + displayName[2].substring(1)
-          }
-        }
         if (field === 'full-name') {
           if (!profile.firstName || !profile.lastName) {
             include = false
             break
           }
         }
+        const displayName = global.profileFieldMap[field]
         include = profile[displayName] && profile[displayName].length
         if (!include) {
           break
@@ -81,7 +71,7 @@ async function renderPage (req, res, messageTemplate) {
     if (req.body.profileid) {
       dashboard.HTML.setSelectedOptionByValue(doc, 'profileid', req.body.profileid)
     } else {
-      const profileFields = req.profileFields || global.membershipProfileFields
+      const profileFields = req.userProfileFields || global.membershipProfileFields
       for (const field of profileFields) {
         if (req.body[field]) {
           const element = doc.getElementById(field)
@@ -124,8 +114,8 @@ async function submitForm (req, res) {
       return renderPage(req, res, 'invalid-profileid')
     }
   } else {
-    req.profileFields = req.profileFields || global.membershipProfileFields
-    for (const field of req.profileFields) {
+    req.userProfileFields = req.userProfileFields || global.membershipProfileFields
+    for (const field of req.userProfileFields) {
       if (req.body[field] && req.body[field].trim) {
         req.body[field] = req.body[field].trim()
       }

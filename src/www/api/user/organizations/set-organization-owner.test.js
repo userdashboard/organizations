@@ -34,7 +34,7 @@ describe('/api/user/organizations/set-organization-owner', () => {
       }
       let errorMessage
       try {
-        await req.route.api.patch(req)
+        await req.patch(req)
       } catch (error) {
         errorMessage = error.message
       }
@@ -61,7 +61,7 @@ describe('/api/user/organizations/set-organization-owner', () => {
       }
       let errorMessage
       try {
-        await req.route.api.patch(req)
+        await req.patch(req)
       } catch (error) {
         errorMessage = error.message
       }
@@ -89,7 +89,7 @@ describe('/api/user/organizations/set-organization-owner', () => {
       }
       let errorMessage
       try {
-        await req.route.api.patch(req)
+        await req.patch(req)
       } catch (error) {
         errorMessage = error.message
       }
@@ -121,7 +121,7 @@ describe('/api/user/organizations/set-organization-owner', () => {
       req.body = {
         accountid: user.account.accountid
       }
-      const organizationNow = await req.patch(req)
+      const organizationNow = await req.patch()
       assert.strictEqual(user.account.accountid, organizationNow.ownerid)
     })
   })

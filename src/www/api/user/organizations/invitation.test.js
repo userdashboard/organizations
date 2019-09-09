@@ -29,7 +29,7 @@ describe('/api/user/organizations/invitation', () => {
       req.session = user.session
       let errorMessage
       try {
-        await req.route.api.get(req)
+        await req.get()
       } catch (error) {
         errorMessage = error.message
       }
@@ -52,11 +52,11 @@ describe('/api/user/organizations/invitation', () => {
       const req = TestHelper.createRequest(`/api/user/organizations/invitation?invitationid=${owner.invitation.invitationid}`)
       req.account = owner.account
       req.session = owner.session
-      const invitation = await req.route.api.get(req)
+      const invitation = await req.get()
       assert.strictEqual(invitation.object, 'invitation')
     })
 
-    it('should redact invitation code', async () => {
+    it('redacts invitation code', async () => {
       const owner = await TestHelper.createUser()
       global.userProfileFields = [ 'display-name', 'display-email' ]
       await TestHelper.createProfile(owner, {
@@ -72,7 +72,7 @@ describe('/api/user/organizations/invitation', () => {
       const req = TestHelper.createRequest(`/api/user/organizations/invitation?invitationid=${owner.invitation.invitationid}`)
       req.account = owner.account
       req.session = owner.session
-      const invitation = await req.route.api.get(req)
+      const invitation = await req.get()
       assert.strictEqual(invitation.cod, undefined)
     })
   })

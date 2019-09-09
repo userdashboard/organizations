@@ -4,7 +4,7 @@ const TestHelper = require('../../../../../test-helper.js')
 
 describe('/api/administrator/organizations/organizations', () => {
   describe('Organizations#GET', () => {
-    it('should limit organization list to one page', async () => {
+    it('array', async () => {
       const administrator = await TestHelper.createAdministrator()
       const organizations = []
       for (let i = 0, len = global.pageSize + 1; i < len; i++) {
@@ -38,7 +38,7 @@ describe('/api/administrator/organizations/organizations', () => {
       }
     })
 
-    it('should enforce page size', async () => {
+    it('environment PAGE_SIZE', async () => {
       global.pageSize = 3
       const administrator = await TestHelper.createAdministrator()
       for (let i = 0, len = global.pageSize + 1; i < len; i++) {
@@ -62,7 +62,7 @@ describe('/api/administrator/organizations/organizations', () => {
       assert.strictEqual(organizationsNow.length, global.pageSize)
     })
 
-    it('should enforce specified offset', async () => {
+    it('optional querystring offset (integer)', async () => {
       const offset = 1
       const administrator = await TestHelper.createAdministrator()
       const organizations = [ ]
@@ -90,7 +90,7 @@ describe('/api/administrator/organizations/organizations', () => {
       }
     })
 
-    it('should return all records', async () => {
+    it('optional querystring all (boolean)', async () => {
       const administrator = await TestHelper.createAdministrator()
       const organizations = []
       for (let i = 0, len = global.pageSize + 1; i < len; i++) {

@@ -12,7 +12,7 @@ describe('/api/user/organizations/organizations', () => {
       req.session = user.session
       let errorMessage
       try {
-        await req.get(req)
+        await req.get()
       } catch (error) {
         errorMessage = error.message
       }
@@ -44,7 +44,7 @@ describe('/api/user/organizations/organizations', () => {
       }
     })
 
-    it('should enforce page size', async () => {
+    it('environment PAGE_SIZE', async () => {
       global.pageSize = 3
       const owner = await TestHelper.createUser()
       global.userProfileFields = ['display-email', 'display-name']
@@ -66,7 +66,7 @@ describe('/api/user/organizations/organizations', () => {
       assert.strictEqual(codesNow.length, global.pageSize)
     })
 
-    it('should enforce specified offset', async () => {
+    it('optional querystring offset (integer)', async () => {
       const offset = 1
       const owner = await TestHelper.createUser()
       global.userProfileFields = ['display-email', 'display-name']
@@ -92,7 +92,7 @@ describe('/api/user/organizations/organizations', () => {
       }
     })
 
-    it('should return all records', async () => {
+    it('optional querystring all (boolean)', async () => {
       const owner = await TestHelper.createUser()
       global.userProfileFields = ['display-email', 'display-name']
       await TestHelper.createProfile(owner, {

@@ -39,7 +39,7 @@ describe('/api/administrator/organizations/account-organizations', () => {
       }
     })
 
-    it('should enforce page size', async () => {
+    it('environment PAGE_SIZE', async () => {
       global.pageSize = 3
       const administrator = await TestHelper.createAdministrator()
       const user = await TestHelper.createUser()
@@ -62,7 +62,7 @@ describe('/api/administrator/organizations/account-organizations', () => {
       assert.strictEqual(organizationsNow.length, global.pageSize)
     })
 
-    it('should enforce specified offset', async () => {
+    it('optional querystring offset (integer)', async () => {
       const offset = 1
       const administrator = await TestHelper.createAdministrator()
       const organizations = [ ]

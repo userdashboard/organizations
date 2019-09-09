@@ -4,7 +4,7 @@ const TestHelper = require('../../../../../test-helper.js')
 
 describe(`/api/administrator/organizations/organization-invitations`, () => {
   describe('OrganizationInvitations#GET', () => {
-    it('should limit invitation list to one page', async () => {
+    it('array', async () => {
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
       global.userProfileFields = [ 'display-name', 'display-email' ]
@@ -31,7 +31,7 @@ describe(`/api/administrator/organizations/organization-invitations`, () => {
       }
     })
 
-    it('should enforce page size', async () => {
+    it('environment PAGE_SIZE', async () => {
       global.pageSize = 3
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
@@ -55,7 +55,7 @@ describe(`/api/administrator/organizations/organization-invitations`, () => {
       assert.strictEqual(invitationsNow.length, global.pageSize)
     })
 
-    it('should enforce specified offset', async () => {
+    it('optional querystring offset (integer)', async () => {
       const offset = 1
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
@@ -83,7 +83,7 @@ describe(`/api/administrator/organizations/organization-invitations`, () => {
       }
     })
 
-    it('should return all records', async () => {
+    it('optional querystring all (boolean)', async () => {
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
       global.userProfileFields = [ 'display-name', 'display-email' ]

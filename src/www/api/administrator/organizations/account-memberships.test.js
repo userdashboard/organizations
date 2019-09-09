@@ -35,7 +35,7 @@ describe('/api/administrator/organizations/account-memberships', () => {
       assert.strictEqual(memberships.length, global.pageSize)
     })
 
-    it('should enforce page size', async () => {
+    it('environment PAGE_SIZE', async () => {
       global.pageSize = 3
       const administrator = await TestHelper.createAdministrator()
       const user = await TestHelper.createUser()
@@ -67,7 +67,7 @@ describe('/api/administrator/organizations/account-memberships', () => {
       assert.strictEqual(membershipsNow.length, global.pageSize)
     })
 
-    it('should enforce specified offset', async () => {
+    it('optional querystring offset (integer)', async () => {
       const offset = 1
       const administrator = await TestHelper.createAdministrator()
       const user = await TestHelper.createUser()
@@ -103,7 +103,7 @@ describe('/api/administrator/organizations/account-memberships', () => {
       }
     })
 
-    it('should return all records', async () => {
+    it('optional querystring all (boolean)', async () => {
       const administrator = await TestHelper.createAdministrator()
       const user = await TestHelper.createUser()
       global.userProfileFields = ['display-email', 'display-name']

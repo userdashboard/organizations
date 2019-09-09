@@ -143,7 +143,7 @@ describe(`/account/organizations/revoke-membership`, async () => {
       const req = TestHelper.createRequest(`/account/organizations/revoke-membership?membershipid=${user.membership.membershipid}`)
       req.account = owner.account
       req.session = owner.session
-      const page = await req.post(req)
+      const page = await req.post()
       const doc = TestHelper.extractDoc(page)
       const messageContainer = doc.getElementById('message-container')
       const message = messageContainer.child[0]

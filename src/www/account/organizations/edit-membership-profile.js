@@ -47,7 +47,7 @@ async function renderPage (req, res, messageTemplate) {
     }
   }
   const removeFields = [].concat(global.profileFields)
-  const profileFields = req.profileFields || global.membershipProfileFields
+  const profileFields = req.userProfileFields || global.membershipProfileFields
   for (const field of profileFields) {
     removeFields.splice(removeFields.indexOf(field), 1)
   }
@@ -80,7 +80,7 @@ async function submitForm (req, res) {
   if (!req.body) {
     return renderPage(req, res)
   }
-  req.profileFields = req.profileFields || global.membershipProfileFields
+  req.userProfileFields = req.userProfileFields || global.membershipProfileFields
   try {
     await global.api.user.UpdateProfile.patch(req)
     if (req.success) {

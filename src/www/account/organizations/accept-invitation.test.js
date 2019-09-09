@@ -33,7 +33,7 @@ describe(`/account/organizations/accept-invitation`, () => {
       const req = TestHelper.createRequest(`/account/organizations/accept-invitation?invitationid=${owner.invitation.invitationid}`)
       req.account = user.account
       req.session = user.session
-      const page = await req.get(req)
+      const page = await req.get()
       const doc = TestHelper.extractDoc(page)
       assert.strictEqual(doc.toString().indexOf(user.profile.profileid), -1)
     })
@@ -58,10 +58,10 @@ describe(`/account/organizations/accept-invitation`, () => {
       req.account = owner.account
       req.session = owner.session
       req.body = {
-        code: owner.invitation.code,
+        'secret-code': owner.invitation.code,
         invitationid: owner.invitation.invitationid
       }
-      const page = await req.post(req)
+      const page = await req.post()
       const doc = TestHelper.extractDoc(page)
       const messageContainer = doc.getElementById('message-container')
       const message = messageContainer.child[0]
@@ -93,11 +93,11 @@ describe(`/account/organizations/accept-invitation`, () => {
       req.account = user.account
       req.session = user.session
       req.body = {
-        code: owner.invitation.code,
+        'secret-code': owner.invitation.code,
         invitationid: owner.invitation.invitationid,
         profileid: user.profile.profileid
       }
-      const page = await req.post(req)
+      const page = await req.post()
       const doc = TestHelper.extractDoc(page)
       const messageContainer = doc.getElementById('message-container')
       const message = messageContainer.child[0]
@@ -126,11 +126,11 @@ describe(`/account/organizations/accept-invitation`, () => {
       req.account = user.account
       req.session = user.session
       req.body = {
-        code: owner.invitation.code,
+        'secret-code': owner.invitation.code,
         invitationid: owner.invitation.invitationid,
         profileid: user.profile.profileid
       }
-      const page = await req.post(req)
+      const page = await req.post()
       const redirectURL = await TestHelper.extractRedirectURL(page)
       assert.strictEqual(true, redirectURL.startsWith(`/account/organizations/membership?membershipid=`))
     })
@@ -153,13 +153,13 @@ describe(`/account/organizations/accept-invitation`, () => {
       req.account = user.account
       req.session = user.session
       req.body = {
-        code: owner.invitation.code,
+        'secret-code': owner.invitation.code,
         invitationid: owner.invitation.invitationid,
         'display-name': user.profile.firstName,
         'display-email': user.profile.contactEmail
       }
       global.membershipProfileFields = ['display-name', 'display-email']
-      const page = await req.post(req)
+      const page = await req.post()
       const redirectURL = await TestHelper.extractRedirectURL(page)
       assert.strictEqual(true, redirectURL.startsWith(`/account/organizations/membership?membershipid=`))
     })

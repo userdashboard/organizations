@@ -22,7 +22,7 @@ describe('/api/user/organizations/organization', () => {
       req.session = user.session
       let errorMessage
       try {
-        await req.get(req)
+        await req.get()
       } catch (error) {
         errorMessage = error.message
       }

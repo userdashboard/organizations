@@ -33,7 +33,7 @@ describe('/administrator/organizations/memberships', () => {
   })
 
   describe('Memberships#GET', () => {
-    it('should limit memberships to one page', async () => {
+    it('should return one page by default', async () => {
       const administrator = await TestHelper.createAdministrator()
       const user = await TestHelper.createUser()
       global.userProfileFields = ['display-email', 'display-name']

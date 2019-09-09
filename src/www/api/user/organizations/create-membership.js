@@ -5,16 +5,14 @@ module.exports = {
     if (!req.query || !req.query.invitationid) {
       throw new Error('invalid-invitationid')
     }
-    if (req.body && !req.body.codeHash) {
-      if (!req.body || !req.body.code) {
-        throw new Error('invalid-invitation-code')
-      }
-      if (global.minimumInvitationCodeLength > req.body.code.length ||
-        global.maximumInvitationCodeLength < req.body.code.length) {
-        throw new Error('invalid-invitation-code-length')
-      }
-      req.body.codeHash = await dashboard.Hash.fixedSaltHash(req.body.code, req.alternativeFixedSalt, req.alternativeDashboardEncryptionKey)
+    if (!req.body || !req.body['secret-code']) {
+      throw new Error('invalid-secret-code')
     }
+    if (global.minimumInvitationCodeLength > req.body['secret-code'].length ||
+      global.maximumInvitationCodeLength < req.body['secret-code'].length) {
+      throw new Error('invalid-secret-code-length')
+    }
+    const secretCodeHash = await dashboard.Hash.fixedSaltHash(req.body['secret-code'], req.alternativeFixedSalt, req.alternativeDashboardEncryptionKey)
     const invitation = await global.api.user.organizations.OpenInvitation.get(req)
     if (!invitation) {
       throw new Error('invalid-invitationid')
@@ -22,9 +20,9 @@ module.exports = {
     if (invitation.accepted) {
       throw new Error('invalid-invitation')
     }
-    const invitationCodeHash = await dashboard.StorageObject.getProperty(`${req.appid}/invitation/${req.query.invitationid}`, 'codeHash')
-    if (invitationCodeHash !== req.body.codeHash) {
-      throw new Error('invalid-invitation-code')
+    const invitationsecretCodeHash = await dashboard.StorageObject.getProperty(`${req.appid}/invitation/${req.query.invitationid}`, 'secretCodeHash')
+    if (invitationsecretCodeHash !== secretCodeHash) {
+      throw new Error('invalid-secret-code')
     }
     req.query.organizationid = invitation.organizationid
     const organization = await global.api.user.organizations.OpenInvitationOrganization.get(req)
@@ -44,23 +42,13 @@ module.exports = {
     }
     const requireProfileFields = global.membershipProfileFields
     for (const field of requireProfileFields) {
-      let displayName = field
-      if (displayName.indexOf('-') > -1) {
-        displayName = displayName.split('-')
-        if (displayName.length === 1) {
-          displayName = displayName[0]
-        } else if (displayName.length === 2) {
-          displayName = displayName[0] + displayName[1].substring(0, 1).toUpperCase() + displayName[1].substring(1)
-        } else if (displayName.length === 3) {
-          displayName = displayName[0] + displayName[1].substring(0, 1).toUpperCase() + displayName[1].substring(1) + displayName[2].substring(0, 1).toUpperCase() + displayName[2].substring(1)
-        }
-      }
       if (field === 'full-name') {
         if (!profile.firstName || !profile.lastName) {
           throw new Error(`invalid-profile`)
         }
         continue
       }
+      const displayName = global.profileFieldMap[field]
       if (!profile[displayName]) {
         throw new Error(`invalid-profile`)
       }

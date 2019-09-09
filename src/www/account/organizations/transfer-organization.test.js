@@ -165,7 +165,7 @@ describe(`/account/organizations/transfer-organization`, async () => {
       req.body = {
         accountid: user.account.accountid
       }
-      const page = await req.post(req)
+      const page = await req.post()
       const doc = TestHelper.extractDoc(page)
       const messageContainer = doc.getElementById('message-container')
       const message = messageContainer.child[0]

@@ -5,6 +5,10 @@ module.exports = {
     if (!req.query || !req.query.accountid) {
       throw new Error('invalid-accountid')
     }
+    const account = await global.api.administrator.Account.get(req)
+    if (!account) {
+      throw new Error('invalid-account')
+    }
     const offset = req.query.offset ? parseInt(req.query.offset, 10) : 0
     const organizationids = await dashboard.StorageList.list(`${req.appid}/account/organizations/${req.query.accountid}`, offset)
     if (!organizationids || !organizationids.length) {

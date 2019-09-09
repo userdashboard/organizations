@@ -21,7 +21,7 @@ describe(`/api/user/organizations/create-organization`, () => {
       }
       let errorMessage
       try {
-        await req.route.api.post(req)
+        await req.post()
       } catch (error) {
         errorMessage = error.message
       }
@@ -46,7 +46,7 @@ describe(`/api/user/organizations/create-organization`, () => {
       global.minimumOrganizationNameLength = 100
       let errorMessage
       try {
-        await req.route.api.post(req)
+        await req.post()
       } catch (error) {
         errorMessage = error.message
       }
@@ -54,7 +54,7 @@ describe(`/api/user/organizations/create-organization`, () => {
       global.maximumOrganizationNameLength = 1
       errorMessage = null
       try {
-        await req.route.api.post(req)
+        await req.post()
       } catch (error) {
         errorMessage = error.message
       }
@@ -79,7 +79,7 @@ describe(`/api/user/organizations/create-organization`, () => {
       }
       let errorMessage
       try {
-        await req.route.api.post(req)
+        await req.post()
       } catch (error) {
         errorMessage = error.message
       }
@@ -98,7 +98,7 @@ describe(`/api/user/organizations/create-organization`, () => {
       }
       let errorMessage
       try {
-        await req.route.api.post(req)
+        await req.post()
       } catch (error) {
         errorMessage = error.message
       }
@@ -117,7 +117,7 @@ describe(`/api/user/organizations/create-organization`, () => {
       }
       let errorMessage
       try {
-        await req.route.api.post(req)
+        await req.post()
       } catch (error) {
         errorMessage = error.message
       }
@@ -139,7 +139,7 @@ describe(`/api/user/organizations/create-organization`, () => {
         email: 'this@address.com',
         profileid: owner.profile.profileid
       }
-      const organization = await req.post(req)
+      const organization = await req.post()
       assert.strictEqual(organization.object, 'organization')
     })
   })

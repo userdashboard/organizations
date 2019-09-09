@@ -31,7 +31,7 @@ describe('/api/administrator/organizations/membership', () => {
       assert.strictEqual(membership.object, 'membership')
     })
 
-    it('should redact membership code', async () => {
+    it('redacts membership code', async () => {
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
       const user = await TestHelper.createUser()

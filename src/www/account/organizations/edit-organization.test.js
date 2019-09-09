@@ -92,7 +92,7 @@ describe(`/account/organizations/edit-organization`, () => {
         name: ' ',
         email: owner.profile.displayEmail
       }
-      const page = await req.post(req)
+      const page = await req.post()
       const doc = TestHelper.extractDoc(page)
       const message = doc.getElementById('message-container').child[0]
       assert.strictEqual(message.attr.template, 'invalid-organization-name')
@@ -118,7 +118,7 @@ describe(`/account/organizations/edit-organization`, () => {
         email: owner.profile.contactEmail
       }
       global.minimumOrganizationNameLength = 2
-      const page = await req.post(req)
+      const page = await req.post()
       const doc = TestHelper.extractDoc(page)
       const message = doc.getElementById('message-container').child[0]
       assert.strictEqual(message.attr.template, 'invalid-organization-name-length')
@@ -155,7 +155,7 @@ describe(`/account/organizations/edit-organization`, () => {
         name: 'org-name',
         email: ' '
       }
-      const page = await req.post(req)
+      const page = await req.post()
       const doc = TestHelper.extractDoc(page)
       const message = doc.getElementById('message-container').child[0]
       assert.strictEqual(message.attr.template, 'invalid-organization-email')
@@ -180,7 +180,7 @@ describe(`/account/organizations/edit-organization`, () => {
         email: owner.profile.displayEmail,
         name: 'Organization name'
       }
-      const page = await req.post(req)
+      const page = await req.post()
       const doc = TestHelper.extractDoc(page)
       const messageContainer = doc.getElementById('message-container')
       const message = messageContainer.child[0]

@@ -5,12 +5,12 @@ module.exports = {
     if (!req.query || !req.query.organizationid) {
       throw new Error('invalid-organizationid')
     }
-    if (!req.body || !req.body.code) {
-      throw new Error('invalid-invitation-code')
+    if (!req.body || !req.body['secret-code']) {
+      throw new Error('invalid-secret-code')
     }
-    if (global.minimumInvitationCodeLength > req.body.code.length ||
-      global.maximumInvitationCodeLength < req.body.code.length) {
-      throw new Error('invalid-invitation-code-length')
+    if (global.minimumInvitationCodeLength > req.body['secret-code'].length ||
+      global.maximumInvitationCodeLength < req.body['secret-code'].length) {
+      throw new Error('invalid-secret-code-length')
     }
     const organization = await global.api.user.organizations.Organization.get(req)
     if (!organization) {
@@ -19,13 +19,13 @@ module.exports = {
     if (organization.ownerid !== req.account.accountid) {
       throw new Error('invalid-account')
     }
-    const codeHash = await dashboard.Hash.fixedSaltHash(req.body.code, req.alternativeFixedSalt, req.alternativeDashboardEncryptionKey)
+    const secretCodeHash = await dashboard.Hash.fixedSaltHash(req.body['secret-code'], req.alternativeFixedSalt, req.alternativeDashboardEncryptionKey)
     const invitationid = `invitation_${await dashboard.UUID.generateID()}`
     const invitationInfo = {
       object: `invitation`,
       organizationid: req.query.organizationid,
       invitationid,
-      codeHash,
+      secretCodeHash,
       created: dashboard.Timestamp.now
     }
     await dashboard.Storage.write(`${req.appid}/invitation/${invitationid}`, invitationInfo)

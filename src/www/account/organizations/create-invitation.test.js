@@ -117,9 +117,9 @@ describe(`/account/organizations/create-invitation`, async () => {
       req.account = owner.account
       req.session = owner.session
       req.body = {
-        code: 'code-' + new Date().getTime() + '-' + Math.floor(Math.random() * 1000)
+        'secret-code': 'code-' + new Date().getTime() + '-' + Math.floor(Math.random() * 1000)
       }
-      const page = await req.post(req)
+      const page = await req.post()
       const doc = TestHelper.extractDoc(page)
       const messageContainer = doc.getElementById('message-container')
       const message = messageContainer.child[0]

@@ -35,18 +35,7 @@ async function renderPage (req, res) {
       if (usedFields.indexOf(field) > -1) {
         continue
       }
-      let displayName = field
-      if (displayName.indexOf('-') > -1) {
-        displayName = displayName.split('-')
-        if (displayName.length === 1) {
-          displayName = displayName[0]
-        } else if (displayName.length === 2) {
-          displayName = displayName[0] + displayName[1].substring(0, 1).toUpperCase() + displayName[1].substring(1)
-        } else if (displayName.length === 3) {
-          displayName = displayName[0] + displayName[1].substring(0, 1).toUpperCase() + displayName[1].substring(1) + displayName[2].substring(0, 1).toUpperCase() + displayName[2].substring(1)
-        }
-      }
-      if (displayName === 'fullName') {
+      if (field === 'full-name') {
         if (req.data.membership.firstName &&
           removeFields.indexOf('full-name') > -1 &&
           usedFields.indexOf(field) === -1) {
@@ -54,6 +43,7 @@ async function renderPage (req, res) {
         }
         continue
       }
+      const displayName = global.profileFieldMap[field]
       if (req.data.membership[displayName] &&
         removeFields.indexOf(field) > -1 &&
         usedFields.indexOf(field) === -1) {
