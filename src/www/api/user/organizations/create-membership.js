@@ -8,8 +8,8 @@ module.exports = {
     if (!req.body || !req.body['secret-code']) {
       throw new Error('invalid-secret-code')
     }
-    if (global.minimumInvitationCodeLength > req.body['secret-code'].length ||
-      global.maximumInvitationCodeLength < req.body['secret-code'].length) {
+    req.body['secret-code'] = req.body['secret-code'].trim ? req.body['secret-code'].trim() : req.body['secret-code']
+    if (!req.body['secret-code'].length) {
       throw new Error('invalid-secret-code-length')
     }
     const secretCodeHash = await dashboard.Hash.fixedSaltHash(req.body['secret-code'], req.alternativeFixedSalt, req.alternativeDashboardEncryptionKey)

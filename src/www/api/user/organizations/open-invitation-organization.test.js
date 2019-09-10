@@ -2,12 +2,12 @@
 const assert = require('assert')
 const TestHelper = require('../../../../../test-helper.js')
 
-describe('/api/user/organizations/open-invitation', () => {
+describe('/api/user/organizations/invitation', () => {
   describe('exceptions', () => {
     describe('invalid-invitationid', () => {
       it('querystring invitationid is missing', async () => {
         const owner = await TestHelper.createUser()
-        const req = TestHelper.createRequest(`/api/user/organizations/open-invitation`)
+        const req = TestHelper.createRequest(`/api/user/organizations/open-invitation-organization`)
         req.account = owner.account
         req.session = owner.session
         let errorMessage
@@ -21,7 +21,7 @@ describe('/api/user/organizations/open-invitation', () => {
 
       it('querystring invitationid is invalid', async () => {
         const owner = await TestHelper.createUser()
-        const req = TestHelper.createRequest(`/api/user/organizations/open-invitation?invitationid=invalid`)
+        const req = TestHelper.createRequest(`/api/user/organizations/open-invitation-organization?invitationid=invalid`)
         req.account = owner.account
         req.session = owner.session
         let errorMessage
@@ -55,7 +55,7 @@ describe('/api/user/organizations/open-invitation', () => {
         await TestHelper.createInvitation(owner)
         await TestHelper.createInvitation(owner)
         await TestHelper.acceptInvitation(user, owner)
-        const req = TestHelper.createRequest(`/api/user/organizations/open-invitation?invitationid=${owner.invitation.invitationid}`)
+        const req = TestHelper.createRequest(`/api/user/organizations/open-invitation-organization?invitationid=${owner.invitation.invitationid}`)
         req.account = user.account
         req.session = user.session
         let errorMessage
@@ -72,7 +72,7 @@ describe('/api/user/organizations/open-invitation', () => {
   describe('returns', () => {
     it('object', async () => {
       const owner = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
+      global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail
@@ -83,35 +83,11 @@ describe('/api/user/organizations/open-invitation', () => {
         profileid: owner.profile.profileid
       })
       await TestHelper.createInvitation(owner)
-      const user = await TestHelper.createUser()
-      const req = TestHelper.createRequest(`/api/user/organizations/open-invitation?invitationid=${owner.invitation.invitationid}`)
-      req.account = user.account
-      req.session = user.session
+      const req = TestHelper.createRequest(`/api/user/organizations/open-invitation-organization?invitationid=${owner.invitation.invitationid}`)
+      req.account = owner.account
+      req.session = owner.session
       const invitation = await req.get()
-      assert.strictEqual(invitation.object, 'invitation')
-    })
-  })
-
-  describe('redacts', () => {
-    it('secret code hash', async () => {
-      const owner = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
-      await TestHelper.createProfile(owner, {
-        'display-name': owner.profile.firstName,
-        'display-email': owner.profile.contactEmail
-      })
-      await TestHelper.createOrganization(owner, {
-        email: owner.profile.displayEmail,
-        name: 'My organization',
-        profileid: owner.profile.profileid
-      })
-      await TestHelper.createInvitation(owner)
-      const user = await TestHelper.createUser()
-      const req = TestHelper.createRequest(`/api/user/organizations/open-invitation?invitationid=${owner.invitation.invitationid}`)
-      req.account = user.account
-      req.session = user.session
-      const invitation = await req.get()
-      assert.strictEqual(invitation.secretCode, undefined)
+      assert.strictEqual(invitation.object, 'organization')
     })
   })
 })

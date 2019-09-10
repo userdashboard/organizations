@@ -19,7 +19,7 @@ module.exports = {
       global.maximumOrganizationNameLength < req.body.name.length) {
       throw new Error('invalid-organization-name-length')
     }
-    if (!req.body.email || !req.body.email.length) {
+    if (!req.body.email || !req.body.email.length || req.body.email.indexOf('@') < 1) {
       throw new Error('invalid-organization-email')
     }
     await dashboard.StorageObject.setProperties(`${req.appid}/organization/${req.query.organizationid}`, {

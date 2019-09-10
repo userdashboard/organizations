@@ -47,7 +47,7 @@ async function createInvitation (owner) {
     'secret-code': code
   }
   owner.invitation = await req.post()
-  owner.invitation.code = code
+  owner.invitation.secretCode = code
   return owner.invitation
 }
 
@@ -56,7 +56,7 @@ async function acceptInvitation (user, owner) {
   req.account = user.account
   req.session = user.session
   req.body = {
-    'secret-code': owner.invitation.code,
+    'secret-code': owner.invitation.secretCode,
     profileid: user.profile.profileid
   }
   user.membership = await req.post()

@@ -6,11 +6,8 @@ module.exports = {
       throw new Error('invalid-organizationid')
     }
     const organization = await global.api.user.organizations.Organization.get(req)
-    if (!organization || organization.ownerid !== req.account.accountid) {
-      const member = await dashboard.Storage.exists(`${req.appid}/map/organizationid/membershipid/${req.account.accountid}/${req.query.organizationid}`)
-      if (!member) {
-        throw new Error('invalid-organization')
-      }
+    if (!organization) {
+      throw new Error('invalid-organizationid')
     }
     return dashboard.StorageList.count(`${req.appid}/organization/memberships/${req.query.organizationid}`)
   }

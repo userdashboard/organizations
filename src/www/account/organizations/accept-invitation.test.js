@@ -58,7 +58,7 @@ describe(`/account/organizations/accept-invitation`, () => {
       req.account = owner.account
       req.session = owner.session
       req.body = {
-        'secret-code': owner.invitation.code,
+        'secret-code': owner.invitation.secretCode,
         invitationid: owner.invitation.invitationid
       }
       const page = await req.post()
@@ -93,7 +93,7 @@ describe(`/account/organizations/accept-invitation`, () => {
       req.account = user.account
       req.session = user.session
       req.body = {
-        'secret-code': owner.invitation.code,
+        'secret-code': owner.invitation.secretCode,
         invitationid: owner.invitation.invitationid,
         profileid: user.profile.profileid
       }
@@ -126,7 +126,7 @@ describe(`/account/organizations/accept-invitation`, () => {
       req.account = user.account
       req.session = user.session
       req.body = {
-        'secret-code': owner.invitation.code,
+        'secret-code': owner.invitation.secretCode,
         invitationid: owner.invitation.invitationid,
         profileid: user.profile.profileid
       }
@@ -153,7 +153,7 @@ describe(`/account/organizations/accept-invitation`, () => {
       req.account = user.account
       req.session = user.session
       req.body = {
-        'secret-code': owner.invitation.code,
+        'secret-code': owner.invitation.secretCode,
         invitationid: owner.invitation.invitationid,
         'display-name': user.profile.firstName,
         'display-email': user.profile.contactEmail

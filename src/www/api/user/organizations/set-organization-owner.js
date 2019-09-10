@@ -5,9 +5,6 @@ module.exports = {
     if (!req.query || !req.query.organizationid) {
       throw new Error('invalid-organizationid')
     }
-    if (req.body.accountid === req.account.accountid) {
-      throw new Error('invalid-account')
-    }
     const organization = await global.api.user.organizations.Organization.get(req)
     if (!organization) {
       throw new Error('invalid-organizationid')
@@ -17,6 +14,14 @@ module.exports = {
     }
     if (!req.body || !req.body.accountid) {
       throw new Error('invalid-accountid')
+    }
+    if (req.body.accountid === req.account.accountid) {
+      throw new Error('invalid-account')
+    }
+    req.query.accountid = req.body.accountid
+    const targetAccount = await global.api.administrator.Account.get(req)
+    if (!targetAccount) {
+      throw new Error('invalid-account')
     }
     let membership
     const account = req.account

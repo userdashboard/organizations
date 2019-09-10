@@ -5,17 +5,13 @@ module.exports = {
     if (!req.query || !req.query.organizationid) {
       throw new Error('invalid-organizationid')
     }
-    let organization = await dashboard.Storage.read(`${req.appid}/organization/${req.query.organizationid}`)
+    const organization = await global.api.user.organizations.Organization.get(req)
     if (!organization) {
       throw new Error('invalid-organizationid')
     }
-    organization = JSON.parse(organization)
-    if (organization.object !== 'organization') {
-      throw new Error('invalid-organizationid')
-    }
-    let membershipid = await dashboard.Storage.read(`${req.appid}/map/organizationid/membershipid/${req.account.accountid}/${req.query.organizationid}`)
+    const membershipid = await dashboard.Storage.read(`${req.appid}/map/organizationid/membershipid/${req.account.accountid}/${req.query.organizationid}`)
     if (!membershipid || !membershipid.length) {
-      throw new Error('invalid-organization')
+      throw new Error('invalid-account')
     }
     let membership = await dashboard.Storage.read(`${req.appid}/membership/${membershipid}`)
     if (!membership) {

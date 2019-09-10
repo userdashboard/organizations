@@ -9,12 +9,6 @@ module.exports = {
     if (!organization) {
       throw new Error('invalid-organizationid')
     }
-    if (organization.ownerid !== req.account.accountid) {
-      const member = await dashboard.Storage.exists(`${req.appid}/map/organizationid/membershipid/${req.account.accountid}/${req.query.organizationid}`)
-      if (!member) {
-        throw new Error('invalid-organzation')
-      }
-    }
     let membershipids
     if (req.query.all) {
       membershipids = await dashboard.StorageList.listAll(`${req.appid}/organization/memberships/${req.query.organizationid}`)

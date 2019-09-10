@@ -77,7 +77,7 @@ describe('/api/administrator/organizations/invitation', () => {
       req.account = administrator.account
       req.session = administrator.session
       const invitation = await req.get()
-      assert.strictEqual(invitation.code, undefined)
+      assert.strictEqual(invitation.secretCode, undefined)
     })
   })
 })

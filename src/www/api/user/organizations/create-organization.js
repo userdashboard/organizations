@@ -5,7 +5,8 @@ module.exports = {
     if (!req.query || !req.query.accountid) {
       throw new Error('invalid-accountid')
     }
-    if (req.query.accountid !== req.account.accountid) {
+    const account = await global.api.user.Account.get(req)
+    if (!account) {
       throw new Error('invalid-account')
     }
     if (!req.body || !req.body.name || !req.body.name.length) {
@@ -36,7 +37,7 @@ module.exports = {
       global.maximumOrganizationNameLength < req.body.name.length) {
       throw new Error('invalid-organization-name-length')
     }
-    if (!req.body.email || !req.body.email.length) {
+    if (!req.body.email || !req.body.email.length || req.body.email.indexOf('@') < 1) {
       throw new Error('invalid-organization-email')
     }
     const organizationid = `organization_${await dashboard.UUID.generateID()}`

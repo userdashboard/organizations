@@ -14,7 +14,7 @@ module.exports = {
       throw new Error('invalid-organizationid')
     }
     if (organization.ownerid !== req.account.accountid) {
-      let membershipid = await dashboard.Storage.read(`${req.appid}/map/organizationid/membershipid/${req.account.accountid}/${req.query.organizationid}`)
+      const membershipid = await dashboard.Storage.read(`${req.appid}/map/organizationid/membershipid/${req.account.accountid}/${req.query.organizationid}`)
       if (!membershipid) {
         throw new Error('invalid-account')
       }
