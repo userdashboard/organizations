@@ -5,9 +5,9 @@
   "requires": true,
   "dependencies": {
     "@userdashboard/dashboard": {
-      "version": "1.0.39",
-      "resolved": "https://registry.npmjs.org/@userdashboard/dashboard/-/dashboard-1.0.39.tgz",
-      "integrity": "sha512-V0BoffU454ght08OjQHcKBlnlUpPZ8tqi7fjWTRtRMKCkjsETyMK8wcxdox4FyPZImMVST+pcsJKi1/epuKZTw==",
+      "version": "1.0.40",
+      "resolved": "https://registry.npmjs.org/@userdashboard/dashboard/-/dashboard-1.0.40.tgz",
+      "integrity": "sha512-WUcQEd0r69laBRfc3kLCL6/TV7n4OTkmHkbcT/wpDleLZZMSkgeNUBQubQ3kKDotFzCnunqdTenHxG/0s4Sg4A==",
       "dev": true,
       "requires": {
         "bcryptjs": "^2.4.3",
