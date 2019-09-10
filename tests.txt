@@ -1,5 +1,5 @@
 
-> @userdashboard/organizations@1.0.27 test /home/benlowry/SynologyDrive/workspaces/dashboard/organizations
+> @userdashboard/organizations@1.0.28 test /home/benlowry/SynologyDrive/workspaces/dashboard/organizations
 > mocha src --recursive --no-colors --retries 3 --timeout 120000 --slow 120000
 
 
@@ -190,8 +190,8 @@
   /administrator/organizations/invitations
     Invitations#BEFORE
       ✓ should bind invitations to req
-    Invitations#GET
-      ✓ should limit invitations to one page
+    returns
+      ✓ array
       ✓ should enforce page size
       ✓ should enforce specified offset
 
@@ -204,8 +204,8 @@
   /administrator/organizations/memberships
     Memberships#BEFORE
       ✓ should bind memberships to req
-    Memberships#GET
-      ✓ should limit memberships to one page
+    returns
+      ✓ array
       ✓ should enforce page size
       ✓ should enforce specified offset
       ✓ should show profile fields if data exists
@@ -213,16 +213,16 @@
   /administrator/organizations/organization-invitations
     OrganizationInvitations#BEFORE
       ✓ should bind invitations to req
-    OrganizationInvitations#GET
-      ✓ should limit invitations to one page
+    returns
+      ✓ array
       ✓ should enforce page size
       ✓ should enforce specified offset
 
   /administrator/organizations/organization-memberships
     OrganizationMemberships#BEFORE
       ✓ should bind memberships to req
-    OrganizationMemberships#GET
-      ✓ should limit memberships to one page
+    returns
+      ✓ array
       ✓ should enforce page size
       ✓ should enforce specified offset
 
@@ -236,245 +236,494 @@
     Organizations#BEFORE
       ✓ should bind owned organizations to req
       ✓ should not bind member organizations to req
-    Organizations#GET
-      ✓ should limit organizations to one page
+    returns
+      ✓ array
       ✓ should enforce page size
       ✓ should enforce specified offset
 
   /api/administrator/organizations/account-invitations-count
-    AccountInvitationsCount#GET
-      ✓ should count account's invitations
+    exceptions
+      invalid-accountid
+        ✓ missing querystring accountid value
+        ✓ invalid querystring accountid value
+    returns
+      ✓ integer
 
   /api/administrator/organizations/account-invitations
-    Invitations#GET
-      ✓ should limit account's invitation list to one page
-      ✓ should enforce page size
-      ✓ should enforce specified offset
-      ✓ should return all records
+    exceptions
+      invalid-accountid
+        ✓ missing querystring accountid value
+        ✓ invalid querystring accountid value
+    receives
+      ✓ optional querystring offset (integer)
+      ✓ optional querystring all (boolean)
+    returns
+      ✓ array
+    configuration
+      ✓ environment PAGE_SIZE
 
   /api/administrator/organizations/account-memberships-count
-    AccountMembershipsCount#GET
-      ✓ should count account's memberships
+    exceptions
+      invalid-accountid
+        ✓ missing querystring accountid value
+        ✓ invalid querystring accountid value
+    returns
+      ✓ integer
 
   /api/administrator/organizations/account-memberships
-    AccountMemberships#GET
-      ✓ should limit account's membership list to one page
-      ✓ should enforce page size
-      ✓ should enforce specified offset
-      ✓ should return all records
+    exceptions
+      invalid-accountid
+        ✓ missing querystring accountid value
+        ✓ invalid querystring accountid value
+    receives
+      ✓ optional querystring offset (integer)
+      ✓ optional querystring all (boolean)
+    returns
+      ✓ array
+    configuration
+      ✓ environment PAGE_SIZE
 
   /api/administrator/organizations/account-organizations-count
-    AccountOrganizationsCount#GET
-      ✓ should count account's organizations
+    exceptions
+      invalid-accountid
+        ✓ missing querystring accountid value
+        ✓ invalid querystring accountid value
+    returns
+      ✓ integer
 
   /api/administrator/organizations/account-organizations
-    AccountOrganizations#GET
-      ✓ should limit account's organization list to one page
-      ✓ should enforce page size
-      ✓ should enforce specified offset
+    exceptions
+      invalid-accountid
+        ✓ missing querystring accountid value
+        ✓ invalid querystring accountid value
+    receives
+      ✓ optional querystring offset (integer)
+      ✓ optional querystring all (boolean)
+    returns
+      ✓ array
+    configuration
+      ✓ environment PAGE_SIZE
 
   /api/administrator/organizations/invitation
-    Invitation#GET
-      ✓ should return invitation data
-      ✓ should redact invitation code
+    exceptions
+      invalid-invitationid
+        ✓ missing querystring invitationid value
+        ✓ invalid querystring invitationid value
+    returns
+      ✓ object
+    redacts
+      ✓ secret code hash
 
   /api/administrator/organizations/invitations-count
-    InvitationsCount#GET
-      ✓ should count invitations
+    returns
+      ✓ integer
 
   /api/administrator/organizations/invitations
-    Invitations#GET
-      ✓ should limit invitation list to one page
-      ✓ should enforce page size
-      ✓ should enforce specified offset
-      ✓ should return all records
+    receives
+      ✓ optional querystring offset (integer)
+      ✓ optional querystring all (boolean)
+    returns
+      ✓ array
+    configuration
+      ✓ environment PAGE_SIZE
 
   /api/administrator/organizations/membership
-    Membership#GET
-      ✓ should return membership data
-      ✓ should redact membership code
+    exceptions
+      invalid-membershipid
+        ✓ missing querystring membershipid value
+        ✓ invalid querystring membershipid value
+    returns
+      ✓ object
 
   /api/administrator/organizations/memberships-count
-    MembershipsCount#GET
-      ✓ should count memberships
+    returns
+      ✓ integer
 
   /api/administrator/organizations/memberships
-    Memberships#GET
-      ✓ should limit membership list to one page
-      ✓ should enforce page size
-      ✓ should enforce specified offset
-      ✓ should return all records
+    receives
+      ✓ optional querystring offset (integer)
+      ✓ optional querystring all (boolean)
+    returns
+      ✓ array
+    configuration
+      ✓ environment PAGE_SIZE
 
   /api/administrator/organizations/organization-invitations-count
-    OrganizationInvitationsCount#GET
-      ✓ should count organization's invitations
+    exceptions
+      invalid-organizationid
+        ✓ missing querystring organizationid value
+        ✓ invalid querystring organizationid value
+    returns
+      ✓ integer
 
   /api/administrator/organizations/organization-invitations
-    OrganizationInvitations#GET
-      ✓ should limit invitation list to one page
-      ✓ should enforce page size
-      ✓ should enforce specified offset
-      ✓ should return all records
+    exceptions
+      invalid-organizationid
+        ✓ missing querystring organizationid value
+        ✓ invalid querystring organizationid value
+    receives
+      ✓ optional querystring offset (integer)
+      ✓ optional querystring all (boolean)
+    returns
+      ✓ array
+    configuration
+      ✓ environment PAGE_SIZE
 
   /api/administrator/organizations/organization-memberships-count
-    OrganizationMembershipsCount#GET
-      ✓ should count organization's memberships
+    exceptions
+      invalid-organizationid
+        ✓ missing querystring organizationid value
+        ✓ invalid querystring organizationid value
+    returns
+      ✓ integer
 
   /api/administrator/organizations/organization-memberships
-    OrganizationMembership#GET
-      ✓ should limit membership list to one page
-      ✓ should enforce page size
-      ✓ should enforce specified offset
-      ✓ should return all records
+    exceptions
+      invalid-organizationid
+        ✓ unspecified querystring organizationid
+        ✓ invalid querystring organizationid value
+    receives
+      ✓ optional querystring offset (integer)
+      ✓ optional querystring all (boolean)
+    returns
+      ✓ array
+    configuration
+      ✓ environment PAGE_SIZE
 
   /api/administrator/organizations/organization
-    Organization#GET
-      ✓ should return organization data
+    exceptions
+      invalid-organizationid
+        ✓ unspecified querystring organizationid
+        ✓ invalid querystring organizationid value
+    returns
+      ✓ array
 
   /api/administrator/organizations/organizations-count
-    OrganizationsCount#GET
-      ✓ should count organizations
+    returns
+      ✓ integer
 
   /api/administrator/organizations/organizations
-    Organizations#GET
-      ✓ should limit organization list to one page
-      ✓ should enforce page size
-      ✓ should enforce specified offset
-      ✓ should return all records
+    receives
+      ✓ optional querystring offset (integer)
+      ✓ optional querystring all (boolean)
+    returns
+      ✓ array
+    configuration
+      ✓ environment PAGE_SIZE
 
   /api/user/organizations/create-invitation
-    CreateInvitation#POST
-      ✓ should enforce code length
-      ✓ should create invitation
+    exceptions
+      invalid-organizationid
+        ✓ missing querystring organizationid
+        ✓ invalid querystring organizationid
+      invalid-secret-code
+        ✓ missing posted secret-code
+      invalid-secret-code-length
+        ✓ posted secret-code too short
+        ✓ posted secret-code too long
+      invalid-account
+        ✓ accessing account is not organization owner
+    returns
+      ✓ object
 
   /api/user/organizations/create-membership
-    CreateMembership#POST
-      ✓ should enforce code length
-      ✓ should reject a used invitation
-      ✓ should reject owner
-      ✓ should reject existing members
-      ✓ should create membership
+    exceptions
+      invalid-invitationid
+        ✓ missing querystring invitationid
+        ✓ invalid querystring invitationid
+      invalid-invitation
+        ✓ querystring invitationid has been used
+        ✓ posted secret-code has been used
+      invalid-secret-code
+        ✓ missing posted secret-code
+        ✓ invalid posted secret-code
+      invalid-secret-code-length
+        ✓ posted secret-code is blank
+      invalid-account
+        ✓ accessing account is organization owner
+        ✓ accessing account is organization member
+      invalid-profileid
+        ✓ missing posted profileid
+        ✓ invalid posted profileid
+      invalid-profile
+        ✓ ineligible posted profileid is missing fields
+      invalid-invitation
+        ✓ querystring invitationid is not open invitation
+    returns
+      ✓ object
 
   /api/user/organizations/create-organization
-    CreateOrganization#POST
-      ✓ should reject missing name
-      ✓ should enforce name length
-      ✓ should reject missing email
-      ✓ should reject invalid profileid
-      ✓ should reject profile missing fields
-      ✓ should create organization
+    exceptions
+      invalid-organization-name
+        ✓ missing posted name
+    invalid-organization-name-length
+      ✓ posted name too short
+      ✓ posted name too long
+    invalid-organization-email
+      ✓ missing posted email
+      ✓ invalid posted email
+    invalid-profile
+      ✓ missing posted profileid
+      ✓ invalid posted profileid
+      ✓ ineligible posted profileid missing fields
+    returns
+      ✓ object
 
   /api/user/organizations/delete-invitation
-    DeleteInvitation#DELETE
-      ✓ should require owner
-      ✓ should reject accepted invitation
-      ✓ should delete invitation with authorization
+    exceptions
+      invalid-invitationid
+        ✓ querystring invitationid is missing
+        ✓ querystring invitationid is invalid
+      invalid-invitation
+        ✓ querystring invitationid is used invitation
+      invalid-account
+        ✓ accessing account is not organization owner
+    returns
+      ✓ boolean
 
   /api/user/organizations/delete-membership
-    DeleteMembership#DELETE
-      ✓ should reject non-owner non-member
-      ✓ should delete membership
+    exceptions
+      invalid-membershipid
+        ✓ missing querystring membershipid
+        ✓ invalid querystring membershipid
+      invalid-account
+        ✓ accessing account is not membership or organization owner
+    returns
+      ✓ boolean
 
   /api/user/organizations/delete-organization
-    DeleteOrganization#DELETE
-      ✓ should require own organization
-      ✓ should delete organization
+    exceptions
+      invalid-organizationid
+        ✓ missing querystring organizationid
+        ✓ invalid querystring organizationid
+      invalid-account
+        ✓ accessing account does not own organization
+    returns
+      ✓ boolean
 
   /api/user/organizations/invitation
-    Invitation#GET
-      ✓ should reject non-owner
-      ✓ should return invitation
-      ✓ should redact invitation code
+    exceptions
+      invalid-invitationid
+        ✓ querystring invitationid is missing
+        ✓ querystring invitationid is invalid
+      invalid-account
+        ✓ accessing account is not organization owner
+    returns
+      ✓ object
+    redacts
+      ✓ secret code hash
 
   /api/user/organizations/invitations-count
-    InvitationsCount#GET
-      ✓ should count invitations
+    exceptions
+      invalid-accountid
+        ✓ querystring accountid is missing
+        ✓ querystring accountid is invalid
+      invalid-account
+        ✓ ineligible querystring accountid
+    returns
+      ✓ integer
 
   /api/user/organizations/invitations
-    Invitations#GET
-      ✓ should limit invitation list to one page
-      ✓ should enforce page size
-      ✓ should enforce specified offset
-      ✓ should return all records
+    exceptions
+      invalid-accountid
+        ✓ querystring accountid is missing
+        ✓ querystring accountid is invalid
+      invalid-account
+        ✓ ineligible querystring accountid
+    receives
+      ✓ optional querystring offset (integer)
+      ✓ optional querystring all (boolean)
+    returns
+      ✓ array
+    configuration
+      ✓ environment PAGE_SIZE
 
   /api/user/organizations/membership
-    Membership#GET
-      ✓ should allow organization owner
-      ✓ should allow organization member
-      ✓ should reject non-owner non-members
-      ✓ should return membership data
+    exceptions
+      invalid-membershipid
+        ✓ missing querystring membershipid
+        ✓ invalid querystring membershipid
+      invalid-account
+        ✓ accessing account must be organization member or owner
+    returns
+      ✓ object
 
   /api/user/organizations/memberships-count
-    MembershipsCount#GET
-      ✓ should count memberships
+    exceptions
+      invalid-accountid
+        ✓ querystring accountid is missing
+        ✓ querystring accountid is invalid
+      invalid-account
+        ✓ ineligible querystring accountid
+    returns
+      ✓ integer
 
   /api/user/organizations/memberships
-    Memberships#GET
-      ✓ should limit memberships to one page
-      ✓ should enforce page size
-      ✓ should enforce specified offset
-      ✓ should return all records
+    exceptions
+      invalid-accountid
+        ✓ querystring accountid is missing
+        ✓ querystring accountid is invalid
+      invalid-account
+        ✓ ineligible querystring accountid
+    receives
+      ✓ optional querystring offset (integer)
+      ✓ optional querystring all (boolean)
+    returns
+      ✓ array
+    configuration
+      ✓ environment PAGE_SIZE
+
+  /api/user/organizations/invitation
+    exceptions
+      invalid-invitationid
+        ✓ querystring invitationid is missing
+        ✓ querystring invitationid is invalid
+      invalid-invitation
+        ✓ querystring invitationid is used
+    returns
+      ✓ object
 
   /api/user/organizations/open-invitation
-    OpenInvitation#GET
-      ✓ should reject accepted invitation
-      ✓ should return invitation data
-      ✓ should redact invitation code
+    exceptions
+      invalid-invitationid
+        ✓ querystring invitationid is missing
+        ✓ querystring invitationid is invalid
+      invalid-invitation
+        ✓ querystring invitationid is used
+    returns
+      ✓ object
+    redacts
+      ✓ secret code hash
 
   /api/user/organizations/organization-invitations-count
-    OrganizationInvitationsCount#GET
-      ✓ should count organization's invitations
+    exceptions
+      invalid-organizationid
+        ✓ querystring organizationid is missing
+        ✓ querystring organizationid is invalid
+      invalid-account
+        ✓ accessing account is not organization owner
+    returns
+      ✓ integer
 
   /api/user/organizations/organization-invitations
-    OrganizationInvitations#GET
-      ✓ should require organization owner
-      ✓ should limit invitation list to one page
-      ✓ should enforce page size
-      ✓ should enforce specified offset
-      ✓ should enforce specified offset
+    exceptions
+      invalid-organizationid
+        ✓ querystring organizationid is missing
+        ✓ querystring organizationid is invalid
+      invalid-account
+        ✓ accessing account is not organization owner
+    receives
+      ✓ optional querystring offset (integer)
+      ✓ optional querystring offset (integer)
+    returns
+      ✓ array
+    configuration
+      ✓ environment PAGE_SIZE
+
+  /api/user/organizations/organization-membership
+    exceptions
+      invalid-organizationid
+        ✓ missing querystring organizationid
+        ✓ invalid querystring organizationid
+      invalid-account
+        ✓ accessing account must be organization member
+    returns
+      ✓ object
 
   /api/user/organizations/organization-memberships-count
-    OrganizationMembershipsCount#GET
-      ✓ should count organization's memberships
+    exceptions
+      invalid-organizationid
+        ✓ missing querystring organizationid
+        ✓ invalid querystring organizationid
+      invalid-account
+        ✓ accessing account must be organization member
+    returns
+      ✓ integer
 
   /api/user/organizations/organization-memberships
-    OrganizationMemberships#GET
-      ✓ should limit membership list to one page
-      ✓ should enforce page size
-      ✓ should enforce specified offset
-      ✓ should enforce specified offset
+    exceptions
+      invalid-organizationid
+        ✓ missing querystring organizationid
+        ✓ invalid querystring organizationid
+      invalid-account
+        ✓ accessing account must be organization member
+    receives
+      ✓ optional querystring offset (integer)
+      ✓ optional querystring offset (integer)
+    returns
+      ✓ array
+    configuration
+      ✓ environment PAGE_SIZE
 
   /api/user/organizations/organization
-    Organization#GET
-      ✓ should reject non-owner, non-member
-      ✓ should return organization data
+    exceptions
+      invalid-organizationid
+        ✓ missing querystring organizationid
+        ✓ invalid querystring organizationid
+      invalid-account
+        ✓ accessing account must be organization member
+    returns
+      ✓ object
 
   /api/user/organizations/organizations-count
-    OrganizationsCount#GET
-      ✓ should count organizations
+    exceptions
+      invalid-accountid
+        ✓ querystring accountid is missing
+        ✓ querystring accountid is invalid
+      invalid-account
+        ✓ ineligible querystring accountid
+    returns
+      ✓ integer
 
   /api/user/organizations/organizations
-    Organizations#GET
+    exceptions
+      invalid-accountid
+        ✓ querystring accountid is missing
+        ✓ querystring accountid is invalid
+      invalid-account
+        ✓ ineligible querystring accountid
+    receives
+      ✓ optional querystring offset (integer)
+      ✓ optional querystring all (boolean)
+    returns
       ✓ should reject other accountid
-      ✓ should limit organization list to one page
-      ✓ should enforce page size
-      ✓ should enforce specified offset
-      ✓ should return all records
+      ✓ array
+    configuration
+      ✓ environment PAGE_SIZE
 
   /api/user/organizations/set-organization-owner
-    SetOrganizationOwner#PATCH
-      ✓ should require own organization
-      ✓ should reject same owner
-      ✓ should require new owner is member
-      ✓ should transfer organization
+    exceptions
+      invalid-organizationid
+        ✓ querystring organizationid is missing
+        ✓ querystring organizationid is invalid
+      invalid-accountid
+        ✓ posted accountid is missing
+        ✓ posted accountid is invalid
+      invalid-account
+        ✓ accessing account is not organization owner
+        ✓ posted accountid is organization owner
+        ✓ posted accountid is not member
+    returns
+      ✓ object
 
   /api/user/organizations/update-organization
-    UpdateOrganization#PATCH
-      ✓ should reject missing name
-      ✓ should enforce name length
-      ✓ should reject missing email
-      ✓ should apply new values
+    exceptions
+      invalid-organizationid
+        ✓ querystring organizationid is missing
+        ✓ querystring organizationid is invalid
+      invalid-account
+        ✓ accessing account is not organization owner
+      invalid-organization-name
+        ✓ missing posted name
+      invalid-organization-name-length
+        ✓ posted name is too short
+        ✓ posted name is too long
+      invalid-organization-email
+        ✓ missing posted email
+        ✓ invalid posted email
+    returns
+      ✓ object
 
 
-  232 passing (2m)
+  333 passing (2m)
 
