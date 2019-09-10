@@ -3,6 +3,39 @@ const assert = require('assert')
 const TestHelper = require('../../../../../test-helper.js')
 
 describe('/api/administrator/organizations/organization-memberships-count', async () => {
+  describe('exceptions', () => {
+    describe('invalid-organizationid', async () => {
+      it('missing querystring organizationid value', async () => {
+        const administrator = await TestHelper.createOwner()
+        const req = TestHelper.createRequest(`/api/administrator/organizations/organization-memberships-count`)
+        req.account = administrator.account
+        req.session = administrator.session
+        let errorMessage
+        try {
+          await req.get()
+        } catch (error) {
+          errorMessage = error.message
+        }
+        assert.strictEqual(errorMessage, 'invalid-organizationid')
+      })
+
+      it('invalid querystring organizationid value', async () => {
+        const administrator = await TestHelper.createOwner()
+        const req = TestHelper.createRequest(`/api/administrator/organizations/organization-memberships-count?organizationid=invalid`)
+        req.account = administrator.account
+        req.session = administrator.session
+        let errorMessage
+        try {
+          await req.get()
+        } catch (error) {
+          errorMessage = error.message
+        }
+        assert.strictEqual(errorMessage, 'invalid-organizationid')
+      })
+    })
+  })
+
+ 
   describe('returns', () => {
     it('integer', async () => {
       const administrator = await TestHelper.createAdministrator()

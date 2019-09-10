@@ -5,6 +5,10 @@ module.exports = {
     if (!req.query || !req.query.organizationid) {
       throw new Error('invalid-organizationid')
     }
+    const organization = await global.api.administrator.organizations.Organization.get(req)
+    if (!organization) {
+      throw new Error('invalid-organizationid')
+    }
     let membershipids
     if (req.query.all) {
       membershipids = await dashboard.StorageList.listAll(`${req.appid}/organization/memberships/${req.query.organizationid}`)

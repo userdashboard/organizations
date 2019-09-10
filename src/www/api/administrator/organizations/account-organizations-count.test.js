@@ -3,19 +3,46 @@ const assert = require('assert')
 const TestHelper = require('../../../../../test-helper.js')
 
 describe('/api/administrator/organizations/account-organizations-count', async () => {
+  describe('exceptions', () => {
+    describe('invalid-accountid', async () => {
+      it('missing querystring accountid value', async () => {
+        const administrator = await TestHelper.createOwner()
+        const req = TestHelper.createRequest(`/api/administrator/organizations/account-organizations-count`)
+        req.account = administrator.account
+        req.session = administrator.session
+        let errorMessage
+        try {
+          await req.get()
+        } catch (error) {
+          errorMessage = error.message
+        }
+        assert.strictEqual(errorMessage, 'invalid-accountid')
+      })
+
+      it('invalid querystring accountid value', async () => {
+        const administrator = await TestHelper.createOwner()
+        const req = TestHelper.createRequest(`/api/administrator/organizations/account-organizations-count?accountid=invalid`)
+        req.account = administrator.account
+        req.session = administrator.session
+        let errorMessage
+        try {
+          await req.get()
+        } catch (error) {
+          errorMessage = error.message
+        }
+        assert.strictEqual(errorMessage, 'invalid-accountid')
+      })
+    })
+  })
+  
   describe('returns', () => {
     it('integer', async () => {
       const administrator = await TestHelper.createAdministrator()
       const user = await TestHelper.createUser()
-      const user2 = await TestHelper.createUser()
       global.userProfileFields = ['display-email', 'display-name']
       await TestHelper.createProfile(user, {
         'display-name': user.profile.firstName,
         'display-email': user.profile.contactEmail
-      })
-      await TestHelper.createProfile(user2, {
-        'display-name': user2.profile.firstName,
-        'display-email': user2.profile.contactEmail
       })
       await TestHelper.createOrganization(user, {
         email: user.profile.displayEmail,
@@ -26,11 +53,6 @@ describe('/api/administrator/organizations/account-organizations-count', async (
         email: user.profile.displayEmail,
         name: 'My other organization',
         profileid: user.profile.profileid
-      })
-      await TestHelper.createOrganization(user2, {
-        email: user2.profile.displayEmail,
-        name: 'My organization',
-        profileid: user2.profile.profileid
       })
       const req = TestHelper.createRequest(`/api/administrator/organizations/account-organizations-count?accountid=${user.account.accountid}`)
       req.account = administrator.account

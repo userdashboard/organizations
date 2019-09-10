@@ -5,6 +5,10 @@ module.exports = {
     if (!req.query || !req.query.organizationid) {
       throw new Error('invalid-organizationid')
     }
+    const organization = await global.api.administrator.organizations.Organization.get(req)
+    if (!organization) {
+      throw new Error('invalid-organizationid')
+    }
     return dashboard.StorageList.count(`${req.appid}/organization/invitations/${req.query.organizationid}`)
   }
 }
