@@ -1,0 +1,39 @@
+<!doctype html>
+<html navbar="/administrator/organizations/navbar.html">
+  <head>
+    <title>Organizations</title>
+    <link href="/public/pure-min.css" rel="stylesheet" />
+    <link href="/public/content.css" rel="stylesheet" />
+    <link href="/public/content-additional.css" rel="stylesheet" />
+    <base target="_top" href="/" />
+  </head>
+  <body>
+    <h1>Organizations</h1>
+    <p>Users create these for sharing access to resources in your application.</p>
+    <div id="no-organizations">
+      <p>There are no organizations yet.</p>
+    </div>
+    <table id="organizations-table" class="pure-table pure-table-striped list-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Created</th>
+        </tr>
+      </thead>
+    </table>
+    <ul id="page-links" class="pagination"></ul>
+  </body>
+  <template id="page-link">
+    <li><a href="/account/organizations/organizations?offset=${page.offset}" id="page-link-${page.pageNumber}">${page.pageNumber}</a></li>
+  </template>
+  <template id="organization-row">
+    <tr id="${organization.organizationid}">
+      <td><a href="/administrator/organizations/organization?organizationid=${organization.organizationid}">${organization.organizationid}</a></td>
+      <td>${organization.name}</td>
+      <td><a href="mailto:${organization.email}">${organization.email}</a></td>
+      <td>${organization.createdFormatted}</td>
+    </tr>
+  </template>
+</html>
