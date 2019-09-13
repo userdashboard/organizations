@@ -1,0 +1,116 @@
+<!doctype html>
+<html navbar="/account/organizations/navbar-membership.html">
+  <head>
+    <title>Edit ${membership.membershipid} profile</title>
+    <link href="/public/pure-min.css" rel="stylesheet" />
+    <link href="/public/content.css" rel="stylesheet" />
+    <link href="/public/content-additional.css" rel="stylesheet" />
+    <base target="_top" href="/" />
+  </head>
+  <body>
+    <h1>Edit ${membership.membershipid} profile</h1>
+    <p>Any other membership sharing this profile, or other usage of it, will be updated too.</p>
+    <div id="message-container"></div>
+    <form id="submit-form" method="POST" class="pure-form pure-form-stacked" action="/account/organizations/edit-membership-profile?membershipid=${membership.membershipid}">
+      <div id="display-name-container" class="pure-control-group">
+        <label for="display-name">Display name</label>
+        <input require id="display-name" name="display-name" type="text" maxlength="1000" />
+      </div>
+      <div id="display-email-container" class="pure-control-group">
+        <label for="display-email">Display email</label>
+        <input require id="display-email" name="display-email" type="text" maxlength="1000" size="50" />
+      </div>
+      <div id="contact-email-container" class="pure-control-group">
+        <label for="contact-email">Contact email</label>
+        <input require id="contact-email" name="contact-email" type="text" maxlength="1000" size="50" />
+      </div>
+      <div id="full-name-container">
+        <div class="pure-control-group">
+          <label for="first-name">First name</label>
+          <input require id="first-name" name="first-name" type="text" maxlength="1000" />
+        </div>
+        <div class="pure-control-group">
+          <label for="last-name">Last name</label>
+          <input require id="last-name" name="last-name" type="text" maxlength="1000" />
+        </div>
+      </div>
+      <div id="dob-container">
+        <div class="pure-control-group">
+          <label for="dob">Date of birth</label>
+          <input require id="dob" name="dob" type="text" maxlength="11" />
+        </div>
+      </div>
+      <div id="phone-container" class="pure-control-group">
+        <label for="phone">Telephone</label>
+        <input require id="phone" name="phone" type="text" maxlength="1000" />
+      </div>
+      <div id="occupation-container" class="pure-control-group">
+        <label for="occupation">Occupation</label>
+        <input require id="occupation" name="occupation" type="text" maxlength="1000" />
+      </div>
+      <div id="location-container" class="pure-control-group">
+        <label for="location">Location</label>
+        <input require id="location" name="location" type="text" maxlength="1000" />
+      </div>
+      <div id="company-name-container" class="pure-control-group">
+        <label for="company-name">Company name</label>
+        <input require id="company-name" name="company-name" type="text" maxlength="1000" />
+      </div>
+      <div id="website-container" class="pure-control-group">
+        <label for="website">Website</label>
+        <input require id="website" name="website" type="text" maxlength="1000" />
+      </div>
+      <div class="pure-controls">
+        <button type="submit" id="submit-button" class="pure-button pure-button-primary">Update membership</button>
+      </div>
+    </form>
+  </body>
+  <template id="success">
+    <div class="success message">Success! Your membership information has been updated</div>
+  </template>
+  <template id="unknown-error">
+    <div class="error message">Error! An unknown error ocurred</div>
+  </template>
+  <template id="invalid-first-name">
+    <div class="error message">Error! A missing or invalid first name provided</div>
+  </template>
+  <template id="invalid-first-name-length">
+    <div class="error message">Error! An invalid first name was provided</div>
+  </template>
+  <template id="invalid-last-name">
+    <div class="error message">Error! A missing or invalid last name was provided</div>
+  </template>
+  <template id="invalid-last-name-length">
+    <div class="error message">Error! An invalid last name was provided</div>
+  </template>
+  <template id="invalid-contact-email">
+    <div class="error message">Error! Invalid contact email address</div>
+  </template>
+  <template id="invalid-display-email">
+    <div class="error message">Error! Invalid display email address</div>
+  </template>
+  <template id="invalid-display-name">
+    <div class="error message">Error! A missing or invalid display name was provided</div>
+  </template>
+  <template id="invalid-dob">
+    <div class="error message">Error! A missing or invalid date of birth was provided</div>
+  </template>
+  <template id="invalid-phone">
+    <div class="error message">Error! A missing or invalid phone was provided.</div>
+  </template>
+  <template id="invalid-occupation">
+    <div class="error message">Error! A missing or invalid occupation was provided.</div>
+  </template>
+  <template id="invalid-location">
+    <div class="error message">Error! A missing or invalid location was provided.</div>
+  </template>
+  <template id="invalid-company-name">
+    <div class="error message">Error! A missing or invalid company name was provided.</div>
+  </template>
+  <template id="invalid-website">
+    <div class="error message">Error! A missing or invalid website was provided.</div>
+  </template>
+  <template id="invalid-display-name-length">
+    <div class="error message">Error! A missing or invalid display name was provided</div>
+  </template>
+</html>

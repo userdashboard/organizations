@@ -1,0 +1,41 @@
+<!doctype html>
+<html navbar="/administrator/organizations/navbar-organization.html">
+  <head>
+    <title>Invitations for ${organization.organizationid}</title>
+    <link href="/public/pure-min.css" rel="stylesheet" />
+    <link href="/public/content.css" rel="stylesheet" />
+    <link href="/public/content-additional.css" rel="stylesheet" />
+    <base target="_top" href="/" />
+  </head>
+  <body>
+    <h1>Invitations for ${organization.organizationid}</h1>
+    <p>These are created by the owner and allow users to join organizations.</p>
+    <div id="no-invitations">
+      <p>The organization does not have any invitations yet.</p>
+    </div>
+    <table id="invitations-table" class="pure-table pure-table-striped list-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Membership</th>
+          <th>Created</th>
+          <th>Accepted</th>
+        </tr>
+      </thead>
+    </table>
+    <ul id="page-links" class="pagination"></ul>
+  </body>
+  <template id="page-link">
+    <li><a href="/administrator/organizations/organization-invitations?offset=${page.offset}" id="page-link-${page.pageNumber}">${page.pageNumber}</a></li>
+  </template>
+  <template id="invitation-row">
+    <tr id="${invitation.invitationid}">
+      <td><a href="/administrator/organizations/invitation?invitationid=${invitation.invitationid}">${invitation.invitationid}</a></td>
+      <td id="membership-${invitation.invitationid}"><a href="/administrator/organizations/membership?membershipid=${invitation.membershipid}">${invitation.membershipid}</a></td>
+      <td id="no-membership-${invitation.invitationid}"></td>
+      <td>${invitation.createdFormatted}</td>
+      <td id="accepted-${invitation.invitationid}">${invitation.acceptedFormatted}</td>
+      <td id="not-accepted-${invitation.invitationid}"></td>
+    </tr>
+  </template>
+</html>
