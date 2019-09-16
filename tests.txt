@@ -472,8 +472,8 @@
   /api/user/organizations/delete-invitation
     exceptions
       invalid-invitationid
-        ✓ querystring invitationid is missing
-        ✓ querystring invitationid is invalid
+        ✓ missing querystring invitationid
+        ✓ invalid querystring invitationid
       invalid-invitation
         ✓ querystring invitationid is used invitation
       invalid-account
@@ -504,8 +504,8 @@
   /api/user/organizations/invitation
     exceptions
       invalid-invitationid
-        ✓ querystring invitationid is missing
-        ✓ querystring invitationid is invalid
+        ✓ missing querystring invitationid
+        ✓ invalid querystring invitationid
       invalid-account
         ✓ accessing account is not organization owner
     returns
@@ -516,8 +516,8 @@
   /api/user/organizations/invitations-count
     exceptions
       invalid-accountid
-        ✓ querystring accountid is missing
-        ✓ querystring accountid is invalid
+        ✓ missing querystring accountid
+        ✓ invalid querystring accountid
       invalid-account
         ✓ ineligible querystring accountid
     returns
@@ -526,8 +526,8 @@
   /api/user/organizations/invitations
     exceptions
       invalid-accountid
-        ✓ querystring accountid is missing
-        ✓ querystring accountid is invalid
+        ✓ missing querystring accountid
+        ✓ invalid querystring accountid
       invalid-account
         ✓ ineligible querystring accountid
     receives
@@ -551,8 +551,8 @@
   /api/user/organizations/memberships-count
     exceptions
       invalid-accountid
-        ✓ querystring accountid is missing
-        ✓ querystring accountid is invalid
+        ✓ missing querystring accountid
+        ✓ invalid querystring accountid
       invalid-account
         ✓ ineligible querystring accountid
     returns
@@ -561,8 +561,8 @@
   /api/user/organizations/memberships
     exceptions
       invalid-accountid
-        ✓ querystring accountid is missing
-        ✓ querystring accountid is invalid
+        ✓ missing querystring accountid
+        ✓ invalid querystring accountid
       invalid-account
         ✓ ineligible querystring accountid
     receives
@@ -576,8 +576,8 @@
   /api/user/organizations/invitation
     exceptions
       invalid-invitationid
-        ✓ querystring invitationid is missing
-        ✓ querystring invitationid is invalid
+        ✓ missing querystring invitationid
+        ✓ invalid querystring invitationid
       invalid-invitation
         ✓ querystring invitationid is used
     returns
@@ -586,8 +586,8 @@
   /api/user/organizations/open-invitation
     exceptions
       invalid-invitationid
-        ✓ querystring invitationid is missing
-        ✓ querystring invitationid is invalid
+        ✓ missing querystring invitationid
+        ✓ invalid querystring invitationid
       invalid-invitation
         ✓ querystring invitationid is used
     returns
@@ -598,8 +598,8 @@
   /api/user/organizations/organization-invitations-count
     exceptions
       invalid-organizationid
-        ✓ querystring organizationid is missing
-        ✓ querystring organizationid is invalid
+        ✓ missing querystring organizationid
+        ✓ invalid querystring organizationid
       invalid-account
         ✓ accessing account is not organization owner
     returns
@@ -608,8 +608,8 @@
   /api/user/organizations/organization-invitations
     exceptions
       invalid-organizationid
-        ✓ querystring organizationid is missing
-        ✓ querystring organizationid is invalid
+        ✓ missing querystring organizationid
+        ✓ invalid querystring organizationid
       invalid-account
         ✓ accessing account is not organization owner
     receives
@@ -668,8 +668,8 @@
   /api/user/organizations/organizations-count
     exceptions
       invalid-accountid
-        ✓ querystring accountid is missing
-        ✓ querystring accountid is invalid
+        ✓ missing querystring accountid
+        ✓ invalid querystring accountid
       invalid-account
         ✓ ineligible querystring accountid
     returns
@@ -678,8 +678,8 @@
   /api/user/organizations/organizations
     exceptions
       invalid-accountid
-        ✓ querystring accountid is missing
-        ✓ querystring accountid is invalid
+        ✓ missing querystring accountid
+        ✓ invalid querystring accountid
       invalid-account
         ✓ ineligible querystring accountid
     receives
@@ -694,8 +694,8 @@
   /api/user/organizations/set-organization-owner
     exceptions
       invalid-organizationid
-        ✓ querystring organizationid is missing
-        ✓ querystring organizationid is invalid
+        ✓ missing querystring organizationid
+        ✓ invalid querystring organizationid
       invalid-accountid
         ✓ posted accountid is missing
         ✓ posted accountid is invalid
@@ -709,8 +709,8 @@
   /api/user/organizations/update-organization
     exceptions
       invalid-organizationid
-        ✓ querystring organizationid is missing
-        ✓ querystring organizationid is invalid
+        ✓ missing querystring organizationid
+        ✓ invalid querystring organizationid
       invalid-account
         ✓ accessing account is not organization owner
       invalid-organization-name
