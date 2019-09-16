@@ -2,12 +2,12 @@
 const assert = require('assert')
 const TestHelper = require('../../../../../test-helper.js')
 
-describe(`/api/user/organizations/organization-memberships`, () => {
+describe('/api/user/organizations/organization-memberships', () => {
   describe('exceptions', () => {
     describe('invalid-organizationid', () => {
       it('missing querystring organizationid', async () => {
         const user = await TestHelper.createUser()
-        const req = TestHelper.createRequest(`/api/user/organizations/organization-memberships`)
+        const req = TestHelper.createRequest('/api/user/organizations/organization-memberships')
         req.account = user.account
         req.session = user.session
         let errorMessage
@@ -21,7 +21,7 @@ describe(`/api/user/organizations/organization-memberships`, () => {
 
       it('invalid querystring organizationid', async () => {
         const user = await TestHelper.createUser()
-        const req = TestHelper.createRequest(`/api/user/organizations/organization-memberships?organizationid=invalid`)
+        const req = TestHelper.createRequest('/api/user/organizations/organization-memberships?organizationid=invalid')
         req.account = user.account
         req.session = user.session
         let errorMessage
@@ -142,7 +142,7 @@ describe(`/api/user/organizations/organization-memberships`, () => {
   describe('returns', () => {
     it('array', async () => {
       const owner = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
+      global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail
@@ -152,7 +152,7 @@ describe(`/api/user/organizations/organization-memberships`, () => {
         name: 'My organization',
         profileid: owner.profile.profileid
       })
-      const memberships = [ owner.membership ]
+      const memberships = [owner.membership]
       for (let i = 0, len = global.pageSize + 1; i < len; i++) {
         global.userProfileFields = ['contact-email', 'full-name']
         const user = await TestHelper.createUser()

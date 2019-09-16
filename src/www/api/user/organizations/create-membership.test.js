@@ -2,12 +2,12 @@
 const assert = require('assert')
 const TestHelper = require('../../../../../test-helper.js')
 
-describe(`/api/user/organizations/create-membership`, () => {
+describe('/api/user/organizations/create-membership', () => {
   describe('exceptions', () => {
     describe('invalid-invitationid', () => {
       it('missing querystring invitationid', async () => {
         const user = await TestHelper.createUser()
-        const req = TestHelper.createRequest(`/api/user/organizations/create-membership`)
+        const req = TestHelper.createRequest('/api/user/organizations/create-membership')
         req.account = user.account
         req.session = user.session
         req.body = {
@@ -27,7 +27,7 @@ describe(`/api/user/organizations/create-membership`, () => {
 
       it('invalid querystring invitationid', async () => {
         const user = await TestHelper.createUser()
-        const req = TestHelper.createRequest(`/api/user/organizations/create-membership?invitationid=invalid`)
+        const req = TestHelper.createRequest('/api/user/organizations/create-membership?invitationid=invalid')
         req.account = user.account
         req.session = user.session
         req.body = {
@@ -197,7 +197,7 @@ describe(`/api/user/organizations/create-membership`, () => {
     describe('invalid-secret-code-length', () => {
       it('posted secret-code is blank', async () => {
         const owner = await TestHelper.createUser()
-        global.userProfileFields = [ 'display-name', 'display-email' ]
+        global.userProfileFields = ['display-name', 'display-email']
         await TestHelper.createProfile(owner, {
           'display-name': owner.profile.firstName,
           'display-email': owner.profile.contactEmail

@@ -2,12 +2,12 @@
 const assert = require('assert')
 const TestHelper = require('../../../../../test-helper.js')
 
-describe(`/api/user/organizations/create-invitation`, () => {
+describe('/api/user/organizations/create-invitation', () => {
   describe('exceptions', () => {
     describe('invalid-organizationid', () => {
       it('missing querystring organizationid', async () => {
         const user = await TestHelper.createUser()
-        const req = TestHelper.createRequest(`/api/user/organizations/create-invitation`)
+        const req = TestHelper.createRequest('/api/user/organizations/create-invitation')
         req.account = user.account
         req.session = user.session
         req.body = {
@@ -27,7 +27,7 @@ describe(`/api/user/organizations/create-invitation`, () => {
 
       it('invalid querystring organizationid', async () => {
         const user = await TestHelper.createUser()
-        const req = TestHelper.createRequest(`/api/user/organizations/create-invitation?organizationid=invalid`)
+        const req = TestHelper.createRequest('/api/user/organizations/create-invitation?organizationid=invalid')
         req.account = user.account
         req.session = user.session
         req.body = {
@@ -78,7 +78,7 @@ describe(`/api/user/organizations/create-invitation`, () => {
     describe('invalid-secret-code-length', () => {
       it('posted secret-code too short', async () => {
         const owner = await TestHelper.createUser()
-        global.userProfileFields = [ 'display-name', 'display-email' ]
+        global.userProfileFields = ['display-name', 'display-email']
         await TestHelper.createProfile(owner, {
           'display-name': owner.profile.firstName,
           'display-email': owner.profile.contactEmail
@@ -167,7 +167,7 @@ describe(`/api/user/organizations/create-invitation`, () => {
   describe('returns', () => {
     it('object', async () => {
       const owner = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
+      global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail

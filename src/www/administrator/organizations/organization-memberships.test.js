@@ -2,12 +2,12 @@
 const assert = require('assert')
 const TestHelper = require('../../../../test-helper.js')
 
-describe(`/administrator/organizations/organization-memberships`, () => {
+describe('/administrator/organizations/organization-memberships', () => {
   describe('OrganizationMemberships#BEFORE', () => {
     it('should bind memberships to req', async () => {
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
+      global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail
@@ -48,7 +48,7 @@ describe(`/administrator/organizations/organization-memberships`, () => {
     it('array', async () => {
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
+      global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail
@@ -83,7 +83,7 @@ describe(`/administrator/organizations/organization-memberships`, () => {
       global.pageSize = 3
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
+      global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail
@@ -118,7 +118,7 @@ describe(`/administrator/organizations/organization-memberships`, () => {
       const offset = 1
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
+      global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail

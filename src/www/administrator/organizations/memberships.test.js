@@ -8,7 +8,7 @@ describe('/administrator/organizations/memberships', () => {
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
       const user = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
+      global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail
@@ -92,7 +92,7 @@ describe('/administrator/organizations/memberships', () => {
         await TestHelper.createInvitation(owner)
         await TestHelper.acceptInvitation(user, owner)
       }
-      const req = TestHelper.createRequest(`/administrator/organizations/memberships`)
+      const req = TestHelper.createRequest('/administrator/organizations/memberships')
       req.account = administrator.account
       req.session = administrator.session
       const page = await req.get()
@@ -157,7 +157,7 @@ describe('/administrator/organizations/memberships', () => {
         'display-name': 'display',
         'display-email': 'email@display.com'
       }
-      const req = TestHelper.createRequest(`/administrator/organizations/memberships`)
+      const req = TestHelper.createRequest('/administrator/organizations/memberships')
       req.account = administrator.account
       req.session = administrator.session
       for (const field in fields) {

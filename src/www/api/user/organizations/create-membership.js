@@ -44,13 +44,13 @@ module.exports = {
     for (const field of requireProfileFields) {
       if (field === 'full-name') {
         if (!profile.firstName || !profile.lastName) {
-          throw new Error(`invalid-profile`)
+          throw new Error('invalid-profile')
         }
         continue
       }
       const displayName = global.profileFieldMap[field]
       if (!profile[displayName]) {
-        throw new Error(`invalid-profile`)
+        throw new Error('invalid-profile')
       }
     }
     let membership
@@ -64,7 +64,7 @@ module.exports = {
     await dashboard.StorageObject.setProperty(`${req.appid}/invitation/${req.query.invitationid}`, 'accepted', dashboard.Timestamp.now)
     const membershipid = `membership_${await dashboard.UUID.generateID()}`
     const membershipInfo = {
-      object: `membership`,
+      object: 'membership',
       membershipid: membershipid,
       organizationid: invitation.organizationid,
       accountid: req.account.accountid,

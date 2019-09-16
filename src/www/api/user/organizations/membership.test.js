@@ -7,7 +7,7 @@ describe('/api/user/organizations/membership', () => {
     describe('invalid-membershipid', () => {
       it('missing querystring membershipid', async () => {
         const user = await TestHelper.createUser()
-        const req = TestHelper.createRequest(`/api/user/organizations/membership`)
+        const req = TestHelper.createRequest('/api/user/organizations/membership')
         req.account = user.account
         req.session = user.session
         let errorMessage
@@ -21,7 +21,7 @@ describe('/api/user/organizations/membership', () => {
 
       it('invalid querystring membershipid', async () => {
         const user = await TestHelper.createUser()
-        const req = TestHelper.createRequest(`/api/user/organizations/membership?membershipid=invalid`)
+        const req = TestHelper.createRequest('/api/user/organizations/membership?membershipid=invalid')
         req.account = user.account
         req.session = user.session
         let errorMessage
@@ -33,12 +33,12 @@ describe('/api/user/organizations/membership', () => {
         assert.strictEqual(errorMessage, 'invalid-membershipid')
       })
     })
-  
+
     describe('invalid-account', () => {
       it('accessing account must be organization member or owner', async () => {
         const owner = await TestHelper.createUser()
         const user = await TestHelper.createUser()
-        global.userProfileFields = [ 'display-name', 'display-email' ]
+        global.userProfileFields = ['display-name', 'display-email']
         await TestHelper.createProfile(owner, {
           'display-name': owner.profile.firstName,
           'display-email': owner.profile.contactEmail
@@ -73,7 +73,7 @@ describe('/api/user/organizations/membership', () => {
     it('object', async () => {
       const owner = await TestHelper.createUser()
       const user = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
+      global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail

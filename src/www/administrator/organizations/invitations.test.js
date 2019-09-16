@@ -2,12 +2,12 @@
 const assert = require('assert')
 const TestHelper = require('../../../../test-helper.js')
 
-describe(`/administrator/organizations/invitations`, () => {
+describe('/administrator/organizations/invitations', () => {
   describe('Invitations#BEFORE', () => {
     it('should bind invitations to req', async () => {
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
+      global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail
@@ -18,7 +18,7 @@ describe(`/administrator/organizations/invitations`, () => {
         profileid: owner.profile.profileid
       })
       await TestHelper.createInvitation(owner)
-      const req = TestHelper.createRequest(`/administrator/organizations/invitations`)
+      const req = TestHelper.createRequest('/administrator/organizations/invitations')
       req.account = administrator.account
       req.session = administrator.session
       await req.route.api.before(req)
@@ -31,7 +31,7 @@ describe(`/administrator/organizations/invitations`, () => {
     it('array', async () => {
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
+      global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail
@@ -44,7 +44,7 @@ describe(`/administrator/organizations/invitations`, () => {
       for (let i = 0, len = global.pageSize + 1; i < len; i++) {
         await TestHelper.createInvitation(owner)
       }
-      const req = TestHelper.createRequest(`/administrator/organizations/invitations`)
+      const req = TestHelper.createRequest('/administrator/organizations/invitations')
       req.account = administrator.account
       req.session = administrator.session
       const page = await req.get()
@@ -58,7 +58,7 @@ describe(`/administrator/organizations/invitations`, () => {
       global.pageSize = 3
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
+      global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail
@@ -71,7 +71,7 @@ describe(`/administrator/organizations/invitations`, () => {
       for (let i = 0, len = global.pageSize + 1; i < len; i++) {
         await TestHelper.createInvitation(owner)
       }
-      const req = TestHelper.createRequest(`/administrator/organizations/invitations`)
+      const req = TestHelper.createRequest('/administrator/organizations/invitations')
       req.account = administrator.account
       req.session = administrator.session
       const page = await req.get()
@@ -85,7 +85,7 @@ describe(`/administrator/organizations/invitations`, () => {
       const offset = 1
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
+      global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail

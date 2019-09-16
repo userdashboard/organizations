@@ -2,7 +2,7 @@
 const assert = require('assert')
 const TestHelper = require('../../../../test-helper.js')
 
-describe(`/account/organizations/edit-organization`, () => {
+describe('/account/organizations/edit-organization', () => {
   describe('EditOrganization#BEFORE', () => {
     it('should require owner', async () => {
       const owner = await TestHelper.createUser()
@@ -12,8 +12,8 @@ describe(`/account/organizations/edit-organization`, () => {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail
       })
-      await TestHelper.createOrganization(owner, { 
-        email: owner.profile.displayEmail, 
+      await TestHelper.createOrganization(owner, {
+        email: owner.profile.displayEmail,
         name: 'Owner\'s organization',
         profileid: owner.profile.profileid
       })
@@ -31,7 +31,7 @@ describe(`/account/organizations/edit-organization`, () => {
 
     it('should bind organization to req', async () => {
       const owner = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
+      global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail
@@ -52,7 +52,7 @@ describe(`/account/organizations/edit-organization`, () => {
   describe('EditOrganization#GET', () => {
     it('should present the form', async () => {
       const owner = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
+      global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail
@@ -75,7 +75,7 @@ describe(`/account/organizations/edit-organization`, () => {
   describe('EditOrganization#POST', () => {
     it('should reject missing name', async () => {
       const owner = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
+      global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail
@@ -100,7 +100,7 @@ describe(`/account/organizations/edit-organization`, () => {
 
     it('should enforce name length', async () => {
       const owner = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
+      global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail
@@ -138,7 +138,7 @@ describe(`/account/organizations/edit-organization`, () => {
 
     it('should reject missing email', async () => {
       const owner = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
+      global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail
@@ -163,7 +163,7 @@ describe(`/account/organizations/edit-organization`, () => {
 
     it('should apply organization update', async () => {
       const owner = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
+      global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail

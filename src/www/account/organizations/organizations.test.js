@@ -6,7 +6,7 @@ describe('/account/organizations/organizations', () => {
   describe('Organizations#BEFORE', () => {
     it('should bind owned organizations to req', async () => {
       const owner = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
+      global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail

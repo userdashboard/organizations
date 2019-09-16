@@ -2,13 +2,13 @@
 const assert = require('assert')
 const TestHelper = require('../../../../test-helper.js')
 
-describe(`/administrator/organizations/organization`, () => {
+describe('/administrator/organizations/organization', () => {
   describe('Organization#BEFORE', () => {
     it('should bind organization to req', async () => {
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
       const user = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
+      global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail
@@ -37,7 +37,7 @@ describe(`/administrator/organizations/organization`, () => {
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
       const user = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
+      global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail

@@ -7,7 +7,7 @@ describe('/api/administrator/organizations/account-memberships-count', async () 
     describe('invalid-accountid', async () => {
       it('missing querystring accountid value', async () => {
         const administrator = await TestHelper.createOwner()
-        const req = TestHelper.createRequest(`/api/administrator/organizations/account-memberships-count`)
+        const req = TestHelper.createRequest('/api/administrator/organizations/account-memberships-count')
         req.account = administrator.account
         req.session = administrator.session
         let errorMessage
@@ -21,7 +21,7 @@ describe('/api/administrator/organizations/account-memberships-count', async () 
 
       it('invalid querystring accountid value', async () => {
         const administrator = await TestHelper.createOwner()
-        const req = TestHelper.createRequest(`/api/administrator/organizations/account-memberships-count?accountid=invalid`)
+        const req = TestHelper.createRequest('/api/administrator/organizations/account-memberships-count?accountid=invalid')
         req.account = administrator.account
         req.session = administrator.session
         let errorMessage
@@ -35,13 +35,12 @@ describe('/api/administrator/organizations/account-memberships-count', async () 
     })
   })
 
- 
   describe('returns', () => {
     it('integer', async () => {
       const administrator = await TestHelper.createAdministrator()
       const user = await TestHelper.createUser()
       const owner = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
+      global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail
@@ -57,9 +56,9 @@ describe('/api/administrator/organizations/account-memberships-count', async () 
       })
       await TestHelper.createInvitation(owner)
       await TestHelper.acceptInvitation(user, owner)
-      global.userProfileFields = [ 'full-name', 'contact-email' ]
+      global.userProfileFields = ['full-name', 'contact-email']
       const owner2 = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
+      global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner2, {
         'display-name': owner2.profile.firstName,
         'display-email': owner2.profile.contactEmail

@@ -2,13 +2,13 @@
 const assert = require('assert')
 const TestHelper = require('../../../../test-helper.js')
 
-describe(`/administrator/organizations/index`, () => {
+describe('/administrator/organizations/index', () => {
   describe('Index#BEFORE', () => {
     it('should bind memberships to req', async () => {
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
       const user = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
+      global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail
@@ -33,7 +33,7 @@ describe(`/administrator/organizations/index`, () => {
       })
       await await TestHelper.createInvitation(owner)
       await TestHelper.acceptInvitation(user2, owner)
-      const req = TestHelper.createRequest(`/administrator/organizations`)
+      const req = TestHelper.createRequest('/administrator/organizations')
       req.account = administrator.account
       req.session = administrator.session
       await req.route.api.before(req)
@@ -53,7 +53,7 @@ describe(`/administrator/organizations/index`, () => {
         name: 'My organization',
         profileid: user.profile.profileid
       })
-      const req = TestHelper.createRequest(`/administrator/organizations`)
+      const req = TestHelper.createRequest('/administrator/organizations')
       req.account = administrator.account
       req.session = administrator.session
       await req.route.api.before(req)
@@ -65,7 +65,7 @@ describe(`/administrator/organizations/index`, () => {
     it('should have row for each organization', async () => {
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
+      global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail
@@ -75,7 +75,7 @@ describe(`/administrator/organizations/index`, () => {
         name: 'My organization',
         profileid: owner.profile.profileid
       })
-      const req = TestHelper.createRequest(`/administrator/organizations`)
+      const req = TestHelper.createRequest('/administrator/organizations')
       req.account = administrator.account
       req.session = administrator.session
       const page = await req.get()
@@ -88,7 +88,7 @@ describe(`/administrator/organizations/index`, () => {
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
       const user = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
+      global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail
@@ -104,7 +104,7 @@ describe(`/administrator/organizations/index`, () => {
       })
       await TestHelper.createInvitation(owner)
       await TestHelper.acceptInvitation(user, owner)
-      const req = TestHelper.createRequest(`/administrator/organizations`)
+      const req = TestHelper.createRequest('/administrator/organizations')
       req.account = administrator.account
       req.session = administrator.session
       const page = await req.get()

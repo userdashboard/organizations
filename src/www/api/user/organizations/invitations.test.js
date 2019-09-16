@@ -2,12 +2,12 @@
 const assert = require('assert')
 const TestHelper = require('../../../../../test-helper.js')
 
-describe(`/api/user/organizations/invitations`, () => {
+describe('/api/user/organizations/invitations', () => {
   describe('exceptions', () => {
     describe('invalid-accountid', () => {
       it('missing querystring accountid', async () => {
         const owner = await TestHelper.createUser()
-        const req = TestHelper.createRequest(`/api/user/organizations/invitations`)
+        const req = TestHelper.createRequest('/api/user/organizations/invitations')
         req.account = owner.account
         req.session = owner.session
         let errorMessage
@@ -21,7 +21,7 @@ describe(`/api/user/organizations/invitations`, () => {
 
       it('invalid querystring accountid', async () => {
         const owner = await TestHelper.createUser()
-        const req = TestHelper.createRequest(`/api/user/organizations/invitations?accountid=invalid`)
+        const req = TestHelper.createRequest('/api/user/organizations/invitations?accountid=invalid')
         req.account = owner.account
         req.session = owner.session
         let errorMessage
@@ -126,7 +126,7 @@ describe(`/api/user/organizations/invitations`, () => {
   describe('returns', () => {
     it('array', async () => {
       const owner = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
+      global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail

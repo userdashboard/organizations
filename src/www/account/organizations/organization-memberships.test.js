@@ -7,7 +7,7 @@ describe('/account/organizations/organization-memberships', () => {
     it('should bind memberships to req', async () => {
       const owner = await TestHelper.createUser()
       const user = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
+      global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail
@@ -34,7 +34,7 @@ describe('/account/organizations/organization-memberships', () => {
   describe('Memberships#GET', () => {
     it('should limit memberships to one page', async () => {
       const owner = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
+      global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail
@@ -68,7 +68,7 @@ describe('/account/organizations/organization-memberships', () => {
     it('should enforce page size', async () => {
       global.pageSize = 3
       const owner = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
+      global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail
@@ -102,7 +102,7 @@ describe('/account/organizations/organization-memberships', () => {
     it('should enforce specified offset', async () => {
       const offset = 1
       const owner = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
+      global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail

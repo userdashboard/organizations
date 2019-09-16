@@ -2,11 +2,11 @@
 const assert = require('assert')
 const TestHelper = require('../../../../test-helper.js')
 
-describe(`/account/organizations/organization-invitations`, () => {
+describe('/account/organizations/organization-invitations', () => {
   describe('Invitations#BEFORE', () => {
     it('should require owner', async () => {
       const owner = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
+      global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail
@@ -32,7 +32,7 @@ describe(`/account/organizations/organization-invitations`, () => {
 
     it('should bind invitations to req', async () => {
       const owner = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
+      global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail
@@ -55,7 +55,7 @@ describe(`/account/organizations/organization-invitations`, () => {
   describe('Invitations#GET', () => {
     it('should limit invitations to one page', async () => {
       const owner = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
+      global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail
@@ -81,7 +81,7 @@ describe(`/account/organizations/organization-invitations`, () => {
     it('should enforce page size', async () => {
       global.pageSize = 3
       const owner = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
+      global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail
@@ -107,7 +107,7 @@ describe(`/account/organizations/organization-invitations`, () => {
     it('should enforce specified offset', async () => {
       const offset = 1
       const owner = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
+      global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail

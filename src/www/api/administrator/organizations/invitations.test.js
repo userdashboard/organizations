@@ -2,7 +2,7 @@
 const assert = require('assert')
 const TestHelper = require('../../../../../test-helper.js')
 
-describe(`/api/administrator/organizations/invitations`, () => {
+describe('/api/administrator/organizations/invitations', () => {
   describe('receives', () => {
     it('optional querystring offset (integer)', async () => {
       const offset = 1
@@ -52,7 +52,7 @@ describe(`/api/administrator/organizations/invitations`, () => {
         await TestHelper.createInvitation(user, user.organization.organizationid)
         invitations.unshift(user.invitation)
       }
-      const req = TestHelper.createRequest(`/api/administrator/organizations/invitations?all=true`)
+      const req = TestHelper.createRequest('/api/administrator/organizations/invitations?all=true')
       req.account = administrator.account
       req.session = administrator.session
       const invitationsNow = await req.get()
@@ -65,7 +65,7 @@ describe(`/api/administrator/organizations/invitations`, () => {
     it('array', async () => {
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
+      global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail
@@ -80,7 +80,7 @@ describe(`/api/administrator/organizations/invitations`, () => {
         await TestHelper.createInvitation(owner)
         invitations.unshift(owner.invitation)
       }
-      const req = TestHelper.createRequest(`/api/administrator/organizations/invitations`)
+      const req = TestHelper.createRequest('/api/administrator/organizations/invitations')
       req.account = administrator.account
       req.session = administrator.session
       const invitationsNow = await req.get()
@@ -89,7 +89,7 @@ describe(`/api/administrator/organizations/invitations`, () => {
       }
     })
   })
-  
+
   describe('configuration', () => {
     it('environment PAGE_SIZE', async () => {
       global.pageSize = 3

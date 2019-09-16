@@ -7,7 +7,7 @@ describe('/api/user/organizations/delete-membership', async () => {
     describe('invalid-membershipid', () => {
       it('missing querystring membershipid', async () => {
         const user = await TestHelper.createUser()
-        const req = TestHelper.createRequest(`/api/user/organizations/delete-membership`)
+        const req = TestHelper.createRequest('/api/user/organizations/delete-membership')
         req.account = user.account
         req.session = user.session
         let errorMessage
@@ -21,7 +21,7 @@ describe('/api/user/organizations/delete-membership', async () => {
 
       it('invalid querystring membershipid', async () => {
         const user = await TestHelper.createUser()
-        const req = TestHelper.createRequest(`/api/user/organizations/delete-membership?membershipid=invalid`)
+        const req = TestHelper.createRequest('/api/user/organizations/delete-membership?membershipid=invalid')
         req.account = user.account
         req.session = user.session
         let errorMessage
@@ -38,7 +38,7 @@ describe('/api/user/organizations/delete-membership', async () => {
       it('accessing account is not membership or organization owner', async () => {
         const owner = await TestHelper.createUser()
         const user = await TestHelper.createUser()
-        global.userProfileFields = [ 'display-name', 'display-email' ]
+        global.userProfileFields = ['display-name', 'display-email']
         await TestHelper.createProfile(owner, {
           'display-name': owner.profile.firstName,
           'display-email': owner.profile.contactEmail

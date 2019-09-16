@@ -7,7 +7,7 @@ describe('/api/administrator/organizations/memberships-count', async () => {
     it('integer', async () => {
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
+      global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail
@@ -26,9 +26,9 @@ describe('/api/administrator/organizations/memberships-count', async () => {
       })
       await await TestHelper.createInvitation(owner)
       await TestHelper.acceptInvitation(user1, owner)
-      global.userProfileFields = [ 'full-name', 'contact-email' ]
+      global.userProfileFields = ['full-name', 'contact-email']
       const owner2 = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
+      global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner2, {
         'display-name': owner2.profile.firstName,
         'display-email': owner2.profile.contactEmail

@@ -22,7 +22,7 @@ module.exports = {
     const secretCodeHash = await dashboard.Hash.fixedSaltHash(req.body['secret-code'], req.alternativeFixedSalt, req.alternativeDashboardEncryptionKey)
     const invitationid = `invitation_${await dashboard.UUID.generateID()}`
     const invitationInfo = {
-      object: `invitation`,
+      object: 'invitation',
       organizationid: req.query.organizationid,
       invitationid,
       secretCodeHash,

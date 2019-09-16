@@ -27,7 +27,7 @@ async function beforeRequest (req) {
   req.data = { organization, memberships, total, offset }
 }
 
-async function renderPage(req, res) {
+async function renderPage (req, res) {
   const doc = dashboard.HTML.parse(req.route.html)
   const removeElements = []
   if (req.data.memberships && req.data.memberships.length) {

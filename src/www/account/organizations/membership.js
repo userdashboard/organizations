@@ -30,31 +30,31 @@ async function renderPage (req, res) {
   const doc = dashboard.HTML.parse(req.route.html, req.data.membership, 'membership')
   await navbar.setup(doc, req.data.organization, req.account)
   const removeFields = [].concat(global.profileFields)
-    const usedFields = []
-    for (const field of removeFields) {
-      if (usedFields.indexOf(field) > -1) {
-        continue
-      }
-      if (field === 'full-name') {
-        if (req.data.membership.firstName &&
+  const usedFields = []
+  for (const field of removeFields) {
+    if (usedFields.indexOf(field) > -1) {
+      continue
+    }
+    if (field === 'full-name') {
+      if (req.data.membership.firstName &&
           removeFields.indexOf('full-name') > -1 &&
           usedFields.indexOf(field) === -1) {
-          usedFields.push(field)
-        }
-        continue
-      }
-      const displayName = global.profileFieldMap[field]
-      if (req.data.membership[displayName] &&
-        removeFields.indexOf(field) > -1 &&
-        usedFields.indexOf(field) === -1) {
         usedFields.push(field)
       }
+      continue
     }
-    for (const id of removeFields) {
-      if (usedFields.indexOf(id) === -1) {
-        const element = doc.getElementById(id)
-        element.parentNode.removeChild(element)
-      }
+    const displayName = global.profileFieldMap[field]
+    if (req.data.membership[displayName] &&
+        removeFields.indexOf(field) > -1 &&
+        usedFields.indexOf(field) === -1) {
+      usedFields.push(field)
     }
-    return dashboard.Response.end(req, res, doc)
+  }
+  for (const id of removeFields) {
+    if (usedFields.indexOf(id) === -1) {
+      const element = doc.getElementById(id)
+      element.parentNode.removeChild(element)
+    }
+  }
+  return dashboard.Response.end(req, res, doc)
 }

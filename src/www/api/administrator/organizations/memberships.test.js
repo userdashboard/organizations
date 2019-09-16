@@ -70,7 +70,7 @@ describe('/api/administrator/organizations/memberships', () => {
         await TestHelper.acceptInvitation(user, owner)
         memberships.unshift(user.membership)
       }
-      const req = TestHelper.createRequest(`/api/administrator/organizations/memberships?all=true`)
+      const req = TestHelper.createRequest('/api/administrator/organizations/memberships?all=true')
       req.account = administrator.account
       req.session = administrator.session
       const membershipsNow = await req.get()

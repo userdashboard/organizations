@@ -2,11 +2,11 @@
 const assert = require('assert')
 const TestHelper = require('../../../../test-helper.js')
 
-describe(`/account/organizations/create-organization`, async () => {
+describe('/account/organizations/create-organization', async () => {
   describe('CreateOrganization#GET', () => {
     it('should present the form', async () => {
       const owner = await TestHelper.createUser()
-      const req = TestHelper.createRequest(`/account/organizations/create-organization`)
+      const req = TestHelper.createRequest('/account/organizations/create-organization')
       req.account = owner.account
       req.session = owner.session
       const page = await req.get()
@@ -81,12 +81,12 @@ describe(`/account/organizations/create-organization`, async () => {
 
     it('should accept valid existing profile', async () => {
       const owner = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
+      global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
         'display-name': 'Person',
         'display-email': 'person@email.com'
       })
-      const req = TestHelper.createRequest(`/account/organizations/create-organization`)
+      const req = TestHelper.createRequest('/account/organizations/create-organization')
       req.account = owner.account
       req.session = owner.session
       req.body = {
@@ -96,12 +96,12 @@ describe(`/account/organizations/create-organization`, async () => {
       }
       const page = await req.post()
       const redirectURL = await TestHelper.extractRedirectURL(page)
-      assert.strictEqual(true, redirectURL.startsWith(`/account/organizations/organization?organizationid=`))
+      assert.strictEqual(true, redirectURL.startsWith('/account/organizations/organization?organizationid='))
     })
 
     it('should create organization', async () => {
       const owner = await TestHelper.createUser()
-      const req = TestHelper.createRequest(`/account/organizations/create-organization`)
+      const req = TestHelper.createRequest('/account/organizations/create-organization')
       req.account = owner.account
       req.session = owner.session
       req.body = {
@@ -112,7 +112,7 @@ describe(`/account/organizations/create-organization`, async () => {
       }
       const page = await req.post()
       const redirectURL = await TestHelper.extractRedirectURL(page)
-      assert.strictEqual(true, redirectURL.startsWith(`/account/organizations/organization?organizationid=`))
+      assert.strictEqual(true, redirectURL.startsWith('/account/organizations/organization?organizationid='))
     })
   })
 })

@@ -24,13 +24,13 @@ module.exports = {
     for (const field of requireProfileFields) {
       if (field === 'full-name') {
         if (!profile.firstName || !profile.lastName) {
-          throw new Error(`invalid-profile`)
+          throw new Error('invalid-profile')
         }
         continue
       }
       const displayName = global.profileFieldMap[field]
       if (!profile[displayName]) {
-        throw new Error(`invalid-profile`)
+        throw new Error('invalid-profile')
       }
     }
     if (global.minimumOrganizationNameLength > req.body.name.length ||
@@ -42,7 +42,7 @@ module.exports = {
     }
     const organizationid = `organization_${await dashboard.UUID.generateID()}`
     const organizationInfo = {
-      object: `organization`,
+      object: 'organization',
       ownerid: req.query.accountid,
       organizationid: organizationid,
       name: req.body.name,
@@ -52,7 +52,7 @@ module.exports = {
     await dashboard.Storage.write(`${req.appid}/organization/${organizationid}`, organizationInfo)
     const membershipid = `membership_${await dashboard.UUID.generateID()}`
     const membershipInfo = {
-      object: `membership`,
+      object: 'membership',
       membershipid: membershipid,
       organizationid: organizationid,
       accountid: req.query.accountid,

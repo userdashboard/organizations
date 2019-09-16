@@ -7,7 +7,7 @@ describe('/api/user/organizations/invitation', () => {
     describe('invalid-invitationid', () => {
       it('missing querystring invitationid', async () => {
         const owner = await TestHelper.createUser()
-        const req = TestHelper.createRequest(`/api/user/organizations/open-invitation-organization`)
+        const req = TestHelper.createRequest('/api/user/organizations/open-invitation-organization')
         req.account = owner.account
         req.session = owner.session
         let errorMessage
@@ -21,7 +21,7 @@ describe('/api/user/organizations/invitation', () => {
 
       it('invalid querystring invitationid', async () => {
         const owner = await TestHelper.createUser()
-        const req = TestHelper.createRequest(`/api/user/organizations/open-invitation-organization?invitationid=invalid`)
+        const req = TestHelper.createRequest('/api/user/organizations/open-invitation-organization?invitationid=invalid')
         req.account = owner.account
         req.session = owner.session
         let errorMessage

@@ -2,7 +2,7 @@
 const assert = require('assert')
 const TestHelper = require('../../../../test-helper.js')
 
-describe(`/account/organizations/index`, () => {
+describe('/account/organizations/index', () => {
   describe('Index#BEFORE', () => {
     it('should bind memberships to req', async () => {
       const owner = await TestHelper.createUser()
@@ -23,7 +23,7 @@ describe(`/account/organizations/index`, () => {
       })
       await TestHelper.createInvitation(owner)
       await TestHelper.acceptInvitation(user, owner)
-      const req = TestHelper.createRequest(`/account/organizations`)
+      const req = TestHelper.createRequest('/account/organizations')
       req.account = user.account
       req.session = user.session
       await req.route.api.before(req)
@@ -42,7 +42,7 @@ describe(`/account/organizations/index`, () => {
         name: 'My organization',
         profileid: owner.profile.profileid
       })
-      const req = TestHelper.createRequest(`/account/organizations`)
+      const req = TestHelper.createRequest('/account/organizations')
       req.account = owner.account
       req.session = owner.session
       await req.route.api.before(req)
@@ -63,7 +63,7 @@ describe(`/account/organizations/index`, () => {
         name: 'My organization',
         profileid: owner.profile.profileid
       })
-      const req = TestHelper.createRequest(`/account/organizations`)
+      const req = TestHelper.createRequest('/account/organizations')
       req.account = owner.account
       req.session = owner.session
       const page = await req.get()
@@ -91,7 +91,7 @@ describe(`/account/organizations/index`, () => {
       })
       await TestHelper.createInvitation(owner)
       await TestHelper.acceptInvitation(user, owner)
-      const req = TestHelper.createRequest(`/account/organizations`)
+      const req = TestHelper.createRequest('/account/organizations')
       req.account = owner.account
       req.session = owner.session
       const page = await req.get()

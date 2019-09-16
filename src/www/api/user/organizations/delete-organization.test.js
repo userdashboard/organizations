@@ -7,7 +7,7 @@ describe('/api/user/organizations/delete-organization', async () => {
     describe('invalid-organizationid', () => {
       it('missing querystring organizationid', async () => {
         const user = await TestHelper.createUser()
-        const req = TestHelper.createRequest(`/api/user/organizations/delete-organization`)
+        const req = TestHelper.createRequest('/api/user/organizations/delete-organization')
         req.account = user.account
         req.session = user.session
         let errorMessage
@@ -21,7 +21,7 @@ describe('/api/user/organizations/delete-organization', async () => {
 
       it('invalid querystring organizationid', async () => {
         const user = await TestHelper.createUser()
-        const req = TestHelper.createRequest(`/api/user/organizations/delete-organization?organizationid=invalid`)
+        const req = TestHelper.createRequest('/api/user/organizations/delete-organization?organizationid=invalid')
         req.account = user.account
         req.session = user.session
         let errorMessage
@@ -37,7 +37,7 @@ describe('/api/user/organizations/delete-organization', async () => {
     describe('invalid-account', () => {
       it('accessing account does not own organization', async () => {
         const owner = await TestHelper.createUser()
-        global.userProfileFields = [ 'display-name', 'display-email' ]
+        global.userProfileFields = ['display-name', 'display-email']
         await TestHelper.createProfile(owner, {
           'display-name': owner.profile.firstName,
           'display-email': owner.profile.contactEmail
@@ -76,7 +76,7 @@ describe('/api/user/organizations/delete-organization', async () => {
   describe('returns', () => {
     it('boolean', async () => {
       const owner = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
+      global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail

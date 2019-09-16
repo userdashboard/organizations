@@ -7,7 +7,7 @@ describe('/account/organizations/memberships', () => {
     it('should bind memberships to req', async () => {
       const owner = await TestHelper.createUser()
       const user = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
+      global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail
@@ -152,11 +152,11 @@ describe('/account/organizations/memberships', () => {
         'company-name': user.profile.displayEmail.split('@')[1].split('.')[0],
         website: 'https://' + user.profile.displayEmail.split('@')[1]
       }
-      const req = TestHelper.createRequest(`/account/organizations/memberships`)
+      const req = TestHelper.createRequest('/account/organizations/memberships')
       req.account = user.account
       req.session = user.session
       const usingFields = ['display-email', 'display-name']
-      const postingBody = { 
+      const postingBody = {
         'display-name': user.profile.displayName,
         'display-email': user.profile.displayEmail
       }

@@ -50,7 +50,7 @@ describe('/api/administrator/organizations/organizations', () => {
         })
         organizations.unshift(user.organization)
       }
-      const req = TestHelper.createRequest(`/api/administrator/organizations/organizations?all=true`)
+      const req = TestHelper.createRequest('/api/administrator/organizations/organizations?all=true')
       req.account = administrator.account
       req.session = administrator.session
       const organizationsNow = await req.get()
@@ -68,7 +68,7 @@ describe('/api/administrator/organizations/organizations', () => {
         global.userProfileFields = ['contact-email', 'full-name']
         const owner = await TestHelper.createUser()
         const user = await TestHelper.createUser()
-        global.userProfileFields = [ 'display-email', 'display-name' ]
+        global.userProfileFields = ['display-email', 'display-name']
         await TestHelper.createProfile(owner, {
           'display-name': owner.profile.firstName,
           'display-email': owner.profile.contactEmail

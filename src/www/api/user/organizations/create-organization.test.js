@@ -2,12 +2,12 @@
 const assert = require('assert')
 const TestHelper = require('../../../../../test-helper.js')
 
-describe(`/api/user/organizations/create-organization`, () => {
+describe('/api/user/organizations/create-organization', () => {
   describe('exceptions', () => {
     describe('invalid-organization-name', () => {
       it('missing posted name', async () => {
         const owner = await TestHelper.createUser()
-        global.userProfileFields = [ 'display-name', 'display-email' ]
+        global.userProfileFields = ['display-name', 'display-email']
         await TestHelper.createProfile(owner, {
           'display-name': owner.profile.firstName,
           'display-email': owner.profile.contactEmail

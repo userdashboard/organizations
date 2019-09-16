@@ -7,7 +7,7 @@ describe('/api/user/organizations/organization', () => {
     describe('invalid-organizationid', () => {
       it('missing querystring organizationid', async () => {
         const user = await TestHelper.createUser()
-        const req = TestHelper.createRequest(`/api/user/organizations/organization`)
+        const req = TestHelper.createRequest('/api/user/organizations/organization')
         req.account = user.account
         req.session = user.session
         let errorMessage
@@ -21,7 +21,7 @@ describe('/api/user/organizations/organization', () => {
 
       it('invalid querystring organizationid', async () => {
         const user = await TestHelper.createUser()
-        const req = TestHelper.createRequest(`/api/user/organizations/organization?organizationid=invalid`)
+        const req = TestHelper.createRequest('/api/user/organizations/organization?organizationid=invalid')
         req.account = user.account
         req.session = user.session
         let errorMessage
@@ -72,7 +72,7 @@ describe('/api/user/organizations/organization', () => {
   describe('returns', () => {
     it('object', async () => {
       const owner = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
+      global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail

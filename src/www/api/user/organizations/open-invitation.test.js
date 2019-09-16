@@ -7,7 +7,7 @@ describe('/api/user/organizations/open-invitation', () => {
     describe('invalid-invitationid', () => {
       it('missing querystring invitationid', async () => {
         const owner = await TestHelper.createUser()
-        const req = TestHelper.createRequest(`/api/user/organizations/open-invitation`)
+        const req = TestHelper.createRequest('/api/user/organizations/open-invitation')
         req.account = owner.account
         req.session = owner.session
         let errorMessage
@@ -21,7 +21,7 @@ describe('/api/user/organizations/open-invitation', () => {
 
       it('invalid querystring invitationid', async () => {
         const owner = await TestHelper.createUser()
-        const req = TestHelper.createRequest(`/api/user/organizations/open-invitation?invitationid=invalid`)
+        const req = TestHelper.createRequest('/api/user/organizations/open-invitation?invitationid=invalid')
         req.account = owner.account
         req.session = owner.session
         let errorMessage
@@ -72,7 +72,7 @@ describe('/api/user/organizations/open-invitation', () => {
   describe('returns', () => {
     it('object', async () => {
       const owner = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
+      global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail
@@ -95,7 +95,7 @@ describe('/api/user/organizations/open-invitation', () => {
   describe('redacts', () => {
     it('secret code hash', async () => {
       const owner = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
+      global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail

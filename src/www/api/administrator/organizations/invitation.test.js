@@ -7,7 +7,7 @@ describe('/api/administrator/organizations/invitation', () => {
     describe('invalid-invitationid', async () => {
       it('missing querystring invitationid value', async () => {
         const administrator = await TestHelper.createOwner()
-        const req = TestHelper.createRequest(`/api/administrator/organizations/invitation`)
+        const req = TestHelper.createRequest('/api/administrator/organizations/invitation')
         req.account = administrator.account
         req.session = administrator.session
         let errorMessage
@@ -21,7 +21,7 @@ describe('/api/administrator/organizations/invitation', () => {
 
       it('invalid querystring invitationid value', async () => {
         const administrator = await TestHelper.createOwner()
-        const req = TestHelper.createRequest(`/api/administrator/organizations/invitation?invitationid=invalid`)
+        const req = TestHelper.createRequest('/api/administrator/organizations/invitation?invitationid=invalid')
         req.account = administrator.account
         req.session = administrator.session
         let errorMessage
@@ -39,7 +39,7 @@ describe('/api/administrator/organizations/invitation', () => {
     it('object', async () => {
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
+      global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail
@@ -57,12 +57,12 @@ describe('/api/administrator/organizations/invitation', () => {
       assert.strictEqual(invitation.object, 'invitation')
     })
   })
-  
+
   describe('redacts', () => {
     it('secret code hash', async () => {
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
+      global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail

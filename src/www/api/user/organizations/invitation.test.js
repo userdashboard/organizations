@@ -7,7 +7,7 @@ describe('/api/user/organizations/invitation', () => {
     describe('invalid-invitationid', () => {
       it('missing querystring invitationid', async () => {
         const owner = await TestHelper.createUser()
-        const req = TestHelper.createRequest(`/api/user/organizations/invitation`)
+        const req = TestHelper.createRequest('/api/user/organizations/invitation')
         req.account = owner.account
         req.session = owner.session
         let errorMessage
@@ -21,7 +21,7 @@ describe('/api/user/organizations/invitation', () => {
 
       it('invalid querystring invitationid', async () => {
         const owner = await TestHelper.createUser()
-        const req = TestHelper.createRequest(`/api/user/organizations/invitation?invitationid=invalid`)
+        const req = TestHelper.createRequest('/api/user/organizations/invitation?invitationid=invalid')
         req.account = owner.account
         req.session = owner.session
         let errorMessage
@@ -33,12 +33,12 @@ describe('/api/user/organizations/invitation', () => {
         assert.strictEqual(errorMessage, 'invalid-invitationid')
       })
     })
-  
+
     describe('invalid-account', () => {
       it('accessing account is not organization owner', async () => {
         const owner = await TestHelper.createUser()
         const user = await TestHelper.createUser()
-        global.userProfileFields = [ 'display-name', 'display-email' ]
+        global.userProfileFields = ['display-name', 'display-email']
         await TestHelper.createProfile(owner, {
           'display-name': owner.profile.firstName,
           'display-email': owner.profile.contactEmail
@@ -72,7 +72,7 @@ describe('/api/user/organizations/invitation', () => {
   describe('returns', () => {
     it('object', async () => {
       const owner = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
+      global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail
@@ -94,7 +94,7 @@ describe('/api/user/organizations/invitation', () => {
   describe('redacts', () => {
     it('secret code hash', async () => {
       const owner = await TestHelper.createUser()
-      global.userProfileFields = [ 'display-name', 'display-email' ]
+      global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail

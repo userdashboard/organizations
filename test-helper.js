@@ -24,7 +24,7 @@ beforeEach((callback) => {
   return callback()
 })
 
-async function createOrganization(user, properties) {
+async function createOrganization (user, properties) {
   const req = TestHelper.createRequest(`/api/user/organizations/create-organization?accountid=${user.account.accountid}`, 'POST')
   req.account = user.account
   req.session = user.session
@@ -43,7 +43,7 @@ async function createInvitation (owner) {
   const req = TestHelper.createRequest(`/api/user/organizations/create-invitation?organizationid=${owner.organization.organizationid}`, 'POST')
   req.account = owner.account
   req.session = owner.session
-  req.body = { 
+  req.body = {
     'secret-code': code
   }
   owner.invitation = await req.post()
