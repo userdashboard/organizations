@@ -1,5 +1,5 @@
 @userdashboard/dashboard 1.0.43
-http://localhost:8003
+
 
 |----------------------------------------------------------------------------------------------------------------------|
 | /api/administrator/organizations/account-invitations                                                                 |
