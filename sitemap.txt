@@ -1,5 +1,5 @@
-@userdashboard/dashboard 1.0.33
-http://localhost:8003
+@userdashboard/dashboard 1.0.43
+
 
 Administrator menu:
 /administrator/organizations "Organizations module"
@@ -16,180 +16,181 @@ Special HTML files:
 @userdashboard/dashboard/src/redirect.html
 
 Dashboard modules:
-@userdashboard/organizations (1.0.24)
+@userdashboard/organizations (1.0.29)
 
-URL ----------------------------------------------------------- AUTH ---- TEMPLATE ----- HTTP REQUESTS - NODEJS --------------------- HTML -----------------------
-/                                                               GUEST     FULLSCREEN     GET                                          /src/www                    
-/account                                                                                 GET             @userdashboard/dashboard     @userdashboard/dashboard    
-/account/change-password                                                                 GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
-/account/change-username                                                                 GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
-/account/create-profile                                                                  GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
-/account/create-reset-code                                                               GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
-/account/delete-account                                                                  GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
-/account/delete-account-complete                                GUEST     FULLSCREEN     GET             @userdashboard/dashboard     @userdashboard/dashboard    
-/account/delete-profile                                                                  GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
-/account/delete-reset-code                                                               GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
-/account/edit-profile                                                                    GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
-/account/end-all-sessions                                                                GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
-/account/end-session                                                                     GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
-/account/organizations                                                                   GET             /src/www                     /src/www                    
-/account/organizations/accept-invitation                                                 GET POST        /src/www                     /src/www                    
-/account/organizations/create-invitation                                                 GET POST        /src/www                     /src/www                    
-/account/organizations/create-organization                                               GET POST        /src/www                     /src/www                    
-/account/organizations/delete-invitation                                                 GET POST        /src/www                     /src/www                    
-/account/organizations/delete-membership                                                 GET POST        /src/www                     /src/www                    
-/account/organizations/delete-organization                                               GET POST        /src/www                     /src/www                    
-/account/organizations/edit-membership-profile                                           GET POST        /src/www                     /src/www                    
-/account/organizations/edit-organization                                                 GET POST        /src/www                     /src/www                    
-/account/organizations/invitation                                                        GET             /src/www                     /src/www                    
-/account/organizations/membership                                                        GET             /src/www                     /src/www                    
-/account/organizations/memberships                                                       GET             /src/www                     /src/www                    
-/account/organizations/organization                                                      GET             /src/www                     /src/www                    
-/account/organizations/organization-invitations                                          GET             /src/www                     /src/www                    
-/account/organizations/organization-memberships                                          GET             /src/www                     /src/www                    
-/account/organizations/organizations                                                     GET             /src/www                     /src/www                    
-/account/organizations/revoke-membership                                                 GET POST        /src/www                     /src/www                    
-/account/organizations/transfer-organization                                             GET POST        /src/www                     /src/www                    
-/account/profile                                                                         GET             @userdashboard/dashboard     @userdashboard/dashboard    
-/account/profiles                                                                        GET             @userdashboard/dashboard     @userdashboard/dashboard    
-/account/register                                               GUEST     FULLSCREEN     GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
-/account/reset-account                                          GUEST     FULLSCREEN     GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
-/account/reset-code                                                                      GET             @userdashboard/dashboard     @userdashboard/dashboard    
-/account/reset-codes                                                                     GET             @userdashboard/dashboard     @userdashboard/dashboard    
-/account/restore-account                                        GUEST     FULLSCREEN     GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
-/account/session                                                                         GET             @userdashboard/dashboard     @userdashboard/dashboard    
-/account/sessions                                                                        GET             @userdashboard/dashboard     @userdashboard/dashboard    
-/account/set-default-profile                                                             GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
-/account/signin                                                 GUEST     FULLSCREEN     GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
-/account/signout                                                          FULLSCREEN     GET             @userdashboard/dashboard     @userdashboard/dashboard    
-/account/signout-complete                                       GUEST     FULLSCREEN     GET                                          @userdashboard/dashboard    
-/account/verify                                                 GUEST     FULLSCREEN     GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
-/administrator                                                                           GET                                          @userdashboard/dashboard    
-/administrator/account                                                                   GET             @userdashboard/dashboard     @userdashboard/dashboard    
-/administrator/account-profiles                                                          GET             @userdashboard/dashboard     @userdashboard/dashboard    
-/administrator/account-reset-codes                                                       GET             @userdashboard/dashboard     @userdashboard/dashboard    
-/administrator/account-sessions                                                          GET             @userdashboard/dashboard     @userdashboard/dashboard    
-/administrator/accounts                                                                  GET             @userdashboard/dashboard     @userdashboard/dashboard    
-/administrator/administrators                                                            GET             @userdashboard/dashboard     @userdashboard/dashboard    
-/administrator/assign-administrator                                                      GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
-/administrator/create-reset-code                                                         GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
-/administrator/delete-account                                                            GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
-/administrator/delete-schedule                                                           GET             @userdashboard/dashboard     @userdashboard/dashboard    
-/administrator/organizations                                                             GET             /src/www                     /src/www                    
-/administrator/organizations/invitation                                                  GET             /src/www                     /src/www                    
-/administrator/organizations/invitations                                                 GET             /src/www                     /src/www                    
-/administrator/organizations/membership                                                  GET             /src/www                     /src/www                    
-/administrator/organizations/memberships                                                 GET             /src/www                     /src/www                    
-/administrator/organizations/organization                                                GET             /src/www                     /src/www                    
-/administrator/organizations/organization-invitations                                    GET             /src/www                     /src/www                    
-/administrator/organizations/organization-memberships                                    GET             /src/www                     /src/www                    
-/administrator/organizations/organizations                                               GET             /src/www                     /src/www                    
-/administrator/profile                                                                   GET             @userdashboard/dashboard     @userdashboard/dashboard    
-/administrator/profiles                                                                  GET             @userdashboard/dashboard     @userdashboard/dashboard    
-/administrator/reset-code                                                                GET             @userdashboard/dashboard     @userdashboard/dashboard    
-/administrator/reset-codes                                                               GET             @userdashboard/dashboard     @userdashboard/dashboard    
-/administrator/reset-session-key                                                         GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
-/administrator/revoke-administrator                                                      GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
-/administrator/schedule-account-delete                                                   GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
-/administrator/session                                                                   GET             @userdashboard/dashboard     @userdashboard/dashboard    
-/administrator/sessions                                                                  GET             @userdashboard/dashboard     @userdashboard/dashboard    
-/administrator/transfer-ownership                                                        GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
-/api/administrator/account                                                               GET             @userdashboard/dashboard                                 
-/api/administrator/account-profiles                                                      GET             @userdashboard/dashboard                                 
-/api/administrator/account-profiles-count                                                GET             @userdashboard/dashboard                                 
-/api/administrator/account-reset-codes                                                   GET             @userdashboard/dashboard                                 
-/api/administrator/account-reset-codes-count                                             GET             @userdashboard/dashboard                                 
-/api/administrator/account-sessions                                                      GET             @userdashboard/dashboard                                 
-/api/administrator/account-sessions-count                                                GET             @userdashboard/dashboard                                 
-/api/administrator/accounts                                                              GET             @userdashboard/dashboard                                 
-/api/administrator/accounts-count                                                        GET             @userdashboard/dashboard                                 
-/api/administrator/administrator-accounts                                                GET             @userdashboard/dashboard                                 
-/api/administrator/administrator-accounts-count                                          GET             @userdashboard/dashboard                                 
-/api/administrator/create-reset-code                                                     POST            @userdashboard/dashboard                                 
-/api/administrator/delete-account                                                        DELETE          @userdashboard/dashboard                                 
-/api/administrator/deleted-accounts                                                      GET             @userdashboard/dashboard                                 
-/api/administrator/deleted-accounts-count                                                GET             @userdashboard/dashboard                                 
-/api/administrator/organizations/account-invitations                                     GET             /src/www                                                 
-/api/administrator/organizations/account-invitations-count                               GET             /src/www                                                 
-/api/administrator/organizations/account-memberships                                     GET             /src/www                                                 
-/api/administrator/organizations/account-memberships-count                               GET             /src/www                                                 
-/api/administrator/organizations/account-organizations                                   GET             /src/www                                                 
-/api/administrator/organizations/account-organizations-count                             GET             /src/www                                                 
-/api/administrator/organizations/invitation                                              GET             /src/www                                                 
-/api/administrator/organizations/invitations                                             GET             /src/www                                                 
-/api/administrator/organizations/invitations-count                                       GET             /src/www                                                 
-/api/administrator/organizations/membership                                              GET             /src/www                                                 
-/api/administrator/organizations/memberships                                             GET             /src/www                                                 
-/api/administrator/organizations/memberships-count                                       GET             /src/www                                                 
-/api/administrator/organizations/organization                                            GET             /src/www                                                 
-/api/administrator/organizations/organization-invitations                                GET             /src/www                                                 
-/api/administrator/organizations/organization-invitations-count                          GET             /src/www                                                 
-/api/administrator/organizations/organization-memberships                                GET             /src/www                                                 
-/api/administrator/organizations/organization-memberships-count                          GET             /src/www                                                 
-/api/administrator/organizations/organizations                                           GET             /src/www                                                 
-/api/administrator/organizations/organizations-count                                     GET             /src/www                                                 
-/api/administrator/profile                                                               GET             @userdashboard/dashboard                                 
-/api/administrator/profiles                                                              GET             @userdashboard/dashboard                                 
-/api/administrator/profiles-count                                                        GET             @userdashboard/dashboard                                 
-/api/administrator/reset-account-administrator                                           PATCH           @userdashboard/dashboard                                 
-/api/administrator/reset-code                                                            GET             @userdashboard/dashboard                                 
-/api/administrator/reset-codes                                                           GET             @userdashboard/dashboard                                 
-/api/administrator/reset-codes-count                                                     GET             @userdashboard/dashboard                                 
-/api/administrator/reset-session-key                                                     PATCH           @userdashboard/dashboard                                 
-/api/administrator/session                                                               GET             @userdashboard/dashboard                                 
-/api/administrator/sessions                                                              GET             @userdashboard/dashboard                                 
-/api/administrator/sessions-count                                                        GET             @userdashboard/dashboard                                 
-/api/administrator/set-account-administrator                                             PATCH           @userdashboard/dashboard                                 
-/api/administrator/set-account-deleted                                                   PATCH           @userdashboard/dashboard                                 
-/api/administrator/set-owner-account                                                     PATCH           @userdashboard/dashboard                                 
-/api/user/account                                                                        GET             @userdashboard/dashboard                                 
-/api/user/create-account                                        GUEST                    POST            @userdashboard/dashboard                                 
-/api/user/create-profile                                                                 POST            @userdashboard/dashboard                                 
-/api/user/create-reset-code                                                              POST            @userdashboard/dashboard                                 
-/api/user/create-session                                        GUEST                    POST            @userdashboard/dashboard                                 
-/api/user/delete-profile                                                                 DELETE          @userdashboard/dashboard                                 
-/api/user/delete-reset-code                                                              DELETE          @userdashboard/dashboard                                 
-/api/user/organizations/create-invitation                                                POST            /src/www                                                 
-/api/user/organizations/create-membership                                                POST            /src/www                                                 
-/api/user/organizations/create-organization                                              POST            /src/www                                                 
-/api/user/organizations/delete-invitation                                                DELETE          /src/www                                                 
-/api/user/organizations/delete-membership                                                DELETE          /src/www                                                 
-/api/user/organizations/delete-organization                                              DELETE          /src/www                                                 
-/api/user/organizations/invitation                                                       GET             /src/www                                                 
-/api/user/organizations/invitations                                                      GET             /src/www                                                 
-/api/user/organizations/invitations-count                                                GET             /src/www                                                 
-/api/user/organizations/membership                                                       GET             /src/www                                                 
-/api/user/organizations/memberships                                                      GET             /src/www                                                 
-/api/user/organizations/memberships-count                                                GET             /src/www                                                 
-/api/user/organizations/open-invitation                                                  GET             /src/www                                                 
-/api/user/organizations/open-invitation-organization                                     GET             /src/www                                                 
-/api/user/organizations/organization                                                     GET             /src/www                                                 
-/api/user/organizations/organization-invitations                                         GET             /src/www                                                 
-/api/user/organizations/organization-invitations-count                                   GET             /src/www                                                 
-/api/user/organizations/organization-membership                                          GET             /src/www                                                 
-/api/user/organizations/organization-memberships                                         GET             /src/www                                                 
-/api/user/organizations/organization-memberships-count                                   GET             /src/www                                                 
-/api/user/organizations/organizations                                                    GET             /src/www                                                 
-/api/user/organizations/organizations-count                                              GET             /src/www                                                 
-/api/user/organizations/set-organization-owner                                           PATCH           /src/www                                                 
-/api/user/organizations/update-organization                                              PATCH           /src/www                                                 
-/api/user/profile                                                                        GET             @userdashboard/dashboard                                 
-/api/user/profiles                                                                       GET             @userdashboard/dashboard                                 
-/api/user/profiles-count                                                                 GET             @userdashboard/dashboard                                 
-/api/user/reset-account-deleted                                 GUEST                    PATCH           @userdashboard/dashboard                                 
-/api/user/reset-account-password                                GUEST                    PATCH           @userdashboard/dashboard                                 
-/api/user/reset-code                                                                     GET             @userdashboard/dashboard                                 
-/api/user/reset-codes                                                                    GET             @userdashboard/dashboard                                 
-/api/user/reset-codes-count                                                              GET             @userdashboard/dashboard                                 
-/api/user/reset-session-key                                                              PATCH           @userdashboard/dashboard                                 
-/api/user/session                                                                        GET             @userdashboard/dashboard                                 
-/api/user/sessions                                                                       GET             @userdashboard/dashboard                                 
-/api/user/sessions-count                                                                 GET             @userdashboard/dashboard                                 
-/api/user/set-account-deleted                                                            PATCH           @userdashboard/dashboard                                 
-/api/user/set-account-password                                                           PATCH           @userdashboard/dashboard                                 
-/api/user/set-account-profile                                                            PATCH           @userdashboard/dashboard                                 
-/api/user/set-account-username                                                           PATCH           @userdashboard/dashboard                                 
-/api/user/set-session-ended                                                              PATCH           @userdashboard/dashboard                                 
-/api/user/set-session-verified                                                           PATCH           @userdashboard/dashboard                                 
-/api/user/update-profile                                                                 PATCH           @userdashboard/dashboard                                 
-/home                                                                                    GET                                          /src/www                    
+URL ----------------------------------------------------------- AUTH - TEMPLATE - HTTP REQUESTS - NODEJS --------------------- HTML -----------------------
+/                                                               GUEST  FULLSCREEN GET                                          /src/www                    
+/account                                                                          GET             @userdashboard/dashboard     @userdashboard/dashboard    
+/account/change-password                                                          GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
+/account/change-username                                                          GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
+/account/create-profile                                                           GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
+/account/create-reset-code                                                        GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
+/account/delete-account                                                           GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
+/account/delete-account-complete                                GUEST  FULLSCREEN GET             @userdashboard/dashboard     @userdashboard/dashboard    
+/account/delete-profile                                                           GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
+/account/delete-reset-code                                                        GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
+/account/edit-profile                                                             GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
+/account/end-all-sessions                                                         GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
+/account/end-session                                                              GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
+/account/organizations                                                            GET             /src/www                     /src/www                    
+/account/organizations/accept-invitation                                          GET POST        /src/www                     /src/www                    
+/account/organizations/create-invitation                                          GET POST        /src/www                     /src/www                    
+/account/organizations/create-organization                                        GET POST        /src/www                     /src/www                    
+/account/organizations/delete-invitation                                          GET POST        /src/www                     /src/www                    
+/account/organizations/delete-membership                                          GET POST        /src/www                     /src/www                    
+/account/organizations/delete-organization                                        GET POST        /src/www                     /src/www                    
+/account/organizations/edit-membership-profile                                    GET POST        /src/www                     /src/www                    
+/account/organizations/edit-organization                                          GET POST        /src/www                     /src/www                    
+/account/organizations/invitation                                                 GET             /src/www                     /src/www                    
+/account/organizations/membership                                                 GET             /src/www                     /src/www                    
+/account/organizations/memberships                                                GET             /src/www                     /src/www                    
+/account/organizations/organization                                               GET             /src/www                     /src/www                    
+/account/organizations/organization-invitations                                   GET             /src/www                     /src/www                    
+/account/organizations/organization-memberships                                   GET             /src/www                     /src/www                    
+/account/organizations/organizations                                              GET             /src/www                     /src/www                    
+/account/organizations/revoke-membership                                          GET POST        /src/www                     /src/www                    
+/account/organizations/transfer-organization                                      GET POST        /src/www                     /src/www                    
+/account/profile                                                                  GET             @userdashboard/dashboard     @userdashboard/dashboard    
+/account/profiles                                                                 GET             @userdashboard/dashboard     @userdashboard/dashboard    
+/account/register                                               GUEST  FULLSCREEN GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
+/account/reset-account                                          GUEST  FULLSCREEN GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
+/account/reset-code                                                               GET             @userdashboard/dashboard     @userdashboard/dashboard    
+/account/reset-codes                                                              GET             @userdashboard/dashboard     @userdashboard/dashboard    
+/account/restore-account                                        GUEST  FULLSCREEN GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
+/account/select-language                                                          GET                                          @userdashboard/dashboard    
+/account/session                                                                  GET             @userdashboard/dashboard     @userdashboard/dashboard    
+/account/sessions                                                                 GET             @userdashboard/dashboard     @userdashboard/dashboard    
+/account/set-default-profile                                                      GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
+/account/signin                                                 GUEST  FULLSCREEN GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
+/account/signout                                                       FULLSCREEN GET             @userdashboard/dashboard     @userdashboard/dashboard    
+/account/signout-complete                                       GUEST  FULLSCREEN GET                                          @userdashboard/dashboard    
+/account/verify                                                 GUEST  FULLSCREEN GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
+/administrator                                                                    GET                                          @userdashboard/dashboard    
+/administrator/account                                                            GET             @userdashboard/dashboard     @userdashboard/dashboard    
+/administrator/account-profiles                                                   GET             @userdashboard/dashboard     @userdashboard/dashboard    
+/administrator/account-reset-codes                                                GET             @userdashboard/dashboard     @userdashboard/dashboard    
+/administrator/account-sessions                                                   GET             @userdashboard/dashboard     @userdashboard/dashboard    
+/administrator/accounts                                                           GET             @userdashboard/dashboard     @userdashboard/dashboard    
+/administrator/administrators                                                     GET             @userdashboard/dashboard     @userdashboard/dashboard    
+/administrator/assign-administrator                                               GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
+/administrator/create-reset-code                                                  GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
+/administrator/delete-account                                                     GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
+/administrator/delete-schedule                                                    GET             @userdashboard/dashboard     @userdashboard/dashboard    
+/administrator/organizations                                                      GET             /src/www                     /src/www                    
+/administrator/organizations/invitation                                           GET             /src/www                     /src/www                    
+/administrator/organizations/invitations                                          GET             /src/www                     /src/www                    
+/administrator/organizations/membership                                           GET             /src/www                     /src/www                    
+/administrator/organizations/memberships                                          GET             /src/www                     /src/www                    
+/administrator/organizations/organization                                         GET             /src/www                     /src/www                    
+/administrator/organizations/organization-invitations                             GET             /src/www                     /src/www                    
+/administrator/organizations/organization-memberships                             GET             /src/www                     /src/www                    
+/administrator/organizations/organizations                                        GET             /src/www                     /src/www                    
+/administrator/profile                                                            GET             @userdashboard/dashboard     @userdashboard/dashboard    
+/administrator/profiles                                                           GET             @userdashboard/dashboard     @userdashboard/dashboard    
+/administrator/reset-code                                                         GET             @userdashboard/dashboard     @userdashboard/dashboard    
+/administrator/reset-codes                                                        GET             @userdashboard/dashboard     @userdashboard/dashboard    
+/administrator/reset-session-key                                                  GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
+/administrator/revoke-administrator                                               GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
+/administrator/schedule-account-delete                                            GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
+/administrator/session                                                            GET             @userdashboard/dashboard     @userdashboard/dashboard    
+/administrator/sessions                                                           GET             @userdashboard/dashboard     @userdashboard/dashboard    
+/administrator/transfer-ownership                                                 GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
+/api/administrator/account                                                        GET             @userdashboard/dashboard                                 
+/api/administrator/account-profiles                                               GET             @userdashboard/dashboard                                 
+/api/administrator/account-profiles-count                                         GET             @userdashboard/dashboard                                 
+/api/administrator/account-reset-codes                                            GET             @userdashboard/dashboard                                 
+/api/administrator/account-reset-codes-count                                      GET             @userdashboard/dashboard                                 
+/api/administrator/account-sessions                                               GET             @userdashboard/dashboard                                 
+/api/administrator/account-sessions-count                                         GET             @userdashboard/dashboard                                 
+/api/administrator/accounts                                                       GET             @userdashboard/dashboard                                 
+/api/administrator/accounts-count                                                 GET             @userdashboard/dashboard                                 
+/api/administrator/administrator-accounts                                         GET             @userdashboard/dashboard                                 
+/api/administrator/administrator-accounts-count                                   GET             @userdashboard/dashboard                                 
+/api/administrator/create-reset-code                                              POST            @userdashboard/dashboard                                 
+/api/administrator/delete-account                                                 DELETE          @userdashboard/dashboard                                 
+/api/administrator/deleted-accounts                                               GET             @userdashboard/dashboard                                 
+/api/administrator/deleted-accounts-count                                         GET             @userdashboard/dashboard                                 
+/api/administrator/organizations/account-invitations                              GET             /src/www                                                 
+/api/administrator/organizations/account-invitations-count                        GET             /src/www                                                 
+/api/administrator/organizations/account-memberships                              GET             /src/www                                                 
+/api/administrator/organizations/account-memberships-count                        GET             /src/www                                                 
+/api/administrator/organizations/account-organizations                            GET             /src/www                                                 
+/api/administrator/organizations/account-organizations-count                      GET             /src/www                                                 
+/api/administrator/organizations/invitation                                       GET             /src/www                                                 
+/api/administrator/organizations/invitations                                      GET             /src/www                                                 
+/api/administrator/organizations/invitations-count                                GET             /src/www                                                 
+/api/administrator/organizations/membership                                       GET             /src/www                                                 
+/api/administrator/organizations/memberships                                      GET             /src/www                                                 
+/api/administrator/organizations/memberships-count                                GET             /src/www                                                 
+/api/administrator/organizations/organization                                     GET             /src/www                                                 
+/api/administrator/organizations/organization-invitations                         GET             /src/www                                                 
+/api/administrator/organizations/organization-invitations-count                   GET             /src/www                                                 
+/api/administrator/organizations/organization-memberships                         GET             /src/www                                                 
+/api/administrator/organizations/organization-memberships-count                   GET             /src/www                                                 
+/api/administrator/organizations/organizations                                    GET             /src/www                                                 
+/api/administrator/organizations/organizations-count                              GET             /src/www                                                 
+/api/administrator/profile                                                        GET             @userdashboard/dashboard                                 
+/api/administrator/profiles                                                       GET             @userdashboard/dashboard                                 
+/api/administrator/profiles-count                                                 GET             @userdashboard/dashboard                                 
+/api/administrator/reset-account-administrator                                    PATCH           @userdashboard/dashboard                                 
+/api/administrator/reset-code                                                     GET             @userdashboard/dashboard                                 
+/api/administrator/reset-codes                                                    GET             @userdashboard/dashboard                                 
+/api/administrator/reset-codes-count                                              GET             @userdashboard/dashboard                                 
+/api/administrator/reset-session-key                                              PATCH           @userdashboard/dashboard                                 
+/api/administrator/session                                                        GET             @userdashboard/dashboard                                 
+/api/administrator/sessions                                                       GET             @userdashboard/dashboard                                 
+/api/administrator/sessions-count                                                 GET             @userdashboard/dashboard                                 
+/api/administrator/set-account-administrator                                      PATCH           @userdashboard/dashboard                                 
+/api/administrator/set-account-deleted                                            PATCH           @userdashboard/dashboard                                 
+/api/administrator/set-owner-account                                              PATCH           @userdashboard/dashboard                                 
+/api/user/account                                                                 GET             @userdashboard/dashboard                                 
+/api/user/create-account                                        GUEST             POST            @userdashboard/dashboard                                 
+/api/user/create-profile                                                          POST            @userdashboard/dashboard                                 
+/api/user/create-reset-code                                                       POST            @userdashboard/dashboard                                 
+/api/user/create-session                                        GUEST             POST            @userdashboard/dashboard                                 
+/api/user/delete-profile                                                          DELETE          @userdashboard/dashboard                                 
+/api/user/delete-reset-code                                                       DELETE          @userdashboard/dashboard                                 
+/api/user/organizations/create-invitation                                         POST            /src/www                                                 
+/api/user/organizations/create-membership                                         POST            /src/www                                                 
+/api/user/organizations/create-organization                                       POST            /src/www                                                 
+/api/user/organizations/delete-invitation                                         DELETE          /src/www                                                 
+/api/user/organizations/delete-membership                                         DELETE          /src/www                                                 
+/api/user/organizations/delete-organization                                       DELETE          /src/www                                                 
+/api/user/organizations/invitation                                                GET             /src/www                                                 
+/api/user/organizations/invitations                                               GET             /src/www                                                 
+/api/user/organizations/invitations-count                                         GET             /src/www                                                 
+/api/user/organizations/membership                                                GET             /src/www                                                 
+/api/user/organizations/memberships                                               GET             /src/www                                                 
+/api/user/organizations/memberships-count                                         GET             /src/www                                                 
+/api/user/organizations/open-invitation                                           GET             /src/www                                                 
+/api/user/organizations/open-invitation-organization                              GET             /src/www                                                 
+/api/user/organizations/organization                                              GET             /src/www                                                 
+/api/user/organizations/organization-invitations                                  GET             /src/www                                                 
+/api/user/organizations/organization-invitations-count                            GET             /src/www                                                 
+/api/user/organizations/organization-membership                                   GET             /src/www                                                 
+/api/user/organizations/organization-memberships                                  GET             /src/www                                                 
+/api/user/organizations/organization-memberships-count                            GET             /src/www                                                 
+/api/user/organizations/organizations                                             GET             /src/www                                                 
+/api/user/organizations/organizations-count                                       GET             /src/www                                                 
+/api/user/organizations/set-organization-owner                                    PATCH           /src/www                                                 
+/api/user/organizations/update-organization                                       PATCH           /src/www                                                 
+/api/user/profile                                                                 GET             @userdashboard/dashboard                                 
+/api/user/profiles                                                                GET             @userdashboard/dashboard                                 
+/api/user/profiles-count                                                          GET             @userdashboard/dashboard                                 
+/api/user/reset-account-deleted                                 GUEST             PATCH           @userdashboard/dashboard                                 
+/api/user/reset-account-password                                GUEST             PATCH           @userdashboard/dashboard                                 
+/api/user/reset-code                                                              GET             @userdashboard/dashboard                                 
+/api/user/reset-codes                                                             GET             @userdashboard/dashboard                                 
+/api/user/reset-codes-count                                                       GET             @userdashboard/dashboard                                 
+/api/user/reset-session-key                                                       PATCH           @userdashboard/dashboard                                 
+/api/user/session                                                                 GET             @userdashboard/dashboard                                 
+/api/user/sessions                                                                GET             @userdashboard/dashboard                                 
+/api/user/sessions-count                                                          GET             @userdashboard/dashboard                                 
+/api/user/set-account-deleted                                                     PATCH           @userdashboard/dashboard                                 
+/api/user/set-account-password                                                    PATCH           @userdashboard/dashboard                                 
+/api/user/set-account-profile                                                     PATCH           @userdashboard/dashboard                                 
+/api/user/set-account-username                                                    PATCH           @userdashboard/dashboard                                 
+/api/user/set-session-ended                                                       PATCH           @userdashboard/dashboard                                 
+/api/user/set-session-verified                                                    PATCH           @userdashboard/dashboard                                 
+/api/user/update-profile                                                          PATCH           @userdashboard/dashboard                                 
+/home                                                                             GET                                          /src/www                    

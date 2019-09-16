@@ -1,0 +1,417 @@
+@userdashboard/dashboard 1.0.43
+
+
+|----------------------------------------------------------------------------------------------------------------------|
+| /api/administrator/organizations/account-invitations                                                                 |
+| RECEIVES-------------------------------| RETURNS--| EXCEPTIONS------------------------------| CONFIGURATION----------|
+| required querystring accountid value   | array    | invalid-accountid                       | environment PAGE_SIZE  |
+| optional querystring offset (integer)  |          |  * missing querystring accountid value  |                        |
+| optional querystring all (boolean)     |          |  * invalid querystring accountid value  |                        |
+|----------------------------------------|----------|-----------------------------------------|------------------------|
+
+|--------------------------------------------------------------------------------------------|
+| /api/administrator/organizations/account-invitations-count                                 |
+| RECEIVES------------------------------| RETURNS--| EXCEPTIONS------------------------------|
+| required querystring accountid value  | integer  | invalid-accountid                       |
+|                                       |          |  * missing querystring accountid value  |
+|                                       |          |  * invalid querystring accountid value  |
+|---------------------------------------|----------|-----------------------------------------|
+
+|----------------------------------------------------------------------------------------------------------------------|
+| /api/administrator/organizations/account-memberships                                                                 |
+| RECEIVES-------------------------------| RETURNS--| EXCEPTIONS------------------------------| CONFIGURATION----------|
+| required querystring accountid value   | array    | invalid-accountid                       | environment PAGE_SIZE  |
+| optional querystring offset (integer)  |          |  * missing querystring accountid value  |                        |
+| optional querystring all (boolean)     |          |  * invalid querystring accountid value  |                        |
+|----------------------------------------|----------|-----------------------------------------|------------------------|
+
+|--------------------------------------------------------------------------------------------|
+| /api/administrator/organizations/account-memberships-count                                 |
+| RECEIVES------------------------------| RETURNS--| EXCEPTIONS------------------------------|
+| required querystring accountid value  | integer  | invalid-accountid                       |
+|                                       |          |  * missing querystring accountid value  |
+|                                       |          |  * invalid querystring accountid value  |
+|---------------------------------------|----------|-----------------------------------------|
+
+|----------------------------------------------------------------------------------------------------------------------|
+| /api/administrator/organizations/account-organizations                                                               |
+| RECEIVES-------------------------------| RETURNS--| EXCEPTIONS------------------------------| CONFIGURATION----------|
+| required querystring accountid value   | array    | invalid-accountid                       | environment PAGE_SIZE  |
+| optional querystring offset (integer)  |          |  * missing querystring accountid value  |                        |
+| optional querystring all (boolean)     |          |  * invalid querystring accountid value  |                        |
+|----------------------------------------|----------|-----------------------------------------|------------------------|
+
+|--------------------------------------------------------------------------------------------|
+| /api/administrator/organizations/account-organizations-count                               |
+| RECEIVES------------------------------| RETURNS--| EXCEPTIONS------------------------------|
+| required querystring accountid value  | integer  | invalid-accountid                       |
+|                                       |          |  * missing querystring accountid value  |
+|                                       |          |  * invalid querystring accountid value  |
+|---------------------------------------|----------|-----------------------------------------|
+
+|----------------------------------------------------------------------------------------------------------------------|
+| /api/administrator/organizations/invitation                                                                          |
+| RECEIVES---------------------------------| RETURNS--| REDACTS-----------| EXCEPTIONS---------------------------------|
+| required querystring invitationid value  | object   | secret code hash  | invalid-invitationid                       |
+|                                          |          |                   |  * missing querystring invitationid value  |
+|                                          |          |                   |  * invalid querystring invitationid value  |
+|------------------------------------------|----------|-------------------|--------------------------------------------|
+
+|----------------------------------------------------------------------------|
+| /api/administrator/organizations/invitations                               |
+| RECEIVES-------------------------------| RETURNS--| CONFIGURATION----------|
+| optional querystring offset (integer)  | array    | environment PAGE_SIZE  |
+| optional querystring all (boolean)     |          |                        |
+|----------------------------------------|----------|------------------------|
+
+|-----------------------------------------------------|
+| /api/administrator/organizations/invitations-count  |
+| RETURNS---------------------------------------------|
+| integer                                             |
+|-----------------------------------------------------|
+
+|--------------------------------------------------------------------------------------------------|
+| /api/administrator/organizations/membership                                                      |
+| RECEIVES---------------------------------| RETURNS--| EXCEPTIONS---------------------------------|
+| required querystring membershipid value  | object   | invalid-membershipid                       |
+|                                          |          |  * missing querystring membershipid value  |
+|                                          |          |  * invalid querystring membershipid value  |
+|------------------------------------------|----------|--------------------------------------------|
+
+|----------------------------------------------------------------------------|
+| /api/administrator/organizations/memberships                               |
+| RECEIVES-------------------------------| RETURNS--| CONFIGURATION----------|
+| optional querystring offset (integer)  | array    | environment PAGE_SIZE  |
+| optional querystring all (boolean)     |          |                        |
+|----------------------------------------|----------|------------------------|
+
+|-----------------------------------------------------|
+| /api/administrator/organizations/memberships-count  |
+| RETURNS---------------------------------------------|
+| integer                                             |
+|-----------------------------------------------------|
+
+|---------------------------------------------------------|
+| /api/administrator/organizations/organization           |
+| RETURNS--| EXCEPTIONS-----------------------------------|
+| array    | invalid-organizationid                       |
+|          |  * unspecified querystring organizationid    |
+|          |  * invalid querystring organizationid value  |
+|----------|----------------------------------------------|
+
+|-------------------------------------------------------------------------------------------------------------------------------|
+| /api/administrator/organizations/organization-invitations                                                                     |
+| RECEIVES-----------------------------------| RETURNS--| EXCEPTIONS-----------------------------------| CONFIGURATION----------|
+| required querystring organizationid value  | array    | invalid-organizationid                       | environment PAGE_SIZE  |
+| optional querystring offset (integer)      |          |  * missing querystring organizationid value  |                        |
+| optional querystring all (boolean)         |          |  * invalid querystring organizationid value  |                        |
+|--------------------------------------------|----------|----------------------------------------------|------------------------|
+
+|------------------------------------------------------------------------------------------------------|
+| /api/administrator/organizations/organization-invitations-count                                      |
+| RECEIVES-----------------------------------| RETURNS--| EXCEPTIONS-----------------------------------|
+| required querystring organizationid value  | integer  | invalid-organizationid                       |
+|                                            |          |  * missing querystring organizationid value  |
+|                                            |          |  * invalid querystring organizationid value  |
+|--------------------------------------------|----------|----------------------------------------------|
+
+|---------------------------------------------------------------------------------------------------------------------------|
+| /api/administrator/organizations/organization-memberships                                                                 |
+| RECEIVES-------------------------------| RETURNS--| EXCEPTIONS-----------------------------------| CONFIGURATION----------|
+| optional querystring offset (integer)  | array    | invalid-organizationid                       | environment PAGE_SIZE  |
+| optional querystring all (boolean)     |          |  * unspecified querystring organizationid    |                        |
+|                                        |          |  * invalid querystring organizationid value  |                        |
+|----------------------------------------|----------|----------------------------------------------|------------------------|
+
+|------------------------------------------------------------------------------------------------------|
+| /api/administrator/organizations/organization-memberships-count                                      |
+| RECEIVES-----------------------------------| RETURNS--| EXCEPTIONS-----------------------------------|
+| required querystring organizationid value  | integer  | invalid-organizationid                       |
+|                                            |          |  * missing querystring organizationid value  |
+|                                            |          |  * invalid querystring organizationid value  |
+|--------------------------------------------|----------|----------------------------------------------|
+
+|----------------------------------------------------------------------------|
+| /api/administrator/organizations/organizations                             |
+| RECEIVES-------------------------------| RETURNS--| CONFIGURATION----------|
+| optional querystring offset (integer)  | array    | environment PAGE_SIZE  |
+| optional querystring all (boolean)     |          |                        |
+|----------------------------------------|----------|------------------------|
+
+|-------------------------------------------------------|
+| /api/administrator/organizations/organizations-count  |
+| RETURNS-----------------------------------------------|
+| integer                                               |
+|-------------------------------------------------------|
+
+|---------------------------------------------------------------------------------------------------|
+| /api/user/organizations/create-invitation                                                         |
+| RECEIVES-----------------------------| RETURNS--| EXCEPTIONS--------------------------------------|
+| required posted secret-code          | object   | invalid-organizationid                          |
+| required querystring organizationid  |          |  * missing querystring organizationid           |
+|                                      |          |  * invalid querystring organizationid           |
+|                                      |          | invalid-secret-code                             |
+|                                      |          |  * missing posted secret-code                   |
+|                                      |          | invalid-secret-code-length                      |
+|                                      |          |  * posted secret-code too short                 |
+|                                      |          |  * posted secret-code too long                  |
+|                                      |          | invalid-account                                 |
+|                                      |          |  * accessing account is not organization owner  |
+|--------------------------------------|----------|-------------------------------------------------|
+
+|-----------------------------------------------------------------------------------------------------|
+| /api/user/organizations/create-membership                                                           |
+| RECEIVES---------------------------| RETURNS--| EXCEPTIONS------------------------------------------|
+| required posted profileid          | object   | invalid-invitationid                                |
+| required posted secret-code        |          |  * missing querystring invitationid                 |
+| required querystring invitationid  |          |  * invalid querystring invitationid                 |
+|                                    |          | invalid-invitation                                  |
+|                                    |          |  * querystring invitationid has been used           |
+|                                    |          |  * posted secret-code has been used                 |
+|                                    |          |  * querystring invitationid is not open invitation  |
+|                                    |          | invalid-secret-code                                 |
+|                                    |          |  * missing posted secret-code                       |
+|                                    |          |  * invalid posted secret-code                       |
+|                                    |          | invalid-secret-code-length                          |
+|                                    |          |  * posted secret-code is blank                      |
+|                                    |          | invalid-account                                     |
+|                                    |          |  * accessing account is organization owner          |
+|                                    |          |  * accessing account is organization member         |
+|                                    |          | invalid-profileid                                   |
+|                                    |          |  * missing posted profileid                         |
+|                                    |          |  * invalid posted profileid                         |
+|                                    |          | invalid-profile                                     |
+|                                    |          |  * ineligible posted profileid is missing fields    |
+|------------------------------------|----------|-----------------------------------------------------|
+
+|----------------------------------------------------------------------------------------|
+| /api/user/organizations/create-organization                                            |
+| RECEIVES-------------------| RETURNS--| EXCEPTIONS-------------------------------------|
+| required posted profileid  | object   | invalid-organization-name                      |
+| required posted email      |          |  * missing posted name                         |
+| required posted name       |          | invalid-organization-name-length               |
+|                            |          |  * posted name too short                       |
+|                            |          |  * posted name too long                        |
+|                            |          | invalid-organization-email                     |
+|                            |          |  * missing posted email                        |
+|                            |          |  * invalid posted email                        |
+|                            |          | invalid-profile                                |
+|                            |          |  * missing posted profileid                    |
+|                            |          |  * invalid posted profileid                    |
+|                            |          |  * ineligible posted profileid missing fields  |
+|----------------------------|----------|------------------------------------------------|
+
+|------------------------------------------------------------|
+| /api/user/organizations/delete-invitation                  |
+| RETURNS--| EXCEPTIONS--------------------------------------|
+| boolean  | invalid-invitationid                            |
+|          |  * querystring invitationid is missing          |
+|          |  * querystring invitationid is invalid          |
+|          | invalid-invitation                              |
+|          |  * querystring invitationid is used invitation  |
+|          | invalid-account                                 |
+|          |  * accessing account is not organization owner  |
+|----------|-------------------------------------------------|
+
+|---------------------------------------------------------------------------------------------------------------|
+| /api/user/organizations/delete-membership                                                                     |
+| RECEIVES---------------------------| RETURNS--| EXCEPTIONS----------------------------------------------------|
+| required querystring membershipid  | boolean  | invalid-membershipid                                          |
+|                                    |          |  * missing querystring membershipid                           |
+|                                    |          |  * invalid querystring membershipid                           |
+|                                    |          | invalid-account                                               |
+|                                    |          |  * accessing account is not membership or organization owner  |
+|------------------------------------|----------|---------------------------------------------------------------|
+
+|---------------------------------------------------------------------------------------------------|
+| /api/user/organizations/delete-organization                                                       |
+| RECEIVES-----------------------------| RETURNS--| EXCEPTIONS--------------------------------------|
+| required querystring organizationid  | boolean  | invalid-organizationid                          |
+|                                      |          |  * missing querystring organizationid           |
+|                                      |          |  * invalid querystring organizationid           |
+|                                      |          | invalid-account                                 |
+|                                      |          |  * accessing account does not own organization  |
+|--------------------------------------|----------|-------------------------------------------------|
+
+|----------------------------------------------------|
+| /api/user/organizations/invitation                 |
+| RETURNS--| EXCEPTIONS------------------------------|
+| object   | invalid-invitationid                    |
+|          |  * querystring invitationid is missing  |
+|          |  * querystring invitationid is invalid  |
+|          | invalid-invitation                      |
+|          |  * querystring invitationid is used     |
+|----------|-----------------------------------------|
+
+|-------------------------------------------------------------------------------------------------------------------|
+| /api/user/organizations/invitations                                                                               |
+| RECEIVES-------------------------------| RETURNS--| EXCEPTIONS---------------------------| CONFIGURATION----------|
+| optional querystring offset (integer)  | array    | invalid-accountid                    | environment PAGE_SIZE  |
+| optional querystring all (boolean)     |          |  * querystring accountid is missing  |                        |
+|                                        |          |  * querystring accountid is invalid  |                        |
+|                                        |          | invalid-account                      |                        |
+|                                        |          |  * ineligible querystring accountid  |                        |
+|----------------------------------------|----------|--------------------------------------|------------------------|
+
+|-------------------------------------------------|
+| /api/user/organizations/invitations-count       |
+| RETURNS--| EXCEPTIONS---------------------------|
+| integer  | invalid-accountid                    |
+|          |  * querystring accountid is missing  |
+|          |  * querystring accountid is invalid  |
+|          | invalid-account                      |
+|          |  * ineligible querystring accountid  |
+|----------|--------------------------------------|
+
+|------------------------------------------------------------------------------------------------------------|
+| /api/user/organizations/membership                                                                         |
+| RECEIVES---------------------------| RETURNS--| EXCEPTIONS-------------------------------------------------|
+| required querystring membershipid  | object   | invalid-membershipid                                       |
+|                                    |          |  * missing querystring membershipid                        |
+|                                    |          |  * invalid querystring membershipid                        |
+|                                    |          | invalid-account                                            |
+|                                    |          |  * accessing account must be organization member or owner  |
+|------------------------------------|----------|------------------------------------------------------------|
+
+|-------------------------------------------------------------------------------------------------------------------|
+| /api/user/organizations/memberships                                                                               |
+| RECEIVES-------------------------------| RETURNS--| EXCEPTIONS---------------------------| CONFIGURATION----------|
+| optional querystring offset (integer)  | array    | invalid-accountid                    | environment PAGE_SIZE  |
+| optional querystring all (boolean)     |          |  * querystring accountid is missing  |                        |
+|                                        |          |  * querystring accountid is invalid  |                        |
+|                                        |          | invalid-account                      |                        |
+|                                        |          |  * ineligible querystring accountid  |                        |
+|----------------------------------------|----------|--------------------------------------|------------------------|
+
+|-------------------------------------------------|
+| /api/user/organizations/memberships-count       |
+| RETURNS--| EXCEPTIONS---------------------------|
+| integer  | invalid-accountid                    |
+|          |  * querystring accountid is missing  |
+|          |  * querystring accountid is invalid  |
+|          | invalid-account                      |
+|          |  * ineligible querystring accountid  |
+|----------|--------------------------------------|
+
+|------------------------------------------------------------------------|
+| /api/user/organizations/open-invitation                                |
+| RETURNS--| REDACTS-----------| EXCEPTIONS------------------------------|
+| object   | secret code hash  | invalid-invitationid                    |
+|          |                   |  * querystring invitationid is missing  |
+|          |                   |  * querystring invitationid is invalid  |
+|          |                   | invalid-invitation                      |
+|          |                   |  * querystring invitationid is used     |
+|----------|-------------------|-----------------------------------------|
+
+|-----------------------------------------------------------------------------------------------------|
+| /api/user/organizations/organization                                                                |
+| RECEIVES-----------------------------| RETURNS--| EXCEPTIONS----------------------------------------|
+| required querystring organizationid  | object   | invalid-organizationid                            |
+|                                      |          |  * missing querystring organizationid             |
+|                                      |          |  * invalid querystring organizationid             |
+|                                      |          | invalid-account                                   |
+|                                      |          |  * accessing account must be organization member  |
+|--------------------------------------|----------|---------------------------------------------------|
+
+|------------------------------------------------------------------------------------------------------------------------------|
+| /api/user/organizations/organization-invitations                                                                             |
+| RECEIVES-------------------------------| RETURNS--| EXCEPTIONS--------------------------------------| CONFIGURATION----------|
+| optional querystring offset (integer)  | array    | invalid-organizationid                          | environment PAGE_SIZE  |
+| optional querystring offset (integer)  |          |  * querystring organizationid is missing        |                        |
+|                                        |          |  * querystring organizationid is invalid        |                        |
+|                                        |          | invalid-account                                 |                        |
+|                                        |          |  * accessing account is not organization owner  |                        |
+|----------------------------------------|----------|-------------------------------------------------|------------------------|
+
+|------------------------------------------------------------|
+| /api/user/organizations/organization-invitations-count     |
+| RETURNS--| EXCEPTIONS--------------------------------------|
+| integer  | invalid-organizationid                          |
+|          |  * querystring organizationid is missing        |
+|          |  * querystring organizationid is invalid        |
+|          | invalid-account                                 |
+|          |  * accessing account is not organization owner  |
+|----------|-------------------------------------------------|
+
+|-----------------------------------------------------------------------------------------------------|
+| /api/user/organizations/organization-membership                                                     |
+| RECEIVES-----------------------------| RETURNS--| EXCEPTIONS----------------------------------------|
+| required querystring organizationid  | object   | invalid-organizationid                            |
+|                                      |          |  * missing querystring organizationid             |
+|                                      |          |  * invalid querystring organizationid             |
+|                                      |          | invalid-account                                   |
+|                                      |          |  * accessing account must be organization member  |
+|--------------------------------------|----------|---------------------------------------------------|
+
+|--------------------------------------------------------------------------------------------------------------------------------|
+| /api/user/organizations/organization-memberships                                                                               |
+| RECEIVES-------------------------------| RETURNS--| EXCEPTIONS----------------------------------------| CONFIGURATION----------|
+| required querystring organizationid    | array    | invalid-organizationid                            | environment PAGE_SIZE  |
+| optional querystring offset (integer)  |          |  * missing querystring organizationid             |                        |
+| optional querystring offset (integer)  |          |  * invalid querystring organizationid             |                        |
+|                                        |          | invalid-account                                   |                        |
+|                                        |          |  * accessing account must be organization member  |                        |
+|----------------------------------------|----------|---------------------------------------------------|------------------------|
+
+|-----------------------------------------------------------------------------------------------------|
+| /api/user/organizations/organization-memberships-count                                              |
+| RECEIVES-----------------------------| RETURNS--| EXCEPTIONS----------------------------------------|
+| required querystring organizationid  | integer  | invalid-organizationid                            |
+|                                      |          |  * missing querystring organizationid             |
+|                                      |          |  * invalid querystring organizationid             |
+|                                      |          | invalid-account                                   |
+|                                      |          |  * accessing account must be organization member  |
+|--------------------------------------|----------|---------------------------------------------------|
+
+|-----------------------------------------------------------------------------------------------------------------------------------------|
+| /api/user/organizations/organizations                                                                                                   |
+| RECEIVES-------------------------------| RETURNS------------------------| EXCEPTIONS---------------------------| CONFIGURATION----------|
+| optional querystring offset (integer)  | should reject other accountid  | invalid-accountid                    | environment PAGE_SIZE  |
+| optional querystring all (boolean)     | array                          |  * querystring accountid is missing  |                        |
+|                                        |                                |  * querystring accountid is invalid  |                        |
+|                                        |                                | invalid-account                      |                        |
+|                                        |                                |  * ineligible querystring accountid  |                        |
+|----------------------------------------|--------------------------------|--------------------------------------|------------------------|
+
+|-------------------------------------------------|
+| /api/user/organizations/organizations-count     |
+| RETURNS--| EXCEPTIONS---------------------------|
+| integer  | invalid-accountid                    |
+|          |  * querystring accountid is missing  |
+|          |  * querystring accountid is invalid  |
+|          | invalid-account                      |
+|          |  * ineligible querystring accountid  |
+|----------|--------------------------------------|
+
+|------------------------------------------------------------|
+| /api/user/organizations/set-organization-owner             |
+| RETURNS--| EXCEPTIONS--------------------------------------|
+| object   | invalid-organizationid                          |
+|          |  * querystring organizationid is missing        |
+|          |  * querystring organizationid is invalid        |
+|          | invalid-accountid                               |
+|          |  * posted accountid is missing                  |
+|          |  * posted accountid is invalid                  |
+|          | invalid-account                                 |
+|          |  * accessing account is not organization owner  |
+|          |  * posted accountid is organization owner       |
+|          |  * posted accountid is not member               |
+|----------|-------------------------------------------------|
+
+|-------------------------------------------------------------------------------------|
+| /api/user/organizations/update-organization                                         |
+| RECEIVES---------------| RETURNS--| EXCEPTIONS--------------------------------------|
+| required posted email  | object   | invalid-organizationid                          |
+| required posted name   |          |  * querystring organizationid is missing        |
+|                        |          |  * querystring organizationid is invalid        |
+|                        |          | invalid-account                                 |
+|                        |          |  * accessing account is not organization owner  |
+|                        |          | invalid-organization-name                       |
+|                        |          |  * missing posted name                          |
+|                        |          | invalid-organization-name-length                |
+|                        |          |  * posted name is too short                     |
+|                        |          |  * posted name is too long                      |
+|                        |          | invalid-organization-email                      |
+|                        |          |  * missing posted email                         |
+|                        |          |  * invalid posted email                         |
+|------------------------|----------|-------------------------------------------------|
