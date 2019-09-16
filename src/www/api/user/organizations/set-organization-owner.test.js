@@ -5,7 +5,7 @@ const TestHelper = require('../../../../../test-helper.js')
 describe('/api/user/organizations/set-organization-owner', () => {
   describe('exceptions', () => {
     describe('invalid-organizationid', () => {
-      it('querystring organizationid is missing', async () => {
+      it('missing querystring organizationid', async () => {
         const owner = await TestHelper.createUser()
         const req = TestHelper.createRequest(`/api/user/organizations/set-organization-owner`)
         req.account = owner.account
@@ -19,7 +19,7 @@ describe('/api/user/organizations/set-organization-owner', () => {
         assert.strictEqual(errorMessage, 'invalid-organizationid')
       })
 
-      it('querystring organizationid is invalid', async () => {
+      it('invalid querystring organizationid', async () => {
         const owner = await TestHelper.createUser()
         const req = TestHelper.createRequest(`/api/user/organizations/set-organization-owner?organizationid=invalid`)
         req.account = owner.account

@@ -5,7 +5,7 @@ const TestHelper = require('../../../../../test-helper.js')
 describe('/api/user/organizations/memberships-count', async () => {
   describe('exceptions', () => {
     describe('invalid-accountid', () => {
-      it('querystring accountid is missing', async () => {
+      it('missing querystring accountid', async () => {
         const owner = await TestHelper.createUser()
         const req = TestHelper.createRequest(`/api/user/organizations/memberships-count`)
         req.account = owner.account
@@ -19,7 +19,7 @@ describe('/api/user/organizations/memberships-count', async () => {
         assert.strictEqual(errorMessage, 'invalid-accountid')
       })
 
-      it('querystring accountid is invalid', async () => {
+      it('invalid querystring accountid', async () => {
         const owner = await TestHelper.createUser()
         const req = TestHelper.createRequest(`/api/user/organizations/memberships-count?accountid=invalid`)
         req.account = owner.account
