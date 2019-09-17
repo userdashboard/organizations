@@ -27,8 +27,8 @@ describe('/administrator/organizations/invitations', () => {
     })
   })
 
-  describe('returns', () => {
-    it('array', async () => {
+  describe('Invitations#GET', () => {
+    it('should return row for each invitation', async () => {
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']

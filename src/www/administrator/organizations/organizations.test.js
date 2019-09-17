@@ -53,8 +53,8 @@ describe('/administrator/organizations/organizations', () => {
     })
   })
 
-  describe('returns', () => {
-    it('array', async () => {
+  describe('Organizations#GET', () => {
+    it('should return row for each organization', async () => {
       const administrator = await TestHelper.createAdministrator()
       const user = await TestHelper.createUser()
       global.userProfileFields = ['display-email', 'display-name']
