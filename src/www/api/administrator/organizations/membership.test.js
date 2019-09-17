@@ -5,7 +5,7 @@ const TestHelper = require('../../../../../test-helper.js')
 describe('/api/administrator/organizations/membership', () => {
   describe('exceptions', () => {
     describe('invalid-membershipid', async () => {
-      it('missing querystring membershipid value', async () => {
+      it('missing querystring membershipid', async () => {
         const administrator = await TestHelper.createOwner()
         const req = TestHelper.createRequest('/api/administrator/organizations/membership')
         req.account = administrator.account
@@ -19,7 +19,7 @@ describe('/api/administrator/organizations/membership', () => {
         assert.strictEqual(errorMessage, 'invalid-membershipid')
       })
 
-      it('invalid querystring membershipid value', async () => {
+      it('invalid querystring membershipid', async () => {
         const administrator = await TestHelper.createOwner()
         const req = TestHelper.createRequest('/api/administrator/organizations/membership?membershipid=invalid')
         req.account = administrator.account

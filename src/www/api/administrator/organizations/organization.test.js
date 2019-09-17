@@ -19,7 +19,7 @@ describe('/api/administrator/organizations/organization', () => {
         assert.strictEqual(errorMessage, 'invalid-organizationid')
       })
 
-      it('invalid querystring organizationid value', async () => {
+      it('invalid querystring organizationid', async () => {
         const administrator = await TestHelper.createOwner()
         const req = TestHelper.createRequest('/api/administrator/organizations/organization?organizationid=invalid')
         req.account = administrator.account
