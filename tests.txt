@@ -1,5 +1,23 @@
 
-> @userdashboard/organizations@1.0.37 test /home/benlowry/SynologyDrive/workspaces/dashboard/organizations
+> puppeteer@1.20.0 install /home/benlowry/SynologyDrive/workspaces/dashboard/organizations/node_modules/puppeteer
+> node install.js
+
+Chromium downloaded to /home/benlowry/SynologyDrive/workspaces/dashboard/organizations/node_modules/puppeteer/.local-chromium/linux-686378
++ puppeteer@1.20.0
+added 43 packages from 22 contributors in 41.172s
+found 0 vulnerabilities
+
+
+> puppeteer@1.20.0 install /home/benlowry/SynologyDrive/workspaces/dashboard/organizations/node_modules/@userdashboard/dashboard/node_modules/puppeteer
+> node install.js
+
+Chromium downloaded to /home/benlowry/SynologyDrive/workspaces/dashboard/organizations/node_modules/@userdashboard/dashboard/node_modules/puppeteer/.local-chromium/linux-686378
++ @userdashboard/dashboard@1.0.47
+added 73 packages from 91 contributors and removed 43 packages in 48.846s
+found 0 vulnerabilities
+
+
+> @userdashboard/organizations@1.0.38 test /home/benlowry/SynologyDrive/workspaces/dashboard/organizations
 > mocha src --recursive --no-colors --timeout 120000 --slow 120000
 
 
