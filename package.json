@@ -7,9 +7,9 @@
     "type": "git",
     "url": "git://github.com/userdashboard/organizations.git"
   },
-  "license": "SPDX(MIT OR Unlicense)",
+  "license": "MIT",
   "scripts": {
-    "test": "mocha src --recursive --no-colors --retries 3 --timeout 120000 --slow 120000"
+    "test": "mocha src --recursive --no-colors --timeout 120000 --slow 120000"
   },
   "engines": {
     "node": "8.12.0",
