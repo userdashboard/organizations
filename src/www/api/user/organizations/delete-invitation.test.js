@@ -54,7 +54,7 @@ describe('/api/user/organizations/delete-invitation', async () => {
         })
         await TestHelper.createInvitation(owner)
         await TestHelper.acceptInvitation(user, owner)
-        const req = TestHelper.createRequest(`/api/user/organizations/delete-invitation?invitationid=${owner.invitation.invitationid}`, 'DELETE')
+        const req = TestHelper.createRequest(`/api/user/organizations/delete-invitation?invitationid=${owner.invitation.invitationid}`)
         req.account = owner.account
         req.session = owner.session
         let errorMessage
@@ -82,7 +82,7 @@ describe('/api/user/organizations/delete-invitation', async () => {
         })
         await TestHelper.createInvitation(owner)
         const user = await TestHelper.createUser()
-        const req = TestHelper.createRequest(`/api/user/organizations/delete-invitation?invitationid=${owner.invitation.invitationid}`, 'DELETE')
+        const req = TestHelper.createRequest(`/api/user/organizations/delete-invitation?invitationid=${owner.invitation.invitationid}`)
         req.account = user.account
         req.session = user.session
         let errorMessage
@@ -110,7 +110,7 @@ describe('/api/user/organizations/delete-invitation', async () => {
         profileid: owner.profile.profileid
       })
       await TestHelper.createInvitation(owner)
-      const req = TestHelper.createRequest(`/api/user/organizations/delete-invitation?invitationid=${owner.invitation.invitationid}`, 'DELETE')
+      const req = TestHelper.createRequest(`/api/user/organizations/delete-invitation?invitationid=${owner.invitation.invitationid}`)
       req.account = owner.account
       req.session = owner.session
       const deleted = await req.delete()

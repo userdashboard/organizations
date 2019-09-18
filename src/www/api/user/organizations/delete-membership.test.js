@@ -56,7 +56,7 @@ describe('/api/user/organizations/delete-membership', async () => {
         await TestHelper.acceptInvitation(user, owner)
         global.userProfileFields = ['contact-email', 'full-name']
         const user2 = await TestHelper.createUser()
-        const req = TestHelper.createRequest(`/api/user/organizations/delete-membership?membershipid=${user.membership.membershipid}`, 'DELETE')
+        const req = TestHelper.createRequest(`/api/user/organizations/delete-membership?membershipid=${user.membership.membershipid}`)
         req.account = user2.account
         req.session = user2.session
         let errorMessage
@@ -90,7 +90,7 @@ describe('/api/user/organizations/delete-membership', async () => {
       })
       await TestHelper.createInvitation(owner)
       await TestHelper.acceptInvitation(user, owner)
-      const req = TestHelper.createRequest(`/api/user/organizations/delete-membership?membershipid=${user.membership.membershipid}`, 'DELETE')
+      const req = TestHelper.createRequest(`/api/user/organizations/delete-membership?membershipid=${user.membership.membershipid}`)
       req.account = user.account
       req.session = user.session
       const deleted = await req.delete()

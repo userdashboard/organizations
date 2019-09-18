@@ -59,7 +59,7 @@ describe('/api/user/organizations/delete-organization', async () => {
           name: 'My organization',
           profileid: other.profile.profileid
         })
-        const req = TestHelper.createRequest(`/api/user/organizations/delete-organization?organizationid=${other.organization.organizationid}`, 'DELETE')
+        const req = TestHelper.createRequest(`/api/user/organizations/delete-organization?organizationid=${other.organization.organizationid}`)
         req.account = owner.account
         req.session = owner.session
         let errorMessage
@@ -86,7 +86,7 @@ describe('/api/user/organizations/delete-organization', async () => {
         name: 'My organization',
         profileid: owner.profile.profileid
       })
-      const req = TestHelper.createRequest(`/api/user/organizations/delete-organization?organizationid=${owner.organization.organizationid}`, 'DELETE')
+      const req = TestHelper.createRequest(`/api/user/organizations/delete-organization?organizationid=${owner.organization.organizationid}`)
       req.account = owner.account
       req.session = owner.session
       const deleted = await req.delete()
