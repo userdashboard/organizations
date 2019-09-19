@@ -16,7 +16,7 @@ Special HTML files:
 @userdashboard/dashboard/src/redirect.html
 
 Dashboard modules:
-@userdashboard/organizations (1.0.39)
+@userdashboard/organizations (1.0.40)
 
 URL ----------------------------------------------------------- AUTH - TEMPLATE - HTTP REQUESTS - NODEJS --------------------- HTML -----------------------
 /                                                               GUEST  FULLSCREEN GET                                          /src/www                    
