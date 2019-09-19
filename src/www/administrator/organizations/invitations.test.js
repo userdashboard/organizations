@@ -96,7 +96,7 @@ describe('/administrator/organizations/invitations', () => {
         profileid: owner.profile.profileid
       })
       const invitations = []
-      for (let i = 0, len = global.pageSize + offset + 1; i < len; i++) {
+      for (let i = 0, len = global.pageSize + 1; i < len; i++) {
         const invitation = await TestHelper.createInvitation(owner)
         invitations.unshift(invitation)
       }

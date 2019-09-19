@@ -112,7 +112,7 @@ describe('/administrator/organizations/memberships', () => {
         'display-email': user.profile.contactEmail
       })
       const memberships = []
-      for (let i = 0, len = global.pageSize + offset + 1; i < len; i++) {
+      for (let i = 0, len = global.pageSize + 1; i < len; i++) {
         global.userProfileFields = ['contact-email', 'full-name']
         const owner = await TestHelper.createUser()
         global.userProfileFields = ['display-email', 'display-name']

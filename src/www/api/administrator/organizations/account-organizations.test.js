@@ -46,7 +46,7 @@ describe('/api/administrator/organizations/account-organizations', () => {
         'display-name': user.profile.firstName,
         'display-email': user.profile.contactEmail
       })
-      for (let i = 0, len = global.pageSize + offset + 1; i < len; i++) {
+      for (let i = 0, len = global.pageSize + 1; i < len; i++) {
         await TestHelper.createOrganization(user, {
           email: user.profile.displayEmail,
           name: 'My organization',

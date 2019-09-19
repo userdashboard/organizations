@@ -84,7 +84,7 @@ describe('/api/user/organizations/organization-memberships', () => {
         profileid: owner.profile.profileid
       })
       const memberships = [owner.membership]
-      for (let i = 0, len = global.pageSize + offset + 1; i < len; i++) {
+      for (let i = 0, len = global.pageSize + 1; i < len; i++) {
         global.userProfileFields = ['full-name', 'contact-email']
         const user = await TestHelper.createUser()
         global.userProfileFields = ['display-name', 'display-email']
