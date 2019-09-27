@@ -123,21 +123,6 @@ describe('/api/user/organizations/organizations', () => {
   })
 
   describe('returns', () => {
-    it('should reject other accountid', async () => {
-      const user = await TestHelper.createUser()
-      const user2 = await TestHelper.createUser()
-      const req = TestHelper.createRequest(`/api/user/organizations/organizations?accountid=${user2.account.accountid}`)
-      req.account = user.account
-      req.session = user.session
-      let errorMessage
-      try {
-        await req.get()
-      } catch (error) {
-        errorMessage = error.message
-      }
-      assert.strictEqual(errorMessage, 'invalid-account')
-    })
-
     it('array', async () => {
       const owner = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']
