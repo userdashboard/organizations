@@ -151,7 +151,7 @@ describe('/account/organizations/edit-membership-profile', () => {
       req.account = user.account
       req.body = {
         'display-name': user.profile.displayName,
-        'display-email': null
+        'display-email': ''
       }
       const page = await req.post()
       const doc = TestHelper.extractDoc(page)

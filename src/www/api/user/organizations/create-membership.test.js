@@ -213,7 +213,7 @@ describe('/api/user/organizations/create-membership', () => {
         req.account = user.account
         req.session = user.session
         req.body = {
-          'secret-code': ' ',
+          'secret-code': '',
           email: user.profile.displayEmail,
           name: user.profile.firstName
         }
@@ -437,6 +437,182 @@ describe('/api/user/organizations/create-membership', () => {
         }
         assert.strictEqual(errorMessage, 'invalid-invitation')
       })
+    })
+  })
+
+  describe('receives', () => {
+    it('optionally-required posted first-name', async () => {
+      global.requireProfile = true
+      global.userProfileFields = ['full-name']
+      const user = await TestHelper.createUser()
+      const req = TestHelper.createRequest(`/api/user/organizations/create-membership?profileid=${user.account.profileid}`)
+      req.account = user.account
+      req.session = user.session
+      req.body = {
+        'last-name': 'Person'
+      }
+      let errorMessage
+      try {
+        await req.patch()
+      } catch (error) {
+        errorMessage = error.message
+      }
+      assert.strictEqual(errorMessage, 'invalid-first-name')
+    })
+
+    it('optionally-required posted last-name', async () => {
+      global.requireProfile = true
+      global.userProfileFields = ['full-name']
+      const user = await TestHelper.createUser()
+      const req = TestHelper.createRequest(`/api/user/organizations/create-membership?profileid=${user.account.profileid}`)
+      req.account = user.account
+      req.session = user.session
+      req.body = {
+        'first-name': 'Test'
+      }
+      let errorMessage
+      try {
+        await req.patch()
+      } catch (error) {
+        errorMessage = error.message
+      }
+      assert.strictEqual(errorMessage, 'invalid-last-name')
+    })
+
+    it('optionally-required posted display-name', async () => {
+      global.requireProfile = true
+      global.userProfileFields = ['display-name']
+      const user = await TestHelper.createUser()
+      const req = TestHelper.createRequest(`/api/user/organizations/create-membership?profileid=${user.account.profileid}`)
+      req.account = user.account
+      req.session = user.session
+      req.body = {}
+      let errorMessage
+      try {
+        await req.patch()
+      } catch (error) {
+        errorMessage = error.message
+      }
+      assert.strictEqual(errorMessage, 'invalid-display-name')
+    })
+
+    it('optionally-required posted company-name', async () => {
+      global.requireProfile = true
+      global.userProfileFields = ['company-name']
+      const user = await TestHelper.createUser()
+      const req = TestHelper.createRequest(`/api/user/organizations/create-membership?profileid=${user.account.profileid}`)
+      req.account = user.account
+      req.session = user.session
+      req.body = {}
+      let errorMessage
+      try {
+        await req.patch()
+      } catch (error) {
+        errorMessage = error.message
+      }
+      assert.strictEqual(errorMessage, 'invalid-company-name')
+    })
+
+    it('optionally-required posted contact-email', async () => {
+      global.requireProfile = true
+      global.userProfileFields = ['contact-email']
+      const user = await TestHelper.createUser()
+      const req = TestHelper.createRequest(`/api/user/organizations/create-membership?profileid=${user.account.profileid}`)
+      req.account = user.account
+      req.session = user.session
+      req.body = {}
+      let errorMessage
+      try {
+        await req.patch()
+      } catch (error) {
+        errorMessage = error.message
+      }
+      assert.strictEqual(errorMessage, 'invalid-contact-email')
+    })
+
+    it('optionally-required posted display-email', async () => {
+      global.requireProfile = true
+      global.userProfileFields = ['display-email']
+      const user = await TestHelper.createUser()
+      const req = TestHelper.createRequest(`/api/user/organizations/create-membership?profileid=${user.account.profileid}`)
+      req.account = user.account
+      req.session = user.session
+      req.body = {}
+      let errorMessage
+      try {
+        await req.patch()
+      } catch (error) {
+        errorMessage = error.message
+      }
+      assert.strictEqual(errorMessage, 'invalid-display-email')
+    })
+
+    it('optionally-required posted location', async () => {
+      global.requireProfile = true
+      global.userProfileFields = ['location']
+      const user = await TestHelper.createUser()
+      const req = TestHelper.createRequest(`/api/user/organizations/create-membership?profileid=${user.account.profileid}`)
+      req.account = user.account
+      req.session = user.session
+      req.body = {}
+      let errorMessage
+      try {
+        await req.patch()
+      } catch (error) {
+        errorMessage = error.message
+      }
+      assert.strictEqual(errorMessage, 'invalid-location')
+    })
+
+    it('optionally-required posted occupation', async () => {
+      global.requireProfile = true
+      global.userProfileFields = ['occupation']
+      const user = await TestHelper.createUser()
+      const req = TestHelper.createRequest(`/api/user/organizations/create-membership?profileid=${user.account.profileid}`)
+      req.account = user.account
+      req.session = user.session
+      req.body = {}
+      let errorMessage
+      try {
+        await req.patch()
+      } catch (error) {
+        errorMessage = error.message
+      }
+      assert.strictEqual(errorMessage, 'invalid-occupation')
+    })
+
+    it('optionally-required posted phone', async () => {
+      global.requireProfile = true
+      global.userProfileFields = ['phone']
+      const user = await TestHelper.createUser()
+      const req = TestHelper.createRequest(`/api/user/organizations/create-membership?profileid=${user.account.profileid}`)
+      req.account = user.account
+      req.session = user.session
+      req.body = {}
+      let errorMessage
+      try {
+        await req.patch()
+      } catch (error) {
+        errorMessage = error.message
+      }
+      assert.strictEqual(errorMessage, 'invalid-phone')
+    })
+
+    it('optionally-required posted dob', async () => {
+      global.requireProfile = true
+      global.userProfileFields = ['dob']
+      const user = await TestHelper.createUser()
+      const req = TestHelper.createRequest(`/api/user/organizations/create-membership?profileid=${user.account.profileid}`)
+      req.account = user.account
+      req.session = user.session
+      req.body = {}
+      let errorMessage
+      try {
+        await req.patch()
+      } catch (error) {
+        errorMessage = error.message
+      }
+      assert.strictEqual(errorMessage, 'invalid-dob')
     })
   })
 
