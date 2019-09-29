@@ -38,12 +38,15 @@ async function renderPage (req, res, messageTemplate) {
       return dashboard.Response.end(req, res, doc)
     }
   }
-
-  const email = req.body ? req.body.email || '' : req.data.organization.email
   const nameField = doc.getElementById('name')
-  nameField.setAttribute('value', req.body ? req.body.name || '' : req.data.organization.name)
   const emailField = doc.getElementById('email')
-  emailField.setAttribute('value', email)
+  if (req.method === 'POST') {
+    nameField.setAttribute('value', req.body.name || '')
+    emailField.setAttribute('value', req.body.email || '')
+  } else {
+    nameField.setAttribute('value', req.data.organization.name)
+    emailField.setAttribute('value', req.data.organization.email)
+  }
   return dashboard.Response.end(req, res, doc)
 }
 
