@@ -1,5 +1,5 @@
 
-> @userdashboard/organizations@1.0.40 test /home/benlowry/SynologyDrive/workspaces/dashboard/organizations
+> @userdashboard/organizations@1.0.42 test /Users/benlowry/Dropbox/_synohome/drive/workspaces/dashboard/organizations
 > mocha src --recursive --no-colors --timeout 120000 --slow 120000
 
 
@@ -437,8 +437,6 @@
       invalid-secret-code
         ✓ missing posted secret-code
         ✓ invalid posted secret-code
-      invalid-secret-code-length
-        ✓ posted secret-code is blank
       invalid-account
         ✓ accessing account is organization owner
         ✓ accessing account is organization member
@@ -686,7 +684,6 @@
       ✓ optional querystring offset (integer)
       ✓ optional querystring all (boolean)
     returns
-      ✓ should reject other accountid
       ✓ array
     configuration
       ✓ environment PAGE_SIZE
@@ -725,5 +722,5 @@
       ✓ object
 
 
-  333 passing (2m)
+  331 passing (9m)
 

@@ -1,4 +1,4 @@
-@userdashboard/dashboard 1.0.50
+@userdashboard/dashboard 1.0.54
 
 
 |----------------------------------------------------------------------------------------------------------------|
@@ -172,8 +172,6 @@
 |                                    |          | invalid-secret-code                                 |
 |                                    |          |  * missing posted secret-code                       |
 |                                    |          |  * invalid posted secret-code                       |
-|                                    |          | invalid-secret-code-length                          |
-|                                    |          |  * posted secret-code is blank                      |
 |                                    |          | invalid-account                                     |
 |                                    |          |  * accessing account is organization owner          |
 |                                    |          |  * accessing account is organization member         |
@@ -363,15 +361,15 @@
 |                                      |          |  * accessing account must be organization member  |
 |--------------------------------------|----------|---------------------------------------------------|
 
-|-----------------------------------------------------------------------------------------------------------------------------------------|
-| /api/user/organizations/organizations                                                                                                   |
-| RECEIVES-------------------------------| RETURNS------------------------| EXCEPTIONS---------------------------| CONFIGURATION----------|
-| required querystring accountid         | should reject other accountid  | invalid-accountid                    | environment PAGE_SIZE  |
-| optional querystring offset (integer)  | array                          |  * missing querystring accountid     |                        |
-| optional querystring all (boolean)     |                                |  * invalid querystring accountid     |                        |
-|                                        |                                | invalid-account                      |                        |
-|                                        |                                |  * ineligible querystring accountid  |                        |
-|----------------------------------------|--------------------------------|--------------------------------------|------------------------|
+|-------------------------------------------------------------------------------------------------------------------|
+| /api/user/organizations/organizations                                                                             |
+| RECEIVES-------------------------------| RETURNS--| EXCEPTIONS---------------------------| CONFIGURATION----------|
+| required querystring accountid         | array    | invalid-accountid                    | environment PAGE_SIZE  |
+| optional querystring offset (integer)  |          |  * missing querystring accountid     |                        |
+| optional querystring all (boolean)     |          |  * invalid querystring accountid     |                        |
+|                                        |          | invalid-account                      |                        |
+|                                        |          |  * ineligible querystring accountid  |                        |
+|----------------------------------------|----------|--------------------------------------|------------------------|
 
 |-----------------------------------------------------------------------------------|
 | /api/user/organizations/organizations-count                                       |
