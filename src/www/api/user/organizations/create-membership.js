@@ -5,12 +5,12 @@ module.exports = {
     if (!req.query || !req.query.invitationid) {
       throw new Error('invalid-invitationid')
     }
-    if (!req.body || !req.body['secret-code']) {
+    if (!req.body) {
       throw new Error('invalid-secret-code')
     }
     req.body['secret-code'] = req.body['secret-code'].trim ? req.body['secret-code'].trim() : req.body['secret-code']
-    if (!req.body['secret-code'].length) {
-      throw new Error('invalid-secret-code-length')
+    if (!req.body['secret-code'] || !req.body['secret-code'].length) {
+      throw new Error('invalid-secret-code')
     }
     const secretCodeHash = await dashboard.Hash.fixedSaltHash(req.body['secret-code'], req.alternativeFixedSalt, req.alternativeDashboardEncryptionKey)
     const invitation = await global.api.user.organizations.OpenInvitation.get(req)
