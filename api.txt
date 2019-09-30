@@ -1,12 +1,13 @@
-@userdashboard/dashboard 1.0.55
-http://localhost:8003
+@userdashboard/dashboard 1.0.56
+
 
 |----------------------------------------------------------------------------------------------------------------|
 | /api/administrator/organizations/account-invitations                                                           |
 | RECEIVES-------------------------------| RETURNS--| EXCEPTIONS------------------------| CONFIGURATION----------|
 | required querystring accountid         | array    | invalid-accountid                 | environment PAGE_SIZE  |
 | optional querystring offset (integer)  |          |  * missing querystring accountid  |                        |
-| optional querystring all (boolean)     |          |  * invalid querystring accountid  |                        |
+| optional querystring limit (integer)   |          |  * invalid querystring accountid  |                        |
+| optional querystring all (boolean)     |          |                                   |                        |
 |----------------------------------------|----------|-----------------------------------|------------------------|
 
 |--------------------------------------------------------------------------------|
@@ -22,7 +23,8 @@ http://localhost:8003
 | RECEIVES-------------------------------| RETURNS--| EXCEPTIONS------------------------| CONFIGURATION----------|
 | required querystring accountid         | array    | invalid-accountid                 | environment PAGE_SIZE  |
 | optional querystring offset (integer)  |          |  * missing querystring accountid  |                        |
-| optional querystring all (boolean)     |          |  * invalid querystring accountid  |                        |
+| optional querystring limit (integer)   |          |  * invalid querystring accountid  |                        |
+| optional querystring all (boolean)     |          |                                   |                        |
 |----------------------------------------|----------|-----------------------------------|------------------------|
 
 |--------------------------------------------------------------------------------|
@@ -38,7 +40,8 @@ http://localhost:8003
 | RECEIVES-------------------------------| RETURNS--| EXCEPTIONS------------------------| CONFIGURATION----------|
 | required querystring accountid         | array    | invalid-accountid                 | environment PAGE_SIZE  |
 | optional querystring offset (integer)  |          |  * missing querystring accountid  |                        |
-| optional querystring all (boolean)     |          |  * invalid querystring accountid  |                        |
+| optional querystring limit (integer)   |          |  * invalid querystring accountid  |                        |
+| optional querystring all (boolean)     |          |                                   |                        |
 |----------------------------------------|----------|-----------------------------------|------------------------|
 
 |--------------------------------------------------------------------------------|
@@ -61,6 +64,7 @@ http://localhost:8003
 | /api/administrator/organizations/invitations                               |
 | RECEIVES-------------------------------| RETURNS--| CONFIGURATION----------|
 | optional querystring offset (integer)  | array    | environment PAGE_SIZE  |
+| optional querystring limit (integer)   |          |                        |
 | optional querystring all (boolean)     |          |                        |
 |----------------------------------------|----------|------------------------|
 
@@ -82,6 +86,7 @@ http://localhost:8003
 | /api/administrator/organizations/memberships                               |
 | RECEIVES-------------------------------| RETURNS--| CONFIGURATION----------|
 | optional querystring offset (integer)  | array    | environment PAGE_SIZE  |
+| optional querystring limit (integer)   |          |                        |
 | optional querystring all (boolean)     |          |                        |
 |----------------------------------------|----------|------------------------|
 
@@ -104,7 +109,8 @@ http://localhost:8003
 | RECEIVES-------------------------------| RETURNS--| EXCEPTIONS-----------------------------| CONFIGURATION----------|
 | required querystring organizationid    | array    | invalid-organizationid                 | environment PAGE_SIZE  |
 | optional querystring offset (integer)  |          |  * missing querystring organizationid  |                        |
-| optional querystring all (boolean)     |          |  * invalid querystring organizationid  |                        |
+| optional querystring limit (integer)   |          |  * invalid querystring organizationid  |                        |
+| optional querystring all (boolean)     |          |                                        |                        |
 |----------------------------------------|----------|----------------------------------------|------------------------|
 
 |------------------------------------------------------------------------------------------|
@@ -119,8 +125,8 @@ http://localhost:8003
 | /api/administrator/organizations/organization-memberships                                                               |
 | RECEIVES-------------------------------| RETURNS--| EXCEPTIONS---------------------------------| CONFIGURATION----------|
 | optional querystring offset (integer)  | array    | invalid-organizationid                     | environment PAGE_SIZE  |
-| optional querystring all (boolean)     |          |  * unspecified querystring organizationid  |                        |
-|                                        |          |  * invalid querystring organizationid      |                        |
+| optional querystring limit (integer)   |          |  * unspecified querystring organizationid  |                        |
+| optional querystring all (boolean)     |          |  * invalid querystring organizationid      |                        |
 |----------------------------------------|----------|--------------------------------------------|------------------------|
 
 |------------------------------------------------------------------------------------------|
@@ -135,6 +141,7 @@ http://localhost:8003
 | /api/administrator/organizations/organizations                             |
 | RECEIVES-------------------------------| RETURNS--| CONFIGURATION----------|
 | optional querystring offset (integer)  | array    | environment PAGE_SIZE  |
+| optional querystring limit (integer)   |          |                        |
 | optional querystring all (boolean)     |          |                        |
 |----------------------------------------|----------|------------------------|
 
@@ -246,8 +253,8 @@ http://localhost:8003
 | RECEIVES-------------------------------| RETURNS--| EXCEPTIONS---------------------------| CONFIGURATION----------|
 | required querystring accountid         | array    | invalid-accountid                    | environment PAGE_SIZE  |
 | optional querystring offset (integer)  |          |  * missing querystring accountid     |                        |
-| optional querystring all (boolean)     |          |  * invalid querystring accountid     |                        |
-|                                        |          | invalid-account                      |                        |
+| optional querystring limit (integer)   |          |  * invalid querystring accountid     |                        |
+| optional querystring all (boolean)     |          | invalid-account                      |                        |
 |                                        |          |  * ineligible querystring accountid  |                        |
 |----------------------------------------|----------|--------------------------------------|------------------------|
 
@@ -276,8 +283,8 @@ http://localhost:8003
 | RECEIVES-------------------------------| RETURNS--| EXCEPTIONS---------------------------| CONFIGURATION----------|
 | required querystring accountid         | array    | invalid-accountid                    | environment PAGE_SIZE  |
 | optional querystring offset (integer)  |          |  * missing querystring accountid     |                        |
-| optional querystring all (boolean)     |          |  * invalid querystring accountid     |                        |
-|                                        |          | invalid-account                      |                        |
+| optional querystring limit (integer)   |          |  * invalid querystring accountid     |                        |
+| optional querystring all (boolean)     |          | invalid-account                      |                        |
 |                                        |          |  * ineligible querystring accountid  |                        |
 |----------------------------------------|----------|--------------------------------------|------------------------|
 
@@ -316,8 +323,8 @@ http://localhost:8003
 | RECEIVES-------------------------------| RETURNS--| EXCEPTIONS--------------------------------------| CONFIGURATION----------|
 | required querystring organizationid    | array    | invalid-organizationid                          | environment PAGE_SIZE  |
 | optional querystring offset (integer)  |          |  * missing querystring organizationid           |                        |
-| optional querystring offset (integer)  |          |  * invalid querystring organizationid           |                        |
-|                                        |          | invalid-account                                 |                        |
+| optional querystring limit (integer)   |          |  * invalid querystring organizationid           |                        |
+| optional querystring all (boolean)     |          | invalid-account                                 |                        |
 |                                        |          |  * accessing account is not organization owner  |                        |
 |----------------------------------------|----------|-------------------------------------------------|------------------------|
 
@@ -346,8 +353,8 @@ http://localhost:8003
 | RECEIVES-------------------------------| RETURNS--| EXCEPTIONS----------------------------------------| CONFIGURATION----------|
 | required querystring organizationid    | array    | invalid-organizationid                            | environment PAGE_SIZE  |
 | optional querystring offset (integer)  |          |  * missing querystring organizationid             |                        |
-| optional querystring offset (integer)  |          |  * invalid querystring organizationid             |                        |
-|                                        |          | invalid-account                                   |                        |
+| optional querystring limit (integer)   |          |  * invalid querystring organizationid             |                        |
+| optional querystring all (boolean)     |          | invalid-account                                   |                        |
 |                                        |          |  * accessing account must be organization member  |                        |
 |----------------------------------------|----------|---------------------------------------------------|------------------------|
 
@@ -366,8 +373,8 @@ http://localhost:8003
 | RECEIVES-------------------------------| RETURNS--| EXCEPTIONS---------------------------| CONFIGURATION----------|
 | required querystring accountid         | array    | invalid-accountid                    | environment PAGE_SIZE  |
 | optional querystring offset (integer)  |          |  * missing querystring accountid     |                        |
-| optional querystring all (boolean)     |          |  * invalid querystring accountid     |                        |
-|                                        |          | invalid-account                      |                        |
+| optional querystring limit (integer)   |          |  * invalid querystring accountid     |                        |
+| optional querystring all (boolean)     |          | invalid-account                      |                        |
 |                                        |          |  * ineligible querystring accountid  |                        |
 |----------------------------------------|----------|--------------------------------------|------------------------|
 

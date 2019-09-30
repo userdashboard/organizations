@@ -1,5 +1,15 @@
 
-> @userdashboard/organizations@1.0.42 test /Users/benlowry/Dropbox/_synohome/drive/workspaces/dashboard/organizations
+> puppeteer@1.20.0 install /Users/benlowry/Dropbox/_synohome/drive/workspaces/dashboard/organizations/node_modules/puppeteer
+> node install.js
+
+Chromium downloaded to /Users/benlowry/Dropbox/_synohome/drive/workspaces/dashboard/organizations/node_modules/puppeteer/.local-chromium/mac-686378
++ puppeteer@1.20.0
++ @userdashboard/dashboard@1.0.56
+added 76 packages from 91 contributors in 40.579s
+found 0 vulnerabilities
+
+
+> @userdashboard/organizations@1.0.43 test /Users/benlowry/Dropbox/_synohome/drive/workspaces/dashboard/organizations
 > mocha src --recursive --no-colors --timeout 120000 --slow 120000
 
 
@@ -256,6 +266,7 @@
         ✓ invalid querystring accountid
     receives
       ✓ optional querystring offset (integer)
+      ✓ optional querystring limit (integer)
       ✓ optional querystring all (boolean)
     returns
       ✓ array
@@ -277,6 +288,7 @@
         ✓ invalid querystring accountid
     receives
       ✓ optional querystring offset (integer)
+      ✓ optional querystring limit (integer)
       ✓ optional querystring all (boolean)
     returns
       ✓ array
@@ -298,6 +310,7 @@
         ✓ invalid querystring accountid
     receives
       ✓ optional querystring offset (integer)
+      ✓ optional querystring limit (integer)
       ✓ optional querystring all (boolean)
     returns
       ✓ array
@@ -321,6 +334,7 @@
   /api/administrator/organizations/invitations
     receives
       ✓ optional querystring offset (integer)
+      ✓ optional querystring limit (integer)
       ✓ optional querystring all (boolean)
     returns
       ✓ array
@@ -342,6 +356,7 @@
   /api/administrator/organizations/memberships
     receives
       ✓ optional querystring offset (integer)
+      ✓ optional querystring limit (integer)
       ✓ optional querystring all (boolean)
     returns
       ✓ array
@@ -363,6 +378,7 @@
         ✓ invalid querystring organizationid
     receives
       ✓ optional querystring offset (integer)
+      ✓ optional querystring limit (integer)
       ✓ optional querystring all (boolean)
     returns
       ✓ array
@@ -384,6 +400,7 @@
         ✓ invalid querystring organizationid
     receives
       ✓ optional querystring offset (integer)
+      ✓ optional querystring limit (integer)
       ✓ optional querystring all (boolean)
     returns
       ✓ array
@@ -405,6 +422,7 @@
   /api/administrator/organizations/organizations
     receives
       ✓ optional querystring offset (integer)
+      ✓ optional querystring limit (integer)
       ✓ optional querystring all (boolean)
     returns
       ✓ array
@@ -530,6 +548,7 @@
         ✓ ineligible querystring accountid
     receives
       ✓ optional querystring offset (integer)
+      ✓ optional querystring limit (integer)
       ✓ optional querystring all (boolean)
     returns
       ✓ array
@@ -565,6 +584,7 @@
         ✓ ineligible querystring accountid
     receives
       ✓ optional querystring offset (integer)
+      ✓ optional querystring limit (integer)
       ✓ optional querystring all (boolean)
     returns
       ✓ array
@@ -612,7 +632,8 @@
         ✓ accessing account is not organization owner
     receives
       ✓ optional querystring offset (integer)
-      ✓ optional querystring offset (integer)
+      ✓ optional querystring limit (integer)
+      ✓ optional querystring all (boolean)
     returns
       ✓ array
     configuration
@@ -647,7 +668,8 @@
         ✓ accessing account must be organization member
     receives
       ✓ optional querystring offset (integer)
-      ✓ optional querystring offset (integer)
+      ✓ optional querystring limit (integer)
+      ✓ optional querystring all (boolean)
     returns
       ✓ array
     configuration
@@ -682,6 +704,7 @@
         ✓ ineligible querystring accountid
     receives
       ✓ optional querystring offset (integer)
+      ✓ optional querystring limit (integer)
       ✓ optional querystring all (boolean)
     returns
       ✓ array
@@ -722,5 +745,5 @@
       ✓ object
 
 
-  331 passing (9m)
+  344 passing (9m)
 
