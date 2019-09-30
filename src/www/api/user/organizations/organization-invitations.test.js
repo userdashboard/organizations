@@ -97,7 +97,32 @@ describe('/api/user/organizations/organization-invitations', () => {
       }
     })
 
-    it('optional querystring offset (integer)', async () => {
+    it('optional querystring limit (integer)', async () => {
+      const limit = 1
+      const owner = await TestHelper.createUser()
+      global.userProfileFields = ['display-name', 'display-email']
+      await TestHelper.createProfile(owner, {
+        'display-name': owner.profile.firstName,
+        'display-email': owner.profile.contactEmail
+      })
+      await TestHelper.createOrganization(owner, {
+        email: owner.profile.displayEmail,
+        name: 'My organization',
+        profileid: owner.profile.profileid
+      })
+      const invitations = []
+      for (let i = 0, len = global.pageSize + 1; i < len; i++) {
+        await TestHelper.createInvitation(owner)
+        invitations.unshift(owner.invitation)
+      }
+      const req = TestHelper.createRequest(`/api/user/organizations/organization-invitations?organizationid=${owner.organization.organizationid}&limit=${limit}`)
+      req.account = owner.account
+      req.session = owner.session
+      const invitationsNow = await req.get()
+      assert.strictEqual(invitationsNow.length, limit)
+    })
+
+    it('optional querystring all (boolean)', async () => {
       const owner = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {

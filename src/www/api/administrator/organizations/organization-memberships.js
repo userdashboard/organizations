@@ -14,7 +14,8 @@ module.exports = {
       membershipids = await dashboard.StorageList.listAll(`${req.appid}/organization/memberships/${req.query.organizationid}`)
     } else {
       const offset = req.query.offset ? parseInt(req.query.offset, 10) : 0
-      membershipids = await dashboard.StorageList.list(`${req.appid}/organization/memberships/${req.query.organizationid}`, offset)
+      const limit = req.query.limit ? parseInt(req.query.limit, 10) : global.pageSize
+      membershipids = await dashboard.StorageList.list(`${req.appid}/organization/memberships/${req.query.organizationid}`, offset, limit)
     }
     if (!membershipids || !membershipids.length) {
       return null

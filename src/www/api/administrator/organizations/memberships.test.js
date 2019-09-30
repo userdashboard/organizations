@@ -42,6 +42,42 @@ describe('/api/administrator/organizations/memberships', () => {
       }
     })
 
+    it('optional querystring limit (integer)', async () => {
+      const limit = 1
+      const administrator = await TestHelper.createAdministrator()
+      const memberships = []
+      for (let i = 0, len = global.pageSize + 1; i < len; i++) {
+        global.userProfileFields = ['contact-email', 'full-name']
+        const owner = await TestHelper.createUser()
+        global.userProfileFields = ['display-email', 'display-name']
+        await TestHelper.createProfile(owner, {
+          'display-name': owner.profile.firstName,
+          'display-email': owner.profile.contactEmail
+        })
+        await TestHelper.createOrganization(owner, {
+          email: owner.profile.displayEmail,
+          name: 'My organization',
+          profileid: owner.profile.profileid
+        })
+        memberships.unshift(owner.membership)
+        global.userProfileFields = ['contact-email', 'full-name']
+        const user = await TestHelper.createUser()
+        global.userProfileFields = ['display-email', 'display-name']
+        await TestHelper.createProfile(user, {
+          'display-name': user.profile.firstName,
+          'display-email': user.profile.contactEmail
+        })
+        await TestHelper.createInvitation(owner)
+        await TestHelper.acceptInvitation(user, owner)
+        memberships.unshift(user.membership)
+      }
+      const req = TestHelper.createRequest(`/api/administrator/organizations/memberships?limit=${limit}`)
+      req.account = administrator.account
+      req.session = administrator.session
+      const membershipsNow = await req.get()
+      assert.strictEqual(membershipsNow.length, limit)
+    })
+
     it('optional querystring all (boolean)', async () => {
       const administrator = await TestHelper.createAdministrator()
       const memberships = []
