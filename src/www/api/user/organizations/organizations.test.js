@@ -35,7 +35,7 @@ describe('/api/user/organizations/organizations', () => {
     })
 
     describe('invalid-account', () => {
-      it('ineligible querystring accountid', async () => {
+      it('ineligible accessing account', async () => {
         const owner = await TestHelper.createUser()
         const user = await TestHelper.createUser()
         global.userProfileFields = ['display-name', 'display-email']
