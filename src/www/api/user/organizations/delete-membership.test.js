@@ -2,7 +2,7 @@
 const assert = require('assert')
 const TestHelper = require('../../../../../test-helper.js')
 
-describe('/api/user/organizations/delete-membership', async () => {
+describe('/api/user/organizations/delete-membership', () => {
   describe('exceptions', () => {
     describe('invalid-membershipid', () => {
       it('missing querystring membershipid', async () => {

@@ -2,9 +2,9 @@
 const assert = require('assert')
 const TestHelper = require('../../../../../test-helper.js')
 
-describe('/api/administrator/organizations/account-memberships-count', async () => {
+describe('/api/administrator/organizations/account-memberships-count', () => {
   describe('exceptions', () => {
-    describe('invalid-accountid', async () => {
+    describe('invalid-accountid', () => {
       it('missing querystring accountid', async () => {
         const administrator = await TestHelper.createOwner()
         const req = TestHelper.createRequest('/api/administrator/organizations/account-memberships-count')

@@ -2,7 +2,7 @@
 const assert = require('assert')
 const TestHelper = require('../../../../../test-helper.js')
 
-describe('/api/administrator/organizations/organizations-count', async () => {
+describe('/api/administrator/organizations/organizations-count', () => {
   describe('returns', () => {
     it('integer', async () => {
       const administrator = await TestHelper.createAdministrator()

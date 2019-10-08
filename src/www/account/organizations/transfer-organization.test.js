@@ -2,7 +2,7 @@
 const assert = require('assert')
 const TestHelper = require('../../../../test-helper.js')
 
-describe('/account/organizations/transfer-organization', async () => {
+describe('/account/organizations/transfer-organization', () => {
   describe('TransferOrganization#BEFORE', () => {
     it('should require owner', async () => {
       const owner = await TestHelper.createUser()

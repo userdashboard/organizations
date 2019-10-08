@@ -4,7 +4,7 @@ const TestHelper = require('../../../../../test-helper.js')
 
 describe('/api/administrator/organizations/organization-memberships', () => {
   describe('exceptions', () => {
-    describe('invalid-organizationid', async () => {
+    describe('invalid-organizationid', () => {
       it('unspecified querystring organizationid', async () => {
         const administrator = await TestHelper.createOwner()
         const req = TestHelper.createRequest('/api/administrator/organizations/organization-memberships')

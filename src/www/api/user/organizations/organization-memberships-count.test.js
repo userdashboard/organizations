@@ -2,7 +2,7 @@
 const assert = require('assert')
 const TestHelper = require('../../../../../test-helper.js')
 
-describe('/api/user/organizations/organization-memberships-count', async () => {
+describe('/api/user/organizations/organization-memberships-count', () => {
   describe('exceptions', () => {
     describe('invalid-organizationid', () => {
       it('missing querystring organizationid', async () => {

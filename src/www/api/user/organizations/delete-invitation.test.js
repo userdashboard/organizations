@@ -2,7 +2,7 @@
 const assert = require('assert')
 const TestHelper = require('../../../../../test-helper.js')
 
-describe('/api/user/organizations/delete-invitation', async () => {
+describe('/api/user/organizations/delete-invitation', () => {
   describe('exceptions', () => {
     describe('invalid-invitationid', () => {
       it('missing querystring invitationid', async () => {

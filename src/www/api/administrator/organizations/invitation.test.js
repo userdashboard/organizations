@@ -4,7 +4,7 @@ const TestHelper = require('../../../../../test-helper.js')
 
 describe('/api/administrator/organizations/invitation', () => {
   describe('exceptions', () => {
-    describe('invalid-invitationid', async () => {
+    describe('invalid-invitationid', () => {
       it('missing querystring invitationid', async () => {
         const administrator = await TestHelper.createOwner()
         const req = TestHelper.createRequest('/api/administrator/organizations/invitation')
