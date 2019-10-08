@@ -1,16 +1,10 @@
-LATEST=`npm info | grep latest`
-LATEST="${LATEST/latest/}"
-LATEST="${LATEST/: /}"
-PACKAGE=`cat package.json | grep version`
-PACKAGE="${PACKAGE/\"version\": \"/}"
-PACKAGE="${PACKAGE/\",/}"
-PACKAGE="${PACKAGE/  /}"
-echo "PACKAGE $PACKAGE LATEST $LATEST |"
-if [ "$LATEST" == "$PACKAGE" ]; then
-  echo "EQUAL, patching"
+if [ "$1" == "version" ]; then
   VERSION=`npm version patch` || exit 1
 else
-  VERSION=$PACKAGE
+  PACKAGE=`cat package.json | grep version`
+  PACKAGE="${PACKAGE/\"version\": \"/}"
+  PACKAGE="${PACKAGE/\",/}"
+  PACKAGE="${PACKAGE/  /}"
 fi
 bash test.sh > tests.txt || exit 1
 FAST_START=true NODE_ENV=sitemap node main.js || exit 1
