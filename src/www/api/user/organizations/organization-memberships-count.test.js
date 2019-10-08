@@ -82,29 +82,22 @@ describe('/api/user/organizations/organization-memberships-count', () => {
         name: 'My organization',
         profileid: owner.profile.profileid
       })
-      global.userProfileFields = ['full-name', 'contact-email']
-      const user1 = await TestHelper.createUser()
-      global.userProfileFields = ['display-name', 'display-email']
-      await TestHelper.createProfile(user1, {
-        'display-name': user1.profile.firstName,
-        'display-email': user1.profile.contactEmail
-      })
-      await await TestHelper.createInvitation(owner)
-      await TestHelper.acceptInvitation(user1, owner)
-      global.userProfileFields = ['contact-email', 'full-name']
-      const user2 = await TestHelper.createUser()
-      global.userProfileFields = ['display-name', 'display-email']
-      await TestHelper.createProfile(user2, {
-        'display-name': user2.profile.firstName,
-        'display-email': user2.profile.contactEmail
-      })
-      await await TestHelper.createInvitation(owner)
-      await TestHelper.acceptInvitation(user2, owner)
+      for (let i = 0, len = global.pageSize + 1; i < len; i++) {
+        global.userProfileFields = ['full-name', 'contact-email']
+        const user = await TestHelper.createUser()
+        global.userProfileFields = ['display-name', 'display-email']
+        await TestHelper.createProfile(user, {
+          'display-name': user.profile.firstName,
+          'display-email': user.profile.contactEmail
+        })
+        await TestHelper.createInvitation(owner)
+        await TestHelper.acceptInvitation(user, owner)
+      }
       const req = TestHelper.createRequest(`/api/user/organizations/organization-memberships-count?organizationid=${owner.organization.organizationid}`)
       req.account = owner.account
       req.session = owner.session
       const result = await req.get()
-      assert.strictEqual(result, 3)
+      assert.strictEqual(result, global.pageSize + 2)
     })
   })
 })

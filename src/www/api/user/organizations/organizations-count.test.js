@@ -77,26 +77,18 @@ describe('/api/user/organizations/organizations-count', () => {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail
       })
-      await TestHelper.createOrganization(owner, {
-        email: owner.profile.displayEmail,
-        name: 'My organization',
-        profileid: owner.profile.profileid
-      })
-      await TestHelper.createOrganization(owner, {
-        email: owner.profile.displayEmail,
-        name: 'My organization',
-        profileid: owner.profile.profileid
-      })
-      await TestHelper.createOrganization(owner, {
-        email: owner.profile.displayEmail,
-        name: 'My organization',
-        profileid: owner.profile.profileid
-      })
+      for (let i = 0, len = global.pageSize + 1; i < len; i++) {
+        await TestHelper.createOrganization(owner, {
+          email: owner.profile.displayEmail,
+          name: 'My organization',
+          profileid: owner.profile.profileid
+        })
+      }
       const req = TestHelper.createRequest(`/api/user/organizations/organizations-count?accountid=${owner.account.accountid}`)
       req.account = owner.account
       req.session = owner.session
       const result = await req.get()
-      assert.strictEqual(result, 3)
+      assert.strictEqual(result, global.pageSize + 1)
     })
   })
 })

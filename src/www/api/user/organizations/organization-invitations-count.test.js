@@ -88,7 +88,7 @@ describe('/api/user/organizations/organization-invitations-count', () => {
       req.account = owner.account
       req.session = owner.session
       const result = await req.get()
-      assert.strictEqual(result, 2)
+      assert.strictEqual(result, global.pageSize)
     })
   })
 })

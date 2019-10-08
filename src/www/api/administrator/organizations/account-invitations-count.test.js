@@ -44,7 +44,7 @@ describe('/api/administrator/organizations/account-invitations-count', () => {
         'display-name': user.profile.firstName,
         'display-email': user.profile.contactEmail
       })
-      for (let i = 0, len = 3; i < len; i++) {
+      for (let i = 0, len = global.pageSize + 1; i < len; i++) {
         global.userProfileFields = ['contact-email', 'full-name']
         const owner = await TestHelper.createUser()
         global.userProfileFields = ['display-email', 'display-name']
@@ -64,7 +64,7 @@ describe('/api/administrator/organizations/account-invitations-count', () => {
       req.account = administrator.account
       req.session = administrator.session
       const result = await req.get()
-      assert.strictEqual(result, 3)
+      assert.strictEqual(result, global.pageSize + 1)
     })
   })
 })

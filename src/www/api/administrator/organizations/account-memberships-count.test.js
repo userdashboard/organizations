@@ -74,7 +74,7 @@ describe('/api/administrator/organizations/account-memberships-count', () => {
       req.account = administrator.account
       req.session = administrator.session
       const result = await req.get()
-      assert.strictEqual(result, 2)
+      assert.strictEqual(result, global.pageSize)
     })
   })
 })

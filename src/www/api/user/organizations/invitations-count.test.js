@@ -82,14 +82,14 @@ describe('/api/user/organizations/invitations-count', () => {
         name: 'My organization',
         profileid: owner.profile.profileid
       })
-      await TestHelper.createInvitation(owner)
-      await TestHelper.createInvitation(owner)
-      await TestHelper.createInvitation(owner)
+      for (let i = 0, len = global.pageSize + 1; i < len; i++) {
+        await TestHelper.createInvitation(owner)
+      }
       const req = TestHelper.createRequest(`/api/user/organizations/invitations-count?accountid=${owner.account.accountid}`)
       req.account = owner.account
       req.session = owner.session
       const result = await req.get()
-      assert.strictEqual(result, 3)
+      assert.strictEqual(result, global.pageSize + 1)
     })
   })
 })
