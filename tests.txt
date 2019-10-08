@@ -1,15 +1,5 @@
 
-> puppeteer@1.20.0 install /Users/benlowry/Dropbox/_synohome/drive/workspaces/dashboard/organizations/node_modules/puppeteer
-> node install.js
-
-Chromium downloaded to /Users/benlowry/Dropbox/_synohome/drive/workspaces/dashboard/organizations/node_modules/puppeteer/.local-chromium/mac-686378
-+ puppeteer@1.20.0
-+ @userdashboard/dashboard@1.0.56
-added 76 packages from 91 contributors in 40.579s
-found 0 vulnerabilities
-
-
-> @userdashboard/organizations@1.0.43 test /Users/benlowry/Dropbox/_synohome/drive/workspaces/dashboard/organizations
+> @userdashboard/organizations@1.0.43 test /Users/benlowry/SynologyDrive/workspaces/dashboard/organizations
 > mocha src --recursive --no-colors --timeout 120000 --slow 120000
 
 
@@ -535,7 +525,7 @@ found 0 vulnerabilities
         ✓ missing querystring accountid
         ✓ invalid querystring accountid
       invalid-account
-        ✓ ineligible querystring accountid
+        ✓ ineligible accessing account
     returns
       ✓ integer
 
@@ -545,7 +535,7 @@ found 0 vulnerabilities
         ✓ missing querystring accountid
         ✓ invalid querystring accountid
       invalid-account
-        ✓ ineligible querystring accountid
+        ✓ ineligible accessing account
     receives
       ✓ optional querystring offset (integer)
       ✓ optional querystring limit (integer)
@@ -571,7 +561,7 @@ found 0 vulnerabilities
         ✓ missing querystring accountid
         ✓ invalid querystring accountid
       invalid-account
-        ✓ ineligible querystring accountid
+        ✓ ineligible accessing account
     returns
       ✓ integer
 
@@ -581,7 +571,7 @@ found 0 vulnerabilities
         ✓ missing querystring accountid
         ✓ invalid querystring accountid
       invalid-account
-        ✓ ineligible querystring accountid
+        ✓ ineligible accessing account
     receives
       ✓ optional querystring offset (integer)
       ✓ optional querystring limit (integer)
@@ -691,7 +681,7 @@ found 0 vulnerabilities
         ✓ missing querystring accountid
         ✓ invalid querystring accountid
       invalid-account
-        ✓ ineligible querystring accountid
+        ✓ ineligible accessing account
     returns
       ✓ integer
 
@@ -701,7 +691,7 @@ found 0 vulnerabilities
         ✓ missing querystring accountid
         ✓ invalid querystring accountid
       invalid-account
-        ✓ ineligible querystring accountid
+        ✓ ineligible accessing account
     receives
       ✓ optional querystring offset (integer)
       ✓ optional querystring limit (integer)
