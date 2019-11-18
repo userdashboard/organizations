@@ -9,6 +9,7 @@ Dashboard is a parallel web application that accompanies your web app, subscript
 Organizations module is ready to use.  The following work remains:
 
 - translations required for everything in /languages please help
+- administrator UI is very minimal
 
 ## Import this module
 
