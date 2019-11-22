@@ -72,6 +72,7 @@ describe('/api/user/organizations/organizations', () => {
   describe('receives', () => {
     it('optional querystring offset (integer)', async () => {
       const offset = 1
+      global.delayDiskWrites = true
       const owner = await TestHelper.createUser()
       global.userProfileFields = ['display-email', 'display-name']
       await TestHelper.createProfile(owner, {
@@ -85,14 +86,14 @@ describe('/api/user/organizations/organizations', () => {
           name: 'My organization',
           profileid: owner.profile.profileid
         })
-        organizations.unshift(owner.organization)
+        organizations.unshift(owner.organization.organizationid)
       }
       const req = TestHelper.createRequest(`/api/user/organizations/organizations?accountid=${owner.account.accountid}&offset=${offset}`)
       req.account = owner.account
       req.session = owner.session
       const codesNow = await req.get()
       for (let i = 0, len = global.pageSize; i < len; i++) {
-        assert.strictEqual(codesNow[i].organizationid, organizations[offset + i].organizationid)
+        assert.strictEqual(codesNow[i].organizationid, organizations[offset + i])
       }
     })
 
@@ -111,7 +112,7 @@ describe('/api/user/organizations/organizations', () => {
           name: 'My organization',
           profileid: owner.profile.profileid
         })
-        organizations.unshift(owner.organization)
+        organizations.unshift(owner.organization.organizationid)
       }
       const req = TestHelper.createRequest(`/api/user/organizations/organizations?accountid=${owner.account.accountid}&limit=${limit}`)
       req.account = owner.account
@@ -134,15 +135,13 @@ describe('/api/user/organizations/organizations', () => {
           name: 'My organization',
           profileid: owner.profile.profileid
         })
-        organizations.unshift(owner.organization)
+        organizations.unshift(owner.organization.organizationid)
       }
       const req = TestHelper.createRequest(`/api/user/organizations/organizations?accountid=${owner.account.accountid}&all=true`)
       req.account = owner.account
       req.session = owner.session
-      const codesNow = await req.get()
-      for (let i = 0, len = global.pageSize + 1; i < len; i++) {
-        assert.strictEqual(codesNow[i].organizationid, organizations[i].organizationid)
-      }
+      const membershipsNow = await req.get()
+      assert.strictEqual(membershipsNow.length, organizations.length)
     })
   })
 
@@ -154,22 +153,18 @@ describe('/api/user/organizations/organizations', () => {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail
       })
-      const organizations = []
       for (let i = 0, len = global.pageSize + 1; i < len; i++) {
         await TestHelper.createOrganization(owner, {
           email: owner.profile.displayEmail,
           name: 'My organization',
           profileid: owner.profile.profileid
         })
-        organizations.unshift(owner.organization)
       }
       const req = TestHelper.createRequest(`/api/user/organizations/organizations?accountid=${owner.account.accountid}`)
       req.account = owner.account
       req.session = owner.session
       const organizationsNow = await req.get()
-      for (let i = 0, len = global.pageSize; i < len; i++) {
-        assert.strictEqual(organizationsNow[i].organizationid, organizations[i].organizationid)
-      }
+      assert.strictEqual(organizationsNow.length, global.pageSize)
     })
   })
 

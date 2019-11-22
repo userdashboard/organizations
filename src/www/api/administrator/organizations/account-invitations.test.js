@@ -37,6 +37,7 @@ describe('/api/administrator/organizations/account-invitations', () => {
 
   describe('receives', () => {
     it('optional querystring offset (integer)', async () => {
+      global.delayDiskWrites = true
       const offset = 1
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
@@ -53,14 +54,14 @@ describe('/api/administrator/organizations/account-invitations', () => {
       const invitations = []
       for (let i = 0, len = global.pageSize + 1; i < len; i++) {
         await TestHelper.createInvitation(owner)
-        invitations.unshift(owner.invitation)
+        invitations.unshift(owner.invitation.invitationid)
       }
       const req = TestHelper.createRequest(`/api/administrator/organizations/account-invitations?accountid=${owner.account.accountid}&offset=${offset}`)
       req.account = administrator.account
       req.session = administrator.session
       const invitationsNow = await req.get()
       for (let i = 0, len = global.pageSize; i < len; i++) {
-        assert.strictEqual(invitationsNow[i].invitationid, invitations[offset + i].invitationid)
+        assert.strictEqual(invitationsNow[i].invitationid, invitations[offset + i])
       }
     })
 
@@ -81,7 +82,7 @@ describe('/api/administrator/organizations/account-invitations', () => {
       const invitations = []
       for (let i = 0, len = global.pageSize + 1; i < len; i++) {
         await TestHelper.createInvitation(owner)
-        invitations.unshift(owner.invitation)
+        invitations.unshift(owner.invitation.invitationid)
       }
       const req = TestHelper.createRequest(`/api/administrator/organizations/account-invitations?accountid=${owner.account.accountid}&limit=${limit}`)
       req.account = administrator.account
@@ -106,15 +107,13 @@ describe('/api/administrator/organizations/account-invitations', () => {
       const invitations = []
       for (let i = 0, len = global.pageSize + 1; i < len; i++) {
         await TestHelper.createInvitation(owner)
-        invitations.unshift(owner.invitation)
+        invitations.unshift(owner.invitation.invitationid)
       }
       const req = TestHelper.createRequest(`/api/administrator/organizations/account-invitations?accountid=${owner.account.accountid}&all=true`)
       req.account = administrator.account
       req.session = administrator.session
       const invitationsNow = await req.get()
-      for (let i = 0, len = global.pageSize + 1; i < len; i++) {
-        assert.strictEqual(invitationsNow[i].invitationid, invitations[i].invitationid)
-      }
+      assert.strictEqual(invitationsNow.length, invitations.length)
     })
   })
 

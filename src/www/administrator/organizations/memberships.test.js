@@ -103,6 +103,7 @@ describe('/administrator/organizations/memberships', () => {
     })
 
     it('should enforce specified offset', async () => {
+      global.delayDiskWrites = true
       const offset = 1
       const administrator = await TestHelper.createAdministrator()
       const user = await TestHelper.createUser()
@@ -125,10 +126,10 @@ describe('/administrator/organizations/memberships', () => {
           name: 'My organization',
           profileid: owner.profile.profileid
         })
-        memberships.unshift(owner.membership)
+        memberships.unshift(owner.membership.membershipid)
         await TestHelper.createInvitation(owner)
         await TestHelper.acceptInvitation(user, owner)
-        memberships.unshift(user.membership)
+        memberships.unshift(user.membership.membershipid)
       }
       const req = TestHelper.createRequest(`/administrator/organizations/memberships?offset=${offset}`)
       req.account = administrator.account
@@ -136,7 +137,7 @@ describe('/administrator/organizations/memberships', () => {
       const page = await req.get()
       const doc = TestHelper.extractDoc(page)
       for (let i = 0, len = global.pageSize; i < len; i++) {
-        assert.strictEqual(doc.getElementById(memberships[offset + i].membershipid).tag, 'tr')
+        assert.strictEqual(doc.getElementById(memberships[offset + i]).tag, 'tr')
       }
     })
 

@@ -105,6 +105,7 @@ describe('/account/organizations/organization-invitations', () => {
     })
 
     it('should enforce specified offset', async () => {
+      global.delayDiskWrites = true
       const offset = 1
       const owner = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']
@@ -120,7 +121,7 @@ describe('/account/organizations/organization-invitations', () => {
       const invitations = []
       for (let i = 0, len = global.pageSize + 1; i < len; i++) {
         await TestHelper.createInvitation(owner)
-        invitations.unshift(owner.invitation)
+        invitations.unshift(owner.invitation.invitationid)
       }
       const req = TestHelper.createRequest(`/account/organizations/organization-invitations?organizationid=${owner.organization.organizationid}&offset=${offset}`)
       req.account = owner.account
@@ -128,7 +129,7 @@ describe('/account/organizations/organization-invitations', () => {
       const page = await req.get()
       const doc = TestHelper.extractDoc(page)
       for (let i = 0, len = global.pageSize; i < len; i++) {
-        assert.strictEqual(doc.getElementById(invitations[offset + i].invitationid).tag, 'tr')
+        assert.strictEqual(doc.getElementById(invitations[offset + i]).tag, 'tr')
       }
     })
   })

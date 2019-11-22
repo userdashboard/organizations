@@ -6,6 +6,7 @@ describe('/api/administrator/organizations/invitations', () => {
   describe('receives', () => {
     it('optional querystring offset (integer)', async () => {
       const offset = 1
+      global.delayDiskWrites = true
       const administrator = await TestHelper.createAdministrator()
       const invitations = []
       for (let i = 0, len = global.pageSize + 1; i < len; i++) {
@@ -22,14 +23,14 @@ describe('/api/administrator/organizations/invitations', () => {
           profileid: user.profile.profileid
         })
         await TestHelper.createInvitation(user, user.organization.organizationid)
-        invitations.unshift(user.invitation)
+        invitations.unshift(user.invitation.invitationid)
       }
       const req = TestHelper.createRequest(`/api/administrator/organizations/invitations?offset=${offset}`)
       req.account = administrator.account
       req.session = administrator.session
       const invitationsNow = await req.get()
       for (let i = 0, len = global.pageSize; i < len; i++) {
-        assert.strictEqual(invitationsNow[i].invitationid, invitations[offset + i].invitationid)
+        assert.strictEqual(invitationsNow[i].invitationid, invitations[offset + i])
       }
     })
 
@@ -51,7 +52,7 @@ describe('/api/administrator/organizations/invitations', () => {
           profileid: user.profile.profileid
         })
         await TestHelper.createInvitation(user, user.organization.organizationid)
-        invitations.unshift(user.invitation)
+        invitations.unshift(user.invitation.invitationid)
       }
       const req = TestHelper.createRequest(`/api/administrator/organizations/invitations?limit=${limit}`)
       req.account = administrator.account
@@ -77,15 +78,13 @@ describe('/api/administrator/organizations/invitations', () => {
           profileid: user.profile.profileid
         })
         await TestHelper.createInvitation(user, user.organization.organizationid)
-        invitations.unshift(user.invitation)
+        invitations.unshift(user.invitation.invitationid)
       }
       const req = TestHelper.createRequest('/api/administrator/organizations/invitations?all=true')
       req.account = administrator.account
       req.session = administrator.session
       const invitationsNow = await req.get()
-      for (let i = 0, len = global.pageSize + 1; i < len; i++) {
-        assert.strictEqual(invitationsNow[i].invitationid, invitations[i].invitationid)
-      }
+      assert.strictEqual(invitationsNow.length, invitations.length)
     })
   })
   describe('returns', () => {
@@ -102,18 +101,14 @@ describe('/api/administrator/organizations/invitations', () => {
         name: 'My organization',
         profileid: owner.profile.profileid
       })
-      const invitations = []
       for (let i = 0, len = global.pageSize + 1; i < len; i++) {
         await TestHelper.createInvitation(owner)
-        invitations.unshift(owner.invitation)
       }
       const req = TestHelper.createRequest('/api/administrator/organizations/invitations')
       req.account = administrator.account
       req.session = administrator.session
       const invitationsNow = await req.get()
-      for (let i = 0, len = global.pageSize; i < len; i++) {
-        assert.strictEqual(invitationsNow[i].invitationid, invitations[i].invitationid)
-      }
+      assert.strictEqual(invitationsNow.length, global.pageSize)
     })
   })
 

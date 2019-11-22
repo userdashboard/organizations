@@ -72,6 +72,7 @@ describe('/api/user/organizations/organization-memberships', () => {
   describe('receives', () => {
     it('optional querystring offset (integer)', async () => {
       const offset = 1
+      global.delayDiskWrites = true
       const owner = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
@@ -94,14 +95,14 @@ describe('/api/user/organizations/organization-memberships', () => {
         })
         await TestHelper.createInvitation(owner)
         await TestHelper.acceptInvitation(user, owner)
-        memberships.unshift(user.membership)
+        memberships.unshift(user.membership.membershipid)
       }
       const req = TestHelper.createRequest(`/api/user/organizations/organization-memberships?organizationid=${owner.organization.organizationid}&offset=${offset}`)
       req.account = owner.account
       req.session = owner.session
       const membershipsNow = await req.get()
       for (let i = 0, len = global.pageSize; i < len; i++) {
-        assert.strictEqual(membershipsNow[i].membershipid, memberships[offset + i].membershipid)
+        assert.strictEqual(membershipsNow[i].membershipid, memberships[offset + i])
       }
     })
 
@@ -129,7 +130,7 @@ describe('/api/user/organizations/organization-memberships', () => {
         })
         await TestHelper.createInvitation(owner)
         await TestHelper.acceptInvitation(user, owner)
-        memberships.unshift(user.membership)
+        memberships.unshift(user.membership.membershipid)
       }
       const req = TestHelper.createRequest(`/api/user/organizations/organization-memberships?organizationid=${owner.organization.organizationid}&limit=${limit}`)
       req.account = owner.account
@@ -161,15 +162,13 @@ describe('/api/user/organizations/organization-memberships', () => {
         })
         await TestHelper.createInvitation(owner)
         await TestHelper.acceptInvitation(user, owner)
-        memberships.unshift(user.membership)
+        memberships.unshift(user.membership.membershipid)
       }
       const req = TestHelper.createRequest(`/api/user/organizations/organization-memberships?organizationid=${owner.organization.organizationid}&all=true`)
       req.account = owner.account
       req.session = owner.session
       const membershipsNow = await req.get()
-      for (let i = 0, len = global.pageSize + 1; i < len; i++) {
-        assert.strictEqual(membershipsNow[i].membershipid, memberships[i].membershipid)
-      }
+      assert.strictEqual(membershipsNow.length, memberships.length)
     })
   })
   describe('returns', () => {
@@ -185,7 +184,6 @@ describe('/api/user/organizations/organization-memberships', () => {
         name: 'My organization',
         profileid: owner.profile.profileid
       })
-      const memberships = [owner.membership]
       for (let i = 0, len = global.pageSize + 1; i < len; i++) {
         global.userProfileFields = ['contact-email', 'full-name']
         const user = await TestHelper.createUser()
@@ -196,15 +194,12 @@ describe('/api/user/organizations/organization-memberships', () => {
         })
         await TestHelper.createInvitation(owner)
         await TestHelper.acceptInvitation(user, owner)
-        memberships.unshift(user.membership)
       }
       const req = TestHelper.createRequest(`/api/user/organizations/organization-memberships?organizationid=${owner.organization.organizationid}`)
       req.account = owner.account
       req.session = owner.session
       const membershipsNow = await req.get()
-      for (let i = 0, len = global.pageSize; i < len; i++) {
-        assert.strictEqual(membershipsNow[i].membershipid, memberships[i].membershipid)
-      }
+      assert.strictEqual(membershipsNow.length, global.pageSize)
     })
   })
 

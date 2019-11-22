@@ -37,6 +37,7 @@ describe('/api/administrator/organizations/account-memberships', () => {
 
   describe('receives', () => {
     it('optional querystring offset (integer)', async () => {
+       global.delayDiskWrites = true
       const offset = 1
       const administrator = await TestHelper.createAdministrator()
       const user = await TestHelper.createUser()
@@ -61,14 +62,14 @@ describe('/api/administrator/organizations/account-memberships', () => {
         })
         await TestHelper.createInvitation(owner)
         await TestHelper.acceptInvitation(user, owner)
-        memberships.unshift(user.membership)
+        memberships.unshift(user.membership.membershipid)
       }
       const req = TestHelper.createRequest(`/api/administrator/organizations/account-memberships?accountid=${user.account.accountid}&offset=${offset}`)
       req.account = administrator.account
       req.session = administrator.session
       const membershipsNow = await req.get()
       for (let i = 0, len = global.pageSize; i < len; i++) {
-        assert.strictEqual(membershipsNow[i].membershipid, memberships[offset + i].membershipid)
+        assert.strictEqual(membershipsNow[i].membershipid, memberships[offset + i])
       }
     })
 
@@ -97,7 +98,7 @@ describe('/api/administrator/organizations/account-memberships', () => {
         })
         await TestHelper.createInvitation(owner)
         await TestHelper.acceptInvitation(user, owner)
-        memberships.unshift(user.membership)
+        memberships.unshift(user.membership.membershipid)
       }
       const req = TestHelper.createRequest(`/api/administrator/organizations/account-memberships?accountid=${user.account.accountid}&limit=${limit}`)
       req.account = administrator.account
@@ -130,15 +131,13 @@ describe('/api/administrator/organizations/account-memberships', () => {
         })
         await TestHelper.createInvitation(owner)
         await TestHelper.acceptInvitation(user, owner)
-        memberships.unshift(user.membership)
+        memberships.unshift(user.membership.membershipid)
       }
       const req = TestHelper.createRequest(`/api/administrator/organizations/account-memberships?accountid=${user.account.accountid}&all=true`)
       req.account = administrator.account
       req.session = administrator.session
       const membershipsNow = await req.get()
-      for (let i = 0, len = global.pageSize + 1; i < len; i++) {
-        assert.strictEqual(membershipsNow[i].membershipid, memberships[i].membershipid)
-      }
+      assert.strictEqual(membershipsNow.length, memberships.length)
     })
   })
   describe('returns', () => {

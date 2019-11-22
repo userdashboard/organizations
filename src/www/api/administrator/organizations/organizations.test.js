@@ -6,6 +6,7 @@ describe('/api/administrator/organizations/organizations', () => {
   describe('receives', () => {
     it('optional querystring offset (integer)', async () => {
       const offset = 1
+      global.delayDiskWrites = true
       const administrator = await TestHelper.createAdministrator()
       const organizations = []
       for (let i = 0, len = global.pageSize + 1; i < len; i++) {
@@ -21,14 +22,14 @@ describe('/api/administrator/organizations/organizations', () => {
           name: 'My organization',
           profileid: user.profile.profileid
         })
-        organizations.unshift(user.organization)
+        organizations.unshift(user.organization.organizationid)
       }
       const req = TestHelper.createRequest(`/api/administrator/organizations/organizations?offset=${offset}`)
       req.account = administrator.account
       req.session = administrator.session
       const organizationsNow = await req.get()
       for (let i = 0, len = global.pageSize; i < len; i++) {
-        assert.strictEqual(organizationsNow[i].organizationid, organizations[offset + i].organizationid)
+        assert.strictEqual(organizationsNow[i].organizationid, organizations[offset + i])
       }
     })
 
@@ -49,7 +50,7 @@ describe('/api/administrator/organizations/organizations', () => {
           name: 'My organization',
           profileid: user.profile.profileid
         })
-        organizations.unshift(user.organization)
+        organizations.unshift(user.organization.organizationid)
       }
       const req = TestHelper.createRequest(`/api/administrator/organizations/organizations?limit=${limit}`)
       req.account = administrator.account
@@ -74,22 +75,19 @@ describe('/api/administrator/organizations/organizations', () => {
           name: 'My organization',
           profileid: user.profile.profileid
         })
-        organizations.unshift(user.organization)
+        organizations.unshift(user.organization.organizationid)
       }
       const req = TestHelper.createRequest('/api/administrator/organizations/organizations?all=true')
       req.account = administrator.account
       req.session = administrator.session
       const organizationsNow = await req.get()
-      for (let i = 0, len = global.pageSize + 1; i < len; i++) {
-        assert.strictEqual(organizationsNow[i].organizationid, organizations[i].organizationid)
-      }
+      assert.strictEqual(organizationsNow.length, organizations.length)
     })
   })
 
   describe('returns', () => {
     it('array', async () => {
       const administrator = await TestHelper.createAdministrator()
-      const organizations = []
       for (let i = 0, len = global.pageSize + 1; i < len; i++) {
         global.userProfileFields = ['contact-email', 'full-name']
         const owner = await TestHelper.createUser()
@@ -110,15 +108,12 @@ describe('/api/administrator/organizations/organizations', () => {
         })
         await TestHelper.createInvitation(owner)
         await TestHelper.acceptInvitation(user, owner)
-        organizations.unshift(owner.organization)
       }
       const req = TestHelper.createRequest('/api/administrator/organizations/organizations')
       req.account = administrator.account
       req.session = administrator.session
       const organizationsNow = await req.get()
-      for (let i = 0, len = global.pageSize; i < len; i++) {
-        assert.strictEqual(organizationsNow[i].organizationid, organizations[i].organizationid)
-      }
+      assert.strictEqual(organizationsNow.length, global.pageSize)
     })
   })
 
