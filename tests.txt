@@ -1,5 +1,5 @@
 
-> @userdashboard/organizations@1.0.44 test /Users/benlowry/SynologyDrive/workspaces/dashboard/organizations
+> @userdashboard/organizations@1.0.45 test /root/workspaces/organizations
 > mocha src --recursive --no-colors --timeout 120000 --slow 120000
 
 
@@ -735,5 +735,5 @@
       ✓ object
 
 
-  344 passing (9m)
+  344 passing (3m)
 
