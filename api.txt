@@ -156,7 +156,7 @@
 | RECEIVES-----------------------------| RETURNS--| EXCEPTIONS--------------------------------------|
 | required posted secret-code          | object   | invalid-organizationid                          |
 | required querystring organizationid  |          |  * missing querystring organizationid           |
-|                                      |          |  * invalid querystring organizationid           |
+| required posted secret-code          |          |  * invalid querystring organizationid           |
 |                                      |          | invalid-secret-code                             |
 |                                      |          |  * missing posted secret-code                   |
 |                                      |          | invalid-secret-code-length                      |
@@ -172,8 +172,8 @@
 | required posted profileid          | object   | invalid-invitationid                                |
 | required posted secret-code        |          |  * missing querystring invitationid                 |
 | required querystring invitationid  |          |  * invalid querystring invitationid                 |
-|                                    |          | invalid-invitation                                  |
-|                                    |          |  * querystring invitationid has been used           |
+| required posted secret-code        |          | invalid-invitation                                  |
+| required posted profileid          |          |  * querystring invitationid has been used           |
 |                                    |          |  * posted secret-code has been used                 |
 |                                    |          |  * querystring invitationid is not open invitation  |
 |                                    |          | invalid-secret-code                                 |
@@ -189,22 +189,22 @@
 |                                    |          |  * ineligible posted profileid is missing fields    |
 |------------------------------------|----------|-----------------------------------------------------|
 
-|----------------------------------------------------------------------------------------|
-| /api/user/organizations/create-organization                                            |
-| RECEIVES-------------------| RETURNS--| EXCEPTIONS-------------------------------------|
-| required posted profileid  | object   | invalid-organization-name                      |
-| required posted email      |          |  * missing posted name                         |
-| required posted name       |          | invalid-organization-name-length               |
-|                            |          |  * posted name too short                       |
-|                            |          |  * posted name too long                        |
-|                            |          | invalid-organization-email                     |
-|                            |          |  * missing posted email                        |
-|                            |          |  * invalid posted email                        |
-|                            |          | invalid-profile                                |
-|                            |          |  * missing posted profileid                    |
-|                            |          |  * invalid posted profileid                    |
-|                            |          |  * ineligible posted profileid missing fields  |
-|----------------------------|----------|------------------------------------------------|
+|-------------------------------------------------------------------------------------------------|
+| /api/user/organizations/create-organization                                                     |
+| RECEIVES----------------------------| RETURNS--| EXCEPTIONS-------------------------------------|
+| required posted profileid           | object   | invalid-organization-name                      |
+| required posted email               |          |  * missing posted name                         |
+| required posted name                |          | invalid-organization-name-length               |
+| required posted organization-email  |          |  * posted name too short                       |
+| required posted organization-name   |          |  * posted name too long                        |
+| required posted profileid           |          | invalid-organization-email                     |
+|                                     |          |  * missing posted email                        |
+|                                     |          |  * invalid posted email                        |
+|                                     |          | invalid-profile                                |
+|                                     |          |  * missing posted profileid                    |
+|                                     |          |  * invalid posted profileid                    |
+|                                     |          |  * ineligible posted profileid missing fields  |
+|-------------------------------------|----------|------------------------------------------------|
 
 |-------------------------------------------------------------------------------------------------|
 | /api/user/organizations/delete-invitation                                                       |
@@ -409,8 +409,8 @@
 | required posted email                | object   | invalid-organizationid                          |
 | required posted name                 |          |  * missing querystring organizationid           |
 | required querystring organizationid  |          |  * invalid querystring organizationid           |
-|                                      |          | invalid-account                                 |
-|                                      |          |  * accessing account is not organization owner  |
+| required posted name                 |          | invalid-account                                 |
+| required posted email                |          |  * accessing account is not organization owner  |
 |                                      |          | invalid-organization-name                       |
 |                                      |          |  * missing posted name                          |
 |                                      |          | invalid-organization-name-length                |

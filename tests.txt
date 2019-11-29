@@ -1,5 +1,5 @@
 
-> @userdashboard/organizations@1.0.46 test /root/workspaces/organizations
+> @userdashboard/organizations@1.0.47 test /root/workspaces/organizations
 > mocha src --recursive --no-colors --timeout 120000 --slow 120000
 
 
@@ -431,6 +431,8 @@
         ✓ posted secret-code too long
       invalid-account
         ✓ accessing account is not organization owner
+    receives
+      ✓ required posted secret-code
     returns
       ✓ object
 
@@ -455,6 +457,9 @@
         ✓ ineligible posted profileid is missing fields
       invalid-invitation
         ✓ querystring invitationid is not open invitation
+    receives
+      ✓ required posted secret-code
+      ✓ required posted profileid
     returns
       ✓ object
 
@@ -472,6 +477,10 @@
       ✓ missing posted profileid
       ✓ invalid posted profileid
       ✓ ineligible posted profileid missing fields
+    receives
+      ✓ required posted organization-email
+      ✓ required posted organization-name
+      ✓ required posted profileid
     returns
       ✓ object
 
@@ -731,9 +740,12 @@
       invalid-organization-email
         ✓ missing posted email
         ✓ invalid posted email
+    receives
+      ✓ required posted name
+      ✓ required posted email
     returns
       ✓ object
 
 
-  344 passing (39s)
+  352 passing (40s)
 
