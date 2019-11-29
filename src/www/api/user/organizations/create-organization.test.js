@@ -210,6 +210,69 @@ describe('/api/user/organizations/create-organization', () => {
     })
   })
 
+  describe('receives', () => {
+    it('required posted organization-email', async () => {
+      const owner = await TestHelper.createUser()
+      global.userProfileFields = ['display-name', 'display-email']
+      await TestHelper.createProfile(owner, {
+        'display-name': owner.profile.firstName,
+        'display-email': owner.profile.contactEmail
+      })
+      const req = TestHelper.createRequest(`/api/user/organizations/create-organization?accountid=${owner.account.accountid}`)
+      req.account = owner.account
+      req.session = owner.session
+      req.body = {
+        name: 'this is the name',
+        email: 'this@address.com',
+        profileid: owner.profile.profileid
+      }
+      const organization = await req.post()
+      assert.strictEqual(organization.email, 'this@address.com')
+    })
+
+    it('required posted organization-name', async () => {
+      const owner = await TestHelper.createUser()
+      global.userProfileFields = ['display-name', 'display-email']
+      await TestHelper.createProfile(owner, {
+        'display-name': owner.profile.firstName,
+        'display-email': owner.profile.contactEmail
+      })
+      const req = TestHelper.createRequest(`/api/user/organizations/create-organization?accountid=${owner.account.accountid}`)
+      req.account = owner.account
+      req.session = owner.session
+      req.body = {
+        name: 'this is the name',
+        email: 'this@address.com',
+        profileid: owner.profile.profileid
+      }
+      const organization = await req.post()
+      assert.strictEqual(organization.name, 'this is the name')
+    })
+
+    it('required posted profileid', async () => {
+      const owner = await TestHelper.createUser()
+      global.userProfileFields = ['display-name', 'display-email']
+      await TestHelper.createProfile(owner, {
+        'display-name': owner.profile.firstName,
+        'display-email': owner.profile.contactEmail
+      })
+      const req = TestHelper.createRequest(`/api/user/organizations/create-organization?accountid=${owner.account.accountid}`)
+      req.account = owner.account
+      req.session = owner.session
+      req.body = {
+        name: 'this is the name',
+        email: 'this@address.com',
+        profileid: owner.profile.profileid
+      }
+      const organization = await req.post()
+      const req2 = TestHelper.createRequest(`/api/user/organizations/organization-membership?organizationid=${organization.organizationid}`)
+      req2.account = owner.account
+      req2.session = owner.session
+      const membership = await req2.get()
+      assert.strictEqual(membership.profileid, owner.profile.profileid)
+    })
+  })
+
   describe('returns', () => {
     it('object', async () => {
       const owner = await TestHelper.createUser()

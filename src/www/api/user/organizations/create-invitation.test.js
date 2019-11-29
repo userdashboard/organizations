@@ -164,6 +164,31 @@ describe('/api/user/organizations/create-invitation', () => {
     })
   })
 
+  describe('receives', () => {
+    it('required posted secret-code', async () => {
+      const owner = await TestHelper.createUser()
+      global.userProfileFields = ['display-name', 'display-email']
+      await TestHelper.createProfile(owner, {
+        'display-name': owner.profile.firstName,
+        'display-email': owner.profile.contactEmail
+      })
+      await TestHelper.createOrganization(owner, {
+        email: owner.profile.displayEmail,
+        name: 'My organization',
+        profileid: owner.profile.profileid
+      })
+      const req = TestHelper.createRequest(`/api/user/organizations/create-invitation?organizationid=${owner.organization.organizationid}`)
+      req.account = owner.account
+      req.session = owner.session
+      req.body = {
+        'secret-code': '1234567890'
+      }
+      const invitation = await req.post()
+      assert.notStrictEqual(invitation.secretCodeHash, null)
+      assert.notStrictEqual(invitation.secretCodeHash, undefined)
+    })
+  })
+
   describe('returns', () => {
     it('object', async () => {
       const owner = await TestHelper.createUser()

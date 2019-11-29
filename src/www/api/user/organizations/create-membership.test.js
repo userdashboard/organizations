@@ -406,6 +406,66 @@ describe('/api/user/organizations/create-membership', () => {
     })
   })
 
+  describe('receives', () => {
+    it('required posted secret-code', async () => {
+      const owner = await TestHelper.createUser()
+      const user = await TestHelper.createUser()
+      global.userProfileFields = ['display-name', 'display-email']
+      await TestHelper.createProfile(owner, {
+        'display-name': owner.profile.firstName,
+        'display-email': owner.profile.contactEmail
+      })
+      await TestHelper.createProfile(user, {
+        'display-name': user.profile.firstName,
+        'display-email': user.profile.contactEmail
+      })
+      await TestHelper.createOrganization(owner, {
+        email: owner.profile.displayEmail,
+        name: 'My organization',
+        profileid: owner.profile.profileid
+      })
+      await TestHelper.createInvitation(owner)
+      const req = TestHelper.createRequest(`/api/user/organizations/create-membership?invitationid=${owner.invitation.invitationid}`)
+      req.account = user.account
+      req.session = user.session
+      req.body = {
+        'secret-code': owner.invitation.secretCode,
+        profileid: user.profile.profileid
+      }
+      const membership = await req.post()
+      assert.strictEqual(membership.object, 'membership')
+    })
+
+    it('required posted profileid', async () => {
+      const owner = await TestHelper.createUser()
+      const user = await TestHelper.createUser()
+      global.userProfileFields = ['display-name', 'display-email']
+      await TestHelper.createProfile(owner, {
+        'display-name': owner.profile.firstName,
+        'display-email': owner.profile.contactEmail
+      })
+      await TestHelper.createProfile(user, {
+        'display-name': user.profile.firstName,
+        'display-email': user.profile.contactEmail
+      })
+      await TestHelper.createOrganization(owner, {
+        email: owner.profile.displayEmail,
+        name: 'My organization',
+        profileid: owner.profile.profileid
+      })
+      await TestHelper.createInvitation(owner)
+      const req = TestHelper.createRequest(`/api/user/organizations/create-membership?invitationid=${owner.invitation.invitationid}`)
+      req.account = user.account
+      req.session = user.session
+      req.body = {
+        'secret-code': owner.invitation.secretCode,
+        profileid: user.profile.profileid
+      }
+      const membership = await req.post()
+      assert.strictEqual(membership.profileid, user.profile.profileid)
+    })
+  })
+
   describe('returns', () => {
     it('object', async () => {
       const owner = await TestHelper.createUser()

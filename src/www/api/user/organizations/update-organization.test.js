@@ -233,6 +233,54 @@ describe('/api/user/organizations/update-organization', () => {
     })
   })
 
+  describe('receives', () => {
+    it('required posted name', async () => {
+      const owner = await TestHelper.createUser()
+      global.userProfileFields = ['display-name', 'display-email']
+      await TestHelper.createProfile(owner, {
+        'display-name': owner.profile.firstName,
+        'display-email': owner.profile.contactEmail
+      })
+      await TestHelper.createOrganization(owner, {
+        email: owner.profile.displayEmail,
+        name: 'My organization',
+        profileid: owner.profile.profileid
+      })
+      const req = TestHelper.createRequest(`/api/user/organizations/update-organization?organizationid=${owner.organization.organizationid}`)
+      req.account = owner.account
+      req.session = owner.session
+      req.body = {
+        name: 'Organization Name',
+        email: 'test@test.com'
+      }
+      const organizationNow = await req.patch()
+      assert.strictEqual(organizationNow.name, 'Organization Name')
+    })
+
+    it('required posted email', async () => {
+      const owner = await TestHelper.createUser()
+      global.userProfileFields = ['display-name', 'display-email']
+      await TestHelper.createProfile(owner, {
+        'display-name': owner.profile.firstName,
+        'display-email': owner.profile.contactEmail
+      })
+      await TestHelper.createOrganization(owner, {
+        email: owner.profile.displayEmail,
+        name: 'My organization',
+        profileid: owner.profile.profileid
+      })
+      const req = TestHelper.createRequest(`/api/user/organizations/update-organization?organizationid=${owner.organization.organizationid}`)
+      req.account = owner.account
+      req.session = owner.session
+      req.body = {
+        name: 'Organization Name',
+        email: 'test@test.com'
+      }
+      const organizationNow = await req.patch()
+      assert.strictEqual(organizationNow.email, 'test@test.com')
+    })
+  })
+
   describe('returns', () => {
     it('object', async () => {
       const owner = await TestHelper.createUser()
@@ -254,8 +302,7 @@ describe('/api/user/organizations/update-organization', () => {
         email: 'test@test.com'
       }
       const organizationNow = await req.patch()
-      assert.strictEqual(organizationNow.name, 'Organization Name')
-      assert.strictEqual(organizationNow.email, 'test@test.com')
+      assert.strictEqual(organizationNow.object, 'organization')
     })
   })
 })
