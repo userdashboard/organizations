@@ -12,8 +12,8 @@
     "test": "mocha src --recursive --no-colors --timeout 120000 --slow 120000"
   },
   "engines": {
-    "node": "8.12.0",
-    "npm": "6.4.1"
+    "node": "12.13.1",
+    "npm": "6.12.1"
   },
   "dashboard": {
     "title": "Dashboard",
