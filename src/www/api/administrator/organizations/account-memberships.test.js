@@ -37,7 +37,7 @@ describe('/api/administrator/organizations/account-memberships', () => {
 
   describe('receives', () => {
     it('optional querystring offset (integer)', async () => {
-       global.delayDiskWrites = true
+      global.delayDiskWrites = true
       const offset = 1
       const administrator = await TestHelper.createAdministrator()
       const user = await TestHelper.createUser()
