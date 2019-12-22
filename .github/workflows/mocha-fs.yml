@@ -1,0 +1,33 @@
+name: mocha-fs
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Setup dependencies
+      run: |
+        npm install mocha -g &&
+        npm install @userappstore/dashboard puppeteer --no-save
+    - name: Test
+      run: |
+        npm test || exit 1
+      env:
+        NODE_ENV: testing
+        FAST_START: true
+        DASHBOARD_SERVER: "http://localhost:9007"
+        DOMAIN: "localhost"
+        PORT: 9007
+        STORAGE_PATH: /tmp/test-data
+        GENERATE_SITEMAP_TXT: false
+        GENERATE_API_TXT: false
+        DEBUG_ERRORS: true
