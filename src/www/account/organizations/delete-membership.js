@@ -30,8 +30,8 @@ async function beforeRequest (req) {
 
 async function renderPage (req, res, messageTemplate) {
   if (req.success) {
-    if (req.query && req.query.returnURL && req.query.returnURL.indexOf('/') === 0) {
-      return dashboard.Response.redirect(req, res, decodeURI(req.query.returnURL))
+    if (req.query && req.query['return-url']) {
+      return dashboard.Response.redirect(req, res, decodeURI(req.query['return-url']))
     }
     if (req.data.organization.ownerid === req.account.accountid) {
       return dashboard.Response.redirect(req, res, `/account/organizations/organization-memberships?organizationid=${req.data.organization.organizationid}`)
