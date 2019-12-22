@@ -1,5 +1,15 @@
 
-> @userdashboard/organizations@1.0.48 test /root/workspaces/organizations
+> puppeteer@2.0.0 install /root/workspaces/organizations/node_modules/puppeteer
+> node install.js
+
+Chromium downloaded to /root/workspaces/organizations/node_modules/puppeteer/.local-chromium/linux-706915
++ puppeteer@2.0.0
++ @userdashboard/dashboard@1.0.71
+added 76 packages from 91 contributors in 9.98s
+found 0 vulnerabilities
+
+
+> @userdashboard/organizations@1.0.49 test /root/workspaces/organizations
 > mocha src --recursive --no-colors --timeout 120000 --slow 120000
 
 
@@ -746,5 +756,5 @@
       ✓ object
 
 
-  351 passing (8m)
+  351 passing (2m)
 
