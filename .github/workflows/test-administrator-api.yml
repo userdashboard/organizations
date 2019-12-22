@@ -16,11 +16,10 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: Setup dependencies
       run: |
-        npm install mocha -g &&
-        npm install puppeteer --no-save
+        npm install mocha puppeteer @userappstore/dashboard --no-save
     - name: Test (fs)
       run: |
-        npm test -- --fgrep "api/administrator" || exit 1
+        node node_modules/mocha/bin/mocha src/www/api/administrator --recursive --timeout 120000 --slow 120000 || exit 1
       env:
         NODE_ENV: testing
         FAST_START: true
@@ -32,7 +31,7 @@ jobs:
         GENERATE_API_TXT: false
     - name: Test (fs + encryption)
       run: |
-        npm test -- --fgrep "api/administrator" || exit 1
+        node node_modules/mocha/bin/mocha src/www/api/administrator --recursive --timeout 120000 --slow 120000 || exit 1
       env:
         NODE_ENV: testing
         FAST_START: true
