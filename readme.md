@@ -1,15 +1,17 @@
 # Organizations module for Dashboard
+![StandardJS](https://github.com/userdashboard/organizations/workflows/standardjs/badge.svg)  ![Test suite](https://github.com/userdashboard/organizations/workflows/mocha-fs/badge.svg) ![Test suite with encryption](https://github.com/userdashboard/organizations/workflows/mocha-encrypted-fs/badge.svg)
 
 ![Guest landing page](https://userdashboard.github.io/outline.png?raw=true) 
 
-Dashboard is a parallel web application that accompanies your web app, subscription service, or Stripe Connect platform to provide all the "boilerplate" a modern web app requires to serve its users.  Use Dashboard instead of rewriting user account and login systems.  This module adds UI and APIs for organizations, users can create organizations and invitations other users can accept, and your application server can use their memberships to determine access rights or any other purpose.
+Dashboard is a parallel web application that accompanies your web app, subscription service, or Stripe Connect platform to provide all the "boilerplate" a modern web app requires.  This module adds UI and APIs for organizations, users can create organizations and invitations other users can accept, and your application server can use their memberships to determine access rights or any other purpose.
 
 ## Development status
 
-Organizations module is ready to use.  The following work remains:
+Check the [Github Issues](https://github.com/userdashboard/dashboard/issues) for ways you can help improve and continue development of this module, including:
 
-- translations required for everything in /languages please help
-- administrator UI is very minimal
+- translations
+- adding support for new functionality
+- creating modules with new functionality
 
 ## Import this module
 
