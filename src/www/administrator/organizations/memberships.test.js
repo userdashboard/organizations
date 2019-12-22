@@ -57,9 +57,15 @@ describe('/administrator/organizations/memberships', () => {
         await TestHelper.createInvitation(owner)
         await TestHelper.acceptInvitation(user, owner)
       }
-      const req = TestHelper.createRequest(`/administrator/organizations/memberships?accountid=${user.account.accountid}`)
+      const req = TestHelper.createRequest(`/administrator/organizations/memberships`)
       req.account = administrator.account
       req.session = administrator.session
+      req.filename = __filename
+      req.screenshots = [
+        { hover: '#administrator-menu-container' },
+        { click: '/administrator/organizations' },
+        { click: '/administrator/organizations/memberships' }
+      ]
       const page = await req.get()
       const doc = TestHelper.extractDoc(page)
       const table = doc.getElementById('memberships-table')

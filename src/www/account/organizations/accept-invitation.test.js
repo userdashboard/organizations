@@ -157,6 +157,13 @@ describe('/account/organizations/accept-invitation', () => {
         'display-name': user.profile.firstName,
         'display-email': user.profile.contactEmail
       }
+      req.filename = __filename
+      req.screenshots = [
+        { hover: '#account-menu-container' },
+        { click: '/account/organizations' },
+        { click: '/account/organizations/accept-invitation' },
+        { fill: '#submit-form' }
+      ]
       global.membershipProfileFields = ['display-name', 'display-email']
       const page = await req.post()
       const redirectURL = await TestHelper.extractRedirectURL(page)

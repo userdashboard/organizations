@@ -87,6 +87,13 @@ describe('/account/organizations/membership', () => {
       const req = TestHelper.createRequest(`/account/organizations/membership?membershipid=${user.membership.membershipid}`)
       req.account = user.account
       req.session = user.session
+      req.filename = __filename
+      req.screenshots = [
+        { hover: '#account-menu-container' },
+        { click: '/account/organizations' },
+        { click: '/account/organizations/memberships' },
+        { click: `/account/organizations/membership?membershipid=${user.membership.membershipid}` }
+      ]
       const page = await req.get()
       const doc = TestHelper.extractDoc(page)
       const tbody = doc.getElementById(user.membership.membershipid)

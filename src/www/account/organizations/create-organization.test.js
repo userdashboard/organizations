@@ -110,6 +110,13 @@ describe('/account/organizations/create-organization', () => {
         'display-name': owner.profile.firstName,
         'display-email': owner.profile.contactEmail
       }
+      req.filename = __filename
+      req.screenshots = [
+        { hover: '#account-menu-container' },
+        { click: '/account/organizations' },
+        { click: '/account/organizations/create-organization' },
+        { fill: '#submit-form' }
+      ]
       const page = await req.post()
       const redirectURL = await TestHelper.extractRedirectURL(page)
       assert.strictEqual(true, redirectURL.startsWith('/account/organizations/organization?organizationid='))

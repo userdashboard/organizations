@@ -47,6 +47,12 @@ describe('/administrator/organizations/invitations', () => {
       const req = TestHelper.createRequest('/administrator/organizations/invitations')
       req.account = administrator.account
       req.session = administrator.session
+      req.filename = __filename
+      req.screenshots = [
+        { hover: '#administrator-menu-container' },
+        { click: '/administrator/organizations' },
+        { click: '/administrator/organizations/invitations' }
+      ]
       const page = await req.get()
       const doc = TestHelper.extractDoc(page)
       const table = doc.getElementById('invitations-table')

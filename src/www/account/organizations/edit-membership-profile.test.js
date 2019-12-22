@@ -185,6 +185,15 @@ describe('/account/organizations/edit-membership-profile', () => {
         'display-email': 'email@address.com',
         'display-name': 'tester'
       }
+      req.filename = __filename
+      req.screenshots = [
+        { hover: '#account-menu-container' },
+        { click: '/account/organizations' },
+        { click: '/account/organizations/memberships' },
+        { click: `/account/organizations/membership?membershipid=${user.membership.membershipid}` },
+        { click: `/account/organizations/edit-membership-profile?membershipid=${user.membership.membershipid}` },
+        { fill: '#submit-form' }
+      ]
       const page = await req.post()
       const doc = TestHelper.extractDoc(page)
       const messageContainer = doc.getElementById('message-container')

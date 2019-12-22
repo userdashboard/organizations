@@ -114,8 +114,17 @@ describe('/account/organizations/delete-invitation', () => {
       const req = TestHelper.createRequest(`/account/organizations/delete-invitation?invitationid=${owner.invitation.invitationid}`)
       req.account = owner.account
       req.session = owner.session
-      const res = { setHeader: () => { }, end: () => { } }
-      await req.post(req, res)
+      req.filename = __filename
+      req.screenshots = [
+        { hover: '#account-menu-container' },
+        { click: '/account/organizations' },
+        { click: `/account/organizations/organization?organizationid=${owner.organization.organizationid}` },
+        { click: `/account/organizations/organization-invitations?organizationid=${owner.organization.organizationid}` },
+        { click: `/account/organizations/invitation?invitationid=${owner.invitation.invitationid}` },
+        { click: `/account/organizations/delete-invitation?invitationid=${owner.invitation.invitationid}` },
+        { fill: '#submit-form' }
+      ]
+      await req.post(req)
       const req2 = TestHelper.createRequest(`/api/user/organizations/invitation?invitationid=${owner.invitation.invitationid}`)
       req2.account = owner.account
       req2.session = owner.session

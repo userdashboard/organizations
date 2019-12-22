@@ -180,6 +180,15 @@ describe('/account/organizations/edit-organization', () => {
         email: owner.profile.displayEmail,
         name: 'Organization name'
       }
+      req.filename = __filename
+      req.screenshots = [
+        { hover: '#account-menu-container' },
+        { click: '/account/organizations' },
+        { click: '/account/organizations/organizations' },
+        { click: `/account/organizations/organization?organizationid=${owner.organization.organizationid}` },
+        { click: `/account/organizations/edit-organization?organizationid=${owner.organization.organizationid}` },
+        { fill: '#submit-form' }
+      ]
       const page = await req.post()
       const doc = TestHelper.extractDoc(page)
       const messageContainer = doc.getElementById('message-container')

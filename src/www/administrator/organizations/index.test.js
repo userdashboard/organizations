@@ -78,6 +78,11 @@ describe('/administrator/organizations/index', () => {
       const req = TestHelper.createRequest('/administrator/organizations')
       req.account = administrator.account
       req.session = administrator.session
+      req.filename = __filename
+      req.screenshots = [
+        { hover: '#administrator-menu-container' },
+        { click: '/administrator/organizations' }
+      ]
       const page = await req.get()
       const doc = TestHelper.extractDoc(page)
       const row = doc.getElementById(owner.organization.organizationid)

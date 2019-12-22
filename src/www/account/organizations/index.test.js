@@ -94,6 +94,11 @@ describe('/account/organizations/index', () => {
       const req = TestHelper.createRequest('/account/organizations')
       req.account = owner.account
       req.session = owner.session
+      req.filename = __filename
+      req.screenshots = [
+        { hover: '#account-menu-container' },
+        { click: '/account/organizations' }
+      ]
       const page = await req.get()
       const doc = TestHelper.extractDoc(page)
       const row = doc.getElementById(user.membership.organizationid)

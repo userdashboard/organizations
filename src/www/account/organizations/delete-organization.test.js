@@ -123,6 +123,15 @@ describe('/account/organizations/delete-organization', () => {
       const req = TestHelper.createRequest(`/account/organizations/delete-organization?organizationid=${owner.organization.organizationid}`)
       req.account = owner.account
       req.session = owner.session
+      req.filename = __filename
+      req.screenshots = [
+        { hover: '#account-menu-container' },
+        { click: '/account/organizations' },
+        { click: '/account/organizations/organizations' },
+        { click: `/account/organizations/organization?organizationid=${owner.organization.organizationid}` },
+        { click: `/account/organizations/delete-organization?organizationid=${owner.organization.organizationid}` },
+        { fill: '#submit-form' }
+      ]
       await req.post()
       const req2 = TestHelper.createRequest(`/api/user/organizations/organization?organizationid=${owner.organization.organizationid}`)
       req2.account = owner.account

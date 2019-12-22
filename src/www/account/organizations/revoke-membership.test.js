@@ -143,6 +143,17 @@ describe('/account/organizations/revoke-membership', () => {
       const req = TestHelper.createRequest(`/account/organizations/revoke-membership?membershipid=${user.membership.membershipid}`)
       req.account = owner.account
       req.session = owner.session
+      req.filename = __filename
+      req.screenshots = [
+        { hover: '#account-menu-container' },
+        { click: '/account/organizations' },
+        { click: `/account/organizations/organizations` },
+        { click: `/account/organizations/organization?organizationid=${owner.organization.organizationid}` },
+        { click: `/account/organizations/organization-memberships?organizationid=${owner.organization.organizationid}` },
+        { click: `/account/organizations/membership?membershipid=${user.membership.membershipid}` },
+        { click: `/account/organizations/revoke-membership?membershipid=${user.membership.membershipid}` },
+        { fill: '#submit-form' }
+      ]
       const page = await req.post()
       const doc = TestHelper.extractDoc(page)
       const messageContainer = doc.getElementById('message-container')

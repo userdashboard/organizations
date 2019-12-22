@@ -47,6 +47,13 @@ describe('/administrator/organizations/organization-invitations', () => {
       const req = TestHelper.createRequest(`/administrator/organizations/organization-invitations?organizationid=${owner.organization.organizationid}`)
       req.account = administrator.account
       req.session = administrator.session
+      req.filename = __filename
+      req.screenshots = [
+        { hover: '#administrator-menu-container' },
+        { click: '/administrator/organizations' },
+        { click: `/administrator/organizations/organization?organizationid=${owner.organization.organizationid}` },
+        { click: `/administrator/organizations/organization-invitations?organizationid=${owner.organization.organizationid}` }
+      ]
       const page = await req.get()
       const doc = TestHelper.extractDoc(page)
       const table = doc.getElementById('invitations-table')

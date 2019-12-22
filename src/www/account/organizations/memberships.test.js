@@ -58,6 +58,12 @@ describe('/account/organizations/memberships', () => {
       const req = TestHelper.createRequest('/account/organizations/memberships')
       req.account = user.account
       req.session = user.session
+      req.filename = __filename
+      req.screenshots = [
+        { hover: '#account-menu-container' },
+        { click: '/account/organizations' },
+        { click: '/account/organizations/memberships' }
+      ]
       const page = await req.get()
       const doc = TestHelper.extractDoc(page)
       const table = doc.getElementById('memberships-table')

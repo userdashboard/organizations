@@ -58,6 +58,14 @@ describe('/account/organizations/organization-memberships', () => {
       const req = TestHelper.createRequest(`/account/organizations/organization-memberships?organizationid=${owner.organization.organizationid}`)
       req.account = owner.account
       req.session = owner.session
+      req.filename = __filename
+      req.screenshots = [
+        { hover: '#account-menu-container' },
+        { click: '/account/organizations' },
+        { click: `/account/organizations/organizations` },
+        { click: `/account/organizations/organization?organizationid=${owner.organization.organizationid}` },
+        { click: `/account/organizations/organization-memberships?organizationid=${owner.organization.organizationid}` }
+      ]
       const page = await req.get()
       const doc = TestHelper.extractDoc(page)
       const table = doc.getElementById('memberships-table')
