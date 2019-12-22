@@ -1,5 +1,5 @@
 
-> @userdashboard/organizations@1.0.47 test /root/workspaces/organizations
+> @userdashboard/organizations@1.0.48 test /root/workspaces/organizations
 > mocha src --recursive --no-colors --timeout 120000 --slow 120000
 
 
@@ -46,14 +46,13 @@
 
   /account/organizations/delete-membership
     DeleteMembership#BEFORE
-      ✓ should reject non-member non-owner
+      ✓ should reject other account
       ✓ should bind organization to req
     DeleteMembership#GET
       ✓ should present the form
       ✓ should present the membership
     DeleteMembership#POST
-      ✓ should delete membership for member
-      ✓ should delete membership for organization owner
+      ✓ should delete membership
 
   /account/organizations/delete-organization
     DeleteOrganization#BEFORE
@@ -747,5 +746,5 @@
       ✓ object
 
 
-  352 passing (40s)
+  351 passing (8m)
 
