@@ -1,0 +1,46 @@
+name: test-administrator-ui
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Setup dependencies
+      run: |
+        npm install mocha -g &&
+        npm install puppeteer --no-save
+    - name: Test (fs)
+      run: |
+        npm test -- --fgrep "www/administrator" || exit 1
+      env:
+        NODE_ENV: testing
+        FAST_START: true
+        DASHBOARD_SERVER: "http://localhost:9005"
+        DOMAIN: "localhost"
+        PORT: 9005
+        STORAGE_PATH: /tmp/test-data3
+        GENERATE_SITEMAP_TXT: false
+        GENERATE_API_TXT: false
+    - name: Test (fs + encryption)
+      run: |
+        npm test -- --fgrep "www/administraator" || exit 1
+      env:
+        NODE_ENV: testing
+        FAST_START: true
+        DASHBOARD_SERVER: "http://localhost:9012"
+        DOMAIN: "localhost"
+        PORT: 9012
+        STORAGE_PATH: /tmp/test-data3
+        GENERATE_SITEMAP_TXT: false
+        GENERATE_API_TXT: false
+        ENCRYPTION_SECRET: "12345678901234567890123456789012"
+        ENCRYPTION_SECRET_IV: "1234123412341234"

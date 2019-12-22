@@ -19,4 +19,4 @@ jobs:
         npm install standard -g
     - name: Lint
       run: |
-        standard src || exit 1 
+        standard src || exit 1

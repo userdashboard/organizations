@@ -1,4 +1,4 @@
-name: mocha-fs
+name: test-internal-api
 
 on: [push]
 
@@ -17,10 +17,22 @@ jobs:
     - name: Setup dependencies
       run: |
         npm install mocha -g &&
-        npm install @userdashboard/dashboard puppeteer --no-save
-    - name: Test
+        npm install puppeteer --no-save
+    - name: Test (fs)
       run: |
-        npm test || exit 1
+        npm test  -- --fgrep "internal-api" || exit 1
+      env:
+        NODE_ENV: testing
+        FAST_START: true
+        DASHBOARD_SERVER: "http://localhost:9000"
+        DOMAIN: "localhost"
+        PORT: 9000
+        STORAGE_PATH: /tmp/test-data
+        GENERATE_SITEMAP_TXT: false
+        GENERATE_API_TXT: false
+    - name: Test (fs + encryption)
+      run: |
+        npm test  -- --fgrep "internal-api" || exit 1
       env:
         NODE_ENV: testing
         FAST_START: true
@@ -30,4 +42,5 @@ jobs:
         STORAGE_PATH: /tmp/test-data
         GENERATE_SITEMAP_TXT: false
         GENERATE_API_TXT: false
-        DEBUG_ERRORS: true
+        ENCRYPTION_SECRET: "12345678901234567890123456789012"
+        ENCRYPTION_SECRET_IV: "1234123412341234"
