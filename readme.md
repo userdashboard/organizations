@@ -1,5 +1,5 @@
 # Organizations module for Dashboard
-![StandardJS](https://github.com/userdashboard/organizations/workflows/standardjs/badge.svg)  ![Test suite](https://github.com/userdashboard/organizations/workflows/mocha-fs/badge.svg) ![Test suite with encryption](https://github.com/userdashboard/organizations/workflows/mocha-encrypted-fs/badge.svg)
+![StandardJS](https://github.com/userdashboard/dashboard/workflows/standardjs/badge.svg) ![Test suite](https://github.com/userdashboard/dashboard/workflows/test-user-ui/badge.svg) ![Test suite](https://github.com/userdashboard/dashboard/workflows/test-administrator-ui/badge.svg) ![Test suite](https://github.com/userdashboard/dashboard/workflows/test-user-api/badge.svg) ![Test suite](https://github.com/userdashboard/dashboard/workflows/test-administrator-api/badge.svg)
 
 ![Guest landing page](https://userdashboard.github.io/outline.png?raw=true) 
 
