@@ -17,7 +17,7 @@ jobs:
     - name: Setup dependencies
       run: |
         npm install mocha -g &&
-        npm install @userappstore/dashboard puppeteer --no-save
+        npm install @userdashboard/dashboard puppeteer --no-save
     - name: Test
       run: |
         npm test || exit 1
