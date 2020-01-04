@@ -9,7 +9,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "test": "mocha src --recursive --no-colors --timeout 120000 --slow 120000"
+    "test": "mocha src --recursive --no-colors --timeout 600000 --slow 600000"
   },
   "engines": {
     "node": "12.13.1",
