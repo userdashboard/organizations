@@ -99,7 +99,7 @@ describe('/account/organizations/create-organization', () => {
       assert.strictEqual(true, redirectURL.startsWith('/account/organizations/organization?organizationid='))
     })
 
-    it('should create organization', async () => {
+    it('should create organization (screenshots)', async () => {
       const owner = await TestHelper.createUser()
       const req = TestHelper.createRequest('/account/organizations/create-organization')
       req.account = owner.account

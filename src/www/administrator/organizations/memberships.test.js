@@ -33,7 +33,7 @@ describe('/administrator/organizations/memberships', () => {
   })
 
   describe('Memberships#GET', () => {
-    it('should return row for each membership', async () => {
+    it('should return row for each membership (screenshots)', async () => {
       const administrator = await TestHelper.createAdministrator()
       const user = await TestHelper.createUser()
       global.userProfileFields = ['display-email', 'display-name']

@@ -32,7 +32,7 @@ describe('/account/organizations/organization-memberships', () => {
   })
 
   describe('Memberships#GET', () => {
-    it('should limit memberships to one page', async () => {
+    it('should limit memberships to one page (screenshots)', async () => {
       const owner = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {

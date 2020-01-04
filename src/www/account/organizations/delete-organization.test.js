@@ -108,7 +108,7 @@ describe('/account/organizations/delete-organization', () => {
   })
 
   describe('DeleteOrganization#POST', () => {
-    it('should delete organization', async () => {
+    it('should delete organization (screenshots)', async () => {
       const owner = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {

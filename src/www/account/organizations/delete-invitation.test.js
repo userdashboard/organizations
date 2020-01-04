@@ -98,7 +98,7 @@ describe('/account/organizations/delete-invitation', () => {
   })
 
   describe('DeleteInvitation#POST', () => {
-    it('should delete invitation', async () => {
+    it('should delete invitation (screenshots)', async () => {
       const owner = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {

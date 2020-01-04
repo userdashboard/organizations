@@ -62,7 +62,7 @@ describe('/administrator/organizations/index', () => {
   })
 
   describe('Index#GET', () => {
-    it('should have row for each organization', async () => {
+    it('should have row for each organization (screenshots)', async () => {
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']

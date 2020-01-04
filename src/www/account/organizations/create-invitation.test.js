@@ -101,7 +101,7 @@ describe('/account/organizations/create-invitation', () => {
   })
 
   describe('CreateInvitation#POST', () => {
-    it('should create invitation', async () => {
+    it('should create invitation (screenshots)', async () => {
       const owner = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {

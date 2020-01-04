@@ -72,7 +72,7 @@ describe('/account/organizations/index', () => {
       assert.strictEqual(row.tag, 'tr')
     })
 
-    it('should have row for each membership', async () => {
+    it('should have row for each membership (screenshots)', async () => {
       const owner = await TestHelper.createUser()
       const user = await TestHelper.createUser()
       global.userProfileFields = ['display-email', 'display-name']

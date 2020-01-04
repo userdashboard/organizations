@@ -33,7 +33,7 @@ describe('/administrator/organizations/organization', () => {
   })
 
   describe('Organization#GET', () => {
-    it('should have row for organization', async () => {
+    it('should have row for organization (screenshots)', async () => {
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
       const user = await TestHelper.createUser()

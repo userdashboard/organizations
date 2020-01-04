@@ -134,7 +134,7 @@ describe('/account/organizations/accept-invitation', () => {
       assert.strictEqual(true, redirectURL.startsWith('/account/organizations/membership?membershipid='))
     })
 
-    it('should accept invitation and create profile', async () => {
+    it('should accept invitation and create profile (screenshots)', async () => {
       const owner = await TestHelper.createUser()
       const user = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']

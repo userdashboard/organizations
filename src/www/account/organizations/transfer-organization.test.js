@@ -140,7 +140,7 @@ describe('/account/organizations/transfer-organization', () => {
   })
 
   describe('TransferOrganization#POST', () => {
-    it('should transfer ownership', async () => {
+    it('should transfer ownership (screenshots)', async () => {
       const owner = await TestHelper.createUser()
       const user = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']

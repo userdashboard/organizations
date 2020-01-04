@@ -52,7 +52,7 @@ describe('/account/organizations/invitation', () => {
   })
 
   describe('Invitation#GET', () => {
-    it('should have row for invitation', async () => {
+    it('should have row for invitation (screenshots)', async () => {
       const owner = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {

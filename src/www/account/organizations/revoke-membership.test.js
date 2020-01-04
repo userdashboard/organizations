@@ -121,7 +121,7 @@ describe('/account/organizations/revoke-membership', () => {
   })
 
   describe('RevokeMembership#POST', () => {
-    it('should delete membership', async () => {
+    it('should delete membership (screenshots)', async () => {
       const owner = await TestHelper.createUser()
       const user = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']

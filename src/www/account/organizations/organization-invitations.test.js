@@ -53,7 +53,7 @@ describe('/account/organizations/organization-invitations', () => {
   })
 
   describe('Invitations#GET', () => {
-    it('should limit invitations to one page', async () => {
+    it('should limit invitations to one page (screenshots)', async () => {
       const owner = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {

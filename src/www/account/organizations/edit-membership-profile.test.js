@@ -159,7 +159,7 @@ describe('/account/organizations/edit-membership-profile', () => {
       assert.strictEqual(message.attr.template, 'invalid-display-email')
     })
 
-    it('should apply membership update', async () => {
+    it('should apply membership update (screenshots)', async () => {
       const owner = await TestHelper.createUser()
       const user = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']

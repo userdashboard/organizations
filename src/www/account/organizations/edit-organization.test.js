@@ -161,7 +161,7 @@ describe('/account/organizations/edit-organization', () => {
       assert.strictEqual(message.attr.template, 'invalid-organization-email')
     })
 
-    it('should apply organization update', async () => {
+    it('should apply organization update (screenshots)', async () => {
       const owner = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {

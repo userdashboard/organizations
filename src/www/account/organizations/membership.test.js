@@ -65,7 +65,7 @@ describe('/account/organizations/membership', () => {
   })
 
   describe('Membership#GET', () => {
-    it('should have row for membership', async () => {
+    it('should have row for membership (screenshots)', async () => {
       const owner = await TestHelper.createUser()
       const user = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']

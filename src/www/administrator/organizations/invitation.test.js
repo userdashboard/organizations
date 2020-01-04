@@ -27,7 +27,7 @@ describe('/administrator/organizations/invitation', () => {
   })
 
   describe('Invitation#GET', () => {
-    it('should have row for invitation', async () => {
+    it('should have row for invitation (screenshots)', async () => {
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']
