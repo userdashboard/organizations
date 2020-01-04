@@ -1,6 +1,6 @@
 
-> @userdashboard/organizations@1.0.52 test /root/workspaces/organizations
-> mocha src --recursive --no-colors --timeout 120000 --slow 120000
+> @userdashboard/organizations@1.0.53 test /root/workspaces/organizations
+> mocha src --recursive --no-colors --timeout 600000 --slow 600000
 
 
 
@@ -12,7 +12,7 @@
       ✓ should reject owner
       ✓ should reject existing member
       ✓ should accept valid existing profile
-      ✓ should accept invitation and create profile
+      ✓ should accept invitation and create profile (screenshots)
 
   /account/organizations/create-invitation
     CreateInvitation#BEFORE
@@ -22,7 +22,7 @@
       ✓ should present the form
       ✓ should present the organization
     CreateInvitation#POST
-      ✓ should create invitation
+      ✓ should create invitation (screenshots)
 
   /account/organizations/create-organization
     CreateOrganization#GET
@@ -32,7 +32,7 @@
       ✓ should enforce name length
       ✓ should reject missing email
       ✓ should accept valid existing profile
-      ✓ should create organization
+      ✓ should create organization (screenshots)
 
   /account/organizations/delete-invitation
     DeleteInvitation#BEFORE
@@ -42,7 +42,7 @@
       ✓ should present the form
       ✓ should present the invitation
     DeleteInvitation#POST
-      ✓ should delete invitation
+      ✓ should delete invitation (screenshots)
 
   /account/organizations/delete-membership
     DeleteMembership#BEFORE
@@ -52,7 +52,7 @@
       ✓ should present the form
       ✓ should present the membership
     DeleteMembership#POST
-      ✓ should delete membership
+      ✓ should delete membership (screenshots)
 
   /account/organizations/delete-organization
     DeleteOrganization#BEFORE
@@ -62,7 +62,7 @@
       ✓ should present the form
       ✓ should present the organization
     DeleteOrganization#POST
-      ✓ should delete organization
+      ✓ should delete organization (screenshots)
 
   /account/organizations/edit-membership-profile
     EditMembershipProfile#BEFORE
@@ -73,7 +73,7 @@
     EditMembershipProfile#POST
       ✓ should reject missing display name
       ✓ should reject missing display email
-      ✓ should apply membership update
+      ✓ should apply membership update (screenshots)
 
   /account/organizations/edit-organization
     EditOrganization#BEFORE
@@ -85,7 +85,7 @@
       ✓ should reject missing name
       ✓ should enforce name length
       ✓ should reject missing email
-      ✓ should apply organization update
+      ✓ should apply organization update (screenshots)
 
   /account/organizations/index
     Index#BEFORE
@@ -93,28 +93,28 @@
       ✓ should bind organizations to req
     Index#GET
       ✓ should have row for each organization
-      ✓ should have row for each membership
+      ✓ should have row for each membership (screenshots)
 
   /account/organizations/invitation
     Invitation#BEFORE
       ✓ should require owner
       ✓ should bind invitation to req
     Invitation#GET
-      ✓ should have row for invitation
+      ✓ should have row for invitation (screenshots)
 
   /account/organizations/membership
     Membership#BEFORE
       ✓ should reject non-member
       ✓ should bind membership to req
     Membership#GET
-      ✓ should have row for membership
+      ✓ should have row for membership (screenshots)
       ✓ should show profile fields if data exists
 
   /account/organizations/memberships
     Memberships#BEFORE
       ✓ should bind memberships to req
     Memberships#GET
-      ✓ should limit memberships to one page
+      ✓ should limit memberships to one page (screenshots)
       ✓ should enforce page size
       ✓ should enforce specified offset
       ✓ should show profile fields if data exists
@@ -124,7 +124,7 @@
       ✓ should require owner
       ✓ should bind invitations to req
     Invitations#GET
-      ✓ should limit invitations to one page
+      ✓ should limit invitations to one page (screenshots)
       ✓ should enforce page size
       ✓ should enforce specified offset
 
@@ -132,7 +132,7 @@
     OrganizationMemberships#BEFORE
       ✓ should bind memberships to req
     Memberships#GET
-      ✓ should limit memberships to one page
+      ✓ should limit memberships to one page (screenshots)
       ✓ should enforce page size
       ✓ should enforce specified offset
 
@@ -141,13 +141,13 @@
       ✓ should reject non-member
       ✓ should bind organization to req
     Organization#GET
-      ✓ should have row for organization
+      ✓ should have row for organization (screenshots)
 
   /account/organizations/organizations
     Organizations#BEFORE
       ✓ should bind owned organizations to req
     Organizations#GET
-      ✓ should limit organizations to one page
+      ✓ should limit organizations to one page (screenshots)
       ✓ should enforce page size
       ✓ should enforce specified offset
 
@@ -159,7 +159,7 @@
       ✓ should present the form
       ✓ should present the membership
     RevokeMembership#POST
-      ✓ should delete membership
+      ✓ should delete membership (screenshots)
 
   /account/organizations/transfer-organization
     TransferOrganization#BEFORE
@@ -170,27 +170,27 @@
       ✓ should present the form
       ✓ should present the organization
     TransferOrganization#POST
-      ✓ should transfer ownership
+      ✓ should transfer ownership (screenshots)
 
   /administrator/organizations/index
     Index#BEFORE
       ✓ should bind memberships to req
       ✓ should bind organizations to req
     Index#GET
-      ✓ should have row for each organization
+      ✓ should have row for each organization (screenshots)
       ✓ should have organization row for each membership
 
   /administrator/organizations/invitation
     Invitation#BEFORE
       ✓ should bind invitation to req
     Invitation#GET
-      ✓ should have row for invitation
+      ✓ should have row for invitation (screenshots)
 
   /administrator/organizations/invitations
     Invitations#BEFORE
       ✓ should bind invitations to req
     Invitations#GET
-      ✓ should return row for each invitation
+      ✓ should return row for each invitation (screenshots)
       ✓ should enforce page size
       ✓ should enforce specified offset
 
@@ -198,13 +198,13 @@
     Membership#BEFORE
       ✓ should bind membership to req
     Membership#GET
-      ✓ should have row for membership
+      ✓ should have row for membership (screenshots)
 
   /administrator/organizations/memberships
     Memberships#BEFORE
       ✓ should bind memberships to req
     Memberships#GET
-      ✓ should return row for each membership
+      ✓ should return row for each membership (screenshots)
       ✓ should enforce page size
       ✓ should enforce specified offset
       ✓ should show profile fields if data exists
@@ -213,7 +213,7 @@
     OrganizationInvitations#BEFORE
       ✓ should bind invitations to req
     OrganizationInvitations#GET
-      ✓ should return row for each invitation
+      ✓ should return row for each invitation (screenshots)
       ✓ should enforce page size
       ✓ should enforce specified offset
 
@@ -221,7 +221,7 @@
     OrganizationMemberships#BEFORE
       ✓ should bind memberships to req
     OrganizationMemberships#GET
-      ✓ should return row for each membership
+      ✓ should return row for each membership (screenshots)
       ✓ should enforce page size
       ✓ should enforce specified offset
 
@@ -229,14 +229,14 @@
     Organization#BEFORE
       ✓ should bind organization to req
     Organization#GET
-      ✓ should have row for organization
+      ✓ should have row for organization (screenshots)
 
   /administrator/organizations/organizations
     Organizations#BEFORE
       ✓ should bind owned organizations to req
       ✓ should not bind member organizations to req
     Organizations#GET
-      ✓ should return row for each organization
+      ✓ should return row for each organization (screenshots)
       ✓ should enforce page size
       ✓ should enforce specified offset
 
@@ -344,7 +344,7 @@
 
   /api/administrator/organizations/memberships
     receives
-      ✓ optional querystring offset (integer) (65032ms)
+      ✓ optional querystring offset (integer)
       ✓ optional querystring limit (integer)
       ✓ optional querystring all (boolean)
     returns
