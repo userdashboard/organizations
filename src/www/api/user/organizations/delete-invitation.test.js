@@ -113,6 +113,8 @@ describe('/api/user/organizations/delete-invitation', () => {
       const req = TestHelper.createRequest(`/api/user/organizations/delete-invitation?invitationid=${owner.invitation.invitationid}`)
       req.account = owner.account
       req.session = owner.session
+      req.filename = __filename
+      req.saveResponse = true
       const deleted = await req.delete()
       assert.strictEqual(deleted, true)
     })

@@ -59,6 +59,8 @@ describe('/api/administrator/organizations/memberships-count', () => {
       const req = TestHelper.createRequest('/api/administrator/organizations/memberships-count')
       req.account = administrator.account
       req.session = administrator.session
+      req.filename = __filename
+      req.saveResponse = true
       const result = await req.get()
       assert.strictEqual(result, 5)
     })

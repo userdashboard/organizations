@@ -289,6 +289,8 @@ describe('/api/user/organizations/create-organization', () => {
         email: 'this@address.com',
         profileid: owner.profile.profileid
       }
+      req.filename = __filename
+      req.saveResponse = true
       const organization = await req.post()
       assert.strictEqual(organization.object, 'organization')
     })

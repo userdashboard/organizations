@@ -198,6 +198,8 @@ describe('/api/user/organizations/organization-memberships', () => {
       const req = TestHelper.createRequest(`/api/user/organizations/organization-memberships?organizationid=${owner.organization.organizationid}`)
       req.account = owner.account
       req.session = owner.session
+      req.filename = __filename
+      req.saveResponse = true
       const membershipsNow = await req.get()
       assert.strictEqual(membershipsNow.length, global.pageSize)
     })

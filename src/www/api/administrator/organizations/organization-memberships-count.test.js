@@ -61,6 +61,8 @@ describe('/api/administrator/organizations/organization-memberships-count', () =
       const req = TestHelper.createRequest(`/api/administrator/organizations/organization-memberships-count?organizationid=${owner.organization.organizationid}`)
       req.account = administrator.account
       req.session = administrator.session
+      req.filename = __filename
+      req.saveResponse = true
       const result = await req.get()
       assert.strictEqual(result, global.pageSize)
     })

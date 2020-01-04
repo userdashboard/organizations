@@ -85,6 +85,8 @@ describe('/api/user/organizations/organization', () => {
       const req = TestHelper.createRequest(`/api/user/organizations/organization?organizationid=${owner.organization.organizationid}`)
       req.account = owner.account
       req.session = owner.session
+      req.filename = __filename
+      req.saveResponse = true
       const organization = await req.get()
       assert.strictEqual(organization.object, 'organization')
     })

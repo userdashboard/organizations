@@ -86,6 +86,8 @@ describe('/api/user/organizations/invitation', () => {
       const req = TestHelper.createRequest(`/api/user/organizations/open-invitation-organization?invitationid=${owner.invitation.invitationid}`)
       req.account = owner.account
       req.session = owner.session
+      req.filename = __filename
+      req.saveResponse = true
       const invitation = await req.get()
       assert.strictEqual(invitation.object, 'organization')
     })

@@ -92,6 +92,8 @@ describe('/api/user/organizations/membership', () => {
       const req = TestHelper.createRequest(`/api/user/organizations/membership?membershipid=${user.membership.membershipid}`)
       req.account = user.account
       req.session = user.session
+      req.filename = __filename
+      req.saveResponse = true
       const membership = await req.get()
       assert.strictEqual(membership.object, 'membership')
     })

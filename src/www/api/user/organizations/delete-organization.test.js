@@ -89,6 +89,8 @@ describe('/api/user/organizations/delete-organization', () => {
       const req = TestHelper.createRequest(`/api/user/organizations/delete-organization?organizationid=${owner.organization.organizationid}`)
       req.account = owner.account
       req.session = owner.session
+      req.filename = __filename
+      req.saveResponse = true
       const deleted = await req.delete()
       assert.strictEqual(deleted, true)
     })

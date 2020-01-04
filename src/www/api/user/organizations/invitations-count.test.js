@@ -88,6 +88,8 @@ describe('/api/user/organizations/invitations-count', () => {
       const req = TestHelper.createRequest(`/api/user/organizations/invitations-count?accountid=${owner.account.accountid}`)
       req.account = owner.account
       req.session = owner.session
+      req.filename = __filename
+      req.saveResponse = true
       const result = await req.get()
       assert.strictEqual(result, global.pageSize + 1)
     })

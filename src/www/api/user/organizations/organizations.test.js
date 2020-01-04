@@ -163,6 +163,8 @@ describe('/api/user/organizations/organizations', () => {
       const req = TestHelper.createRequest(`/api/user/organizations/organizations?accountid=${owner.account.accountid}`)
       req.account = owner.account
       req.session = owner.session
+      req.filename = __filename
+      req.saveResponse = true
       const organizationsNow = await req.get()
       assert.strictEqual(organizationsNow.length, global.pageSize)
     })

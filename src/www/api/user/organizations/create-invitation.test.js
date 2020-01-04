@@ -208,6 +208,8 @@ describe('/api/user/organizations/create-invitation', () => {
       req.body = {
         'secret-code': 'this-is-the-code'
       }
+      req.filename = __filename
+      req.saveResponse = true
       const invitation = await req.post()
       assert.strictEqual(invitation.object, 'invitation')
     })

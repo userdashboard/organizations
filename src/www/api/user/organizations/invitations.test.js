@@ -191,6 +191,8 @@ describe('/api/user/organizations/invitations', () => {
       const req = TestHelper.createRequest(`/api/user/organizations/invitations?accountid=${owner.account.accountid}`)
       req.account = owner.account
       req.session = owner.session
+      req.filename = __filename
+      req.saveResponse = true
       const invitationsNow = await req.get()
       assert.strictEqual(invitationsNow.length, global.pageSize)
     })

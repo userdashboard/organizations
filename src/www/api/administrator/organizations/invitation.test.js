@@ -53,6 +53,8 @@ describe('/api/administrator/organizations/invitation', () => {
       const req = TestHelper.createRequest(`/api/administrator/organizations/invitation?invitationid=${owner.invitation.invitationid}`)
       req.account = administrator.account
       req.session = administrator.session
+      req.filename = __filename
+      req.saveResponse = true
       const invitation = await req.get()
       assert.strictEqual(invitation.object, 'invitation')
     })

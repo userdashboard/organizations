@@ -200,6 +200,8 @@ describe('/api/user/organizations/set-organization-owner', () => {
       const req = TestHelper.createRequest(`/api/user/organizations/set-organization-owner?organizationid=${owner.organization.organizationid}`)
       req.account = owner.account
       req.session = owner.session
+      req.filename = __filename
+      req.saveResponse = true
       req.body = {
         accountid: user.account.accountid
       }

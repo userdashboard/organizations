@@ -107,6 +107,8 @@ describe('/api/administrator/organizations/invitations', () => {
       const req = TestHelper.createRequest('/api/administrator/organizations/invitations')
       req.account = administrator.account
       req.session = administrator.session
+      req.filename = __filename
+      req.saveResponse = true
       const invitationsNow = await req.get()
       assert.strictEqual(invitationsNow.length, global.pageSize)
     })

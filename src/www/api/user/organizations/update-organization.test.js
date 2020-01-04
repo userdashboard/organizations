@@ -297,6 +297,8 @@ describe('/api/user/organizations/update-organization', () => {
       const req = TestHelper.createRequest(`/api/user/organizations/update-organization?organizationid=${owner.organization.organizationid}`)
       req.account = owner.account
       req.session = owner.session
+      req.filename = __filename
+      req.saveResponse = true
       req.body = {
         name: 'Organization Name',
         email: 'test@test.com'

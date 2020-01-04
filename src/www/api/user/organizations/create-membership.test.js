@@ -492,6 +492,8 @@ describe('/api/user/organizations/create-membership', () => {
         'secret-code': owner.invitation.secretCode,
         profileid: user.profile.profileid
       }
+      req.filename = __filename
+      req.saveResponse = true
       const membership = await req.post()
       assert.strictEqual(membership.object, 'membership')
     })
