@@ -1,5 +1,5 @@
 
-> @userdashboard/organizations@1.0.51 test /root/workspaces/organizations
+> @userdashboard/organizations@1.0.52 test /root/workspaces/organizations
 > mocha src --recursive --no-colors --timeout 120000 --slow 120000
 
 
@@ -344,7 +344,7 @@
 
   /api/administrator/organizations/memberships
     receives
-      ✓ optional querystring offset (integer) (65041ms)
+      ✓ optional querystring offset (integer) (65032ms)
       ✓ optional querystring limit (integer)
       ✓ optional querystring all (boolean)
     returns
