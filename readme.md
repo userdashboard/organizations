@@ -51,7 +51,7 @@ Every page in Dashboard and official modules has a series of screenshots that de
 
 ### Request organization data from your application server
 
-Dashboard and official modules are completely API-driven and you can access the same APIs on behalf of the user making requests.  You perform `GET`, `POST`, `PATCH`, and `DELETE` HTTP requests against the API endpoints to fetch or modify data.  This example uses NodeJS to fetch the user's organizations from the Dashboard server using NodeJS, your application server can be in any language.
+Dashboard and official modules are completely API-driven and you can access the same APIs on behalf of the user making requests.  You perform `GET`, `POST`, `PATCH`, and `DELETE` HTTP requests against the API endpoints to fetch or modify data.  This example uses NodeJS to fetch the user's organizations from the Dashboard server, your application server can be in any language.
 
 You can view API documentation within the NodeJS modules' `api.txt` files, or on the [documentation site](https://userdashboard.github.io/api/organizations).
 
@@ -67,10 +67,10 @@ You can view API documentation within the NodeJS modules' `api.txt` files, or on
         const salt = bcrypt.genSaltSync(4)
         const token = bcrypt.hashSync(hashText, salt)
         const requestOptions = {
-            'dashboard.example.com',
-            path,
-            '443',
-            'GET',
+            host: 'dashboard.example.com',
+            path: path,
+            port: '443',
+            method: 'GET',
             headers: {
                 'x-application-server': 'application.example.com',
                 'x-dashboard-token': token
