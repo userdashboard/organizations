@@ -1,65 +1,98 @@
 # Organizations module for Dashboard
 ![StandardJS](https://github.com/userdashboard/organizations/workflows/standardjs/badge.svg) ![Test suite](https://github.com/userdashboard/organizations/workflows/test-user-ui/badge.svg) ![Test suite](https://github.com/userdashboard/organizations/workflows/test-administrator-ui/badge.svg) ![Test suite](https://github.com/userdashboard/organizations/workflows/test-user-api/badge.svg) ![Test suite](https://github.com/userdashboard/organizations/workflows/test-administrator-api/badge.svg)
 
-![Guest landing page](https://userdashboard.github.io/outline.png?raw=true) 
+Dashboard bundles everything a web app needs, all the "boilerplate" like signing in and changing passwords, into a parallel server so you can write a much smaller web app.
 
-Dashboard is a parallel web application that accompanies your web app, subscription service, or Stripe Connect platform to provide all the "boilerplate" a modern web app requires.  This module adds UI and APIs for organizations, users can create organizations and invitations other users can accept, and your application server can use their memberships to determine access rights or any other purpose.
+The organizations module allows users to create organizations and invitations other users can accept to join.  Users must share the invitations themselves with the recipients.
 
-## Development status
+Your application server can use the Organizations module's API to fetch what organizations a user is in and use that data to allow shared access or assign ownership or whatever other purpose.
 
-Check the [Github Issues](https://github.com/userdashboard/dashboard/issues) for ways you can help improve and continue development of this module, including:
+A complete UI is provided for users to create and manage their organizations and memberships, and a basic administrator UI is provided for oversight but has no actual functionality yet.
 
-- translations
-- adding support for new functionality
-- creating modules with new functionality
+Environment configuration variables are documented in `start-dev.sh`.  You can view API documentation in `api.txt`, or in more detail on the [documentation site](https://userdashboard.github.io/).  Join the freenode IRC #dashboard chatroom for support - [Web IRC client](https://kiwiirc.com/nextclient/).
 
 ## Import this module
+
+On your Dashboard server you need to install this module with NPM:
+
+    $ npm install @userdashboard/organizations
 
 Edit your `package.json` to activate the module:
 
     "dashboard": {
       "modules": [
-        "@userdashboard/organizations
+        "@userdashboard/organizations"
       ]
     }
 
-Install the module with NPM:
+# Customizing membership profiles
 
-    $ npm install @userdashboard/organizations
+Memberships designate a Profile which you can configure to collect the information relevant to your organizations.  You specify the fields you want in an environment variable:
 
-## Local documentation
+    MEMBERSHIP_PROFILE_FIELDS="any,of,the,below"
 
-| File | Description | 
-|------|-------------|
-| `/documentation/1. Organizations module.md` | Markdown version of the developer documentation |
-| `/documentation/2. Building an application with organization.md` | Markdown version of the developer documentation |
-| `/api.txt` | How to use the API via NodeJS or your application server |
-| `/sitemap.txt` | Runtime configuration and map of URLs to modules & local files |
-| `/start-dev.sh` | Environment variables you can use to configure Dashboard |
+| Field | 
+|---------|
+| display-name|
+| display-email|
+| contact-email|
+| full-name|
+| dob|
+| phone|
+| occupation|
+| location|
+| location|
+| company-name|
+| website|
 
-## Online documentation
+## Supporting your users
 
-Join the freenode IRC #dashboard chatroom for support.  [Web IRC client](https://kiwiirc.com/nextclient/)
+Every page in Dashboard and official modules has a series of screenshots that demonstrate how to browse to the page and optionally what the page does.  If a user wants to change their password or cancel a subscription or submit a Connect registration, you can browse the screenshots on the [documentation site](https://userdashboard.github.io/).
 
-- [Developer documentation home](https://userdashboard.github.io/home)
-- [Administrator manual](https://userdashboard.github.io/administrators/home)
-- [User manual](https://userdashboard.github.io/users/home)
+### Request organization data from your application server
 
-### Case studies 
+Dashboard and official modules are completely API-driven and you can access the same APIs on behalf of the user making requests.  You perform `GET`, `POST`, `PATCH`, and `DELETE` HTTP requests against the API endpoints to fetch or modify data.  This example uses NodeJS to fetch the user's organizations from the Dashboard server using NodeJS, your application server can be in any language.
 
-`Hastebin` is an open source pastebin web application.  It started as a service for anonymous guests only, and was transformed with Dashboard and modules into a web application for registered users with support for sharing posts with organizations and paid subscriptions.
+You can view API documentation within the NodeJS modules' `api.txt` files, or on the [documentation site](https://userdashboard.github.io/api/organizations).
 
-- [Hastebin - free web application](https://userdashboard.github.io/integrations/converting-hastebin-free-saas.html)
-- [Hastebin - subscription web application](https://userdashboard.github.io/integrations/converting-hastebin-subscription-saas.html)
+    const organizations = await proxy(`/api/user/organizations/organizations?accountid=${accountid}&all=true`, accountid, sessionid)
 
-## Privacy
+    const proxy = util.promisify((path, accountid, sessionid, callback) => {
+        let hashText
+        if (accountid) {
+            hashText = `${process.env.APPLICATION_SERVER_TOKEN}/${accountid}/${sessionid}`
+        } else {
+            hashText = process.env.APPLICATION_SERVER_TOKEN
+        }
+        const salt = bcrypt.genSaltSync(4)
+        const token = bcrypt.hashSync(hashText, salt)
+        const requestOptions = {
+            'dashboard.example.com',
+            path,
+            '443',
+            'GET',
+            headers: {
+                'x-application-server': 'application.example.com',
+                'x-dashboard-token': token
+            }
+        }
+        if (accountid) {
+            requestOptions.headers['x-accountid'] = accountid
+            requestOptions.headers['x-sessionid'] = sessionid
+        }
+        const proxyRequest = require('https').request(requestOptions, (proxyResponse) => {
+            let body = ''
+            proxyResponse.on('data', (chunk) => {
+                body += chunk
+            })
+            return proxyResponse.on('end', () => {
+                return callback(null, JSON.parse(body))
+            })
+        })
+        proxyRequest.on('error', (error) => {
+            return callback(error)
+        })
+        return proxyRequest.end()
+      })
+    }
 
-Dashboard accounts optionally support anonymous registration and irreversibly encrypt signin username and passwords.  There are no third-party trackers, analytics or resources embedded in Dashboard pages.  
-
-#### Development
-
-Development takes place on [Github](https://github.com/userdashboard/dashboard) with releases on [NPM](https://www.npmjs.com/package/@userdashboard/dashboard).
-
-#### License
-
-This software is distributed under the MIT license.
