@@ -53,7 +53,7 @@ Every page in Dashboard and official modules has a series of screenshots that de
 
 Dashboard and official modules are completely API-driven and you can access the same APIs on behalf of the user making requests.  You perform `GET`, `POST`, `PATCH`, and `DELETE` HTTP requests against the API endpoints to fetch or modify data.  This example uses NodeJS to fetch the user's organizations from the Dashboard server, your application server can be in any language.
 
-You can view API documentation within the NodeJS modules' `api.txt` files, or on the [documentation site](https://userdashboard.github.io/api/organizations).
+You can view API documentation within the NodeJS modules' `api.txt` files, or on the [documentation site](https://userdashboard.github.io/organizations-api).
 
     const organizations = await proxy(`/api/user/organizations/organizations?accountid=${accountid}&all=true`, accountid, sessionid)
 
