@@ -33,8 +33,7 @@ module.exports = {
     await dashboard.StorageList.add(`${req.appid}/account/invitations/${req.account.accountid}`, invitationid)
     await dashboard.StorageList.add(`${req.appid}/organization/invitations/${req.query.organizationid}`, invitationid)
     await dashboard.Storage.write(`${req.appid}/map/invitationid/organizationid/${invitationid}`, req.query.organizationid)
-    req.success = true
-    req.query.invitationid = invitationid
+        req.query.invitationid = invitationid
     return invitationInfo
   }
 }

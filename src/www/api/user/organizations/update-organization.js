@@ -26,7 +26,6 @@ module.exports = {
       name: req.body.name,
       email: req.body.email
     })
-    req.success = true
-    return global.api.user.organizations.Organization.get(req)
+        return global.api.user.organizations.Organization.get(req)
   }
 }

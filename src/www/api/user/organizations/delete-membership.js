@@ -19,7 +19,6 @@ module.exports = {
     await dashboard.StorageList.remove(`${req.appid}/account/memberships/${membership.accountid}`, req.query.membershipid)
     await dashboard.StorageList.remove(`${req.appid}/organization/memberships/${organization.organizationid}`, req.query.membershipid)
     await dashboard.Storage.deleteFile(`${req.appid}/map/organizationid/membershipid/${membership.accountid}/${req.query.organizationid}`)
-    req.success = true
-    return true
+        return true
   }
 }

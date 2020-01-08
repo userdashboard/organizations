@@ -139,7 +139,6 @@ async function submitForm (req, res) {
     try {
       const profile = await global.api.user.CreateProfile.post(req)
       req.body.profileid = profile.profileid
-      req.success = false
     } catch (error) {
       return renderPage(req, res, error.message)
     }
