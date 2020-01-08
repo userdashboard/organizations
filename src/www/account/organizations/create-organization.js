@@ -42,16 +42,8 @@ async function beforeRequest (req) {
 }
 
 async function renderPage (req, res, messageTemplate) {
-  if (req.success) {
-    if (req.query && req.query['return-url']) {
-      return dashboard.Response.redirect(req, res, decodeURI(req.query['return-url']))
-    }
-    return dashboard.Response.redirect(req, res, `/account/organizations/organization?organizationid=${req.data.organization.organizationid}`)
-  } else if (req.error) {
-    messageTemplate = req.error
-  }
+  messageTemplate = messageTemplate || (req.query ? req.query.message : null)
   const doc = dashboard.HTML.parse(req.route.html)
-
   if (messageTemplate) {
     dashboard.HTML.renderTemplate(doc, null, messageTemplate, 'message-container')
     if (messageTemplate === 'success') {
@@ -127,17 +119,19 @@ async function submitForm (req, res) {
       return renderPage(req, res, error.message)
     }
   }
+  req.query = req.query || {}
+  req.query.accountid = req.account.accountid
   try {
-    req.query = req.query || {}
-    req.query.accountid = req.account.accountid
-    const organization = await global.api.user.organizations.CreateOrganization.post(req)
-    await dashboard.StorageList.add(`${req.appid}/profileUsage/${req.body.profileid}`, organization.organizationid)
-    if (req.success) {
-      req.data = { organization }
-      return renderPage(req, res, 'success')
-    }
-    return renderPage(req, res, 'unknown-error')
+    await global.api.user.organizations.CreateOrganization.post(req)
   } catch (error) {
     return renderPage(req, res, req.error)
+  }
+  if (req.query['return-url']) {
+    return dashboard.Response.redirect(req, res, req.query['return-url'])
+  } else {
+    res.writeHead(302, {
+      'location': `${req.urlPath}?message=success`
+    })
+    return res.end() 
   }
 }

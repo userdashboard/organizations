@@ -95,8 +95,9 @@ describe('/account/organizations/create-organization', () => {
         profileid: owner.profile.profileid
       }
       const page = await req.post()
-      const redirectURL = await TestHelper.extractRedirectURL(page)
-      assert.strictEqual(true, redirectURL.startsWith('/account/organizations/organization?organizationid='))
+      const doc = TestHelper.extractDoc(page)
+      const message = doc.getElementById('message-container').child[0]
+      assert.strictEqual(message.attr.template, 'success')
     })
 
     it('should create organization (screenshots)', async () => {
@@ -118,8 +119,9 @@ describe('/account/organizations/create-organization', () => {
         { fill: '#submit-form' }
       ]
       const page = await req.post()
-      const redirectURL = await TestHelper.extractRedirectURL(page)
-      assert.strictEqual(true, redirectURL.startsWith('/account/organizations/organization?organizationid='))
+      const doc = TestHelper.extractDoc(page)
+      const message = doc.getElementById('message-container').child[0]
+      assert.strictEqual(message.attr.template, 'success')
     })
   })
 })

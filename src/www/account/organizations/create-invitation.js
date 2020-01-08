@@ -10,7 +10,6 @@ async function beforeRequest (req) {
   if (!req.query || !req.query.organizationid) {
     throw new Error('invalid-organization')
   }
-  let invitation
   const organization = await global.api.user.organizations.Organization.get(req)
   if (!organization) {
     throw new Error('invalid-organization')
@@ -19,32 +18,29 @@ async function beforeRequest (req) {
     throw new Error('invalid-account')
   }
   organization.createdFormatted = dashboard.Format.date(organization.created)
-  req.data = { organization, invitation }
+  if (req.query.message === 'success') {
+    organization.invitationid = req.query.invitationid
+    organization.dashboardServer = global.dashboardServer
+
+  }
+  req.data = { organization }
 }
 
 async function renderPage (req, res, messageTemplate) {
-  if (req.success) {
-    if (req.query && req.query['return-url']) {
-      return dashboard.Response.redirect(req, res, decodeURI(req.query['return-url']))
-    }
-    messageTemplate = 'success'
-  } else if (req.error) {
-    messageTemplate = req.error
-  }
+  messageTemplate = messageTemplate || (req.query ? req.query.message : null)
   const doc = dashboard.HTML.parse(req.route.html, req.data.organization, 'organization')
-
   doc.getElementById('organization-name').setAttribute('value', req.data.organization.name)
-  doc.getElementById('secret-code').setAttribute('value', req.body ? req.body['secret-code'] : dashboard.UUID.random(10))
   if (messageTemplate) {
-    req.data.invitation.dashboardServer = global.dashboardServer
-    dashboard.HTML.renderTemplate(doc, req.data.invitation, messageTemplate, 'message-container')
+    dashboard.HTML.renderTemplate(doc, null, messageTemplate, 'message-container')
     if (messageTemplate === 'success') {
       const submitForm = doc.getElementById('submit-form')
       submitForm.parentNode.removeChild(submitForm)
       const organizationTable = doc.getElementById('organizations-table')
       organizationTable.parentNode.removeChild(organizationTable)
+      return dashboard.Response.end(req, res, doc)
     }
   }
+  doc.getElementById('secret-code').setAttribute('value', req.body ? req.body['secret-code'] : dashboard.UUID.random(10))
   return dashboard.Response.end(req, res, doc)
 }
 
@@ -55,14 +51,18 @@ async function submitForm (req, res) {
   if (!req.body['secret-code']) {
     return renderPage(req, res, 'invalid-secret-code')
   }
+  let invitation
   try {
-    const invitation = await global.api.user.organizations.CreateInvitation.post(req)
-    if (req.success) {
-      req.data.invitation = invitation
-      return renderPage(req, res, 'success')
-    }
-    return renderPage(req, res, 'unknown-error')
+    invitation = await global.api.user.organizations.CreateInvitation.post(req)
   } catch (error) {
     return renderPage(req, res, req.error)
+  }
+  if (req.query['return-url']) {
+    return dashboard.Response.redirect(req, res, req.query['return-url'])
+  } else {
+    res.writeHead(302, {
+      'location': `${req.urlPath}?organizationid=${req.query.organizationid}&invitationid=${invitation.invitationid}&message=success`
+    })
+    return res.end() 
   }
 }

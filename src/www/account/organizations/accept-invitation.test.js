@@ -130,8 +130,10 @@ describe('/account/organizations/accept-invitation', () => {
         profileid: user.profile.profileid
       }
       const page = await req.post()
-      const redirectURL = await TestHelper.extractRedirectURL(page)
-      assert.strictEqual(true, redirectURL.startsWith('/account/organizations/membership?membershipid='))
+      const doc = TestHelper.extractDoc(page)
+      const messageContainer = doc.getElementById('message-container')
+      const message = messageContainer.child[0]
+      assert.strictEqual(message.attr.template, 'success')
     })
 
     it('should accept invitation and create profile (screenshots)', async () => {
@@ -166,8 +168,10 @@ describe('/account/organizations/accept-invitation', () => {
       ]
       global.membershipProfileFields = ['display-name', 'display-email']
       const page = await req.post()
-      const redirectURL = await TestHelper.extractRedirectURL(page)
-      assert.strictEqual(true, redirectURL.startsWith('/account/organizations/membership?membershipid='))
+      const doc = TestHelper.extractDoc(page)
+      const messageContainer = doc.getElementById('message-container')
+      const message = messageContainer.child[0]
+      assert.strictEqual(message.attr.template, 'success')
     })
   })
 })

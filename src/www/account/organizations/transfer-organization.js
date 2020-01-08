@@ -10,6 +10,17 @@ async function beforeRequest (req) {
   if (!req.query || !req.query.organizationid) {
     throw new Error('invalid-organization')
   }
+  if (req.query.message === 'success') {
+    req.data = {
+      membership: { 
+        membershipid: req.query.membershipid
+      },
+      organization: {
+        organizationid: req.query.organizationid
+      }
+    }
+    return
+  }
   const organization = await global.api.user.organizations.Organization.get(req)
   if (!organization) {
     throw new Error('invalid-organization')
@@ -19,9 +30,6 @@ async function beforeRequest (req) {
   }
   organization.createdFormatted = dashboard.Format.date(organization.created)
   req.data = { organization }
-  if (req.success) {
-    return
-  }
   req.query.offset = 0
   let memberships = []
   let total = await global.api.user.organizations.OrganizationMembershipsCount.get(req)
@@ -41,16 +49,8 @@ async function renderPage (req, res, messageTemplate) {
   if (!req.query || !req.query.organizationid) {
     throw new Error('invalid-organization')
   }
-  if (req.success) {
-    if (req.query && req.query['return-url']) {
-      return dashboard.Response.redirect(req, res, decodeURI(req.query['return-url']))
-    }
-    messageTemplate = 'success'
-  } else if (req.error) {
-    messageTemplate = req.error
-  }
+  messageTemplate = messageTemplate || (req.query ? req.query.message : null)
   const doc = dashboard.HTML.parse(req.route.html, req.data.organization, 'organization')
-
   if (messageTemplate) {
     dashboard.HTML.renderTemplate(doc, null, messageTemplate, 'message-container')
     if (messageTemplate === 'success') {
@@ -76,11 +76,15 @@ async function submitForm (req, res) {
   }
   try {
     await global.api.user.organizations.SetOrganizationOwner.patch(req)
-    if (req.success) {
-      return renderPage(req, res, 'success')
-    }
-    return renderPage(req, res, 'unknown-error')
   } catch (error) {
     return renderPage(req, res, error.message)
+  }
+  if (req.query['return-url']) {
+    return dashboard.Response.redirect(req, res, req.query['return-url'])
+  } else {
+    res.writeHead(302, {
+      'location': `${req.urlPath}?organizationid=${req.query.organizationid}&message=success`
+    })
+    return res.end() 
   }
 }

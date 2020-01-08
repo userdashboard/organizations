@@ -42,14 +42,7 @@ async function beforeRequest (req) {
 }
 
 async function renderPage (req, res, messageTemplate) {
-  if (req.success) {
-    if (req.query && req.query['return-url']) {
-      return dashboard.Response.redirect(req, res, decodeURI(req.query['return-url']))
-    }
-    return dashboard.Response.redirect(req, res, `/account/organizations/membership?membershipid=${req.data.membership.membershipid}`)
-  } else if (req.error) {
-    messageTemplate = req.error
-  }
+  messageTemplate = messageTemplate || (req.query ? req.query.message : null)
   const doc = dashboard.HTML.parse(req.route.html)
   const submitForm = doc.getElementById('submit-form')
   if (messageTemplate) {
@@ -151,14 +144,18 @@ async function submitForm (req, res) {
       return renderPage(req, res, error.message)
     }
   }
+  let membership
   try {
-    const membership = await global.api.user.organizations.CreateMembership.post(req)
-    if (req.success) {
-      req.data = { membership }
-      return renderPage(req, res, 'success')
-    }
-    return renderPage(req, res, 'unknown-error')
+    membership = await global.api.user.organizations.CreateMembership.post(req)
   } catch (error) {
     return renderPage(req, res, error.message)
+  }
+  if (req.query['return-url']) {
+    return dashboard.Response.redirect(req, res, req.query['return-url'])
+  } else {
+    res.writeHead(302, {
+      'location': `${req.urlPath}?message=success`
+    })
+    return res.end() 
   }
 }

@@ -11,6 +11,17 @@ async function beforeRequest (req) {
   if (!req.query || !req.query.membershipid) {
     throw new Error('invalid-membershipid')
   }
+  if (req.query.message === 'success') {
+    req.data = {
+      membership: { 
+        membershipid: req.query.membershipid
+      },
+      organization: {
+        organizationid: req.query.organizationid
+      }
+    }
+    return
+  }
   const membership = await global.api.user.organizations.Membership.get(req)
   if (!membership) {
     throw new Error('invalid-membership')
@@ -28,16 +39,8 @@ async function beforeRequest (req) {
 }
 
 async function renderPage (req, res, messageTemplate) {
-  if (req.success) {
-    if (req.query && req.query['return-url']) {
-      return dashboard.Response.redirect(req, res, decodeURI(req.query['return-url']))
-    }
-    messageTemplate = 'success'
-  } else if (req.error) {
-    messageTemplate = req.error
-  }
+  messageTemplate = messageTemplate || (req.query ? req.query.message : null)
   const doc = dashboard.HTML.parse(req.route.html, req.data.membership, 'membership')
-
   await navbar.setup(doc, req.data.organization, req.account)
   const organizationName = doc.getElementById('organizationName')
   organizationName.setAttribute('value', req.data.organization.name)
@@ -55,11 +58,15 @@ async function renderPage (req, res, messageTemplate) {
 async function submitForm (req, res) {
   try {
     await global.api.user.organizations.DeleteMembership.delete(req)
-    if (req.success) {
-      return renderPage(req, res, 'success')
-    }
-    return renderPage(req, res, 'unknown-error')
   } catch (error) {
     return renderPage(req, res, error.message)
+  }
+  if (req.query['return-url']) {
+    return dashboard.Response.redirect(req, res, req.query['return-url'])
+  } else {
+    res.writeHead(302, {
+      'location': `${req.urlPath}?membershipid=${req.query.membershipid}&organizationid=${req.query.organizationid}&message=success`
+    })
+    return res.end() 
   }
 }
