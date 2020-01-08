@@ -64,7 +64,7 @@ async function submitForm (req, res) {
     return dashboard.Response.redirect(req, res, req.query['return-url'])
   } else {
     res.writeHead(302, {
-      'location': `${req.urlPath}?message=success`
+      location: `${req.urlPath}?message=success`
     })
   }
 }

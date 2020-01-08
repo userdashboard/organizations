@@ -12,7 +12,7 @@ async function beforeRequest (req) {
   }
   if (req.query.message === 'success') {
     req.data = {
-      membership: { 
+      membership: {
         membershipid: req.query.membershipid
       },
       organization: {
@@ -83,8 +83,8 @@ async function submitForm (req, res) {
     return dashboard.Response.redirect(req, res, req.query['return-url'])
   } else {
     res.writeHead(302, {
-      'location': `${req.urlPath}?organizationid=${req.query.organizationid}&message=success`
+      location: `${req.urlPath}?organizationid=${req.query.organizationid}&message=success`
     })
-    return res.end() 
+    return res.end()
   }
 }

@@ -147,7 +147,7 @@ describe('/account/organizations/revoke-membership', () => {
       req.screenshots = [
         { hover: '#account-menu-container' },
         { click: '/account/organizations' },
-        { click: `/account/organizations/organizations` },
+        { click: '/account/organizations/organizations' },
         { click: `/account/organizations/organization?organizationid=${owner.organization.organizationid}` },
         { click: `/account/organizations/organization-memberships?organizationid=${owner.organization.organizationid}` },
         { click: `/account/organizations/membership?membershipid=${user.membership.membershipid}` },

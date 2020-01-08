@@ -46,7 +46,7 @@ describe('/account/organizations/organizations', () => {
       req.screenshots = [
         { hover: '#account-menu-container' },
         { click: '/account/organizations' },
-        { click: `/account/organizations/organizations` }
+        { click: '/account/organizations/organizations' }
       ]
       const page = await req.get()
       const doc = TestHelper.extractDoc(page)

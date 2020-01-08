@@ -42,7 +42,7 @@ module.exports = {
       throw new Error('invalid-account')
     }
     await dashboard.StorageObject.setProperty(`${req.appid}/organization/${req.query.organizationid}`, 'ownerid', req.body.accountid)
-        organization.ownerid = req.body.accountid
+    organization.ownerid = req.body.accountid
     return organization
   }
 }

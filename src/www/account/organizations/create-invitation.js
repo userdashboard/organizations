@@ -21,7 +21,6 @@ async function beforeRequest (req) {
   if (req.query.message === 'success') {
     organization.invitationid = req.query.invitationid
     organization.dashboardServer = global.dashboardServer
-
   }
   req.data = { organization }
 }
@@ -61,8 +60,8 @@ async function submitForm (req, res) {
     return dashboard.Response.redirect(req, res, req.query['return-url'])
   } else {
     res.writeHead(302, {
-      'location': `${req.urlPath}?organizationid=${req.query.organizationid}&invitationid=${invitation.invitationid}&message=success`
+      location: `${req.urlPath}?organizationid=${req.query.organizationid}&invitationid=${invitation.invitationid}&message=success`
     })
-    return res.end() 
+    return res.end()
   }
 }

@@ -51,12 +51,12 @@ async function submitForm (req, res) {
   } catch (error) {
     return renderPage(req, res, error.message)
   }
-    if (req.query['return-url']) {
+  if (req.query['return-url']) {
     return dashboard.Response.redirect(req, res, req.query['return-url'])
   } else {
     res.writeHead(302, {
-      'location': `${req.urlPath}?membershipid=${membership.membershipid}&message=success`
+      location: `${req.urlPath}?membershipid=${req.query.membershipid}&message=success`
     })
-    return res.end() 
+    return res.end()
   }
 }

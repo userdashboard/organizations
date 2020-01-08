@@ -66,6 +66,6 @@ module.exports = {
     await dashboard.StorageList.add(`${req.appid}/account/memberships/${req.query.accountid}`, membershipid)
     await dashboard.StorageList.add(`${req.appid}/organization/memberships/${organizationid}`, membershipid)
     await dashboard.Storage.write(`${req.appid}/map/organizationid/membershipid/${req.query.accountid}/${organizationid}`, membershipid)
-        return organizationInfo
+    return organizationInfo
   }
 }

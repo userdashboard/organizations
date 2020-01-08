@@ -83,7 +83,7 @@ describe('/account/organizations/organization', () => {
       req.screenshots = [
         { hover: '#account-menu-container' },
         { click: '/account/organizations' },
-        { click: `/account/organizations/organizations` },
+        { click: '/account/organizations/organizations' },
         { click: `/account/organizations/organization?organizationid=${owner.organization.organizationid}` }
       ]
       const page = await req.get()

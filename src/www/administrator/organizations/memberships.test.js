@@ -57,7 +57,7 @@ describe('/administrator/organizations/memberships', () => {
         await TestHelper.createInvitation(owner)
         await TestHelper.acceptInvitation(user, owner)
       }
-      const req = TestHelper.createRequest(`/administrator/organizations/memberships`)
+      const req = TestHelper.createRequest('/administrator/organizations/memberships')
       req.account = administrator.account
       req.session = administrator.session
       req.filename = __filename

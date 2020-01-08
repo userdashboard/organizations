@@ -75,7 +75,7 @@ describe('/account/organizations/organization-invitations', () => {
       req.screenshots = [
         { hover: '#account-menu-container' },
         { click: '/account/organizations' },
-        { click: `/account/organizations/organizations` },
+        { click: '/account/organizations/organizations' },
         { click: `/account/organizations/organization?organizationid=${owner.organization.organizationid}` },
         { click: `/account/organizations/organization-invitations?organizationid=${owner.organization.organizationid}` }
       ]

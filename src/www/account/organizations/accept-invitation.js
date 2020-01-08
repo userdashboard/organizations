@@ -143,9 +143,8 @@ async function submitForm (req, res) {
       return renderPage(req, res, error.message)
     }
   }
-  let membership
   try {
-    membership = await global.api.user.organizations.CreateMembership.post(req)
+    await global.api.user.organizations.CreateMembership.post(req)
   } catch (error) {
     return renderPage(req, res, error.message)
   }
@@ -153,8 +152,8 @@ async function submitForm (req, res) {
     return dashboard.Response.redirect(req, res, req.query['return-url'])
   } else {
     res.writeHead(302, {
-      'location': `${req.urlPath}?message=success`
+      location: `${req.urlPath}?message=success`
     })
-    return res.end() 
+    return res.end()
   }
 }
