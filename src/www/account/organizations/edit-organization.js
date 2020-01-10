@@ -47,6 +47,9 @@ async function submitForm (req, res) {
   if (!req.body) {
     return renderPage(req, res)
   }
+  if (req.query && req.query.message === 'success') {
+    return renderPage(req, res)
+  }
   req.body.name = req.body.name && req.body.name.trim ? req.body.name.trim() : req.body.name
   if (!req.body.name || !req.body.name.length) {
     return renderPage(req, res, 'invalid-organization-name')

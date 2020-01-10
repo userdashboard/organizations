@@ -79,6 +79,9 @@ async function submitForm (req, res) {
   if (!req.body) {
     return renderPage(req, res)
   }
+  if (req.query && req.query.message === 'success') {
+    return renderPage(req, res)
+  }
   if (!req.body.invitationid || !req.body.invitationid.length) {
     return renderPage(req, res, 'invalid-invitationid')
   }

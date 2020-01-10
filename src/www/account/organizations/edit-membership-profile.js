@@ -72,6 +72,9 @@ async function submitForm (req, res) {
   if (!req.body) {
     return renderPage(req, res)
   }
+  if (req.query && req.query.message === 'success') {
+    return renderPage(req, res)
+  }
   req.userProfileFields = req.userProfileFields || global.membershipProfileFields
   try {
     await global.api.user.UpdateProfile.patch(req)
