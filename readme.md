@@ -9,7 +9,7 @@ Your application server can use the Organizations module's API to fetch what org
 
 A complete UI is provided for users to create and manage their organizations and memberships, and a basic administrator UI is provided for oversight but has no actual functionality yet.
 
-Environment configuration variables are documented in `start-dev.sh`.  You can view API documentation in `api.txt`, or in more detail on the [documentation site](https://userdashboard.github.io/).  Join the freenode IRC #dashboard chatroom for support - [Web IRC client](https://kiwiirc.com/nextclient/).
+Environment configuration variables are documented in `start-dev.sh`.  You can view API documentation in `api.txt`, or in more detail on the [documentation site](https://userdashboard.github.io/).  Join the freenode IRC #userdashboard chatroom for support - [Web IRC client](https://kiwiirc.com/nextclient/).
 
 ## Import this module
 
