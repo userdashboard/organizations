@@ -55,8 +55,9 @@
   </template>
   <template id="success">
     <div class="success message">
-      <p>Success! Someone may use the code and invitation ID to join:</p>
-      <input class="link" type="text" readonly value="${invitation.invitationid}" />
+      <p>Success! Someone may use your secret code and this URL or invitation ID to join:</p>
+      <input class="link" type="text" readonly value="https://${organization.dashboardServer}/account/organizations/accept-invitation?invitationid=${organization.invitationid}" />
+      <input class="link" type="text" readonly value="${organization.invitationid}" />
     </div>
   </template>
 </html>
