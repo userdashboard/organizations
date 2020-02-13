@@ -29,17 +29,3 @@ jobs:
         STORAGE_PATH: /tmp/test-data3
         GENERATE_SITEMAP_TXT: false
         GENERATE_API_TXT: false
-    - name: Test (fs + encryption)
-      run: |
-        node node_modules/mocha/bin/mocha src/www/account --recursive --timeout 120000 --slow 120000 || exit 1
-      env:
-        NODE_ENV: testing
-        FAST_START: true
-        DASHBOARD_SERVER: "http://localhost:9012"
-        DOMAIN: "localhost"
-        PORT: 9012
-        STORAGE_PATH: /tmp/test-data3
-        GENERATE_SITEMAP_TXT: false
-        GENERATE_API_TXT: false
-        ENCRYPTION_SECRET: "12345678901234567890123456789012"
-        ENCRYPTION_SECRET_IV: "1234123412341234"
