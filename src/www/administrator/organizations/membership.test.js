@@ -63,8 +63,8 @@ describe('/administrator/organizations/membership', () => {
         { click: '/administrator/organizations/memberships' },
         { click: `/administrator/organizations/membership?membershipid=${user.membership.membershipid}` }
       ]
-      const page = await req.get()
-      const doc = TestHelper.extractDoc(page)
+      const result = await req.get()
+      const doc = TestHelper.extractDoc(result.html)
       const tbody = doc.getElementById(user.membership.membershipid)
       assert.strictEqual(tbody.tag, 'tbody')
     })

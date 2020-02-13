@@ -51,8 +51,8 @@ describe('/administrator/organizations/invitation', () => {
         { click: '/administrator/organizations/invitations' },
         { click: `/administrator/organizations/invitation?invitationid=${owner.invitation.invitationid}` }
       ]
-      const page = await req.get()
-      const doc = TestHelper.extractDoc(page)
+      const result = await req.get()
+      const doc = TestHelper.extractDoc(result.html)
       const tbody = doc.getElementById(owner.invitation.invitationid)
       assert.strictEqual(tbody.tag, 'tbody')
     })

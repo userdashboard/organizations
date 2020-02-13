@@ -86,8 +86,8 @@ describe('/account/organizations/organization', () => {
         { click: '/account/organizations/organizations' },
         { click: `/account/organizations/organization?organizationid=${owner.organization.organizationid}` }
       ]
-      const page = await req.get()
-      const doc = TestHelper.extractDoc(page)
+      const result = await req.get()
+      const doc = TestHelper.extractDoc(result.html)
       const tbody = doc.getElementById(owner.organization.organizationid)
       assert.strictEqual(tbody.tag, 'tbody')
     })

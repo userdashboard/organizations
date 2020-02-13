@@ -87,8 +87,8 @@ describe('/account/organizations/edit-membership-profile', () => {
       const req = TestHelper.createRequest(`/account/organizations/edit-membership-profile?membershipid=${user.membership.membershipid}`)
       req.account = user.account
       req.session = user.session
-      const page = await req.get()
-      const doc = TestHelper.extractDoc(page)
+      const result = await req.get()
+      const doc = TestHelper.extractDoc(result.html)
       assert.strictEqual(doc.getElementById('submit-form').tag, 'form')
       assert.strictEqual(doc.getElementById('submit-button').tag, 'button')
     })
@@ -121,8 +121,8 @@ describe('/account/organizations/edit-membership-profile', () => {
         'display-name': '',
         'display-email': user.profile.displayEmail
       }
-      const page = await req.post()
-      const doc = TestHelper.extractDoc(page)
+      const result = await req.post()
+      const doc = TestHelper.extractDoc(result.html)
       const message = doc.getElementById('message-container').child[0]
       assert.strictEqual(message.attr.template, 'invalid-display-name')
     })
@@ -153,8 +153,8 @@ describe('/account/organizations/edit-membership-profile', () => {
         'display-name': user.profile.displayName,
         'display-email': ''
       }
-      const page = await req.post()
-      const doc = TestHelper.extractDoc(page)
+      const result = await req.post()
+      const doc = TestHelper.extractDoc(result.html)
       const message = doc.getElementById('message-container').child[0]
       assert.strictEqual(message.attr.template, 'invalid-display-email')
     })
@@ -194,8 +194,8 @@ describe('/account/organizations/edit-membership-profile', () => {
         { click: `/account/organizations/edit-membership-profile?membershipid=${user.membership.membershipid}` },
         { fill: '#submit-form' }
       ]
-      const page = await req.post()
-      const doc = TestHelper.extractDoc(page)
+      const result = await req.post()
+      const doc = TestHelper.extractDoc(result.html)
       const messageContainer = doc.getElementById('message-container')
       const message = messageContainer.child[0]
       assert.strictEqual(message.attr.template, 'success')

@@ -65,8 +65,8 @@ describe('/account/organizations/edit-organization', () => {
       const req = TestHelper.createRequest(`/account/organizations/edit-organization?organizationid=${owner.organization.organizationid}`)
       req.account = owner.account
       req.session = owner.session
-      const page = await req.get()
-      const doc = TestHelper.extractDoc(page)
+      const result = await req.get()
+      const doc = TestHelper.extractDoc(result.html)
       assert.strictEqual(doc.getElementById('submit-form').tag, 'form')
       assert.strictEqual(doc.getElementById('submit-button').tag, 'button')
     })
@@ -92,8 +92,8 @@ describe('/account/organizations/edit-organization', () => {
         name: '',
         email: owner.profile.displayEmail
       }
-      const page = await req.post()
-      const doc = TestHelper.extractDoc(page)
+      const result = await req.post()
+      const doc = TestHelper.extractDoc(result.html)
       const message = doc.getElementById('message-container').child[0]
       assert.strictEqual(message.attr.template, 'invalid-organization-name')
     })
@@ -118,8 +118,8 @@ describe('/account/organizations/edit-organization', () => {
         email: owner.profile.contactEmail
       }
       global.minimumOrganizationNameLength = 2
-      const page = await req.post()
-      const doc = TestHelper.extractDoc(page)
+      const result = await req.post()
+      const doc = TestHelper.extractDoc(result.html)
       const message = doc.getElementById('message-container').child[0]
       assert.strictEqual(message.attr.template, 'invalid-organization-name-length')
       global.maximumOrganizationNameLength = 1
@@ -130,8 +130,8 @@ describe('/account/organizations/edit-organization', () => {
         name: '1234567890',
         email: owner.profile.contactEmail
       }
-      const page2 = await req2.post(req2)
-      const doc2 = TestHelper.extractDoc(page2)
+      const result2 = await req2.post(req2)
+      const doc2 = TestHelper.extractDoc(result2.html)
       const message2 = doc2.getElementById('message-container').child[0]
       assert.strictEqual(message2.attr.template, 'invalid-organization-name-length')
     })
@@ -155,8 +155,8 @@ describe('/account/organizations/edit-organization', () => {
         name: 'org-name',
         email: ''
       }
-      const page = await req.post()
-      const doc = TestHelper.extractDoc(page)
+      const result = await req.post()
+      const doc = TestHelper.extractDoc(result.html)
       const message = doc.getElementById('message-container').child[0]
       assert.strictEqual(message.attr.template, 'invalid-organization-email')
     })
@@ -189,8 +189,8 @@ describe('/account/organizations/edit-organization', () => {
         { click: `/account/organizations/edit-organization?organizationid=${owner.organization.organizationid}` },
         { fill: '#submit-form' }
       ]
-      const page = await req.post()
-      const doc = TestHelper.extractDoc(page)
+      const result = await req.post()
+      const doc = TestHelper.extractDoc(result.html)
       const messageContainer = doc.getElementById('message-container')
       const message = messageContainer.child[0]
       assert.strictEqual(message.attr.template, 'success')

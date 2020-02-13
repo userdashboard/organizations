@@ -9,8 +9,8 @@ describe('/account/organizations/accept-invitation', () => {
       const req = TestHelper.createRequest('/account/organizations/accept-invitation')
       req.account = user.account
       req.session = user.session
-      const page = await req.get()
-      const doc = TestHelper.extractDoc(page)
+      const result = await req.get()
+      const doc = TestHelper.extractDoc(result.html)
       assert.strictEqual(doc.getElementById('submit-form').tag, 'form')
       assert.strictEqual(doc.getElementById('submit-button').tag, 'button')
     })
@@ -33,8 +33,8 @@ describe('/account/organizations/accept-invitation', () => {
       const req = TestHelper.createRequest(`/account/organizations/accept-invitation?invitationid=${owner.invitation.invitationid}`)
       req.account = user.account
       req.session = user.session
-      const page = await req.get()
-      const doc = TestHelper.extractDoc(page)
+      const result = await req.get()
+      const doc = TestHelper.extractDoc(result.html)
       assert.strictEqual(doc.toString().indexOf(user.profile.profileid), -1)
     })
   })
@@ -60,8 +60,8 @@ describe('/account/organizations/accept-invitation', () => {
         'secret-code': owner.invitation.secretCode,
         invitationid: owner.invitation.invitationid
       }
-      const page = await req.post()
-      const doc = TestHelper.extractDoc(page)
+      const result = await req.post()
+      const doc = TestHelper.extractDoc(result.html)
       const messageContainer = doc.getElementById('message-container')
       const message = messageContainer.child[0]
       assert.strictEqual(message.attr.template, 'invalid-account')
@@ -96,8 +96,8 @@ describe('/account/organizations/accept-invitation', () => {
         invitationid: owner.invitation.invitationid,
         profileid: user.profile.profileid
       }
-      const page = await req.post()
-      const doc = TestHelper.extractDoc(page)
+      const result = await req.post()
+      const doc = TestHelper.extractDoc(result.html)
       const messageContainer = doc.getElementById('message-container')
       const message = messageContainer.child[0]
       assert.strictEqual(message.attr.template, 'invalid-account')
@@ -129,8 +129,8 @@ describe('/account/organizations/accept-invitation', () => {
         invitationid: owner.invitation.invitationid,
         profileid: user.profile.profileid
       }
-      const page = await req.post()
-      const doc = TestHelper.extractDoc(page)
+      const result = await req.post()
+      const doc = TestHelper.extractDoc(result.html)
       const messageContainer = doc.getElementById('message-container')
       const message = messageContainer.child[0]
       assert.strictEqual(message.attr.template, 'success')
@@ -167,8 +167,8 @@ describe('/account/organizations/accept-invitation', () => {
         { fill: '#submit-form' }
       ]
       global.membershipProfileFields = ['display-name', 'display-email']
-      const page = await req.post()
-      const doc = TestHelper.extractDoc(page)
+      const result = await req.post()
+      const doc = TestHelper.extractDoc(result.html)
       const messageContainer = doc.getElementById('message-container')
       const message = messageContainer.child[0]
       assert.strictEqual(message.attr.template, 'success')

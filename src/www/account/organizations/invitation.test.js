@@ -77,8 +77,8 @@ describe('/account/organizations/invitation', () => {
         { click: `/account/organizations/organization-invitations?organizationid=${owner.organization.organizationid}` },
         { click: `/account/organizations/invitation?invitationid=${owner.invitation.invitationid}` }
       ]
-      const page = await req.get()
-      const doc = TestHelper.extractDoc(page)
+      const result = await req.get()
+      const doc = TestHelper.extractDoc(result.html)
       const tbody = doc.getElementById(owner.invitation.invitationid)
       assert.strictEqual(tbody.tag, 'tbody')
     })

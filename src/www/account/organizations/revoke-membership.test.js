@@ -85,8 +85,8 @@ describe('/account/organizations/revoke-membership', () => {
       const req = TestHelper.createRequest(`/account/organizations/revoke-membership?membershipid=${user.membership.membershipid}`)
       req.account = owner.account
       req.session = owner.session
-      const page = await req.get()
-      const doc = TestHelper.extractDoc(page)
+      const result = await req.get()
+      const doc = TestHelper.extractDoc(result.html)
       assert.strictEqual(doc.getElementById('submit-form').tag, 'form')
       assert.strictEqual(doc.getElementById('submit-button').tag, 'button')
     })
@@ -113,8 +113,8 @@ describe('/account/organizations/revoke-membership', () => {
       const req = TestHelper.createRequest(`/account/organizations/revoke-membership?membershipid=${user.membership.membershipid}`)
       req.account = owner.account
       req.session = owner.session
-      const page = await req.get()
-      const doc = TestHelper.extractDoc(page)
+      const result = await req.get()
+      const doc = TestHelper.extractDoc(result.html)
       const row = doc.getElementById(user.membership.membershipid)
       assert.strictEqual(row.tag, 'tr')
     })
@@ -154,8 +154,8 @@ describe('/account/organizations/revoke-membership', () => {
         { click: `/account/organizations/revoke-membership?membershipid=${user.membership.membershipid}` },
         { fill: '#submit-form' }
       ]
-      const page = await req.post()
-      const doc = TestHelper.extractDoc(page)
+      const result = await req.post()
+      const doc = TestHelper.extractDoc(result.html)
       const messageContainer = doc.getElementById('message-container')
       const message = messageContainer.child[0]
       assert.strictEqual(message.attr.template, 'success')

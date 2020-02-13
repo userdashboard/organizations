@@ -64,8 +64,8 @@ describe('/account/organizations/memberships', () => {
         { click: '/account/organizations' },
         { click: '/account/organizations/memberships' }
       ]
-      const page = await req.get()
-      const doc = TestHelper.extractDoc(page)
+      const result = await req.get()
+      const doc = TestHelper.extractDoc(result.html)
       const table = doc.getElementById('memberships-table')
       const rows = table.getElementsByTagName('tr')
       assert.strictEqual(rows.length, global.pageSize + 1)
@@ -98,8 +98,8 @@ describe('/account/organizations/memberships', () => {
       const req = TestHelper.createRequest('/account/organizations/memberships')
       req.account = user.account
       req.session = user.session
-      const page = await req.get()
-      const doc = TestHelper.extractDoc(page)
+      const result = await req.get()
+      const doc = TestHelper.extractDoc(result.html)
       const table = doc.getElementById('memberships-table')
       const rows = table.getElementsByTagName('tr')
       assert.strictEqual(rows.length, global.pageSize + 1)
@@ -135,8 +135,8 @@ describe('/account/organizations/memberships', () => {
       const req = TestHelper.createRequest(`/account/organizations/memberships?offset=${offset}`)
       req.account = user.account
       req.session = user.session
-      const page = await req.get()
-      const doc = TestHelper.extractDoc(page)
+      const result = await req.get()
+      const doc = TestHelper.extractDoc(result.html)
       for (let i = 0, len = global.pageSize; i < len; i++) {
         assert.strictEqual(doc.getElementById(memberships[offset + i]).tag, 'tr')
       }
@@ -193,8 +193,8 @@ describe('/account/organizations/memberships', () => {
         await TestHelper.createInvitation(owner)
         global.membershipProfileFields = usingFields
         await TestHelper.acceptInvitation(user, owner)
-        const page = await req.get()
-        const doc = TestHelper.extractDoc(page)
+        const result = await req.get()
+        const doc = TestHelper.extractDoc(result.html)
         assert.strictEqual(doc.getElementById(`${field}-${user.membership.membershipid}`).tag, 'td')
       }
     })

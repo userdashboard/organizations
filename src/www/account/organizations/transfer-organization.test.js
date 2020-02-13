@@ -111,8 +111,8 @@ describe('/account/organizations/transfer-organization', () => {
       const req = TestHelper.createRequest(`/account/organizations/transfer-organization?organizationid=${owner.organization.organizationid}`)
       req.account = owner.account
       req.session = owner.session
-      const page = await req.get()
-      const doc = TestHelper.extractDoc(page)
+      const result = await req.get()
+      const doc = TestHelper.extractDoc(result.html)
       assert.strictEqual(doc.getElementById('submit-form').tag, 'form')
       assert.strictEqual(doc.getElementById('submit-button').tag, 'button')
     })
@@ -132,8 +132,8 @@ describe('/account/organizations/transfer-organization', () => {
       const req = TestHelper.createRequest(`/account/organizations/transfer-organization?organizationid=${owner.organization.organizationid}`)
       req.account = owner.account
       req.session = owner.session
-      const page = await req.get()
-      const doc = TestHelper.extractDoc(page)
+      const result = await req.get()
+      const doc = TestHelper.extractDoc(result.html)
       const row = doc.getElementById(owner.organization.organizationid)
       assert.strictEqual(row.tag, 'tr')
     })
@@ -174,8 +174,8 @@ describe('/account/organizations/transfer-organization', () => {
         { click: `/account/organizations/transfer-organization?organizationid=${owner.organization.organizationid}` },
         { fill: '#submit-form' }
       ]
-      const page = await req.post()
-      const doc = TestHelper.extractDoc(page)
+      const result = await req.post()
+      const doc = TestHelper.extractDoc(result.html)
       const messageContainer = doc.getElementById('message-container')
       const message = messageContainer.child[0]
       assert.strictEqual(message.attr.template, 'success')

@@ -9,8 +9,8 @@ describe('/account/organizations/create-organization', () => {
       const req = TestHelper.createRequest('/account/organizations/create-organization')
       req.account = owner.account
       req.session = owner.session
-      const page = await req.get()
-      const doc = TestHelper.extractDoc(page)
+      const result = await req.get()
+      const doc = TestHelper.extractDoc(result.html)
       assert.strictEqual(doc.getElementById('submit-form').tag, 'form')
       assert.strictEqual(doc.getElementById('submit-button').tag, 'button')
     })
@@ -26,8 +26,8 @@ describe('/account/organizations/create-organization', () => {
         name: '',
         email: 'org@email.com'
       }
-      const page = await req.post()
-      const doc = TestHelper.extractDoc(page)
+      const result = await req.post()
+      const doc = TestHelper.extractDoc(result.html)
       const message = doc.getElementById('message-container').child[0]
       assert.strictEqual(message.attr.template, 'invalid-organization-name')
     })
@@ -44,8 +44,8 @@ describe('/account/organizations/create-organization', () => {
         'display-email': 'org-admin@email.com'
       }
       global.minimumOrganizationNameLength = 2
-      const page = await req.post()
-      const doc = TestHelper.extractDoc(page)
+      const result = await req.post()
+      const doc = TestHelper.extractDoc(result.html)
       const message = doc.getElementById('message-container').child[0]
       assert.strictEqual(message.attr.template, 'invalid-organization-name-length')
       const req2 = TestHelper.createRequest('/account/organizations/create-organization')
@@ -56,8 +56,8 @@ describe('/account/organizations/create-organization', () => {
         email: 'org@email.com'
       }
       global.maximumOrganizationNameLength = 1
-      const page2 = await req2.post(req2)
-      const doc2 = TestHelper.extractDoc(page2)
+      const result2 = await req2.post(req2)
+      const doc2 = TestHelper.extractDoc(result2.html)
       const message2 = doc2.getElementById('message-container').child[0]
       assert.strictEqual(message2.attr.template, 'invalid-organization-name-length')
     })
@@ -73,8 +73,8 @@ describe('/account/organizations/create-organization', () => {
         'display-name': 'administrator',
         'display-email': 'org-admin@email.com'
       }
-      const page = await req.post()
-      const doc = TestHelper.extractDoc(page)
+      const result = await req.post()
+      const doc = TestHelper.extractDoc(result.html)
       const message = doc.getElementById('message-container').child[0]
       assert.strictEqual(message.attr.template, 'invalid-organization-email')
     })
@@ -94,8 +94,8 @@ describe('/account/organizations/create-organization', () => {
         email: 'test@test.com',
         profileid: owner.profile.profileid
       }
-      const page = await req.post()
-      const doc = TestHelper.extractDoc(page)
+      const result = await req.post()
+      const doc = TestHelper.extractDoc(result.html)
       const message = doc.getElementById('message-container').child[0]
       assert.strictEqual(message.attr.template, 'success')
     })
@@ -118,8 +118,8 @@ describe('/account/organizations/create-organization', () => {
         { click: '/account/organizations/create-organization' },
         { fill: '#submit-form' }
       ]
-      const page = await req.post()
-      const doc = TestHelper.extractDoc(page)
+      const result = await req.post()
+      const doc = TestHelper.extractDoc(result.html)
       const message = doc.getElementById('message-container').child[0]
       assert.strictEqual(message.attr.template, 'success')
     })

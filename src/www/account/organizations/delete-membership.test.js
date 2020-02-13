@@ -92,8 +92,8 @@ describe('/account/organizations/delete-membership', () => {
       const req = TestHelper.createRequest(`/account/organizations/delete-membership?membershipid=${user.membership.membershipid}`)
       req.account = user.account
       req.session = user.session
-      const page = await req.get()
-      const doc = TestHelper.extractDoc(page)
+      const result = await req.get()
+      const doc = TestHelper.extractDoc(result.html)
       assert.strictEqual(doc.getElementById('submit-form').tag, 'form')
       assert.strictEqual(doc.getElementById('submit-button').tag, 'button')
     })
@@ -120,8 +120,8 @@ describe('/account/organizations/delete-membership', () => {
       const req = TestHelper.createRequest(`/account/organizations/delete-membership?membershipid=${user.membership.membershipid}`)
       req.account = user.account
       req.session = user.session
-      const page = await req.get()
-      const doc = TestHelper.extractDoc(page)
+      const result = await req.get()
+      const doc = TestHelper.extractDoc(result.html)
       const row = doc.getElementById(user.membership.membershipid)
       assert.strictEqual(row.tag, 'tr')
     })

@@ -94,8 +94,8 @@ describe('/account/organizations/membership', () => {
         { click: '/account/organizations/memberships' },
         { click: `/account/organizations/membership?membershipid=${user.membership.membershipid}` }
       ]
-      const page = await req.get()
-      const doc = TestHelper.extractDoc(page)
+      const result = await req.get()
+      const doc = TestHelper.extractDoc(result.html)
       const tbody = doc.getElementById(user.membership.membershipid)
       assert.strictEqual(tbody.tag, 'tbody')
     })
@@ -130,8 +130,8 @@ describe('/account/organizations/membership', () => {
       const req = TestHelper.createRequest(`/account/organizations/membership?membershipid=${user.membership.membershipid}`)
       req.account = user.account
       req.session = user.session
-      const page = await req.get()
-      const doc = TestHelper.extractDoc(page)
+      const result = await req.get()
+      const doc = TestHelper.extractDoc(result.html)
       for (const field in fields) {
         assert.strictEqual(doc.getElementById(field), undefined)
       }
@@ -155,8 +155,8 @@ describe('/account/organizations/membership', () => {
         const req2 = TestHelper.createRequest(`/account/organizations/membership?membershipid=${user.membership.membershipid}`)
         req2.account = user.account
         req2.session = user.session
-        const page2 = await req2.get()
-        const doc2 = TestHelper.extractDoc(page2)
+        const result2 = await req2.get()
+        const doc2 = TestHelper.extractDoc(result2.html)
         assert.strictEqual(doc2.getElementById('display-email').tag, 'tr')
         assert.strictEqual(doc2.getElementById('display-name').tag, 'tr')
         assert.strictEqual(doc2.getElementById(field).tag, 'tr')

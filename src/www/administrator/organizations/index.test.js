@@ -83,8 +83,8 @@ describe('/administrator/organizations/index', () => {
         { hover: '#administrator-menu-container' },
         { click: '/administrator/organizations' }
       ]
-      const page = await req.get()
-      const doc = TestHelper.extractDoc(page)
+      const result = await req.get()
+      const doc = TestHelper.extractDoc(result.html)
       const row = doc.getElementById(owner.organization.organizationid)
       assert.strictEqual(row.tag, 'tr')
     })
@@ -112,8 +112,8 @@ describe('/administrator/organizations/index', () => {
       const req = TestHelper.createRequest('/administrator/organizations')
       req.account = administrator.account
       req.session = administrator.session
-      const page = await req.get()
-      const doc = TestHelper.extractDoc(page)
+      const result = await req.get()
+      const doc = TestHelper.extractDoc(result.html)
       const row = doc.getElementById(user.membership.organizationid)
       assert.strictEqual(row.tag, 'tr')
     })
