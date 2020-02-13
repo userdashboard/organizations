@@ -1,4 +1,4 @@
-@userdashboard/dashboard 1.0.98
+@userdashboard/dashboard 1.0.125
 
 
 Administrator menu:
@@ -16,7 +16,7 @@ Special HTML files:
 @userdashboard/dashboard/src/redirect.html
 
 Dashboard modules:
-@userdashboard/organizations (1.0.56)
+@userdashboard/organizations (1.0.57)
 
 URL ----------------------------------------------------------- AUTH - TEMPLATE - HTTP REQUESTS - NODEJS --------------------- HTML -----------------------
 /                                                               GUEST  FULLSCREEN GET                                          /src/www                    
