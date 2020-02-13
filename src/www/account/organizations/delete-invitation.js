@@ -10,6 +10,14 @@ async function beforeRequest (req) {
   if (!req.query || !req.query.invitationid) {
     throw new Error('invalid-invitationid')
   }
+  if (req.query.message === 'success') {
+    req.data = {
+      invitation: {
+        invitationid: ''
+      }
+    }
+    return
+  }
   const invitation = await global.api.user.organizations.Invitation.get(req)
   if (invitation.accepted) {
     throw new Error('invalid-invitation')
@@ -26,9 +34,6 @@ async function beforeRequest (req) {
 async function renderPage (req, res, messageTemplate) {
   messageTemplate = messageTemplate || (req.query ? req.query.message : null)
   const doc = dashboard.HTML.parse(req.route.html, req.data.invitation, 'invitation')
-
-  const organizationName = doc.getElementById('organizationName')
-  organizationName.setAttribute('value', req.data.organization.name)
   if (messageTemplate) {
     dashboard.HTML.renderTemplate(doc, null, messageTemplate, 'message-container')
     if (messageTemplate === 'submit-sucess-message') {
@@ -37,6 +42,8 @@ async function renderPage (req, res, messageTemplate) {
       return dashboard.Response.end(req, res, doc)
     }
   }
+  const organizationName = doc.getElementById('organizationName')
+  organizationName.setAttribute('value', req.data.organization.name)
   if (req.data.invitation.accepted) {
     const notAccepted = doc.getElementById('not-accepted')
     notAccepted.parentNode.removeChild(notAccepted)
@@ -64,7 +71,8 @@ async function submitForm (req, res) {
     return dashboard.Response.redirect(req, res, req.query['return-url'])
   } else {
     res.writeHead(302, {
-      location: `${req.urlPath}?message=success`
+      location: `${req.urlPath}?invitationid=${req.query.invitationid}&message=success`
     })
+    return res.end()
   }
 }
