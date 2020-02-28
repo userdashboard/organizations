@@ -37,7 +37,7 @@ describe('/api/administrator/organizations/organizations', () => {
       const limit = 1
       const administrator = await TestHelper.createAdministrator()
       const organizations = []
-      for (let i = 0, len = global.pageSize + 1; i < len; i++) {
+      for (let i = 0, len = limit + 1; i < len; i++) {
         global.userProfileFields = ['contact-email', 'full-name']
         const user = await TestHelper.createUser()
         global.userProfileFields = ['display-email', 'display-name']

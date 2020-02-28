@@ -106,7 +106,7 @@ describe('/api/user/organizations/organizations', () => {
         'display-email': owner.profile.contactEmail
       })
       const organizations = []
-      for (let i = 0, len = global.pageSize + 1; i < len; i++) {
+      for (let i = 0, len = limit + 1; i < len; i++) {
         await TestHelper.createOrganization(owner, {
           email: owner.profile.displayEmail,
           name: 'My organization',

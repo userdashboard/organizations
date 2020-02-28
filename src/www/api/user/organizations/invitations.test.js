@@ -112,7 +112,7 @@ describe('/api/user/organizations/invitations', () => {
         profileid: owner.profile.profileid
       })
       const invitations = []
-      for (let i = 0, len = global.pageSize + 1; i < len; i++) {
+      for (let i = 0, len = limit + 1; i < len; i++) {
         const invitation = await TestHelper.createInvitation(owner)
         invitations.unshift(invitation.invitationid)
       }
