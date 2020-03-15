@@ -39,7 +39,7 @@ async function renderPage (req, res, messageTemplate) {
       return dashboard.Response.end(req, res, doc)
     }
   }
-  doc.getElementById('secret-code').setAttribute('value', req.body ? req.body['secret-code'] : dashboard.UUID.random(10))
+  doc.getElementById('secret-code').setAttribute('value', req.body ? (req.body['secret-code'] || '').split("'").join('&quot;') : dashboard.UUID.random(10))
   return dashboard.Response.end(req, res, doc)
 }
 

@@ -57,17 +57,17 @@ async function renderPage (req, res, messageTemplate) {
   }
   if (req.body) {
     const idField = doc.getElementById('invitationid')
-    idField.setAttribute('value', req.body.invitationid || '')
+    idField.setAttribute('value', (req.body.invitationid || '').split("'").join('&quot;'))
     const codeField = doc.getElementById('secret-code')
-    codeField.setAttribute('value', req.body['secret-code'] || '')
+    codeField.setAttribute('value', (req.body['secret-code'] || '').split("'").join('&quot;'))
     if (req.body.profileid) {
-      dashboard.HTML.setSelectedOptionByValue(doc, 'profileid', req.body.profileid)
+      dashboard.HTML.setSelectedOptionByValue(doc, 'profileid', (req.body.profileid || '').split("'").join('&quot;'))
     } else {
       const profileFields = req.userProfileFields || global.membershipProfileFields
       for (const field of profileFields) {
         if (req.body[field]) {
           const element = doc.getElementById(field)
-          element.setAttribute('value', req.body[field])
+          element.setAttribute('value', (req.body[field] || '').split("'").join('&quot;'))
         }
       }
     }

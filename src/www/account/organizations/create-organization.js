@@ -57,17 +57,17 @@ async function renderPage (req, res, messageTemplate) {
   }
   if (req.body) {
     const nameField = doc.getElementById('name')
-    nameField.setAttribute('value', req.body.name || '')
+    nameField.setAttribute('value', (req.body.name || '').split("'").join('&quot;'))
     const emailField = doc.getElementById('email')
-    emailField.setAttribute('value', req.body.email || '')
+    emailField.setAttribute('value', (req.body.email || '').split("'").join('&quot;'))
     if (req.body.profileid) {
-      dashboard.HTML.setSelectedOptionByValue(doc, 'profileid', req.body.profileid)
+      dashboard.HTML.setSelectedOptionByValue(doc, 'profileid', (req.body.profileid || '').split("'").join('&quot;'))
     } else {
       const profileFields = req.userProfileFields || global.membershipProfileFields
       for (const field of profileFields) {
         if (req.body[field]) {
           const element = doc.getElementById(field)
-          element.setAttribute('value', req.body[field])
+          element.setAttribute('value', (req.body[field]).split("'").join('&quot;'))
         }
       }
     }

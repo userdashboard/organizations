@@ -34,8 +34,8 @@ async function renderPage (req, res, messageTemplate) {
   const nameField = doc.getElementById('name')
   const emailField = doc.getElementById('email')
   if (req.method === 'POST') {
-    nameField.setAttribute('value', req.body.name || '')
-    emailField.setAttribute('value', req.body.email || '')
+    nameField.setAttribute('value', (req.body.name || '').split("'").join('&quot;'))
+    emailField.setAttribute('value', (req.body.email || '').split("'").join('&quot;'))
   } else {
     nameField.setAttribute('value', req.data.organization.name)
     emailField.setAttribute('value', req.data.organization.email)
