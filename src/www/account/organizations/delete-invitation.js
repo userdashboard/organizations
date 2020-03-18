@@ -22,13 +22,7 @@ async function beforeRequest (req) {
   if (invitation.accepted) {
     throw new Error('invalid-invitation')
   }
-  req.query.organizationid = invitation.organizationid
-  const organization = await global.api.user.organizations.Organization.get(req)
-  if (organization.ownerid !== req.account.accountid) {
-    throw new Error('invalid-account')
-  }
-  invitation.createdFormatted = dashboard.Format.date(invitation.created)
-  req.data = { organization, invitation }
+  req.data = { invitation }
 }
 
 async function renderPage (req, res, messageTemplate) {
@@ -39,24 +33,7 @@ async function renderPage (req, res, messageTemplate) {
     if (messageTemplate === 'submit-sucess-message') {
       const submitForm = doc.getElementById('submit-form')
       submitForm.parentNode.removeChild(submitForm)
-      return dashboard.Response.end(req, res, doc)
     }
-  }
-  const organizationName = doc.getElementById('organizationName')
-  organizationName.setAttribute('value', req.data.organization.name)
-  if (req.data.invitation.accepted) {
-    const notAccepted = doc.getElementById('not-accepted')
-    notAccepted.parentNode.removeChild(notAccepted)
-  } else {
-    const accepted = doc.getElementById('accepted')
-    accepted.parentNode.removeChild(accepted)
-  }
-  if (req.data.invitation.membershipid) {
-    const noMembership = doc.getElementById('no-membership')
-    noMembership.parentNode.removeChild(noMembership)
-  } else {
-    const membership = doc.getElementById('membership')
-    membership.parentNode.removeChild(membership)
   }
   return dashboard.Response.end(req, res, doc)
 }
