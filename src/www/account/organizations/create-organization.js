@@ -53,11 +53,11 @@ async function renderPage (req, res, messageTemplate) {
     }
   }
   const profileFields = req.userProfileFields || global.membershipProfileFields
-  const removeFields = ['display-name', 'display-email', 'contact-email', 'full-name', 'dob', 'phone', 'occupation', 'location', 'company-name', 'website']
+  const removeFields = [].concat(global.profileFields)
   if (req.data && req.data.profiles && req.data.profiles.length) {
     dashboard.HTML.renderList(doc, req.data.profiles, 'profile-option', 'profileid')
   } else {
-    removeFields.push('existing-profile-container')
+    removeFields.push('existing-profile')
   }
   for (const field of profileFields) {
     removeFields.splice(removeFields.indexOf(field), 1)
@@ -76,12 +76,11 @@ async function renderPage (req, res, messageTemplate) {
     emailField.setAttribute('value', (req.body.email || '').split("'").join('&quot;'))
     if (req.body.profileid) {
       dashboard.HTML.setSelectedOptionByValue(doc, 'profileid', (req.body.profileid || '').split("'").join('&quot;'))
-    } else {
-      for (const field of profileFields) {
-        if (req.body[field]) {
-          const element = doc.getElementById(field)
-          element.setAttribute('value', (req.body[field]).split("'").join('&quot;'))
-        }
+    } 
+    for (const field of profileFields) {
+      if (req.body[field]) {
+        const element = doc.getElementById(field)
+        element.setAttribute('value', (req.body[field]).split("'").join('&quot;'))
       }
     }
   }
