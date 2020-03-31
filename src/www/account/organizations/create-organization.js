@@ -52,8 +52,22 @@ async function renderPage (req, res, messageTemplate) {
       return dashboard.Response.end(req, res, doc)
     }
   }
+  const profileFields = req.userProfileFields || global.membershipProfileFields
+  const removeFields = ['display-name', 'display-email', 'contact-email', 'full-name', 'dob', 'phone', 'occupation', 'location', 'company-name', 'website']
   if (req.data && req.data.profiles && req.data.profiles.length) {
     dashboard.HTML.renderList(doc, req.data.profiles, 'profile-option', 'profileid')
+  } else {
+    removeFields.push('existing-profile-container')
+  }
+  for (const field of profileFields) {
+    removeFields.splice(removeFields.indexOf(field), 1)
+  }
+  for (const id of removeFields) {
+    const element = doc.getElementById(`${id}-container`)
+    if (!element || !element.parentNode) {
+      continue
+    }
+    element.parentNode.removeChild(element)
   }
   if (req.body) {
     const nameField = doc.getElementById('name')
@@ -63,7 +77,6 @@ async function renderPage (req, res, messageTemplate) {
     if (req.body.profileid) {
       dashboard.HTML.setSelectedOptionByValue(doc, 'profileid', (req.body.profileid || '').split("'").join('&quot;'))
     } else {
-      const profileFields = req.userProfileFields || global.membershipProfileFields
       for (const field of profileFields) {
         if (req.body[field]) {
           const element = doc.getElementById(field)
