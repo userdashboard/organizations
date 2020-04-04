@@ -1,5 +1,5 @@
 
-> @userdashboard/organizations@1.0.64 test /root/workspaces/organizations
+> @userdashboard/organizations@1.0.65 test /root/workspaces/organizations
 > mocha --exit --inline-diffs --full-trace --bail --async-only --recursive --timeout 600000 --slow 600000 './src{,!(public)/**}/*.test.js'
 
 
