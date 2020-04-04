@@ -10,8 +10,10 @@ async function beforeRequest (req) {
   req.query = req.query || {}
   if (req.query.message === 'success') {
     req.data = {
-      object: 'organization',
-      organizationid: req.query.organizationid
+      organization: {
+        object: 'organization',
+        organizationid: req.query.organizationid
+      }
     }
     return
   }
