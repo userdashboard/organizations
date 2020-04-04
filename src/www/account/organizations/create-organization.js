@@ -8,6 +8,13 @@ module.exports = {
 
 async function beforeRequest (req) {
   req.query = req.query || {}
+  if (req.query.message === 'success') {
+    req.data = {
+      object: 'organization',
+      organizationid: req.query.organizationid
+    }
+    return
+  }
   req.query.accountid = req.account.accountid
   req.query.all = true
   const profiles = await global.api.user.Profiles.get(req)
@@ -45,7 +52,7 @@ async function renderPage (req, res, messageTemplate) {
   messageTemplate = messageTemplate || (req.query ? req.query.message : null)
   const doc = dashboard.HTML.parse(req.route.html)
   if (messageTemplate) {
-    dashboard.HTML.renderTemplate(doc, null, messageTemplate, 'message-container')
+    dashboard.HTML.renderTemplate(doc, req.data ? req.data.organization : null, messageTemplate, 'message-container')
     if (messageTemplate === 'success') {
       const submitForm = doc.getElementById('submit-form')
       submitForm.parentNode.removeChild(submitForm)
@@ -136,8 +143,9 @@ async function submitForm (req, res) {
   }
   req.query = req.query || {}
   req.query.accountid = req.account.accountid
+  let organization
   try {
-    await global.api.user.organizations.CreateOrganization.post(req)
+    organization = await global.api.user.organizations.CreateOrganization.post(req)
   } catch (error) {
     return renderPage(req, res, req.error)
   }
@@ -145,7 +153,7 @@ async function submitForm (req, res) {
     return dashboard.Response.redirect(req, res, req.query['return-url'])
   } else {
     res.writeHead(302, {
-      location: `${req.urlPath}?message=success`
+      location: `${req.urlPath}?organizationid=${organization.organizationid}&message=success`
     })
     return res.end()
   }

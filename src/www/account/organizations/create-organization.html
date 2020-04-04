@@ -94,7 +94,10 @@
     <div class="error message">Error! A missing or invalid organization email was provided</div>
   </template>
   <template id="success">
-    <div class="success message">Success! The organization has been created successfully</div>
+    <div class="success message">
+      Success! The organization has been created successfully
+      <p><a class="pure-button pure-button-primary" href="/account/organizations/create-invitation?organizationid=${organization.organizationid">Create invitations</a></p>
+    </div>
   </template>
   <template id="unknown-error">
     <div class="error message">Error! An error occurred creating the organization</div>
