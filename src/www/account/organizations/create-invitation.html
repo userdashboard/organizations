@@ -7,7 +7,11 @@
     <link href="/public/content-additional.css" rel="stylesheet" />
     <base target="_top" href="/" />
     <style>
-      .link { padding: 1rem; background-color: #EEE; color: #000; border: 1px solid #CCC; width: 40rem; font-size: 1.2rem; font-weight: normal; border-radius: 0.5rem }
+      .invitation-link { padding: 1rem; background-color: #EEE; border: 1px solid #CCC; border-radius: 0.5rem; max-width: 40rem } 
+      .invitation-link input { background-color: #EEE; border: none; color: #000; width: 100%; font-size: 1.2rem; font-weight: normal }
+      @media (max-width: 1024px) {
+        .invitation-link input { max-width: 100% }
+      }
     </style>
   </head>
   <body>
@@ -55,9 +59,10 @@
   </template>
   <template id="success">
     <div class="success message">
-      <p>Success! Someone may use your secret code and this URL or invitation ID to join:</p>
-      <input class="link" type="text" readonly value="https://${organization.dashboardServer}/account/organizations/accept-invitation?invitationid=${organization.invitationid}" />
-      <input class="link" type="text" readonly value="${organization.invitationid}" />
+      <p>Success! Give your secret code and this link to someone to join:</p>
+      <div class="invitation-link">
+        <input type="text" readonly value="${organization.dashboardServer}/account/organizations/accept-invitation?invitationid=${organization.invitationid}" />
+      </div>
     </div>
   </template>
 </html>

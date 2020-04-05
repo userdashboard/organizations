@@ -30,7 +30,7 @@ async function renderPage (req, res, messageTemplate) {
   const doc = dashboard.HTML.parse(req.route.html, req.data.organization, 'organization')
   doc.getElementById('organization-name').setAttribute('value', req.data.organization.name)
   if (messageTemplate) {
-    dashboard.HTML.renderTemplate(doc, null, messageTemplate, 'message-container')
+    dashboard.HTML.renderTemplate(doc, req.data.organization, messageTemplate, 'message-container')
     if (messageTemplate === 'success') {
       const submitForm = doc.getElementById('submit-form')
       submitForm.parentNode.removeChild(submitForm)
