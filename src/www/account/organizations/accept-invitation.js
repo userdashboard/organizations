@@ -55,6 +55,23 @@ async function renderPage (req, res, messageTemplate) {
   if (req.data && req.data.profiles && req.data.profiles.length) {
     dashboard.HTML.renderList(doc, req.data.profiles, 'profile-option', 'profileid')
   }
+  const profileFields = req.userProfileFields || global.membershipProfileFields
+  const removeFields = [].concat(global.profileFields)
+  if (req.data && req.data.profiles && req.data.profiles.length) {
+    dashboard.HTML.renderList(doc, req.data.profiles, 'profile-option', 'profileid')
+  } else {
+    removeFields.push('existing-profile')
+  }
+  for (const field of profileFields) {
+    removeFields.splice(removeFields.indexOf(field), 1)
+  }
+  for (const id of removeFields) {
+    const element = doc.getElementById(`${id}-container`)
+    if (!element || !element.parentNode) {
+      continue
+    }
+    element.parentNode.removeChild(element)
+  }
   if (req.body) {
     const idField = doc.getElementById('invitationid')
     idField.setAttribute('value', (req.body.invitationid || '').split("'").join('&quot;'))
