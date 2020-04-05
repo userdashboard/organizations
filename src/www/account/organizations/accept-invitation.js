@@ -52,9 +52,6 @@ async function renderPage (req, res, messageTemplate) {
       return dashboard.Response.end(req, res, doc)
     }
   }
-  if (req.data && req.data.profiles && req.data.profiles.length) {
-    dashboard.HTML.renderList(doc, req.data.profiles, 'profile-option', 'profileid')
-  }
   const profileFields = req.userProfileFields || global.membershipProfileFields
   const removeFields = [].concat(global.profileFields)
   if (req.data && req.data.profiles && req.data.profiles.length) {
