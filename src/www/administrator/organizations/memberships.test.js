@@ -5,7 +5,7 @@ const TestHelper = require('../../../../test-helper.js')
 describe('/administrator/organizations/memberships', () => {
   describe('Memberships#BEFORE', () => {
     it('should bind memberships to req', async () => {
-      const administrator = await TestHelper.createAdministrator()
+      const administrator = await TestHelper.createOwner()
       const owner = await TestHelper.createUser()
       const user = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']
@@ -34,7 +34,7 @@ describe('/administrator/organizations/memberships', () => {
 
   describe('Memberships#GET', () => {
     it('should return row for each membership (screenshots)', async () => {
-      const administrator = await TestHelper.createAdministrator()
+      const administrator = await TestHelper.createOwner()
       const user = await TestHelper.createUser()
       global.userProfileFields = ['display-email', 'display-name']
       await TestHelper.createProfile(user, {
@@ -75,7 +75,7 @@ describe('/administrator/organizations/memberships', () => {
 
     it('should enforce page size', async () => {
       global.pageSize = 3
-      const administrator = await TestHelper.createAdministrator()
+      const administrator = await TestHelper.createOwner()
       const user = await TestHelper.createUser()
       global.userProfileFields = ['display-email', 'display-name']
       await TestHelper.createProfile(user, {
@@ -111,7 +111,7 @@ describe('/administrator/organizations/memberships', () => {
     it('should enforce specified offset', async () => {
       global.delayDiskWrites = true
       const offset = 1
-      const administrator = await TestHelper.createAdministrator()
+      const administrator = await TestHelper.createOwner()
       const user = await TestHelper.createUser()
       global.userProfileFields = ['display-email', 'display-name']
       await TestHelper.createProfile(user, {
@@ -148,7 +148,7 @@ describe('/administrator/organizations/memberships', () => {
     })
 
     it('should show profile fields if data exists', async () => {
-      const administrator = await TestHelper.createAdministrator()
+      const administrator = await TestHelper.createOwner()
       const fields = {
         'full-name': 'First Last',
         'contact-email': 'contact@email.com',

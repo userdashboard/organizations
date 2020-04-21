@@ -39,7 +39,7 @@ describe('/api/administrator/organizations/account-organizations', () => {
     it('optional querystring offset (integer)', async () => {
       const offset = 1
       global.delayDiskWrites = true
-      const administrator = await TestHelper.createAdministrator()
+      const administrator = await TestHelper.createOwner()
       const organizations = []
       const user = await TestHelper.createUser()
       global.userProfileFields = ['display-email', 'display-name']
@@ -66,7 +66,7 @@ describe('/api/administrator/organizations/account-organizations', () => {
 
     it('optional querystring limit (integer)', async () => {
       const limit = 1
-      const administrator = await TestHelper.createAdministrator()
+      const administrator = await TestHelper.createOwner()
       const organizations = []
       const user = await TestHelper.createUser()
       global.userProfileFields = ['display-email', 'display-name']
@@ -90,7 +90,7 @@ describe('/api/administrator/organizations/account-organizations', () => {
     })
 
     it('optional querystring all (boolean)', async () => {
-      const administrator = await TestHelper.createAdministrator()
+      const administrator = await TestHelper.createOwner()
       const organizations = []
       const user = await TestHelper.createUser()
       global.userProfileFields = ['display-email', 'display-name']
@@ -115,7 +115,7 @@ describe('/api/administrator/organizations/account-organizations', () => {
   })
   describe('returns', () => {
     it('array', async () => {
-      const administrator = await TestHelper.createAdministrator()
+      const administrator = await TestHelper.createOwner()
       const user = await TestHelper.createUser()
       global.userProfileFields = ['display-email', 'display-name']
       await TestHelper.createProfile(user, {
@@ -151,7 +151,7 @@ describe('/api/administrator/organizations/account-organizations', () => {
   describe('configuration', () => {
     it('environment PAGE_SIZE', async () => {
       global.pageSize = 3
-      const administrator = await TestHelper.createAdministrator()
+      const administrator = await TestHelper.createOwner()
       const user = await TestHelper.createUser()
       global.userProfileFields = ['display-email', 'display-name']
       await TestHelper.createProfile(user, {

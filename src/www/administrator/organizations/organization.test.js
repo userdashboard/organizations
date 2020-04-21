@@ -5,7 +5,7 @@ const TestHelper = require('../../../../test-helper.js')
 describe('/administrator/organizations/organization', () => {
   describe('Organization#BEFORE', () => {
     it('should bind organization to req', async () => {
-      const administrator = await TestHelper.createAdministrator()
+      const administrator = await TestHelper.createOwner()
       const owner = await TestHelper.createUser()
       const user = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']
@@ -34,7 +34,7 @@ describe('/administrator/organizations/organization', () => {
 
   describe('Organization#GET', () => {
     it('should have row for organization (screenshots)', async () => {
-      const administrator = await TestHelper.createAdministrator()
+      const administrator = await TestHelper.createOwner()
       const owner = await TestHelper.createUser()
       const user = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']

@@ -39,7 +39,7 @@ describe('/api/administrator/organizations/account-memberships', () => {
     it('optional querystring offset (integer)', async () => {
       global.delayDiskWrites = true
       const offset = 1
-      const administrator = await TestHelper.createAdministrator()
+      const administrator = await TestHelper.createOwner()
       const user = await TestHelper.createUser()
       global.userProfileFields = ['display-email', 'display-name']
       await TestHelper.createProfile(user, {
@@ -75,7 +75,7 @@ describe('/api/administrator/organizations/account-memberships', () => {
 
     it('optional querystring limit (integer)', async () => {
       const limit = 1
-      const administrator = await TestHelper.createAdministrator()
+      const administrator = await TestHelper.createOwner()
       const user = await TestHelper.createUser()
       global.userProfileFields = ['display-email', 'display-name']
       await TestHelper.createProfile(user, {
@@ -108,7 +108,7 @@ describe('/api/administrator/organizations/account-memberships', () => {
     })
 
     it('optional querystring all (boolean)', async () => {
-      const administrator = await TestHelper.createAdministrator()
+      const administrator = await TestHelper.createOwner()
       const user = await TestHelper.createUser()
       global.userProfileFields = ['display-email', 'display-name']
       await TestHelper.createProfile(user, {
@@ -142,7 +142,7 @@ describe('/api/administrator/organizations/account-memberships', () => {
   })
   describe('returns', () => {
     it('array', async () => {
-      const administrator = await TestHelper.createAdministrator()
+      const administrator = await TestHelper.createOwner()
       const user = await TestHelper.createUser()
       global.userProfileFields = ['display-email', 'display-name']
       await TestHelper.createProfile(user, {
@@ -178,7 +178,7 @@ describe('/api/administrator/organizations/account-memberships', () => {
   describe('configuration', () => {
     it('environment PAGE_SIZE', async () => {
       global.pageSize = 3
-      const administrator = await TestHelper.createAdministrator()
+      const administrator = await TestHelper.createOwner()
       const user = await TestHelper.createUser()
       global.userProfileFields = ['display-email', 'display-name']
       await TestHelper.createProfile(user, {

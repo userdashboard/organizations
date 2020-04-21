@@ -37,7 +37,7 @@ describe('/api/administrator/organizations/account-organizations-count', () => {
 
   describe('returns', () => {
     it('integer', async () => {
-      const administrator = await TestHelper.createAdministrator()
+      const administrator = await TestHelper.createOwner()
       const user = await TestHelper.createUser()
       global.userProfileFields = ['display-email', 'display-name']
       await TestHelper.createProfile(user, {

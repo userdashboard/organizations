@@ -5,7 +5,7 @@ const TestHelper = require('../../../../test-helper.js')
 describe('/administrator/organizations/organizations', () => {
   describe('Organizations#BEFORE', () => {
     it('should bind owned organizations to req', async () => {
-      const administrator = await TestHelper.createAdministrator()
+      const administrator = await TestHelper.createOwner()
       const owner = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
@@ -26,7 +26,7 @@ describe('/administrator/organizations/organizations', () => {
     })
 
     it('should not bind member organizations to req', async () => {
-      const administrator = await TestHelper.createAdministrator()
+      const administrator = await TestHelper.createOwner()
       const owner = await TestHelper.createUser()
       const user = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']
@@ -55,7 +55,7 @@ describe('/administrator/organizations/organizations', () => {
 
   describe('Organizations#GET', () => {
     it('should return row for each organization (screenshots)', async () => {
-      const administrator = await TestHelper.createAdministrator()
+      const administrator = await TestHelper.createOwner()
       const user = await TestHelper.createUser()
       global.userProfileFields = ['display-email', 'display-name']
       await TestHelper.createProfile(user, {
@@ -94,7 +94,7 @@ describe('/administrator/organizations/organizations', () => {
 
     it('should enforce page size', async () => {
       global.pageSize = 3
-      const administrator = await TestHelper.createAdministrator()
+      const administrator = await TestHelper.createOwner()
       const user = await TestHelper.createUser()
       global.userProfileFields = ['display-email', 'display-name']
       await TestHelper.createProfile(user, {
@@ -128,7 +128,7 @@ describe('/administrator/organizations/organizations', () => {
     it('should enforce specified offset', async () => {
       global.delayDiskWrites = true
       const offset = 1
-      const administrator = await TestHelper.createAdministrator()
+      const administrator = await TestHelper.createOwner()
       const organizations = []
       for (let i = 0, len = global.pageSize + 1; i < len; i++) {
         global.userProfileFields = ['contact-email', 'full-name']

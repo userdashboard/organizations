@@ -7,7 +7,7 @@ describe('/api/administrator/organizations/invitations', () => {
     it('optional querystring offset (integer)', async () => {
       const offset = 1
       global.delayDiskWrites = true
-      const administrator = await TestHelper.createAdministrator()
+      const administrator = await TestHelper.createOwner()
       const invitations = []
       for (let i = 0, len = global.pageSize + 1; i < len; i++) {
         global.userProfileFields = ['contact-email', 'full-name']
@@ -36,7 +36,7 @@ describe('/api/administrator/organizations/invitations', () => {
 
     it('optional querystring limit (integer)', async () => {
       const limit = 1
-      const administrator = await TestHelper.createAdministrator()
+      const administrator = await TestHelper.createOwner()
       const invitations = []
       for (let i = 0, len = limit + 1; i < len; i++) {
         global.userProfileFields = ['contact-email', 'full-name']
@@ -62,7 +62,7 @@ describe('/api/administrator/organizations/invitations', () => {
     })
 
     it('optional querystring all (boolean)', async () => {
-      const administrator = await TestHelper.createAdministrator()
+      const administrator = await TestHelper.createOwner()
       const invitations = []
       for (let i = 0, len = global.pageSize + 1; i < len; i++) {
         global.userProfileFields = ['contact-email', 'full-name']
@@ -89,7 +89,7 @@ describe('/api/administrator/organizations/invitations', () => {
   })
   describe('returns', () => {
     it('array', async () => {
-      const administrator = await TestHelper.createAdministrator()
+      const administrator = await TestHelper.createOwner()
       const owner = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
@@ -117,7 +117,7 @@ describe('/api/administrator/organizations/invitations', () => {
   describe('configuration', () => {
     it('environment PAGE_SIZE', async () => {
       global.pageSize = 3
-      const administrator = await TestHelper.createAdministrator()
+      const administrator = await TestHelper.createOwner()
       for (let i = 0, len = global.pageSize + 1; i < len; i++) {
         global.userProfileFields = ['contact-email', 'full-name']
         const user = await TestHelper.createUser()

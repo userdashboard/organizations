@@ -5,7 +5,7 @@ const TestHelper = require('../../../../test-helper.js')
 describe('/administrator/organizations/organization-memberships', () => {
   describe('OrganizationMemberships#BEFORE', () => {
     it('should bind memberships to req', async () => {
-      const administrator = await TestHelper.createAdministrator()
+      const administrator = await TestHelper.createOwner()
       const owner = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
@@ -46,7 +46,7 @@ describe('/administrator/organizations/organization-memberships', () => {
 
   describe('OrganizationMemberships#GET', () => {
     it('should return row for each membership (screenshots)', async () => {
-      const administrator = await TestHelper.createAdministrator()
+      const administrator = await TestHelper.createOwner()
       const owner = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
@@ -88,7 +88,7 @@ describe('/administrator/organizations/organization-memberships', () => {
 
     it('should enforce page size', async () => {
       global.pageSize = 3
-      const administrator = await TestHelper.createAdministrator()
+      const administrator = await TestHelper.createOwner()
       const owner = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
@@ -124,7 +124,7 @@ describe('/administrator/organizations/organization-memberships', () => {
     it('should enforce specified offset', async () => {
       global.delayDiskWrites = true
       const offset = 1
-      const administrator = await TestHelper.createAdministrator()
+      const administrator = await TestHelper.createOwner()
       const owner = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {

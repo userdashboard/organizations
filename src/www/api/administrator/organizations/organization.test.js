@@ -37,7 +37,7 @@ describe('/api/administrator/organizations/organization', () => {
 
   describe('returns', () => {
     it('object', async () => {
-      const administrator = await TestHelper.createAdministrator()
+      const administrator = await TestHelper.createOwner()
       const owner = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
