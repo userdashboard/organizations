@@ -1,5 +1,5 @@
 if [ ! -d node_modules/@userdashboard/dashboard ] || [ ! -d node_modules/puppeteer ] || [ ! -d node_modules/@userdashboard/storage-redis ]; then
-  npm install puppeteer @userdashboard/dashboard @userdashboard/storage-redis --no-save
+  npm install puppeteer@2.1.1 @userdashboard/dashboard @userdashboard/storage-redis --no-save
 fi
 
 NODE_ENV=testing \

@@ -1,5 +1,5 @@
 if [ ! -d node_modules/puppeteer ] || [ ! -d node_modules/@userdashboard/dashboard ]; then
-  npm install puppeteer @userdashboard/dashboard --no-save
+  npm install puppeteer@2.1.1 @userdashboard/dashboard --no-save
 fi
 PARAMS=""
 if [ ! -z "$1" ]; then
