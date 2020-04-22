@@ -1,5 +1,16 @@
 
-> @userdashboard/organizations@1.0.69 test /root/workspaces/organizations
+> puppeteer@2.1.1 install /home/benlowry/SynologyDrive/workspaces/dashboard/organizations/node_modules/puppeteer
+> node install.js
+
+Chromium downloaded to /home/benlowry/SynologyDrive/workspaces/dashboard/organizations/node_modules/puppeteer/.local-chromium/linux-722234
++ puppeteer@2.1.1
++ @userdashboard/storage-redis@1.0.6
++ @userdashboard/dashboard@1.0.164
+added 82 packages from 97 contributors in 35.811s
+found 0 vulnerabilities
+
+
+> @userdashboard/organizations@1.0.70 test /home/benlowry/SynologyDrive/workspaces/dashboard/organizations
 > mocha --exit --inline-diffs --full-trace --bail --async-only --recursive --timeout 600000 --slow 600000 './src{,!(public)/**}/*.test.js'
 
 
@@ -744,5 +755,5 @@
       ✓ object
 
 
-  349 passing (19m)
+  349 passing (13m)
 

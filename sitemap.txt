@@ -1,4 +1,4 @@
-@userdashboard/dashboard 1.0.145
+@userdashboard/dashboard 1.0.164
 http://localhost:8003
 
 Administrator menu:
@@ -16,7 +16,7 @@ Special HTML files:
 @userdashboard/dashboard/src/redirect.html
 
 Dashboard modules:
-@userdashboard/organizations (1.0.69)
+@userdashboard/organizations (1.0.70)
 
 URL ----------------------------------------------------------- AUTH - TEMPLATE - HTTP REQUESTS - NODEJS --------------------- HTML -----------------------
 /                                                               GUEST  FULLSCREEN GET                                          /src/www                    
@@ -57,12 +57,11 @@ URL ----------------------------------------------------------- AUTH - TEMPLATE 
 /account/reset-code                                                               GET             @userdashboard/dashboard     @userdashboard/dashboard    
 /account/reset-codes                                                              GET             @userdashboard/dashboard     @userdashboard/dashboard    
 /account/restore-account                                        GUEST  FULLSCREEN GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
-/account/select-language                                                          GET                                          @userdashboard/dashboard    
 /account/session                                                                  GET             @userdashboard/dashboard     @userdashboard/dashboard    
 /account/sessions                                                                 GET             @userdashboard/dashboard     @userdashboard/dashboard    
 /account/set-default-profile                                                      GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
 /account/signin                                                 GUEST  FULLSCREEN GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
-/account/signout                                                       FULLSCREEN GET             @userdashboard/dashboard     @userdashboard/dashboard    
+/account/signout                                                GUEST  FULLSCREEN GET             @userdashboard/dashboard     @userdashboard/dashboard    
 /account/signout-complete                                       GUEST  FULLSCREEN GET                                          @userdashboard/dashboard    
 /account/verify                                                 GUEST  FULLSCREEN GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
 /administrator                                                                    GET                                          @userdashboard/dashboard    
