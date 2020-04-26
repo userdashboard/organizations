@@ -4,11 +4,9 @@
     <title>Create invitation for ${organization.organizationid}</title>
     <link href="/public/pure-min.css" rel="stylesheet" />
     <link href="/public/content.css" rel="stylesheet" />
+    <link href="/public/organizations/organizations-content.css" rel="stylesheet" />
     <link href="/public/content-additional.css" rel="stylesheet" />
     <base target="_top" href="/" />
-    <style>
-      .link { padding: 1rem; background-color: #EEE; color: #000; border: 1px solid #CCC; width: 40rem; font-size: 1.2rem; font-weight: normal; border-radius: 0.5rem }
-    </style>
   </head>
   <body>
     <h1>Create invitation for ${organization.organizationid}</h1>
@@ -55,9 +53,10 @@
   </template>
   <template id="success">
     <div class="success message">
-      <p>Success! Someone may use your secret code and this URL or invitation ID to join:</p>
-      <input class="link" type="text" readonly value="https://${organization.dashboardServer}/account/organizations/accept-invitation?invitationid=${organization.invitationid}" />
-      <input class="link" type="text" readonly value="${organization.invitationid}" />
+      <p>Success! Give your secret code and this link to someone to join:</p>
+      <div class="invitation-link">
+        <input type="text" readonly value="${organization.dashboardServer}/account/organizations/accept-invitation?invitationid=${organization.invitationid}" />
+      </div>
     </div>
   </template>
 </html>

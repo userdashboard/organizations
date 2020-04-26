@@ -21,12 +21,13 @@
         <input id="secret-code" name="secret-code" type="text" maxlength="100" />
       </div>
       <h2>Membership information</h2>
-      <div class="pure-control-group">
-        <label for="profileid">Existing information</label>
+      <div id="existing-profile-container" class="pure-control-group">
+        <label for="profileid">Use existing profile</label>
         <select id="profileid" name="profileid">
           <option value="">Select an existing profile</option>
         </select>
       </div>
+      <h3>Create new profile</h3>
       <div id="display-name-container" class="pure-control-group">
         <label for="display-name">Display name</label>
         <input require id="display-name" name="display-name" type="text" maxlength="1000" />
@@ -76,7 +77,7 @@
         <input require id="website" name="website" type="text" maxlength="1000" />
       </div>
       <div class="pure-controls">
-        <button type="submit" id="submit-button" class="pure-button pure-button-primary">Create organization</button>
+        <button type="submit" id="submit-button" class="pure-button pure-button-primary">Join organization</button>
       </div>
     </form>
   </body>

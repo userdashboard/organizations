@@ -21,12 +21,13 @@
         <input id="email" name="email" type="text" maxlength="100" />
       </div>
       <h2>Membership information</h2>
-      <div class="pure-control-group">
-        <label for="profileid">Existing information</label>
+      <div id="existing-profile-container" class="pure-control-group">
+        <label for="profileid">Use existing profile</label>
         <select id="profileid" name="profileid">
           <option value="">Select an existing profile</option>
         </select>
       </div>
+      <h3>Create new profile</h3>
       <div id="display-name-container" class="pure-control-group">
         <label for="display-name">Display name</label>
         <input require id="display-name" name="display-name" type="text" maxlength="1000" />
@@ -93,7 +94,10 @@
     <div class="error message">Error! A missing or invalid organization email was provided</div>
   </template>
   <template id="success">
-    <div class="success message">Success! The organization has been created successfully</div>
+    <div class="success message">
+      Success! The organization has been created successfully
+      <p><a class="pure-button pure-button-primary" href="/account/organizations/create-invitation?organizationid=${organization.organizationid}">Create invitations</a></p>
+    </div>
   </template>
   <template id="unknown-error">
     <div class="error message">Error! An error occurred creating the organization</div>
