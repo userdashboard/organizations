@@ -17,7 +17,7 @@ jobs:
     - name: Setup MongoDB
       run: sudo apt-get install -y mongodb
     - name: Setup dependencies
-      run: npm install mocha puppeteer@2.1.1 @userdashboard/storage-mongodb --no-save
+      run: npm install mocha puppeteer@2.1.1 @userdashboard/dashboard @userdashboard/storage-mongodb --no-save
     - name: Test without encryption
       run: npm test
       env:

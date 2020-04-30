@@ -27,7 +27,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: Setup dependencies
-      run: npm install mocha puppeteer@2.1.1 @userdashboard/storage-postgresql --no-save
+      run: npm install mocha puppeteer@2.1.1 @userdashboard/dashboard @userdashboard/storage-postgresql --no-save
     - name: Test unencrypted PostgreSQL storage
       run: npm test
       env:
