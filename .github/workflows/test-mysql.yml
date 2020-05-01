@@ -19,13 +19,12 @@ jobs:
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     steps:
     - uses: actions/checkout@v1
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+    - uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: Setup dependencies
+    - name: Install dependencies
       run: npm install mocha puppeteer@2.1.1 @userdashboard/dashboard @userdashboard/storage-mysql --no-save
-    - name: Test without encryption
+    - name: Test encrypted MySQL storage
       run: npm test
       env:
         NODE_ENV: testing
@@ -36,7 +35,7 @@ jobs:
         DATABASE_URL: "mysql://root:password@127.0.0.1:8888/dashboard"
         GENERATE_SITEMAP_TXT: "false"
         GENERATE_API_TXT: "false"
-    - name: Test with encryption
+    - name: Test encrypted MySQL storage
       run: npm test
       env:
         NODE_ENV: testing
