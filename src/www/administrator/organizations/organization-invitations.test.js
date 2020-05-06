@@ -57,7 +57,7 @@ describe('/administrator/organizations/organization-invitations', function () {
   })
 
   describe('OrganizationInvitations#GET', () => {
-    it('should return row for each invitation (screenshots)', async () => {
+    it('should limit invitations to one page (screenshots)', async () => {
       const result = cachedResponses.returns
       const doc = TestHelper.extractDoc(result.html)
       const table = doc.getElementById('invitations-table')

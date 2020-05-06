@@ -65,7 +65,7 @@ describe('/administrator/organizations/organization-memberships', function () {
   })
 
   describe('OrganizationMemberships#GET', () => {
-    it('should return row for each membership (screenshots)', async () => {
+    it('should limit memberships to one page (screenshots)', async () => {
       const result = cachedResponses.returns
       const doc = TestHelper.extractDoc(result.html)
       const table = doc.getElementById('memberships-table')

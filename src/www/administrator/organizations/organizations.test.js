@@ -54,7 +54,7 @@ describe('/administrator/organizations/organizations', function () {
   })
 
   describe('Organizations#GET', () => {
-    it('should return row for each organization (screenshots)', async () => {
+    it('should limit organizations to one page (screenshots)', async () => {
       const result = cachedResponses.returns
       const doc = TestHelper.extractDoc(result.html)
       const table = doc.getElementById('organizations-table')
