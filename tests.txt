@@ -1,6 +1,6 @@
 
-> @userdashboard/organizations@1.0.75 test /home/runner/work/organizations/organizations
-> mocha --exit --inline-diffs --full-trace --bail --async-only --recursive --timeout 60000 --slow 60000 './src{,!(public)/**}/*.test.js'
+> @userdashboard/organizations@1.0.76 test /home/runner/work/organizations/organizations
+> mocha --exit --inline-diffs --full-trace --bail --async-only --recursive --timeout 90000 --slow 90000 './src{,!(public)/**}/*.test.js'
 
 
 
@@ -188,7 +188,7 @@
     Invitations#BEFORE
       ✓ should bind invitations to req
     Invitations#GET
-      ✓ should return row for each invitation (screenshots)
+      ✓ shoud limit invitations to noe page (screenshots)
       ✓ should enforce page size
       ✓ should enforce specified offset
 
@@ -202,7 +202,7 @@
     Memberships#BEFORE
       ✓ should bind memberships to req
     Memberships#GET
-      ✓ should return row for each membership (screenshots)
+      ✓ should limit memberhsips to one page (screenshots)
       ✓ should enforce page size
       ✓ should enforce specified offset
       ✓ should show profile fields if data exists
@@ -211,7 +211,7 @@
     OrganizationInvitations#BEFORE
       ✓ should bind invitations to req
     OrganizationInvitations#GET
-      ✓ should return row for each invitation (screenshots)
+      ✓ should limit invitations to one page (screenshots)
       ✓ should enforce page size
       ✓ should enforce specified offset
 
@@ -219,7 +219,7 @@
     OrganizationMemberships#BEFORE
       ✓ should bind memberships to req
     OrganizationMemberships#GET
-      ✓ should return row for each membership (screenshots)
+      ✓ should limit memberships to one page (screenshots)
       ✓ should enforce page size
       ✓ should enforce specified offset
 
@@ -233,7 +233,7 @@
     Organizations#BEFORE
       ✓ should bind owned organizations to req
     Organizations#GET
-      ✓ should return row for each organization (screenshots)
+      ✓ should limit organizations to one page (screenshots)
       ✓ should enforce page size
       ✓ should enforce specified offset
 
