@@ -87,7 +87,7 @@ async function renderPage (req, res, messageTemplate) {
     }
   } else if (req.query && req.query.invitationid) {
     const idField = doc.getElementById('invitationid')
-    idField.setAttribute('value', req.query.invitationid) 
+    idField.setAttribute('value', req.query.invitationid)
   }
   return dashboard.Response.end(req, res, doc)
 }

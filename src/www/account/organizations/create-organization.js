@@ -85,7 +85,7 @@ async function renderPage (req, res, messageTemplate) {
     emailField.setAttribute('value', (req.body.email || '').split("'").join('&quot;'))
     if (req.body.profileid) {
       dashboard.HTML.setSelectedOptionByValue(doc, 'profileid', (req.body.profileid || '').split("'").join('&quot;'))
-    } 
+    }
     for (const field of profileFields) {
       if (req.body[field]) {
         const element = doc.getElementById(field)
