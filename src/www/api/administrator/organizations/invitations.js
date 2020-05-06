@@ -3,13 +3,20 @@ const dashboard = require('@userdashboard/dashboard')
 module.exports = {
   get: async (req) => {
     req.query = req.query || {}
+    let index
+    if (req.query.accountid) {
+      index = `${req.appid}/account/invitations/${req.query.accountid}`
+    } else if (req.query.organizationid) {
+      index = `${req.appid}/organization/invitations/${req.query.organizationid}`
+    }
+    index = index || `${req.appid}/invitations`
     let invitationids
     if (req.query.all) {
-      invitationids = await dashboard.StorageList.listAll(`${req.appid}/invitations`)
+      invitationids = await dashboard.StorageList.listAll(index)
     } else {
       const offset = req.query.offset ? parseInt(req.query.offset, 10) : 0
       const limit = req.query.limit ? parseInt(req.query.limit, 10) : global.pageSize
-      invitationids = await dashboard.StorageList.list(`${req.appid}/invitations`, offset, limit)
+      invitationids = await dashboard.StorageList.list(index, offset, limit)
     }
     if (!invitationids || !invitationids.length) {
       return null

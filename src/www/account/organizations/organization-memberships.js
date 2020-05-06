@@ -16,8 +16,9 @@ async function beforeRequest (req) {
   if (organization.ownerid !== req.account.accountid) {
     throw new Error('invalid-account')
   }
-  const total = await global.api.user.organizations.OrganizationMembershipsCount.get(req)
-  const memberships = await global.api.user.organizations.OrganizationMemberships.get(req)
+  req.query.accountid = req.account.accountid
+  const total = await global.api.user.organizations.MembershipsCount.get(req)
+  const memberships = await global.api.user.organizations.Memberships.get(req)
   if (memberships && memberships.length) {
     for (const membership of memberships) {
       membership.createdFormatted = dashboard.Format.date(membership.created)

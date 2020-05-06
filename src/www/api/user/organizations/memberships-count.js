@@ -9,6 +9,19 @@ module.exports = {
     if (!account) {
       throw new Error('invalid-account')
     }
-    return dashboard.StorageList.count(`${req.appid}/account/memberships/${req.query.accountid}`)
+    let index
+    if (req.query.organizationid) {
+      index = `${req.appid}/organization/memberships/${req.query.organizationid}`
+      const organization = await global.api.user.organizations.Organization.get(req)
+      if (!organization) {
+        throw new Error('invalid-organizationid')
+      }
+      if (organization.ownerid !== req.account.accountid) {
+        throw new Error('invalid-account')
+      }
+    } else {
+      index = `${req.appid}/account/memberships/${req.query.accountid}`
+    }
+    return dashboard.StorageList.count(index)
   }
 }

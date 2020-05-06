@@ -14,6 +14,7 @@ async function beforeRequest (req) {
       organization.createdFormatted = dashboard.Format.date(organization.created)
     }
   }
+  delete (req.query.organizationid)
   const memberships = await global.api.user.organizations.Memberships.get(req)
   if (memberships && memberships.length) {
     for (const membership of memberships) {

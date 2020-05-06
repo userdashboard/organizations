@@ -31,18 +31,9 @@ async function beforeRequest (req) {
   organization.createdFormatted = dashboard.Format.date(organization.created)
   req.data = { organization }
   req.query.offset = 0
-  let memberships = []
-  let total = await global.api.user.organizations.OrganizationMembershipsCount.get(req)
-  while (total > 0) {
-    const more = await global.api.user.organizations.OrganizationMemberships.get(req)
-    req.query.offset += global.pageSize
-
-    total -= global.pageSize
-    if (more && more.length) {
-      memberships = memberships.concat(more)
-    }
-  }
-  req.data.memberships = memberships
+  req.query.accountid = req.account.accountid
+  req.query.all = true
+  req.data.memberships = await global.api.user.organizations.Memberships.get(req)
 }
 
 async function renderPage (req, res, messageTemplate) {

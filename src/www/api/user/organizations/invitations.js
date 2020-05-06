@@ -9,13 +9,26 @@ module.exports = {
     if (!account) {
       throw new Error('invalid-account')
     }
+    let index
+    if (req.query.organizationid) {
+      index = `${req.appid}/organization/invitations/${req.query.organizationid}`
+      const organization = await global.api.user.organizations.Organization.get(req)
+      if (!organization) {
+        throw new Error('invalid-organizationid')
+      }
+      if (organization.ownerid !== req.account.accountid) {
+        throw new Error('invalid-account')
+      }
+    } else {
+      index = `${req.appid}/account/invitations/${req.query.accountid}`
+    }
     let invitationids
     if (req.query.all) {
-      invitationids = await dashboard.StorageList.listAll(`${req.appid}/account/invitations/${req.query.accountid}`)
+      invitationids = await dashboard.StorageList.listAll(index)
     } else {
       const offset = req.query.offset ? parseInt(req.query.offset, 10) : 0
       const limit = req.query.limit ? parseInt(req.query.limit, 10) : global.pageSize
-      invitationids = await dashboard.StorageList.list(`${req.appid}/account/invitations/${req.query.accountid}`, offset, limit)
+      invitationids = await dashboard.StorageList.list(index, offset, limit)
     }
     if (!invitationids || !invitationids.length) {
       return null

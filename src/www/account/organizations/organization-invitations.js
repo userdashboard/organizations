@@ -16,8 +16,9 @@ async function beforeRequest (req) {
   if (organization.ownerid !== req.account.accountid) {
     throw new Error('invalid-account')
   }
-  const total = await global.api.user.organizations.OrganizationInvitationsCount.get(req)
-  const invitations = await global.api.user.organizations.OrganizationInvitations.get(req)
+  req.query.accountid = req.account.accountid
+  const total = await global.api.user.organizations.InvitationsCount.get(req)
+  const invitations = await global.api.user.organizations.Invitations.get(req)
   if (invitations && invitations.length) {
     for (const invitation of invitations) {
       invitation.createdFormatted = dashboard.Format.date(invitation.created)

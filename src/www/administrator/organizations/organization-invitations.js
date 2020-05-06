@@ -13,8 +13,8 @@ async function beforeRequest (req) {
   if (!organization) {
     throw new Error('invalid-organization')
   }
-  const total = await global.api.administrator.organizations.OrganizationInvitationsCount.get(req)
-  const invitations = await global.api.administrator.organizations.OrganizationInvitations.get(req)
+  const total = await global.api.administrator.organizations.InvitationsCount.get(req)
+  const invitations = await global.api.administrator.organizations.Invitations.get(req)
   if (invitations && invitations.length) {
     for (const invitation of invitations) {
       invitation.createdFormatted = dashboard.Format.date(invitation.created)
