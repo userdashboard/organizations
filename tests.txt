@@ -1,6 +1,6 @@
 
-> @userdashboard/organizations@1.0.74 test /home/runner/work/organizations/organizations
-> mocha --exit --inline-diffs --full-trace --bail --async-only --recursive --timeout 600000 --slow 600000 './src{,!(public)/**}/*.test.js'
+> @userdashboard/organizations@1.0.75 test /home/runner/work/organizations/organizations
+> mocha --exit --inline-diffs --full-trace --bail --async-only --recursive --timeout 60000 --slow 60000 './src{,!(public)/**}/*.test.js'
 
 
 
@@ -118,10 +118,10 @@
       ✓ should show profile fields if data exists
 
   /account/organizations/organization-invitations
-    Invitations#BEFORE
+    OrganizationInvitations#BEFORE
       ✓ should require owner
       ✓ should bind invitations to req
-    Invitations#GET
+    OrganizationInvitations#GET
       ✓ should limit invitations to one page (screenshots)
       ✓ should enforce page size
       ✓ should enforce specified offset
@@ -129,7 +129,7 @@
   /account/organizations/organization-memberships
     OrganizationMemberships#BEFORE
       ✓ should bind memberships to req
-    Memberships#GET
+    OrganizationMemberships#GET
       ✓ should limit memberships to one page (screenshots)
       ✓ should enforce page size
       ✓ should enforce specified offset
@@ -232,77 +232,10 @@
   /administrator/organizations/organizations
     Organizations#BEFORE
       ✓ should bind owned organizations to req
-      ✓ should not bind member organizations to req
     Organizations#GET
       ✓ should return row for each organization (screenshots)
       ✓ should enforce page size
       ✓ should enforce specified offset
-
-  /api/administrator/organizations/account-invitations-count
-    exceptions
-      invalid-accountid
-        ✓ missing querystring accountid
-        ✓ invalid querystring accountid
-    returns
-      ✓ integer
-
-  /api/administrator/organizations/account-invitations
-    exceptions
-      invalid-accountid
-        ✓ missing querystring accountid
-        ✓ invalid querystring accountid
-    receives
-      ✓ optional querystring offset (integer)
-      ✓ optional querystring limit (integer)
-      ✓ optional querystring all (boolean)
-    returns
-      ✓ array
-    configuration
-      ✓ environment PAGE_SIZE
-
-  /api/administrator/organizations/account-memberships-count
-    exceptions
-      invalid-accountid
-        ✓ missing querystring accountid
-        ✓ invalid querystring accountid
-    returns
-      ✓ integer
-
-  /api/administrator/organizations/account-memberships
-    exceptions
-      invalid-accountid
-        ✓ missing querystring accountid
-        ✓ invalid querystring accountid
-    receives
-      ✓ optional querystring offset (integer)
-      ✓ optional querystring limit (integer)
-      ✓ optional querystring all (boolean)
-    returns
-      ✓ array
-    configuration
-      ✓ environment PAGE_SIZE
-
-  /api/administrator/organizations/account-organizations-count
-    exceptions
-      invalid-accountid
-        ✓ missing querystring accountid
-        ✓ invalid querystring accountid
-    returns
-      ✓ integer
-
-  /api/administrator/organizations/account-organizations
-    exceptions
-      invalid-accountid
-        ✓ missing querystring accountid
-        ✓ invalid querystring accountid
-    receives
-      ✓ optional querystring offset (integer)
-      ✓ optional querystring limit (integer)
-      ✓ optional querystring all (boolean)
-    returns
-      ✓ array
-    configuration
-      ✓ environment PAGE_SIZE
 
   /api/administrator/organizations/invitation
     exceptions
@@ -323,6 +256,8 @@
       ✓ optional querystring offset (integer)
       ✓ optional querystring limit (integer)
       ✓ optional querystring all (boolean)
+      ✓ optional querystring accountid (string)
+      ✓ optional querystring organizationid (string)
     returns
       ✓ array
     configuration
@@ -345,50 +280,8 @@
       ✓ optional querystring offset (integer)
       ✓ optional querystring limit (integer)
       ✓ optional querystring all (boolean)
-    returns
-      ✓ array
-    configuration
-      ✓ environment PAGE_SIZE
-
-  /api/administrator/organizations/organization-invitations-count
-    exceptions
-      invalid-organizationid
-        ✓ missing querystring organizationid
-        ✓ invalid querystring organizationid
-    returns
-      ✓ integer
-
-  /api/administrator/organizations/organization-invitations
-    exceptions
-      invalid-organizationid
-        ✓ missing querystring organizationid
-        ✓ invalid querystring organizationid
-    receives
-      ✓ optional querystring offset (integer)
-      ✓ optional querystring limit (integer)
-      ✓ optional querystring all (boolean)
-    returns
-      ✓ array
-    configuration
-      ✓ environment PAGE_SIZE
-
-  /api/administrator/organizations/organization-memberships-count
-    exceptions
-      invalid-organizationid
-        ✓ missing querystring organizationid
-        ✓ invalid querystring organizationid
-    returns
-      ✓ integer
-
-  /api/administrator/organizations/organization-memberships
-    exceptions
-      invalid-organizationid
-        ✓ unspecified querystring organizationid
-        ✓ invalid querystring organizationid
-    receives
-      ✓ optional querystring offset (integer)
-      ✓ optional querystring limit (integer)
-      ✓ optional querystring all (boolean)
+      ✓ optional querystring accountid (string)
+      ✓ optional querystring organizationid (string)
     returns
       ✓ array
     configuration
@@ -411,6 +304,7 @@
       ✓ optional querystring offset (integer)
       ✓ optional querystring limit (integer)
       ✓ optional querystring all (boolean)
+      ✓ optional querystring accountid (string)
     returns
       ✓ array
     configuration
@@ -546,6 +440,7 @@
       ✓ optional querystring offset (integer)
       ✓ optional querystring limit (integer)
       ✓ optional querystring all (boolean)
+      ✓ optional querystring organizationid (string)
     returns
       ✓ array
     configuration
@@ -582,6 +477,7 @@
       ✓ optional querystring offset (integer)
       ✓ optional querystring limit (integer)
       ✓ optional querystring all (boolean)
+      ✓ optional querystring organizationid (string)
     returns
       ✓ array
     configuration
@@ -609,32 +505,6 @@
     redacts
       ✓ secret code hash
 
-  /api/user/organizations/organization-invitations-count
-    exceptions
-      invalid-organizationid
-        ✓ missing querystring organizationid
-        ✓ invalid querystring organizationid
-      invalid-account
-        ✓ accessing account is not organization owner
-    returns
-      ✓ integer
-
-  /api/user/organizations/organization-invitations
-    exceptions
-      invalid-organizationid
-        ✓ missing querystring organizationid
-        ✓ invalid querystring organizationid
-      invalid-account
-        ✓ accessing account is not organization owner
-    receives
-      ✓ optional querystring offset (integer)
-      ✓ optional querystring limit (integer)
-      ✓ optional querystring all (boolean)
-    returns
-      ✓ array
-    configuration
-      ✓ environment PAGE_SIZE
-
   /api/user/organizations/organization-membership
     exceptions
       invalid-organizationid
@@ -644,32 +514,6 @@
         ✓ accessing account must be organization member
     returns
       ✓ object
-
-  /api/user/organizations/organization-memberships-count
-    exceptions
-      invalid-organizationid
-        ✓ missing querystring organizationid
-        ✓ invalid querystring organizationid
-      invalid-account
-        ✓ accessing account must be organization member
-    returns
-      ✓ integer
-
-  /api/user/organizations/organization-memberships
-    exceptions
-      invalid-organizationid
-        ✓ missing querystring organizationid
-        ✓ invalid querystring organizationid
-      invalid-account
-        ✓ accessing account must be organization member
-    receives
-      ✓ optional querystring offset (integer)
-      ✓ optional querystring limit (integer)
-      ✓ optional querystring all (boolean)
-    returns
-      ✓ array
-    configuration
-      ✓ environment PAGE_SIZE
 
   /api/user/organizations/organization
     exceptions
@@ -744,5 +588,5 @@
       ✓ object
 
 
-  349 passing (22m)
+  281 passing (3m)
 
