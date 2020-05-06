@@ -14,7 +14,7 @@ for (const x in TestHelper) {
   module.exports[x] = TestHelper[x]
 }
 
-beforeEach((callback) => {
+async function setupBeforeEach () {
   global.userProfileFields = ['full-name', 'contact-email']
   global.membershipProfileFields = ['display-name', 'display-email']
   global.minimumOrganizationNameLength = 1
@@ -23,8 +23,10 @@ beforeEach((callback) => {
   global.maximumMembershipNameLength = 100
   global.minimumInvitationCodeLength = 1
   global.maximumInvitationCodeLength = 100
-  return callback()
-})
+}
+
+module.exports.setupBeforeEach = setupBeforeEach
+beforeEach(setupBeforeEach)
 
 async function createOrganization (user, properties) {
   const req = TestHelper.createRequest(`/api/user/organizations/create-organization?accountid=${user.account.accountid}`, 'POST')
