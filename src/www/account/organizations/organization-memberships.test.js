@@ -1,72 +1,71 @@
 /* eslint-env mocha */
 const assert = require('assert')
 const TestHelper = require('../../../../test-helper.js')
+const DashboardTestHelper = require('@userdashboard/dashboard/test-helper.js')
 
-describe('/account/organizations/organization-memberships', () => {
+describe('/account/organizations/organization-memberships', function () {
+  const cachedResponses = {}
+  const cachedMemberships = []
+  before(async () => {
+    await DashboardTestHelper.setupBeforeEach()
+    await TestHelper.setupBeforeEach()
+    global.delayDiskWrites = true
+    const user = await TestHelper.createUser()
+    global.userProfileFields = ['display-email', 'display-name']
+    await TestHelper.createProfile(user, {
+      'display-name': user.profile.firstName,
+      'display-email': user.profile.contactEmail
+    })
+    await TestHelper.createOrganization(user, {
+      email: user.profile.displayEmail,
+      name: 'My organization',
+      profileid: user.profile.profileid
+    })
+    cachedMemberships.unshift(user.membership.membershipid)
+    for (let i = 0, len = global.pageSize + 1; i < len; i++) {
+      const member = await TestHelper.createUser()
+      global.userProfileFields = ['display-name', 'display-email']
+      await TestHelper.createProfile(member, {
+        'display-name': member.profile.firstName,
+        'display-email': member.profile.contactEmail
+      })
+      await TestHelper.createInvitation(user)
+      await TestHelper.acceptInvitation(member, user)
+      cachedMemberships.unshift(member.membership.membershipid)
+    }
+    const req1 = TestHelper.createRequest(`/account/organizations/organization-memberships?organizationid=${user.organization.organizationid}`)
+    req1.account = user.account
+    req1.session = user.session
+    req1.filename = __filename
+    req1.screenshots = [
+      { hover: '#account-menu-container' },
+      { click: '/account/organizations' },
+      { click: '/account/organizations/organizations' },
+      { click: `/account/organizations/organization?organizationid=${user.organization.organizationid}` },
+      { click: `/account/organizations/organization-memberships?organizationid=${user.organization.organizationid}` }
+    ]
+    await req1.route.api.before(req1)
+    cachedResponses.before = req1.data
+    cachedResponses.returns = await req1.get()
+    global.pageSize = 3
+    cachedResponses.pageSize = await req1.get()
+    const req2 = TestHelper.createRequest(`/account/organizations/organization-memberships?organizationid=${user.organization.organizationid}&offset=1`)
+    req2.account = user.account
+    req2.session = user.session
+    cachedResponses.offset = await req2.get()
+  })
   describe('OrganizationMemberships#BEFORE', () => {
     it('should bind memberships to req', async () => {
-      const owner = await TestHelper.createUser()
-      const user = await TestHelper.createUser()
-      global.userProfileFields = ['display-name', 'display-email']
-      await TestHelper.createProfile(owner, {
-        'display-name': owner.profile.firstName,
-        'display-email': owner.profile.contactEmail
-      })
-      await TestHelper.createProfile(user, {
-        'display-name': user.profile.firstName,
-        'display-email': user.profile.contactEmail
-      })
-      await TestHelper.createOrganization(owner, {
-        email: owner.profile.displayEmail,
-        name: 'My organization',
-        profileid: owner.profile.profileid
-      })
-      await TestHelper.createInvitation(owner)
-      await TestHelper.acceptInvitation(user, owner)
-      const req = TestHelper.createRequest(`/account/organizations/organization-memberships?organizationid=${owner.organization.organizationid}`)
-      req.account = owner.account
-      req.session = owner.session
-      await req.route.api.before(req)
-      assert.strictEqual(req.data.memberships[0].membershipid, user.membership.membershipid)
+      const data = cachedResponses.before
+      assert.strictEqual(data.memberships.length, global.pageSize)
+      assert.strictEqual(data.memberships[0].membershipid, cachedMemberships[0])
+      assert.strictEqual(data.memberships[1].membershipid, cachedMemberships[1])
     })
   })
 
-  describe('Memberships#GET', () => {
+  describe('OrganizationMemberships#GET', () => {
     it('should limit memberships to one page (screenshots)', async () => {
-      const owner = await TestHelper.createUser()
-      global.userProfileFields = ['display-name', 'display-email']
-      await TestHelper.createProfile(owner, {
-        'display-name': owner.profile.firstName,
-        'display-email': owner.profile.contactEmail
-      })
-      await TestHelper.createOrganization(owner, {
-        email: owner.profile.displayEmail,
-        name: 'My organization',
-        profileid: owner.profile.profileid
-      })
-      for (let i = 0, len = global.pageSize + 1; i < len; i++) {
-        global.userProfileFields = ['full-name', 'contact-email']
-        const user = await TestHelper.createUser()
-        global.userProfileFields = ['display-name', 'display-email']
-        await TestHelper.createProfile(user, {
-          'display-name': user.profile.firstName,
-          'display-email': user.profile.contactEmail
-        })
-        await TestHelper.createInvitation(owner)
-        await TestHelper.acceptInvitation(user, owner)
-      }
-      const req = TestHelper.createRequest(`/account/organizations/organization-memberships?organizationid=${owner.organization.organizationid}`)
-      req.account = owner.account
-      req.session = owner.session
-      req.filename = __filename
-      req.screenshots = [
-        { hover: '#account-menu-container' },
-        { click: '/account/organizations' },
-        { click: '/account/organizations/organizations' },
-        { click: `/account/organizations/organization?organizationid=${owner.organization.organizationid}` },
-        { click: `/account/organizations/organization-memberships?organizationid=${owner.organization.organizationid}` }
-      ]
-      const result = await req.get()
+      const result = cachedResponses.returns
       const doc = TestHelper.extractDoc(result.html)
       const table = doc.getElementById('memberships-table')
       const rows = table.getElementsByTagName('tr')
@@ -75,32 +74,7 @@ describe('/account/organizations/organization-memberships', () => {
 
     it('should enforce page size', async () => {
       global.pageSize = 3
-      const owner = await TestHelper.createUser()
-      global.userProfileFields = ['display-name', 'display-email']
-      await TestHelper.createProfile(owner, {
-        'display-name': owner.profile.firstName,
-        'display-email': owner.profile.contactEmail
-      })
-      await TestHelper.createOrganization(owner, {
-        email: owner.profile.displayEmail,
-        name: 'My organization',
-        profileid: owner.profile.profileid
-      })
-      for (let i = 0, len = global.pageSize + 1; i < len; i++) {
-        global.userProfileFields = ['full-name', 'contact-email']
-        const user = await TestHelper.createUser()
-        global.userProfileFields = ['display-name', 'display-email']
-        await TestHelper.createProfile(user, {
-          'display-name': user.profile.firstName,
-          'display-email': user.profile.contactEmail
-        })
-        await TestHelper.createInvitation(owner)
-        await TestHelper.acceptInvitation(user, owner)
-      }
-      const req = TestHelper.createRequest(`/account/organizations/organization-memberships?organizationid=${owner.organization.organizationid}`)
-      req.account = owner.account
-      req.session = owner.session
-      const result = await req.get()
+      const result = cachedResponses.pageSize
       const doc = TestHelper.extractDoc(result.html)
       const table = doc.getElementById('memberships-table')
       const rows = table.getElementsByTagName('tr')
@@ -110,37 +84,10 @@ describe('/account/organizations/organization-memberships', () => {
     it('should enforce specified offset', async () => {
       global.delayDiskWrites = true
       const offset = 1
-      const owner = await TestHelper.createUser()
-      global.userProfileFields = ['display-name', 'display-email']
-      await TestHelper.createProfile(owner, {
-        'display-name': owner.profile.firstName,
-        'display-email': owner.profile.contactEmail
-      })
-      await TestHelper.createOrganization(owner, {
-        email: owner.profile.displayEmail,
-        name: 'My organization',
-        profileid: owner.profile.profileid
-      })
-      const memberships = []
-      for (let i = 0, len = global.pageSize + 1; i < len; i++) {
-        global.userProfileFields = ['contact-email', 'full-name']
-        const user = await TestHelper.createUser()
-        global.userProfileFields = ['display-email', 'display-name']
-        await TestHelper.createProfile(user, {
-          'display-name': user.profile.firstName,
-          'display-email': user.profile.contactEmail
-        })
-        await TestHelper.createInvitation(owner)
-        await TestHelper.acceptInvitation(user, owner)
-        memberships.unshift(user.membership.membershipid)
-      }
-      const req = TestHelper.createRequest(`/account/organizations/organization-memberships?organizationid=${owner.organization.organizationid}&offset=${offset}`)
-      req.account = owner.account
-      req.session = owner.session
-      const result = await req.get()
+      const result = cachedResponses.offset
       const doc = TestHelper.extractDoc(result.html)
       for (let i = 0, len = global.pageSize; i < len; i++) {
-        assert.strictEqual(doc.getElementById(memberships[offset + i]).tag, 'tr')
+        assert.strictEqual(doc.getElementById(cachedMemberships[offset + i]).tag, 'tr')
       }
     })
   })

@@ -1,8 +1,50 @@
 /* eslint-env mocha */
 const assert = require('assert')
 const TestHelper = require('../../../../../test-helper.js')
+const DashboardTestHelper = require('@userdashboard/dashboard/test-helper.js')
 
-describe('/api/user/organizations/organizations', () => {
+describe('/api/user/organizations/organizations', function () {
+  this.retries(2)
+  const cachedResponses = {}
+  const cachedOrganizations = []
+  before(async () => {
+    await DashboardTestHelper.setupBeforeEach()
+    await TestHelper.setupBeforeEach()
+    const user = await TestHelper.createUser()
+    global.userProfileFields = ['display-name', 'display-email']
+    await TestHelper.createProfile(user, {
+      'display-name': user.profile.firstName,
+      'display-email': user.profile.contactEmail
+    })
+    global.delayDiskWrites = true
+    for (let i = 0, len = global.pageSize + 2; i < len; i++) {
+      await TestHelper.createOrganization(user, {
+        email: user.profile.displayEmail,
+        name: 'My organization',
+        profileid: user.profile.profileid
+      })
+      cachedOrganizations.unshift(user.organization.organizationid)
+    }
+    const req1 = TestHelper.createRequest(`/api/user/organizations/organizations?accountid=${user.account.accountid}&offset=1`)
+    req1.account = user.account
+    req1.session = user.session
+    cachedResponses.offset = await req1.get()
+    const req2 = TestHelper.createRequest(`/api/user/organizations/organizations?accountid=${user.account.accountid}&limit=1`)
+    req2.account = user.account
+    req2.session = user.session
+    cachedResponses.limit = await req2.get()
+    const req3 = TestHelper.createRequest(`/api/user/organizations/organizations?accountid=${user.account.accountid}&all=true`)
+    req3.account = user.account
+    req3.session = user.session
+    cachedResponses.all = await req3.get()
+    const req4 = TestHelper.createRequest(`/api/user/organizations/organizations?accountid=${user.account.accountid}`)
+    req4.account = user.account
+    req4.session = user.session
+    req4.saveResponse = true
+    cachedResponses.returns = await req4.get()
+    global.pageSize = 3
+    cachedResponses.pageSize = await req4.get()
+  })
   describe('exceptions', () => {
     describe('invalid-accountid', () => {
       it('missing querystring accountid', async () => {
@@ -49,10 +91,9 @@ describe('/api/user/organizations/organizations', () => {
         })
         await TestHelper.createOrganization(owner, {
           email: owner.profile.displayEmail,
-          name: 'My organization',
+          name: 'New organization',
           profileid: owner.profile.profileid
         })
-        await TestHelper.createInvitation(owner)
         await TestHelper.createInvitation(owner)
         await TestHelper.acceptInvitation(user, owner)
         const req = TestHelper.createRequest(`/api/user/organizations/organizations?accountid=${owner.account.accountid}`)
@@ -72,100 +113,27 @@ describe('/api/user/organizations/organizations', () => {
   describe('receives', () => {
     it('optional querystring offset (integer)', async () => {
       const offset = 1
-      global.delayDiskWrites = true
-      const owner = await TestHelper.createUser()
-      global.userProfileFields = ['display-email', 'display-name']
-      await TestHelper.createProfile(owner, {
-        'display-name': owner.profile.firstName,
-        'display-email': owner.profile.contactEmail
-      })
-      const organizations = []
-      for (let i = 0, len = global.pageSize + 1; i < len; i++) {
-        await TestHelper.createOrganization(owner, {
-          email: owner.profile.displayEmail,
-          name: 'My organization',
-          profileid: owner.profile.profileid
-        })
-        organizations.unshift(owner.organization.organizationid)
-      }
-      const req = TestHelper.createRequest(`/api/user/organizations/organizations?accountid=${owner.account.accountid}&offset=${offset}`)
-      req.account = owner.account
-      req.session = owner.session
-      const codesNow = await req.get()
+      const organizationsNow = cachedResponses.offset
       for (let i = 0, len = global.pageSize; i < len; i++) {
-        assert.strictEqual(codesNow[i].organizationid, organizations[offset + i])
+        assert.strictEqual(organizationsNow[i].organizationid, cachedOrganizations[offset + i])
       }
     })
 
     it('optional querystring limit (integer)', async () => {
       const limit = 1
-      const owner = await TestHelper.createUser()
-      global.userProfileFields = ['display-email', 'display-name']
-      await TestHelper.createProfile(owner, {
-        'display-name': owner.profile.firstName,
-        'display-email': owner.profile.contactEmail
-      })
-      const organizations = []
-      for (let i = 0, len = limit + 1; i < len; i++) {
-        await TestHelper.createOrganization(owner, {
-          email: owner.profile.displayEmail,
-          name: 'My organization',
-          profileid: owner.profile.profileid
-        })
-        organizations.unshift(owner.organization.organizationid)
-      }
-      const req = TestHelper.createRequest(`/api/user/organizations/organizations?accountid=${owner.account.accountid}&limit=${limit}`)
-      req.account = owner.account
-      req.session = owner.session
-      const codesNow = await req.get()
-      assert.strictEqual(codesNow.length, limit)
+      const organizationsNow = cachedResponses.limit
+      assert.strictEqual(organizationsNow.length, limit)
     })
 
     it('optional querystring all (boolean)', async () => {
-      const owner = await TestHelper.createUser()
-      global.userProfileFields = ['display-email', 'display-name']
-      await TestHelper.createProfile(owner, {
-        'display-name': owner.profile.firstName,
-        'display-email': owner.profile.contactEmail
-      })
-      const organizations = []
-      for (let i = 0, len = global.pageSize + 1; i < len; i++) {
-        await TestHelper.createOrganization(owner, {
-          email: owner.profile.displayEmail,
-          name: 'My organization',
-          profileid: owner.profile.profileid
-        })
-        organizations.unshift(owner.organization.organizationid)
-      }
-      const req = TestHelper.createRequest(`/api/user/organizations/organizations?accountid=${owner.account.accountid}&all=true`)
-      req.account = owner.account
-      req.session = owner.session
-      const membershipsNow = await req.get()
-      assert.strictEqual(membershipsNow.length, organizations.length)
+      const organizationsNow = cachedResponses.all
+      assert.strictEqual(organizationsNow.length, cachedOrganizations.length)
     })
   })
 
   describe('returns', () => {
     it('array', async () => {
-      const owner = await TestHelper.createUser()
-      global.userProfileFields = ['display-name', 'display-email']
-      await TestHelper.createProfile(owner, {
-        'display-name': owner.profile.firstName,
-        'display-email': owner.profile.contactEmail
-      })
-      for (let i = 0, len = global.pageSize + 1; i < len; i++) {
-        await TestHelper.createOrganization(owner, {
-          email: owner.profile.displayEmail,
-          name: 'My organization',
-          profileid: owner.profile.profileid
-        })
-      }
-      const req = TestHelper.createRequest(`/api/user/organizations/organizations?accountid=${owner.account.accountid}`)
-      req.account = owner.account
-      req.session = owner.session
-      req.filename = __filename
-      req.saveResponse = true
-      const organizationsNow = await req.get()
+      const organizationsNow = cachedResponses.returns
       assert.strictEqual(organizationsNow.length, global.pageSize)
     })
   })
@@ -173,24 +141,8 @@ describe('/api/user/organizations/organizations', () => {
   describe('configuration', () => {
     it('environment PAGE_SIZE', async () => {
       global.pageSize = 3
-      const owner = await TestHelper.createUser()
-      global.userProfileFields = ['display-email', 'display-name']
-      await TestHelper.createProfile(owner, {
-        'display-name': owner.profile.firstName,
-        'display-email': owner.profile.contactEmail
-      })
-      for (let i = 0, len = global.pageSize + 1; i < len; i++) {
-        await TestHelper.createOrganization(owner, {
-          email: owner.profile.displayEmail,
-          name: 'My organization',
-          profileid: owner.profile.profileid
-        })
-      }
-      const req = TestHelper.createRequest(`/api/user/organizations/organizations?accountid=${owner.account.accountid}`)
-      req.account = owner.account
-      req.session = owner.session
-      const codesNow = await req.get()
-      assert.strictEqual(codesNow.length, global.pageSize)
+      const organizationsNow = cachedResponses.pageSize
+      assert.strictEqual(organizationsNow.length, global.pageSize)
     })
   })
 })
