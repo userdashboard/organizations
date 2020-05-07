@@ -1,241 +1,275 @@
 
-> @userdashboard/organizations@1.0.76 test /home/runner/work/organizations/organizations
-> mocha --exit --inline-diffs --full-trace --bail --async-only --recursive --timeout 90000 --slow 90000 './src{,!(public)/**}/*.test.js'
+> @userdashboard/organizations@1.0.77 test /home/runner/work/organizations/organizations
+> mocha --exit --inline-diffs --full-trace --bail --async-only --recursive --timeout 150000 --slow 150000 './src{,!(public)/**}/*.test.js'
 
 
 
   /account/organizations/accept-invitation
-    AcceptInvitation#GET
+    view
       ✓ should present the form
       ✓ should exclude invalid profiles
-    AcceptInvitation#POST
-      ✓ should reject owner
-      ✓ should reject existing member
+    submit
       ✓ should accept valid existing profile
       ✓ should accept invitation and create profile (screenshots)
+    errors
+      ✓ invalid-account
 
   /account/organizations/create-invitation
-    CreateInvitation#BEFORE
-      ✓ should require owner
-      ✓ should bind organization to req
-    CreateInvitation#GET
+    exceptions
+      ✓ invalid-account
+    before
+      ✓ should bind data to req
+    view
       ✓ should present the form
-      ✓ should present the organization
-    CreateInvitation#POST
+    submit
       ✓ should create invitation (screenshots)
 
   /account/organizations/create-organization
-    CreateOrganization#GET
+    view
       ✓ should present the form
-    CreateOrganization#POST
-      ✓ should reject missing name
-      ✓ should enforce name length
-      ✓ should reject missing email
+    submit
       ✓ should accept valid existing profile
       ✓ should create organization (screenshots)
+    errors
+      ✓ invalid-organization-name
+      ✓ invalid-organization-name-length
+      ✓ invalid-organization-email
 
   /account/organizations/delete-invitation
-    DeleteInvitation#BEFORE
-      ✓ should require owner
-    DeleteInvitation#GET
+    exceptions
+      ✓ invalid-account
+    before
+      ✓ should bind data
+    view
       ✓ should present the form
-    DeleteInvitation#POST
+    submit
       ✓ should delete invitation (screenshots)
 
   /account/organizations/delete-membership
-    DeleteMembership#BEFORE
-      ✓ should reject other account
-      ✓ should bind organization to req
-    DeleteMembership#GET
+    exceptions
+      ✓ invalid-account
+    before
+      ✓ should bind data to req
+    view
       ✓ should present the form
-      ✓ should present the membership
-    DeleteMembership#POST
+    submit
       ✓ should delete membership (screenshots)
 
   /account/organizations/delete-organization
-    DeleteOrganization#BEFORE
-      ✓ should require owner
-      ✓ should bind organization to req
-    DeleteOrganization#GET
+    exceptions
+      ✓ invalid-account
+    before
+      ✓ should bind data to req
+    view
       ✓ should present the form
-      ✓ should present the organization
-    DeleteOrganization#POST
+    submit
       ✓ should delete organization (screenshots)
 
   /account/organizations/edit-membership-profile
-    EditMembershipProfile#BEFORE
-      ✓ should require own membership
-      ✓ should bind membership to req
-    EditMembershipProfile#GET
+    view
       ✓ should present the form
-    EditMembershipProfile#POST
-      ✓ should reject missing display name
-      ✓ should reject missing display email
-      ✓ should apply membership update (screenshots)
+      ✓ should have elements for full-name
+      ✓ should have elements for display-name
+      ✓ should have elements for contact-email
+      ✓ should have elements for display-email
+      ✓ should have elements for dob
+      ✓ should have elements for phone
+      ✓ should have elements for occupation
+      ✓ should have elements for location
+      ✓ should have elements for company-name
+      ✓ should have elements for website
+    submit
+      ✓ should update profile (screenshots)
+      ✓ should update profile with full-name
+      ✓ should update profile with display name
+      ✓ should update profile with contact-email
+      ✓ should update profile with display-email
+      ✓ should update profile with dob in YYYY-MM-DD
+      ✓ should update profile with dob in MM-DD-YYYY
+      ✓ should update profile with phone
+      ✓ should update profile with occupation
+      ✓ should update profile with location
+      ✓ should update profile with company-name
+      ✓ should update profile with website
+    errors
+      ✓ invalid-first-name
+      ✓ invalid-first-name-length
+      ✓ invalid-last-name
+      ✓ invalid-last-name-length
+      ✓ invalid-contact-email
+      ✓ invalid-display-email
+      ✓ invalid-display-name
+      ✓ invalid-display-name-length
+      ✓ invalid-dob
+      ✓ invalid-phone
+      ✓ invalid-occupation
+      ✓ invalid-location
+      ✓ invalid-company-name
+      ✓ invalid-website
 
   /account/organizations/edit-organization
-    EditOrganization#BEFORE
+    exceptions
       ✓ should require owner
-      ✓ should bind organization to req
-    EditOrganization#GET
+    before
+      ✓ should bind data to req
+    view
       ✓ should present the form
-    EditOrganization#POST
-      ✓ should reject missing name
-      ✓ should enforce name length
-      ✓ should reject missing email
+    submit
       ✓ should apply organization update (screenshots)
+    errors
+      ✓ invalid-organization-name
+      ✓ invalid-organization-name-length
+      ✓ invalid-organization-email
 
   /account/organizations/index
-    Index#BEFORE
-      ✓ should bind memberships to req
-      ✓ should bind organizations to req
-    Index#GET
+    before
+      ✓ should bind data to req
+    view
       ✓ should have row for each organization
       ✓ should have row for each membership (screenshots)
 
   /account/organizations/invitation
-    Invitation#BEFORE
+    before
       ✓ should require owner
-      ✓ should bind invitation to req
-    Invitation#GET
+      ✓ should bind data to req
+    view
       ✓ should have row for invitation (screenshots)
 
   /account/organizations/membership
-    Membership#BEFORE
+    before
       ✓ should reject non-member
-      ✓ should bind membership to req
-    Membership#GET
+      ✓ should bind data to req
+    view
       ✓ should have row for membership (screenshots)
       ✓ should show profile fields if data exists
 
   /account/organizations/memberships
-    Memberships#BEFORE
-      ✓ should bind memberships to req
-    Memberships#GET
-      ✓ should limit memberships to one page (screenshots)
-      ✓ should enforce page size
-      ✓ should enforce specified offset
+    before
+      ✓ should bind data to req
+    view
+      ✓ should use default page size (screenshots)
+      ✓ should change page size
+      ✓ should change offset
       ✓ should show profile fields if data exists
 
   /account/organizations/organization-invitations
-    OrganizationInvitations#BEFORE
+    before
       ✓ should require owner
-      ✓ should bind invitations to req
-    OrganizationInvitations#GET
-      ✓ should limit invitations to one page (screenshots)
-      ✓ should enforce page size
-      ✓ should enforce specified offset
+      ✓ should bind data to req
+    view
+      ✓ should use default page size (screenshots)
+      ✓ should change page size
+      ✓ should change offset
 
   /account/organizations/organization-memberships
-    OrganizationMemberships#BEFORE
-      ✓ should bind memberships to req
-    OrganizationMemberships#GET
-      ✓ should limit memberships to one page (screenshots)
-      ✓ should enforce page size
-      ✓ should enforce specified offset
+    before
+      ✓ should bind data to req
+    view
+      ✓ should use default page size (screenshots)
+      ✓ should change page size
+      ✓ should change offset
 
   /account/organizations/organization
-    Organization#BEFORE
+    before
       ✓ should reject non-member
-      ✓ should bind organization to req
-    Organization#GET
+      ✓ should bind data to req
+    view
       ✓ should have row for organization (screenshots)
 
   /account/organizations/organizations
-    Organizations#BEFORE
-      ✓ should bind owned organizations to req
-    Organizations#GET
-      ✓ should limit organizations to one page (screenshots)
-      ✓ should enforce page size
-      ✓ should enforce specified offset
+    before
+      ✓ should bind data to req
+    view
+      ✓ should use default page size (screenshots)
+      ✓ should change page size
+      ✓ should change offset
 
   /account/organizations/revoke-membership
-    RevokeMembership#BEFORE
-      ✓ should require owner
-      ✓ should bind organization to req
-    RevokeMembership#GET
+    exceptions
+      ✓ invalid-account
+    before
+      ✓ should bind data to req
+    view
       ✓ should present the form
-      ✓ should present the membership
-    RevokeMembership#POST
+    submit
       ✓ should delete membership (screenshots)
 
   /account/organizations/transfer-organization
-    TransferOrganization#BEFORE
-      ✓ should require owner
-      ✓ should bind organization to req
-      ✓ should bind memberships to req
-    TransferOrganization#GET
+    exceptions
+      ✓ invalid-account
+    before
+      ✓ should bind data to req
+    view
       ✓ should present the form
       ✓ should present the organization
-    TransferOrganization#POST
+    submit
       ✓ should transfer ownership (screenshots)
 
   /administrator/organizations/index
-    Index#BEFORE
-      ✓ should bind memberships to req
-      ✓ should bind organizations to req
-    Index#GET
+    before
+      ✓ should bind data to req
+    view
       ✓ should have row for each organization (screenshots)
       ✓ should have organization row for each membership
 
   /administrator/organizations/invitation
-    Invitation#BEFORE
-      ✓ should bind invitation to req
-    Invitation#GET
+    before
+      ✓ should bind data to req
+    view
       ✓ should have row for invitation (screenshots)
 
   /administrator/organizations/invitations
-    Invitations#BEFORE
-      ✓ should bind invitations to req
-    Invitations#GET
-      ✓ shoud limit invitations to noe page (screenshots)
-      ✓ should enforce page size
-      ✓ should enforce specified offset
+    before
+      ✓ should bind data to req
+    view
+      ✓ should use default page size (screenshots)
+      ✓ should change page size
+      ✓ should change offset
 
   /administrator/organizations/membership
-    Membership#BEFORE
-      ✓ should bind membership to req
-    Membership#GET
+    before
+      ✓ should bind data to req
+    view
       ✓ should have row for membership (screenshots)
 
   /administrator/organizations/memberships
-    Memberships#BEFORE
-      ✓ should bind memberships to req
-    Memberships#GET
-      ✓ should limit memberhsips to one page (screenshots)
-      ✓ should enforce page size
-      ✓ should enforce specified offset
+    before
+      ✓ should bind data to req
+    view
+      ✓ should use default page size (screenshots)
+      ✓ should change page size
+      ✓ should change offset
       ✓ should show profile fields if data exists
 
   /administrator/organizations/organization-invitations
-    OrganizationInvitations#BEFORE
-      ✓ should bind invitations to req
-    OrganizationInvitations#GET
-      ✓ should limit invitations to one page (screenshots)
-      ✓ should enforce page size
-      ✓ should enforce specified offset
+    before
+      ✓ should bind data to req
+    view
+      ✓ should use default page size (screenshots)
+      ✓ should change page size
+      ✓ should change offset
 
   /administrator/organizations/organization-memberships
-    OrganizationMemberships#BEFORE
-      ✓ should bind memberships to req
-    OrganizationMemberships#GET
-      ✓ should limit memberships to one page (screenshots)
-      ✓ should enforce page size
-      ✓ should enforce specified offset
+    before
+      ✓ should bind data to req
+    view
+      ✓ should use default page size (screenshots)
+      ✓ should change page size
+      ✓ should change offset
 
   /administrator/organizations/organization
-    Organization#BEFORE
-      ✓ should bind organization to req
-    Organization#GET
+    before
+      ✓ should bind data to req
+    view
       ✓ should have row for organization (screenshots)
 
   /administrator/organizations/organizations
-    Organizations#BEFORE
-      ✓ should bind owned organizations to req
-    Organizations#GET
-      ✓ should limit organizations to one page (screenshots)
-      ✓ should enforce page size
-      ✓ should enforce specified offset
+    before
+      ✓ should bind data to req
+    view
+      ✓ should use default page size (screenshots)
+      ✓ should change page size
+      ✓ should change offset
 
   /api/administrator/organizations/invitation
     exceptions
@@ -245,7 +279,7 @@
     returns
       ✓ object
     redacts
-      ✓ secret code hash
+      ✓ secretCodeHash
 
   /api/administrator/organizations/invitations-count
     returns
@@ -417,7 +451,7 @@
     returns
       ✓ object
     redacts
-      ✓ secret code hash
+      ✓ secretCodeHash
 
   /api/user/organizations/invitations-count
     exceptions
@@ -503,7 +537,7 @@
     returns
       ✓ object
     redacts
-      ✓ secret code hash
+      ✓ secretCodeHash
 
   /api/user/organizations/organization-membership
     exceptions
@@ -588,5 +622,5 @@
       ✓ object
 
 
-  281 passing (3m)
+  305 passing (3m)
 

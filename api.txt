@@ -1,13 +1,109 @@
 @userdashboard/dashboard 1.0.179
 http://localhost:9000
 
-|----------------------------------------------------------------------------------------------------------|
-| /api/administrator/organizations/invitation                                                              |
-| RECEIVES---------------------------| RETURNS--| REDACTS-----------| EXCEPTIONS---------------------------|
-| required querystring invitationid  | object   | secret code hash  | invalid-invitationid                 |
-|                                    |          |                   |  * missing querystring invitationid  |
-|                                    |          |                   |  * invalid querystring invitationid  |
-|------------------------------------|----------|-------------------|--------------------------------------|
+|--------------------------------------------|
+| /account/organizations/create-invitation   |
+| EXCEPTIONS---------------------------------|
+| undefined                                  |
+|  * invalid-account                         |
+| before                                     |
+|  * should bind data to req                 |
+| view                                       |
+|  * should present the form                 |
+| submit                                     |
+|  * should create invitation (screenshots)  |
+|--------------------------------------------|
+
+|--------------------------------------------|
+| /account/organizations/delete-invitation   |
+| EXCEPTIONS---------------------------------|
+| undefined                                  |
+|  * invalid-account                         |
+| before                                     |
+|  * should bind data                        |
+| view                                       |
+|  * should present the form                 |
+| submit                                     |
+|  * should delete invitation (screenshots)  |
+|--------------------------------------------|
+
+|--------------------------------------------|
+| /account/organizations/delete-membership   |
+| EXCEPTIONS---------------------------------|
+| undefined                                  |
+|  * invalid-account                         |
+| before                                     |
+|  * should bind data to req                 |
+| view                                       |
+|  * should present the form                 |
+| submit                                     |
+|  * should delete membership (screenshots)  |
+|--------------------------------------------|
+
+|----------------------------------------------|
+| /account/organizations/delete-organization   |
+| EXCEPTIONS-----------------------------------|
+| undefined                                    |
+|  * invalid-account                           |
+| before                                       |
+|  * should bind data to req                   |
+| view                                         |
+|  * should present the form                   |
+| submit                                       |
+|  * should delete organization (screenshots)  |
+|----------------------------------------------|
+
+|----------------------------------------------------|
+| /account/organizations/edit-organization           |
+| EXCEPTIONS-----------------------------------------|
+| undefined                                          |
+|  * should require owner                            |
+| before                                             |
+|  * should bind data to req                         |
+| view                                               |
+|  * should present the form                         |
+| submit                                             |
+|  * should apply organization update (screenshots)  |
+| errors                                             |
+|  * invalid-organization-name                       |
+|  * invalid-organization-name-length                |
+|  * invalid-organization-email                      |
+|----------------------------------------------------|
+
+|--------------------------------------------|
+| /account/organizations/revoke-membership   |
+| EXCEPTIONS---------------------------------|
+| undefined                                  |
+|  * invalid-account                         |
+| before                                     |
+|  * should bind data to req                 |
+| view                                       |
+|  * should present the form                 |
+| submit                                     |
+|  * should delete membership (screenshots)  |
+|--------------------------------------------|
+
+|-----------------------------------------------|
+| /account/organizations/transfer-organization  |
+| EXCEPTIONS------------------------------------|
+| undefined                                     |
+|  * invalid-account                            |
+| before                                        |
+|  * should bind data to req                    |
+| view                                          |
+|  * should present the form                    |
+|  * should present the organization            |
+| submit                                        |
+|  * should transfer ownership (screenshots)    |
+|-----------------------------------------------|
+
+|--------------------------------------------------------------------------------------------------------|
+| /api/administrator/organizations/invitation                                                            |
+| RECEIVES---------------------------| RETURNS--| REDACTS---------| EXCEPTIONS---------------------------|
+| required querystring invitationid  | object   | secretCodeHash  | invalid-invitationid                 |
+|                                    |          |                 |  * missing querystring invitationid  |
+|                                    |          |                 |  * invalid querystring invitationid  |
+|------------------------------------|----------|-----------------|--------------------------------------|
 
 |-----------------------------------------------------------------------------------|
 | /api/administrator/organizations/invitations                                      |
@@ -219,15 +315,15 @@ http://localhost:9000
 |                                 |          |  * ineligible accessing account   |
 |---------------------------------|----------|-----------------------------------|
 
-|----------------------------------------------------------------------------------------------------------|
-| /api/user/organizations/open-invitation                                                                  |
-| RECEIVES---------------------------| RETURNS--| REDACTS-----------| EXCEPTIONS---------------------------|
-| required querystring invitationid  | object   | secret code hash  | invalid-invitationid                 |
-|                                    |          |                   |  * missing querystring invitationid  |
-|                                    |          |                   |  * invalid querystring invitationid  |
-|                                    |          |                   | invalid-invitation                   |
-|                                    |          |                   |  * querystring invitationid is used  |
-|------------------------------------|----------|-------------------|--------------------------------------|
+|--------------------------------------------------------------------------------------------------------|
+| /api/user/organizations/open-invitation                                                                |
+| RECEIVES---------------------------| RETURNS--| REDACTS---------| EXCEPTIONS---------------------------|
+| required querystring invitationid  | object   | secretCodeHash  | invalid-invitationid                 |
+|                                    |          |                 |  * missing querystring invitationid  |
+|                                    |          |                 |  * invalid querystring invitationid  |
+|                                    |          |                 | invalid-invitation                   |
+|                                    |          |                 |  * querystring invitationid is used  |
+|------------------------------------|----------|-----------------|--------------------------------------|
 
 |-----------------------------------------------------------------------------------------------------|
 | /api/user/organizations/organization                                                                |
