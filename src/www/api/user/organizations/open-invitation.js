@@ -16,7 +16,7 @@ module.exports = {
     if (invitation.accepted) {
       throw new Error('invalid-invitation')
     }
-    delete (invitation.code)
+    delete (invitation.secretCodeHash)
     return invitation
   }
 }

@@ -92,7 +92,7 @@ describe('/api/user/organizations/invitation', () => {
   })
 
   describe('redacts', () => {
-    it('secret code hash', async () => {
+    it('secretCodeHash', async () => {
       const owner = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
@@ -111,7 +111,7 @@ describe('/api/user/organizations/invitation', () => {
       req.filename = __filename
       req.saveResponse = true
       const invitation = await req.get()
-      assert.strictEqual(invitation.cod, undefined)
+      assert.strictEqual(invitation.secretCodeHash, undefined)
     })
   })
 })

@@ -46,7 +46,7 @@ describe('/account/organizations/organization-invitations', function () {
     req2.session = user.session
     cachedResponses.offset = await req2.get()
   })
-  describe('OrganizationInvitations#BEFORE', () => {
+  describe('before', () => {
     it('should require owner', async () => {
       const owner = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']
@@ -73,7 +73,7 @@ describe('/account/organizations/organization-invitations', function () {
       assert.strictEqual(errorMessage, 'invalid-account')
     })
 
-    it('should bind invitations to req', async () => {
+    it('should bind data to req', async () => {
       const data = cachedResponses.before
       assert.strictEqual(data.invitations.length, global.pageSize)
       assert.strictEqual(data.invitations[0].invitationid, cachedInvitations[0])
@@ -81,8 +81,8 @@ describe('/account/organizations/organization-invitations', function () {
     })
   })
 
-  describe('OrganizationInvitations#GET', () => {
-    it('should limit invitations to one page (screenshots)', async () => {
+  describe('view', () => {
+    it('should use default page size (screenshots)', async () => {
       const result = cachedResponses.returns
       const doc = TestHelper.extractDoc(result.html)
       const table = doc.getElementById('invitations-table')
@@ -90,7 +90,7 @@ describe('/account/organizations/organization-invitations', function () {
       assert.strictEqual(rows.length, global.pageSize + 1)
     })
 
-    it('should enforce page size', async () => {
+    it('should change page size', async () => {
       global.pageSize = 3
       const result = cachedResponses.pageSize
       const doc = TestHelper.extractDoc(result.html)
@@ -99,7 +99,7 @@ describe('/account/organizations/organization-invitations', function () {
       assert.strictEqual(rows.length, global.pageSize + 1)
     })
 
-    it('should enforce specified offset', async () => {
+    it('should change offset', async () => {
       global.delayDiskWrites = true
       const offset = 1
       const result = cachedResponses.offset

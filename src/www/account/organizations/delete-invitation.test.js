@@ -3,8 +3,8 @@ const assert = require('assert')
 const TestHelper = require('../../../../test-helper.js')
 
 describe('/account/organizations/delete-invitation', () => {
-  describe('DeleteInvitation#BEFORE', () => {
-    it('should require owner', async () => {
+  describe('exceptions', () => {
+    it('invalid-account', async () => {
       const owner = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
@@ -31,7 +31,29 @@ describe('/account/organizations/delete-invitation', () => {
     })
   })
 
-  describe('DeleteInvitation#GET', () => {
+  describe('before', () => {
+    it('should bind data', async () => {
+      const owner = await TestHelper.createUser()
+      global.userProfileFields = ['display-name', 'display-email']
+      await TestHelper.createProfile(owner, {
+        'display-name': owner.profile.firstName,
+        'display-email': owner.profile.contactEmail
+      })
+      await TestHelper.createOrganization(owner, {
+        email: owner.profile.displayEmail,
+        name: 'My organization',
+        profileid: owner.profile.profileid
+      })
+      await TestHelper.createInvitation(owner)
+      const req = TestHelper.createRequest(`/account/organizations/delete-invitation?invitationid=${owner.invitation.invitationid}`)
+      req.account = owner.account
+      req.session = owner.session
+      await req.route.api.before(req)
+      assert.strictEqual(req.data.invitation.invitationid, owner.invitation.invitationid)
+    })
+  })
+
+  describe('view', () => {
     it('should present the form', async () => {
       const owner = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']
@@ -55,7 +77,7 @@ describe('/account/organizations/delete-invitation', () => {
     })
   })
 
-  describe('DeleteInvitation#POST', () => {
+  describe('submit', () => {
     it('should delete invitation (screenshots)', async () => {
       const owner = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']

@@ -3,8 +3,8 @@ const assert = require('assert')
 const TestHelper = require('../../../../test-helper.js')
 
 describe('/account/organizations/transfer-organization', () => {
-  describe('TransferOrganization#BEFORE', () => {
-    it('should require owner', async () => {
+  describe('exceptions', () => {
+    it('invalid-account', async () => {
       const owner = await TestHelper.createUser()
       const user = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']
@@ -34,8 +34,10 @@ describe('/account/organizations/transfer-organization', () => {
       }
       assert.strictEqual(errorMessage, 'invalid-account')
     })
+  })
 
-    it('should bind organization to req', async () => {
+  describe('before', () => {
+    it('should bind data to req', async () => {
       const owner = await TestHelper.createUser()
       const user = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']
@@ -59,36 +61,11 @@ describe('/account/organizations/transfer-organization', () => {
       req.session = owner.session
       await req.route.api.before(req)
       assert.strictEqual(req.data.organization.organizationid, owner.organization.organizationid)
-    })
-
-    it('should bind memberships to req', async () => {
-      const owner = await TestHelper.createUser()
-      const user = await TestHelper.createUser()
-      global.userProfileFields = ['display-name', 'display-email']
-      await TestHelper.createProfile(owner, {
-        'display-name': owner.profile.firstName,
-        'display-email': owner.profile.contactEmail
-      })
-      await TestHelper.createProfile(user, {
-        'display-name': user.profile.firstName,
-        'display-email': user.profile.contactEmail
-      })
-      await TestHelper.createOrganization(owner, {
-        email: owner.profile.displayEmail,
-        name: 'My organization',
-        profileid: owner.profile.profileid
-      })
-      await TestHelper.createInvitation(owner)
-      await TestHelper.acceptInvitation(user, owner)
-      const req = TestHelper.createRequest(`/account/organizations/transfer-organization?organizationid=${owner.organization.organizationid}`)
-      req.account = owner.account
-      req.session = owner.session
-      await req.route.api.before(req)
       assert.strictEqual(req.data.memberships.length, 2)
     })
   })
 
-  describe('TransferOrganization#GET', () => {
+  describe('view', () => {
     it('should present the form', async () => {
       const owner = await TestHelper.createUser()
       const user = await TestHelper.createUser()
@@ -139,7 +116,7 @@ describe('/account/organizations/transfer-organization', () => {
     })
   })
 
-  describe('TransferOrganization#POST', () => {
+  describe('submit', () => {
     it('should transfer ownership (screenshots)', async () => {
       const owner = await TestHelper.createUser()
       const user = await TestHelper.createUser()

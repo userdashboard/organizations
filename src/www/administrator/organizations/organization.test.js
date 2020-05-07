@@ -3,8 +3,8 @@ const assert = require('assert')
 const TestHelper = require('../../../../test-helper.js')
 
 describe('/administrator/organizations/organization', () => {
-  describe('Organization#BEFORE', () => {
-    it('should bind organization to req', async () => {
+  describe('before', () => {
+    it('should bind data to req', async () => {
       const administrator = await TestHelper.createOwner()
       const owner = await TestHelper.createUser()
       const user = await TestHelper.createUser()
@@ -32,7 +32,7 @@ describe('/administrator/organizations/organization', () => {
     })
   })
 
-  describe('Organization#GET', () => {
+  describe('view', () => {
     it('should have row for organization (screenshots)', async () => {
       const administrator = await TestHelper.createOwner()
       const owner = await TestHelper.createUser()

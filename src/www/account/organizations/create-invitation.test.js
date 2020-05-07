@@ -3,8 +3,8 @@ const assert = require('assert')
 const TestHelper = require('../../../../test-helper.js')
 
 describe('/account/organizations/create-invitation', () => {
-  describe('CreateInvitation#BEFORE', () => {
-    it('should require owner', async () => {
+  describe('exceptions', () => {
+    it('invalid-account', async () => {
       const owner = await TestHelper.createUser()
       const user = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']
@@ -34,8 +34,10 @@ describe('/account/organizations/create-invitation', () => {
       }
       assert.strictEqual(errorMessage, 'invalid-account')
     })
+  })
 
-    it('should bind organization to req', async () => {
+  describe('before', () => {
+    it('should bind data to req', async () => {
       const owner = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
@@ -55,7 +57,7 @@ describe('/account/organizations/create-invitation', () => {
     })
   })
 
-  describe('CreateInvitation#GET', () => {
+  describe('view', () => {
     it('should present the form', async () => {
       const owner = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']
@@ -76,31 +78,9 @@ describe('/account/organizations/create-invitation', () => {
       assert.strictEqual(doc.getElementById('submit-form').tag, 'form')
       assert.strictEqual(doc.getElementById('submit-button').tag, 'button')
     })
-
-    it('should present the organization', async () => {
-      const owner = await TestHelper.createUser()
-      global.userProfileFields = ['display-name', 'display-email']
-      await TestHelper.createProfile(owner, {
-        'display-name': owner.profile.firstName,
-        'display-email': owner.profile.contactEmail
-      })
-      await TestHelper.createOrganization(owner, {
-        email: owner.profile.displayEmail,
-        name: 'My organization',
-        profileid: owner.profile.profileid
-      })
-      await TestHelper.createInvitation(owner)
-      const req = TestHelper.createRequest(`/account/organizations/create-invitation?organizationid=${owner.organization.organizationid}`)
-      req.account = owner.account
-      req.session = owner.session
-      const result = await req.get()
-      const doc = TestHelper.extractDoc(result.html)
-      const row = doc.getElementById(owner.organization.organizationid)
-      assert.strictEqual(row.tag, 'tr')
-    })
   })
 
-  describe('CreateInvitation#POST', () => {
+  describe('submit', () => {
     it('should create invitation (screenshots)', async () => {
       const owner = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']
@@ -123,6 +103,7 @@ describe('/account/organizations/create-invitation', () => {
       req.screenshots = [
         { hover: '#account-menu-container' },
         { click: '/account/organizations' },
+        { click: '/account/organizations/organizations' },
         { click: `/account/organizations/organization?organizationid=${owner.organization.organizationid}` },
         { click: `/account/organizations/create-invitation?organizationid=${owner.organization.organizationid}` },
         { fill: '#submit-form' }

@@ -47,8 +47,6 @@ async function renderPage (req, res, messageTemplate) {
     if (messageTemplate === 'success') {
       const submitForm = doc.getElementById('submit-form')
       submitForm.parentNode.removeChild(submitForm)
-      const organizationTable = doc.getElementById('organizations-table')
-      organizationTable.parentNode.removeChild(organizationTable)
       return dashboard.Response.end(req, res, doc)
     }
   }

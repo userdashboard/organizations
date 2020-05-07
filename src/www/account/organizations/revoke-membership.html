@@ -11,22 +11,6 @@
     <h1>Revoke membership of ${membership.membershipid}</h1>
     <p>This will immediately remove the member from the organizaiton.</p>
     <div id="message-container"></div>
-    <table id="memberships-table" class="pure-table object-table">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Created</th>
-          <th>Name</th>
-          <th>Email</th>
-        </tr>
-      </thead>
-      <tr id="${membership.membershipid}">
-        <td>${membership.membershipid}</td>
-        <td>${membership.createdFormatted}</td>
-        <td>${membership.name}</td>
-        <td>${membership.email}</td>
-      </tr>
-    </table>
     <form id="submit-form" method="POST" class="pure-form pure-form-stacked" action="/account/organizations/revoke-membership?membershipid=${membership.membershipid}">
       <div class="pure-control-group">
         <label for="organizationName">Organization</label>

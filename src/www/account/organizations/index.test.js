@@ -3,8 +3,8 @@ const assert = require('assert')
 const TestHelper = require('../../../../test-helper.js')
 
 describe('/account/organizations/index', () => {
-  describe('Index#BEFORE', () => {
-    it('should bind memberships to req', async () => {
+  describe('before', () => {
+    it('should bind data to req', async () => {
       const owner = await TestHelper.createUser()
       const user = await TestHelper.createUser()
       global.userProfileFields = ['display-email', 'display-name']
@@ -28,29 +28,11 @@ describe('/account/organizations/index', () => {
       req.session = user.session
       await req.route.api.before(req)
       assert.strictEqual(req.data.memberships.length, 1)
-    })
-
-    it('should bind organizations to req', async () => {
-      const owner = await TestHelper.createUser()
-      global.userProfileFields = ['display-email', 'display-name']
-      await TestHelper.createProfile(owner, {
-        'display-name': owner.profile.firstName,
-        'display-email': owner.profile.contactEmail
-      })
-      await TestHelper.createOrganization(owner, {
-        email: owner.profile.displayEmail,
-        name: 'My organization',
-        profileid: owner.profile.profileid
-      })
-      const req = TestHelper.createRequest('/account/organizations')
-      req.account = owner.account
-      req.session = owner.session
-      await req.route.api.before(req)
       assert.strictEqual(req.data.organizations.length, 1)
     })
   })
 
-  describe('Index#GET', () => {
+  describe('view', () => {
     it('should have row for each organization', async () => {
       const owner = await TestHelper.createOwner()
       global.userProfileFields = ['display-email', 'display-name']

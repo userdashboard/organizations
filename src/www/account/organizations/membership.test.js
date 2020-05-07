@@ -3,7 +3,7 @@ const assert = require('assert')
 const TestHelper = require('../../../../test-helper.js')
 
 describe('/account/organizations/membership', () => {
-  describe('Membership#BEFORE', () => {
+  describe('before', () => {
     it('should reject non-member', async () => {
       const owner = await TestHelper.createUser()
       const user = await TestHelper.createUser()
@@ -37,7 +37,7 @@ describe('/account/organizations/membership', () => {
       assert.strictEqual(errorMessage, 'invalid-account')
     })
 
-    it('should bind membership to req', async () => {
+    it('should bind data to req', async () => {
       const owner = await TestHelper.createUser()
       const user = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']
@@ -64,7 +64,7 @@ describe('/account/organizations/membership', () => {
     })
   })
 
-  describe('Membership#GET', () => {
+  describe('view', () => {
     it('should have row for membership (screenshots)', async () => {
       const owner = await TestHelper.createUser()
       const user = await TestHelper.createUser()

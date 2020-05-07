@@ -12,22 +12,6 @@
     <h1>Create invitation for ${organization.organizationid}</h1>
     <p>Invitation codes allow people to join your organization.</p>
     <div id="message-container"></div>
-    <table id="organizations-table" class="pure-table object-table">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Created</th>
-        </tr>
-      </thead>
-      <tr id="${organization.organizationid}">
-        <td>${organization.organizationid}</td>
-        <td>${organization.name}</td>
-        <td><a href="mailto:${organization.email}">${organization.email}</a></td>
-        <td>${organization.createdFormatted}</td>
-      </tr>
-    </table>
     <form id="submit-form" method="POST" class="pure-form pure-form-stacked" action="/account/organizations/create-invitation?organizationid=${organization.organizationid}">
       <div class="pure-control-group">
         <label for="organization-name">Organization</label>

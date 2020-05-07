@@ -37,7 +37,6 @@ module.exports = {
     for (const invitationid of invitationids) {
       req.query.invitationid = invitationid
       const invitation = await global.api.user.organizations.Invitation.get(req)
-      delete (invitation.code)
       items.push(invitation)
     }
     return items

@@ -3,8 +3,8 @@ const assert = require('assert')
 const TestHelper = require('../../../../test-helper.js')
 
 describe('/administrator/organizations/invitation', () => {
-  describe('Invitation#BEFORE', () => {
-    it('should bind invitation to req', async () => {
+  describe('before', () => {
+    it('should bind data to req', async () => {
       const administrator = await TestHelper.createOwner()
       const owner = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']
@@ -26,7 +26,7 @@ describe('/administrator/organizations/invitation', () => {
     })
   })
 
-  describe('Invitation#GET', () => {
+  describe('view', () => {
     it('should have row for invitation (screenshots)', async () => {
       const administrator = await TestHelper.createOwner()
       const owner = await TestHelper.createUser()

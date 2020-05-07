@@ -13,7 +13,6 @@ module.exports = {
     if (organization.object !== 'organization') {
       throw new Error('invalid-organizationid')
     }
-    delete (organization.code)
     return organization
   }
 }

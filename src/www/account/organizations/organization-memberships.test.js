@@ -54,8 +54,8 @@ describe('/account/organizations/organization-memberships', function () {
     req2.session = user.session
     cachedResponses.offset = await req2.get()
   })
-  describe('OrganizationMemberships#BEFORE', () => {
-    it('should bind memberships to req', async () => {
+  describe('before', () => {
+    it('should bind data to req', async () => {
       const data = cachedResponses.before
       assert.strictEqual(data.memberships.length, global.pageSize)
       assert.strictEqual(data.memberships[0].membershipid, cachedMemberships[0])
@@ -63,8 +63,8 @@ describe('/account/organizations/organization-memberships', function () {
     })
   })
 
-  describe('OrganizationMemberships#GET', () => {
-    it('should limit memberships to one page (screenshots)', async () => {
+  describe('view', () => {
+    it('should use default page size (screenshots)', async () => {
       const result = cachedResponses.returns
       const doc = TestHelper.extractDoc(result.html)
       const table = doc.getElementById('memberships-table')
@@ -72,7 +72,7 @@ describe('/account/organizations/organization-memberships', function () {
       assert.strictEqual(rows.length, global.pageSize + 1)
     })
 
-    it('should enforce page size', async () => {
+    it('should change page size', async () => {
       global.pageSize = 3
       const result = cachedResponses.pageSize
       const doc = TestHelper.extractDoc(result.html)
@@ -81,7 +81,7 @@ describe('/account/organizations/organization-memberships', function () {
       assert.strictEqual(rows.length, global.pageSize + 1)
     })
 
-    it('should enforce specified offset', async () => {
+    it('should change offset', async () => {
       global.delayDiskWrites = true
       const offset = 1
       const result = cachedResponses.offset

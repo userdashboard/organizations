@@ -61,7 +61,7 @@ describe('/api/administrator/organizations/invitation', () => {
   })
 
   describe('redacts', () => {
-    it('secret code hash', async () => {
+    it('secretCodeHash', async () => {
       const administrator = await TestHelper.createOwner()
       const owner = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']
@@ -79,7 +79,7 @@ describe('/api/administrator/organizations/invitation', () => {
       req.account = administrator.account
       req.session = administrator.session
       const invitation = await req.get()
-      assert.strictEqual(invitation.secretCode, undefined)
+      assert.strictEqual(invitation.secretCodeHash, undefined)
     })
   })
 })

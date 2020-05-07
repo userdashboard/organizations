@@ -18,7 +18,7 @@ module.exports = {
     if (!organization) {
       throw new Error('invalid-organizationid')
     }
-    delete (invitation.code)
+    delete (invitation.secretCodeHash)
     return invitation
   }
 }

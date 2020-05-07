@@ -3,7 +3,7 @@ const assert = require('assert')
 const TestHelper = require('../../../../test-helper.js')
 
 describe('/account/organizations/invitation', () => {
-  describe('Invitation#BEFORE', () => {
+  describe('before', () => {
     it('should require owner', async () => {
       const owner = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']
@@ -30,7 +30,7 @@ describe('/account/organizations/invitation', () => {
       assert.strictEqual(errorMessage, 'invalid-account')
     })
 
-    it('should bind invitation to req', async () => {
+    it('should bind data to req', async () => {
       const owner = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
@@ -51,7 +51,7 @@ describe('/account/organizations/invitation', () => {
     })
   })
 
-  describe('Invitation#GET', () => {
+  describe('view', () => {
     it('should have row for invitation (screenshots)', async () => {
       const owner = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']

@@ -3,8 +3,8 @@ const assert = require('assert')
 const TestHelper = require('../../../../test-helper.js')
 
 describe('/administrator/organizations/index', () => {
-  describe('Index#BEFORE', () => {
-    it('should bind memberships to req', async () => {
+  describe('before', () => {
+    it('should bind data to req', async () => {
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()
       const user = await TestHelper.createUser()
@@ -38,30 +38,11 @@ describe('/administrator/organizations/index', () => {
       req.session = administrator.session
       await req.route.api.before(req)
       assert.strictEqual(req.data.memberships.length, global.pageSize)
-    })
-
-    it('should bind organizations to req', async () => {
-      const administrator = await TestHelper.createAdministrator()
-      const user = await TestHelper.createUser()
-      global.userProfileFields = ['display-email', 'display-name']
-      await TestHelper.createProfile(user, {
-        'display-name': user.profile.firstName,
-        'display-email': user.profile.contactEmail
-      })
-      await TestHelper.createOrganization(user, {
-        email: user.profile.displayEmail,
-        name: 'My organization',
-        profileid: user.profile.profileid
-      })
-      const req = TestHelper.createRequest('/administrator/organizations')
-      req.account = administrator.account
-      req.session = administrator.session
-      await req.route.api.before(req)
       assert.strictEqual(req.data.organizations.length, 1)
     })
   })
 
-  describe('Index#GET', () => {
+  describe('view', () => {
     it('should have row for each organization (screenshots)', async () => {
       const administrator = await TestHelper.createAdministrator()
       const owner = await TestHelper.createUser()

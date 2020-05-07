@@ -3,7 +3,7 @@ const assert = require('assert')
 const TestHelper = require('../../../../test-helper.js')
 
 describe('/account/organizations/edit-organization', () => {
-  describe('EditOrganization#BEFORE', () => {
+  describe('exceptions', () => {
     it('should require owner', async () => {
       const owner = await TestHelper.createUser()
       const user = await TestHelper.createUser()
@@ -28,8 +28,10 @@ describe('/account/organizations/edit-organization', () => {
       }
       assert.strictEqual(errorMessage, 'invalid-account')
     })
+  })
 
-    it('should bind organization to req', async () => {
+  describe('before', () => {
+    it('should bind data to req', async () => {
       const owner = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
@@ -49,7 +51,7 @@ describe('/account/organizations/edit-organization', () => {
     })
   })
 
-  describe('EditOrganization#GET', () => {
+  describe('view', () => {
     it('should present the form', async () => {
       const owner = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']
@@ -72,8 +74,45 @@ describe('/account/organizations/edit-organization', () => {
     })
   })
 
-  describe('EditOrganization#POST', () => {
-    it('should reject missing name', async () => {
+  describe('submit', () => {
+    it('should apply organization update (screenshots)', async () => {
+      const owner = await TestHelper.createUser()
+      global.userProfileFields = ['display-name', 'display-email']
+      await TestHelper.createProfile(owner, {
+        'display-name': owner.profile.firstName,
+        'display-email': owner.profile.contactEmail
+      })
+      await TestHelper.createOrganization(owner, {
+        email: owner.profile.displayEmail,
+        name: 'My organization',
+        profileid: owner.profile.profileid
+      })
+      const req = TestHelper.createRequest(`/account/organizations/edit-organization?organizationid=${owner.organization.organizationid}`)
+      req.account = owner.account
+      req.session = owner.session
+      req.body = {
+        email: owner.profile.displayEmail,
+        name: 'Organization name'
+      }
+      req.filename = __filename
+      req.screenshots = [
+        { hover: '#account-menu-container' },
+        { click: '/account/organizations' },
+        { click: '/account/organizations/organizations' },
+        { click: `/account/organizations/organization?organizationid=${owner.organization.organizationid}` },
+        { click: `/account/organizations/edit-organization?organizationid=${owner.organization.organizationid}` },
+        { fill: '#submit-form' }
+      ]
+      const result = await req.post()
+      const doc = TestHelper.extractDoc(result.html)
+      const messageContainer = doc.getElementById('message-container')
+      const message = messageContainer.child[0]
+      assert.strictEqual(message.attr.template, 'success')
+    })
+  })
+
+  describe('errors', () => {
+    it('invalid-organization-name', async () => {
       const owner = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
@@ -98,7 +137,7 @@ describe('/account/organizations/edit-organization', () => {
       assert.strictEqual(message.attr.template, 'invalid-organization-name')
     })
 
-    it('should enforce name length', async () => {
+    it('invalid-organization-name-length', async () => {
       const owner = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
@@ -136,7 +175,7 @@ describe('/account/organizations/edit-organization', () => {
       assert.strictEqual(message2.attr.template, 'invalid-organization-name-length')
     })
 
-    it('should reject missing email', async () => {
+    it('invalid-organization-email', async () => {
       const owner = await TestHelper.createUser()
       global.userProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(owner, {
@@ -159,41 +198,6 @@ describe('/account/organizations/edit-organization', () => {
       const doc = TestHelper.extractDoc(result.html)
       const message = doc.getElementById('message-container').child[0]
       assert.strictEqual(message.attr.template, 'invalid-organization-email')
-    })
-
-    it('should apply organization update (screenshots)', async () => {
-      const owner = await TestHelper.createUser()
-      global.userProfileFields = ['display-name', 'display-email']
-      await TestHelper.createProfile(owner, {
-        'display-name': owner.profile.firstName,
-        'display-email': owner.profile.contactEmail
-      })
-      await TestHelper.createOrganization(owner, {
-        email: owner.profile.displayEmail,
-        name: 'My organization',
-        profileid: owner.profile.profileid
-      })
-      const req = TestHelper.createRequest(`/account/organizations/edit-organization?organizationid=${owner.organization.organizationid}`)
-      req.account = owner.account
-      req.session = owner.session
-      req.body = {
-        email: owner.profile.displayEmail,
-        name: 'Organization name'
-      }
-      req.filename = __filename
-      req.screenshots = [
-        { hover: '#account-menu-container' },
-        { click: '/account/organizations' },
-        { click: '/account/organizations/organizations' },
-        { click: `/account/organizations/organization?organizationid=${owner.organization.organizationid}` },
-        { click: `/account/organizations/edit-organization?organizationid=${owner.organization.organizationid}` },
-        { fill: '#submit-form' }
-      ]
-      const result = await req.post()
-      const doc = TestHelper.extractDoc(result.html)
-      const messageContainer = doc.getElementById('message-container')
-      const message = messageContainer.child[0]
-      assert.strictEqual(message.attr.template, 'success')
     })
   })
 })
