@@ -34,9 +34,9 @@ jobs:
         FAST_START: true
         DASHBOARD_SERVER: "http://localhost:9000"
         DOMAIN: "localhost"
-        STORAGE_ENGINE: "@userdashboard/storage-postgresql"
+        STORAGE: "@userdashboard/storage-postgresql"
         DATABASE_URL: "postgres://postgres:postgres@localhost:5432/postgres"
-        STORAGE_CACHE: "node"
+        CACHE: "node"
         GENERATE_SITEMAP_TXT: false
         GENERATE_API_TXT: false
     - name: Test NodeJS caching with encrypted data
@@ -46,9 +46,9 @@ jobs:
         FAST_START: true
         DASHBOARD_SERVER: "http://localhost:9000"
         DOMAIN: "localhost"
-        STORAGE_ENGINE: "@userdashboard/storage-postgresql"
+        STORAGE: "@userdashboard/storage-postgresql"
         DATABASE_URL: "postgres://postgres:postgres@localhost:5432/postgres"
-        STORAGE_CACHE: "node"
+        CACHE: "node"
         GENERATE_SITEMAP_TXT: false
         GENERATE_API_TXT: false
         ENCRYPTION_SECRET: "12345678901234567890123456789012"

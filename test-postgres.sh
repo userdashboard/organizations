@@ -7,7 +7,7 @@ if [ ! -z "$1" ]; then
   PARAMS="$PARAMS -- --grep $1"
 fi
 NODE_ENV=testing \
-STORAGE_ENGINE="@userdashboard/storage-postgresql" \
+STORAGE="@userdashboard/storage-postgresql" \
 DATABASE_URL=postgres://postgres:docker@localhost:5432/postgres \
 FAST_START=true \
 DASHBOARD_SERVER="http://localhost" \

@@ -9,3 +9,13 @@ global.minimumInvitationCodeLength = parseInt(process.env.MINIMUM_INVITATION_COD
 global.maximumInvitationCodeLength = parseInt(process.env.MAXIMUM_INVITATION_CODE_LENGTH || '10', 100)
 
 module.exports = {}
+
+if (process.env.ORGANIZATIONS_STORAGE) {
+  module.exports.Storage = dashboard.Storage
+  module.exports.StorageObject = dashboard.StorageObject
+  module.exports.StorageList = dashboard.StorageList
+} else {
+  module.exports.Storage = dashboard.Storage
+  module.exports.StorageObject = dashboard.StorageObject
+  module.exports.StorageList = dashboard.StorageList
+}

@@ -14,11 +14,11 @@ module.exports = {
     if (!organization) {
       throw new Error('invalid-organizationid')
     }
-    await dashboard.Storage.deleteFile(`${req.appid}/membership/${req.query.membershipid}`)
+    await dashboard.Storage.delete(`${req.appid}/membership/${req.query.membershipid}`)
     await dashboard.StorageList.remove(`${req.appid}/memberships`, req.query.membershipid)
     await dashboard.StorageList.remove(`${req.appid}/account/memberships/${membership.accountid}`, req.query.membershipid)
     await dashboard.StorageList.remove(`${req.appid}/organization/memberships/${organization.organizationid}`, req.query.membershipid)
-    await dashboard.Storage.deleteFile(`${req.appid}/map/organizationid/membershipid/${membership.accountid}/${req.query.organizationid}`)
+    await dashboard.Storage.delete(`${req.appid}/map/organizationid/membershipid/${membership.accountid}/${req.query.organizationid}`)
     return true
   }
 }
