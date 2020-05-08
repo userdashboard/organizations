@@ -1,4 +1,4 @@
-const dashboard = require('@userdashboard/dashboard')
+const organizations = require('../../../../../index.js')
 
 module.exports = {
   get: async (req) => {
@@ -22,6 +22,6 @@ module.exports = {
     } else {
       index = `${req.appid}/account/memberships/${req.query.accountid}`
     }
-    return dashboard.StorageList.count(index)
+    return organizations.StorageList.count(index)
   }
 }

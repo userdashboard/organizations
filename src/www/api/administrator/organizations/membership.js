@@ -1,11 +1,11 @@
-const dashboard = require('@userdashboard/dashboard')
+const organizations = require('../../../../../index.js')
 
 module.exports = {
   get: async (req) => {
     if (!req.query || !req.query.membershipid) {
       throw new Error('invalid-membershipid')
     }
-    let membership = await dashboard.Storage.read(`${req.appid}/membership/${req.query.membershipid}`)
+    let membership = await organizations.Storage.read(`${req.appid}/membership/${req.query.membershipid}`)
     if (!membership) {
       throw new Error('invalid-membershipid')
     }

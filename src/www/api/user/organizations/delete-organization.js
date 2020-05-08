@@ -1,4 +1,4 @@
-const dashboard = require('@userdashboard/dashboard')
+const organizations = require('../../../../../index.js')
 
 module.exports = {
   delete: async (req) => {
@@ -12,9 +12,9 @@ module.exports = {
     if (organization.ownerid !== req.account.accountid) {
       throw new Error('invalid-account')
     }
-    await dashboard.Storage.delete(`${req.appid}/organization/${req.query.organizationid}`)
-    await dashboard.StorageList.remove(`${req.appid}/organizations`, req.query.organizationid)
-    await dashboard.StorageList.remove(`${req.appid}/account/organizations/${req.account.accountid}`, req.query.organizationid)
+    await organizations.Storage.delete(`${req.appid}/organization/${req.query.organizationid}`)
+    await organizations.StorageList.remove(`${req.appid}/organizations`, req.query.organizationid)
+    await organizations.StorageList.remove(`${req.appid}/account/organizations/${req.account.accountid}`, req.query.organizationid)
     return true
   }
 }

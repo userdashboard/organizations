@@ -25,6 +25,13 @@ Edit your `package.json` to activate the module:
       ]
     }
 
+## Storage engine
+
+By default this module will share whatever storage you use for Dashboard.  You can specify a Dashboard storage module to use instead.
+
+        ORGANIZATIONS_STORAGE=@userdashboard/storage-mongodb
+        ORGANIZATIONS_MONGODB_URL=mongo://localhost:27017/organizations
+
 # Customizing membership profiles
 
 Memberships designate a Profile which you can configure to collect the information relevant to your organizations.  You specify the fields you want in an environment variable:

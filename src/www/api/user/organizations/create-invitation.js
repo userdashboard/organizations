@@ -1,4 +1,5 @@
 const dashboard = require('@userdashboard/dashboard')
+const organizations = require('../../../../../index.js')
 
 module.exports = {
   post: async (req) => {
@@ -28,11 +29,11 @@ module.exports = {
       secretCodeHash,
       created: dashboard.Timestamp.now
     }
-    await dashboard.Storage.write(`${req.appid}/invitation/${invitationid}`, invitationInfo)
-    await dashboard.StorageList.add(`${req.appid}/invitations`, invitationid)
-    await dashboard.StorageList.add(`${req.appid}/account/invitations/${req.account.accountid}`, invitationid)
-    await dashboard.StorageList.add(`${req.appid}/organization/invitations/${req.query.organizationid}`, invitationid)
-    await dashboard.Storage.write(`${req.appid}/map/invitationid/organizationid/${invitationid}`, req.query.organizationid)
+    await organizations.Storage.write(`${req.appid}/invitation/${invitationid}`, invitationInfo)
+    await organizations.StorageList.add(`${req.appid}/invitations`, invitationid)
+    await organizations.StorageList.add(`${req.appid}/account/invitations/${req.account.accountid}`, invitationid)
+    await organizations.StorageList.add(`${req.appid}/organization/invitations/${req.query.organizationid}`, invitationid)
+    await organizations.Storage.write(`${req.appid}/map/invitationid/organizationid/${invitationid}`, req.query.organizationid)
     req.query.invitationid = invitationid
     return invitationInfo
   }

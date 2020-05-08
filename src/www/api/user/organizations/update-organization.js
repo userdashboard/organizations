@@ -1,4 +1,4 @@
-const dashboard = require('@userdashboard/dashboard')
+const organizations = require('../../../../../index.js')
 
 module.exports = {
   patch: async (req) => {
@@ -22,7 +22,7 @@ module.exports = {
     if (!req.body.email || !req.body.email.length || req.body.email.indexOf('@') < 1) {
       throw new Error('invalid-organization-email')
     }
-    await dashboard.StorageObject.setProperties(`${req.appid}/organization/${req.query.organizationid}`, {
+    await organizations.StorageObject.setProperties(`${req.appid}/organization/${req.query.organizationid}`, {
       name: req.body.name,
       email: req.body.email
     })

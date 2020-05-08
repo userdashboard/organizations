@@ -43,4 +43,18 @@ jobs:
         GENERATE_API_TXT: "false"
         ENCRYPTION_SECRET: "12345678901234567890123456789012"
         ENCRYPTION_SECRET_IV: "1234123412341234"
+    - name: Test independent MongoDB storage
+      run: npm test
+      env:
+        NODE_ENV: "testing"
+        FAST_START: "true"
+        DASHBOARD_SERVER: "http://localhost:9000"
+        DOMAIN: "localhost"
+        STORAGE: "@userdashboard/storage-mongodb"
+        ORGANIZATIONS_MONGODB_URL: "mongodb://localhost:27017"
+        ORGANIZATIONS_MONGODB_DATABASE: "dashboard"
+        GENERATE_SITEMAP_TXT: "false"
+        GENERATE_API_TXT: "false"
+        ENCRYPTION_SECRET: "12345678901234567890123456789012"
+        ENCRYPTION_SECRET_IV: "1234123412341234"
         

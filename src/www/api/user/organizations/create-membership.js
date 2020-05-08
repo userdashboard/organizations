@@ -1,4 +1,5 @@
 const dashboard = require('@userdashboard/dashboard')
+const organizations = require('../../../../../index.js')
 
 module.exports = {
   post: async (req) => {
@@ -20,7 +21,7 @@ module.exports = {
     if (invitation.accepted) {
       throw new Error('invalid-invitation')
     }
-    const invitationsecretCodeHash = await dashboard.StorageObject.getProperty(`${req.appid}/invitation/${req.query.invitationid}`, 'secretCodeHash')
+    const invitationsecretCodeHash = await organizations.StorageObject.getProperty(`${req.appid}/invitation/${req.query.invitationid}`, 'secretCodeHash')
     if (invitationsecretCodeHash !== secretCodeHash) {
       throw new Error('invalid-secret-code')
     }
@@ -61,7 +62,7 @@ module.exports = {
     if (membership) {
       throw new Error('invalid-account')
     }
-    await dashboard.StorageObject.setProperty(`${req.appid}/invitation/${req.query.invitationid}`, 'accepted', dashboard.Timestamp.now)
+    await organizations.StorageObject.setProperty(`${req.appid}/invitation/${req.query.invitationid}`, 'accepted', dashboard.Timestamp.now)
     const membershipid = `membership_${await dashboard.UUID.generateID()}`
     const membershipInfo = {
       object: 'membership',
@@ -72,14 +73,14 @@ module.exports = {
       invitationid: req.query.invitationid,
       profileid: req.body.profileid
     }
-    await dashboard.Storage.write(`${req.appid}/membership/${membershipid}`, membershipInfo)
-    await dashboard.StorageObject.setProperty(`${req.appid}/invitation/${req.query.invitationid}`, 'membershipid', membershipid)
-    await dashboard.StorageList.add(`${req.appid}/memberships`, membershipid)
-    await dashboard.StorageList.add(`${req.appid}/account/memberships/${req.account.accountid}`, membershipid)
-    await dashboard.StorageList.add(`${req.appid}/account/organizations/${req.account.accountid}`, organization.organizationid)
-    await dashboard.StorageList.add(`${req.appid}/account/invitations/${req.account.accountid}`, req.query.invitationid)
-    await dashboard.StorageList.add(`${req.appid}/organization/memberships/${organization.organizationid}`, membershipid)
-    await dashboard.Storage.write(`${req.appid}/map/organizationid/membershipid/${req.account.accountid}/${organization.organizationid}`, membershipid)
+    await organizations.Storage.write(`${req.appid}/membership/${membershipid}`, membershipInfo)
+    await organizations.StorageObject.setProperty(`${req.appid}/invitation/${req.query.invitationid}`, 'membershipid', membershipid)
+    await organizations.StorageList.add(`${req.appid}/memberships`, membershipid)
+    await organizations.StorageList.add(`${req.appid}/account/memberships/${req.account.accountid}`, membershipid)
+    await organizations.StorageList.add(`${req.appid}/account/organizations/${req.account.accountid}`, organization.organizationid)
+    await organizations.StorageList.add(`${req.appid}/account/invitations/${req.account.accountid}`, req.query.invitationid)
+    await organizations.StorageList.add(`${req.appid}/organization/memberships/${organization.organizationid}`, membershipid)
+    await organizations.Storage.write(`${req.appid}/map/organizationid/membershipid/${req.account.accountid}/${organization.organizationid}`, membershipid)
     return membershipInfo
   }
 }

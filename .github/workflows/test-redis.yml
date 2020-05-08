@@ -41,3 +41,16 @@ jobs:
         GENERATE_API_TXT: false
         ENCRYPTION_SECRET: "12345678901234567890123456789012"
         ENCRYPTION_SECRET_IV: "1234123412341234"
+    - name: Test independent Redis storage
+      run: npm test
+      env:
+        NODE_ENV: testing
+        FAST_START: true
+        DASHBOARD_SERVER: "http://localhost:9000"
+        DOMAIN: "localhost"
+        ORGANIZATIONS_STORAGE: "@userdashboard/storage-redis"
+        ORGANIZATIONS_REDIS_URL: "redis://localhost:6379"
+        GENERATE_SITEMAP_TXT: false
+        GENERATE_API_TXT: false
+        ENCRYPTION_SECRET: "12345678901234567890123456789012"
+        ENCRYPTION_SECRET_IV: "1234123412341234"

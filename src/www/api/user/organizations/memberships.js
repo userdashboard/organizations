@@ -1,4 +1,4 @@
-const dashboard = require('@userdashboard/dashboard')
+const organizations = require('../../../../../index.js')
 
 module.exports = {
   get: async (req) => {
@@ -21,11 +21,11 @@ module.exports = {
     }
     let membershipids
     if (req.query.all) {
-      membershipids = await dashboard.StorageList.listAll(index)
+      membershipids = await organizations.StorageList.listAll(index)
     } else {
       const offset = req.query.offset ? parseInt(req.query.offset, 10) : 0
       const limit = req.query.limit ? parseInt(req.query.limit, 10) : global.pageSize
-      membershipids = await dashboard.StorageList.list(index, offset, limit)
+      membershipids = await organizations.StorageList.list(index, offset, limit)
     }
     if (!membershipids || !membershipids.length) {
       return null

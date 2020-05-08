@@ -1,4 +1,4 @@
-const dashboard = require('@userdashboard/dashboard')
+const organizations = require('../../../../../index.js')
 
 module.exports = {
   get: async (req) => {
@@ -9,6 +9,6 @@ module.exports = {
     if (!account) {
       throw new Error('invalid-account')
     }
-    return dashboard.StorageList.count(`${req.appid}/account/organizations/${req.query.accountid}`)
+    return organizations.StorageList.count(`${req.appid}/account/organizations/${req.query.accountid}`)
   }
 }

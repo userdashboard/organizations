@@ -1,4 +1,4 @@
-const dashboard = require('@userdashboard/dashboard')
+const organizations = require('../../../../../index.js')
 
 module.exports = {
   delete: async (req) => {
@@ -20,11 +20,11 @@ module.exports = {
     if (organization.ownerid !== req.account.accountid) {
       throw new Error('invalid-account')
     }
-    await dashboard.Storage.delete(`${req.appid}/invitation/${req.query.invitationid}`)
-    await dashboard.StorageList.remove(`${req.appid}/invitations`, req.query.invitationid)
-    await dashboard.StorageList.remove(`${req.appid}/account/invitations/${req.account.accountid}`, req.query.invitationid)
-    await dashboard.StorageList.remove(`${req.appid}/organization/invitations/${organization.organizationid}`, req.query.invitationid)
-    await dashboard.Storage.delete(`${req.appid}/map/invitationid/organizationid/${req.query.invitationid}`)
+    await organizations.Storage.delete(`${req.appid}/invitation/${req.query.invitationid}`)
+    await organizations.StorageList.remove(`${req.appid}/invitations`, req.query.invitationid)
+    await organizations.StorageList.remove(`${req.appid}/account/invitations/${req.account.accountid}`, req.query.invitationid)
+    await organizations.StorageList.remove(`${req.appid}/organization/invitations/${organization.organizationid}`, req.query.invitationid)
+    await organizations.Storage.delete(`${req.appid}/map/invitationid/organizationid/${req.query.invitationid}`)
     return true
   }
 }

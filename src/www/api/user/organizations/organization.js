@@ -1,11 +1,11 @@
-const dashboard = require('@userdashboard/dashboard')
+const organizations = require('../../../../../index.js')
 
 module.exports = {
   get: async (req) => {
     if (!req.query || !req.query.organizationid) {
       throw new Error('invalid-organizationid')
     }
-    let organization = await dashboard.Storage.read(`${req.appid}/organization/${req.query.organizationid}`)
+    let organization = await organizations.Storage.read(`${req.appid}/organization/${req.query.organizationid}`)
     if (!organization) {
       throw new Error('invalid-organizationid')
     }
@@ -14,7 +14,7 @@ module.exports = {
       throw new Error('invalid-organizationid')
     }
     if (organization.ownerid !== req.account.accountid) {
-      const membershipid = await dashboard.Storage.read(`${req.appid}/map/organizationid/membershipid/${req.account.accountid}/${req.query.organizationid}`)
+      const membershipid = await organizations.Storage.read(`${req.appid}/map/organizationid/membershipid/${req.account.accountid}/${req.query.organizationid}`)
       if (!membershipid) {
         throw new Error('invalid-account')
       }

@@ -48,3 +48,16 @@ jobs:
         GENERATE_API_TXT: "false"
         ENCRYPTION_SECRET: "12345678901234567890123456789012"
         ENCRYPTION_SECRET_IV: "1234123412341234"
+    - name: Test independent MySQL storage
+      run: npm test
+      env:
+        NODE_ENV: testing
+        FAST_START: true
+        DASHBOARD_SERVER: "http://localhost:9000"
+        DOMAIN: "localhost"
+        ORGANIZATIONS_STORAGE: "@userdashboard/storage-mysql"
+        ORGANIZATIONS_DATABASE_URL: "mysql://root:password@127.0.0.1:8888/dashboard"
+        GENERATE_SITEMAP_TXT: "false"
+        GENERATE_API_TXT: "false"
+        ENCRYPTION_SECRET: "12345678901234567890123456789012"
+        ENCRYPTION_SECRET_IV: "1234123412341234"

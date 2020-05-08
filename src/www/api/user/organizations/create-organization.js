@@ -1,4 +1,5 @@
 const dashboard = require('@userdashboard/dashboard')
+const organizations = require('../../../../../index.js')
 
 module.exports = {
   post: async (req) => {
@@ -49,7 +50,7 @@ module.exports = {
       email: req.body.email,
       created: dashboard.Timestamp.now
     }
-    await dashboard.Storage.write(`${req.appid}/organization/${organizationid}`, organizationInfo)
+    await organizations.Storage.write(`${req.appid}/organization/${organizationid}`, organizationInfo)
     const membershipid = `membership_${await dashboard.UUID.generateID()}`
     const membershipInfo = {
       object: 'membership',
@@ -59,13 +60,13 @@ module.exports = {
       created: dashboard.Timestamp.now,
       profileid: req.body.profileid
     }
-    await dashboard.Storage.write(`${req.appid}/membership/${membershipid}`, membershipInfo)
-    await dashboard.StorageList.add(`${req.appid}/organizations`, organizationid)
-    await dashboard.StorageList.add(`${req.appid}/account/organizations/${req.query.accountid}`, organizationid)
-    await dashboard.StorageList.add(`${req.appid}/memberships`, membershipid)
-    await dashboard.StorageList.add(`${req.appid}/account/memberships/${req.query.accountid}`, membershipid)
-    await dashboard.StorageList.add(`${req.appid}/organization/memberships/${organizationid}`, membershipid)
-    await dashboard.Storage.write(`${req.appid}/map/organizationid/membershipid/${req.query.accountid}/${organizationid}`, membershipid)
+    await organizations.Storage.write(`${req.appid}/membership/${membershipid}`, membershipInfo)
+    await organizations.StorageList.add(`${req.appid}/organizations`, organizationid)
+    await organizations.StorageList.add(`${req.appid}/account/organizations/${req.query.accountid}`, organizationid)
+    await organizations.StorageList.add(`${req.appid}/memberships`, membershipid)
+    await organizations.StorageList.add(`${req.appid}/account/memberships/${req.query.accountid}`, membershipid)
+    await organizations.StorageList.add(`${req.appid}/organization/memberships/${organizationid}`, membershipid)
+    await organizations.Storage.write(`${req.appid}/map/organizationid/membershipid/${req.query.accountid}/${organizationid}`, membershipid)
     return organizationInfo
   }
 }

@@ -1,4 +1,4 @@
-const dashboard = require('@userdashboard/dashboard')
+const organizations = require('../../../../../index.js')
 
 module.exports = {
   patch: async (req) => {
@@ -41,7 +41,7 @@ module.exports = {
     if (!newOwner || newOwner.deleted) {
       throw new Error('invalid-account')
     }
-    await dashboard.StorageObject.setProperty(`${req.appid}/organization/${req.query.organizationid}`, 'ownerid', req.body.accountid)
+    await organizations.StorageObject.setProperty(`${req.appid}/organization/${req.query.organizationid}`, 'ownerid', req.body.accountid)
     organization.ownerid = req.body.accountid
     return organization
   }

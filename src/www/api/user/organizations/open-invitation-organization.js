@@ -1,11 +1,11 @@
-const dashboard = require('@userdashboard/dashboard')
+const organizations = require('../../../../../index.js')
 
 module.exports = {
   get: async (req) => {
     if (!req.query || !req.query.invitationid) {
       throw new Error('invalid-invitationid')
     }
-    let invitation = await dashboard.Storage.read(`${req.appid}/invitation/${req.query.invitationid}`)
+    let invitation = await organizations.Storage.read(`${req.appid}/invitation/${req.query.invitationid}`)
     if (!invitation) {
       throw new Error('invalid-invitationid')
     }
@@ -16,7 +16,7 @@ module.exports = {
     if (invitation.accepted) {
       throw new Error('invalid-invitation')
     }
-    let organization = await dashboard.Storage.read(`${req.appid}/organization/${invitation.organizationid}`)
+    let organization = await organizations.Storage.read(`${req.appid}/organization/${invitation.organizationid}`)
     if (!organization) {
       throw new Error('invalid-organizationid')
     }
