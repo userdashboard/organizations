@@ -82,7 +82,7 @@ describe('/account/organizations/organization-invitations', function () {
   })
 
   describe('view', () => {
-    it('should use default page size (screenshots)', async () => {
+    it('should return one page (screenshots)', async () => {
       const result = cachedResponses.returns
       const doc = TestHelper.extractDoc(result.html)
       const table = doc.getElementById('invitations-table')
