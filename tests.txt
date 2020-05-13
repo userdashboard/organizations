@@ -1,5 +1,5 @@
 
-> @userdashboard/organizations@1.0.77 test /home/runner/work/organizations/organizations
+> @userdashboard/organizations@1.0.78 test /home/runner/work/organizations/organizations
 > mocha --exit --inline-diffs --full-trace --bail --async-only --recursive --timeout 150000 --slow 150000 './src{,!(public)/**}/*.test.js'
 
 
@@ -147,7 +147,7 @@
     before
       ✓ should bind data to req
     view
-      ✓ should use default page size (screenshots)
+      ✓ should return one page (screenshots)
       ✓ should change page size
       ✓ should change offset
       ✓ should show profile fields if data exists
@@ -157,7 +157,7 @@
       ✓ should require owner
       ✓ should bind data to req
     view
-      ✓ should use default page size (screenshots)
+      ✓ should return one page (screenshots)
       ✓ should change page size
       ✓ should change offset
 
@@ -165,7 +165,7 @@
     before
       ✓ should bind data to req
     view
-      ✓ should use default page size (screenshots)
+      ✓ should return one page (screenshots)
       ✓ should change page size
       ✓ should change offset
 
@@ -180,7 +180,7 @@
     before
       ✓ should bind data to req
     view
-      ✓ should use default page size (screenshots)
+      ✓ should return one page (screenshots)
       ✓ should change page size
       ✓ should change offset
 
@@ -201,7 +201,6 @@
       ✓ should bind data to req
     view
       ✓ should present the form
-      ✓ should present the organization
     submit
       ✓ should transfer ownership (screenshots)
 
@@ -222,7 +221,7 @@
     before
       ✓ should bind data to req
     view
-      ✓ should use default page size (screenshots)
+      ✓ should return one page (screenshots)
       ✓ should change page size
       ✓ should change offset
 
@@ -236,7 +235,7 @@
     before
       ✓ should bind data to req
     view
-      ✓ should use default page size (screenshots)
+      ✓ should return one page (screenshots)
       ✓ should change page size
       ✓ should change offset
       ✓ should show profile fields if data exists
@@ -245,7 +244,7 @@
     before
       ✓ should bind data to req
     view
-      ✓ should use default page size (screenshots)
+      ✓ should return one page (screenshots)
       ✓ should change page size
       ✓ should change offset
 
@@ -253,7 +252,7 @@
     before
       ✓ should bind data to req
     view
-      ✓ should use default page size (screenshots)
+      ✓ should return one page (screenshots)
       ✓ should change page size
       ✓ should change offset
 
@@ -267,7 +266,7 @@
     before
       ✓ should bind data to req
     view
-      ✓ should use default page size (screenshots)
+      ✓ should return one page (screenshots)
       ✓ should change page size
       ✓ should change offset
 
@@ -622,5 +621,5 @@
       ✓ object
 
 
-  305 passing (3m)
+  304 passing (14m)
 
