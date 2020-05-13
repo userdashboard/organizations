@@ -1,4 +1,4 @@
-@userdashboard/dashboard 1.0.179
+@userdashboard/dashboard 1.0.181
 http://localhost:9000
 
 |--------------------------------------------|
@@ -92,7 +92,6 @@ http://localhost:9000
 |  * should bind data to req                    |
 | view                                          |
 |  * should present the form                    |
-|  * should present the organization            |
 | submit                                        |
 |  * should transfer ownership (screenshots)    |
 |-----------------------------------------------|
