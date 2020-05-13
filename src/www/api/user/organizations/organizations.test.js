@@ -4,7 +4,6 @@ const TestHelper = require('../../../../../test-helper.js')
 const DashboardTestHelper = require('@userdashboard/dashboard/test-helper.js')
 
 describe('/api/user/organizations/organizations', function () {
-  this.retries(2)
   const cachedResponses = {}
   const cachedOrganizations = []
   before(async () => {
@@ -40,6 +39,7 @@ describe('/api/user/organizations/organizations', function () {
     const req4 = TestHelper.createRequest(`/api/user/organizations/organizations?accountid=${user.account.accountid}`)
     req4.account = user.account
     req4.session = user.session
+    req4.filename = __filename
     req4.saveResponse = true
     cachedResponses.returns = await req4.get()
     global.pageSize = 3

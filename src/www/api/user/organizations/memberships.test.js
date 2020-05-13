@@ -4,7 +4,6 @@ const TestHelper = require('../../../../../test-helper.js')
 const DashboardTestHelper = require('@userdashboard/dashboard/test-helper.js')
 
 describe('/api/user/organizations/memberships', function () {
-  this.retries(2)
   const cachedResponses = {}
   const cachedMemberships = []
   const organizationMemberships = []
@@ -72,6 +71,7 @@ describe('/api/user/organizations/memberships', function () {
     const req5 = TestHelper.createRequest(`/api/user/organizations/memberships?accountid=${user.account.accountid}`)
     req5.account = user.account
     req5.session = user.session
+    req5.filename = __filename
     req5.saveResponse = true
     cachedResponses.returns = await req5.get()
     global.pageSize = 3

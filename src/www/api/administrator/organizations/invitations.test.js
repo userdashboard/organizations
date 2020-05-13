@@ -4,17 +4,10 @@ const TestHelper = require('../../../../../test-helper.js')
 const DashboardTestHelper = require('@userdashboard/dashboard/test-helper.js')
 
 describe('/api/administrator/organizations/invitations', function () {
-  this.retries(2)
   const cachedResponses = {}
   const cachedInvitations = []
   const accountInvitations = []
   const organizationInvitations = []
-  // Generally each test is responsible for setting up its
-  // required data and then between tests all data is
-  // destroyed.  These tests are slow so a single dataset
-  // is created then each of the test requests is performed
-  // against it and the results cached for analysis by the
-  // actual tests.
   before(async () => {
     await DashboardTestHelper.setupBeforeEach()
     await TestHelper.setupBeforeEach()
