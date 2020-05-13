@@ -14,6 +14,10 @@ for (const x in TestHelper) {
   module.exports[x] = TestHelper[x]
 }
 
+async function setupBefore () {
+  await require('./index.js').setup()
+}
+
 async function setupBeforeEach () {
   global.userProfileFields = ['full-name', 'contact-email']
   global.membershipProfileFields = ['display-name', 'display-email']
@@ -25,7 +29,10 @@ async function setupBeforeEach () {
   global.maximumInvitationCodeLength = 100
 }
 
+module.exports.setupBefore = setupBefore
 module.exports.setupBeforeEach = setupBeforeEach
+
+before(setupBefore)
 beforeEach(setupBeforeEach)
 
 async function createOrganization (user, properties) {
