@@ -50,7 +50,7 @@ jobs:
         FAST_START: "true"
         DASHBOARD_SERVER: "http://localhost:9000"
         DOMAIN: "localhost"
-        STORAGE: "@userdashboard/storage-mongodb"
+        ORGANIZATIONS_STORAGE: "@userdashboard/storage-mongodb"
         ORGANIZATIONS_MONGODB_URL: "mongodb://localhost:27017"
         ORGANIZATIONS_MONGODB_DATABASE: "dashboard"
         GENERATE_SITEMAP_TXT: "false"
