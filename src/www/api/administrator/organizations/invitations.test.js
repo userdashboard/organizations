@@ -88,6 +88,7 @@ describe('/api/administrator/organizations/invitations', function () {
     const req6 = TestHelper.createRequest(`/api/administrator/organizations/invitations?accountid=${user.account.accountid}`)
     req6.account = administrator.account
     req6.session = administrator.session
+    req6.filename = __filename
     req6.saveResponse = true
     cachedResponses.returns = await req6.get()
     global.pageSize = 3
