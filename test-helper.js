@@ -25,9 +25,14 @@ async function setupBeforeEach () {
   global.maximumInvitationCodeLength = 100
 }
 
+async function setupBefore () {
+  require('./index.js').setup()
+}
+
 module.exports.setupBeforeEach = setupBeforeEach
 
 beforeEach(setupBeforeEach)
+before(setupBefore)
 
 async function createOrganization (user, properties) {
   const req = TestHelper.createRequest(`/api/user/organizations/create-organization?accountid=${user.account.accountid}`, 'POST')
