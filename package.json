@@ -1,6 +1,6 @@
 {
   "name": "@userdashboard/organizations",
-  "version": "1.0.84",
+  "version": "1.0.85",
   "description": "Organizations module for Dashboard",
   "main": "index.js",
   "repository": {
