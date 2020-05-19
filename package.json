@@ -9,7 +9,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "test": "mocha --exit --inline-diffs --full-trace --bail --async-only --recursive --timeout 240000 --slow 240000 './src{,!(public)/**}/*.test.js'"
+    "test": "mocha --exit --inline-diffs --full-trace --bail --async-only --recursive --timeout 480000 --slow 480000 './src{,!(public)/**}/*.test.js'"
   },
   "engines": {
     "node": "12.16.3",
