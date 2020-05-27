@@ -23,7 +23,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: Install dependencies
-      run: npm install mocha puppeteer@2.1.1 @userdashboard/dashboard @userdashboard/storage-mysql --no-save
+      run: npm install mocha faker puppeteer@2.1.1 @userdashboard/dashboard @userdashboard/storage-mysql --no-save
     - name: Test encrypted MySQL storage
       run: npm test
       env:
