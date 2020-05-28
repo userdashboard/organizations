@@ -3,10 +3,10 @@ if (!process.env.MEMBERSHIP_PROFILE_FIELDS) {
 } else {
   global.membershipProfileFields = process.env.MEMBERSHIP_PROFILE_FIELDS.split(',')
 }
-global.minimumOrganizationNameLength = parseInt(process.env.MINIMUM_ORGANIZATION_NAME_LENGTH || '10', 1)
-global.maximumOrganizationNameLength = parseInt(process.env.MAXIMUM_ORGANIZATION_NAME_LENGTH || '10', 100)
-global.minimumInvitationCodeLength = parseInt(process.env.MINIMUM_INVITATION_CODE_LENGTH || '10', 1)
-global.maximumInvitationCodeLength = parseInt(process.env.MAXIMUM_INVITATION_CODE_LENGTH || '10', 100)
+global.minimumOrganizationNameLength = parseInt(process.env.MINIMUM_ORGANIZATION_NAME_LENGTH || '1', 10)
+global.maximumOrganizationNameLength = parseInt(process.env.MAXIMUM_ORGANIZATION_NAME_LENGTH || '50', 10)
+global.minimumInvitationCodeLength = parseInt(process.env.MINIMUM_INVITATION_CODE_LENGTH || '6', 10)
+global.maximumInvitationCodeLength = parseInt(process.env.MAXIMUM_INVITATION_CODE_LENGTH || '50', 10)
 
 module.exports = {
   setup: async () => {
