@@ -1,4 +1,4 @@
-@userdashboard/dashboard 1.0.189
+@userdashboard/dashboard 1.0.190
 http://localhost:9000
 
 Administrator menu:
@@ -16,7 +16,7 @@ Special HTML files:
 @userdashboard/dashboard/src/redirect.html
 
 Dashboard modules:
-@userdashboard/organizations (1.0.87)
+@userdashboard/organizations (1.0.88)
 
 URL ------------------------------------------------- AUTH - TEMPLATE - HTTP REQUESTS - NODEJS --------------------- HTML -----------------------
 /                                                     GUEST  FULLSCREEN GET                                          /src/www                    
