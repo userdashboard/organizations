@@ -1,8 +1,30 @@
 
-> @userdashboard/organizations@1.0.86 test /home/runner/work/organizations/organizations
-> mocha --exit --inline-diffs --full-trace --bail --async-only --recursive --timeout 480000 --slow 480000 './src{,!(public)/**}/*.test.js'
+> @userdashboard/organizations@1.0.87 test /home/runner/work/organizations/organizations
+> mocha --exit --inline-diffs --full-trace --bail --async-only --recursive --timeout 480000 --slow 480000 './{,!(public|node_modules)/**}/*.test.js'
 
 
+
+  index
+    MINIMUM_ORGANIZATION_NAME_LENGTH
+      Shortest organization name length
+        ✓ default 1
+        ✓ Integer
+    MAXIMUM_ORGANIZATION_NAME_LENGTH
+      Longest organization name length
+        ✓ default 50
+        ✓ Integer
+    MINIMUM_INVITATION_CODE_LENGTH
+      Shortest invitation code length
+        ✓ default 6
+        ✓ Integer
+    MAXIMUM_INVITATION_CODE_LENGTH
+      Longest invitation code length
+        ✓ default 50
+        ✓ Integer
+    MEMBERSHIP_PROFILE_FIELDS
+      Personal information to share with members
+        ✓ default display-name,display-email
+        ✓ Profile property list
 
   /account/organizations/accept-invitation
     view
@@ -621,5 +643,5 @@
       ✓ object
 
 
-  304 passing (14m)
+  314 passing (14m)
 
