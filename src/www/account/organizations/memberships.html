@@ -36,11 +36,9 @@
   </table>
   <ul id="page-links" class="pagination"></ul>
   <template id="page-link">
-    <ul>
-      <li>
-        <a href="/account/organizations/memberships?offset=${page.offset}" id="page-link-${page.pageNumber}">${page.pageNumber}</a>
-      </li>
-    </ul>
+    <li>
+      <a href="/account/organizations/memberships?offset=${page.offset}" id="page-link-${page.pageNumber}">${page.pageNumber}</a>
+    </li>
   </template>
   <template id="membership-row">
     <table>
