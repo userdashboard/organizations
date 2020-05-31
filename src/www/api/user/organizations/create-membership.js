@@ -13,7 +13,7 @@ module.exports = {
     if (!req.body['secret-code'] || !req.body['secret-code'].length) {
       throw new Error('invalid-secret-code')
     }
-    const secretCodeHash = await dashboard.Hash.fixedSaltHash(req.body['secret-code'], req.alternativeFixedSalt, req.alternativeDashboardEncryptionKey)
+    const secretCodeHash = await dashboard.Hash.sha512Hash(req.body['secret-code'], req.alternativesha512, req.alternativeDashboardEncryptionKey)
     const invitation = await global.api.user.organizations.OpenInvitation.get(req)
     if (!invitation) {
       throw new Error('invalid-invitationid')
