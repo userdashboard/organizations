@@ -10,7 +10,7 @@
 </head>
 <body>
   <h1 translate="yes">Organizations</h1>
-  <p translate="yes"><a href="/account/organizations/create-organization" class="pure-button pure-button-primary" translate="yes">Create organization</a></p>
+  <p><a href="/account/organizations/create-organization" class="pure-button pure-button-primary" translate="yes">Create organization</a></p>
   <div id="no-data">
     <p translate="yes">You have not created or joined any organizations yet.</p>
   </div>
@@ -48,32 +48,31 @@
     </table>
   </div>
   <template id="membership-row">
-    <template id="organization-row"></template>
-    <table>
-      <tr id="${membership.membershipid}">
-        <td>
-          <a href="/account/organizations/membership?membershipid=${membership.membershipid}">${membership.membershipid}</a>
-        </td>
-        <td>
-          <a href="/account/organizations/organization?organizationid=${membership.organizationid}">${membership.organizationid}</a>
-        </td>
-        <td>${membership.organizationName}</td>
-        <td>
-          <a href="mailto:${membership.organizationEmail}">${membership.organizationEmail}</a>
-        </td>
-        <td>${membership.createdFormatted}</td>
-      </tr>
-      <tr id="${organization.organizationid}">
-        <td>
-          <a href="/account/organizations/organization?organizationid=${organization.organizationid}">${organization.organizationid}</a>
-        </td>
-        <td>${organization.name}</td>
-        <td>
-          <a href="mailto:${organization.email}">${organization.email}</a>
-        </td>
-        <td>${organization.createdFormatted}</td>
-      </tr>
-    </table>
+    <tr id="${membership.membershipid}">
+      <td>
+        <a href="/account/organizations/membership?membershipid=${membership.membershipid}">${membership.membershipid}</a>
+      </td>
+      <td>
+        <a href="/account/organizations/organization?organizationid=${membership.organizationid}">${membership.organizationid}</a>
+      </td>
+      <td>${membership.organizationName}</td>
+      <td>
+        <a href="mailto:${membership.organizationEmail}">${membership.organizationEmail}</a>
+      </td>
+      <td>${membership.createdFormatted}</td>
+    </tr>
+  </template>
+  <template id="organization-row">
+    <tr id="${organization.organizationid}">
+      <td>
+        <a href="/account/organizations/organization?organizationid=${organization.organizationid}">${organization.organizationid}</a>
+      </td>
+      <td>${organization.name}</td>
+      <td>
+        <a href="mailto:${organization.email}">${organization.email}</a>
+      </td>
+      <td>${organization.createdFormatted}</td>
+    </tr>
   </template>
 </body>
 </html>

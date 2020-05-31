@@ -33,34 +33,33 @@
     </thead>
   </table>
   <template id="organization-row">
-    <template id="membership-row"></template>
-    <table>
-      <tr id="${organization.organizationid}">
-        <td>
-          <a href="/administrator/organizations/organization?organizationid=${organization.organizationid}">${organization.organizationid}</a>
-        </td>
-        <td>${organization.name}</td>
-        <td>
-          <a href="mailto:${organization.email}">${organization.email}</a>
-        </td>
-        <td>${organization.createdFormatted}</td>
-      </tr>
-      <tr id="${membership.membershipid}">
-        <td>
-          <a href="/administrator/organizations/membership?membershipid=${membership.membershipid}">${membership.membershipid}</a>
-        </td>
-        <td>
-          <a href="mailto:${membership.email}">${membership.email}</a>
-        </td>
-        <td>
-          <a href="/administrator/organizations/invitation?invitationid=${membership.invitationid}">${membership.invitationid}</a>
-        </td>
-        <td>
-          <a href="/administrator/organizations/organization?organizationid=${membership.organizationid}">${membership.organizationid}</a>
-        </td>
-        <td>${membership.createdFormatted}</td>
-      </tr>
-    </table>
+    <tr id="${organization.organizationid}">
+      <td>
+        <a href="/administrator/organizations/organization?organizationid=${organization.organizationid}">${organization.organizationid}</a>
+      </td>
+      <td>${organization.name}</td>
+      <td>
+        <a href="mailto:${organization.email}">${organization.email}</a>
+      </td>
+      <td>${organization.createdFormatted}</td>
+    </tr>
+  </template>
+  <template id="membership-row">
+    <tr id="${membership.membershipid}">
+      <td>
+        <a href="/administrator/organizations/membership?membershipid=${membership.membershipid}">${membership.membershipid}</a>
+      </td>
+      <td>
+        <a href="mailto:${membership.email}">${membership.email}</a>
+      </td>
+      <td>
+        <a href="/administrator/organizations/invitation?invitationid=${membership.invitationid}">${membership.invitationid}</a>
+      </td>
+      <td>
+        <a href="/administrator/organizations/organization?organizationid=${membership.organizationid}">${membership.organizationid}</a>
+      </td>
+      <td>${membership.createdFormatted}</td>
+    </tr>
   </template>
 </body>
 </html>

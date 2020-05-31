@@ -99,10 +99,11 @@
       Error! An unknown error ocurred
     </div>
   </template>
-  <template id="profile-option"></template>
-  <option value="${profile.profileid}">
-    ${profile.displayName} / ${profile.displayEmail}
-  </option>
+  <template id="profile-option">
+    <option value="${profile.profileid}">
+      ${profile.displayName} / ${profile.displayEmail}
+    </option>
+  </template>
   <template id="invalid-organization-name">
     <div class="error message" translate="yes">
       Error! A missing or invalid organization name was provided

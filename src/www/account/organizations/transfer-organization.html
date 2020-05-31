@@ -42,10 +42,11 @@
       <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Transfer organization</button>
     </div>
   </form>
-  <template id="membership-option-template"></template>
-  <option value="${membership.accountid}">
-    ${membership.email}
-  </option>
+  <template id="membership-option-template">
+    <option value="${membership.accountid}">
+      ${membership.email}
+    </option>
+  </template>
   <template id="success">
     <div class="success message" translate="yes">
       Success! You have transferred the organization to the new owner
