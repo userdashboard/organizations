@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" data-navbar="/account/organizations/navbar-membership.html">
+<head>
+  <meta charset="utf-8">
+  <title translate="yes">แก้ไข ${membership.membershipid} profile</title>
+  <link href="/public/pure-min.css" rel="stylesheet">
+  <link href="/public/content.css" rel="stylesheet">
+  <link href="/public/content-additional.css" rel="stylesheet">
+  <base target="_top" href="/">
+</head>
+<body>
+  <h1 translate="yes">แก้ไข ${membership.membershipid} profile</h1>
+  <p translate="yes">สมาชิกอื่น ๆ ที่ร่วมกันโปรไฟล์นี้หรือการใช้งานอื่น ๆ ของมันจะถูกปรับปรุงเกินไป</p>
+  <div id="message-container"></div>
+  <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/edit-membership-profile?membershipid=${membership.membershipid}" name="submit-form">
+    <div id="display-name-container" class="pure-control-group">
+      <label for="display-name" translate="yes">ชื่อที่แสดง</label>
+      <input required="" id="display-name" name="display-name" type="text" maxlength="1000">
+    </div>
+    <div id="display-email-container" class="pure-control-group">
+      <label for="display-email" translate="yes">แสดงอีเมล</label>
+      <input required="" id="display-email" name="display-email" type="text" maxlength="1000" size="50">
+    </div>
+    <div id="contact-email-container" class="pure-control-group">
+      <label for="contact-email" translate="yes">อีเมลติดต่อ</label>
+      <input required="" id="contact-email" name="contact-email" type="text" maxlength="1000" size="50">
+    </div>
+    <div id="full-name-container">
+      <div class="pure-control-group">
+        <label for="first-name" translate="yes">ชื่อ</label>
+        <input required="" id="first-name" name="first-name" type="text" maxlength="1000">
+      </div>
+      <div class="pure-control-group">
+        <label for="last-name" translate="yes">นามสกุล</label>
+        <input required="" id="last-name" name="last-name" type="text" maxlength="1000">
+      </div>
+    </div>
+    <div id="dob-container">
+      <div class="pure-control-group">
+        <label for="dob" translate="yes">วันเกิด</label>
+        <input required="" id="dob" name="dob" type="text" maxlength="11">
+      </div>
+    </div>
+    <div id="phone-container" class="pure-control-group">
+      <label for="phone" translate="yes">โทรศัพท์</label>
+      <input required="" id="phone" name="phone" type="text" maxlength="1000">
+    </div>
+    <div id="occupation-container" class="pure-control-group">
+      <label for="occupation" translate="yes">อาชีพ</label>
+      <input required="" id="occupation" name="occupation" type="text" maxlength="1000">
+    </div>
+    <div id="location-container" class="pure-control-group">
+      <label for="location" translate="yes">สถาน</label>
+      <input required="" id="location" name="location" type="text" maxlength="1000">
+    </div>
+    <div id="company-name-container" class="pure-control-group">
+      <label for="company-name" translate="yes">ชื่อบริษัท</label>
+      <input required="" id="company-name" name="company-name" type="text" maxlength="1000">
+    </div>
+    <div id="website-container" class="pure-control-group">
+      <label for="website" translate="yes">เว็บ ไซต์</label>
+      <input required="" id="website" name="website" type="text" maxlength="1000">
+    </div>
+    <div class="pure-controls">
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">อัพเดตการเป็นสมาชิก</button>
+    </div>
+  </form>
+  <template id="success">
+    <div class="success message" translate="yes">
+      สำเร็จ! ข้อมูลสมาชิกของคุณได้รับการปรับปรุงแล้ว
+    </div>
+  </template>
+  <template id="unknown-error">
+    <div class="error message" translate="yes">
+      ข้อ ผิด พลาด! ข้อผิดพลาดที่ไม่รู้จักเกิดขึ้น
+    </div>
+  </template>
+  <template id="invalid-first-name">
+    <div class="error message" translate="yes">
+      ข้อ ผิด พลาด! ชื่อที่หายไปหรือไม่ถูกต้องให้
+    </div>
+  </template>
+  <template id="invalid-first-name-length">
+    <div class="error message" translate="yes">
+      ข้อ ผิด พลาด! มีชื่อที่ไม่ถูกต้อง
+    </div>
+  </template>
+  <template id="invalid-last-name">
+    <div class="error message" translate="yes">
+      ข้อ ผิด พลาด! มีนามสกุลที่หายไปหรือไม่ถูกต้อง
+    </div>
+  </template>
+  <template id="invalid-last-name-length">
+    <div class="error message" translate="yes">
+      ข้อ ผิด พลาด! มีนามสกุลที่ไม่ถูกต้อง
+    </div>
+  </template>
+  <template id="invalid-contact-email">
+    <div class="error message" translate="yes">
+      ข้อ ผิด พลาด! ที่อยู่อีเมลของที่ติดต่อไม่ถูกต้อง
+    </div>
+  </template>
+  <template id="invalid-display-email">
+    <div class="error message" translate="yes">
+      ข้อ ผิด พลาด! ที่อยู่อีเมลที่แสดงไม่ถูกต้อง
+    </div>
+  </template>
+  <template id="invalid-display-name">
+    <div class="error message" translate="yes">
+      ข้อ ผิด พลาด! มีชื่อที่แสดงที่หายไปหรือไม่ถูกต้อง
+    </div>
+  </template>
+  <template id="invalid-dob">
+    <div class="error message" translate="yes">
+      ข้อ ผิด พลาด! มีวันเกิดที่ขาดหายไปหรือไม่ถูกต้อง
+    </div>
+  </template>
+  <template id="invalid-phone">
+    <div class="error message" translate="yes">
+      ข้อ ผิด พลาด! โทรศัพท์ที่ขาดหายไปหรือไม่ถูกต้องถูกจัดเตรียมให้
+    </div>
+  </template>
+  <template id="invalid-occupation">
+    <div class="error message" translate="yes">
+      ข้อ ผิด พลาด! มีอาชีพที่ขาดหายไปหรือไม่ถูกต้อง
+    </div>
+  </template>
+  <template id="invalid-location">
+    <div class="error message" translate="yes">
+      ข้อ ผิด พลาด! ตําแหน่งที่ตั้งที่หายไปหรือไม่ถูกต้องถูกจัดเตรียมไว้
+    </div>
+  </template>
+  <template id="invalid-company-name">
+    <div class="error message" translate="yes">
+      ข้อ ผิด พลาด! มีชื่อบริษัทที่หายไปหรือไม่ถูกต้อง
+    </div>
+  </template>
+  <template id="invalid-website">
+    <div class="error message" translate="yes">
+      ข้อ ผิด พลาด! เว็บไซต์ที่ขาดหายไปหรือไม่ถูกต้องถูกจัดเตรียมให้
+    </div>
+  </template>
+  <template id="invalid-display-name-length">
+    <div class="error message" translate="yes">
+      ข้อ ผิด พลาด! มีชื่อที่แสดงที่หายไปหรือไม่ถูกต้อง
+    </div>
+  </template>
+</body>
+</html>

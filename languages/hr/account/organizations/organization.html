@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" data-navbar="/account/organizations/navbar-organization.html">
+<head>
+  <meta charset="utf-8">
+  <title translate="yes">Pogledaj ${organization.organizationid}</title>
+  <link href="/public/pure-min.css" rel="stylesheet">
+  <link href="/public/content.css" rel="stylesheet">
+  <link href="/public/content-additional.css" rel="stylesheet">
+  <base target="_top" href="/">
+</head>
+<body>
+  <h1 translate="yes">Pogledaj ${organization.organizationid}</h1>
+  <table id="organizations-table" class="pure-table pure-table-striped data-table">
+    <tbody id="${organization.organizationid}">
+      <tr>
+        <th translate="yes">Id</th>
+        <td>${organization.organizationid}</td>
+      </tr>
+      <tr>
+        <th translate="yes">Ime</th>
+        <td>${organization.name}</td>
+      </tr>
+      <tr>
+        <th translate="yes">E-mail</th>
+        <td>
+          <a href="mailto:${organization.email}">${organization.email}</a>
+        </td>
+      </tr>
+      <tr>
+        <th translate="yes">Stvorio</th>
+        <td>${organization.createdFormatted}</td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

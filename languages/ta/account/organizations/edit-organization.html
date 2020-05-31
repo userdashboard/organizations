@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" data-navbar="/account/organizations/navbar-organization.html">
+<head>
+  <meta charset="utf-8">
+  <title translate="yes">பதிப்பி ${organization.organizationid}</title>
+  <link href="/public/pure-min.css" rel="stylesheet">
+  <link href="/public/content.css" rel="stylesheet">
+  <link href="/public/content-additional.css" rel="stylesheet">
+  <base target="_top" href="/">
+</head>
+<body>
+  <h1 translate="yes">பதிப்பி ${organization.organizationid}</h1>
+  <p translate="yes">உங்கள் தொடர்புத் தகவலை சரியாக மற்றும் இன்றுவரை வைத்திருக்கவும்.</p>
+  <div id="message-container"></div>
+  <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/edit-organization?organizationid=${organization.organizationid}" name="submit-form">
+    <div class="pure-control-group">
+      <label for="name" translate="yes">பெயர்</label>
+      <input id="name" name="name" type="text" maxlength="100">
+    </div>
+    <div class="pure-control-group">
+      <label for="email" translate="yes">மின்னஞ்சல்</label>
+      <input id="email" name="email" type="text" maxlength="100">
+    </div>
+    <div class="pure-controls">
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">அமைப்பை புதுப்பி</button>
+    </div>
+  </form>
+  <template id="success">
+    <div class="success message" translate="yes">
+      வெற்றி! உங்கள் நிறுவன தகவல் புதுப்பிக்கப்பட்டது
+    </div>
+  </template>
+  <template id="unknown-error">
+    <div class="error message" translate="yes">
+      தவறு! அறியப்படாத பிழை ocurred
+    </div>
+  </template>
+  <template id="invalid-organization-name">
+    <div class="error message" translate="yes">
+      தவறு! காணாமல் போன அல்லது செல்லுபடியாகாத அமைப்பு பெயர் வழங்கப்பட்டது
+    </div>
+  </template>
+  <template id="invalid-organization-name-length">
+    <div class="error message" translate="yes">
+      தவறு! செல்லுபடியாகாத அமைப்பு பெயர் நீளம்
+    </div>
+  </template>
+  <template id="invalid-organization-email">
+    <div class="error message" translate="yes">
+      தவறு! ஒரு தவறிய அல்லது செல்லுபடியாகாத அமைப்பு மின்னஞ்சல் வழங்கப்பட்டது
+    </div>
+  </template>
+</body>
+</html>

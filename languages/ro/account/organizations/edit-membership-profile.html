@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" data-navbar="/account/organizations/navbar-membership.html">
+<head>
+  <meta charset="utf-8">
+  <title translate="yes">Editare ${membership.membershipid} profile</title>
+  <link href="/public/pure-min.css" rel="stylesheet">
+  <link href="/public/content.css" rel="stylesheet">
+  <link href="/public/content-additional.css" rel="stylesheet">
+  <base target="_top" href="/">
+</head>
+<body>
+  <h1 translate="yes">Editare ${membership.membershipid} profile</h1>
+  <p translate="yes">Orice alt membru care partajează acest profil sau altă utilizare a acestuia va fi actualizat de asemenea.</p>
+  <div id="message-container"></div>
+  <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/edit-membership-profile?membershipid=${membership.membershipid}" name="submit-form">
+    <div id="display-name-container" class="pure-control-group">
+      <label for="display-name" translate="yes">Nume afișat</label>
+      <input required="" id="display-name" name="display-name" type="text" maxlength="1000">
+    </div>
+    <div id="display-email-container" class="pure-control-group">
+      <label for="display-email" translate="yes">Afișare e-mail</label>
+      <input required="" id="display-email" name="display-email" type="text" maxlength="1000" size="50">
+    </div>
+    <div id="contact-email-container" class="pure-control-group">
+      <label for="contact-email" translate="yes">Contactați e-mailul</label>
+      <input required="" id="contact-email" name="contact-email" type="text" maxlength="1000" size="50">
+    </div>
+    <div id="full-name-container">
+      <div class="pure-control-group">
+        <label for="first-name" translate="yes">Prenume</label>
+        <input required="" id="first-name" name="first-name" type="text" maxlength="1000">
+      </div>
+      <div class="pure-control-group">
+        <label for="last-name" translate="yes">Nume de familie</label>
+        <input required="" id="last-name" name="last-name" type="text" maxlength="1000">
+      </div>
+    </div>
+    <div id="dob-container">
+      <div class="pure-control-group">
+        <label for="dob" translate="yes">Data nașterii</label>
+        <input required="" id="dob" name="dob" type="text" maxlength="11">
+      </div>
+    </div>
+    <div id="phone-container" class="pure-control-group">
+      <label for="phone" translate="yes">Telefon</label>
+      <input required="" id="phone" name="phone" type="text" maxlength="1000">
+    </div>
+    <div id="occupation-container" class="pure-control-group">
+      <label for="occupation" translate="yes">Ocupaţie</label>
+      <input required="" id="occupation" name="occupation" type="text" maxlength="1000">
+    </div>
+    <div id="location-container" class="pure-control-group">
+      <label for="location" translate="yes">Locația</label>
+      <input required="" id="location" name="location" type="text" maxlength="1000">
+    </div>
+    <div id="company-name-container" class="pure-control-group">
+      <label for="company-name" translate="yes">Denumirea companiei</label>
+      <input required="" id="company-name" name="company-name" type="text" maxlength="1000">
+    </div>
+    <div id="website-container" class="pure-control-group">
+      <label for="website" translate="yes">Site web</label>
+      <input required="" id="website" name="website" type="text" maxlength="1000">
+    </div>
+    <div class="pure-controls">
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Actualizarea calității de membru</button>
+    </div>
+  </form>
+  <template id="success">
+    <div class="success message" translate="yes">
+      Succes! Informațiile de membru au fost actualizate
+    </div>
+  </template>
+  <template id="unknown-error">
+    <div class="error message" translate="yes">
+      Eroare! O eroare necunoscută a fost onurată
+    </div>
+  </template>
+  <template id="invalid-first-name">
+    <div class="error message" translate="yes">
+      Eroare! Un prenume lipsă sau nevalid furnizat
+    </div>
+  </template>
+  <template id="invalid-first-name-length">
+    <div class="error message" translate="yes">
+      Eroare! S-a furnizat un prenume nevalid
+    </div>
+  </template>
+  <template id="invalid-last-name">
+    <div class="error message" translate="yes">
+      Eroare! S-a furnizat un nume de familie lipsă sau nevalid
+    </div>
+  </template>
+  <template id="invalid-last-name-length">
+    <div class="error message" translate="yes">
+      Eroare! S-a furnizat un nume de familie nevalid
+    </div>
+  </template>
+  <template id="invalid-contact-email">
+    <div class="error message" translate="yes">
+      Eroare! Adresă de e-mail de contact nevalidă
+    </div>
+  </template>
+  <template id="invalid-display-email">
+    <div class="error message" translate="yes">
+      Eroare! Adresă de e-mail afișată nevalidă
+    </div>
+  </template>
+  <template id="invalid-display-name">
+    <div class="error message" translate="yes">
+      Eroare! S-a furnizat un nume afișat lipsă sau nevalid
+    </div>
+  </template>
+  <template id="invalid-dob">
+    <div class="error message" translate="yes">
+      Eroare! A fost furnizată o dată de naștere lipsă sau invalidă
+    </div>
+  </template>
+  <template id="invalid-phone">
+    <div class="error message" translate="yes">
+      Eroare! S-a furnizat un telefon lipsă sau nevalid.
+    </div>
+  </template>
+  <template id="invalid-occupation">
+    <div class="error message" translate="yes">
+      Eroare! S-a furnizat o ocupație lipsă sau nevalidă.
+    </div>
+  </template>
+  <template id="invalid-location">
+    <div class="error message" translate="yes">
+      Eroare! S-a furnizat o locație lipsă sau nevalidă.
+    </div>
+  </template>
+  <template id="invalid-company-name">
+    <div class="error message" translate="yes">
+      Eroare! S-a furnizat un nume de companie lipsă sau nevalid.
+    </div>
+  </template>
+  <template id="invalid-website">
+    <div class="error message" translate="yes">
+      Eroare! S-a furnizat un site Web lipsă sau nevalid.
+    </div>
+  </template>
+  <template id="invalid-display-name-length">
+    <div class="error message" translate="yes">
+      Eroare! S-a furnizat un nume afișat lipsă sau nevalid
+    </div>
+  </template>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" data-navbar="/account/organizations/navbar-organization.html">
+<head>
+  <meta charset="utf-8">
+  <title translate="yes">Muokkaa ${organization.organizationid}</title>
+  <link href="/public/pure-min.css" rel="stylesheet">
+  <link href="/public/content.css" rel="stylesheet">
+  <link href="/public/content-additional.css" rel="stylesheet">
+  <base target="_top" href="/">
+</head>
+<body>
+  <h1 translate="yes">Muokkaa ${organization.organizationid}</h1>
+  <p translate="yes">Pidä yhteystietosi oikein ja ajan tasalla.</p>
+  <div id="message-container"></div>
+  <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/edit-organization?organizationid=${organization.organizationid}" name="submit-form">
+    <div class="pure-control-group">
+      <label for="name" translate="yes">Nimi</label>
+      <input id="name" name="name" type="text" maxlength="100">
+    </div>
+    <div class="pure-control-group">
+      <label for="email" translate="yes">Sähköposti</label>
+      <input id="email" name="email" type="text" maxlength="100">
+    </div>
+    <div class="pure-controls">
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Päivitä organisaatio</button>
+    </div>
+  </form>
+  <template id="success">
+    <div class="success message" translate="yes">
+      Menestys! Organisaatiosi tiedot on päivitetty
+    </div>
+  </template>
+  <template id="unknown-error">
+    <div class="error message" translate="yes">
+      Virhe! Tuntematon virhe
+    </div>
+  </template>
+  <template id="invalid-organization-name">
+    <div class="error message" translate="yes">
+      Virhe! Annettu organisaationimi puuttuu tai ei kelpaa
+    </div>
+  </template>
+  <template id="invalid-organization-name-length">
+    <div class="error message" translate="yes">
+      Virhe! Virheellinen organisaation nimen pituus
+    </div>
+  </template>
+  <template id="invalid-organization-email">
+    <div class="error message" translate="yes">
+      Virhe! Puuttuva tai virheellinen organisaatiosähköposti annettuna
+    </div>
+  </template>
+</body>
+</html>

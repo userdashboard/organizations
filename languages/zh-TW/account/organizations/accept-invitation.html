@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" data-navbar="/account/organizations/navbar.html">
+<head>
+  <meta charset="utf-8">
+  <title translate="yes">接受邀請</title>
+  <link href="/public/pure-min.css" rel="stylesheet">
+  <link href="/public/content.css" rel="stylesheet">
+  <link href="/public/content-additional.css" rel="stylesheet">
+  <base target="_top" href="/">
+</head>
+<body>
+  <h1 translate="yes">接受邀請</h1>
+  <p translate="yes">輸入代碼後,您將成為組織的成員。</p>
+  <div id="message-container"></div>
+  <form id="submit-form" class="pure-form pure-form-stacked" action="/account/organizations/accept-invitation" name="submit-form">
+    <div class="pure-control-group">
+      <label for="invitationid" translate="yes">邀請識別碼</label>
+      <input id="invitationid" name="invitationid" type="text" maxlength="100">
+    </div>
+    <div class="pure-control-group">
+      <label for="secret-code" translate="yes">邀請代碼</label>
+      <input id="secret-code" name="secret-code" type="text" maxlength="100">
+    </div>
+    <h2 translate="yes">會員資訊</h2>
+    <div id="existing-profile-container" class="pure-control-group">
+      <label for="profileid" translate="yes">使用現有設定檔</label>
+      <select id="profileid" name="profileid">
+        <option value="" translate="yes">
+          選擇現有設定檔
+        </option>
+      </select>
+    </div>
+    <h3 translate="yes">建立新設定檔</h3>
+    <div id="display-name-container" class="pure-control-group">
+      <label for="display-name" translate="yes">顯示名稱</label>
+      <input required="" id="display-name" name="display-name" type="text" maxlength="1000">
+    </div>
+    <div id="display-email-container" class="pure-control-group">
+      <label for="display-email" translate="yes">顯示電子郵件</label>
+      <input required="" id="display-email" name="display-email" type="text" maxlength="1000" size="50">
+    </div>
+    <div id="contact-email-container" class="pure-control-group">
+      <label for="contact-email" translate="yes">聯絡電子郵件</label>
+      <input required="" id="contact-email" name="contact-email" type="text" maxlength="1000" size="50">
+    </div>
+    <div id="full-name-container">
+      <div class="pure-control-group">
+        <label for="first-name" translate="yes">名稱</label>
+      <input required="" id="first-name" name="first-name" type="text" maxlength="1000">
+      </div>
+      <div class="pure-control-group">
+        <label for="last-name" translate="yes">姓氏</label>
+      <input required="" id="last-name" name="last-name" type="text" maxlength="1000">
+      </div>
+    </div>
+    <div id="dob-container">
+      <div class="pure-control-group">
+        <label for="dob" translate="yes">出生日期</label>
+      <input required="" id="dob" name="dob" type="text" maxlength="11">
+      </div>
+    </div>
+    <div id="phone-container" class="pure-control-group">
+      <label for="phone" translate="yes">電話</label>
+      <input required="" id="phone" name="phone" type="text" maxlength="1000">
+    </div>
+    <div id="occupation-container" class="pure-control-group">
+      <label for="occupation" translate="yes">職業</label>
+      <input required="" id="occupation" name="occupation" type="text" maxlength="1000">
+    </div>
+    <div id="location-container" class="pure-control-group">
+      <label for="location" translate="yes">位置</label>
+      <input required="" id="location" name="location" type="text" maxlength="1000">
+    </div>
+    <div id="company-name-container" class="pure-control-group">
+      <label for="company-name" translate="yes">公司名稱</label>
+      <input required="" id="company-name" name="company-name" type="text" maxlength="1000">
+    </div>
+    <div id="website-container" class="pure-control-group">
+      <label for="website" translate="yes">網站</label>
+      <input required="" id="website" name="website" type="text" maxlength="1000">
+    </div>
+    <div class="pure-controls">
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">加入組織</button>
+    </div>
+  </form>
+  <template id="success">
+    <div class="success message" translate="yes">
+      成功!您現在是組織的成員
+    </div>
+  </template>
+  <template id="invalid-invitation">
+    <div class="error message" translate="yes">
+      錯誤!邀請不再可用
+    </div>
+  </template>
+  <template id="invalid-secret-code">
+    <div class="error message" translate="yes">
+      錯誤!邀請代碼不正確
+    </div>
+  </template>
+  <template id="invalid-invitationid">
+    <div class="error message" translate="yes">
+      錯誤!提供遺失或不合法的邀請
+    </div>
+  </template>
+  <template id="invalid-account">
+    <div class="error message" translate="yes">
+      錯誤!您擁有或是該組織的成員
+    </div>
+  </template>
+  <template id="unknown-error">
+    <div class="error message" translate="yes">
+      錯誤!發生未知的錯誤
+    </div>
+  </template>
+  <template id="profile-option">
+    <option value="${profile.profileid}">
+      ${profile.displayName} / ${profile.displayEmail}
+    </option>
+  </template>
+  <template id="invalid-organization-name">
+    <div class="error message" translate="yes">
+      錯誤!提供缺少或無效的組織名稱
+    </div>
+  </template>
+  <template id="invalid-organization-name-length">
+    <div class="error message" translate="yes">
+      錯誤!無效組織名稱長度
+    </div>
+  </template>
+  <template id="invalid-organization-email">
+    <div class="error message" translate="yes">
+      錯誤!提供遺失或不合法的組織電子郵件
+    </div>
+  </template>
+  <template id="success">
+    <div class="success message" translate="yes">
+      成功!已成功建立組織
+    </div>
+  </template>
+  <template id="unknown-error">
+    <div class="error message" translate="yes">
+      錯誤!建立組織時發生錯誤
+    </div>
+  </template>
+  <template id="invalid-first-name">
+    <div class="error message" translate="yes">
+      錯誤!提供的名稱遺失或無效
+    </div>
+  </template>
+  <template id="invalid-first-name-length">
+    <div class="error message" translate="yes">
+      錯誤!提供不合法的名稱
+    </div>
+  </template>
+  <template id="invalid-last-name">
+    <div class="error message" translate="yes">
+      錯誤!提供遺失或無效的姓氏
+    </div>
+  </template>
+  <template id="invalid-last-name-length">
+    <div class="error message" translate="yes">
+      錯誤!提供無效的姓氏
+    </div>
+  </template>
+  <template id="invalid-contact-email">
+    <div class="error message" translate="yes">
+      錯誤!不合法聯絡人電子郵件地址
+    </div>
+  </template>
+  <template id="invalid-display-email">
+    <div class="error message" translate="yes">
+      錯誤!不合法顯示電子郵件地址
+    </div>
+  </template>
+  <template id="invalid-display-name">
+    <div class="error message" translate="yes">
+      錯誤!提供遺失或不合法的顯示名稱
+    </div>
+  </template>
+  <template id="invalid-dob">
+    <div class="error message" translate="yes">
+      錯誤!提供遺失或無效的出生日期
+    </div>
+  </template>
+  <template id="invalid-phone">
+    <div class="error message" translate="yes">
+      錯誤!提供了丟失或無效的電話。
+    </div>
+  </template>
+  <template id="invalid-occupation">
+    <div class="error message" translate="yes">
+      錯誤!提供了缺失或無效的職業。
+    </div>
+  </template>
+  <template id="invalid-location">
+    <div class="error message" translate="yes">
+      錯誤!提供了缺失或無效的位置。
+    </div>
+  </template>
+  <template id="invalid-company-name">
+    <div class="error message" translate="yes">
+      錯誤!提供了缺少或無效的公司名稱。
+    </div>
+  </template>
+  <template id="invalid-website">
+    <div class="error message" translate="yes">
+      錯誤!提供了一個丟失或無效的網站。
+    </div>
+  </template>
+  <template id="invalid-display-name-length">
+    <div class="error message" translate="yes">
+      錯誤!提供遺失或不合法的顯示名稱
+    </div>
+  </template>
+  <template id="invalid-profileid">
+    <div class="error message" translate="yes">
+      錯誤!已選擇缺少或無效的配置檔。
+    </div>
+  </template>
+</body>
+</html>

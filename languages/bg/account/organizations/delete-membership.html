@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" data-navbar="/account/organizations/navbar-membership.html">
+<head>
+  <meta charset="utf-8">
+  <title translate="yes">Изтриете ${membership.membershipid}</title>
+  <link href="/public/pure-min.css" rel="stylesheet">
+  <link href="/public/content.css" rel="stylesheet">
+  <link href="/public/content-additional.css" rel="stylesheet">
+  <base target="_top" href="/">
+</head>
+<body>
+  <h1 translate="yes">Изтриете ${membership.membershipid}</h1>
+  <p translate="yes">Членството ще бъде изтрито незабавно и не може да бъде възстановено.</p>
+  <div id="message-container"></div>
+  <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/delete-membership?membershipid=${membership.membershipid}" name="submit-form">
+    <div class="pure-control-group">
+      <label for="organizationName" translate="yes">Организация</label>
+      <input id="organizationName" type="text" maxlength="100" readonly>
+    </div>
+    <div class="pure-controls">
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Изтриване на членство</button>
+    </div>
+  </form>
+  <template id="success">
+    <div class="error message" translate="yes">
+      Грешка! Членството е изтрито завинаги
+    </div>
+  </template>
+  <template id="unknown-error">
+    <div class="error message" translate="yes">
+      Грешка! Неизвестна грешка
+    </div>
+  </template>
+</body>
+</html>

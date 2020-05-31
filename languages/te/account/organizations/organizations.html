@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" data-navbar="/account/organizations/navbar.html">
+<head>
+  <meta charset="utf-8">
+  <title translate="yes">సంస్థలు</title>
+  <link href="/public/pure-min.css" rel="stylesheet">
+  <link href="/public/content.css" rel="stylesheet">
+  <link href="/public/content-additional.css" rel="stylesheet">
+  <base target="_top" href="/">
+</head>
+<body>
+  <h1 translate="yes">సంస్థలు</h1>
+  <p><a href="/account/organizations/create-organization" class="pure-button pure-button-primary" translate="yes">సంస్థను సృష్టించండి</a></p>
+  <div id="no-organizations">
+    <p translate="yes">మీరు ఇంకా ఎలాంటి ఆర్గనైజేషన్ లు సృష్టించలేదు.</p>
+  </div>
+  <table id="organizations-table" class="pure-table pure-table-striped list-table">
+    <thead>
+      <tr>
+        <th translate="yes">ఐడీ</th>
+        <th translate="yes">పేరు</th>
+        <th translate="yes">ఇమెయిల్</th>
+        <th translate="yes">సృష్టించిన</th>
+      </tr>
+    </thead>
+  </table>
+  <ul id="page-links" class="pagination"></ul>
+  <template id="page-link">
+    <li>
+      <a href="/account/organizations/organizations?offset=${page.offset}" id="page-link-${page.pageNumber}">${page.pageNumber}</a>
+    </li>
+  </template>
+  <template id="organization-row">
+    <table>
+      <tr id="${organization.organizationid}">
+        <td>
+          <a href="/account/organizations/organization?organizationid=${organization.organizationid}">${organization.organizationid}</a>
+        </td>
+        <td>${organization.name}</td>
+        <td>
+          <a href="mailto:${organization.email}">${organization.email}</a>
+        </td>
+        <td>${organization.createdFormatted}</td>
+      </tr>
+    </table>
+  </template>
+</body>
+</html>

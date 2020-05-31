@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" data-navbar="/administrator/organizations/navbar-invitation.html">
+<head>
+  <meta charset="utf-8">
+  <title translate="yes">檢視${invitation.invitationid}</title>
+  <link href="/public/pure-min.css" rel="stylesheet">
+  <link href="/public/content.css" rel="stylesheet">
+  <link href="/public/content-additional.css" rel="stylesheet">
+  <base target="_top" href="/">
+</head>
+<body>
+  <h1 translate="yes">檢視${invitation.invitationid}</h1>
+  <table id="invitations-table" class="pure-table data-table">
+    <tbody id="${invitation.invitationid}">
+      <tr>
+        <th translate="yes">Id</th>
+        <td>${invitation.invitationid}</td>
+      </tr>
+      <tr>
+        <th translate="yes">建立</th>
+        <td>${invitation.createdFormatted}</td>
+      </tr>
+      <tr>
+        <th translate="yes">接受</th>
+        <td id="accepted">${invitation.acceptedFormatted}</td>
+        <td id="not-accepted" translated="yes">No</td>
+      </tr>
+      <tr>
+        <th translate="yes">會員</th>
+        <td id="membership">
+          <a href="/administrator/organizations/membership?membershipid=${invitation.membershipid}">${invitation.membershipid}</a>
+        </td>
+        <td id="no-membership" translate="yes">沒</td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

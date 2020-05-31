@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" data-navbar="/account/organizations/navbar-membership.html">
+<head>
+  <meta charset="utf-8">
+  <title translate="yes">보기 ${membership.membershipid}</title>
+  <link href="/public/pure-min.css" rel="stylesheet">
+  <link href="/public/content.css" rel="stylesheet">
+  <link href="/public/content-additional.css" rel="stylesheet">
+  <base target="_top" href="/">
+</head>
+<body>
+  <h1 translate="yes">보기 ${membership.membershipid}</h1>
+  <table id="memberships-table" class="pure-table data-table">
+    <tbody id="${membership.membershipid}">
+      <tr>
+        <th translate="yes">자료</th>
+        <td>${membership.membershipid}</td>
+      </tr>
+      <tr>
+        <th translate="yes">만든</th>
+        <td>${membership.createdFormatted}</td>
+      </tr>
+      <tr id="full-name">
+        <th translate="yes">전체 이름</th>
+        <td>${membership.firstName} ${membership.lastName}</td>
+      </tr>
+      <tr id="contact-email">
+        <th translate="yes">연락처 이메일</th>
+        <td>
+          <a href="mailto:${membership.contactEmail}">${membership.contactEmail}</a>
+        </td>
+      </tr>
+      <tr id="display-name">
+        <th translate="yes">표시 이름</th>
+        <td>${membership.displayName}</td>
+      </tr>
+      <tr id="display-email">
+        <th translate="yes">전자 메일 표시</th>
+        <td>
+          <a href="mailto:${membership.displayEmail}">${membership.displayEmail}</a>
+        </td>
+      </tr>
+      <tr id="dob">
+        <th translate="yes">생년월일</th>
+        <td>${membership.dob}</td>
+      </tr>
+      <tr id="phone">
+        <th translate="yes">전화</th>
+        <td>${membership.phone}</td>
+      </tr>
+      <tr id="occupation">
+        <th translate="yes">점령</th>
+        <td>${membership.occupation}</td>
+      </tr>
+      <tr id="location">
+        <th translate="yes">위치</th>
+        <td>${membership.location}</td>
+      </tr>
+      <tr id="company-name">
+        <th translate="yes">회사명</th>
+        <td>${membership.companyName}</td>
+      </tr>
+      <tr id="website">
+        <th translate="yes">웹사이트</th>
+        <td>
+          <a href="${membership.website}">${membership.website}</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

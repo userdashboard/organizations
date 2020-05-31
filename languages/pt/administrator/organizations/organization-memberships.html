@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" data-navbar="/administrator/organizations/navbar-organization.html">
+<head>
+  <meta charset="utf-8">
+  <title translate="yes">Adesões para ${organization.organizationid}</title>
+  <link href="/public/pure-min.css" rel="stylesheet">
+  <link href="/public/content.css" rel="stylesheet">
+  <link href="/public/content-additional.css" rel="stylesheet">
+  <base target="_top" href="/">
+</head>
+<body>
+  <h1 translate="yes">Adesões para ${organization.organizationid}</h1>
+  <p translate="yes">Estes são criados quando os utilizadores aceitam um convite criado pelo proprietário da organização.</p>
+  <div id="no-memberships">
+    <p translate="yes">A organização ainda não tem membros.</p>
+  </div>
+  <table id="memberships-table" class="pure-table pure-table-striped list-table">
+    <thead>
+      <tr>
+        <th translate="yes">ID</th>
+        <th translate="yes">Convite</th>
+        <th id="full-name" translate="yes">Nome completo</th>
+        <th id="contact-email" translate="yes">E-mail de contato</th>
+        <th id="display-name" translate="yes">Nome do visor</th>
+        <th id="display-email" translate="yes">Exibir e-mail</th>
+        <th id="dob" translate="yes">DOB</th>
+        <th id="phone" translate="yes">Telefone</th>
+        <th id="occupation" translate="yes">Ocupação</th>
+        <th id="location" translate="yes">Localização</th>
+        <th id="company-name" translate="yes">Nome da empresa</th>
+        <th id="website" translate="yes">Site</th>
+        <th translate="yes">Criado</th>
+      </tr>
+    </thead>
+  </table>
+  <ul id="page-links" class="pagination"></ul>
+  <template id="page-link">
+    <li>
+      <a href="/administrator/organizations/organization-memberships?offset=${page.offset}" id="page-link-${page.pageNumber}">${page.pageNumber}</a>
+    </li>
+  </template>
+  <template id="membership-row">
+    <table>
+      <tr id="${membership.membershipid}">
+        <td>
+          <a href="/account/organizations/membership?membershipid=${membership.membershipid}">${membership.membershipid}</a>
+        </td>
+        <td>
+          <a href="/account/organizations/invitation?invitationid=${membership.invitationid}">${membership.invitationid}</a>
+        </td>
+        <td id="full-name-${membership.membershipid}">${membership.firstName} ${membership.lastName}</td>
+        <td id="contact-email-${membership.membershipid}">
+          <a href="mailto:${membership.contactEmail}">${membership.contactEmail}</a>
+        </td>
+        <td id="display-name-${membership.membershipid}">${membership.displayName}</td>
+        <td id="display-email-${membership.membershipid}">
+          <a href="mailto:${membership.displayEmail}">${membership.displayEmail}</a>
+        </td>
+        <td id="dob-${membership.membershipid}">${membership.dob}</td>
+        <td id="phone-${membership.membershipid}">${membership.phone}</td>
+        <td id="occupation-${membership.membershipid}">${membership.occupation}</td>
+        <td id="location-${membership.membershipid}">${membership.location}</td>
+        <td id="company-name-${membership.membershipid}">${membership.companyName}</td>
+        <td id="website-${membership.membershipid}">
+          <a href="${membership.website}">${membership.website}</a>
+        </td>
+        <td>${membership.createdFormatted}</td>
+      </tr>
+    </table>
+  </template>
+</body>
+</html>

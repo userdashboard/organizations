@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" data-navbar="/account/organizations/navbar-organization.html">
+<head>
+  <meta charset="utf-8">
+  <title translate="yes">소유권 이전 ${organization.organizationid}</title>
+  <link href="/public/pure-min.css" rel="stylesheet">
+  <link href="/public/content.css" rel="stylesheet">
+  <link href="/public/content-additional.css" rel="stylesheet">
+  <base target="_top" href="/">
+</head>
+<body>
+  <h1 translate="yes">소유권 이전 ${organization.organizationid}</h1>
+  <p translate="yes">이것은 즉시 오르가니젠의 소유자를 변경합니다.</p>
+  <div id="message-container"></div>
+  <table id="organizations-table" class="pure-table object-table">
+    <thead>
+      <tr>
+        <th translate="yes">자료</th>
+        <th translate="yes">이름</th>
+        <th translate="yes">메일 주소</th>
+        <th translate="yes">만든</th>
+      </tr>
+    </thead>
+    <tr id="${organization.organizationid}">
+      <td>${organization.organizationid}</td>
+      <td>${organization.name}</td>
+      <td>
+        <a href="mailto:${organization.email}">${organization.email}</a>
+      </td>
+      <td>${organization.createdFormatted}</td>
+    </tr>
+  </table>
+  <form id="submit-form" class="pure-form pure-form-stacked" action="/account/organizations/transfer-organization?organizationid=${organization.organizationid}" name="submit-form">
+    <div class="pure-control-group">
+      <label for="accountid" translate="yes">새 조직 소유자</label>
+      <select id="accountid" name="accountid">
+        <option value="" translate="yes">
+          새 소유자 선택
+        </option>
+      </select>
+    </div>
+    <div class="pure-controls">
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">이전 조직</button>
+    </div>
+  </form>
+  <template id="membership-option-template">
+    <option value="${membership.accountid}">
+      ${membership.email}
+    </option>
+  </template>
+  <template id="success">
+    <div class="success message" translate="yes">
+      성공! 조직을 새 소유자로 이전했습니다.
+    </div>
+  </template>
+  <template id="unknown-error">
+    <div class="error message" translate="yes">
+      오류! 조직을 이전하는 오류가 발생했습니다.
+    </div>
+  </template>
+  <template id="invalid-accountid">
+    <div class="error message" translate="yes">
+      오류! 잘못된 수신자가 선택되었거나 제공되었습니다.
+    </div>
+  </template>
+</body>
+</html>

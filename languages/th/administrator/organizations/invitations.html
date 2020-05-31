@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" data-navbar="/administrator/organizations/navbar.html">
+<head>
+  <meta charset="utf-8">
+  <title translate="yes">คำ เชิญ</title>
+  <link href="/public/pure-min.css" rel="stylesheet">
+  <link href="/public/content.css" rel="stylesheet">
+  <link href="/public/content-additional.css" rel="stylesheet">
+  <base target="_top" href="/">
+</head>
+<body>
+  <h1 translate="yes">คำ เชิญ</h1>
+  <p translate="yes">สิ่งเหล่านี้ถูกสร้างขึ้นโดยเจ้าขององค์กรและอนุญาตให้ผู้ใช้เข้าร่วมองค์กรได้</p>
+  <div id="no-invitations">
+    <p translate="yes">ไม่มีคําเชิญสําหรับองค์กรใด ๆ</p>
+  </div>
+  <table id="invitations-table" class="pure-table pure-table-striped list-table">
+    <thead>
+      <tr>
+        <th translate="yes">Id</th>
+        <th translate="yes">สมาชิก</th>
+        <th translate="yes">สร้าง</th>
+        <th translate="yes">ยอม รับ</th>
+      </tr>
+    </thead>
+  </table>
+  <ul id="page-links" class="pagination"></ul>
+  <template id="page-link">
+    <li>
+      <a href="/administrator/organizations/organizations?offset=${page.offset}" id="page-link-${page.pageNumber}">${page.pageNumber}</a>
+    </li>
+  </template>
+  <template id="invitation-row">
+    <table>
+      <tr id="${invitation.invitationid}">
+        <td>
+          <a href="/administrator/organizations/invitation?invitationid=${invitation.invitationid}">${invitation.invitationid}</a>
+        </td>
+        <td id="membership-${invitation.invitationid}">
+          <a href="/administrator/organizations/membership?membershipid=${invitation.membershipid}">${invitation.membershipid}</a>
+        </td>
+        <td id="no-membership-${invitation.invitationid}">Nobody</td>
+        <td>${invitation.createdFormatted}</td>
+        <td id="accepted-${invitation.invitationid}">${invitation.acceptedFormatted}</td>
+        <td id="not-accepted-${invitation.invitationid}"></td>
+      </tr>
+    </table>
+  </template>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" data-navbar="/account/organizations/navbar.html">
+<head>
+  <meta charset="utf-8">
+  <title translate="yes">Kuruluş</title>
+  <link href="/public/pure-min.css" rel="stylesheet">
+  <link href="/public/content.css" rel="stylesheet">
+  <link href="/public/content-additional.css" rel="stylesheet">
+  <base target="_top" href="/">
+</head>
+<body>
+  <h1 translate="yes">Kuruluş</h1>
+  <p><a href="/account/organizations/create-organization" class="pure-button pure-button-primary" translate="yes">Kuruluş oluşturma</a></p>
+  <div id="no-data">
+    <p translate="yes">Henüz herhangi bir kuruluş oluşturmadın veya katılmadınız.</p>
+  </div>
+  <div id="memberships-container">
+    <h2 translate="yes">Üyeliklerim</h2>
+    <div id="no-memberships">
+      <p translate="yes">Kuruluşlara katılma davetini henüz kabul etmediniz.</p>
+    </div>
+    <table id="memberships-table" class="pure-table pure-table-striped list-table">
+      <thead>
+        <tr>
+          <th translate="yes">Kimliği</th>
+          <th translate="yes">Organizasyon</th>
+          <th translate="yes">Adı</th>
+          <th translate="yes">E-posta</th>
+          <th translate="yes">Katıldı</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+  <div id="organizations-container">
+    <h2 translate="yes">Organizasyonlarım</h2>
+    <div id="no-organizations">
+      <p translate="yes">Henüz herhangi bir kuruluş oluşturmadın.</p>
+    </div>
+    <table id="organizations-table" class="pure-table pure-table-striped list-table">
+      <thead>
+        <tr>
+          <th translate="yes">Kimliği</th>
+          <th translate="yes">Adı</th>
+          <th translate="yes">E-posta</th>
+          <th translate="yes">Oluşturulan</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+  <template id="membership-row">
+    <tr id="${membership.membershipid}">
+      <td>
+        <a href="/account/organizations/membership?membershipid=${membership.membershipid}">${membership.membershipid}</a>
+      </td>
+      <td>
+        <a href="/account/organizations/organization?organizationid=${membership.organizationid}">${membership.organizationid}</a>
+      </td>
+      <td>${membership.organizationName}</td>
+      <td>
+        <a href="mailto:${membership.organizationEmail}">${membership.organizationEmail}</a>
+      </td>
+      <td>${membership.createdFormatted}</td>
+    </tr>
+  </template>
+  <template id="organization-row">
+    <tr id="${organization.organizationid}">
+      <td>
+        <a href="/account/organizations/organization?organizationid=${organization.organizationid}">${organization.organizationid}</a>
+      </td>
+      <td>${organization.name}</td>
+      <td>
+        <a href="mailto:${organization.email}">${organization.email}</a>
+      </td>
+      <td>${organization.createdFormatted}</td>
+    </tr>
+  </template>
+</body>
+</html>

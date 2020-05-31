@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" data-navbar="/account/organizations/navbar-membership.html">
+<head>
+  <meta charset="utf-8">
+  <title translate="yes">సభ్యత్వపు తొలగించే ${membership.membershipid}</title>
+  <link href="/public/pure-min.css" rel="stylesheet">
+  <link href="/public/content.css" rel="stylesheet">
+  <link href="/public/content-additional.css" rel="stylesheet">
+  <base target="_top" href="/">
+</head>
+<body>
+  <h1 translate="yes">సభ్యత్వాన్ని ఉపసంహరించుకోండి ${membership.membershipid}</h1>
+  <p translate="yes">దీంతో వెంటనే ఆర్గనైన్ నుంచి సభ్యుడిని తొలగిస్తారు.</p>
+  <div id="message-container"></div>
+  <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/revoke-membership?membershipid=${membership.membershipid}" name="submit-form">
+    <div class="pure-control-group">
+      <label for="organizationName" translate="yes">సంస్థ</label>
+      <input id="organizationName" type="text" maxlength="100" readonly>
+    </div>
+    <div class="pure-controls">
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">సభ్యత్వాన్ని తొలగించు</button>
+    </div>
+  </form>
+  <template id="success">
+    <div class="success message" translate="yes">
+      సక్సెస్! సభ్యత్వం శాశ్వతంగా తొలగించబడింది
+    </div>
+  </template>
+  <template id="unknown-error">
+    <div class="error message" translate="yes">
+      దోషం! తెలియని దోషం అసురత
+    </div>
+  </template>
+</body>
+</html>

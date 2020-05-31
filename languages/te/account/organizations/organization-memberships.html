@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" data-navbar="/account/organizations/navbar-organization.html">
+<head>
+  <meta charset="utf-8">
+  <title translate="yes">సభ్యత్వాల కోసం ${organization.organizationid}</title>
+  <link href="/public/pure-min.css" rel="stylesheet">
+  <link href="/public/content.css" rel="stylesheet">
+  <link href="/public/content-additional.css" rel="stylesheet">
+  <base target="_top" href="/">
+</head>
+<body>
+  <h1 translate="yes">సభ్యత్వాల కోసం ${organization.organizationid}</h1>
+  <div id="no-memberships">
+    <p translate="yes">సంస్థకు ఇంకా ఎలాంటి సభ్యత్వాలు లేవు.</p>
+  </div>
+  <table id="memberships-table" class="pure-table pure-table-striped list-table">
+    <thead>
+      <tr>
+        <th translate="yes">ఐడీ</th>
+        <th translate="yes">ఆహ్వానం</th>
+        <th id="full-name" translate="yes">పూర్తి పేరు</th>
+        <th id="contact-email" translate="yes">సంప్రదింపు ఇమెయిల్</th>
+        <th id="display-name" translate="yes">ప్రదర్శిత నామం</th>
+        <th id="display-email" translate="yes">ప్రదర్శన ఈమెయిల్</th>
+        <th id="dob" translate="yes">పుట్టిన తేదీ</th>
+        <th id="phone" translate="yes">ఫోన్</th>
+        <th id="occupation" translate="yes">వృత్తి</th>
+        <th id="location" translate="yes">లొకేషన్</th>
+        <th id="company-name" translate="yes">కంపెనీ పేరు</th>
+        <th id="website" translate="yes">వెబ్ సైట్</th>
+        <th translate="yes">సృష్టించిన</th>
+      </tr>
+    </thead>
+  </table>
+  <ul id="page-links" class="pagination"></ul>
+  <template id="page-link">
+    <li>
+      <a href="/account/organizations/memberships?offset=${page.offset}" id="page-link-${page.pageNumber}">${page.pageNumber}</a>
+    </li>
+  </template>
+  <template id="membership-row">
+    <table>
+      <tr id="${membership.membershipid}">
+        <td>
+          <a href="/account/organizations/membership?membershipid=${membership.membershipid}">${membership.membershipid}</a>
+        </td>
+        <td>
+          <a href="/account/organizations/invitation?invitationid=${membership.invitationid}">${membership.invitationid}</a>
+        </td>
+        <td id="full-name-${membership.membershipid}">${membership.firstName} ${membership.lastName}</td>
+        <td id="contact-email-${membership.membershipid}">
+          <a href="mailto:${membership.contactEmail}">${membership.contactEmail}</a>
+        </td>
+        <td id="display-name-${membership.membershipid}">${membership.displayName}</td>
+        <td id="display-email-${membership.membershipid}">
+          <a href="mailto:${membership.displayEmail}">${membership.displayEmail}</a>
+        </td>
+        <td id="dob-${membership.membershipid}">${membership.dob}</td>
+        <td id="phone-${membership.membershipid}">${membership.phone}</td>
+        <td id="occupation-${membership.membershipid}">${membership.occupation}</td>
+        <td id="location-${membership.membershipid}">${membership.location}</td>
+        <td id="company-name-${membership.membershipid}">${membership.companyName}</td>
+        <td id="website-${membership.membershipid}">
+          <a href="${membership.website}">${membership.website}</a>
+        </td>
+        <td>${membership.createdFormatted}</td>
+      </tr>
+    </table>
+  </template>
+</body>
+</html>
