@@ -1,4 +1,4 @@
-@userdashboard/dashboard 1.0.190
+@userdashboard/dashboard 1.0.192
 http://localhost:9000
 
 Administrator menu:
@@ -16,7 +16,7 @@ Special HTML files:
 @userdashboard/dashboard/src/redirect.html
 
 Dashboard modules:
-@userdashboard/organizations (1.0.88)
+@userdashboard/organizations (1.0.89)
 
 URL ------------------------------------------------- AUTH - TEMPLATE - HTTP REQUESTS - NODEJS --------------------- HTML -----------------------
 /                                                     GUEST  FULLSCREEN GET                                          /src/www                    
@@ -32,6 +32,7 @@ URL ------------------------------------------------- AUTH - TEMPLATE - HTTP REQ
 /account/edit-profile                                                   GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
 /account/end-all-sessions                                               GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
 /account/end-session                                                    GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
+/account/language                                                       GET POST        @userdashboard/dashboard     @userdashboard/dashboard    
 /account/organizations                                                  GET             /src/www                     /src/www                    
 /account/organizations/accept-invitation                                GET POST        /src/www                     /src/www                    
 /account/organizations/create-invitation                                GET POST        /src/www                     /src/www                    
@@ -166,6 +167,7 @@ URL ------------------------------------------------- AUTH - TEMPLATE - HTTP REQ
 /api/user/sessions                                                      GET             @userdashboard/dashboard                                 
 /api/user/sessions-count                                                GET             @userdashboard/dashboard                                 
 /api/user/set-account-deleted                                           PATCH           @userdashboard/dashboard                                 
+/api/user/set-account-language                                          PATCH           @userdashboard/dashboard                                 
 /api/user/set-account-password                                          PATCH           @userdashboard/dashboard                                 
 /api/user/set-account-profile                                           PATCH           @userdashboard/dashboard                                 
 /api/user/set-account-username                                          PATCH           @userdashboard/dashboard                                 
