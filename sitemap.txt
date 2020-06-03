@@ -1,14 +1,13 @@
-@userdashboard/dashboard 1.0.195
+@userdashboard/dashboard 1.0.202
 http://localhost:9000
 
 Administrator menu:
-/administrator/organizations "Organizations module"
+organizations/src/www/administrator/organizations "Organizations module"
 /administrator "Dashboard administration"
 
 Account menu:
-/account/organizations "Manage organizations"
+organizations/src/www/account/organizations "Manage organizations"
 /account "My account"
-/account/signout "Sign out"
 
 Special HTML files:
 @userdashboard/dashboard/src/template.html
@@ -16,7 +15,7 @@ Special HTML files:
 @userdashboard/dashboard/src/redirect.html
 
 Dashboard modules:
-@userdashboard/organizations (1.0.90)
+@userdashboard/organizations (1.0.91)
 
 URL ------------------------------------------------- AUTH - TEMPLATE - HTTP REQUESTS - NODEJS --------------------- HTML -----------------------
 /                                                     GUEST  FULLSCREEN GET                                          /src/www                    
