@@ -20,22 +20,6 @@
     "server": [],
     "modules": [
       "@userdashboard/organizations"
-    ],
-    "menus": {
-      "account": [
-        {
-          "href": "/account/organizations",
-          "text": "Manage organizations",
-          "object": "link"
-        }
-      ],
-      "administrator": [
-        {
-          "href": "/administrator/organizations",
-          "text": "Organizations module",
-          "object": "link"
-        }
-      ]
-    }
+    ]
   }
 }
