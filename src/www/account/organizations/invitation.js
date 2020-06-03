@@ -23,7 +23,7 @@ async function beforeRequest (req) {
 }
 
 async function renderPage (req, res) {
-  const doc = dashboard.HTML.parse(req.route.html, req.data.invitation, 'invitation')
+  const doc = dashboard.HTML.parse(req.route.html, req.data.invitation, 'invitation', req.language)
   if (req.data.invitation.accepted) {
     const notAccepted = doc.getElementById('not-accepted')
     notAccepted.parentNode.removeChild(notAccepted)
