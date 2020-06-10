@@ -30,9 +30,11 @@ module.exports = {
       created: dashboard.Timestamp.now
     }
     await organizations.Storage.write(`${req.appid}/invitation/${invitationid}`, invitationInfo)
-    await organizations.StorageList.add(`${req.appid}/invitations`, invitationid)
-    await organizations.StorageList.add(`${req.appid}/account/invitations/${req.account.accountid}`, invitationid)
-    await organizations.StorageList.add(`${req.appid}/organization/invitations/${req.query.organizationid}`, invitationid)
+    await organizations.StorageList.addMany({
+      [`${req.appid}/invitations`]: invitationid,
+      [`${req.appid}/account/invitations/${req.account.accountid}`]: invitationid,
+      [`${req.appid}/organization/invitations/${req.query.organizationid}`]: invitationid
+    })
     await organizations.Storage.write(`${req.appid}/map/invitationid/organizationid/${invitationid}`, req.query.organizationid)
     req.query.invitationid = invitationid
     return invitationInfo

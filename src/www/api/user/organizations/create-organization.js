@@ -61,11 +61,13 @@ module.exports = {
       profileid: req.body.profileid
     }
     await organizations.Storage.write(`${req.appid}/membership/${membershipid}`, membershipInfo)
-    await organizations.StorageList.add(`${req.appid}/organizations`, organizationid)
-    await organizations.StorageList.add(`${req.appid}/account/organizations/${req.query.accountid}`, organizationid)
-    await organizations.StorageList.add(`${req.appid}/memberships`, membershipid)
-    await organizations.StorageList.add(`${req.appid}/account/memberships/${req.query.accountid}`, membershipid)
-    await organizations.StorageList.add(`${req.appid}/organization/memberships/${organizationid}`, membershipid)
+    await organizations.StorageList.addMany({
+      [`${req.appid}/organizations`]: organizationid,
+      [`${req.appid}/account/organizations/${req.query.accountid}`]: organizationid,
+      [`${req.appid}/memberships`]: membershipid,
+      [`${req.appid}/account/memberships/${req.query.accountid}`]: membershipid,
+      [`${req.appid}/organization/memberships/${organizationid}`]: membershipid
+    })
     await organizations.Storage.write(`${req.appid}/map/organizationid/membershipid/${req.query.accountid}/${organizationid}`, membershipid)
     return organizationInfo
   }

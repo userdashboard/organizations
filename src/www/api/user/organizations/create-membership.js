@@ -75,11 +75,13 @@ module.exports = {
     }
     await organizations.Storage.write(`${req.appid}/membership/${membershipid}`, membershipInfo)
     await organizations.StorageObject.setProperty(`${req.appid}/invitation/${req.query.invitationid}`, 'membershipid', membershipid)
-    await organizations.StorageList.add(`${req.appid}/memberships`, membershipid)
-    await organizations.StorageList.add(`${req.appid}/account/memberships/${req.account.accountid}`, membershipid)
-    await organizations.StorageList.add(`${req.appid}/account/organizations/${req.account.accountid}`, organization.organizationid)
-    await organizations.StorageList.add(`${req.appid}/account/invitations/${req.account.accountid}`, req.query.invitationid)
-    await organizations.StorageList.add(`${req.appid}/organization/memberships/${organization.organizationid}`, membershipid)
+    await organizations.StorageList.addMany({
+      [`${req.appid}/memberships`]: membershipid,
+      [`${req.appid}/account/memberships/${req.account.accountid}`]: membershipid,
+      [`${req.appid}/account/organizations/${req.account.accountid}`]: organization.organizationid,
+      [`${req.appid}/account/invitations/${req.account.accountid}`]: req.query.invitationid,
+      [`${req.appid}/organization/memberships/${organization.organizationid}`]: membershipid
+    })
     await organizations.Storage.write(`${req.appid}/map/organizationid/membershipid/${req.account.accountid}/${organization.organizationid}`, membershipid)
     return membershipInfo
   }
