@@ -1,6 +1,5 @@
 /* eslint-env mocha */
 global.applicationPath = global.applicationPath || __dirname
-
 const TestHelper = require('@userdashboard/dashboard/test-helper.js')
 
 module.exports = {
@@ -25,7 +24,8 @@ async function setupBeforeEach () {
 }
 
 async function setupBefore () {
-  require('./index.js').setup()
+  const index = require('./index.js')
+  await index.setup()
 }
 
 module.exports.setupBeforeEach = setupBeforeEach
