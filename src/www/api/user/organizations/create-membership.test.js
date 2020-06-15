@@ -332,7 +332,7 @@ describe('/api/user/organizations/create-membership', () => {
     describe('invalid-profile', () => {
       it('ineligible posted profileid is missing fields', async () => {
         const owner = await TestHelper.createUser()
-        global.userProfileFields = ['display-name', 'display-email']
+        global.userProfileFields = global.membershipProfileFields = ['display-name', 'display-email']
         await TestHelper.createProfile(owner, {
           'display-name': owner.profile.firstName,
           'display-email': owner.profile.contactEmail
@@ -344,6 +344,11 @@ describe('/api/user/organizations/create-membership', () => {
         })
         await TestHelper.createInvitation(owner)
         const user = await TestHelper.createUser()
+        global.userProfileFields = global.membershipProfileFields = ['display-email']
+        await TestHelper.createProfile(user, {
+          'display-email': user.profile.contactEmail
+        })
+        global.userProfileFields = global.membershipProfileFields = ['display-name', 'display-email']
         const req = TestHelper.createRequest(`/api/user/organizations/create-membership?invitationid=${owner.invitation.invitationid}`)
         req.account = user.account
         req.session = user.session

@@ -1,6 +1,7 @@
 /* eslint-env mocha */
 global.applicationPath = global.applicationPath || __dirname
 const TestHelper = require('@userdashboard/dashboard/test-helper.js')
+let organizations
 
 module.exports = {
   acceptInvitation,
@@ -24,11 +25,12 @@ async function setupBeforeEach () {
 }
 
 async function setupBefore () {
-  const index = require('./index.js')
-  await index.setup()
+  organizations = require('./index.js')
+  await organizations.setup()
 }
 
 module.exports.setupBeforeEach = setupBeforeEach
+module.exports.createProfile = createProfile
 
 beforeEach(setupBeforeEach)
 before(setupBefore)
@@ -70,4 +72,16 @@ async function acceptInvitation (user, owner) {
   }
   user.membership = await req.post()
   return user.membership
+}
+
+async function createProfile (user, properties) {
+  const req = module.exports.createRequest(`/api/user/create-profile?accountid=${user.account.accountid}`)
+  req.account = user.account
+  req.session = user.session
+  if (process.env.ORGANIZATIONS_STORAGE) {
+    req.storage = organizations
+  }
+  req.body = properties
+  user.profile = await req.route.api.post(req)
+  return user.profile
 }

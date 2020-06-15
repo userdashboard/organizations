@@ -1,4 +1,5 @@
 const dashboard = require('@userdashboard/dashboard')
+const organizations = require('../../../../index.js')
 
 module.exports = {
   before: beforeRequest,
@@ -19,6 +20,7 @@ async function beforeRequest (req) {
   }
   req.query.accountid = req.account.accountid
   req.query.all = true
+  req.storage = organizations
   const profiles = await global.api.user.Profiles.get(req)
   const validProfiles = []
   if (profiles && profiles.length) {

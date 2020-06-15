@@ -91,6 +91,10 @@ describe('/account/organizations/edit-membership-profile', () => {
 
     it('should have elements for contact-email', async () => {
       const owner = await TestHelper.createUser()
+      global.userProfileFields = global.userProfileFields = ['contact-email']
+      await TestHelper.createProfile(owner, {
+        'contact-email': owner.profile.contactEmail
+      })
       global.userProfileFields = global.membershipProfileFields = ['contact-email']
       await TestHelper.createOrganization(owner, {
         email: 'test@email.com',

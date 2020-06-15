@@ -1,4 +1,5 @@
 const dashboard = require('@userdashboard/dashboard')
+const organizations = require('../../../../index.js')
 
 module.exports = {
   before: beforeRequest,
@@ -10,6 +11,7 @@ async function beforeRequest (req) {
   req.query = req.query || {}
   req.query.accountid = req.account.accountid
   req.query.all = true
+  req.storage = organizations
   const profiles = await global.api.user.Profiles.get(req)
   const validProfiles = []
   if (profiles && profiles.length) {
@@ -104,6 +106,7 @@ async function submitForm (req, res) {
   }
   req.query = req.query || {}
   req.query.invitationid = req.body.invitationid
+  req.storage = organizations
   try {
     const invitation = await global.api.user.organizations.OpenInvitation.get(req)
     if (invitation.accepted) {

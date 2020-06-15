@@ -1,5 +1,6 @@
 const dashboard = require('@userdashboard/dashboard')
 const navbar = require('./navbar-membership.js')
+const organizations = require('../../../../index.js')
 
 module.exports = {
   before: beforeRequest,
@@ -11,6 +12,7 @@ async function beforeRequest (req) {
   if (!req.query || !req.query.membershipid) {
     throw new Error('invalid-membershipid')
   }
+  req.storage = organizations
   const membership = await global.api.user.organizations.Membership.get(req)
   if (!membership) {
     throw new Error('invalid-membershipid')
@@ -75,6 +77,7 @@ async function submitForm (req, res) {
   if (req.query && req.query.message === 'success') {
     return renderPage(req, res)
   }
+  req.storage = organizations
   req.userProfileFields = req.userProfileFields || global.membershipProfileFields
   try {
     await global.api.user.UpdateProfile.patch(req)

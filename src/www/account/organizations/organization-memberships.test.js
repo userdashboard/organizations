@@ -11,7 +11,7 @@ describe('/account/organizations/organization-memberships', function () {
     await TestHelper.setupBeforeEach()
     global.delayDiskWrites = true
     const user = await TestHelper.createUser()
-    global.userProfileFields = ['display-email', 'display-name']
+    global.userProfileFields = global.membershipProfileFields = ['display-email', 'display-name']
     await TestHelper.createProfile(user, {
       'display-name': user.profile.firstName,
       'display-email': user.profile.contactEmail
@@ -24,7 +24,7 @@ describe('/account/organizations/organization-memberships', function () {
     cachedMemberships.unshift(user.membership.membershipid)
     for (let i = 0, len = global.pageSize + 1; i < len; i++) {
       const member = await TestHelper.createUser()
-      global.userProfileFields = ['display-name', 'display-email']
+      global.userProfileFields = global.membershipProfileFields = ['display-name', 'display-email']
       await TestHelper.createProfile(member, {
         'display-name': member.profile.firstName,
         'display-email': member.profile.contactEmail

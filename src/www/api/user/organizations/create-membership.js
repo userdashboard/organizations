@@ -37,6 +37,7 @@ module.exports = {
       throw new Error('invalid-profileid')
     }
     req.query.profileid = req.body.profileid
+    req.storage = organizations
     const profile = await global.api.user.Profile.get(req)
     if (!profile) {
       throw new Error('invalid-profileid')
