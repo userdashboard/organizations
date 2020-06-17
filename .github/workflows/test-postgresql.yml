@@ -39,7 +39,7 @@ jobs:
         cp -R $HERE/src/ node_modules/@userdashboard/organizations/src/
         echo "global.applicationPath = __dirname" > main.js
     - name: Test unencrypted PostgreSQL storage
-      run: npm test
+      run: cd /tmp/project && mocha --file main.js --bail --exit --full-trace --recursive --timeout 90000000 "./node_modules/@userdashboard/**/{,!(public)}/*.test.js"
       env:
         NODE_ENV: testing
         FAST_START: true
@@ -50,7 +50,7 @@ jobs:
         GENERATE_SITEMAP_TXT: false
         GENERATE_API_TXT: false
     - name: Test encrypted PostgreSQL storage
-      run: npm test
+      run: cd /tmp/project && mocha --file main.js --bail --exit --full-trace --recursive --timeout 90000000 "./node_modules/@userdashboard/**/{,!(public)}/*.test.js"
       env:
         NODE_ENV: testing
         FAST_START: true
@@ -63,7 +63,7 @@ jobs:
         ENCRYPTION_SECRET: "12345678901234567890123456789012"
         ENCRYPTION_SECRET_IV: "1234123412341234"
     - name: Test independent PostgreSQL storage
-      run: npm test
+      run: cd /tmp/project && mocha --file main.js --bail --exit --full-trace --recursive --timeout 90000000 "./node_modules/@userdashboard/**/{,!(public)}/*.test.js"
       env:
         NODE_ENV: testing
         FAST_START: true
