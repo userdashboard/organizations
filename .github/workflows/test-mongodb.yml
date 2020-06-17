@@ -27,7 +27,8 @@ jobs:
         rm -rf node_modules/@userdashboard/organizations/src
         cp $HERE/*.js node_modules/@userdashboard/organizations
         cp -R $HERE/src/ node_modules/@userdashboard/organizations/src/
-        echo "global.applicationPath = __dirname" > main.js    - name: Test unencrypted MongoDB storage
+        echo "global.applicationPath = __dirname" > main.js
+    - name: Test unencrypted MongoDB storage
       env:
         NODE_ENV: "testing"
         FAST_START: "true"

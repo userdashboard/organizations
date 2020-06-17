@@ -33,7 +33,7 @@ jobs:
         mkdir /tmp/project
         cd /tmp/project
         npm init -y
-        npm install faker puppeteer@2.1.1 @userdashboard/dashboard @userdashboard/organizations @userdashboard/storage-postgrseql @userdashboard/storage-redis
+        npm install faker puppeteer@2.1.1 @userdashboard/dashboard @userdashboard/organizations @userdashboard/storage-postgresql @userdashboard/storage-redis
         npm install -g mocha
         rm node_modules/@userdashboard/organizations/*.js
         rm -rf node_modules/@userdashboard/organizations/src
