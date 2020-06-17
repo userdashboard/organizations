@@ -25,10 +25,21 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: Install dependencies
+    - name: Install Redis
+      run: sudo apt-get install -y redis-server
+    - name: Set up as module
       run: |
-        sudo apt-get install -y redis-server
-        npm install mocha faker puppeteer@2.1.1 @userdashboard/dashboard @userdashboard/storage-postgresql @userdashboard/storage-cache-redis --no-save
+        HERE=`pwd`
+        mkdir /tmp/project
+        cd /tmp/project
+        npm init -y
+        npm install faker puppeteer@2.1.1 @userdashboard/dashboard @userdashboard/organizations @userdashboard/storage-postgrseql @userdashboard/storage-redis
+        npm install -g mocha
+        rm node_modules/@userdashboard/organizations/*.js
+        rm -rf node_modules/@userdashboard/organizations/src
+        cp $HERE/*.js node_modules/@userdashboard/organizations
+        cp -R $HERE/src/ node_modules/@userdashboard/organizations/src/
+        echo "global.applicationPath = __dirname" > main.js
     - name: Test Redis cache with unencrypted data
       run: npm test
       env:

@@ -13,11 +13,21 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: Setup MongoDB
+    - name: Install MongoDB
       run: sudo apt-get install -y mongodb
-    - name: Install dependencies
-      run: npm install mocha faker puppeteer@2.1.1 @userdashboard/dashboard @userdashboard/storage-mongodb --no-save
-    - name: Test unencrypted MongoDB storage
+    - name: Set up as module
+      run: |
+        HERE=`pwd`
+        mkdir /tmp/project
+        cd /tmp/project
+        npm init -y
+        npm install faker puppeteer@2.1.1 @userdashboard/dashboard @userdashboard/organizations @userdashboard/storage-mongodb
+        npm install -g mocha
+        rm node_modules/@userdashboard/organizations/*.js
+        rm -rf node_modules/@userdashboard/organizations/src
+        cp $HERE/*.js node_modules/@userdashboard/organizations
+        cp -R $HERE/src/ node_modules/@userdashboard/organizations/src/
+        echo "global.applicationPath = __dirname" > main.js    - name: Test unencrypted MongoDB storage
       run: npm test
       env:
         NODE_ENV: "testing"

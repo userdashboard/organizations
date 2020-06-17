@@ -22,8 +22,19 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: Install dependencies
-      run: npm install mocha faker puppeteer@2.1.1 @userdashboard/dashboard @userdashboard/storage-mysql --no-save
+    - name: Set up as module
+      run: |
+        HERE=`pwd`
+        mkdir /tmp/project
+        cd /tmp/project
+        npm init -y
+        npm install faker puppeteer@2.1.1 @userdashboard/dashboard @userdashboard/organizations @userdashboard/storage-mysql
+        npm install -g mocha
+        rm node_modules/@userdashboard/organizations/*.js
+        rm -rf node_modules/@userdashboard/organizations/src
+        cp $HERE/*.js node_modules/@userdashboard/organizations
+        cp -R $HERE/src/ node_modules/@userdashboard/organizations/src/
+        echo "global.applicationPath = __dirname" > main.js
     - name: Test encrypted MySQL storage
       run: npm test
       env:
