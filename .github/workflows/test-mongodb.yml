@@ -28,6 +28,9 @@ jobs:
         cp $HERE/*.js node_modules/@userdashboard/organizations
         cp -R $HERE/src/ node_modules/@userdashboard/organizations/src/
         echo "global.applicationPath = __dirname" > main.js
+        PACKAGE=`cat package.json`
+        PACKAGE=${PACKAGE/\"description\"\: \"\"/\"dashboard\": \{ \"modules\"\: \[\"@userdashboard/organizations\"\] \}}
+        echo $PACKAGE > package.json
     - name: Test unencrypted MongoDB storage
       env:
         NODE_ENV: "testing"
