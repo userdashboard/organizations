@@ -1,10 +1,9 @@
 
-> @userdashboard/organizations@1.0.94 test /home/runner/work/organizations/organizations
+> @userdashboard/organizations@1.0.95 test /home/runner/work/organizations/organizations
 > mocha --exit --inline-diffs --full-trace --bail --async-only --recursive --timeout 480000 --slow 480000 './{,!(public|node_modules)/**}/*.test.js'
 
 
 
-Setting up with Dashboard as module
   index
     MINIMUM_ORGANIZATION_NAME_LENGTH
       Shortest organization name length
@@ -644,5 +643,5 @@ Setting up with Dashboard as module
       ✓ object
 
 
-  314 passing (3m)
+  314 passing (4m)
 
