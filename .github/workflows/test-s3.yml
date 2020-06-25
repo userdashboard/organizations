@@ -41,7 +41,9 @@ jobs:
         AWS_SECRET_ACCESS_KEY: "using-mock-aws-s3"
         AWS_ACCESS_KEY_ID: "using-mock-aws-s3"
     - name: Test unencrypted S3-compatible storage
-      run: cd /tmp/project && mocha --file main.js --bail --exit --full-trace --recursive --timeout 90000000 "./node_modules/@userdashboard/**/{,!(public)}/*.test.js"
+      run: |
+        cd /tmp/project 
+        mocha --retries 2 --file main.js --bail --exit --full-trace --recursive --timeout 90000000 "./node_modules/@userdashboard/**/{,!(public)}/*.test.js"
       env:
         NODE_ENV: testing
         FAST_START: true
@@ -55,7 +57,9 @@ jobs:
         GENERATE_SITEMAP_TXT: false
         GENERATE_API_TXT: false
     - name: Test encrypted S3-compatible storage
-      run: cd /tmp/project && mocha --file main.js --bail --exit --full-trace --recursive --timeout 90000000 "./node_modules/@userdashboard/**/{,!(public)}/*.test.js"
+      run: |
+        cd /tmp/project 
+        mocha --retries 2 --file main.js --bail --exit --full-trace --recursive --timeout 90000000 "./node_modules/@userdashboard/**/{,!(public)}/*.test.js"
       env:
         NODE_ENV: testing
         FAST_START: true
@@ -70,17 +74,3 @@ jobs:
         GENERATE_API_TXT: false
         ENCRYPTION_SECRET: "12345678901234567890123456789012"
         ENCRYPTION_SECRET_IV: "1234123412341234"
-    - name: Test independent S3-compatible storage
-      run: cd /tmp/project && mocha --file main.js --bail --exit --full-trace --recursive --timeout 90000000 "./node_modules/@userdashboard/**/{,!(public)}/*.test.js"
-      env:
-        NODE_ENV: testing
-        FAST_START: true
-        DASHBOARD_SERVER: "http://localhost:9000"
-        DOMAIN: "localhost"
-        ORGANIZATIONS_STORAGE: "@userdashboard/storage-s3"
-        ORGANIZATIONS_S3_ENDPOINT: "http://localhost:4566"
-        ORGANIZATIONS_S3_BUCKET_NAME: "testing"
-        ORGANIZATIONS_SECRET_ACCESS_KEY: "using-mock-aws-s3"
-        ORGANIZATIONS_ACCESS_KEY_ID: "using-mock-aws-s3"
-        GENERATE_SITEMAP_TXT: false
-        GENERATE_API_TXT: false
