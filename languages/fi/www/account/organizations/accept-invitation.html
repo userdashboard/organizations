@@ -2,37 +2,37 @@
 <html lang="en" data-navbar="/account/organizations/navbar.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Accept invitation</title>
+  <title translate="yes">Hyväksy kutsu</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Accept invitation</h1>
-  <p translate="yes">You will become a member of the organization after entering the code.</p>
+  <h1 translate="yes">Hyväksy kutsu</h1>
+  <p translate="yes">Sinusta tulee organisaation jäsen koodin syöttämisen jälkeen.</p>
   <div id="message-container"></div>
   <form id="submit-form" class="pure-form pure-form-stacked" action="/account/organizations/accept-invitation" name="submit-form">
     <div class="pure-control-group">
-      <label for="invitationid" translate="yes">Invitation ID</label>
+      <label for="invitationid" translate="yes">Kutsun tunnus</label>
       <input id="invitationid" name="invitationid" type="text" maxlength="100">
     </div>
     <div class="pure-control-group">
-      <label for="secret-code" translate="yes">Invitation code</label>
+      <label for="secret-code" translate="yes">Kutsun koodi</label>
       <input id="secret-code" name="secret-code" type="text" maxlength="100">
     </div>
-    <h2 translate="yes">Membership information</h2>
+    <h2 translate="yes">Jäsentiedot</h2>
     <div id="existing-profile-container" class="pure-control-group">
-      <label for="profileid" translate="yes">Use existing profile</label>
+      <label for="profileid" translate="yes">Käytä aiemmin luotua profiilia</label>
       <select id="profileid" name="profileid">
         <option value="" translate="yes">
-          Select an existing profile
+          Aiemmin luodun profiilin valitseminen
         </option>
       </select>
     </div>
-    <h3 translate="yes">Create new profile</h3>
+    <h3 translate="yes">Luo uusi profiili</h3>
     <div id="display-name-container" class="pure-control-group">
-      <label for="display-name" translate="yes">Display name</label>
+      <label for="display-name" translate="yes">Näyttönimi</label>
       <input required="" id="display-name" name="display-name" type="text" maxlength="1000">
     </div>
     <div id="display-email-container" class="pure-control-group">
@@ -45,72 +45,72 @@
     </div>
     <div id="full-name-container">
       <div class="pure-control-group">
-        <label for="first-name" translate="yes">First name</label>
+        <label for="first-name" translate="yes">Etunimi</label>
       <input required="" id="first-name" name="first-name" type="text" maxlength="1000">
       </div>
       <div class="pure-control-group">
-        <label for="last-name" translate="yes">Last name</label>
+        <label for="last-name" translate="yes">Sukunimi</label>
       <input required="" id="last-name" name="last-name" type="text" maxlength="1000">
       </div>
     </div>
     <div id="dob-container">
       <div class="pure-control-group">
-        <label for="dob" translate="yes">Date of birth</label>
+        <label for="dob" translate="yes">Syntymäpäivämäärä</label>
       <input required="" id="dob" name="dob" type="text" maxlength="11">
       </div>
     </div>
     <div id="phone-container" class="pure-control-group">
-      <label for="phone" translate="yes">Telephone</label>
+      <label for="phone" translate="yes">Puhelin</label>
       <input required="" id="phone" name="phone" type="text" maxlength="1000">
     </div>
     <div id="occupation-container" class="pure-control-group">
-      <label for="occupation" translate="yes">Occupation</label>
+      <label for="occupation" translate="yes">Ammatti</label>
       <input required="" id="occupation" name="occupation" type="text" maxlength="1000">
     </div>
     <div id="location-container" class="pure-control-group">
-      <label for="location" translate="yes">Location</label>
+      <label for="location" translate="yes">Sijainti</label>
       <input required="" id="location" name="location" type="text" maxlength="1000">
     </div>
     <div id="company-name-container" class="pure-control-group">
-      <label for="company-name" translate="yes">Company name</label>
+      <label for="company-name" translate="yes">Yrityksen nimi</label>
       <input required="" id="company-name" name="company-name" type="text" maxlength="1000">
     </div>
     <div id="website-container" class="pure-control-group">
-      <label for="website" translate="yes">Website</label>
+      <label for="website" translate="yes">Sivusto</label>
       <input required="" id="website" name="website" type="text" maxlength="1000">
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Join organization</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Liity organisaatioon</button>
     </div>
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      Success! You are now a member of the organization
+      Menestys! Olet nyt organisaation jäsen
     </div>
   </template>
   <template id="invalid-invitation">
     <div class="error message" translate="yes">
-      Error! The invitation is no longer available
+      Virhe! Kutsu ei ole enää käytettävissä
     </div>
   </template>
   <template id="invalid-secret-code">
     <div class="error message" translate="yes">
-      Error! The invitation code is incorrect
+      Virhe! Kutsukoodi on virheellinen
     </div>
   </template>
   <template id="invalid-invitationid">
     <div class="error message" translate="yes">
-      Error! A missing or invalid invitation was provided
+      Virhe! Puuttuva tai virheellinen kutsu
     </div>
   </template>
   <template id="invalid-account">
     <div class="error message" translate="yes">
-      Error! You own or are a member of this organization
+      Virhe! Omistat tai olet tämän organisaation jäsen
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Error! An unknown error ocurred
+      Virhe! Tuntematon virhe
     </div>
   </template>
   <template id="profile-option">
@@ -120,102 +120,102 @@
   </template>
   <template id="invalid-organization-name">
     <div class="error message" translate="yes">
-      Error! A missing or invalid organization name was provided
+      Virhe! Annettu organisaationimi puuttuu tai ei kelpaa
     </div>
   </template>
   <template id="invalid-organization-name-length">
     <div class="error message" translate="yes">
-      Error! Invalid organization name length
+      Virhe! Virheellinen organisaation nimen pituus
     </div>
   </template>
   <template id="invalid-organization-email">
     <div class="error message" translate="yes">
-      Error! A missing or invalid organization email was provided
+      Virhe! Puuttuva tai virheellinen organisaatiosähköposti annettuna
     </div>
   </template>
   <template id="success">
     <div class="success message" translate="yes">
-      Success! The organization has been created successfully
+      Menestys! Organisaatio on luotu onnistuneesti
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Error! An error occurred creating the organization
+      Virhe! Virhe luotaessa organisaatiota
     </div>
   </template>
   <template id="invalid-first-name">
     <div class="error message" translate="yes">
-      Error! A missing or invalid first name provided
+      Virhe! Annettu etunimi puuttuu tai ei kelpaa
     </div>
   </template>
   <template id="invalid-first-name-length">
     <div class="error message" translate="yes">
-      Error! An invalid first name was provided
+      Virhe! Etunimi ei kelpaa
     </div>
   </template>
   <template id="invalid-last-name">
     <div class="error message" translate="yes">
-      Error! A missing or invalid last name was provided
+      Virhe! Annettu sukunimi puuttuu tai ei kelpaa
     </div>
   </template>
   <template id="invalid-last-name-length">
     <div class="error message" translate="yes">
-      Error! An invalid last name was provided
+      Virhe! Annettu sukunimi ei kelpaa
     </div>
   </template>
   <template id="invalid-contact-email">
     <div class="error message" translate="yes">
-      Error! Invalid contact email address
+      Virhe! Virheellinen yhteyshenkilön sähköpostiosoite
     </div>
   </template>
   <template id="invalid-display-email">
     <div class="error message" translate="yes">
-      Error! Invalid display email address
+      Virhe! Virheellinen näyttösähköpostiosoite
     </div>
   </template>
   <template id="invalid-display-name">
     <div class="error message" translate="yes">
-      Error! A missing or invalid display name was provided
+      Virhe! Näyttönimi puuttuu tai se ei kelpaa
     </div>
   </template>
   <template id="invalid-dob">
     <div class="error message" translate="yes">
-      Error! A missing or invalid date of birth was provided
+      Virhe! Puuttuva tai virheellinen syntymäaika annettiin
     </div>
   </template>
   <template id="invalid-phone">
     <div class="error message" translate="yes">
-      Error! A missing or invalid phone was provided.
+      Virhe! Annettu puhelin puuttuu tai ei kelpaa.
     </div>
   </template>
   <template id="invalid-occupation">
     <div class="error message" translate="yes">
-      Error! A missing or invalid occupation was provided.
+      Virhe! Kadotettiin tai se on virheellinen ammatti.
     </div>
   </template>
   <template id="invalid-location">
     <div class="error message" translate="yes">
-      Error! A missing or invalid location was provided.
+      Virhe! Annettu sijainti puuttuu tai ei kelpaa.
     </div>
   </template>
   <template id="invalid-company-name">
     <div class="error message" translate="yes">
-      Error! A missing or invalid company name was provided.
+      Virhe! Yrityksen nimi puuttuu tai se ei kelpaa.
     </div>
   </template>
   <template id="invalid-website">
     <div class="error message" translate="yes">
-      Error! A missing or invalid website was provided.
+      Virhe! Puuttuva tai virheellinen sivusto toimitettiin.
     </div>
   </template>
   <template id="invalid-display-name-length">
     <div class="error message" translate="yes">
-      Error! A missing or invalid display name was provided
+      Virhe! Näyttönimi puuttuu tai se ei kelpaa
     </div>
   </template>
   <template id="invalid-profileid">
     <div class="error message" translate="yes">
-      Error! A missing or invalid profile was selected.
+      Virhe! Profiili puuttuu tai se ei kelpaa.
     </div>
   </template>
 </body>

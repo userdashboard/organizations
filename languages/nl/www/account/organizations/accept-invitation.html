@@ -2,37 +2,37 @@
 <html lang="en" data-navbar="/account/organizations/navbar.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Accept invitation</title>
+  <title translate="yes">Uitnodiging accepteren</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Accept invitation</h1>
-  <p translate="yes">You will become a member of the organization after entering the code.</p>
+  <h1 translate="yes">Uitnodiging accepteren</h1>
+  <p translate="yes">Na het invoeren van de code wordt u lid van de organisatie.</p>
   <div id="message-container"></div>
   <form id="submit-form" class="pure-form pure-form-stacked" action="/account/organizations/accept-invitation" name="submit-form">
     <div class="pure-control-group">
-      <label for="invitationid" translate="yes">Invitation ID</label>
+      <label for="invitationid" translate="yes">Uitnodigings-id</label>
       <input id="invitationid" name="invitationid" type="text" maxlength="100">
     </div>
     <div class="pure-control-group">
-      <label for="secret-code" translate="yes">Invitation code</label>
+      <label for="secret-code" translate="yes">Uitnodigingscode</label>
       <input id="secret-code" name="secret-code" type="text" maxlength="100">
     </div>
-    <h2 translate="yes">Membership information</h2>
+    <h2 translate="yes">Lidmaatschapsinformatie</h2>
     <div id="existing-profile-container" class="pure-control-group">
-      <label for="profileid" translate="yes">Use existing profile</label>
+      <label for="profileid" translate="yes">Bestaand profiel gebruiken</label>
       <select id="profileid" name="profileid">
         <option value="" translate="yes">
-          Select an existing profile
+          Een bestaand profiel selecteren
         </option>
       </select>
     </div>
-    <h3 translate="yes">Create new profile</h3>
+    <h3 translate="yes">Nieuw profiel maken</h3>
     <div id="display-name-container" class="pure-control-group">
-      <label for="display-name" translate="yes">Display name</label>
+      <label for="display-name" translate="yes">Weergavenaam</label>
       <input required="" id="display-name" name="display-name" type="text" maxlength="1000">
     </div>
     <div id="display-email-container" class="pure-control-group">
@@ -45,34 +45,34 @@
     </div>
     <div id="full-name-container">
       <div class="pure-control-group">
-        <label for="first-name" translate="yes">First name</label>
+        <label for="first-name" translate="yes">Voornaam</label>
       <input required="" id="first-name" name="first-name" type="text" maxlength="1000">
       </div>
       <div class="pure-control-group">
-        <label for="last-name" translate="yes">Last name</label>
+        <label for="last-name" translate="yes">Achternaam</label>
       <input required="" id="last-name" name="last-name" type="text" maxlength="1000">
       </div>
     </div>
     <div id="dob-container">
       <div class="pure-control-group">
-        <label for="dob" translate="yes">Date of birth</label>
+        <label for="dob" translate="yes">Geboortedatum</label>
       <input required="" id="dob" name="dob" type="text" maxlength="11">
       </div>
     </div>
     <div id="phone-container" class="pure-control-group">
-      <label for="phone" translate="yes">Telephone</label>
+      <label for="phone" translate="yes">Telefoon</label>
       <input required="" id="phone" name="phone" type="text" maxlength="1000">
     </div>
     <div id="occupation-container" class="pure-control-group">
-      <label for="occupation" translate="yes">Occupation</label>
+      <label for="occupation" translate="yes">Bezetting</label>
       <input required="" id="occupation" name="occupation" type="text" maxlength="1000">
     </div>
     <div id="location-container" class="pure-control-group">
-      <label for="location" translate="yes">Location</label>
+      <label for="location" translate="yes">Locatie</label>
       <input required="" id="location" name="location" type="text" maxlength="1000">
     </div>
     <div id="company-name-container" class="pure-control-group">
-      <label for="company-name" translate="yes">Company name</label>
+      <label for="company-name" translate="yes">Bedrijfsnaam</label>
       <input required="" id="company-name" name="company-name" type="text" maxlength="1000">
     </div>
     <div id="website-container" class="pure-control-group">
@@ -80,37 +80,37 @@
       <input required="" id="website" name="website" type="text" maxlength="1000">
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Join organization</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Lid worden van de organisatie</button>
     </div>
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      Success! You are now a member of the organization
+      Succes! U bent nu lid van de organisatie
     </div>
   </template>
   <template id="invalid-invitation">
     <div class="error message" translate="yes">
-      Error! The invitation is no longer available
+      Fout! De uitnodiging is niet meer beschikbaar
     </div>
   </template>
   <template id="invalid-secret-code">
     <div class="error message" translate="yes">
-      Error! The invitation code is incorrect
+      Fout! De uitnodigingscode is onjuist
     </div>
   </template>
   <template id="invalid-invitationid">
     <div class="error message" translate="yes">
-      Error! A missing or invalid invitation was provided
+      Fout! Er is een ontbrekende of ongeldige uitnodiging verstrekt
     </div>
   </template>
   <template id="invalid-account">
     <div class="error message" translate="yes">
-      Error! You own or are a member of this organization
+      Fout! U bent eigenaar van of bent lid van deze organisatie
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Error! An unknown error ocurred
+      Fout! Er is een onbekende fout gemaakt
     </div>
   </template>
   <template id="profile-option">
@@ -120,102 +120,102 @@
   </template>
   <template id="invalid-organization-name">
     <div class="error message" translate="yes">
-      Error! A missing or invalid organization name was provided
+      Fout! Er is een ontbrekende of ongeldige organisatienaam opgegeven
     </div>
   </template>
   <template id="invalid-organization-name-length">
     <div class="error message" translate="yes">
-      Error! Invalid organization name length
+      Fout! Ongeldige naamslengte van de organisatie
     </div>
   </template>
   <template id="invalid-organization-email">
     <div class="error message" translate="yes">
-      Error! A missing or invalid organization email was provided
+      Fout! Er is een ontbrekende of ongeldige organisatie-e-mail ontvangen
     </div>
   </template>
   <template id="success">
     <div class="success message" translate="yes">
-      Success! The organization has been created successfully
+      Succes! De organisatie is gemaakt met succes
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Error! An error occurred creating the organization
+      Fout! Er is een fout opgetreden bij het maken van de organisatie
     </div>
   </template>
   <template id="invalid-first-name">
     <div class="error message" translate="yes">
-      Error! A missing or invalid first name provided
+      Fout! Een ontbrekende of ongeldige voornaam
     </div>
   </template>
   <template id="invalid-first-name-length">
     <div class="error message" translate="yes">
-      Error! An invalid first name was provided
+      Fout! Er is een ongeldige voornaam opgegeven
     </div>
   </template>
   <template id="invalid-last-name">
     <div class="error message" translate="yes">
-      Error! A missing or invalid last name was provided
+      Fout! Er is een ontbrekende of ongeldige achternaam opgegeven
     </div>
   </template>
   <template id="invalid-last-name-length">
     <div class="error message" translate="yes">
-      Error! An invalid last name was provided
+      Fout! Er is een ongeldige achternaam opgegeven
     </div>
   </template>
   <template id="invalid-contact-email">
     <div class="error message" translate="yes">
-      Error! Invalid contact email address
+      Fout! Ongeldig e-mailadres met contactpersonen
     </div>
   </template>
   <template id="invalid-display-email">
     <div class="error message" translate="yes">
-      Error! Invalid display email address
+      Fout! Ongeldig e-mailadres voor weergeven
     </div>
   </template>
   <template id="invalid-display-name">
     <div class="error message" translate="yes">
-      Error! A missing or invalid display name was provided
+      Fout! Er is een ontbrekende of ongeldige weergavenaam opgegeven
     </div>
   </template>
   <template id="invalid-dob">
     <div class="error message" translate="yes">
-      Error! A missing or invalid date of birth was provided
+      Fout! Er is een ontbrekende of ongeldige geboortedatum verstrekt
     </div>
   </template>
   <template id="invalid-phone">
     <div class="error message" translate="yes">
-      Error! A missing or invalid phone was provided.
+      Fout! Er is een ontbrekende of ongeldige telefoon verstrekt.
     </div>
   </template>
   <template id="invalid-occupation">
     <div class="error message" translate="yes">
-      Error! A missing or invalid occupation was provided.
+      Fout! Een ontbrekend of ongeldig beroep werd verstrekt.
     </div>
   </template>
   <template id="invalid-location">
     <div class="error message" translate="yes">
-      Error! A missing or invalid location was provided.
+      Fout! Er is een ontbrekende of ongeldige locatie opgegeven.
     </div>
   </template>
   <template id="invalid-company-name">
     <div class="error message" translate="yes">
-      Error! A missing or invalid company name was provided.
+      Fout! Er is een ontbrekende of ongeldige bedrijfsnaam opgegeven.
     </div>
   </template>
   <template id="invalid-website">
     <div class="error message" translate="yes">
-      Error! A missing or invalid website was provided.
+      Fout! Er is een ontbrekende of ongeldige website verstrekt.
     </div>
   </template>
   <template id="invalid-display-name-length">
     <div class="error message" translate="yes">
-      Error! A missing or invalid display name was provided
+      Fout! Er is een ontbrekende of ongeldige weergavenaam opgegeven
     </div>
   </template>
   <template id="invalid-profileid">
     <div class="error message" translate="yes">
-      Error! A missing or invalid profile was selected.
+      Fout! Er is een ontbrekend of ongeldig profiel geselecteerd.
     </div>
   </template>
 </body>
