@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" data-navbar="/account/organizations/navbar-membership.html">
+<head>
+  <meta charset="utf-8">
+  <title translate="yes">நோக்கு ${membership.membershipid}</title>
+  <link href="/public/pure-min.css" rel="stylesheet">
+  <link href="/public/content.css" rel="stylesheet">
+  <link href="/public/content-additional.css" rel="stylesheet">
+  <base target="_top" href="/">
+</head>
+<body>
+  <h1 translate="yes">நோக்கு ${membership.membershipid}</h1>
+  <table id="memberships-table" class="pure-table data-table">
+    <tbody id="${membership.membershipid}">
+      <tr>
+        <th >ID</th>
+        <td>${membership.membershipid}</td>
+      </tr>
+      <tr>
+        <th translate="yes">உருவாக்க</th>
+        <td>${membership.createdFormatted}</td>
+      </tr>
+      <tr id="full-name">
+        <th translate="yes">முழுப் பெயர்</th>
+        <td>${membership.firstName} ${membership.lastName}</td>
+      </tr>
+      <tr id="contact-email">
+        <th translate="yes">மின்னஞ்சல் தொடர்பு</th>
+        <td>
+          <a href="mailto:${membership.contactEmail}">${membership.contactEmail}</a>
+        </td>
+      </tr>
+      <tr id="display-name">
+        <th translate="yes">பெயர் காண்பி</th>
+        <td>${membership.displayName}</td>
+      </tr>
+      <tr id="display-email">
+        <th translate="yes">மின்னஞ்சல் காண்பி</th>
+        <td>
+          <a href="mailto:${membership.displayEmail}">${membership.displayEmail}</a>
+        </td>
+      </tr>
+      <tr id="dob">
+        <th translate="yes">பிறந்த தேதி</th>
+        <td>${membership.dob}</td>
+      </tr>
+      <tr id="phone">
+        <th translate="yes">தொலைபேசி</th>
+        <td>${membership.phone}</td>
+      </tr>
+      <tr id="occupation">
+        <th translate="yes">குடியிருக்கை</th>
+        <td>${membership.occupation}</td>
+      </tr>
+      <tr id="location">
+        <th translate="yes">இட அமைவு</th>
+        <td>${membership.location}</td>
+      </tr>
+      <tr id="company-name">
+        <th translate="yes">நிறுவனத்தின் பெயர்</th>
+        <td>${membership.companyName}</td>
+      </tr>
+      <tr id="website">
+        <th translate="yes">வலைத்தளம்</th>
+        <td>
+          <a href="${membership.website}">${membership.website}</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

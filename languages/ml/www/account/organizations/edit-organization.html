@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" data-navbar="/account/organizations/navbar-organization.html">
+<head>
+  <meta charset="utf-8">
+  <title translate="yes">à ́à μà ${organization.organizationid}</title>
+  <link href="/public/pure-min.css" rel="stylesheet">
+  <link href="/public/content.css" rel="stylesheet">
+  <link href="/public/content-additional.css" rel="stylesheet">
+  <base target="_top" href="/">
+</head>
+<body>
+  <h1 translate="yes">à ́à μà ${organization.organizationid}</h1>
+  <p translate="yes">നിങ്ങളുടെ സമ്പർക്ക വിവരങ്ങൾ ശരിയായും കാലികമായി സൂക്ഷിക്കുക.</p>
+  <div id="message-container"></div>
+  <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/edit-organization?organizationid=${organization.organizationid}" name="submit-form">
+    <div class="pure-control-group">
+      <label for="name" translate="yes">പേരു്</label>
+      <input id="name" name="name" type="text" maxlength="100">
+    </div>
+    <div class="pure-control-group">
+      <label for="email" translate="yes">ഇമെയിൽ</label>
+      <input id="email" name="email" type="text" maxlength="100">
+    </div>
+    <div class="pure-controls">
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">ഓർഗനൈസേഷൻ അപ് ഡേറ്റ് ചെയ്യുക</button>
+    </div>
+  </form>
+  <template id="success">
+    <div class="success message" translate="yes">
+      വിജയം! നിങ്ങളുടെ സ്ഥാപന വിവരങ്ങൾ അപ് ഡേറ്റ് ചെയ്തിരിക്കുന്നു
+    </div>
+  </template>
+  <template id="unknown-error">
+    <div class="error message" translate="yes">
+      തെറ്റ്! അപരിചിതമായ പിശക്
+    </div>
+  </template>
+  <template id="invalid-organization-name">
+    <div class="error message" translate="yes">
+      തെറ്റ്! ഒരു വിട്ടുപോയതോ അസാധുവായതോ ആയ ഒരു സ്ഥാപനത്തിന്റെ പേര് നല് കിയിട്ടുണ്ട്
+    </div>
+  </template>
+  <template id="invalid-organization-name-length">
+    <div class="error message" translate="yes">
+      തെറ്റ്! അസാധുവായ സംഘടനാ നാമത്തിന്റെ നീളം
+    </div>
+  </template>
+  <template id="invalid-organization-email">
+    <div class="error message" translate="yes">
+      തെറ്റ്! വിട്ടുപോയതോ അസാധുവായതോ ആയ ഒരു സ്ഥാപന ഇമെയിൽ നൽകി
+    </div>
+  </template>
+</body>
+</html>

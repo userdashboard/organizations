@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" data-navbar="/administrator/organizations/navbar-organization.html">
+<head>
+  <meta charset="utf-8">
+  <title translate="yes">Memberships no ${organization.organizationid}</title>
+  <link href="/public/pure-min.css" rel="stylesheet">
+  <link href="/public/content.css" rel="stylesheet">
+  <link href="/public/content-additional.css" rel="stylesheet">
+  <base target="_top" href="/">
+</head>
+<body>
+  <h1 translate="yes">Memberships no ${organization.organizationid}</h1>
+  <p translate="yes">Ua hamanihia te reira i te taime a farii ai e taata i te hoe aniraa i hamanihia e te Fatu.</p>
+  <div id="no-memberships">
+    <p translate="yes">Aita te faanahonahoraa e vai ra i roto i te memberships.</p>
+  </div>
+  <table id="memberships-table" class="pure-table pure-table-striped list-table">
+    <thead>
+      <tr>
+        <th >ID</th>
+        <th translate="yes">Aniraa</th>
+        <th id="full-name" translate="yes">Ioa taatoa</th>
+        <th id="contact-email" translate="yes">Farerei i te rata uira</th>
+        <th id="display-name" translate="yes">Tuu i te ioa</th>
+        <th id="display-email" translate="yes">Pia i te rata uira</th>
+        <th id="dob" >DOB</th>
+        <th id="phone" translate="yes">Niuniu</th>
+        <th id="occupation" translate="yes">Ohipa</th>
+        <th id="location" translate="yes">Vahi</th>
+        <th id="company-name" translate="yes">Ioa o te pupu</th>
+        <th id="website" translate="yes">Tahua itenati</th>
+        <th translate="yes">Hamani</th>
+      </tr>
+    </thead>
+  </table>
+  <ul id="page-links" class="pagination"></ul>
+  <template id="page-link">
+    <li>
+      <a href="/administrator/organizations/organization-memberships?offset=${page.offset}" id="page-link-${page.pageNumber}">${page.pageNumber}</a>
+    </li>
+  </template>
+  <template id="membership-row">
+    <table>
+      <tr id="${membership.membershipid}">
+        <td>
+          <a href="/account/organizations/membership?membershipid=${membership.membershipid}">${membership.membershipid}</a>
+        </td>
+        <td>
+          <a href="/account/organizations/invitation?invitationid=${membership.invitationid}">${membership.invitationid}</a>
+        </td>
+        <td id="full-name-${membership.membershipid}">${membership.firstName} ${membership.lastName}</td>
+        <td id="contact-email-${membership.membershipid}">
+          <a href="mailto:${membership.contactEmail}">${membership.contactEmail}</a>
+        </td>
+        <td id="display-name-${membership.membershipid}">${membership.displayName}</td>
+        <td id="display-email-${membership.membershipid}">
+          <a href="mailto:${membership.displayEmail}">${membership.displayEmail}</a>
+        </td>
+        <td id="dob-${membership.membershipid}">${membership.dob}</td>
+        <td id="phone-${membership.membershipid}">${membership.phone}</td>
+        <td id="occupation-${membership.membershipid}">${membership.occupation}</td>
+        <td id="location-${membership.membershipid}">${membership.location}</td>
+        <td id="company-name-${membership.membershipid}">${membership.companyName}</td>
+        <td id="website-${membership.membershipid}">
+          <a href="${membership.website}">${membership.website}</a>
+        </td>
+        <td>${membership.createdFormatted}</td>
+      </tr>
+    </table>
+  </template>
+</body>
+</html>

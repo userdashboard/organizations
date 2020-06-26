@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" data-navbar="/administrator/organizations/navbar.html">
+<head>
+  <meta charset="utf-8">
+  <title translate="yes">組織</title>
+  <link href="/public/pure-min.css" rel="stylesheet">
+  <link href="/public/content.css" rel="stylesheet">
+  <link href="/public/content-additional.css" rel="stylesheet">
+  <base target="_top" href="/">
+</head>
+<body>
+  <h1 translate="yes">組織</h1>
+  <p translate="yes">ユーザーは、アプリケーション内のリソースへのアクセスを共有するためにこれらを作成します。</p>
+  <div id="no-organizations">
+    <p translate="yes">まだ組織はありません。</p>
+  </div>
+  <table id="organizations-table" class="pure-table pure-table-striped list-table">
+    <thead>
+      <tr>
+        <th >ID</th>
+        <th translate="yes">名前</th>
+        <th translate="yes">電子メール</th>
+        <th translate="yes">作成</th>
+      </tr>
+    </thead>
+  </table>
+  <ul id="page-links" class="pagination"></ul>
+  <template id="page-link">
+    <li>
+      <a href="/account/organizations/organizations?offset=${page.offset}" id="page-link-${page.pageNumber}">${page.pageNumber}</a>
+    </li>
+  </template>
+  <template id="organization-row">
+    <table>
+      <tr id="${organization.organizationid}">
+        <td>
+          <a href="/administrator/organizations/organization?organizationid=${organization.organizationid}">${organization.organizationid}</a>
+        </td>
+        <td>${organization.name}</td>
+        <td>
+          <a href="mailto:${organization.email}">${organization.email}</a>
+        </td>
+        <td>${organization.createdFormatted}</td>
+      </tr>
+    </table>
+  </template>
+</body>
+</html>

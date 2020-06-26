@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" data-navbar="/account/organizations/navbar-organization.html">
+<head>
+  <meta charset="utf-8">
+  <title translate="yes">の招待を作成します ${organization.organizationid}</title>
+  <link href="/public/pure-min.css" rel="stylesheet">
+  <link href="/public/content.css" rel="stylesheet">
+  <link href="/public/organizations/organizations-content.css" rel="stylesheet">
+  <link href="/public/content-additional.css" rel="stylesheet">
+  <base target="_top" href="/">
+</head>
+<body>
+  <h1 translate="yes">の招待を作成します ${organization.organizationid}</h1>
+  <p translate="yes">招待コードを使用すると、ユーザーは組織に参加できます。</p>
+  <div id="message-container"></div>
+  <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/create-invitation?organizationid=${organization.organizationid}" name="submit-form">
+    <div class="pure-control-group">
+      <label for="organization-name" translate="yes">組織</label>
+      <input id="organization-name" type="text" maxlength="100" readonly>
+    </div>
+    <div class="pure-control-group">
+      <label for="secret-code" translate="yes">秘密のコード</label>
+      <input id="secret-code" name="secret-code" type="text" maxlength="100">
+    </div>
+    <div class="pure-controls">
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">招待状の作成</button>
+    </div>
+  </form>
+  <template id="unknown-error">
+    <div class="error message" translate="yes">
+      エラー！不明なエラーが発生しました
+    </div>
+  </template>
+  <template id="invalid-secret-code">
+    <div class="error message" translate="yes">
+      エラー！シークレット コードがないか、無効です
+    </div>
+  </template>
+  <template id="invalid-secret-code-length">
+    <div class="error message" translate="yes">
+      エラー！シークレット コードの長さが無効です
+    </div>
+  </template>
+  <template id="success">
+    <div class="success message">
+      <p translate="yes">成功！秘密のコードとこのリンクを誰かに参加してもらいます。</p>
+      <div class="invitation-link">
+        <input type="text" readonly value="${organization.dashboardServer}/account/organizations/accept-invitation?invitationid=${organization.invitationid}">
+      </div>
+    </div>
+  </template>
+</body>
+</html>

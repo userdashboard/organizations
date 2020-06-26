@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" data-navbar="/account/organizations/navbar.html">
+<head>
+  <meta charset="utf-8">
+  <title translate="yes">invitation laj</title>
+  <link href="/public/pure-min.css" rel="stylesheet">
+  <link href="/public/content.css" rel="stylesheet">
+  <link href="/public/content-additional.css" rel="stylesheet">
+  <base target="_top" href="/">
+</head>
+<body>
+  <h1 translate="yes">invitation laj</h1>
+  <p translate="yes">SoH moj member DIvI' qaSpu'DI' ngoq 'el.</p>
+  <div id="message-container"></div>
+  <form id="submit-form" class="pure-form pure-form-stacked" action="/account/organizations/accept-invitation" name="submit-form">
+    <div class="pure-control-group">
+      <label for="invitationid" translate="yes">invitation id</label>
+      <input id="invitationid" name="invitationid" type="text" maxlength="100">
+    </div>
+    <div class="pure-control-group">
+      <label for="secret-code" translate="yes">invitation ngoq</label>
+      <input id="secret-code" name="secret-code" type="text" maxlength="100">
+    </div>
+    <h2 translate="yes">membership De'</h2>
+    <div id="existing-profile-container" class="pure-control-group">
+      <label for="profileid" translate="yes">nIv'e' qoghDu'DajDaq yIlo'</label>
+      <select id="profileid" name="profileid">
+        <option value="" translate="yes">
+          nIv'e' qoghDu'DajDaq wIv
+        </option>
+      </select>
+    </div>
+    <h3 translate="yes">chu' qoghDu'DajDaq chenmoH</h3>
+    <div id="display-name-container" class="pure-control-group">
+      <label for="display-name" translate="yes">bey' pong</label>
+      <input required="" id="display-name" name="display-name" type="text" maxlength="1000">
+    </div>
+    <div id="display-email-container" class="pure-control-group">
+      <label for="display-email" translate="yes">email cha'</label>
+      <input required="" id="display-email" name="display-email" type="text" maxlength="1000" size="50">
+    </div>
+    <div id="contact-email-container" class="pure-control-group">
+      <label for="contact-email" translate="yes">email contact</label>
+      <input required="" id="contact-email" name="contact-email" type="text" maxlength="1000" size="50">
+    </div>
+    <div id="full-name-container">
+      <div class="pure-control-group">
+        <label for="first-name" translate="yes">wa'DIch pong</label>
+      <input required="" id="first-name" name="first-name" type="text" maxlength="1000">
+      </div>
+      <div class="pure-control-group">
+        <label for="last-name" translate="yes">wa'Hu' pong</label>
+      <input required="" id="last-name" name="last-name" type="text" maxlength="1000">
+      </div>
+    </div>
+    <div id="dob-container">
+      <div class="pure-control-group">
+        <label for="dob" translate="yes">boghDI' date</label>
+      <input required="" id="dob" name="dob" type="text" maxlength="11">
+      </div>
+    </div>
+    <div id="phone-container" class="pure-control-group">
+      <label for="phone" translate="yes">ghogh HablI'</label>
+      <input required="" id="phone" name="phone" type="text" maxlength="1000">
+    </div>
+    <div id="occupation-container" class="pure-control-group">
+      <label for="occupation" translate="yes">occupation</label>
+      <input required="" id="occupation" name="occupation" type="text" maxlength="1000">
+    </div>
+    <div id="location-container" class="pure-control-group">
+      <label for="location" translate="yes">location</label>
+      <input required="" id="location" name="location" type="text" maxlength="1000">
+    </div>
+    <div id="company-name-container" class="pure-control-group">
+      <label for="company-name" translate="yes">wey pong</label>
+      <input required="" id="company-name" name="company-name" type="text" maxlength="1000">
+    </div>
+    <div id="website-container" class="pure-control-group">
+      <label for="website" translate="yes">website</label>
+      <input required="" id="website" name="website" type="text" maxlength="1000">
+    </div>
+    <div class="pure-controls">
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">DIvI' muv</button>
+    </div>
+  </form>
+  <template id="success">
+    <div class="success message" translate="yes">
+      Qapla'! DaH member DIvI'
+    </div>
+  </template>
+  <template id="invalid-invitation">
+    <div class="error message" translate="yes">
+      Qagh! invitation qawlu' lupoQ
+    </div>
+  </template>
+  <template id="invalid-secret-code">
+    <div class="error message" translate="yes">
+      Qagh! ngoq invitation incorrect
+    </div>
+  </template>
+  <template id="invalid-invitationid">
+    <div class="error message" translate="yes">
+      Qagh! DuHIvDI' miss pagh invalid invitation
+    </div>
+  </template>
+  <template id="invalid-account">
+    <div class="error message" translate="yes">
+      Qagh! lach'eghDI' pagh member DIvI' SoH
+    </div>
+  </template>
+  <template id="unknown-error">
+    <div class="error message" translate="yes">
+      Qagh! Sovbe'lu'bogh Qoylu' Qagh ocurred
+    </div>
+  </template>
+  <template id="profile-option">
+    <option value="${profile.profileid}">
+      ${profile.displayName} / ${profile.displayEmail}
+    </option>
+  </template>
+  <template id="invalid-organization-name">
+    <div class="error message" translate="yes">
+      Qagh! DuHIvDI' miss pagh invalid DIvI' pong
+    </div>
+  </template>
+  <template id="invalid-organization-name-length">
+    <div class="error message" translate="yes">
+      Qagh! invalid DIvI' pong 'ab
+    </div>
+  </template>
+  <template id="invalid-organization-email">
+    <div class="error message" translate="yes">
+      Qagh! DuHIvDI' miss pagh invalid DIvI' email
+    </div>
+  </template>
+  <template id="success">
+    <div class="success message" translate="yes">
+      Qapla'! chenmoHta' DIvI' successfully
+    </div>
+  </template>
+  <template id="unknown-error">
+    <div class="error message" translate="yes">
+      Qagh! qaS Qagh DIvI' chenmoH
+    </div>
+  </template>
+  <template id="invalid-first-name">
+    <div class="error message" translate="yes">
+      Qagh! miss pagh invalid wa'DIch pong DuHIvDI'
+    </div>
+  </template>
+  <template id="invalid-first-name-length">
+    <div class="error message" translate="yes">
+      Qagh! DuHIvDI' invalid wa'DIch pong
+    </div>
+  </template>
+  <template id="invalid-last-name">
+    <div class="error message" translate="yes">
+      Qagh! DuHIvDI' miss pagh invalid Qav pong
+    </div>
+  </template>
+  <template id="invalid-last-name-length">
+    <div class="error message" translate="yes">
+      Qagh! DuHIvDI' pong invalid Qav
+    </div>
+  </template>
+  <template id="invalid-contact-email">
+    <div class="error message" translate="yes">
+      Qagh! invalid contact email SoQ
+    </div>
+  </template>
+  <template id="invalid-display-email">
+    <div class="error message" translate="yes">
+      Qagh! invalid bey' email SoQ
+    </div>
+  </template>
+  <template id="invalid-display-name">
+    <div class="error message" translate="yes">
+      Qagh! DuHIvDI' miss pagh invalid bey' pong
+    </div>
+  </template>
+  <template id="invalid-dob">
+    <div class="error message" translate="yes">
+      Qagh! DuHIvDI' miss pagh invalid date boghDI'
+    </div>
+  </template>
+  <template id="invalid-phone">
+    <div class="error message" translate="yes">
+      Qagh! DuHIvDI' miss pagh invalid phone.
+    </div>
+  </template>
+  <template id="invalid-occupation">
+    <div class="error message" translate="yes">
+      Qagh! DuHIvDI' miss pagh invalid occupation.
+    </div>
+  </template>
+  <template id="invalid-location">
+    <div class="error message" translate="yes">
+      Qagh! DuHIvDI' miss pagh invalid location.
+    </div>
+  </template>
+  <template id="invalid-company-name">
+    <div class="error message" translate="yes">
+      Qagh! DuHIvDI' miss pagh invalid wey pong.
+    </div>
+  </template>
+  <template id="invalid-website">
+    <div class="error message" translate="yes">
+      Qagh! DuHIvDI' miss pagh invalid website.
+    </div>
+  </template>
+  <template id="invalid-display-name-length">
+    <div class="error message" translate="yes">
+      Qagh! DuHIvDI' miss pagh invalid bey' pong
+    </div>
+  </template>
+  <template id="invalid-profileid">
+    <div class="error message" translate="yes">
+      Qagh! wIv miss pagh invalid qoghDu'DajDaq.
+    </div>
+  </template>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" data-navbar="/account/organizations/navbar.html">
+<head>
+  <meta charset="utf-8">
+  <title translate="yes">Mau pupu</title>
+  <link href="/public/pure-min.css" rel="stylesheet">
+  <link href="/public/content.css" rel="stylesheet">
+  <link href="/public/content-additional.css" rel="stylesheet">
+  <base target="_top" href="/">
+</head>
+<body>
+  <h1 translate="yes">Mau pupu</h1>
+  <p><a href="/account/organizations/create-organization" class="pure-button pure-button-primary" translate="yes">Faatupu i te faanahonahoraa</a></p>
+  <div id="no-data">
+    <p translate="yes">Aita outou i hamani e aore ra, ua amui atu i te tahi atu mau pupu.</p>
+  </div>
+  <div id="memberships-container">
+    <h2 translate="yes">Tau memberships</h2>
+    <div id="no-memberships">
+      <p translate="yes">Aita outou i farii i te mau aniraa ia amui atu i te mau pupu.</p>
+    </div>
+    <table id="memberships-table" class="pure-table pure-table-striped list-table">
+      <thead>
+        <tr>
+          <th >ID</th>
+          <th translate="yes">Faanahonahoraa</th>
+          <th translate="yes">Ioa</th>
+          <th translate="yes">Rata uira</th>
+          <th translate="yes">Tomo mai</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+  <div id="organizations-container">
+    <h2 translate="yes">Tau mau pupu</h2>
+    <div id="no-organizations">
+      <p translate="yes">Aita outou i hamani i te hoe noa ae pupu.</p>
+    </div>
+    <table id="organizations-table" class="pure-table pure-table-striped list-table">
+      <thead>
+        <tr>
+          <th >ID</th>
+          <th translate="yes">Ioa</th>
+          <th translate="yes">Rata uira</th>
+          <th translate="yes">Hamani</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+  <template id="membership-row">
+    <tr id="${membership.membershipid}">
+      <td>
+        <a href="/account/organizations/membership?membershipid=${membership.membershipid}">${membership.membershipid}</a>
+      </td>
+      <td>
+        <a href="/account/organizations/organization?organizationid=${membership.organizationid}">${membership.organizationid}</a>
+      </td>
+      <td>${membership.organizationName}</td>
+      <td>
+        <a href="mailto:${membership.organizationEmail}">${membership.organizationEmail}</a>
+      </td>
+      <td>${membership.createdFormatted}</td>
+    </tr>
+  </template>
+  <template id="organization-row">
+    <tr id="${organization.organizationid}">
+      <td>
+        <a href="/account/organizations/organization?organizationid=${organization.organizationid}">${organization.organizationid}</a>
+      </td>
+      <td>${organization.name}</td>
+      <td>
+        <a href="mailto:${organization.email}">${organization.email}</a>
+      </td>
+      <td>${organization.createdFormatted}</td>
+    </tr>
+  </template>
+</body>
+</html>

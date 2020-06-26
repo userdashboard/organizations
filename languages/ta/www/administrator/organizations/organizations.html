@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" data-navbar="/administrator/organizations/navbar.html">
+<head>
+  <meta charset="utf-8">
+  <title translate="yes">நிறுவனங்கள்</title>
+  <link href="/public/pure-min.css" rel="stylesheet">
+  <link href="/public/content.css" rel="stylesheet">
+  <link href="/public/content-additional.css" rel="stylesheet">
+  <base target="_top" href="/">
+</head>
+<body>
+  <h1 translate="yes">நிறுவனங்கள்</h1>
+  <p translate="yes">பயனர்கள் உங்கள் பயன்பாட்டில் உள்ள வளங்களுக்கான அணுகலைப் பகிர்வதற்கு இவற்றை உருவாக்குகிறார்கள்.</p>
+  <div id="no-organizations">
+    <p translate="yes">இன்னும் எந்த அமைப்புகளும் இல்லை.</p>
+  </div>
+  <table id="organizations-table" class="pure-table pure-table-striped list-table">
+    <thead>
+      <tr>
+        <th >ID</th>
+        <th translate="yes">பெயர்</th>
+        <th translate="yes">மின்னஞ்சல்</th>
+        <th translate="yes">உருவாக்க</th>
+      </tr>
+    </thead>
+  </table>
+  <ul id="page-links" class="pagination"></ul>
+  <template id="page-link">
+    <li>
+      <a href="/account/organizations/organizations?offset=${page.offset}" id="page-link-${page.pageNumber}">${page.pageNumber}</a>
+    </li>
+  </template>
+  <template id="organization-row">
+    <table>
+      <tr id="${organization.organizationid}">
+        <td>
+          <a href="/administrator/organizations/organization?organizationid=${organization.organizationid}">${organization.organizationid}</a>
+        </td>
+        <td>${organization.name}</td>
+        <td>
+          <a href="mailto:${organization.email}">${organization.email}</a>
+        </td>
+        <td>${organization.createdFormatted}</td>
+      </tr>
+    </table>
+  </template>
+</body>
+</html>

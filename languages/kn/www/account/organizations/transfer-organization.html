@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" data-navbar="/account/organizations/navbar-organization.html">
+<head>
+  <meta charset="utf-8">
+  <title translate="yes">ಮಾಲೀಕತ್ವವನ್ನು ವರ್ಗಾಯಿಸು ${organization.organizationid}</title>
+  <link href="/public/pure-min.css" rel="stylesheet">
+  <link href="/public/content.css" rel="stylesheet">
+  <link href="/public/content-additional.css" rel="stylesheet">
+  <base target="_top" href="/">
+</head>
+<body>
+  <h1 translate="yes">ಮಾಲೀಕತ್ವವನ್ನು ವರ್ಗಾಯಿಸು ${organization.organizationid}</h1>
+  <p translate="yes">ಇದು ಕೂಡಲೇ ಸಂಸ್ಥೆಯ ಮಾಲೀಕನನ್ನು ಬದಲಾಯಿಸುತ್ತದೆ.</p>
+  <div id="message-container"></div>
+  <table id="organizations-table" class="pure-table object-table">
+    <thead>
+      <tr>
+        <th >ID</th>
+        <th translate="yes">ಹೆಸರು</th>
+        <th translate="yes">ಇಮೇಲ್</th>
+        <th translate="yes">ರಚಿಸಲಾಗಿದೆ</th>
+      </tr>
+    </thead>
+    <tr id="${organization.organizationid}">
+      <td>${organization.organizationid}</td>
+      <td>${organization.name}</td>
+      <td>
+        <a href="mailto:${organization.email}">${organization.email}</a>
+      </td>
+      <td>${organization.createdFormatted}</td>
+    </tr>
+  </table>
+  <form id="submit-form" class="pure-form pure-form-stacked" action="/account/organizations/transfer-organization?organizationid=${organization.organizationid}" name="submit-form">
+    <div class="pure-control-group">
+      <label for="accountid" translate="yes">ಹೊಸ ಸಂಸ್ಥೆಯ ಮಾಲೀಕ</label>
+      <select id="accountid" name="accountid">
+        <option value="" translate="yes">
+          ಹೊಸ ಮಾಲೀಕನನ್ನು ಆಯ್ಕೆಮಾಡಿ
+        </option>
+      </select>
+    </div>
+    <div class="pure-controls">
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">ವರ್ಗಾವಣೆ ಸಂಸ್ಥೆ</button>
+    </div>
+  </form>
+  <template id="membership-option-template">
+    <option value="${membership.accountid}">
+      ${membership.email}
+    </option>
+  </template>
+  <template id="success">
+    <div class="success message" translate="yes">
+      ಯಶಸ್ಸು! ನೀವು ಸಂಸ್ಥೆಯನ್ನು ಹೊಸ ಮಾಲೀಕರಿಗೆ ವರ್ಗಾಯಿಸಿದ್ದೀರಿ
+    </div>
+  </template>
+  <template id="unknown-error">
+    <div class="error message" translate="yes">
+      ತಪ್ಪು! ಸಂಸ್ಥೆಯನ್ನು ವರ್ಗಾಯಿಸುವಾಗ ದೋಷ ಸಂಭವಿಸಿದೆ
+    </div>
+  </template>
+  <template id="invalid-accountid">
+    <div class="error message" translate="yes">
+      ತಪ್ಪು! ಅಮಾನ್ಯ ಸ್ವೀಕೃತಕರ್ತನನ್ನು ಆಯ್ಕೆ ಮಾಡಲಾಗಿದೆ ಅಥವಾ ಒದಗಿಸಲಾಗಿದೆ
+    </div>
+  </template>
+</body>
+</html>

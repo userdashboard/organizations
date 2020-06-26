@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" data-navbar="/account/organizations/navbar-organization.html">
+<head>
+  <meta charset="utf-8">
+  <title translate="yes">Przeniesienie własności ${organization.organizationid}</title>
+  <link href="/public/pure-min.css" rel="stylesheet">
+  <link href="/public/content.css" rel="stylesheet">
+  <link href="/public/content-additional.css" rel="stylesheet">
+  <base target="_top" href="/">
+</head>
+<body>
+  <h1 translate="yes">Przeniesienie własności ${organization.organizationid}</h1>
+  <p translate="yes">To natychmiast zmieni właściciela organizacji.</p>
+  <div id="message-container"></div>
+  <table id="organizations-table" class="pure-table object-table">
+    <thead>
+      <tr>
+        <th >ID</th>
+        <th translate="yes">Nazwa</th>
+        <th translate="yes">Adres e-mail</th>
+        <th translate="yes">Utworzone</th>
+      </tr>
+    </thead>
+    <tr id="${organization.organizationid}">
+      <td>${organization.organizationid}</td>
+      <td>${organization.name}</td>
+      <td>
+        <a href="mailto:${organization.email}">${organization.email}</a>
+      </td>
+      <td>${organization.createdFormatted}</td>
+    </tr>
+  </table>
+  <form id="submit-form" class="pure-form pure-form-stacked" action="/account/organizations/transfer-organization?organizationid=${organization.organizationid}" name="submit-form">
+    <div class="pure-control-group">
+      <label for="accountid" translate="yes">Nowy właściciel organizacji</label>
+      <select id="accountid" name="accountid">
+        <option value="" translate="yes">
+          Wybierz nowego właściciela
+        </option>
+      </select>
+    </div>
+    <div class="pure-controls">
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Organizacja transferu</button>
+    </div>
+  </form>
+  <template id="membership-option-template">
+    <option value="${membership.accountid}">
+      ${membership.email}
+    </option>
+  </template>
+  <template id="success">
+    <div class="success message" translate="yes">
+      Sukces! Organizacja została przeniesiona do nowego właściciela
+    </div>
+  </template>
+  <template id="unknown-error">
+    <div class="error message" translate="yes">
+      Błąd! Wystąpił błąd podczas przenoszenia organizacji
+    </div>
+  </template>
+  <template id="invalid-accountid">
+    <div class="error message" translate="yes">
+      Błąd! Wybrano lub dostarczono nieprawidłowego adresata
+    </div>
+  </template>
+</body>
+</html>

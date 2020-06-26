@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" data-navbar="/administrator/organizations/navbar.html">
+<head>
+  <meta charset="utf-8">
+  <title translate="yes">அமைப்பு நிர்வாகம்</title>
+  <link href="/public/pure-min.css" rel="stylesheet">
+  <link href="/public/content.css" rel="stylesheet">
+  <link href="/public/content-additional.css" rel="stylesheet">
+  <base target="_top" href="/">
+</head>
+<body>
+  <h1 translate="yes">அமைப்பு நிர்வாகம்</h1>
+  <table id="organizations-table" class="pure-table pure-table-striped list-table">
+    <thead>
+      <tr>
+        <th >ID</th>
+        <th translate="yes">அமைப்பான்மை</th>
+        <th translate="yes">தொடுநிலை</th>
+        <th translate="yes">உருவாக்க</th>
+      </tr>
+    </thead>
+  </table>
+  <h1 translate="yes">அங்கத்துவம்</h1>
+  <table id="memberships-table" class="pure-table pure-table-striped list-table">
+    <thead>
+      <tr>
+        <th >ID</th>
+        <th translate="yes">மின்னஞ்சல்</th>
+        <th translate="yes">விரும்பி அழைத்தல்</th>
+        <th translate="yes">அமைப்பான்மை</th>
+        <th translate="yes">உருவாக்க</th>
+      </tr>
+    </thead>
+  </table>
+  <template id="organization-row">
+    <tr id="${organization.organizationid}">
+      <td>
+        <a href="/administrator/organizations/organization?organizationid=${organization.organizationid}">${organization.organizationid}</a>
+      </td>
+      <td>${organization.name}</td>
+      <td>
+        <a href="mailto:${organization.email}">${organization.email}</a>
+      </td>
+      <td>${organization.createdFormatted}</td>
+    </tr>
+  </template>
+  <template id="membership-row">
+    <tr id="${membership.membershipid}">
+      <td>
+        <a href="/administrator/organizations/membership?membershipid=${membership.membershipid}">${membership.membershipid}</a>
+      </td>
+      <td>
+        <a href="mailto:${membership.email}">${membership.email}</a>
+      </td>
+      <td>
+        <a href="/administrator/organizations/invitation?invitationid=${membership.invitationid}">${membership.invitationid}</a>
+      </td>
+      <td>
+        <a href="/administrator/organizations/organization?organizationid=${membership.organizationid}">${membership.organizationid}</a>
+      </td>
+      <td>${membership.createdFormatted}</td>
+    </tr>
+  </template>
+</body>
+</html>

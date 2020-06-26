@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" data-navbar="/account/organizations/navbar-membership.html">
+<head>
+  <meta charset="utf-8">
+  <title translate="yes">അംഗത്വങ്ങൾ പിൻവലിക്കുക ${membership.membershipid}</title>
+  <link href="/public/pure-min.css" rel="stylesheet">
+  <link href="/public/content.css" rel="stylesheet">
+  <link href="/public/content-additional.css" rel="stylesheet">
+  <base target="_top" href="/">
+</head>
+<body>
+  <h1 translate="yes">അംഗത്വം പിൻവലിക്കുക ${membership.membershipid}</h1>
+  <p translate="yes">ഇത് ഓർഗനൈസ് എയിത്തത്തിൽ നിന്ന് അംഗത്തെ ഉടനടി നീക്കം ചെയ്യും.</p>
+  <div id="message-container"></div>
+  <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/revoke-membership?membershipid=${membership.membershipid}" name="submit-form">
+    <div class="pure-control-group">
+      <label for="organizationName" translate="yes">സംഘടന</label>
+      <input id="organizationName" type="text" maxlength="100" readonly>
+    </div>
+    <div class="pure-controls">
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">അംഗത്വം ഇല്ലാതാക്കുക</button>
+    </div>
+  </form>
+  <template id="success">
+    <div class="success message" translate="yes">
+      വിജയം! അംഗത്വം ശാശ്വതമായി നീക്കം ചെയ്തിരിക്കുന്നു
+    </div>
+  </template>
+  <template id="unknown-error">
+    <div class="error message" translate="yes">
+      തെറ്റ്! അപരിചിതമായ പിശക്
+    </div>
+  </template>
+</body>
+</html>
