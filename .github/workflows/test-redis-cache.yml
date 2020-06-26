@@ -44,9 +44,8 @@ jobs:
         PACKAGE=${PACKAGE/\"description\"\: \"\"/\"dashboard\": \{ \"modules\"\: \[\"@userdashboard/organizations\"\] \}}
         echo $PACKAGE > package.json
     - name: Test Redis cache with unencrypted data
-      run: |
-        cd /tmp/project 
-        mocha --retries 2 --file main.js --bail --exit --full-trace --recursive --timeout 90000000 "./node_modules/@userdashboard/**/{,!(public)}/*.test.js"
+      run: mocha --retries 2 --file main.js --bail --exit --full-trace --recursive --timeout 90000000 "./node_modules/@userdashboard/**/{,!(public)}/*.test.js"
+      working-directory: "/tmp/project"
       env:
         NODE_ENV: testing
         FAST_START: true
@@ -59,9 +58,8 @@ jobs:
         GENERATE_SITEMAP_TXT: false
         GENERATE_API_TXT: false
     - name: Test Redis cache with encrypted data
-      run: |
-        cd /tmp/project 
-        mocha --retries 2 --file main.js --bail --exit --full-trace --recursive --timeout 90000000 "./node_modules/@userdashboard/**/{,!(public)}/*.test.js"
+      run: mocha --retries 2 --file main.js --bail --exit --full-trace --recursive --timeout 90000000 "./node_modules/@userdashboard/**/{,!(public)}/*.test.js"
+      working-directory: "/tmp/project"
       env:
         NODE_ENV: testing
         FAST_START: true
