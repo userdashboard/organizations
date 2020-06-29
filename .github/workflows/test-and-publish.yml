@@ -33,7 +33,6 @@ jobs:
         PACKAGE=`cat package.json`
         PACKAGE=${PACKAGE/\"description\"\: \"\"/\"dashboard\": \{ \"modules\"\: \[\"@userdashboard/organizations\"\] \}}
         echo $PACKAGE > package.json
-        set -o pipefail
     - name: Lint (standard.js)
       run: standard src
     - name: Test (redis)
