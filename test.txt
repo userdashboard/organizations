@@ -1,0 +1,13 @@
+
+
+  1) "before all" hook: setupBefore in "{root}"
+
+  0 passing (266ms)
+  1 failing
+
+  1) "before all" hook: setupBefore in "{root}":
+     Uncaught Error: Redis connection to localhost:6379 failed - connect ECONNREFUSED 127.0.0.1:6379
+      at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1141:16)
+
+
+
