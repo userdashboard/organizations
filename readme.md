@@ -38,19 +38,19 @@ Memberships designate a Profile which you can configure to collect the informati
 
     MEMBERSHIP_PROFILE_FIELDS="any,of,the,below"
 
-| Field | 
-|---------|
-| display-name|
-| display-email|
-| contact-email|
-| full-name|
-| dob|
-| phone|
-| occupation|
-| location|
-| location|
-| company-name|
-| website|
+| Field          | 
+|----------------|
+| display-name   |
+| display-email  |
+| contact-email  |
+| full-name      |
+| dob            |
+| phone          |
+| occupation     |
+| location       |
+| location       |     
+| company-name   |
+| website        |
 
 ## Supporting your users
 
