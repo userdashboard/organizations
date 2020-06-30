@@ -43,6 +43,7 @@ jobs:
         if [[ "$TESTS" == *" 1)"* ]]; then
           exit 1
         fi
+        cat /home/runner/work/organizations/organizations/package.json
       working-directory: '/tmp/project'
       env:
         NODE_ENV: testing
