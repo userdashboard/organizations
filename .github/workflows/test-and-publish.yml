@@ -63,15 +63,15 @@ jobs:
         DASHBOARD_SERVER: "http://localhost:9000"
         DOMAIN: "localhost"
     - name: Publish to Github
-      working-directory: /home/runner/work/organizations/organizations/
       uses: stefanzweifel/git-auto-commit-action@v4.1.6
       with:
         commit_message: Automatically regenerated against current version
         branch: ${{ github.head_ref }}
         commit_options: '--no-verify --signoff'
         repository: .
+        working-directory: /home/runner/work/organizations/organizations/
     - name: Publish to NPM
-      working-directory: /home/runner/work/organizations/organizations/
       uses: JS-DevTools/npm-publish@v1
       with:
-        token: ${{ secrets.NPM_TOKEN }}```
+        token: ${{ secrets.NPM_TOKEN }}
+        working-directory: /home/runner/work/organizations/organizations/
