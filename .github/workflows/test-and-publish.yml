@@ -15,7 +15,6 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: Set up as module
       run: |
-        echo "pwd: `pwd`"
         git config --global user.name "${{ secrets.NAME }}"
         git config --global user.email "${{ secrets.EMAIL }}"
         sudo apt-get install -y redis-server
@@ -38,7 +37,13 @@ jobs:
     - name: Lint (standard.js)
       run: standard src
     - name: Test (redis)
-      run: mocha --retries 2 --file main.js --bail --exit --full-trace --recursive --timeout 90000000 "./node_modules/@userdashboard/**/{,!(public)}/*.test.js" > /home/runner/work/organizations/organizations/test.txt
+      run: |
+        mocha --retries 2 --file main.js --bail --exit --full-trace --recursive --timeout 90000000 "./node_modules/@userdashboard/**/{,!(public)}/*.test.js" | tee /home/runner/work/organizations/organizations/test.txt
+        TESTS=`cat /home/runner/work/organizations/organizations/tests.txt`
+        if [[ "$TESTS" == *" 1)"* ]]; then
+          exit 1
+        fi
+        cat /home/runner/work/organizations/organizations/package.json
       working-directory: '/tmp/project'
       env:
         NODE_ENV: testing
@@ -58,6 +63,7 @@ jobs:
         DASHBOARD_SERVER: "http://localhost:9000"
         DOMAIN: "localhost"
     - name: Publish to Github
+      working-directory: /home/runner/work/organizations/organizations/
       uses: stefanzweifel/git-auto-commit-action@v4.1.6
       with:
         commit_message: Automatically regenerated against current version
@@ -65,6 +71,7 @@ jobs:
         commit_options: '--no-verify --signoff'
         repository: .
     - name: Publish to NPM
+      working-directory: /home/runner/work/organizations/organizations/
       uses: JS-DevTools/npm-publish@v1
       with:
         token: ${{ secrets.NPM_TOKEN }}```
