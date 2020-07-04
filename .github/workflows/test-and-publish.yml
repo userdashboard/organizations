@@ -13,11 +13,14 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+    - uses: zhulik/redis-action@1.1.0
+      with:
+        redis version: '5'
+        number of databases: 1
     - name: Set up as module
       run: |
         git config --global user.name "${{ secrets.NAME }}"
         git config --global user.email "${{ secrets.EMAIL }}"
-        sudo apt-get install -y redis-server
         npm install
         npm install @userdashboard/dashboard --no-save
         npm version patch
