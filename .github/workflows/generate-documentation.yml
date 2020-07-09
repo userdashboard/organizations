@@ -32,6 +32,7 @@ jobs:
         rm -rf node_modules/@organizations/organizations/src
         cp /home/runner/work/organizations/organizations/*.js node_modules/@userdashboard/organizations
         cp -R /home/runner/work/organizations/organizations/src/ node_modules/@userdashboard/organizations/src/
+        find node_modules/@userdashboard
         echo "global.applicationPath = __dirname" > main.js
         PACKAGE=`cat package.json`
         PACKAGE=${PACKAGE/\"description\"\: \"\"/\"dashboard\": \{ \"modules\"\: \[\"@userdashboard/organizations\"\] \}}
