@@ -29,10 +29,9 @@ jobs:
         npm install faker puppeteer@2.1.1 @userdashboard/dashboard @userdashboard/organizations @userdashboard/storage-redis
         npm install -g mocha
         rm node_modules/@userdashboard/organizations/*.js
-        rm -rf node_modules/@organizations/organizations/src
+        rm -rf node_modules/@userdashboard/organizations/src
         cp /home/runner/work/organizations/organizations/*.js node_modules/@userdashboard/organizations
         cp -R /home/runner/work/organizations/organizations/src/ node_modules/@userdashboard/organizations/src/
-        find node_modules/@userdashboard
         echo "global.applicationPath = __dirname" > main.js
         PACKAGE=`cat package.json`
         PACKAGE=${PACKAGE/\"description\"\: \"\"/\"dashboard\": \{ \"modules\"\: \[\"@userdashboard/organizations\"\] \}}
