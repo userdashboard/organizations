@@ -2,52 +2,52 @@
 <html lang="en" data-navbar="/account/organizations/navbar-organization.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Redigere ${organization.organizationid}</title>
+  <title translate="yes">ફેરફાર કરો ${organization.organizationid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Redigere ${organization.organizationid}</h1>
-  <p translate="yes">Hold kontaktinformasjonen riktig og oppdatert.</p>
+  <h1 translate="yes">ફેરફાર કરો ${organization.organizationid}</h1>
+  <p translate="yes">તમારી સંપર્ક માહિતીને સાચી અને અપડેટ રાખો.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/edit-organization?organizationid=${organization.organizationid}" name="submit-form">
     <div class="pure-control-group">
-      <label for="name" translate="yes">navn</label>
+      <label for="name" translate="yes">નામ</label>
       <input id="name" name="name" type="text" maxlength="100">
     </div>
     <div class="pure-control-group">
-      <label for="email" translate="yes">E-post</label>
+      <label for="email" translate="yes">ઈમેઈલ</label>
       <input id="email" name="email" type="text" maxlength="100">
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Oppdatere organisasjonen</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">સંસ્થાને સુધારો</button>
     </div>
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      Suksess! Organisasjonsinformasjonen er oppdatert
+      સફળતા! તમારી સંસ્થાની જાણકારી સુધારેલ છે
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Feil! En ukjent feil oppstod
+      ભૂલ! અજ્ઞાત ભૂલ ઓ
     </div>
   </template>
   <template id="invalid-organization-name">
     <div class="error message" translate="yes">
-      Feil! Et manglende eller ugyldig organisasjonsnavn ble angitt
+      ભૂલ! ગુમ થયેલ અથવા અયોગ્ય સંસ્થા નામ પૂરુ પાડેલ હતું
     </div>
   </template>
   <template id="invalid-organization-name-length">
     <div class="error message" translate="yes">
-      Feil! Ugyldig lengde på organisasjonsnavn
+      ભૂલ! અયોગ્ય સંસ્થા નામ લંબાઈ
     </div>
   </template>
   <template id="invalid-organization-email">
     <div class="error message" translate="yes">
-      Feil! En manglende eller ugyldig organisasjons-e-post ble gitt
+      ભૂલ! ગુમ થયેલ અથવા અયોગ્ય સંસ્થા ઇમેઇલ પૂરો પાડવામાં આવ્યો હતો
     </div>
   </template>
 </body>

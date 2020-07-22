@@ -2,23 +2,23 @@
 <html lang="en" data-navbar="/account/organizations/navbar-organization.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Omandiõiguse üleandmine ${organization.organizationid}</title>
+  <title translate="yes">પરિવહન માલિકી ${organization.organizationid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Omandiõiguse üleandmine ${organization.organizationid}</h1>
-  <p translate="yes">See muudab kohe organizaitoni omanikku.</p>
+  <h1 translate="yes">પરિવહન માલિકી ${organization.organizationid}</h1>
+  <p translate="yes">તેનાથી આયોજકના માલિકને તાત્કાલિક બદલી નાખશે.</p>
   <div id="message-container"></div>
   <table id="organizations-table" class="pure-table object-table">
     <thead>
       <tr>
         <th >ID</th>
-        <th translate="yes">Nimi</th>
-        <th translate="yes">Meil</th>
-        <th translate="yes">Loodud</th>
+        <th translate="yes">નામ</th>
+        <th translate="yes">ઈમેઈલ</th>
+        <th translate="yes">બનાવેલ છે</th>
       </tr>
     </thead>
     <tr id="${organization.organizationid}">
@@ -32,15 +32,15 @@
   </table>
   <form id="submit-form" class="pure-form pure-form-stacked" action="/account/organizations/transfer-organization?organizationid=${organization.organizationid}" name="submit-form">
     <div class="pure-control-group">
-      <label for="accountid" translate="yes">Uue organisatsiooni omanik</label>
+      <label for="accountid" translate="yes">નવી સંસ્થા માલિક</label>
       <select id="accountid" name="accountid">
         <option value="" translate="yes">
-          Vali uus omanik
+          નવો માલિક પસંદ કરો
         </option>
       </select>
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Üleviimise organisatsioon</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">પરિવહન સંસ્થા</button>
     </div>
   </form>
   <template id="membership-option-template">
@@ -50,17 +50,17 @@
   </template>
   <template id="success">
     <div class="success message" translate="yes">
-      Edu! Olete organisatsiooni uuele omanikule üle andnud
+      સફળતા! તમે સંસ્થાને નવા માલિકને ટ્રાન્સફર કરી છે
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Viga! Organisatsiooni üleviimisel ilmnes tõrge
+      ભૂલ! સંસ્થાને ટ્રાન્સફર કરવામાં ભૂલ ઉદ્ભવી
     </div>
   </template>
   <template id="invalid-accountid">
     <div class="error message" translate="yes">
-      Viga! Valiti või esitati sobimatu adressaat
+      ભૂલ! અયોગ્ય પ્રાપ્તકર્તા પસંદ કરેલ અથવા પૂરો પાડેલ
     </div>
   </template>
 </body>

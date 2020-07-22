@@ -1,26 +1,26 @@
 <!DOCTYPE html>
-<html lang="en" data-navbar="/administrator/organizations/navbar.html">
+<html lang="en" data-navbar="/account/organizations/navbar.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Organisatsioonid</title>
+  <title translate="yes">સંસ્થાઓ</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Organisatsioonid</h1>
-  <p translate="yes">Kasutajad loovad need teie rakenduse ressurssidele juurdepääsu jagamiseks.</p>
+  <h1 translate="yes">સંસ્થાઓ</h1>
+  <p><a href="/account/organizations/create-organization" class="pure-button pure-button-primary" translate="yes">સંસ્થા બનાવો</a></p>
   <div id="no-organizations">
-    <p translate="yes">Organisatsioone pole veel.</p>
+    <p translate="yes">તમે હજુ સુધી કોઈ સંસ્થા બનાવી નથી.</p>
   </div>
   <table id="organizations-table" class="pure-table pure-table-striped list-table">
     <thead>
       <tr>
         <th >ID</th>
-        <th translate="yes">Nimi</th>
-        <th translate="yes">Meil</th>
-        <th translate="yes">Loodud</th>
+        <th translate="yes">નામ</th>
+        <th translate="yes">ઈમેઈલ</th>
+        <th translate="yes">બનાવેલ છે</th>
       </tr>
     </thead>
   </table>
@@ -34,7 +34,7 @@
     <table>
       <tr id="${organization.organizationid}">
         <td>
-          <a href="/administrator/organizations/organization?organizationid=${organization.organizationid}">${organization.organizationid}</a>
+          <a href="/account/organizations/organization?organizationid=${organization.organizationid}">${organization.organizationid}</a>
         </td>
         <td>${organization.name}</td>
         <td>
