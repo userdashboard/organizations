@@ -2,15 +2,15 @@
 <html lang="en" data-navbar="/account/organizations/navbar-membership.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Muokkaa ${membership.membershipid} profile</title>
+  <title translate="yes">Muokata ${membership.membershipid} profile</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Muokkaa ${membership.membershipid} profile</h1>
-  <p translate="yes">Kaikki muut tämän profiilin jakavat jäsenyydet tai sen muu käyttö päivitetään myös.</p>
+  <h1 translate="yes">Muokata ${membership.membershipid} profile</h1>
+  <p translate="yes">Myös kaikki muut tätä profiilia käyttävät jäsenyydet tai sen muut käytöt päivitetään.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/edit-membership-profile?membershipid=${membership.membershipid}" name="submit-form">
     <div id="display-name-container" class="pure-control-group">
@@ -22,7 +22,7 @@
       <input required="" id="display-email" name="display-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="contact-email-container" class="pure-control-group">
-      <label for="contact-email" translate="yes">Yhteystiedot sähköposti</label>
+      <label for="contact-email" translate="yes">Ota yhteyttä sähköpostitse</label>
       <input required="" id="contact-email" name="contact-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="full-name-container">
@@ -37,7 +37,7 @@
     </div>
     <div id="dob-container">
       <div class="pure-control-group">
-        <label for="dob" translate="yes">Syntymäpäivämäärä</label>
+        <label for="dob" translate="yes">Syntymäaika</label>
         <input required="" id="dob" name="dob" type="text" maxlength="11">
       </div>
     </div>
@@ -46,7 +46,7 @@
       <input required="" id="phone" name="phone" type="text" maxlength="1000">
     </div>
     <div id="occupation-container" class="pure-control-group">
-      <label for="occupation" translate="yes">Ammatti</label>
+      <label for="occupation" translate="yes">ammatti</label>
       <input required="" id="occupation" name="occupation" type="text" maxlength="1000">
     </div>
     <div id="location-container" class="pure-control-group">
@@ -58,7 +58,7 @@
       <input required="" id="company-name" name="company-name" type="text" maxlength="1000">
     </div>
     <div id="website-container" class="pure-control-group">
-      <label for="website" translate="yes">Sivusto</label>
+      <label for="website" translate="yes">Verkkosivusto</label>
       <input required="" id="website" name="website" type="text" maxlength="1000">
     </div>
     <div class="pure-controls">
@@ -67,82 +67,82 @@
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      Menestys! Jäsentietosi on päivitetty
+      Menestys! Jäsenyyttietosi on päivitetty
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Virhe! Tuntematon virhe
+      Virhe! Tapahtui tuntematon virhe
     </div>
   </template>
   <template id="invalid-first-name">
     <div class="error message" translate="yes">
-      Virhe! Annettu etunimi puuttuu tai ei kelpaa
+      Virhe! Annettu puuttuva tai virheellinen etunimi
     </div>
   </template>
   <template id="invalid-first-name-length">
     <div class="error message" translate="yes">
-      Virhe! Etunimi ei kelpaa
+      Virhe! Etunimi annettiin virheellisesti
     </div>
   </template>
   <template id="invalid-last-name">
     <div class="error message" translate="yes">
-      Virhe! Annettu sukunimi puuttuu tai ei kelpaa
+      Virhe! Puuttuva tai virheellinen sukunimi annettiin
     </div>
   </template>
   <template id="invalid-last-name-length">
     <div class="error message" translate="yes">
-      Virhe! Annettu sukunimi ei kelpaa
+      Virhe! Virheellinen sukunimi annettiin
     </div>
   </template>
   <template id="invalid-contact-email">
     <div class="error message" translate="yes">
-      Virhe! Virheellinen yhteyshenkilön sähköpostiosoite
+      Virhe! Virheellinen yhteysosoite
     </div>
   </template>
   <template id="invalid-display-email">
     <div class="error message" translate="yes">
-      Virhe! Virheellinen näyttösähköpostiosoite
+      Virhe! Virheellinen näkyvä sähköpostiosoite
     </div>
   </template>
   <template id="invalid-display-name">
     <div class="error message" translate="yes">
-      Virhe! Näyttönimi puuttuu tai se ei kelpaa
+      Virhe! Puuttuva tai virheellinen näyttönimi annettiin
     </div>
   </template>
   <template id="invalid-dob">
     <div class="error message" translate="yes">
-      Virhe! Puuttuva tai virheellinen syntymäaika annettiin
+      Virhe! Syntymäaika puuttui tai oli virheellinen
     </div>
   </template>
   <template id="invalid-phone">
     <div class="error message" translate="yes">
-      Virhe! Annettu puhelin puuttuu tai ei kelpaa.
+      Virhe! Puuttuva tai virheellinen puhelin toimitettiin.
     </div>
   </template>
   <template id="invalid-occupation">
     <div class="error message" translate="yes">
-      Virhe! Kadotettiin tai se on virheellinen ammatti.
+      Virhe! Puuttuva tai virheellinen ammatti annettiin.
     </div>
   </template>
   <template id="invalid-location">
     <div class="error message" translate="yes">
-      Virhe! Annettu sijainti puuttuu tai ei kelpaa.
+      Virhe! Puuttuva tai virheellinen sijainti annettiin.
     </div>
   </template>
   <template id="invalid-company-name">
     <div class="error message" translate="yes">
-      Virhe! Yrityksen nimi puuttuu tai se ei kelpaa.
+      Virhe! Puuttuva tai virheellinen yrityksen nimi annettiin.
     </div>
   </template>
   <template id="invalid-website">
     <div class="error message" translate="yes">
-      Virhe! Puuttuva tai virheellinen sivusto toimitettiin.
+      Virhe! Tarjottiin puuttuva tai virheellinen verkkosivusto.
     </div>
   </template>
   <template id="invalid-display-name-length">
     <div class="error message" translate="yes">
-      Virhe! Näyttönimi puuttuu tai se ei kelpaa
+      Virhe! Puuttuva tai virheellinen näyttönimi annettiin
     </div>
   </template>
 </body>

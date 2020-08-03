@@ -2,14 +2,14 @@
 <html lang="en" data-navbar="/account/organizations/navbar.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Terima undangan</title>
+  <title translate="yes">Menerima undangan</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Terima undangan</h1>
+  <h1 translate="yes">Menerima undangan</h1>
   <p translate="yes">Anda akan menjadi anggota organisasi setelah memasukkan kode.</p>
   <div id="message-container"></div>
   <form id="submit-form" class="pure-form pure-form-stacked" action="/account/organizations/accept-invitation" name="submit-form">
@@ -26,7 +26,7 @@
       <label for="profileid" translate="yes">Gunakan profil yang ada</label>
       <select id="profileid" name="profileid">
         <option value="" translate="yes">
-          Pilih profil yang sudah ada
+          Pilih profil yang ada
         </option>
       </select>
     </div>
@@ -40,7 +40,7 @@
       <input required="" id="display-email" name="display-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="contact-email-container" class="pure-control-group">
-      <label for="contact-email" translate="yes">Kontak email</label>
+      <label for="contact-email" translate="yes">Kontak Email</label>
       <input required="" id="contact-email" name="contact-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="full-name-container">
@@ -49,7 +49,7 @@
       <input required="" id="first-name" name="first-name" type="text" maxlength="1000">
       </div>
       <div class="pure-control-group">
-        <label for="last-name" translate="yes">Nama belakang</label>
+        <label for="last-name" translate="yes">nama keluarga</label>
       <input required="" id="last-name" name="last-name" type="text" maxlength="1000">
       </div>
     </div>
@@ -72,20 +72,20 @@
       <input required="" id="location" name="location" type="text" maxlength="1000">
     </div>
     <div id="company-name-container" class="pure-control-group">
-      <label for="company-name" translate="yes">Nama perusahaan</label>
+      <label for="company-name" translate="yes">Nama Perusahaan</label>
       <input required="" id="company-name" name="company-name" type="text" maxlength="1000">
     </div>
     <div id="website-container" class="pure-control-group">
-      <label for="website" translate="yes">Website</label>
+      <label for="website" translate="yes">Situs web</label>
       <input required="" id="website" name="website" type="text" maxlength="1000">
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Bergabung dengan organisasi</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Bergabunglah dengan organisasi</button>
     </div>
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      Sukses! Anda sekarang adalah anggota organisasi
+      Keberhasilan! Anda sekarang adalah anggota organisasi
     </div>
   </template>
   <template id="invalid-invitation">
@@ -95,7 +95,7 @@
   </template>
   <template id="invalid-secret-code">
     <div class="error message" translate="yes">
-      Kesalahan! Kode undangan tidak benar
+      Kesalahan! Kode undangan salah
     </div>
   </template>
   <template id="invalid-invitationid">
@@ -105,12 +105,12 @@
   </template>
   <template id="invalid-account">
     <div class="error message" translate="yes">
-      Kesalahan! Anda sendiri atau anggota organisasi ini
+      Kesalahan! Anda memiliki atau menjadi anggota organisasi ini
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Kesalahan! Kesalahan tak dikenal terjadi
+      Kesalahan! Terjadi kesalahan yang tidak diketahui
     </div>
   </template>
   <template id="profile-option">
@@ -120,12 +120,12 @@
   </template>
   <template id="invalid-organization-name">
     <div class="error message" translate="yes">
-      Kesalahan! Nama organisasi yang hilang atau tidak valid disediakan
+      Kesalahan! Nama organisasi yang hilang atau tidak valid diberikan
     </div>
   </template>
   <template id="invalid-organization-name-length">
     <div class="error message" translate="yes">
-      Kesalahan! Nama organisasi tidak valid panjang
+      Kesalahan! Panjang nama organisasi tidak valid
     </div>
   </template>
   <template id="invalid-organization-email">
@@ -135,12 +135,12 @@
   </template>
   <template id="success">
     <div class="success message" translate="yes">
-      Sukses! Organisasi telah berhasil dibuat
+      Keberhasilan! Organisasi telah berhasil dibuat
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Kesalahan! Terjadi galat membuat organisasi
+      Kesalahan! Terjadi kesalahan saat membuat organisasi
     </div>
   </template>
   <template id="invalid-first-name">
@@ -150,17 +150,17 @@
   </template>
   <template id="invalid-first-name-length">
     <div class="error message" translate="yes">
-      Kesalahan! Nama pertama yang tidak valid diberikan
+      Kesalahan! Nama depan yang tidak valid diberikan
     </div>
   </template>
   <template id="invalid-last-name">
     <div class="error message" translate="yes">
-      Kesalahan! Nama belakang yang hilang atau tidak valid diberikan
+      Kesalahan! Nama belakang yang hilang atau tidak valid disediakan
     </div>
   </template>
   <template id="invalid-last-name-length">
     <div class="error message" translate="yes">
-      Kesalahan! Nama terakhir yang tidak valid diberikan
+      Kesalahan! Nama belakang yang tidak valid diberikan
     </div>
   </template>
   <template id="invalid-contact-email">
@@ -180,12 +180,12 @@
   </template>
   <template id="invalid-dob">
     <div class="error message" translate="yes">
-      Kesalahan! Tanggal lahir yang hilang atau tidak sah diberikan
+      Kesalahan! Tanggal lahir yang hilang atau tidak valid diberikan
     </div>
   </template>
   <template id="invalid-phone">
     <div class="error message" translate="yes">
-      Kesalahan! Telepon yang hilang atau tidak valid telah disediakan.
+      Kesalahan! Telepon yang hilang atau tidak valid disediakan.
     </div>
   </template>
   <template id="invalid-occupation">
@@ -195,17 +195,17 @@
   </template>
   <template id="invalid-location">
     <div class="error message" translate="yes">
-      Kesalahan! Lokasi yang hilang atau tidak valid telah disediakan.
+      Kesalahan! Lokasi yang hilang atau tidak valid disediakan.
     </div>
   </template>
   <template id="invalid-company-name">
     <div class="error message" translate="yes">
-      Kesalahan! Nama perusahaan yang hilang atau tidak valid telah disediakan.
+      Kesalahan! Nama perusahaan yang hilang atau tidak valid diberikan.
     </div>
   </template>
   <template id="invalid-website">
     <div class="error message" translate="yes">
-      Kesalahan! Situs web yang hilang atau tidak valid telah disediakan.
+      Kesalahan! Situs web yang hilang atau tidak valid disediakan.
     </div>
   </template>
   <template id="invalid-display-name-length">

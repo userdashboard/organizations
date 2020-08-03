@@ -10,7 +10,7 @@
 </head>
 <body>
   <h1 translate="yes">編輯 ${organization.organizationid}</h1>
-  <p translate="yes">保持您的聯繫資訊正確和最新。</p>
+  <p translate="yes">保持您的聯繫信息正確和最新。</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/edit-organization?organizationid=${organization.organizationid}" name="submit-form">
     <div class="pure-control-group">
@@ -27,27 +27,27 @@
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      成功!您的組織資訊已更新
+      成功！您的組織信息已更新
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      錯誤!發生未知的錯誤
+      錯誤！出現未知錯誤
     </div>
   </template>
   <template id="invalid-organization-name">
     <div class="error message" translate="yes">
-      錯誤!提供缺少或無效的組織名稱
+      錯誤！提供的組織名稱缺失或無效
     </div>
   </template>
   <template id="invalid-organization-name-length">
     <div class="error message" translate="yes">
-      錯誤!無效的組織名稱長度
+      錯誤！無效的組織名稱長度
     </div>
   </template>
   <template id="invalid-organization-email">
     <div class="error message" translate="yes">
-      錯誤!提供缺乏或不合法的組織電子郵件
+      錯誤！提供了丟失或無效的組織電子郵件
     </div>
   </template>
 </body>

@@ -10,7 +10,7 @@
 </head>
 <body>
   <h1 translate="yes">Upravit ${membership.membershipid} profile</h1>
-  <p translate="yes">Jakékoli jiné členství, které tento profil sdílí nebo používá, bude také aktualizováno.</p>
+  <p translate="yes">Aktualizováno bude také jakékoli další členství, které sdílí tento profil, nebo jeho další použití.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/edit-membership-profile?membershipid=${membership.membershipid}" name="submit-form">
     <div id="display-name-container" class="pure-control-group">
@@ -27,7 +27,7 @@
     </div>
     <div id="full-name-container">
       <div class="pure-control-group">
-        <label for="first-name" translate="yes">Křestní jméno</label>
+        <label for="first-name" translate="yes">Jméno</label>
         <input required="" id="first-name" name="first-name" type="text" maxlength="1000">
       </div>
       <div class="pure-control-group">
@@ -42,11 +42,11 @@
       </div>
     </div>
     <div id="phone-container" class="pure-control-group">
-      <label for="phone" translate="yes">Telefonní</label>
+      <label for="phone" translate="yes">Telefon</label>
       <input required="" id="phone" name="phone" type="text" maxlength="1000">
     </div>
     <div id="occupation-container" class="pure-control-group">
-      <label for="occupation" translate="yes">Okupace</label>
+      <label for="occupation" translate="yes">obsazení</label>
       <input required="" id="occupation" name="occupation" type="text" maxlength="1000">
     </div>
     <div id="location-container" class="pure-control-group">
@@ -54,50 +54,50 @@
       <input required="" id="location" name="location" type="text" maxlength="1000">
     </div>
     <div id="company-name-container" class="pure-control-group">
-      <label for="company-name" translate="yes">Název společnosti</label>
+      <label for="company-name" translate="yes">Jméno společnosti</label>
       <input required="" id="company-name" name="company-name" type="text" maxlength="1000">
     </div>
     <div id="website-container" class="pure-control-group">
-      <label for="website" translate="yes">Webové stránky</label>
+      <label for="website" translate="yes">webová stránka</label>
       <input required="" id="website" name="website" type="text" maxlength="1000">
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Aktualizovat členství</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Aktualizujte členství</button>
     </div>
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      Úspěch! Informace o vašem členství byly aktualizovány.
+      Úspěch! Vaše informace o členství byly aktualizovány
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Chyba! Došlo k neznámé chybě.
+      Chyba! Nastala neznámá chyba
     </div>
   </template>
   <template id="invalid-first-name">
     <div class="error message" translate="yes">
-      Chyba! Chybějící nebo neplatné křestní jméno, které je zadáno.
+      Chyba! Bylo zadáno chybějící nebo neplatné jméno
     </div>
   </template>
   <template id="invalid-first-name-length">
     <div class="error message" translate="yes">
-      Chyba! Bylo zadáno neplatné křestní jméno.
+      Chyba! Bylo zadáno neplatné jméno
     </div>
   </template>
   <template id="invalid-last-name">
     <div class="error message" translate="yes">
-      Chyba! Bylo zadáno chybějící nebo neplatné příjmení.
+      Chyba! Bylo zadáno chybějící nebo neplatné příjmení
     </div>
   </template>
   <template id="invalid-last-name-length">
     <div class="error message" translate="yes">
-      Chyba! Bylo zadáno neplatné příjmení.
+      Chyba! Bylo zadáno neplatné příjmení
     </div>
   </template>
   <template id="invalid-contact-email">
     <div class="error message" translate="yes">
-      Chyba! Neplatná e-mailová adresa kontaktu
+      Chyba! Neplatná kontaktní e-mailová adresa
     </div>
   </template>
   <template id="invalid-display-email">
@@ -107,12 +107,12 @@
   </template>
   <template id="invalid-display-name">
     <div class="error message" translate="yes">
-      Chyba! Byl zadán chybějící nebo neplatný zobrazovaný název.
+      Chyba! Byl zadán chybějící nebo neplatný zobrazovaný název
     </div>
   </template>
   <template id="invalid-dob">
     <div class="error message" translate="yes">
-      Chyba! Chybějící nebo neplatné datum narození bylo poskytnuto
+      Chyba! Bylo uvedeno chybějící nebo neplatné datum narození
     </div>
   </template>
   <template id="invalid-phone">
@@ -127,7 +127,7 @@
   </template>
   <template id="invalid-location">
     <div class="error message" translate="yes">
-      Chyba! Bylo poskytnuto chybějící nebo neplatné umístění.
+      Chyba! Bylo zadáno chybějící nebo neplatné místo.
     </div>
   </template>
   <template id="invalid-company-name">
@@ -142,7 +142,7 @@
   </template>
   <template id="invalid-display-name-length">
     <div class="error message" translate="yes">
-      Chyba! Byl zadán chybějící nebo neplatný zobrazovaný název.
+      Chyba! Byl zadán chybějící nebo neplatný zobrazovaný název
     </div>
   </template>
 </body>

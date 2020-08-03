@@ -2,15 +2,15 @@
 <html lang="en" data-navbar="/account/organizations/navbar-membership.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Aveese membershipof ${membership.membershipid}</title>
+  <title translate="yes">Faaleaogaina le avea ma ${membership.membershipid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Faaleaogaina o tagata auai o ${membership.membershipid}</h1>
-  <p translate="yes">O le a vave aveesea ai le tagata mai le organizaiton.</p>
+  <h1 translate="yes">Faaleaogaina le avea ma ${membership.membershipid}</h1>
+  <p translate="yes">Lea o le a vave aveesea le sui mai le faʻapotopotoga.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/revoke-membership?membershipid=${membership.membershipid}" name="submit-form">
     <div class="pure-control-group">
@@ -18,17 +18,17 @@
       <input id="organizationName" type="text" maxlength="100" readonly>
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Tape le pepa faamaumau</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Tapē ese sui</button>
     </div>
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      Manuia! Ua tape tumau le pepa faamaumau
+      Manuia! O le avea ma sui ua leva ona tape
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Mea sese! O se mea sese e le mailoa ocurred
+      Sese! O se mea sese le iloa na tupu
     </div>
   </template>
 </body>

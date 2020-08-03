@@ -10,15 +10,15 @@
 </head>
 <body>
   <h1 translate="yes">Chấp nhận lời mời</h1>
-  <p translate="yes">Bạn sẽ trở thành một thành viên của tổ chức sau khi nhập mã.</p>
+  <p translate="yes">Bạn sẽ trở thành thành viên của tổ chức sau khi nhập mã.</p>
   <div id="message-container"></div>
   <form id="submit-form" class="pure-form pure-form-stacked" action="/account/organizations/accept-invitation" name="submit-form">
     <div class="pure-control-group">
-      <label for="invitationid" translate="yes">ID lời mời</label>
+      <label for="invitationid" translate="yes">Id lời mời</label>
       <input id="invitationid" name="invitationid" type="text" maxlength="100">
     </div>
     <div class="pure-control-group">
-      <label for="secret-code" translate="yes">Mã lời mời</label>
+      <label for="secret-code" translate="yes">Mã mời</label>
       <input id="secret-code" name="secret-code" type="text" maxlength="100">
     </div>
     <h2 translate="yes">Thông tin thành viên</h2>
@@ -26,7 +26,7 @@
       <label for="profileid" translate="yes">Sử dụng hồ sơ hiện có</label>
       <select id="profileid" name="profileid">
         <option value="" translate="yes">
-          Chọn hồ sơ hiện có
+          Chọn một hồ sơ hiện có
         </option>
       </select>
     </div>
@@ -40,7 +40,7 @@
       <input required="" id="display-email" name="display-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="contact-email-container" class="pure-control-group">
-      <label for="contact-email" translate="yes">Email liên hệ</label>
+      <label for="contact-email" translate="yes">Địa chỉ email liên lạc</label>
       <input required="" id="contact-email" name="contact-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="full-name-container">
@@ -49,7 +49,7 @@
       <input required="" id="first-name" name="first-name" type="text" maxlength="1000">
       </div>
       <div class="pure-control-group">
-        <label for="last-name" translate="yes">Tên cuối</label>
+        <label for="last-name" translate="yes">Họ</label>
       <input required="" id="last-name" name="last-name" type="text" maxlength="1000">
       </div>
     </div>
@@ -76,7 +76,7 @@
       <input required="" id="company-name" name="company-name" type="text" maxlength="1000">
     </div>
     <div id="website-container" class="pure-control-group">
-      <label for="website" translate="yes">Trang web</label>
+      <label for="website" translate="yes">Trang mạng</label>
       <input required="" id="website" name="website" type="text" maxlength="1000">
     </div>
     <div class="pure-controls">
@@ -85,22 +85,22 @@
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      Success! Bây giờ bạn là thành viên của tổ chức
+      Sự thành công! Bây giờ bạn là thành viên của tổ chức
     </div>
   </template>
   <template id="invalid-invitation">
     <div class="error message" translate="yes">
-      Lỗi! Lời mời không còn khả dụng nữa
+      Lỗi! Lời mời không còn nữa
     </div>
   </template>
   <template id="invalid-secret-code">
     <div class="error message" translate="yes">
-      Lỗi! Mã lời mời không chính xác
+      Lỗi! Mã thư mời không chính xác
     </div>
   </template>
   <template id="invalid-invitationid">
     <div class="error message" translate="yes">
-      Lỗi! Lời mời bị thiếu hoặc không hợp lệ được cung cấp
+      Lỗi! Một lời mời bị thiếu hoặc không hợp lệ đã được cung cấp
     </div>
   </template>
   <template id="invalid-account">
@@ -110,7 +110,7 @@
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Lỗi! Một lỗi không rõ xảy ra
+      Lỗi! Xảy ra lỗi không xác định
     </div>
   </template>
   <template id="profile-option">
@@ -120,7 +120,7 @@
   </template>
   <template id="invalid-organization-name">
     <div class="error message" translate="yes">
-      Lỗi! Tên tổ chức bị thiếu hoặc không hợp lệ được cung cấp
+      Lỗi! Tên tổ chức bị thiếu hoặc không hợp lệ đã được cung cấp
     </div>
   </template>
   <template id="invalid-organization-name-length">
@@ -130,37 +130,37 @@
   </template>
   <template id="invalid-organization-email">
     <div class="error message" translate="yes">
-      Lỗi! Một email tổ chức bị thiếu hoặc không hợp lệ được cung cấp
+      Lỗi! Một email tổ chức bị thiếu hoặc không hợp lệ đã được cung cấp
     </div>
   </template>
   <template id="success">
     <div class="success message" translate="yes">
-      Success! Tổ chức đã được tạo thành công
+      Sự thành công! Tổ chức đã được tạo thành công
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Lỗi! Lỗi đã xảy ra khi tạo tổ chức
+      Lỗi! Xảy ra lỗi khi tạo tổ chức
     </div>
   </template>
   <template id="invalid-first-name">
     <div class="error message" translate="yes">
-      Lỗi! Tên đầu tiên thiếu hoặc không hợp lệ được cung cấp
+      Lỗi! Tên bị thiếu hoặc không hợp lệ được cung cấp
     </div>
   </template>
   <template id="invalid-first-name-length">
     <div class="error message" translate="yes">
-      Lỗi! Tên không hợp lệ được cung cấp
+      Lỗi! Một tên không hợp lệ đã được cung cấp
     </div>
   </template>
   <template id="invalid-last-name">
     <div class="error message" translate="yes">
-      Lỗi! Tên cuối cùng bị thiếu hoặc không hợp lệ được cung cấp
+      Lỗi! Tên cuối cùng bị thiếu hoặc không hợp lệ đã được cung cấp
     </div>
   </template>
   <template id="invalid-last-name-length">
     <div class="error message" translate="yes">
-      Lỗi! Tên cuối cùng không hợp lệ được cung cấp
+      Lỗi! Họ không hợp lệ đã được cung cấp
     </div>
   </template>
   <template id="invalid-contact-email">
@@ -170,52 +170,52 @@
   </template>
   <template id="invalid-display-email">
     <div class="error message" translate="yes">
-      Lỗi! Địa chỉ email Hiển thị không hợp lệ
+      Lỗi! Địa chỉ email hiển thị không hợp lệ
     </div>
   </template>
   <template id="invalid-display-name">
     <div class="error message" translate="yes">
-      Lỗi! Tên hiển thị bị thiếu hoặc không hợp lệ được cung cấp
+      Lỗi! Một tên hiển thị bị thiếu hoặc không hợp lệ đã được cung cấp
     </div>
   </template>
   <template id="invalid-dob">
     <div class="error message" translate="yes">
-      Lỗi! Ngày sinh bị thiếu hoặc không hợp lệ đã được cung cấp
+      Lỗi! Một ngày sinh bị thiếu hoặc không hợp lệ đã được cung cấp
     </div>
   </template>
   <template id="invalid-phone">
     <div class="error message" translate="yes">
-      Lỗi! Điện thoại bị thiếu hoặc không hợp lệ đã được cung cấp.
+      Lỗi! Một điện thoại bị thiếu hoặc không hợp lệ đã được cung cấp.
     </div>
   </template>
   <template id="invalid-occupation">
     <div class="error message" translate="yes">
-      Lỗi! Một thiếu hoặc không hợp lệ chiếm đóng đã được cung cấp.
+      Lỗi! Một nghề nghiệp bị thiếu hoặc không hợp lệ đã được cung cấp.
     </div>
   </template>
   <template id="invalid-location">
     <div class="error message" translate="yes">
-      Lỗi! Vị trí bị thiếu hoặc không hợp lệ đã được cung cấp.
+      Lỗi! Một vị trí bị thiếu hoặc không hợp lệ đã được cung cấp.
     </div>
   </template>
   <template id="invalid-company-name">
     <div class="error message" translate="yes">
-      Lỗi! Tên công ty bị thiếu hoặc không hợp lệ được cung cấp.
+      Lỗi! Một tên công ty bị thiếu hoặc không hợp lệ đã được cung cấp.
     </div>
   </template>
   <template id="invalid-website">
     <div class="error message" translate="yes">
-      Lỗi! Trang web bị thiếu hoặc không hợp lệ đã được cung cấp.
+      Lỗi! Một trang web bị thiếu hoặc không hợp lệ đã được cung cấp.
     </div>
   </template>
   <template id="invalid-display-name-length">
     <div class="error message" translate="yes">
-      Lỗi! Tên hiển thị bị thiếu hoặc không hợp lệ được cung cấp
+      Lỗi! Một tên hiển thị bị thiếu hoặc không hợp lệ đã được cung cấp
     </div>
   </template>
   <template id="invalid-profileid">
     <div class="error message" translate="yes">
-      Lỗi! Một hồ sơ bị thiếu hoặc không hợp lệ được chọn.
+      Lỗi! Một hồ sơ thiếu hoặc không hợp lệ đã được chọn.
     </div>
   </template>
 </body>

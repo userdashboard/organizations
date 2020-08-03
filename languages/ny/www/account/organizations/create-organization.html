@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" data-navbar="/account/organizations/navbar-organizations.html">
+<head>
+  <meta charset="utf-8">
+  <title translate="yes">Pangani bungwe</title>
+  <link href="/public/pure-min.css" rel="stylesheet">
+  <link href="/public/content.css" rel="stylesheet">
+  <link href="/public/content-additional.css" rel="stylesheet">
+  <base target="_top" href="/">
+</head>
+<body>
+  <h1 translate="yes">Pangani bungwe</h1>
+  <p translate="yes">Mabungwe atha kugwiritsidwa ntchito pogawana mwayi wopezeka ndi zothandizira.</p>
+  <div id="message-container"></div>
+  <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/create-organization" name="submit-form">
+    <div class="pure-control-group">
+      <label for="name" translate="yes">Dzina la bungwe</label>
+      <input id="name" name="name" type="text" maxlength="100">
+    </div>
+    <div class="pure-control-group">
+      <label for="email" translate="yes">Imelo yolumikizirana</label>
+      <input id="email" name="email" type="text" maxlength="100">
+    </div>
+    <h2 translate="yes">Zambiri zaumembala</h2>
+    <div id="existing-profile-container" class="pure-control-group">
+      <label for="profileid" translate="yes">Gwiritsani ntchito mbiri yomwe ilipo</label>
+      <select id="profileid" name="profileid">
+        <option value="" translate="yes">
+          Sankhani mbiri yomwe ilipo
+        </option>
+      </select>
+    </div>
+    <h3 translate="yes">Pangani mbiri yatsopano</h3>
+    <div id="display-name-container" class="pure-control-group">
+      <label for="display-name" translate="yes">Dzina lowonetsa</label>
+      <input required="" id="display-name" name="display-name" type="text" maxlength="1000">
+    </div>
+    <div id="display-email-container" class="pure-control-group">
+      <label for="display-email" translate="yes">Sonyezani imelo</label>
+      <input required="" id="display-email" name="display-email" type="text" maxlength="1000" size="50">
+    </div>
+    <div id="contact-email-container" class="pure-control-group">
+      <label for="contact-email" translate="yes">Imelo yolumikizirana</label>
+      <input required="" id="contact-email" name="contact-email" type="text" maxlength="1000" size="50">
+    </div>
+    <div id="full-name-container">
+      <div class="pure-control-group">
+        <label for="first-name" translate="yes">Dzina loyamba</label>
+        <input required="" id="first-name" name="first-name" type="text" maxlength="1000">
+      </div>
+      <div class="pure-control-group">
+        <label for="last-name" translate="yes">Dzina lomaliza</label>
+        <input required="" id="last-name" name="last-name" type="text" maxlength="1000">
+      </div>
+    </div>
+    <div id="dob-container">
+      <div class="pure-control-group">
+        <label for="dob" translate="yes">Tsiku lobadwa</label>
+        <input required="" id="dob" name="dob" type="text" maxlength="11">
+      </div>
+    </div>
+    <div id="phone-container" class="pure-control-group">
+      <label for="phone" translate="yes">Telefoni</label>
+      <input required="" id="phone" name="phone" type="text" maxlength="1000">
+    </div>
+    <div id="occupation-container" class="pure-control-group">
+      <label for="occupation" translate="yes">Ntchito</label>
+      <input required="" id="occupation" name="occupation" type="text" maxlength="1000">
+    </div>
+    <div id="location-container" class="pure-control-group">
+      <label for="location" translate="yes">Malo</label>
+      <input required="" id="location" name="location" type="text" maxlength="1000">
+    </div>
+    <div id="company-name-container" class="pure-control-group">
+      <label for="company-name" translate="yes">Dzina Lakampani</label>
+      <input required="" id="company-name" name="company-name" type="text" maxlength="1000">
+    </div>
+    <div id="website-container" class="pure-control-group">
+      <label for="website" translate="yes">Webusayiti</label>
+      <input required="" id="website" name="website" type="text" maxlength="1000">
+    </div>
+    <div class="pure-controls">
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Pangani bungwe</button>
+    </div>
+  </form>
+  <template id="profile-option">
+    <option value="${profile.profileid}">
+      ${profile.displayName} / ${profile.displayEmail}
+    </option>
+  </template>
+  <template id="invalid-organization-name">
+    <div class="error message" translate="yes">
+      Zolakwika! Bungwe losowa kapena lolakwika la bungwe lidaperekedwa
+    </div>
+  </template>
+  <template id="invalid-organization-name-length">
+    <div class="error message" translate="yes">
+      Zolakwika! Kutalika kwa dzina lolakwika kwa gulu
+    </div>
+  </template>
+  <template id="invalid-organization-email">
+    <div class="error message" translate="yes">
+      Zolakwika! Imelo yakusowa kapena yosavomerezeka idaperekedwa
+    </div>
+  </template>
+  <template id="success">
+    <div class="success message" translate="yes">
+      Kupambana! Bungweli lidapangidwa bwino
+      <p><a class="pure-button pure-button-primary" href="/account/organizations/create-invitation?organizationid=${organization.organizationid}" translate="yes">Pangani zokuyitanani</a></p>
+    </div>
+  </template>
+  <template id="unknown-error">
+    <div class="error message" translate="yes">
+      Zolakwika! Panali vuto potenga bungweli
+    </div>
+  </template>
+  <template id="invalid-first-name">
+    <div class="error message" translate="yes">
+      Zolakwika! Dzina loyamba losowa kapena lovomerezeka lomwe laperekedwa
+    </div>
+  </template>
+  <template id="invalid-first-name-length">
+    <div class="error message" translate="yes">
+      Zolakwika! Dzina loyamba losavomerezeka linaperekedwa
+    </div>
+  </template>
+  <template id="invalid-last-name">
+    <div class="error message" translate="yes">
+      Zolakwika! Dzina lomaliza losowa kapena losavomerezeka linaperekedwa
+    </div>
+  </template>
+  <template id="invalid-last-name-length">
+    <div class="error message" translate="yes">
+      Zolakwika! Dzina lomaliza losavomerezeka lidaperekedwa
+    </div>
+  </template>
+  <template id="invalid-contact-email">
+    <div class="error message" translate="yes">
+      Zolakwika! Imelo adilesi yolakwika
+    </div>
+  </template>
+  <template id="invalid-display-email">
+    <div class="error message" translate="yes">
+      Zolakwika! Imelo adilesi yosavomerezeka
+    </div>
+  </template>
+  <template id="invalid-display-name">
+    <div class="error message" translate="yes">
+      Zolakwika! Chowonetsera chosowa kapena chosavomerezeka chinaperekedwa
+    </div>
+  </template>
+  <template id="invalid-dob">
+    <div class="error message" translate="yes">
+      Zolakwika! Tsiku lobadwa losowa kapena lolakwika linaperekedwa
+    </div>
+  </template>
+  <template id="invalid-phone">
+    <div class="error message" translate="yes">
+      Zolakwika! Foni yomwe yasowa kapena yosavomerezeka idaperekedwa.
+    </div>
+  </template>
+  <template id="invalid-occupation">
+    <div class="error message" translate="yes">
+      Zolakwika! Ntchito yosowa kapena yosavomerezeka idaperekedwa.
+    </div>
+  </template>
+  <template id="invalid-location">
+    <div class="error message" translate="yes">
+      Zolakwika! Malo osowa kapena osavomerezeka anaperekedwa.
+    </div>
+  </template>
+  <template id="invalid-company-name">
+    <div class="error message" translate="yes">
+      Zolakwika! Kampani yosowa kapena yolakwika yoperekedwa idaperekedwa.
+    </div>
+  </template>
+  <template id="invalid-website">
+    <div class="error message" translate="yes">
+      Zolakwika! Tsamba losowa kapena losavomerezeka linaperekedwa.
+    </div>
+  </template>
+  <template id="invalid-display-name-length">
+    <div class="error message" translate="yes">
+      Zolakwika! Chowonetsera chosowa kapena chosavomerezeka chinaperekedwa
+    </div>
+  </template>
+  <template id="invalid-profileid">
+    <div class="error message" translate="yes">
+      Zolakwika! Mbiri yosowa kapena yosavomerezeka idasankhidwa.
+    </div>
+  </template>
+</body>
+</html>

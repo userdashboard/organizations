@@ -10,15 +10,15 @@
 </head>
 <body>
   <h1 translate="yes">Créer une organisation</h1>
-  <p translate="yes">Les organisations peuvent être utilisées pour partager l’accès aux ressources.</p>
+  <p translate="yes">Les organisations peuvent être utilisées pour partager l'accès aux ressources.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/create-organization" name="submit-form">
     <div class="pure-control-group">
-      <label for="name" translate="yes">Nom de l’organisation</label>
+      <label for="name" translate="yes">Nom de l'organisation</label>
       <input id="name" name="name" type="text" maxlength="100">
     </div>
     <div class="pure-control-group">
-      <label for="email" translate="yes">Courriel de contact</label>
+      <label for="email" translate="yes">Email du contact</label>
       <input id="email" name="email" type="text" maxlength="100">
     </div>
     <h2 translate="yes">Informations sur les membres</h2>
@@ -26,21 +26,21 @@
       <label for="profileid" translate="yes">Utiliser le profil existant</label>
       <select id="profileid" name="profileid">
         <option value="" translate="yes">
-          Sélectionner un profil existant
+          Sélectionnez un profil existant
         </option>
       </select>
     </div>
     <h3 translate="yes">Créer un nouveau profil</h3>
     <div id="display-name-container" class="pure-control-group">
-      <label for="display-name" translate="yes">Nom d’affichage</label>
+      <label for="display-name" translate="yes">Afficher un nom</label>
       <input required="" id="display-name" name="display-name" type="text" maxlength="1000">
     </div>
     <div id="display-email-container" class="pure-control-group">
-      <label for="display-email" translate="yes">Afficher le courrier électronique</label>
+      <label for="display-email" translate="yes">Afficher l'e-mail</label>
       <input required="" id="display-email" name="display-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="contact-email-container" class="pure-control-group">
-      <label for="contact-email" translate="yes">Courriel de contact</label>
+      <label for="contact-email" translate="yes">Email du contact</label>
       <input required="" id="contact-email" name="contact-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="full-name-container">
@@ -72,11 +72,11 @@
       <input required="" id="location" name="location" type="text" maxlength="1000">
     </div>
     <div id="company-name-container" class="pure-control-group">
-      <label for="company-name" translate="yes">Nom de l’entreprise</label>
+      <label for="company-name" translate="yes">Nom de la compagnie</label>
       <input required="" id="company-name" name="company-name" type="text" maxlength="1000">
     </div>
     <div id="website-container" class="pure-control-group">
-      <label for="website" translate="yes">site internet</label>
+      <label for="website" translate="yes">Site Internet</label>
       <input required="" id="website" name="website" type="text" maxlength="1000">
     </div>
     <div class="pure-controls">
@@ -90,38 +90,38 @@
   </template>
   <template id="invalid-organization-name">
     <div class="error message" translate="yes">
-      Erreur! Un nom d’organisation manquant ou non valide a été fourni
+      Erreur! Un nom d'organisation manquant ou non valide a été fourni
     </div>
   </template>
   <template id="invalid-organization-name-length">
     <div class="error message" translate="yes">
-      Erreur! Longueur du nom de l’organisation non valide
+      Erreur! Longueur du nom de l'organisation non valide
     </div>
   </template>
   <template id="invalid-organization-email">
     <div class="error message" translate="yes">
-      Erreur! Un e-mail d’organisation manquant ou non valide a été fourni
+      Erreur! Une adresse e-mail d'organisation manquante ou non valide a été fournie
     </div>
   </template>
   <template id="success">
     <div class="success message" translate="yes">
-      Succès! L’organisation a été créée avec succès
+      Succès! L'organisation a été créée avec succès
       <p><a class="pure-button pure-button-primary" href="/account/organizations/create-invitation?organizationid=${organization.organizationid}" translate="yes">Créer des invitations</a></p>
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Erreur! Une erreur s’est produite en créant l’organisation
+      Erreur! Une erreur s'est produite lors de la création de l'organisation
     </div>
   </template>
   <template id="invalid-first-name">
     <div class="error message" translate="yes">
-      Erreur! Un prénom manquant ou non valide fourni
+      Erreur! Un prénom manquant ou invalide fourni
     </div>
   </template>
   <template id="invalid-first-name-length">
     <div class="error message" translate="yes">
-      Erreur! Un prénom non valide a été fourni
+      Erreur! Un prénom invalide a été fourni
     </div>
   </template>
   <template id="invalid-last-name">
@@ -131,22 +131,22 @@
   </template>
   <template id="invalid-last-name-length">
     <div class="error message" translate="yes">
-      Erreur! Un nom de famille non valide a été fourni
+      Erreur! Un nom de famille incorrect a été fourni
     </div>
   </template>
   <template id="invalid-contact-email">
     <div class="error message" translate="yes">
-      Erreur! Adresse de messagerie de contact non valide
+      Erreur! Adresse e-mail de contact non valide
     </div>
   </template>
   <template id="invalid-display-email">
     <div class="error message" translate="yes">
-      Erreur! Adresse de messagerie d’affichage non valide
+      Erreur! Adresse e-mail à afficher incorrecte
     </div>
   </template>
   <template id="invalid-display-name">
     <div class="error message" translate="yes">
-      Erreur! Un nom d’affichage manquant ou non valide a été fourni
+      Erreur! Un nom d'affichage manquant ou non valide a été fourni
     </div>
   </template>
   <template id="invalid-dob">
@@ -161,7 +161,7 @@
   </template>
   <template id="invalid-occupation">
     <div class="error message" translate="yes">
-      Erreur! Une occupation manquante ou invalide a été fournie.
+      Erreur! Une profession manquante ou invalide a été fournie.
     </div>
   </template>
   <template id="invalid-location">
@@ -171,7 +171,7 @@
   </template>
   <template id="invalid-company-name">
     <div class="error message" translate="yes">
-      Erreur! Un nom d’entreprise manquant ou non valide a été fourni.
+      Erreur! Un nom d'entreprise manquant ou non valide a été fourni.
     </div>
   </template>
   <template id="invalid-website">
@@ -181,7 +181,7 @@
   </template>
   <template id="invalid-display-name-length">
     <div class="error message" translate="yes">
-      Erreur! Un nom d’affichage manquant ou non valide a été fourni
+      Erreur! Un nom d'affichage manquant ou non valide a été fourni
     </div>
   </template>
   <template id="invalid-profileid">

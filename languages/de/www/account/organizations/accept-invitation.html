@@ -2,15 +2,15 @@
 <html lang="en" data-navbar="/account/organizations/navbar.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Einladung annehmen</title>
+  <title translate="yes">Die Einladung annehmen</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Einladung annehmen</h1>
-  <p translate="yes">Sie werden Mitglied der Organisation, nachdem Sie den Code eingegeben haben.</p>
+  <h1 translate="yes">Die Einladung annehmen</h1>
+  <p translate="yes">Nach Eingabe des Codes werden Sie Mitglied der Organisation.</p>
   <div id="message-container"></div>
   <form id="submit-form" class="pure-form pure-form-stacked" action="/account/organizations/accept-invitation" name="submit-form">
     <div class="pure-control-group">
@@ -21,12 +21,12 @@
       <label for="secret-code" translate="yes">Einladungscode</label>
       <input id="secret-code" name="secret-code" type="text" maxlength="100">
     </div>
-    <h2 translate="yes">Mitgliedschaftsinformationen</h2>
+    <h2 translate="yes">Informationen zur Mitgliedschaft</h2>
     <div id="existing-profile-container" class="pure-control-group">
       <label for="profileid" translate="yes">Vorhandenes Profil verwenden</label>
       <select id="profileid" name="profileid">
         <option value="" translate="yes">
-          Auswählen eines vorhandenen Profils
+          Wählen Sie ein vorhandenes Profil aus
         </option>
       </select>
     </div>
@@ -40,7 +40,7 @@
       <input required="" id="display-email" name="display-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="contact-email-container" class="pure-control-group">
-      <label for="contact-email" translate="yes">Kontakt-E-Mail</label>
+      <label for="contact-email" translate="yes">Kontakt E-mail</label>
       <input required="" id="contact-email" name="contact-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="full-name-container">
@@ -64,19 +64,19 @@
       <input required="" id="phone" name="phone" type="text" maxlength="1000">
     </div>
     <div id="occupation-container" class="pure-control-group">
-      <label for="occupation" translate="yes">Beruf</label>
+      <label for="occupation" translate="yes">Besetzung</label>
       <input required="" id="occupation" name="occupation" type="text" maxlength="1000">
     </div>
     <div id="location-container" class="pure-control-group">
-      <label for="location" translate="yes">Lage</label>
+      <label for="location" translate="yes">Ort</label>
       <input required="" id="location" name="location" type="text" maxlength="1000">
     </div>
     <div id="company-name-container" class="pure-control-group">
-      <label for="company-name" translate="yes">Firmenname</label>
+      <label for="company-name" translate="yes">Name der Firma</label>
       <input required="" id="company-name" name="company-name" type="text" maxlength="1000">
     </div>
     <div id="website-container" class="pure-control-group">
-      <label for="website" translate="yes">Website</label>
+      <label for="website" translate="yes">Webseite</label>
       <input required="" id="website" name="website" type="text" maxlength="1000">
     </div>
     <div class="pure-controls">
@@ -90,27 +90,27 @@
   </template>
   <template id="invalid-invitation">
     <div class="error message" translate="yes">
-      Fehler! Die Einladung ist nicht mehr verfügbar.
+      Error! Die Einladung ist nicht mehr verfügbar
     </div>
   </template>
   <template id="invalid-secret-code">
     <div class="error message" translate="yes">
-      Fehler! Der Einladungscode ist falsch.
+      Error! Der Einladungscode ist falsch
     </div>
   </template>
   <template id="invalid-invitationid">
     <div class="error message" translate="yes">
-      Fehler! Eine fehlende oder ungültige Einladung wurde bereitgestellt.
+      Error! Eine fehlende oder ungültige Einladung wurde bereitgestellt
     </div>
   </template>
   <template id="invalid-account">
     <div class="error message" translate="yes">
-      Fehler! Sie besitzen oder sind Mitglied dieser Organisation
+      Error! Sie besitzen oder sind Mitglied dieser Organisation
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Fehler! Ein unbekannter Fehler
+      Error! Ein unbekannter Fehler ist aufgetreten
     </div>
   </template>
   <template id="profile-option">
@@ -120,17 +120,17 @@
   </template>
   <template id="invalid-organization-name">
     <div class="error message" translate="yes">
-      Fehler! Es wurde ein fehlender oder ungültiger Organisationsname bereitgestellt.
+      Error! Ein fehlender oder ungültiger Organisationsname wurde angegeben
     </div>
   </template>
   <template id="invalid-organization-name-length">
     <div class="error message" translate="yes">
-      Fehler! Ungültige Namenslänge der Organisation
+      Error! Ungültige Länge des Organisationsnamens
     </div>
   </template>
   <template id="invalid-organization-email">
     <div class="error message" translate="yes">
-      Fehler! Es wurde eine fehlende oder ungültige Organisations-E-Mail bereitgestellt.
+      Error! Eine fehlende oder ungültige Organisations-E-Mail wurde bereitgestellt
     </div>
   </template>
   <template id="success">
@@ -140,82 +140,82 @@
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Fehler! Beim Erstellen der Organisation ist ein Fehler aufgetreten.
+      Error! Beim Erstellen der Organisation ist ein Fehler aufgetreten
     </div>
   </template>
   <template id="invalid-first-name">
     <div class="error message" translate="yes">
-      Fehler! Ein fehlender oder ungültiger Vorname angegeben
+      Error! Ein fehlender oder ungültiger Vorname wird angegeben
     </div>
   </template>
   <template id="invalid-first-name-length">
     <div class="error message" translate="yes">
-      Fehler! Ein ungültiger Vorname wurde bereitgestellt.
+      Error! Es wurde ein ungültiger Vorname angegeben
     </div>
   </template>
   <template id="invalid-last-name">
     <div class="error message" translate="yes">
-      Fehler! Ein fehlender oder ungültiger Nachname wurde bereitgestellt.
+      Error! Ein fehlender oder ungültiger Nachname wurde angegeben
     </div>
   </template>
   <template id="invalid-last-name-length">
     <div class="error message" translate="yes">
-      Fehler! Ein ungültiger Nachname wurde bereitgestellt.
+      Error! Es wurde ein ungültiger Nachname angegeben
     </div>
   </template>
   <template id="invalid-contact-email">
     <div class="error message" translate="yes">
-      Fehler! Ungültige Kontakt-E-Mail-Adresse
+      Error! Ungültige Kontakt-E-Mail-Adresse
     </div>
   </template>
   <template id="invalid-display-email">
     <div class="error message" translate="yes">
-      Fehler! Ungültige Anzeige-E-Mail-Adresse
+      Error! Ungültige Anzeige-E-Mail-Adresse
     </div>
   </template>
   <template id="invalid-display-name">
     <div class="error message" translate="yes">
-      Fehler! Ein fehlender oder ungültiger Anzeigename wurde bereitgestellt.
+      Error! Ein fehlender oder ungültiger Anzeigename wurde angegeben
     </div>
   </template>
   <template id="invalid-dob">
     <div class="error message" translate="yes">
-      Fehler! Ein fehlendes oder ungültiges Geburtsdatum wurde angegeben
+      Error! Ein fehlendes oder ungültiges Geburtsdatum wurde angegeben
     </div>
   </template>
   <template id="invalid-phone">
     <div class="error message" translate="yes">
-      Fehler! Ein fehlendes oder ungültiges Telefon wurde bereitgestellt.
+      Error! Ein fehlendes oder ungültiges Telefon wurde bereitgestellt.
     </div>
   </template>
   <template id="invalid-occupation">
     <div class="error message" translate="yes">
-      Fehler! Es wurde eine fehlende oder ungültige Beschäftigung bereitgestellt.
+      Error! Ein fehlender oder ungültiger Beruf wurde angegeben.
     </div>
   </template>
   <template id="invalid-location">
     <div class="error message" translate="yes">
-      Fehler! Es wurde ein fehlender oder ungültiger Speicherort angegeben.
+      Error! Ein fehlender oder ungültiger Ort wurde angegeben.
     </div>
   </template>
   <template id="invalid-company-name">
     <div class="error message" translate="yes">
-      Fehler! Es wurde ein fehlender oder ungültiger Firmenname angegeben.
+      Error! Ein fehlender oder ungültiger Firmenname wurde angegeben.
     </div>
   </template>
   <template id="invalid-website">
     <div class="error message" translate="yes">
-      Fehler! Es wurde eine fehlende oder ungültige Website bereitgestellt.
+      Error! Eine fehlende oder ungültige Website wurde bereitgestellt.
     </div>
   </template>
   <template id="invalid-display-name-length">
     <div class="error message" translate="yes">
-      Fehler! Ein fehlender oder ungültiger Anzeigename wurde bereitgestellt.
+      Error! Ein fehlender oder ungültiger Anzeigename wurde angegeben
     </div>
   </template>
   <template id="invalid-profileid">
     <div class="error message" translate="yes">
-      Fehler! Es wurde ein fehlendes oder ungültiges Profil ausgewählt.
+      Error! Ein fehlendes oder ungültiges Profil wurde ausgewählt.
     </div>
   </template>
 </body>

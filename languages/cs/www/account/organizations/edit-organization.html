@@ -10,34 +10,34 @@
 </head>
 <body>
   <h1 translate="yes">Upravit ${organization.organizationid}</h1>
-  <p translate="yes">Udržujte své kontaktní údaje správné a aktuální.</p>
+  <p translate="yes">Udržujte své kontaktní informace správné a aktuální.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/edit-organization?organizationid=${organization.organizationid}" name="submit-form">
     <div class="pure-control-group">
-      <label for="name" translate="yes">Jméno</label>
+      <label for="name" translate="yes">název</label>
       <input id="name" name="name" type="text" maxlength="100">
     </div>
     <div class="pure-control-group">
-      <label for="email" translate="yes">E-mail</label>
+      <label for="email" translate="yes">E-mailem</label>
       <input id="email" name="email" type="text" maxlength="100">
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Aktualizovat organizaci</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Aktualizujte organizaci</button>
     </div>
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      Úspěch! Informace o vaší organizaci byly aktualizovány.
+      Úspěch! Informace o vaší organizaci byly aktualizovány
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Chyba! Došlo k neznámé chybě.
+      Chyba! Nastala neznámá chyba
     </div>
   </template>
   <template id="invalid-organization-name">
     <div class="error message" translate="yes">
-      Chyba! Byl zadán chybějící nebo neplatný název organizace.
+      Chyba! Byl zadán chybějící nebo neplatný název organizace
     </div>
   </template>
   <template id="invalid-organization-name-length">
@@ -47,7 +47,7 @@
   </template>
   <template id="invalid-organization-email">
     <div class="error message" translate="yes">
-      Chyba! Byl poskytnut chybějící nebo neplatný e-mail organizace.
+      Chyba! Byl poskytnut chybný nebo neplatný e-mail organizace
     </div>
   </template>
 </body>

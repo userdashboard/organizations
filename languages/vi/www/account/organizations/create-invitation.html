@@ -11,11 +11,11 @@
 </head>
 <body>
   <h1 translate="yes">Tạo lời mời cho ${organization.organizationid}</h1>
-  <p translate="yes">Mã lời mời cho phép những người tham gia tổ chức của bạn.</p>
+  <p translate="yes">Mã mời cho phép mọi người tham gia tổ chức của bạn.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/create-invitation?organizationid=${organization.organizationid}" name="submit-form">
     <div class="pure-control-group">
-      <label for="organization-name" translate="yes">Tổ chức</label>
+      <label for="organization-name" translate="yes">Cơ quan</label>
       <input id="organization-name" type="text" maxlength="100" readonly>
     </div>
     <div class="pure-control-group">
@@ -38,12 +38,12 @@
   </template>
   <template id="invalid-secret-code-length">
     <div class="error message" translate="yes">
-      Lỗi! Mã bí mật có một chiều dài không hợp lệ
+      Lỗi! Mã bí mật có độ dài không hợp lệ
     </div>
   </template>
   <template id="success">
     <div class="success message">
-      <p translate="yes">Success! Cung cấp mã bí mật của bạn và liên kết này để ai đó tham gia:</p>
+      <p translate="yes">Sự thành công! Cung cấp mã bí mật của bạn và liên kết này cho ai đó tham gia:</p>
       <div class="invitation-link">
         <input type="text" readonly value="${organization.dashboardServer}/account/organizations/accept-invitation?invitationid=${organization.invitationid}">
       </div>

@@ -2,15 +2,15 @@
 <html lang="en" data-navbar="/account/organizations/navbar-organizations.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Vytvoriť organizáciu</title>
+  <title translate="yes">Vytvorenie organizácie</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Vytvoriť organizáciu</h1>
-  <p translate="yes">Organizácie sa môžu použiť na zdieľanie prístupu k prostriedkom.</p>
+  <h1 translate="yes">Vytvorenie organizácie</h1>
+  <p translate="yes">Organizácie sa môžu využívať na zdieľanie prístupu k zdrojom.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/create-organization" name="submit-form">
     <div class="pure-control-group">
@@ -18,7 +18,7 @@
       <input id="name" name="name" type="text" maxlength="100">
     </div>
     <div class="pure-control-group">
-      <label for="email" translate="yes">Kontaktný e-mail</label>
+      <label for="email" translate="yes">Kontaktný email</label>
       <input id="email" name="email" type="text" maxlength="100">
     </div>
     <h2 translate="yes">Informácie o členstve</h2>
@@ -26,13 +26,13 @@
       <label for="profileid" translate="yes">Použiť existujúci profil</label>
       <select id="profileid" name="profileid">
         <option value="" translate="yes">
-          Výber existujúceho profilu
+          Vyberte existujúci profil
         </option>
       </select>
     </div>
-    <h3 translate="yes">Vytvoriť nový profil</h3>
+    <h3 translate="yes">Vytvorte nový profil</h3>
     <div id="display-name-container" class="pure-control-group">
-      <label for="display-name" translate="yes">Zobrazovaný názov</label>
+      <label for="display-name" translate="yes">Zobraziť meno</label>
       <input required="" id="display-name" name="display-name" type="text" maxlength="1000">
     </div>
     <div id="display-email-container" class="pure-control-group">
@@ -40,7 +40,7 @@
       <input required="" id="display-email" name="display-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="contact-email-container" class="pure-control-group">
-      <label for="contact-email" translate="yes">Kontaktný e-mail</label>
+      <label for="contact-email" translate="yes">Kontaktný email</label>
       <input required="" id="contact-email" name="contact-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="full-name-container">
@@ -55,32 +55,32 @@
     </div>
     <div id="dob-container">
       <div class="pure-control-group">
-        <label for="dob" translate="yes">dátum narodenia</label>
+        <label for="dob" translate="yes">Dátum narodenia</label>
         <input required="" id="dob" name="dob" type="text" maxlength="11">
       </div>
     </div>
     <div id="phone-container" class="pure-control-group">
-      <label for="phone" translate="yes">Telefónne</label>
+      <label for="phone" translate="yes">telefónne</label>
       <input required="" id="phone" name="phone" type="text" maxlength="1000">
     </div>
     <div id="occupation-container" class="pure-control-group">
-      <label for="occupation" translate="yes">Povolanie</label>
+      <label for="occupation" translate="yes">povolania</label>
       <input required="" id="occupation" name="occupation" type="text" maxlength="1000">
     </div>
     <div id="location-container" class="pure-control-group">
-      <label for="location" translate="yes">Umiestnenie</label>
+      <label for="location" translate="yes">umiestnenia</label>
       <input required="" id="location" name="location" type="text" maxlength="1000">
     </div>
     <div id="company-name-container" class="pure-control-group">
-      <label for="company-name" translate="yes">Názov spoločnosti</label>
+      <label for="company-name" translate="yes">Meno spoločnosti</label>
       <input required="" id="company-name" name="company-name" type="text" maxlength="1000">
     </div>
     <div id="website-container" class="pure-control-group">
-      <label for="website" translate="yes">Webové stránky</label>
+      <label for="website" translate="yes">webové stránky</label>
       <input required="" id="website" name="website" type="text" maxlength="1000">
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Vytvoriť organizáciu</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Vytvorenie organizácie</button>
     </div>
   </form>
   <template id="profile-option">
@@ -106,7 +106,7 @@
   <template id="success">
     <div class="success message" translate="yes">
       Úspech! Organizácia bola úspešne vytvorená
-      <p><a class="pure-button pure-button-primary" href="/account/organizations/create-invitation?organizationid=${organization.organizationid}" translate="yes">Vytvorenie pozvánok</a></p>
+      <p><a class="pure-button pure-button-primary" href="/account/organizations/create-invitation?organizationid=${organization.organizationid}" translate="yes">Vytvárajte pozvánky</a></p>
     </div>
   </template>
   <template id="unknown-error">
@@ -116,22 +116,22 @@
   </template>
   <template id="invalid-first-name">
     <div class="error message" translate="yes">
-      Chyba! Poskytnuté chýbajúce alebo neplatné krstné meno
+      Chyba! Zadané chýbajúce alebo neplatné meno
     </div>
   </template>
   <template id="invalid-first-name-length">
     <div class="error message" translate="yes">
-      Chyba! Bolo poskytnuté neplatné krstné meno
+      Chyba! Zadali ste neplatné meno
     </div>
   </template>
   <template id="invalid-last-name">
     <div class="error message" translate="yes">
-      Chyba! Bolo poskytnuté chýbajúce alebo neplatné priezvisko
+      Chyba! Zadali ste chýbajúce alebo neplatné priezvisko
     </div>
   </template>
   <template id="invalid-last-name-length">
     <div class="error message" translate="yes">
-      Chyba! Bolo poskytnuté neplatné priezvisko
+      Chyba! Zadali ste neplatné priezvisko
     </div>
   </template>
   <template id="invalid-contact-email">
@@ -151,7 +151,7 @@
   </template>
   <template id="invalid-dob">
     <div class="error message" translate="yes">
-      Chyba! Bol poskytnutý chýbajúci alebo neplatný dátum narodenia
+      Chyba! Bol uvedený chýbajúci alebo neplatný dátum narodenia
     </div>
   </template>
   <template id="invalid-phone">
@@ -161,12 +161,12 @@
   </template>
   <template id="invalid-occupation">
     <div class="error message" translate="yes">
-      Chyba! Bolo poskytnuté chýbajúce alebo neplatné povolanie.
+      Chyba! Poskytlo sa chýbajúce alebo neplatné zamestnanie.
     </div>
   </template>
   <template id="invalid-location">
     <div class="error message" translate="yes">
-      Chyba! Bolo poskytnuté chýbajúce alebo neplatné umiestnenie.
+      Chyba! Bola poskytnutá chýbajúca alebo neplatná poloha.
     </div>
   </template>
   <template id="invalid-company-name">
@@ -176,7 +176,7 @@
   </template>
   <template id="invalid-website">
     <div class="error message" translate="yes">
-      Chyba! Bola poskytnutá chýbajúca alebo neplatná webová lokalita.
+      Chyba! Bol poskytnutý chýbajúci alebo neplatný web.
     </div>
   </template>
   <template id="invalid-display-name-length">
@@ -186,7 +186,7 @@
   </template>
   <template id="invalid-profileid">
     <div class="error message" translate="yes">
-      Chyba! Bol vybratý chýbajúci alebo neplatný profil.
+      Chyba! Bol vybraný chýbajúci alebo neplatný profil.
     </div>
   </template>
 </body>

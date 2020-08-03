@@ -9,16 +9,16 @@
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Odvolať členstvo v ${membership.membershipid}</h1>
-  <p translate="yes">Tým sa okamžite odstráni člen z organizaiton.</p>
+  <h1 translate="yes">Zrušiť členstvo v ${membership.membershipid}</h1>
+  <p translate="yes">Týmto sa okamžite odstráni člen z organizácie.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/revoke-membership?membershipid=${membership.membershipid}" name="submit-form">
     <div class="pure-control-group">
-      <label for="organizationName" translate="yes">Organizácie</label>
+      <label for="organizationName" translate="yes">Organizácia</label>
       <input id="organizationName" type="text" maxlength="100" readonly>
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Odstránenie členstva</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Odstrániť členstvo</button>
     </div>
   </form>
   <template id="success">

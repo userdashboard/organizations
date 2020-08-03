@@ -2,14 +2,14 @@
 <html lang="en" data-navbar="/account/organizations/navbar-organization.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Muokkaa ${organization.organizationid}</title>
+  <title translate="yes">Muokata ${organization.organizationid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Muokkaa ${organization.organizationid}</h1>
+  <h1 translate="yes">Muokata ${organization.organizationid}</h1>
   <p translate="yes">Pidä yhteystietosi oikein ja ajan tasalla.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/edit-organization?organizationid=${organization.organizationid}" name="submit-form">
@@ -27,17 +27,17 @@
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      Menestys! Organisaatiosi tiedot on päivitetty
+      Menestys! Organisaatiotietosi on päivitetty
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Virhe! Tuntematon virhe
+      Virhe! Tapahtui tuntematon virhe
     </div>
   </template>
   <template id="invalid-organization-name">
     <div class="error message" translate="yes">
-      Virhe! Annettu organisaationimi puuttuu tai ei kelpaa
+      Virhe! Puuttuva tai virheellinen organisaation nimi annettiin
     </div>
   </template>
   <template id="invalid-organization-name-length">
@@ -47,7 +47,7 @@
   </template>
   <template id="invalid-organization-email">
     <div class="error message" translate="yes">
-      Virhe! Puuttuva tai virheellinen organisaatiosähköposti annettuna
+      Virhe! Puuttuva tai virheellinen organisaation sähköpostiosoite toimitettiin
     </div>
   </template>
 </body>

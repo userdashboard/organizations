@@ -10,25 +10,25 @@
 </head>
 <body>
   <h1 translate="yes">Atšaukti narystę ${membership.membershipid}</h1>
-  <p translate="yes">Tai bus nedelsiant pašalinti narį iš organizaiton.</p>
+  <p translate="yes">Tai iš karto pašalins narį iš organizacijos.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/revoke-membership?membershipid=${membership.membershipid}" name="submit-form">
     <div class="pure-control-group">
-      <label for="organizationName" translate="yes">Organizacijos</label>
+      <label for="organizationName" translate="yes">Organizacija</label>
       <input id="organizationName" type="text" maxlength="100" readonly>
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Narystės naikinimas</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Ištrinti narystę</button>
     </div>
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      Sėkmės! Narystė buvo panaikinta visam laikui
+      Sėkmė! Narystė buvo visam laikui ištrinta
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Klaida! Nežinoma klaida, ocurred
+      Klaida! Įvyko nežinoma klaida
     </div>
   </template>
 </body>

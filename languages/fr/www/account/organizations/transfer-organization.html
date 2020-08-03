@@ -10,15 +10,15 @@
 </head>
 <body>
   <h1 translate="yes">Transférer la propriété de ${organization.organizationid}</h1>
-  <p translate="yes">Cela va immédiatement changer le propriétaire de l’organizaiton.</p>
+  <p translate="yes">Cela changera immédiatement le propriétaire de l'organisation.</p>
   <div id="message-container"></div>
   <table id="organizations-table" class="pure-table object-table">
     <thead>
       <tr>
         <th>ID</th>
         <th translate="yes">Nom</th>
-        <th translate="yes">Messagerie électronique</th>
-        <th translate="yes">Créé</th>
+        <th translate="yes">Email</th>
+        <th translate="yes">Établi</th>
       </tr>
     </thead>
     <tr id="${organization.organizationid}">
@@ -32,10 +32,10 @@
   </table>
   <form id="submit-form" class="pure-form pure-form-stacked" action="/account/organizations/transfer-organization?organizationid=${organization.organizationid}" name="submit-form">
     <div class="pure-control-group">
-      <label for="accountid" translate="yes">Nouveau propriétaire de l’organisation</label>
+      <label for="accountid" translate="yes">Nouveau propriétaire de l'organisation</label>
       <select id="accountid" name="accountid">
         <option value="" translate="yes">
-          Sélectionner un nouveau propriétaire
+          Sélectionnez un nouveau propriétaire
         </option>
       </select>
     </div>
@@ -50,12 +50,12 @@
   </template>
   <template id="success">
     <div class="success message" translate="yes">
-      Succès! Vous avez transféré l’organisation au nouveau propriétaire
+      Succès! Vous avez transféré l'organisation au nouveau propriétaire
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Erreur! Une erreur s’est produite en transférant l’organisation
+      Erreur! Une erreur s'est produite lors du transfert de l'organisation
     </div>
   </template>
   <template id="invalid-accountid">

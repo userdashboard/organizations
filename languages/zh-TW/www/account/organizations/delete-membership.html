@@ -10,7 +10,7 @@
 </head>
 <body>
   <h1 translate="yes">刪除 ${membership.membershipid}</h1>
-  <p translate="yes">成員資格將立即刪除,無法恢復。</p>
+  <p translate="yes">成員資格將立即刪除，無法恢復。</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/delete-membership?membershipid=${membership.membershipid}" name="submit-form">
     <div class="pure-control-group">
@@ -18,17 +18,17 @@
       <input id="organizationName" type="text" maxlength="100" readonly>
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">刪除成員資格</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">刪除會員</button>
     </div>
   </form>
   <template id="success">
     <div class="error message" translate="yes">
-      錯誤!成員資格已被永久刪除
+      錯誤！成員資格已被永久刪除
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      錯誤!發生未知的錯誤
+      錯誤！出現未知錯誤
     </div>
   </template>
 </body>

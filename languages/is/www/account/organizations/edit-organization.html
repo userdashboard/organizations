@@ -10,44 +10,44 @@
 </head>
 <body>
   <h1 translate="yes">Breyta ${organization.organizationid}</h1>
-  <p translate="yes">Hafðu samskiptaupplýsingar réttar og upp-til-dagsetningar.</p>
+  <p translate="yes">Hafðu samband við þig réttar og uppfærðar.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/edit-organization?organizationid=${organization.organizationid}" name="submit-form">
     <div class="pure-control-group">
-      <label for="name" translate="yes">Heiti</label>
+      <label for="name" translate="yes">Nafn</label>
       <input id="name" name="name" type="text" maxlength="100">
     </div>
     <div class="pure-control-group">
-      <label for="email" translate="yes">Email</label>
+      <label for="email" translate="yes">Netfang</label>
       <input id="email" name="email" type="text" maxlength="100">
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Uppfæra fyrirtæki</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Uppfæra skipulag</button>
     </div>
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      Árangri! Upplýsingar um fyrirtækið hafa verið uppfærðar
+      Árangur! Upplýsingar um fyrirtækið þitt hafa verið uppfærðar
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Villa! Óþekkt villa varð
+      Villa! Óþekkt villa kom upp
     </div>
   </template>
   <template id="invalid-organization-name">
     <div class="error message" translate="yes">
-      Villa! Gefið var upp vantar eða Ótækt heiti fyrirtækis
+      Villa! Nafn eða ógilt heiti fyrirtækis var gefið upp
     </div>
   </template>
   <template id="invalid-organization-name-length">
     <div class="error message" translate="yes">
-      Villa! Ógilt heiti fyrirtækis lengd
+      Villa! Ógild nafnlengd stofnunar
     </div>
   </template>
   <template id="invalid-organization-email">
     <div class="error message" translate="yes">
-      Villa! Tölvupóstur sem vantar eða var ógilt var veittur
+      Villa! Tölvupóstfang vantaði eða ógildur var afhentur
     </div>
   </template>
 </body>

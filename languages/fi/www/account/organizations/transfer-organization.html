@@ -2,15 +2,15 @@
 <html lang="en" data-navbar="/account/organizations/navbar-organization.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Omistusoikeuden siirtäminen ${organization.organizationid}</title>
+  <title translate="yes">Siirrä omistaja ${organization.organizationid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Omistusoikeuden siirtäminen ${organization.organizationid}</h1>
-  <p translate="yes">Tämä välittömästi muuttaa omistajan organizaiton.</p>
+  <h1 translate="yes">Siirrä omistaja ${organization.organizationid}</h1>
+  <p translate="yes">Tämä muuttaa heti organisaation omistajan.</p>
   <div id="message-container"></div>
   <table id="organizations-table" class="pure-table object-table">
     <thead>
@@ -32,7 +32,7 @@
   </table>
   <form id="submit-form" class="pure-form pure-form-stacked" action="/account/organizations/transfer-organization?organizationid=${organization.organizationid}" name="submit-form">
     <div class="pure-control-group">
-      <label for="accountid" translate="yes">Uuden organisaation omistaja</label>
+      <label for="accountid" translate="yes">Uusi organisaation omistaja</label>
       <select id="accountid" name="accountid">
         <option value="" translate="yes">
           Valitse uusi omistaja
@@ -40,7 +40,7 @@
       </select>
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Siirrä organisaatio</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Siirto-organisaatio</button>
     </div>
   </form>
   <template id="membership-option-template">
@@ -55,12 +55,12 @@
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Virhe! Virhe siirrettäessä organisaatiota
+      Virhe! Organisaation siirtämisessä tapahtui virhe
     </div>
   </template>
   <template id="invalid-accountid">
     <div class="error message" translate="yes">
-      Virhe! Valittu tai annettu vastaanottaja ei kelpaa
+      Virhe! Virheellinen vastaanottaja valittiin tai toimitettiin
     </div>
   </template>
 </body>

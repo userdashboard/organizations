@@ -2,14 +2,14 @@
 <html lang="en" data-navbar="/account/organizations/navbar-invitation.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Mostra ${invitation.invitationid}</title>
+  <title translate="yes">Veure ${invitation.invitationid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Mostra ${invitation.invitationid}</h1>
+  <h1 translate="yes">Veure ${invitation.invitationid}</h1>
   <table id="invitations-table" class="pure-table data-table">
     <tbody id="${invitation.invitationid}">
       <tr>
@@ -17,7 +17,7 @@
         <td>${invitation.invitationid}</td>
       </tr>
       <tr>
-        <th translate="yes">Creada</th>
+        <th translate="yes">Creat</th>
         <td>${invitation.createdFormatted}</td>
       </tr>
       <tr>
@@ -26,7 +26,7 @@
         <td id="not-accepted" translated="yes">No</td>
       </tr>
       <tr>
-        <th translate="yes">Membres</th>
+        <th translate="yes">Membre</th>
         <td id="membership">
           <a href="/account/organizations/membership?membershipid=${invitation.membershipid}">${invitation.membershipid}</a>
         </td>

@@ -9,8 +9,8 @@
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">की सदस्यता रद्द ${membership.membershipid}</h1>
-  <p translate="yes">इससे सदस्य तुरंत ऑर्गनाइज से हट जाएंगे।</p>
+  <h1 translate="yes">की सदस्यता निरस्त करें ${membership.membershipid}</h1>
+  <p translate="yes">यह संगठन से सदस्य को तुरंत हटा देगा।</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/revoke-membership?membershipid=${membership.membershipid}" name="submit-form">
     <div class="pure-control-group">
@@ -23,12 +23,12 @@
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      सफलता! सदस्यता स्थायी रूप से हटा दी गई है
+      सफलता! सदस्यता को स्थायी रूप से हटा दिया गया है
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      त्रुटि! एक अज्ञात त्रुटि
+      त्रुटि! एक अज्ञात ग़लती हुई
     </div>
   </template>
 </body>

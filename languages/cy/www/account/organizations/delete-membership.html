@@ -10,7 +10,7 @@
 </head>
 <body>
   <h1 translate="yes">Dileu ${membership.membershipid}</h1>
-  <p translate="yes">Caiff yr aelodaeth ei dileu ar unwaith ac ni ellir ei hadennill.</p>
+  <p translate="yes">Bydd yr aelodaeth yn cael ei dileu ar unwaith ac ni ellir ei hadennill.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/delete-membership?membershipid=${membership.membershipid}" name="submit-form">
     <div class="pure-control-group">
@@ -23,12 +23,12 @@
   </form>
   <template id="success">
     <div class="error message" translate="yes">
-      Gwall! Mae'r aelodaeth wedi ei dileu yn barhaol
+      Gwall! Mae'r aelodaeth wedi'i dileu yn barhaol
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Gwall! Gwall anhysbys ocurred
+      Gwall! Digwyddodd gwall anhysbys
     </div>
   </template>
 </body>

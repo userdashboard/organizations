@@ -11,15 +11,15 @@
 </head>
 <body>
   <h1 translate="yes">Kreye envitasyon pou ${organization.organizationid}</h1>
-  <p translate="yes">Kod envitasyon pemet moun yo rantre nan Oganizasyon ou.</p>
+  <p translate="yes">Kòd envitasyon pèmèt moun yo rantre nan òganizasyon ou.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/create-invitation?organizationid=${organization.organizationid}" name="submit-form">
     <div class="pure-control-group">
-      <label for="organization-name" translate="yes">Oganizasyon</label>
+      <label for="organization-name" translate="yes">.Ganizasyon</label>
       <input id="organization-name" type="text" maxlength="100" readonly>
     </div>
     <div class="pure-control-group">
-      <label for="secret-code" translate="yes">Kod sekre</label>
+      <label for="secret-code" translate="yes">Kòd sekrè</label>
       <input id="secret-code" name="secret-code" type="text" maxlength="100">
     </div>
     <div class="pure-controls">
@@ -28,22 +28,22 @@
   </form>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Ere! Yon ere enkoni ki te fet
+      Erè! Yon erè enkoni te fèt
     </div>
   </template>
   <template id="invalid-secret-code">
     <div class="error message" translate="yes">
-      Ere! Kod la sekre ki manke oswa envalid
+      Erè! Kòd la sekrè ki manke oswa ki valab
     </div>
   </template>
   <template id="invalid-secret-code-length">
     <div class="error message" translate="yes">
-      Ere! Kod la sekre gen yon longe envalid
+      Erè! Kòd la sekrè gen yon longè valab
     </div>
   </template>
   <template id="success">
     <div class="success message">
-      <p translate="yes">Sikse! Bay Kod sekre ou ak lyen sa a yon moun pou rantre nan:</p>
+      <p translate="yes">Siksè! Bay kòd sekrè ou ak lyen sa a pou yon moun rantre nan:</p>
       <div class="invitation-link">
         <input type="text" readonly value="${organization.dashboardServer}/account/organizations/accept-invitation?invitationid=${organization.invitationid}">
       </div>

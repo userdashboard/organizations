@@ -2,50 +2,50 @@
 <html lang="en" data-navbar="/account/organizations/navbar.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Daveti kabul et</title>
+  <title translate="yes">Daveti kabul etmek</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Daveti kabul et</h1>
-  <p translate="yes">Kodu girdikten sonra kuruluşun üyesi olursunuz.</p>
+  <h1 translate="yes">Daveti kabul etmek</h1>
+  <p translate="yes">Kodu girdikten sonra kuruluşun bir üyesi olacaksınız.</p>
   <div id="message-container"></div>
   <form id="submit-form" class="pure-form pure-form-stacked" action="/account/organizations/accept-invitation" name="submit-form">
     <div class="pure-control-group">
-      <label for="invitationid" translate="yes">Davet Kimliği</label>
+      <label for="invitationid" translate="yes">Davetiye numarası</label>
       <input id="invitationid" name="invitationid" type="text" maxlength="100">
     </div>
     <div class="pure-control-group">
-      <label for="secret-code" translate="yes">Davet kodu</label>
+      <label for="secret-code" translate="yes">Davet Kodu</label>
       <input id="secret-code" name="secret-code" type="text" maxlength="100">
     </div>
     <h2 translate="yes">Üyelik bilgileri</h2>
     <div id="existing-profile-container" class="pure-control-group">
-      <label for="profileid" translate="yes">Varolan profili kullanma</label>
+      <label for="profileid" translate="yes">Mevcut profili kullan</label>
       <select id="profileid" name="profileid">
         <option value="" translate="yes">
-          Varolan bir profil seçin
+          Mevcut bir profili seçin
         </option>
       </select>
     </div>
-    <h3 translate="yes">Yeni profil oluşturma</h3>
+    <h3 translate="yes">Yeni profil oluştur</h3>
     <div id="display-name-container" class="pure-control-group">
-      <label for="display-name" translate="yes">Görüntü adı</label>
+      <label for="display-name" translate="yes">Ekran adı</label>
       <input required="" id="display-name" name="display-name" type="text" maxlength="1000">
     </div>
     <div id="display-email-container" class="pure-control-group">
-      <label for="display-email" translate="yes">E-postayı görüntüleme</label>
+      <label for="display-email" translate="yes">Görüntülü e-posta</label>
       <input required="" id="display-email" name="display-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="contact-email-container" class="pure-control-group">
-      <label for="contact-email" translate="yes">İletişim e-posta</label>
+      <label for="contact-email" translate="yes">İletişim E-posta</label>
       <input required="" id="contact-email" name="contact-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="full-name-container">
       <div class="pure-control-group">
-        <label for="first-name" translate="yes">Ad soyad</label>
+        <label for="first-name" translate="yes">İsim</label>
       <input required="" id="first-name" name="first-name" type="text" maxlength="1000">
       </div>
       <div class="pure-control-group">
@@ -64,19 +64,19 @@
       <input required="" id="phone" name="phone" type="text" maxlength="1000">
     </div>
     <div id="occupation-container" class="pure-control-group">
-      <label for="occupation" translate="yes">Işgal</label>
+      <label for="occupation" translate="yes">Meslek</label>
       <input required="" id="occupation" name="occupation" type="text" maxlength="1000">
     </div>
     <div id="location-container" class="pure-control-group">
-      <label for="location" translate="yes">Konum</label>
+      <label for="location" translate="yes">yer</label>
       <input required="" id="location" name="location" type="text" maxlength="1000">
     </div>
     <div id="company-name-container" class="pure-control-group">
-      <label for="company-name" translate="yes">Şirket adı</label>
+      <label for="company-name" translate="yes">Şirket Adı</label>
       <input required="" id="company-name" name="company-name" type="text" maxlength="1000">
     </div>
     <div id="website-container" class="pure-control-group">
-      <label for="website" translate="yes">Web sitesi</label>
+      <label for="website" translate="yes">İnternet sitesi</label>
       <input required="" id="website" name="website" type="text" maxlength="1000">
     </div>
     <div class="pure-controls">
@@ -85,22 +85,22 @@
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      Başarı! Artık örgütün bir üyesisiniz.
+      Başarı! Artık kuruluşun bir üyesisiniz
     </div>
   </template>
   <template id="invalid-invitation">
     <div class="error message" translate="yes">
-      Hata! Davet artık kullanılamıyor
+      Hata! Davetiye artık kullanılamıyor
     </div>
   </template>
   <template id="invalid-secret-code">
     <div class="error message" translate="yes">
-      Hata! Davet kodu yanlış
+      Hata! Davetiye kodu yanlış
     </div>
   </template>
   <template id="invalid-invitationid">
     <div class="error message" translate="yes">
-      Hata! Eksik veya geçersiz davetiye sağlandı
+      Hata! Eksik veya geçersiz bir davetiye sunuldu
     </div>
   </template>
   <template id="invalid-account">
@@ -120,7 +120,7 @@
   </template>
   <template id="invalid-organization-name">
     <div class="error message" translate="yes">
-      Hata! Eksik veya geçersiz bir kuruluş adı sağlandı
+      Hata! Eksik veya geçersiz bir kuruluş adı belirtildi
     </div>
   </template>
   <template id="invalid-organization-name-length">
@@ -140,7 +140,7 @@
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Hata! Kuruluş oluşturma hatası oluştu
+      Hata! Kuruluş oluşturulurken bir hata oluştu
     </div>
   </template>
   <template id="invalid-first-name">
@@ -165,52 +165,52 @@
   </template>
   <template id="invalid-contact-email">
     <div class="error message" translate="yes">
-      Hata! Geçersiz kişi e-posta adresi
+      Hata! Geçersiz iletişim e-posta adresi
     </div>
   </template>
   <template id="invalid-display-email">
     <div class="error message" translate="yes">
-      Hata! Geçersiz görüntülü e-posta adresi
+      Hata! Geçersiz görünen e-posta adresi
     </div>
   </template>
   <template id="invalid-display-name">
     <div class="error message" translate="yes">
-      Hata! Eksik veya geçersiz görüntü adı sağlandı
+      Hata! Eksik veya geçersiz bir görünen ad sağlandı
     </div>
   </template>
   <template id="invalid-dob">
     <div class="error message" translate="yes">
-      Hata! Eksik veya geçersiz doğum tarihi sağlandı
+      Hata! Eksik veya geçersiz doğum tarihi belirtildi
     </div>
   </template>
   <template id="invalid-phone">
     <div class="error message" translate="yes">
-      Hata! Kayıp veya geçersiz bir telefon sağlandı.
+      Hata! Eksik veya geçersiz bir telefon sağlandı.
     </div>
   </template>
   <template id="invalid-occupation">
     <div class="error message" translate="yes">
-      Hata! Kayıp veya geçersiz bir işgal sağlandı.
+      Hata! Eksik veya geçersiz bir meslek sağlandı.
     </div>
   </template>
   <template id="invalid-location">
     <div class="error message" translate="yes">
-      Hata! Eksik veya geçersiz bir konum sağlandı.
+      Hata! Eksik veya geçersiz bir yer sağlandı.
     </div>
   </template>
   <template id="invalid-company-name">
     <div class="error message" translate="yes">
-      Hata! Eksik veya geçersiz bir şirket adı sağlandı.
+      Hata! Eksik veya geçersiz bir şirket adı belirtildi.
     </div>
   </template>
   <template id="invalid-website">
     <div class="error message" translate="yes">
-      Hata! Eksik veya geçersiz bir web sitesi sağlanmıştır.
+      Hata! Eksik veya geçersiz bir web sitesi sağlandı.
     </div>
   </template>
   <template id="invalid-display-name-length">
     <div class="error message" translate="yes">
-      Hata! Eksik veya geçersiz görüntü adı sağlandı
+      Hata! Eksik veya geçersiz bir görünen ad sağlandı
     </div>
   </template>
   <template id="invalid-profileid">

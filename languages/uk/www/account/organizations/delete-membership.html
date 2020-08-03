@@ -10,11 +10,11 @@
 </head>
 <body>
   <h1 translate="yes">Видалити ${membership.membershipid}</h1>
-  <p translate="yes">Членство буде видалено негайно, і його не можна буде відновити.</p>
+  <p translate="yes">Членство буде видалено негайно і неможливо відновити.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/delete-membership?membershipid=${membership.membershipid}" name="submit-form">
     <div class="pure-control-group">
-      <label for="organizationName" translate="yes">Організації</label>
+      <label for="organizationName" translate="yes">Організація</label>
       <input id="organizationName" type="text" maxlength="100" readonly>
     </div>
     <div class="pure-controls">
@@ -23,12 +23,12 @@
   </form>
   <template id="success">
     <div class="error message" translate="yes">
-      Помилка! Членство було остаточно видалено
+      Помилка! Членство було назавжди видалено
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Помилка! Невідома помилка сталася
+      Помилка! Сталася невідома помилка
     </div>
   </template>
 </body>

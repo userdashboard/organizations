@@ -2,7 +2,7 @@
 <html lang="en" data-navbar="/account/organizations/navbar-membership.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Herroep die ${membership.membershipid}</title>
+  <title translate="yes">Herroep lidmaatskap daarvan ${membership.membershipid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
@@ -10,20 +10,20 @@
 </head>
 <body>
   <h1 translate="yes">Herroep lidmaatskap van ${membership.membershipid}</h1>
-  <p translate="yes">Dit sal onmiddellik die lid van die organizaiton verwyder.</p>
+  <p translate="yes">Dit sal die lid onmiddellik uit die organisasie verwyder.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/revoke-membership?membershipid=${membership.membershipid}" name="submit-form">
     <div class="pure-control-group">
-      <label for="organizationName" translate="yes">Organisasie</label>
+      <label for="organizationName" translate="yes">organisasie</label>
       <input id="organizationName" type="text" maxlength="100" readonly>
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Skrap lidmaatskap</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Verwyder lidmaatskap</button>
     </div>
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      Sukses! Die lidmaatskap is permanent geskrap
+      Sukses! Die lidmaatskap is permanent uitgevee
     </div>
   </template>
   <template id="unknown-error">

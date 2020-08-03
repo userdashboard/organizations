@@ -2,14 +2,14 @@
 <html lang="en" data-navbar="/account/organizations/navbar-membership.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Bekyk ${membership.membershipid}</title>
+  <title translate="yes">Beskou ${membership.membershipid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Bekyk ${membership.membershipid}</h1>
+  <h1 translate="yes">Beskou ${membership.membershipid}</h1>
   <table id="memberships-table" class="pure-table data-table">
     <tbody id="${membership.membershipid}">
       <tr>
@@ -25,17 +25,17 @@
         <td>${membership.firstName} ${membership.lastName}</td>
       </tr>
       <tr id="contact-email">
-        <th translate="yes">Kontak e-</th>
+        <th translate="yes">Kontak e-pos</th>
         <td>
           <a href="mailto:${membership.contactEmail}">${membership.contactEmail}</a>
         </td>
       </tr>
       <tr id="display-name">
-        <th translate="yes">Wys naam</th>
+        <th translate="yes">Vertoonnaam</th>
         <td>${membership.displayName}</td>
       </tr>
       <tr id="display-email">
-        <th translate="yes">Wys e-</th>
+        <th translate="yes">Vertoon e-pos</th>
         <td>
           <a href="mailto:${membership.displayEmail}">${membership.displayEmail}</a>
         </td>
@@ -53,15 +53,15 @@
         <td>${membership.occupation}</td>
       </tr>
       <tr id="location">
-        <th translate="yes">Ligging</th>
+        <th translate="yes">plek</th>
         <td>${membership.location}</td>
       </tr>
       <tr id="company-name">
-        <th translate="yes">Maatskappy se naam</th>
+        <th translate="yes">Maatskappynaam</th>
         <td>${membership.companyName}</td>
       </tr>
       <tr id="website">
-        <th translate="yes">Webwerf</th>
+        <th translate="yes">webwerf</th>
         <td>
           <a href="${membership.website}">${membership.website}</a>
         </td>

@@ -2,32 +2,32 @@
 <html lang="en" data-navbar="/account/organizations/navbar-membership.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Modifica ${membership.membershipid} profile</title>
+  <title translate="yes">modificare ${membership.membershipid} profile</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Modifica ${membership.membershipid} profile</h1>
-  <p translate="yes">Qualsiasi altra appartenenza che condivide questo profilo o altro utilizzo di esso verrà aggiornata.</p>
+  <h1 translate="yes">modificare ${membership.membershipid} profile</h1>
+  <p translate="yes">Qualsiasi altro abbonamento che condivida questo profilo, o altro uso di esso, verrà anch'esso aggiornato.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/edit-membership-profile?membershipid=${membership.membershipid}" name="submit-form">
     <div id="display-name-container" class="pure-control-group">
-      <label for="display-name" translate="yes">Nome visualizzato</label>
+      <label for="display-name" translate="yes">Nome da visualizzare</label>
       <input required="" id="display-name" name="display-name" type="text" maxlength="1000">
     </div>
     <div id="display-email-container" class="pure-control-group">
-      <label for="display-email" translate="yes">Visualizzare l'e-mail</label>
+      <label for="display-email" translate="yes">Visualizza email</label>
       <input required="" id="display-email" name="display-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="contact-email-container" class="pure-control-group">
-      <label for="contact-email" translate="yes">E-mail di contatto</label>
+      <label for="contact-email" translate="yes">Contatto email</label>
       <input required="" id="contact-email" name="contact-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="full-name-container">
       <div class="pure-control-group">
-        <label for="first-name" translate="yes">Nome</label>
+        <label for="first-name" translate="yes">nome di battesimo</label>
         <input required="" id="first-name" name="first-name" type="text" maxlength="1000">
       </div>
       <div class="pure-control-group">
@@ -54,7 +54,7 @@
       <input required="" id="location" name="location" type="text" maxlength="1000">
     </div>
     <div id="company-name-container" class="pure-control-group">
-      <label for="company-name" translate="yes">Nome dell'azienda</label>
+      <label for="company-name" translate="yes">Nome della ditta</label>
       <input required="" id="company-name" name="company-name" type="text" maxlength="1000">
     </div>
     <div id="website-container" class="pure-control-group">
@@ -62,12 +62,12 @@
       <input required="" id="website" name="website" type="text" maxlength="1000">
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Aggiornare l'appartenenza</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Aggiorna abbonamento</button>
     </div>
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      Successo! Le tue informazioni sull'iscrizione sono state aggiornate
+      Successo! Le informazioni sulla tua iscrizione sono state aggiornate
     </div>
   </template>
   <template id="unknown-error">
@@ -77,7 +77,7 @@
   </template>
   <template id="invalid-first-name">
     <div class="error message" translate="yes">
-      Errore! Nome mancante o non valido fornito
+      Errore! Un nome mancante o non valido fornito
     </div>
   </template>
   <template id="invalid-first-name-length">
@@ -97,12 +97,12 @@
   </template>
   <template id="invalid-contact-email">
     <div class="error message" translate="yes">
-      Errore! Indirizzo di posta elettronica di contatto non valido
+      Errore! Indirizzo email di contatto non valido
     </div>
   </template>
   <template id="invalid-display-email">
     <div class="error message" translate="yes">
-      Errore! Indirizzo di posta elettronica visualizzato non valido
+      Errore! Indirizzo e-mail di visualizzazione non valido
     </div>
   </template>
   <template id="invalid-display-name">

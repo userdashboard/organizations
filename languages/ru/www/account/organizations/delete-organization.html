@@ -10,25 +10,25 @@
 </head>
 <body>
   <h1 translate="yes">Удалить ${organization.organizationid}</h1>
-  <p translate="yes">Организация будет немедленно удалена и не может быть восстановлена.</p>
+  <p translate="yes">Организация будет удалена немедленно и не может быть восстановлена.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/delete-organization?organizationid=${organization.organizationid}" name="submit-form">
     <div class="pure-control-group">
-      <label for="organizationName" translate="yes">Организации</label>
+      <label for="organizationName" translate="yes">организация</label>
       <input id="organizationName" type="text" maxlength="100" readonly>
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Удаление организации</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Удалить организацию</button>
     </div>
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      Успех! Организация была окончательно удалена
+      Успех! Организация была навсегда удалена
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Ошибка! Ошибка, допущенная к удалению организации
+      Ошибка! Произошла ошибка при удалении организации
     </div>
   </template>
 </body>

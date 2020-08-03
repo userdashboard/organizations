@@ -10,25 +10,25 @@
 </head>
 <body>
   <h1 translate="yes">Izbrisati ${membership.membershipid}</h1>
-  <p translate="yes">Članstvo će biti odmah izbrisano i ne može se vratiti.</p>
+  <p translate="yes">Članstvo će biti izbrisano odmah i ne može se povratiti.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/delete-membership?membershipid=${membership.membershipid}" name="submit-form">
     <div class="pure-control-group">
-      <label for="organizationName" translate="yes">Organizacije</label>
+      <label for="organizationName" translate="yes">Organizacija</label>
       <input id="organizationName" type="text" maxlength="100" readonly>
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Brisanje članstva</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Izbriši članstvo</button>
     </div>
   </form>
   <template id="success">
     <div class="error message" translate="yes">
-      Pogreška! Članstvo je trajno izbrisano
+      Greška! Članstvo je trajno izbrisano
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Pogreška! Nastala je nepoznata pogreška
+      Greška! Dogodila se nepoznata pogreška
     </div>
   </template>
 </body>

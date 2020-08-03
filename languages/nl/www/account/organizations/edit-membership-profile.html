@@ -2,15 +2,15 @@
 <html lang="en" data-navbar="/account/organizations/navbar-membership.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Bewerken ${membership.membershipid} profile</title>
+  <title translate="yes">Bewerk ${membership.membershipid} profile</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Bewerken ${membership.membershipid} profile</h1>
-  <p translate="yes">Elk ander lidmaatschap dat dit profiel deelt, of ander gebruik ervan, wordt ook bijgewerkt.</p>
+  <h1 translate="yes">Bewerk ${membership.membershipid} profile</h1>
+  <p translate="yes">Elk ander lidmaatschap dat dit profiel deelt, of ander gebruik ervan, zal ook worden bijgewerkt.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/edit-membership-profile?membershipid=${membership.membershipid}" name="submit-form">
     <div id="display-name-container" class="pure-control-group">
@@ -22,7 +22,7 @@
       <input required="" id="display-email" name="display-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="contact-email-container" class="pure-control-group">
-      <label for="contact-email" translate="yes">E-mail opnemen</label>
+      <label for="contact-email" translate="yes">Contact email</label>
       <input required="" id="contact-email" name="contact-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="full-name-container">
@@ -50,7 +50,7 @@
       <input required="" id="occupation" name="occupation" type="text" maxlength="1000">
     </div>
     <div id="location-container" class="pure-control-group">
-      <label for="location" translate="yes">Locatie</label>
+      <label for="location" translate="yes">Plaats</label>
       <input required="" id="location" name="location" type="text" maxlength="1000">
     </div>
     <div id="company-name-container" class="pure-control-group">
@@ -62,7 +62,7 @@
       <input required="" id="website" name="website" type="text" maxlength="1000">
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Lidmaatschap bijwerken</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Lidmaatschap updaten</button>
     </div>
   </form>
   <template id="success">
@@ -72,12 +72,12 @@
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Fout! Er is een onbekende fout gemaakt
+      Fout! Een onbekende fout is opgetreden
     </div>
   </template>
   <template id="invalid-first-name">
     <div class="error message" translate="yes">
-      Fout! Een ontbrekende of ongeldige voornaam
+      Fout! Een ontbrekende of ongeldige voornaam opgegeven
     </div>
   </template>
   <template id="invalid-first-name-length">
@@ -97,12 +97,12 @@
   </template>
   <template id="invalid-contact-email">
     <div class="error message" translate="yes">
-      Fout! Ongeldig e-mailadres met contactpersonen
+      Fout! Ongeldig e-mailadres voor contact
     </div>
   </template>
   <template id="invalid-display-email">
     <div class="error message" translate="yes">
-      Fout! Ongeldig e-mailadres voor weergeven
+      Fout! Ongeldig e-mailadres voor weergave
     </div>
   </template>
   <template id="invalid-display-name">
@@ -112,17 +112,17 @@
   </template>
   <template id="invalid-dob">
     <div class="error message" translate="yes">
-      Fout! Er is een ontbrekende of ongeldige geboortedatum verstrekt
+      Fout! Er is een ontbrekende of ongeldige geboortedatum opgegeven
     </div>
   </template>
   <template id="invalid-phone">
     <div class="error message" translate="yes">
-      Fout! Er is een ontbrekende of ongeldige telefoon verstrekt.
+      Fout! Er is een ontbrekende of ongeldige telefoon opgegeven.
     </div>
   </template>
   <template id="invalid-occupation">
     <div class="error message" translate="yes">
-      Fout! Een ontbrekend of ongeldig beroep werd verstrekt.
+      Fout! Er werd een ontbrekend of ongeldig beroep opgegeven.
     </div>
   </template>
   <template id="invalid-location">
@@ -137,7 +137,7 @@
   </template>
   <template id="invalid-website">
     <div class="error message" translate="yes">
-      Fout! Er is een ontbrekende of ongeldige website verstrekt.
+      Fout! Er is een ontbrekende of ongeldige website opgegeven.
     </div>
   </template>
   <template id="invalid-display-name-length">

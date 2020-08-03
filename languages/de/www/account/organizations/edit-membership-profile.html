@@ -10,7 +10,7 @@
 </head>
 <body>
   <h1 translate="yes">Bearbeiten ${membership.membershipid} profile</h1>
-  <p translate="yes">Jede andere Mitgliedschaft, die dieses Profil oder eine andere Nutzung dieses Profils teilt, wird ebenfalls aktualisiert.</p>
+  <p translate="yes">Jede andere Mitgliedschaft, die dieses Profil teilt oder anderweitig verwendet wird, wird ebenfalls aktualisiert.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/edit-membership-profile?membershipid=${membership.membershipid}" name="submit-form">
     <div id="display-name-container" class="pure-control-group">
@@ -22,7 +22,7 @@
       <input required="" id="display-email" name="display-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="contact-email-container" class="pure-control-group">
-      <label for="contact-email" translate="yes">Kontakt-E-Mail</label>
+      <label for="contact-email" translate="yes">Kontakt E-mail</label>
       <input required="" id="contact-email" name="contact-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="full-name-container">
@@ -46,23 +46,23 @@
       <input required="" id="phone" name="phone" type="text" maxlength="1000">
     </div>
     <div id="occupation-container" class="pure-control-group">
-      <label for="occupation" translate="yes">Beruf</label>
+      <label for="occupation" translate="yes">Besetzung</label>
       <input required="" id="occupation" name="occupation" type="text" maxlength="1000">
     </div>
     <div id="location-container" class="pure-control-group">
-      <label for="location" translate="yes">Lage</label>
+      <label for="location" translate="yes">Ort</label>
       <input required="" id="location" name="location" type="text" maxlength="1000">
     </div>
     <div id="company-name-container" class="pure-control-group">
-      <label for="company-name" translate="yes">Firmenname</label>
+      <label for="company-name" translate="yes">Name der Firma</label>
       <input required="" id="company-name" name="company-name" type="text" maxlength="1000">
     </div>
     <div id="website-container" class="pure-control-group">
-      <label for="website" translate="yes">Website</label>
+      <label for="website" translate="yes">Webseite</label>
       <input required="" id="website" name="website" type="text" maxlength="1000">
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Aktualisieren der Mitgliedschaft</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Aktualisieren Sie die Mitgliedschaft</button>
     </div>
   </form>
   <template id="success">
@@ -72,77 +72,77 @@
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Fehler! Ein unbekannter Fehler
+      Error! Ein unbekannter Fehler ist aufgetreten
     </div>
   </template>
   <template id="invalid-first-name">
     <div class="error message" translate="yes">
-      Fehler! Ein fehlender oder ungültiger Vorname angegeben
+      Error! Ein fehlender oder ungültiger Vorname wird angegeben
     </div>
   </template>
   <template id="invalid-first-name-length">
     <div class="error message" translate="yes">
-      Fehler! Ein ungültiger Vorname wurde bereitgestellt.
+      Error! Es wurde ein ungültiger Vorname angegeben
     </div>
   </template>
   <template id="invalid-last-name">
     <div class="error message" translate="yes">
-      Fehler! Ein fehlender oder ungültiger Nachname wurde bereitgestellt.
+      Error! Ein fehlender oder ungültiger Nachname wurde angegeben
     </div>
   </template>
   <template id="invalid-last-name-length">
     <div class="error message" translate="yes">
-      Fehler! Ein ungültiger Nachname wurde bereitgestellt.
+      Error! Es wurde ein ungültiger Nachname angegeben
     </div>
   </template>
   <template id="invalid-contact-email">
     <div class="error message" translate="yes">
-      Fehler! Ungültige Kontakt-E-Mail-Adresse
+      Error! Ungültige Kontakt-E-Mail-Adresse
     </div>
   </template>
   <template id="invalid-display-email">
     <div class="error message" translate="yes">
-      Fehler! Ungültige Anzeige-E-Mail-Adresse
+      Error! Ungültige Anzeige-E-Mail-Adresse
     </div>
   </template>
   <template id="invalid-display-name">
     <div class="error message" translate="yes">
-      Fehler! Ein fehlender oder ungültiger Anzeigename wurde bereitgestellt.
+      Error! Ein fehlender oder ungültiger Anzeigename wurde angegeben
     </div>
   </template>
   <template id="invalid-dob">
     <div class="error message" translate="yes">
-      Fehler! Ein fehlendes oder ungültiges Geburtsdatum wurde angegeben
+      Error! Ein fehlendes oder ungültiges Geburtsdatum wurde angegeben
     </div>
   </template>
   <template id="invalid-phone">
     <div class="error message" translate="yes">
-      Fehler! Ein fehlendes oder ungültiges Telefon wurde bereitgestellt.
+      Error! Ein fehlendes oder ungültiges Telefon wurde bereitgestellt.
     </div>
   </template>
   <template id="invalid-occupation">
     <div class="error message" translate="yes">
-      Fehler! Es wurde eine fehlende oder ungültige Beschäftigung bereitgestellt.
+      Error! Ein fehlender oder ungültiger Beruf wurde angegeben.
     </div>
   </template>
   <template id="invalid-location">
     <div class="error message" translate="yes">
-      Fehler! Es wurde ein fehlender oder ungültiger Speicherort angegeben.
+      Error! Ein fehlender oder ungültiger Ort wurde angegeben.
     </div>
   </template>
   <template id="invalid-company-name">
     <div class="error message" translate="yes">
-      Fehler! Es wurde ein fehlender oder ungültiger Firmenname angegeben.
+      Error! Ein fehlender oder ungültiger Firmenname wurde angegeben.
     </div>
   </template>
   <template id="invalid-website">
     <div class="error message" translate="yes">
-      Fehler! Es wurde eine fehlende oder ungültige Website bereitgestellt.
+      Error! Eine fehlende oder ungültige Website wurde bereitgestellt.
     </div>
   </template>
   <template id="invalid-display-name-length">
     <div class="error message" translate="yes">
-      Fehler! Ein fehlender oder ungültiger Anzeigename wurde bereitgestellt.
+      Error! Ein fehlender oder ungültiger Anzeigename wurde angegeben
     </div>
   </template>
 </body>

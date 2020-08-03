@@ -10,23 +10,23 @@
 </head>
 <body>
   <h1 translate="yes">Δημιουργία οργανισμού</h1>
-  <p translate="yes">Οι οργανισμοί μπορούν να χρησιμοποιηθούν για την κοινή χρήση πρόσβασης σε πόρους.</p>
+  <p translate="yes">Οι οργανισμοί μπορούν να χρησιμοποιηθούν για κοινή χρήση πρόσβασης σε πόρους.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/create-organization" name="submit-form">
     <div class="pure-control-group">
-      <label for="name" translate="yes">Όνομα οργανισμού</label>
+      <label for="name" translate="yes">Ονομα Οργανισμού</label>
       <input id="name" name="name" type="text" maxlength="100">
     </div>
     <div class="pure-control-group">
-      <label for="email" translate="yes">Ηλεκτρονικό ταχυδρομείο επαφών</label>
+      <label for="email" translate="yes">Επικοινωνία μέσω email</label>
       <input id="email" name="email" type="text" maxlength="100">
     </div>
-    <h2 translate="yes">Πληροφορίες ιδιότητας μέλους</h2>
+    <h2 translate="yes">Πληροφορίες μέλους</h2>
     <div id="existing-profile-container" class="pure-control-group">
-      <label for="profileid" translate="yes">Χρήση υπάρχοντος προφίλ</label>
+      <label for="profileid" translate="yes">Χρησιμοποιήστε το υπάρχον προφίλ</label>
       <select id="profileid" name="profileid">
         <option value="" translate="yes">
-          Επιλογή υπάρχοντος προφίλ
+          Επιλέξτε ένα υπάρχον προφίλ
         </option>
       </select>
     </div>
@@ -36,26 +36,26 @@
       <input required="" id="display-name" name="display-name" type="text" maxlength="1000">
     </div>
     <div id="display-email-container" class="pure-control-group">
-      <label for="display-email" translate="yes">Εμφάνιση ηλεκτρονικού ταχυδρομείου</label>
+      <label for="display-email" translate="yes">Εμφάνιση email</label>
       <input required="" id="display-email" name="display-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="contact-email-container" class="pure-control-group">
-      <label for="contact-email" translate="yes">Ηλεκτρονικό ταχυδρομείο επαφών</label>
+      <label for="contact-email" translate="yes">Επικοινωνία μέσω email</label>
       <input required="" id="contact-email" name="contact-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="full-name-container">
       <div class="pure-control-group">
-        <label for="first-name" translate="yes">Όνομα</label>
+        <label for="first-name" translate="yes">Ονομα</label>
         <input required="" id="first-name" name="first-name" type="text" maxlength="1000">
       </div>
       <div class="pure-control-group">
-        <label for="last-name" translate="yes">Επώνυμο</label>
+        <label for="last-name" translate="yes">Επίθετο</label>
         <input required="" id="last-name" name="last-name" type="text" maxlength="1000">
       </div>
     </div>
     <div id="dob-container">
       <div class="pure-control-group">
-        <label for="dob" translate="yes">Ημερομηνία γέννησης</label>
+        <label for="dob" translate="yes">Ημερομηνια γεννησης</label>
         <input required="" id="dob" name="dob" type="text" maxlength="11">
       </div>
     </div>
@@ -64,7 +64,7 @@
       <input required="" id="phone" name="phone" type="text" maxlength="1000">
     </div>
     <div id="occupation-container" class="pure-control-group">
-      <label for="occupation" translate="yes">Κατοχής</label>
+      <label for="occupation" translate="yes">Κατοχή</label>
       <input required="" id="occupation" name="occupation" type="text" maxlength="1000">
     </div>
     <div id="location-container" class="pure-control-group">
@@ -72,11 +72,11 @@
       <input required="" id="location" name="location" type="text" maxlength="1000">
     </div>
     <div id="company-name-container" class="pure-control-group">
-      <label for="company-name" translate="yes">Επωνυμία εταιρείας</label>
+      <label for="company-name" translate="yes">Ονομα εταιρείας</label>
       <input required="" id="company-name" name="company-name" type="text" maxlength="1000">
     </div>
     <div id="website-container" class="pure-control-group">
-      <label for="website" translate="yes">Ιστοσελίδα</label>
+      <label for="website" translate="yes">Δικτυακός τόπος</label>
       <input required="" id="website" name="website" type="text" maxlength="1000">
     </div>
     <div class="pure-controls">
@@ -90,103 +90,103 @@
   </template>
   <template id="invalid-organization-name">
     <div class="error message" translate="yes">
-      Σφάλμα! Δόθηκε ένα όνομα οργανισμού που λείπει ή δεν είναι έγκυρο
+      Λάθος! Παρέχεται ένα όνομα οργανισμού που λείπει ή δεν είναι έγκυρο
     </div>
   </template>
   <template id="invalid-organization-name-length">
     <div class="error message" translate="yes">
-      Σφάλμα! Το μήκος ονόματος οργανισμού δεν είναι έγκυρο
+      Λάθος! Μη έγκυρο μήκος ονόματος οργανισμού
     </div>
   </template>
   <template id="invalid-organization-email">
     <div class="error message" translate="yes">
-      Σφάλμα! Δόθηκε ένα μήνυμα ηλεκτρονικού ταχυδρομείου οργανισμού που λείπει ή δεν είναι έγκυρο
+      Λάθος! Παρέχεται ένα μήνυμα ηλεκτρονικού ταχυδρομείου οργανισμού που λείπει ή δεν είναι έγκυρο
     </div>
   </template>
   <template id="success">
     <div class="success message" translate="yes">
       Επιτυχία! Ο οργανισμός δημιουργήθηκε με επιτυχία
-      <p><a class="pure-button pure-button-primary" href="/account/organizations/create-invitation?organizationid=${organization.organizationid}" translate="yes">Δημιουργία προσκλήσεων</a></p>
+      <p><a class="pure-button pure-button-primary" href="/account/organizations/create-invitation?organizationid=${organization.organizationid}" translate="yes">Δημιουργήστε προσκλήσεις</a></p>
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Σφάλμα! Παρουσιάστηκε σφάλμα κατά τη δημιουργία του οργανισμού
+      Λάθος! Παρουσιάστηκε σφάλμα κατά τη δημιουργία του οργανισμού
     </div>
   </template>
   <template id="invalid-first-name">
     <div class="error message" translate="yes">
-      Σφάλμα! Παρέχεται όνομα που λείπει ή δεν είναι έγκυρο
+      Λάθος! Παρέχεται ένα όνομα που λείπει ή δεν είναι έγκυρο
     </div>
   </template>
   <template id="invalid-first-name-length">
     <div class="error message" translate="yes">
-      Σφάλμα! Δόθηκε ένα μη έγκυρο όνομα
+      Λάθος! Παρέχεται μη έγκυρο όνομα
     </div>
   </template>
   <template id="invalid-last-name">
     <div class="error message" translate="yes">
-      Σφάλμα! Δόθηκε ένα επώνυμο που λείπει ή δεν είναι έγκυρο
+      Λάθος! Παρέχεται ένα επώνυμο που λείπει ή δεν είναι έγκυρο
     </div>
   </template>
   <template id="invalid-last-name-length">
     <div class="error message" translate="yes">
-      Σφάλμα! Δόθηκε μη έγκυρο επώνυμο
+      Λάθος! Παρέχεται μη έγκυρο επώνυμο
     </div>
   </template>
   <template id="invalid-contact-email">
     <div class="error message" translate="yes">
-      Σφάλμα! Μη έγκυρη διεύθυνση ηλεκτρονικού ταχυδρομείου επαφής
+      Λάθος! Μη έγκυρη διεύθυνση email επικοινωνίας
     </div>
   </template>
   <template id="invalid-display-email">
     <div class="error message" translate="yes">
-      Σφάλμα! Μη έγκυρη διεύθυνση ηλεκτρονικού ταχυδρομείου εμφάνισης
+      Λάθος! Μη έγκυρη διεύθυνση email εμφάνισης
     </div>
   </template>
   <template id="invalid-display-name">
     <div class="error message" translate="yes">
-      Σφάλμα! Δόθηκε ένα εμφανιζόμενο ή μη έγκυρο εμφανιζόμενο όνομα
+      Λάθος! Παρέχεται ένα εμφανιζόμενο ή μη έγκυρο όνομα
     </div>
   </template>
   <template id="invalid-dob">
     <div class="error message" translate="yes">
-      Σφάλμα! Δόθηκε ημερομηνία γέννησης που λείπει ή δεν είναι έγκυρη
+      Λάθος! Παρέχεται μια ημερομηνία γέννησης που λείπει ή δεν ισχύει
     </div>
   </template>
   <template id="invalid-phone">
     <div class="error message" translate="yes">
-      Σφάλμα! Δόθηκε ένα τηλέφωνο που λείπει ή δεν είναι έγκυρο.
+      Λάθος! Παρέχεται ένα τηλέφωνο που λείπει ή δεν είναι έγκυρο.
     </div>
   </template>
   <template id="invalid-occupation">
     <div class="error message" translate="yes">
-      Σφάλμα! Δόθηκε ένα επάγγελμα που λείπει ή δεν είναι έγκυρο.
+      Λάθος! Παρασχέθηκε μια ελλείπουσα ή μη έγκυρη εργασία.
     </div>
   </template>
   <template id="invalid-location">
     <div class="error message" translate="yes">
-      Σφάλμα! Δόθηκε μια θέση που λείπει ή δεν είναι έγκυρη.
+      Λάθος! Μια τοποθεσία που λείπει ή δεν είναι έγκυρη.
     </div>
   </template>
   <template id="invalid-company-name">
     <div class="error message" translate="yes">
-      Σφάλμα! Δόθηκε ένα όνομα εταιρείας που λείπει ή δεν είναι έγκυρο.
+      Λάθος! Παρέχεται ένα όνομα εταιρείας που λείπει ή δεν είναι έγκυρο.
     </div>
   </template>
   <template id="invalid-website">
     <div class="error message" translate="yes">
-      Σφάλμα! Παρέχεται μια τοποθεσία Web που λείπει ή δεν είναι έγκυρη.
+      Λάθος! Παρέχεται ένας ιστότοπος που λείπει ή δεν είναι έγκυρος.
     </div>
   </template>
   <template id="invalid-display-name-length">
     <div class="error message" translate="yes">
-      Σφάλμα! Δόθηκε ένα εμφανιζόμενο ή μη έγκυρο εμφανιζόμενο όνομα
+      Λάθος! Παρέχεται ένα εμφανιζόμενο ή μη έγκυρο όνομα
     </div>
   </template>
   <template id="invalid-profileid">
     <div class="error message" translate="yes">
-      Σφάλμα! Επιλέχτηκε ένα προφίλ που λείπει ή δεν είναι έγκυρο.
+      Λάθος! Επιλέχθηκε ένα ελλιπές ή μη έγκυρο προφίλ.
     </div>
   </template>
 </body>

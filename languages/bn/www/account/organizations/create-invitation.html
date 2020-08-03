@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" data-navbar="/account/organizations/navbar-organization.html">
+<head>
+  <meta charset="utf-8">
+  <title translate="yes">জন্য আমন্ত্রণ তৈরি করুন ${organization.organizationid}</title>
+  <link href="/public/pure-min.css" rel="stylesheet">
+  <link href="/public/content.css" rel="stylesheet">
+  <link href="/public/organizations/organizations-content.css" rel="stylesheet">
+  <link href="/public/content-additional.css" rel="stylesheet">
+  <base target="_top" href="/">
+</head>
+<body>
+  <h1 translate="yes">জন্য আমন্ত্রণ তৈরি করুন ${organization.organizationid}</h1>
+  <p translate="yes">আমন্ত্রণ কোডগুলি লোককে আপনার প্রতিষ্ঠানে যোগদানের অনুমতি দেয়।</p>
+  <div id="message-container"></div>
+  <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/create-invitation?organizationid=${organization.organizationid}" name="submit-form">
+    <div class="pure-control-group">
+      <label for="organization-name" translate="yes">সংগঠন</label>
+      <input id="organization-name" type="text" maxlength="100" readonly>
+    </div>
+    <div class="pure-control-group">
+      <label for="secret-code" translate="yes">গোপন কোড</label>
+      <input id="secret-code" name="secret-code" type="text" maxlength="100">
+    </div>
+    <div class="pure-controls">
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">আমন্ত্রণ তৈরি করুন</button>
+    </div>
+  </form>
+  <template id="unknown-error">
+    <div class="error message" translate="yes">
+      ত্রুটি! একটি অজানা ত্রুটি ঘটেছে
+    </div>
+  </template>
+  <template id="invalid-secret-code">
+    <div class="error message" translate="yes">
+      ত্রুটি! গোপন কোডটি অনুপস্থিত বা অবৈধ
+    </div>
+  </template>
+  <template id="invalid-secret-code-length">
+    <div class="error message" translate="yes">
+      ত্রুটি! গোপন কোডটির একটি অবৈধ দৈর্ঘ্য রয়েছে
+    </div>
+  </template>
+  <template id="success">
+    <div class="success message">
+      <p translate="yes">সফল! যোগদানের জন্য কাউকে আপনার গোপন কোড এবং এই লিঙ্কটি দিন:</p>
+      <div class="invitation-link">
+        <input type="text" readonly value="${organization.dashboardServer}/account/organizations/accept-invitation?invitationid=${organization.invitationid}">
+      </div>
+    </div>
+  </template>
+</body>
+</html>

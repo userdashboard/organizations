@@ -2,36 +2,36 @@
 <html lang="en" data-navbar="/account/organizations/navbar-membership.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Redigeer ${membership.membershipid} profile</title>
+  <title translate="yes">wysig ${membership.membershipid} profile</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Redigeer ${membership.membershipid} profile</h1>
-  <p translate="yes">Enige ander lidmaatskap wat hierdie profiel deel, of ander gebruik daarvan, sal ook opgedateer word.</p>
+  <h1 translate="yes">wysig ${membership.membershipid} profile</h1>
+  <p translate="yes">Enige ander lidmaatskap wat hierdie profiel deel, of die gebruik daarvan, word ook opgedateer.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/edit-membership-profile?membershipid=${membership.membershipid}" name="submit-form">
     <div id="display-name-container" class="pure-control-group">
-      <label for="display-name" translate="yes">Wys naam</label>
+      <label for="display-name" translate="yes">Vertoonnaam</label>
       <input required="" id="display-name" name="display-name" type="text" maxlength="1000">
     </div>
     <div id="display-email-container" class="pure-control-group">
-      <label for="display-email" translate="yes">Wys e-</label>
+      <label for="display-email" translate="yes">Vertoon e-pos</label>
       <input required="" id="display-email" name="display-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="contact-email-container" class="pure-control-group">
-      <label for="contact-email" translate="yes">Kontak e-</label>
+      <label for="contact-email" translate="yes">Kontak e-pos</label>
       <input required="" id="contact-email" name="contact-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="full-name-container">
       <div class="pure-control-group">
-        <label for="first-name" translate="yes">Voornaam</label>
+        <label for="first-name" translate="yes">Eerste naam</label>
         <input required="" id="first-name" name="first-name" type="text" maxlength="1000">
       </div>
       <div class="pure-control-group">
-        <label for="last-name" translate="yes">Laaste naam</label>
+        <label for="last-name" translate="yes">Van</label>
         <input required="" id="last-name" name="last-name" type="text" maxlength="1000">
       </div>
     </div>
@@ -42,7 +42,7 @@
       </div>
     </div>
     <div id="phone-container" class="pure-control-group">
-      <label for="phone" translate="yes">Telefoon</label>
+      <label for="phone" translate="yes">telefoon</label>
       <input required="" id="phone" name="phone" type="text" maxlength="1000">
     </div>
     <div id="occupation-container" class="pure-control-group">
@@ -50,24 +50,24 @@
       <input required="" id="occupation" name="occupation" type="text" maxlength="1000">
     </div>
     <div id="location-container" class="pure-control-group">
-      <label for="location" translate="yes">Ligging</label>
+      <label for="location" translate="yes">plek</label>
       <input required="" id="location" name="location" type="text" maxlength="1000">
     </div>
     <div id="company-name-container" class="pure-control-group">
-      <label for="company-name" translate="yes">Maatskappy se naam</label>
+      <label for="company-name" translate="yes">Maatskappynaam</label>
       <input required="" id="company-name" name="company-name" type="text" maxlength="1000">
     </div>
     <div id="website-container" class="pure-control-group">
-      <label for="website" translate="yes">Webwerf</label>
+      <label for="website" translate="yes">webwerf</label>
       <input required="" id="website" name="website" type="text" maxlength="1000">
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Werk lidmaatskap by</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Dateer lidmaatskap op</button>
     </div>
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      Sukses! Jou lidmaatskapinligting is bygewerk
+      Sukses! U lidmaatskapinligting is opgedateer
     </div>
   </template>
   <template id="unknown-error">
@@ -77,27 +77,27 @@
   </template>
   <template id="invalid-first-name">
     <div class="error message" translate="yes">
-      Fout! 'N ontbrekende of ongeldige Voornaam voorsien
+      Fout! 'N Voornaam of ontbrekende naam word voorsien
     </div>
   </template>
   <template id="invalid-first-name-length">
     <div class="error message" translate="yes">
-      Fout! 'N ongeldige Voornaam is verskaf
+      Fout! 'N Ongeldige voornaam is verskaf
     </div>
   </template>
   <template id="invalid-last-name">
     <div class="error message" translate="yes">
-      Fout! 'N vermiste of ongeldige achternaam is verskaf
+      Fout! Daar is 'n ontbrekende of ongeldige van gegee
     </div>
   </template>
   <template id="invalid-last-name-length">
     <div class="error message" translate="yes">
-      Fout! 'N ongeldige laaste naam is verskaf
+      Fout! 'N Ongeldige van is verskaf
     </div>
   </template>
   <template id="invalid-contact-email">
     <div class="error message" translate="yes">
-      Fout! Ongeldige kontak-e-posadres
+      Fout! Ongeldige e-posadres vir kontak
     </div>
   </template>
   <template id="invalid-display-email">
@@ -107,42 +107,42 @@
   </template>
   <template id="invalid-display-name">
     <div class="error message" translate="yes">
-      Fout! 'N vermiste of ongeldige vertoonnaam is verskaf
+      Fout! 'N Vermiste of ongeldige vertoonnaam is verskaf
     </div>
   </template>
   <template id="invalid-dob">
     <div class="error message" translate="yes">
-      Fout! 'N vermiste of ongeldige datum van geboorte is voorsien
+      Fout! 'N Ontbrekende of ongeldige geboortedatum is voorsien
     </div>
   </template>
   <template id="invalid-phone">
     <div class="error message" translate="yes">
-      Fout! 'N vermiste of ongeldige foon is verskaf.
+      Fout! 'N Ontbrekende of ongeldige telefoon is voorsien.
     </div>
   </template>
   <template id="invalid-occupation">
     <div class="error message" translate="yes">
-      Fout! 'N vermiste of ongeldige besetting is verskaf.
+      Fout! 'N Ontbrekende of ongeldige beroep is voorsien.
     </div>
   </template>
   <template id="invalid-location">
     <div class="error message" translate="yes">
-      Fout! 'N vermiste of ongeldige ligging is verskaf.
+      Fout! 'N Ontbrekende of ongeldige ligging is voorsien.
     </div>
   </template>
   <template id="invalid-company-name">
     <div class="error message" translate="yes">
-      Fout! 'N vermiste of ongeldige maatskappynaam is verskaf.
+      Fout! 'N Vermiste of ongeldige maatskappy se naam is verskaf.
     </div>
   </template>
   <template id="invalid-website">
     <div class="error message" translate="yes">
-      Fout! 'N vermiste of Ongeldige webwerf is verskaf.
+      Fout! 'N Ontbrekende of ongeldige webwerf is voorsien.
     </div>
   </template>
   <template id="invalid-display-name-length">
     <div class="error message" translate="yes">
-      Fout! 'N vermiste of ongeldige vertoonnaam is verskaf
+      Fout! 'N Vermiste of ongeldige vertoonnaam is verskaf
     </div>
   </template>
 </body>

@@ -2,14 +2,14 @@
 <html lang="en" data-navbar="/account/organizations/navbar-membership.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Rodyti ${membership.membershipid}</title>
+  <title translate="yes">Vaizdas ${membership.membershipid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Rodyti ${membership.membershipid}</h1>
+  <h1 translate="yes">Vaizdas ${membership.membershipid}</h1>
   <table id="memberships-table" class="pure-table data-table">
     <tbody id="${membership.membershipid}">
       <tr>
@@ -21,11 +21,11 @@
         <td>${membership.createdFormatted}</td>
       </tr>
       <tr id="full-name">
-        <th translate="yes">Vardas ir pavardė</th>
+        <th translate="yes">Pilnas vardas</th>
         <td>${membership.firstName} ${membership.lastName}</td>
       </tr>
       <tr id="contact-email">
-        <th translate="yes">Kontaktinis el. paštas</th>
+        <th translate="yes">Kontaktinis Elektroninis paštas</th>
         <td>
           <a href="mailto:${membership.contactEmail}">${membership.contactEmail}</a>
         </td>
@@ -35,25 +35,25 @@
         <td>${membership.displayName}</td>
       </tr>
       <tr id="display-email">
-        <th translate="yes">Rodyti el. paštą</th>
+        <th translate="yes">Rodyti el. Paštą</th>
         <td>
           <a href="mailto:${membership.displayEmail}">${membership.displayEmail}</a>
         </td>
       </tr>
       <tr id="dob">
-        <th translate="yes">gimimo data</th>
+        <th translate="yes">Gimimo data</th>
         <td>${membership.dob}</td>
       </tr>
       <tr id="phone">
-        <th translate="yes">Telefono</th>
+        <th translate="yes">Telefonas</th>
         <td>${membership.phone}</td>
       </tr>
       <tr id="occupation">
-        <th translate="yes">Okupacijos</th>
+        <th translate="yes">Pareigos</th>
         <td>${membership.occupation}</td>
       </tr>
       <tr id="location">
-        <th translate="yes">Vietą</th>
+        <th translate="yes">Vieta</th>
         <td>${membership.location}</td>
       </tr>
       <tr id="company-name">
@@ -61,7 +61,7 @@
         <td>${membership.companyName}</td>
       </tr>
       <tr id="website">
-        <th translate="yes">Svetainėje</th>
+        <th translate="yes">Interneto svetainė</th>
         <td>
           <a href="${membership.website}">${membership.website}</a>
         </td>

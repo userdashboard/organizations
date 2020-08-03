@@ -10,15 +10,15 @@
 </head>
 <body>
   <h1 translate="yes">Crea organizzazione</h1>
-  <p translate="yes">Le organizzazioni possono essere utilizzate per la condivisione dell'accesso alle risorse.</p>
+  <p translate="yes">Le organizzazioni possono essere utilizzate per condividere l'accesso alle risorse.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/create-organization" name="submit-form">
     <div class="pure-control-group">
-      <label for="name" translate="yes">Nome organizzazione</label>
+      <label for="name" translate="yes">Nome dell'organizzazione</label>
       <input id="name" name="name" type="text" maxlength="100">
     </div>
     <div class="pure-control-group">
-      <label for="email" translate="yes">E-mail di contatto</label>
+      <label for="email" translate="yes">Contatto email</label>
       <input id="email" name="email" type="text" maxlength="100">
     </div>
     <h2 translate="yes">Informazioni sull'iscrizione</h2>
@@ -26,26 +26,26 @@
       <label for="profileid" translate="yes">Usa profilo esistente</label>
       <select id="profileid" name="profileid">
         <option value="" translate="yes">
-          Selezionare un profilo esistente
+          Seleziona un profilo esistente
         </option>
       </select>
     </div>
-    <h3 translate="yes">Crea nuovo profilo</h3>
+    <h3 translate="yes">Crea un nuovo profilo</h3>
     <div id="display-name-container" class="pure-control-group">
-      <label for="display-name" translate="yes">Nome visualizzato</label>
+      <label for="display-name" translate="yes">Nome da visualizzare</label>
       <input required="" id="display-name" name="display-name" type="text" maxlength="1000">
     </div>
     <div id="display-email-container" class="pure-control-group">
-      <label for="display-email" translate="yes">Visualizzare l'e-mail</label>
+      <label for="display-email" translate="yes">Visualizza email</label>
       <input required="" id="display-email" name="display-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="contact-email-container" class="pure-control-group">
-      <label for="contact-email" translate="yes">E-mail di contatto</label>
+      <label for="contact-email" translate="yes">Contatto email</label>
       <input required="" id="contact-email" name="contact-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="full-name-container">
       <div class="pure-control-group">
-        <label for="first-name" translate="yes">Nome</label>
+        <label for="first-name" translate="yes">nome di battesimo</label>
         <input required="" id="first-name" name="first-name" type="text" maxlength="1000">
       </div>
       <div class="pure-control-group">
@@ -72,7 +72,7 @@
       <input required="" id="location" name="location" type="text" maxlength="1000">
     </div>
     <div id="company-name-container" class="pure-control-group">
-      <label for="company-name" translate="yes">Nome dell'azienda</label>
+      <label for="company-name" translate="yes">Nome della ditta</label>
       <input required="" id="company-name" name="company-name" type="text" maxlength="1000">
     </div>
     <div id="website-container" class="pure-control-group">
@@ -100,13 +100,13 @@
   </template>
   <template id="invalid-organization-email">
     <div class="error message" translate="yes">
-      Errore! È stato fornito un messaggio di posta elettronica dell'organizzazione mancante o non valido
+      Errore! È stata fornita un'email di organizzazione mancante o non valida
     </div>
   </template>
   <template id="success">
     <div class="success message" translate="yes">
       Successo! L'organizzazione è stata creata con successo
-      <p><a class="pure-button pure-button-primary" href="/account/organizations/create-invitation?organizationid=${organization.organizationid}" translate="yes">Creare inviti</a></p>
+      <p><a class="pure-button pure-button-primary" href="/account/organizations/create-invitation?organizationid=${organization.organizationid}" translate="yes">Crea inviti</a></p>
     </div>
   </template>
   <template id="unknown-error">
@@ -116,7 +116,7 @@
   </template>
   <template id="invalid-first-name">
     <div class="error message" translate="yes">
-      Errore! Nome mancante o non valido fornito
+      Errore! Un nome mancante o non valido fornito
     </div>
   </template>
   <template id="invalid-first-name-length">
@@ -136,12 +136,12 @@
   </template>
   <template id="invalid-contact-email">
     <div class="error message" translate="yes">
-      Errore! Indirizzo di posta elettronica di contatto non valido
+      Errore! Indirizzo email di contatto non valido
     </div>
   </template>
   <template id="invalid-display-email">
     <div class="error message" translate="yes">
-      Errore! Indirizzo di posta elettronica visualizzato non valido
+      Errore! Indirizzo e-mail di visualizzazione non valido
     </div>
   </template>
   <template id="invalid-display-name">

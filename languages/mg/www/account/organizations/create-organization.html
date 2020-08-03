@@ -2,54 +2,54 @@
 <html lang="en" data-navbar="/account/organizations/navbar-organizations.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Mamorona fikambanana</title>
+  <title translate="yes">Mamorona fandaminana</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Mamorona fikambanana</h1>
-  <p translate="yes">Ireo rafitra dia azo ampiasaina mba hahafahana mizara ireo loharano.</p>
+  <h1 translate="yes">Mamorona fandaminana</h1>
+  <p translate="yes">Ireo fikambanana dia mety ampiasaina amin'ny fizarana fidirana amin'ny loharanon-karena.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/create-organization" name="submit-form">
     <div class="pure-control-group">
-      <label for="name" translate="yes">Anaran' ny fikambanana</label>
+      <label for="name" translate="yes">Anaran'ny fikambanana</label>
       <input id="name" name="name" type="text" maxlength="100">
     </div>
     <div class="pure-control-group">
-      <label for="email" translate="yes">Alefaso amin' ny email</label>
+      <label for="email" translate="yes">Mifandraisa mailaka</label>
       <input id="email" name="email" type="text" maxlength="100">
     </div>
     <h2 translate="yes">Fampahalalana momba ny mpikambana</h2>
     <div id="existing-profile-container" class="pure-control-group">
-      <label for="profileid" translate="yes">Ampiasao izay misy mombamomba anao</label>
+      <label for="profileid" translate="yes">Ampiasao ny mombamomba efa misy</label>
       <select id="profileid" name="profileid">
         <option value="" translate="yes">
-          Safidio ny misy mombamomba anao
+          Safidio ny mombamomba efa misy
         </option>
       </select>
     </div>
-    <h3 translate="yes">Mamorona mombamomba anao vaovao</h3>
+    <h3 translate="yes">Mamorona mombamomba vaovao</h3>
     <div id="display-name-container" class="pure-control-group">
-      <label for="display-name" translate="yes">Asehoy ny anaran'</label>
+      <label for="display-name" translate="yes">Anarana isehoana</label>
       <input required="" id="display-name" name="display-name" type="text" maxlength="1000">
     </div>
     <div id="display-email-container" class="pure-control-group">
-      <label for="display-email" translate="yes">Asehoy ny email</label>
+      <label for="display-email" translate="yes">Asehoy ny mailaka</label>
       <input required="" id="display-email" name="display-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="contact-email-container" class="pure-control-group">
-      <label for="contact-email" translate="yes">Alefaso amin' ny email</label>
+      <label for="contact-email" translate="yes">Mifandraisa mailaka</label>
       <input required="" id="contact-email" name="contact-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="full-name-container">
       <div class="pure-control-group">
-        <label for="first-name" translate="yes">Fanampin' anarana</label>
+        <label for="first-name" translate="yes">Fanampin'anarana</label>
         <input required="" id="first-name" name="first-name" type="text" maxlength="1000">
       </div>
       <div class="pure-control-group">
-        <label for="last-name" translate="yes">Anarana farany</label>
+        <label for="last-name" translate="yes">Anarana</label>
         <input required="" id="last-name" name="last-name" type="text" maxlength="1000">
       </div>
     </div>
@@ -60,27 +60,27 @@
       </div>
     </div>
     <div id="phone-container" class="pure-control-group">
-      <label for="phone" translate="yes">Telefaonina</label>
+      <label for="phone" translate="yes">Telephone</label>
       <input required="" id="phone" name="phone" type="text" maxlength="1000">
     </div>
     <div id="occupation-container" class="pure-control-group">
-      <label for="occupation" translate="yes">Anton asa</label>
+      <label for="occupation" translate="yes">asa</label>
       <input required="" id="occupation" name="occupation" type="text" maxlength="1000">
     </div>
     <div id="location-container" class="pure-control-group">
-      <label for="location" translate="yes">Toerana</label>
+      <label for="location" translate="yes">Location</label>
       <input required="" id="location" name="location" type="text" maxlength="1000">
     </div>
     <div id="company-name-container" class="pure-control-group">
-      <label for="company-name" translate="yes">Anaran' ny andiany</label>
+      <label for="company-name" translate="yes">Anaran'ny orinasa</label>
       <input required="" id="company-name" name="company-name" type="text" maxlength="1000">
     </div>
     <div id="website-container" class="pure-control-group">
-      <label for="website" translate="yes">Tranonkala</label>
+      <label for="website" translate="yes">Website</label>
       <input required="" id="website" name="website" type="text" maxlength="1000">
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Mamorona fikambanana</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Mamorona fandaminana</button>
     </div>
   </form>
   <template id="profile-option">
@@ -90,103 +90,103 @@
   </template>
   <template id="invalid-organization-name">
     <div class="error message" translate="yes">
-      Fahadisoana! Nisy anarana tsy nahitana na fikambanana very.
+      Error! Nomena anarana tsy ampy na diso ny anaran'ny fikambanana
     </div>
   </template>
   <template id="invalid-organization-name-length">
     <div class="error message" translate="yes">
-      Fahadisoana! Nahitana anaran' ny fikambanana
+      Error! Ny halavan'ny fandaminana tsy diso
     </div>
   </template>
   <template id="invalid-organization-email">
     <div class="error message" translate="yes">
-      Fahadisoana! Nisy fikambanana tsy hita na nahitana izay nomena e
+      Error! Nomena ny mailaka fandaminana tsy hita na diso
     </div>
   </template>
   <template id="success">
     <div class="success message" translate="yes">
-      Fahombiazana! Noforonina tsara ilay rafitra.
+      Fahombiazana! Ny fandaminana dia noforonina soa aman-tsara
       <p><a class="pure-button pure-button-primary" href="/account/organizations/create-invitation?organizationid=${organization.organizationid}" translate="yes">Mamorona fanasana</a></p>
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Fahadisoana! Nisy fahadisoana nitranga teo amin' ny fanorenana ny fikambanana.
+      Error! Nisy hadisoana nitranga tao anatin'ny famoronana ny fandaminana
     </div>
   </template>
   <template id="invalid-first-name">
     <div class="error message" translate="yes">
-      Fahadisoana! Anarana tsy hita na nahitana izay nomena
+      Error! Nomena anarana voalohany tsy hita na tsy diso
     </div>
   </template>
   <template id="invalid-first-name-length">
     <div class="error message" translate="yes">
-      Fahadisoana! Ny anarana nahitana voalohany dia nomena
+      Error! Nomena anarana voalohany tsy mety
     </div>
   </template>
   <template id="invalid-last-name">
     <div class="error message" translate="yes">
-      Fahadisoana! Nisy anarana banga na nahitana izay nomena
+      Error! Nomena anarana farany tsy hita na tsy diso
     </div>
   </template>
   <template id="invalid-last-name-length">
     <div class="error message" translate="yes">
-      Fahadisoana! Nisy anarana nahitana iray farany nomena
+      Error! Nomena anarana farany tsy manan-tsiny
     </div>
   </template>
   <template id="invalid-contact-email">
     <div class="error message" translate="yes">
-      Fahadisoana! Nahitana amin' ny alalan' ny adiresy email
+      Error! Adiresy mailaka mifandray tsy mety
     </div>
   </template>
   <template id="invalid-display-email">
     <div class="error message" translate="yes">
-      Fahadisoana! Nahitana ny adiresy email
+      Error! Adiresy mailaka tsy fantatra
     </div>
   </template>
   <template id="invalid-display-name">
     <div class="error message" translate="yes">
-      Fahadisoana! Ny hoe nahitana dia mampiseho anarana
+      Error! Nomena anarana fampisehoana tsy hita na tsy diso
     </div>
   </template>
   <template id="invalid-dob">
     <div class="error message" translate="yes">
-      Fahadisoana! Nisy daty tsy nisy na nahitana ny fahaterahana.
+      Error! Nisy daty teraka tsy hita na tsy mety
     </div>
   </template>
   <template id="invalid-phone">
     <div class="error message" translate="yes">
-      Fahadisoana! Nisy nahitana-telefaonina tsy nisy na dia iray.
+      Error! Nomena telefaona tsy hita na tsia.
     </div>
   </template>
   <template id="invalid-occupation">
     <div class="error message" translate="yes">
-      Fahadisoana! Nisy banga na nahitana anton asa izay nomena.
+      Error! Nomena asa tsy hita na tsia.
     </div>
   </template>
   <template id="invalid-location">
     <div class="error message" translate="yes">
-      Fahadisoana! Nisy toerana tsy nisy na nahitana izay nomena.
+      Error! Toerana tsy hita na tsy misy no nomena.
     </div>
   </template>
   <template id="invalid-company-name">
     <div class="error message" translate="yes">
-      Fahadisoana! Nisy anarana tsy nahitana na andian-tsarety nomena.
+      Error! Nomena anarana tsy hita na diso ny anaran'ny orinasa nomena.
     </div>
   </template>
   <template id="invalid-website">
     <div class="error message" translate="yes">
-      Fahadisoana! Nisy tranonkala tsy nisy na nahitana izay nomena.
+      Error! Tranonkala tsy hita na tsy diso dia nomena.
     </div>
   </template>
   <template id="invalid-display-name-length">
     <div class="error message" translate="yes">
-      Fahadisoana! Ny hoe nahitana dia mampiseho anarana
+      Error! Nomena anarana fampisehoana tsy hita na tsy diso
     </div>
   </template>
   <template id="invalid-profileid">
     <div class="error message" translate="yes">
-      Fahadisoana! Ny banga na ny nahitana mombamomba anao dia nofantenana.
+      Error! Ny mombamomba iray tsy hita na tsy diso dia voafantina.
     </div>
   </template>
 </body>

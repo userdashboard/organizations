@@ -2,15 +2,15 @@
 <html lang="en" data-navbar="/account/organizations/navbar-organization.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Izbrisati ${organization.organizationid}</title>
+  <title translate="yes">Izbriši ${organization.organizationid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Izbrisati ${organization.organizationid}</h1>
-  <p translate="yes">Organizacija će biti izbrisana odmah i ne može se oporaviti.</p>
+  <h1 translate="yes">Izbriši ${organization.organizationid}</h1>
+  <p translate="yes">Organizacija će biti izbrisana odmah i nije ih moguće vratiti.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/delete-organization?organizationid=${organization.organizationid}" name="submit-form">
     <div class="pure-control-group">
@@ -23,12 +23,12 @@
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      Uspjeh! Organizacija je trajno izbrisana
+      Uspeh! Organizacija je trajno izbrisana
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Greška! Greška prilikom brisanja organizacije
+      Greška! Došlo je do pogreške prilikom brisanja organizacije
     </div>
   </template>
 </body>

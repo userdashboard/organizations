@@ -2,85 +2,85 @@
 <html lang="en" data-navbar="/account/organizations/navbar-organizations.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Kreiranje organizacije</title>
+  <title translate="yes">Креирајте организацију</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Kreiranje organizacije</h1>
-  <p translate="yes">Organizacije mogu da se koriste za deljenje pristupa resursima.</p>
+  <h1 translate="yes">Креирајте организацију</h1>
+  <p translate="yes">Организације се могу користити за дељење приступа ресурсима.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/create-organization" name="submit-form">
     <div class="pure-control-group">
-      <label for="name" translate="yes">Ime organizacije</label>
+      <label for="name" translate="yes">Назив организације</label>
       <input id="name" name="name" type="text" maxlength="100">
     </div>
     <div class="pure-control-group">
-      <label for="email" translate="yes">E-adresa kontakta</label>
+      <label for="email" translate="yes">Контакт имејл</label>
       <input id="email" name="email" type="text" maxlength="100">
     </div>
-    <h2 translate="yes">Informacije o članstvu</h2>
+    <h2 translate="yes">Информације о чланству</h2>
     <div id="existing-profile-container" class="pure-control-group">
-      <label for="profileid" translate="yes">Koristi postojeći profil</label>
+      <label for="profileid" translate="yes">Користите постојећи профил</label>
       <select id="profileid" name="profileid">
         <option value="" translate="yes">
-          Izbor postojećeg profila
+          Изаберите постојећи профил
         </option>
       </select>
     </div>
-    <h3 translate="yes">Kreiraj novi profil</h3>
+    <h3 translate="yes">Креирајте нови профил</h3>
     <div id="display-name-container" class="pure-control-group">
-      <label for="display-name" translate="yes">Ime za prikaz</label>
+      <label for="display-name" translate="yes">Показати име</label>
       <input required="" id="display-name" name="display-name" type="text" maxlength="1000">
     </div>
     <div id="display-email-container" class="pure-control-group">
-      <label for="display-email" translate="yes">Prikaži e-poštu</label>
+      <label for="display-email" translate="yes">Прикажи емаил</label>
       <input required="" id="display-email" name="display-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="contact-email-container" class="pure-control-group">
-      <label for="contact-email" translate="yes">E-adresa kontakta</label>
+      <label for="contact-email" translate="yes">Контакт имејл</label>
       <input required="" id="contact-email" name="contact-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="full-name-container">
       <div class="pure-control-group">
-        <label for="first-name" translate="yes">Ime</label>
+        <label for="first-name" translate="yes">Име</label>
         <input required="" id="first-name" name="first-name" type="text" maxlength="1000">
       </div>
       <div class="pure-control-group">
-        <label for="last-name" translate="yes">Prezime</label>
+        <label for="last-name" translate="yes">Презиме</label>
         <input required="" id="last-name" name="last-name" type="text" maxlength="1000">
       </div>
     </div>
     <div id="dob-container">
       <div class="pure-control-group">
-        <label for="dob" translate="yes">datum rođenja</label>
+        <label for="dob" translate="yes">Датум рођења</label>
         <input required="" id="dob" name="dob" type="text" maxlength="11">
       </div>
     </div>
     <div id="phone-container" class="pure-control-group">
-      <label for="phone" translate="yes">Telefon</label>
+      <label for="phone" translate="yes">Телефон</label>
       <input required="" id="phone" name="phone" type="text" maxlength="1000">
     </div>
     <div id="occupation-container" class="pure-control-group">
-      <label for="occupation" translate="yes">Okupacije</label>
+      <label for="occupation" translate="yes">Занимање</label>
       <input required="" id="occupation" name="occupation" type="text" maxlength="1000">
     </div>
     <div id="location-container" class="pure-control-group">
-      <label for="location" translate="yes">Lokaciju</label>
+      <label for="location" translate="yes">Локација</label>
       <input required="" id="location" name="location" type="text" maxlength="1000">
     </div>
     <div id="company-name-container" class="pure-control-group">
-      <label for="company-name" translate="yes">Ime preduzeća</label>
+      <label for="company-name" translate="yes">Име компаније</label>
       <input required="" id="company-name" name="company-name" type="text" maxlength="1000">
     </div>
     <div id="website-container" class="pure-control-group">
-      <label for="website" translate="yes">Sajt</label>
+      <label for="website" translate="yes">Веб сајт</label>
       <input required="" id="website" name="website" type="text" maxlength="1000">
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Kreiranje organizacije</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Креирајте организацију</button>
     </div>
   </form>
   <template id="profile-option">
@@ -90,103 +90,103 @@
   </template>
   <template id="invalid-organization-name">
     <div class="error message" translate="yes">
-      Greška! Obezbeđen je nedostajući ili nevažeće ime organizacije
+      Грешка! Наведено је недостајеће или неважеће име организације
     </div>
   </template>
   <template id="invalid-organization-name-length">
     <div class="error message" translate="yes">
-      Greška! Nevažeća dužina naziva organizacije
+      Грешка! Неважећа дужина имена организације
     </div>
   </template>
   <template id="invalid-organization-email">
     <div class="error message" translate="yes">
-      Greška! Obezbeđena je e-poruka koja nedostaje ili je nevažeća organizacija
+      Грешка! Пружена је адреса е-поште која недостаје или није важећа
     </div>
   </template>
   <template id="success">
     <div class="success message" translate="yes">
-      Uspeh! Organizacija je uspešno kreirana
-      <p><a class="pure-button pure-button-primary" href="/account/organizations/create-invitation?organizationid=${organization.organizationid}" translate="yes">Kreiraj pozivnice</a></p>
+      Успех! Организација је успешно створена
+      <p><a class="pure-button pure-button-primary" href="/account/organizations/create-invitation?organizationid=${organization.organizationid}" translate="yes">Креирајте позивнице</a></p>
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Greška! Došlo je do greške prilikom kreiranja organizacije
+      Грешка! Дошло је до грешке приликом креирања организације
     </div>
   </template>
   <template id="invalid-first-name">
     <div class="error message" translate="yes">
-      Greška! Navedeno ime koje nedostaje ili nije važeće
+      Грешка! Наведено недостаје или неисправно име
     </div>
   </template>
   <template id="invalid-first-name-length">
     <div class="error message" translate="yes">
-      Greška! Navedeno je nevažeće ime
+      Грешка! Наведено је неважеће име
     </div>
   </template>
   <template id="invalid-last-name">
     <div class="error message" translate="yes">
-      Greška! Navedeno je ili nevažeće prezime koje nedostaje
+      Грешка! Наведено је нестало или неважеће презиме
     </div>
   </template>
   <template id="invalid-last-name-length">
     <div class="error message" translate="yes">
-      Greška! Navedeno je nevažeće prezime
+      Грешка! Наведено је неважеће презиме
     </div>
   </template>
   <template id="invalid-contact-email">
     <div class="error message" translate="yes">
-      Greška! Nevažeća e-adresa kontakta
+      Грешка! Неважећа адреса е-поште за контакт
     </div>
   </template>
   <template id="invalid-display-email">
     <div class="error message" translate="yes">
-      Greška! Nevažeća e-adresa za prikaz
+      Грешка! Неважећа адреса е-поште за приказ
     </div>
   </template>
   <template id="invalid-display-name">
     <div class="error message" translate="yes">
-      Greška! Obezbeđeno je ili nevažeće ime za prikaz
+      Грешка! Наведено је недостајуће или неважеће приказно име
     </div>
   </template>
   <template id="invalid-dob">
     <div class="error message" translate="yes">
-      Greška! Obezbeđen je ili nevažeći datum rođenja
+      Грешка! Наведен је нестали или неважећи датум рођења
     </div>
   </template>
   <template id="invalid-phone">
     <div class="error message" translate="yes">
-      Greška! Obezbeđen je ili nevažeći telefon.
+      Грешка! Дао је недостајући или неважећи телефон.
     </div>
   </template>
   <template id="invalid-occupation">
     <div class="error message" translate="yes">
-      Greška! Obezbeđena je ili nevažeća okupacija.
+      Грешка! Осигурано је нестало или неважеће занимање.
     </div>
   </template>
   <template id="invalid-location">
     <div class="error message" translate="yes">
-      Greška! Obezbeđena je lokacija koja nedostaje ili je nevažeća.
+      Грешка! Наведена је локација која недостаје или није важећа.
     </div>
   </template>
   <template id="invalid-company-name">
     <div class="error message" translate="yes">
-      Greška! Obezbeđen je nedostajući ili nevažeće ime preduzeća.
+      Грешка! Наведено је нестало или неважеће име компаније.
     </div>
   </template>
   <template id="invalid-website">
     <div class="error message" translate="yes">
-      Greška! Obezbeđena je neispravna ili nevažeća Web lokacija.
+      Грешка! Пружена је веб страница која недостаје или није важећа.
     </div>
   </template>
   <template id="invalid-display-name-length">
     <div class="error message" translate="yes">
-      Greška! Obezbeđeno je ili nevažeće ime za prikaz
+      Грешка! Наведено је недостајуће или неважеће приказно име
     </div>
   </template>
   <template id="invalid-profileid">
     <div class="error message" translate="yes">
-      Greška! Odabran je nevažeći profil.
+      Грешка! Изабран је недостајући или неважећи профил.
     </div>
   </template>
 </body>

@@ -2,14 +2,14 @@
 <html lang="en" data-navbar="/administrator/organizations/navbar-membership.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Tara ${membership.membershipid}</title>
+  <title translate="yes">Ara ${membership.membershipid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Tara ${membership.membershipid}</h1>
+  <h1 translate="yes">Ara ${membership.membershipid}</h1>
   <table id="memberships-table" class="pure-table data-table">
     <tbody id="${membership.membershipid}">
       <tr>
@@ -17,15 +17,15 @@
         <td>${membership.membershipid}</td>
       </tr>
       <tr>
-        <th translate="yes">Posta elettronika</th>
+        <th translate="yes">Email</th>
         <td>${membership.email}</td>
       </tr>
       <tr>
-        <th translate="yes">Maħluqa</th>
+        <th translate="yes">Maħluq</th>
         <td>${membership.createdFormatted}</td>
       </tr>
       <tr>
-        <th translate="yes">Istedina</th>
+        <th translate="yes">Stedina</th>
         <td>
           <a href="/administrator/organizations/invitation?invitationid=${membership.invitationid}">${membership.invitationid}</a>
         </td>

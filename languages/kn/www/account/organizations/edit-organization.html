@@ -2,15 +2,15 @@
 <html lang="en" data-navbar="/account/organizations/navbar-organization.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">ಸಂಕಲನ ${organization.organizationid}</title>
+  <title translate="yes">ತಿದ್ದು ${organization.organizationid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">ಸಂಕಲನ ${organization.organizationid}</h1>
-  <p translate="yes">ನಿಮ್ಮ ಸಂಪರ್ಕ ಮಾಹಿತಿಯನ್ನು ಸರಿಯಾಗಿ ಮತ್ತು ಅಪ್ ಡೇಟ್ ಮಾಡಿಟ್ಟುಕೊಳ್ಳಿ.</p>
+  <h1 translate="yes">ತಿದ್ದು ${organization.organizationid}</h1>
+  <p translate="yes">ನಿಮ್ಮ ಸಂಪರ್ಕ ಮಾಹಿತಿಯನ್ನು ಸರಿಯಾಗಿ ಮತ್ತು ನವೀಕೃತವಾಗಿರಿಸಿ.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/edit-organization?organizationid=${organization.organizationid}" name="submit-form">
     <div class="pure-control-group">
@@ -22,7 +22,7 @@
       <input id="email" name="email" type="text" maxlength="100">
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">ಸಂಘಟನೆಯನ್ನು ಮಾರ್ಪಡಿಸಿ</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">ಸಂಸ್ಥೆಯನ್ನು ನವೀಕರಿಸಿ</button>
     </div>
   </form>
   <template id="success">
@@ -32,22 +32,22 @@
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      ತಪ್ಪು! ಅಜ್ಞಾತ ದೋಷ
+      ದೋಷ! ಅಜ್ಞಾತ ದೋಷ ಸಂಭವಿಸಿದೆ
     </div>
   </template>
   <template id="invalid-organization-name">
     <div class="error message" translate="yes">
-      ತಪ್ಪು! ಕಾಣೆಯಾದ ಅಥವಾ ಅಮಾನ್ಯ ಸಂಸ್ಥೆಯ ಹೆಸರನ್ನು ಒದಗಿಸಲಾಗಿದೆ
+      ದೋಷ! ಕಾಣೆಯಾದ ಅಥವಾ ಅಮಾನ್ಯ ಸಂಸ್ಥೆಯ ಹೆಸರನ್ನು ಒದಗಿಸಲಾಗಿದೆ
     </div>
   </template>
   <template id="invalid-organization-name-length">
     <div class="error message" translate="yes">
-      ತಪ್ಪು! ಅಮಾನ್ಯ ಸಂಸ್ಥೆಹೆಸರು ಉದ್ದ
+      ದೋಷ! ಅಮಾನ್ಯ ಸಂಸ್ಥೆಯ ಹೆಸರು ಉದ್ದ
     </div>
   </template>
   <template id="invalid-organization-email">
     <div class="error message" translate="yes">
-      ತಪ್ಪು! ಕಾಣೆಯಾದ ಅಥವಾ ಅಮಾನ್ಯ ಸಂಸ್ಥೆಯ ಇಮೇಲ್ ಅನ್ನು ಒದಗಿಸಲಾಗಿದೆ
+      ದೋಷ! ಕಾಣೆಯಾದ ಅಥವಾ ಅಮಾನ್ಯ ಸಂಸ್ಥೆಯ ಇಮೇಲ್ ಅನ್ನು ಒದಗಿಸಲಾಗಿದೆ
     </div>
   </template>
 </body>

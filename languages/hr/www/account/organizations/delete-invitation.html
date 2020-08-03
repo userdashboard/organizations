@@ -10,12 +10,12 @@
 </head>
 <body>
   <h1 translate="yes">Izbrisati ${invitation.invitationid}</h1>
-  <p translate="yes">Pozivnica će se odmah izbrisati i ne može se vratiti.</p>
+  <p translate="yes">Pozivnica će biti izbrisana odmah i nije je moguće vratiti.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/delete-invitation?invitationid=${invitation.invitationid}" name="submit-form">
     <div class="pure-controls">
       <div class="pure-control-group">
-        <label for="organizationName" translate="yes">Organizacije</label>
+        <label for="organizationName" translate="yes">Organizacija</label>
         <input id="organizationName" type="text" maxlength="100" readonly>
       </div><button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Izbrisati</button>
     </div>
@@ -27,7 +27,7 @@
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Pogreška! Došlo je do pogreške prilikom brisanja pozivnice
+      Greška! Došlo je do pogreške prilikom brisanja pozivnice
     </div>
   </template>
 </body>

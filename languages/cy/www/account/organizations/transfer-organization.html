@@ -2,23 +2,23 @@
 <html lang="en" data-navbar="/account/organizations/navbar-organization.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Drosglwyddo perchenogaeth o ${organization.organizationid}</title>
+  <title translate="yes">Trosglwyddo perchnogaeth ${organization.organizationid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Drosglwyddo perchenogaeth o ${organization.organizationid}</h1>
-  <p translate="yes">Bydd hyn yn newid perchennog yr organizaiton ar unwaith.</p>
+  <h1 translate="yes">Trosglwyddo perchnogaeth ${organization.organizationid}</h1>
+  <p translate="yes">Bydd hyn yn newid perchennog y sefydliad ar unwaith.</p>
   <div id="message-container"></div>
   <table id="organizations-table" class="pure-table object-table">
     <thead>
       <tr>
         <th>ID</th>
         <th translate="yes">Enw</th>
-        <th translate="yes">E - bost</th>
-        <th translate="yes">Creu</th>
+        <th translate="yes">E-bost</th>
+        <th translate="yes">Wedi'i greu</th>
       </tr>
     </thead>
     <tr id="${organization.organizationid}">
@@ -32,7 +32,7 @@
   </table>
   <form id="submit-form" class="pure-form pure-form-stacked" action="/account/organizations/transfer-organization?organizationid=${organization.organizationid}" name="submit-form">
     <div class="pure-control-group">
-      <label for="accountid" translate="yes">Perchennog newydd y sefydliad</label>
+      <label for="accountid" translate="yes">Perchennog sefydliad newydd</label>
       <select id="accountid" name="accountid">
         <option value="" translate="yes">
           Dewiswch berchennog newydd
@@ -55,12 +55,12 @@
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Gwall! Mae gwall wedi digwydd wrth drosglwyddo'r sefydliad
+      Gwall! Digwyddodd gwall wrth drosglwyddo'r sefydliad
     </div>
   </template>
   <template id="invalid-accountid">
     <div class="error message" translate="yes">
-      Gwall! Dewiswyd derbynnydd annilys neu fe'i Darparwyd
+      Gwall! Dewiswyd neu darparwyd derbynnydd annilys
     </div>
   </template>
 </body>

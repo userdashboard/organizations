@@ -2,27 +2,27 @@
 <html lang="en" data-navbar="/account/organizations/navbar-membership.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Редактировать ${membership.membershipid} profile</title>
+  <title translate="yes">редактировать ${membership.membershipid} profile</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Редактировать ${membership.membershipid} profile</h1>
-  <p translate="yes">Любое другое членство, совместное этот профиль, или другое его использование, будет обновлено тоже.</p>
+  <h1 translate="yes">редактировать ${membership.membershipid} profile</h1>
+  <p translate="yes">Любое другое членство, разделяющее этот профиль, или другое использование этого, будет также обновлено.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/edit-membership-profile?membershipid=${membership.membershipid}" name="submit-form">
     <div id="display-name-container" class="pure-control-group">
-      <label for="display-name" translate="yes">Имя отображения</label>
+      <label for="display-name" translate="yes">Отображаемое имя</label>
       <input required="" id="display-name" name="display-name" type="text" maxlength="1000">
     </div>
     <div id="display-email-container" class="pure-control-group">
-      <label for="display-email" translate="yes">Отображение электронной почты</label>
+      <label for="display-email" translate="yes">Показать электронную почту</label>
       <input required="" id="display-email" name="display-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="contact-email-container" class="pure-control-group">
-      <label for="contact-email" translate="yes">Контактная электронная почта</label>
+      <label for="contact-email" translate="yes">Почта для связи</label>
       <input required="" id="contact-email" name="contact-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="full-name-container">
@@ -42,11 +42,11 @@
       </div>
     </div>
     <div id="phone-container" class="pure-control-group">
-      <label for="phone" translate="yes">Телефон</label>
+      <label for="phone" translate="yes">телефон</label>
       <input required="" id="phone" name="phone" type="text" maxlength="1000">
     </div>
     <div id="occupation-container" class="pure-control-group">
-      <label for="occupation" translate="yes">Оккупации</label>
+      <label for="occupation" translate="yes">профессия</label>
       <input required="" id="occupation" name="occupation" type="text" maxlength="1000">
     </div>
     <div id="location-container" class="pure-control-group">
@@ -58,91 +58,91 @@
       <input required="" id="company-name" name="company-name" type="text" maxlength="1000">
     </div>
     <div id="website-container" class="pure-control-group">
-      <label for="website" translate="yes">Сайт</label>
+      <label for="website" translate="yes">Интернет сайт</label>
       <input required="" id="website" name="website" type="text" maxlength="1000">
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Обновление членства</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Обновить членство</button>
     </div>
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      Успех! Информация о вашем членстве обновлена
+      Успех! Ваша информация о членстве была обновлена
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Ошибка! Неизвестная ошибка, понесенная
+      Ошибка! Произошла неизвестная ошибка
     </div>
   </template>
   <template id="invalid-first-name">
     <div class="error message" translate="yes">
-      Ошибка! Отсутствует или недействительное имя, предоставленное
+      Ошибка! Отсутствует или указано неверное имя
     </div>
   </template>
   <template id="invalid-first-name-length">
     <div class="error message" translate="yes">
-      Ошибка! Было предоставлено недействительное имя
+      Ошибка! Введено неверное имя
     </div>
   </template>
   <template id="invalid-last-name">
     <div class="error message" translate="yes">
-      Ошибка! Неис числим недостающую или недействительную фамилию
+      Ошибка! Указана недостающая или неверная фамилия
     </div>
   </template>
   <template id="invalid-last-name-length">
     <div class="error message" translate="yes">
-      Ошибка! Предоставлена недействительная фамилия
+      Ошибка! Указана неверная фамилия
     </div>
   </template>
   <template id="invalid-contact-email">
     <div class="error message" translate="yes">
-      Ошибка! Недействительный контактный адрес электронной почты
+      Ошибка! Неверный контактный адрес электронной почты
     </div>
   </template>
   <template id="invalid-display-email">
     <div class="error message" translate="yes">
-      Ошибка! Недействительный адрес электронной почты дисплея
+      Ошибка! Неверный адрес электронной почты
     </div>
   </template>
   <template id="invalid-display-name">
     <div class="error message" translate="yes">
-      Ошибка! Было предоставлено имя отсутствующее или недействительное отображение
+      Ошибка! Отсутствует или указано неверное отображаемое имя
     </div>
   </template>
   <template id="invalid-dob">
     <div class="error message" translate="yes">
-      Ошибка! Неиссяная или недействительная дата рождения
+      Ошибка! Отсутствующая или недействительная дата рождения была предоставлена
     </div>
   </template>
   <template id="invalid-phone">
     <div class="error message" translate="yes">
-      Ошибка! Был предоставлен пропавший или недействительный телефон.
+      Ошибка! Отсутствующий или недействительный телефон был предоставлен.
     </div>
   </template>
   <template id="invalid-occupation">
     <div class="error message" translate="yes">
-      Ошибка! Была предоставлена отсутствующая или недействительная профессия.
+      Ошибка! Отсутствующее или недействительное занятие было предоставлено.
     </div>
   </template>
   <template id="invalid-location">
     <div class="error message" translate="yes">
-      Ошибка! Было предоставлено отсутствующее или недействительное местоположение.
+      Ошибка! Отсутствующее или неверное местоположение было предоставлено.
     </div>
   </template>
   <template id="invalid-company-name">
     <div class="error message" translate="yes">
-      Ошибка! Было предоставлено имя компании, на которой отсутствует или недействительна.
+      Ошибка! Отсутствующее или неверное название компании было предоставлено.
     </div>
   </template>
   <template id="invalid-website">
     <div class="error message" translate="yes">
-      Ошибка! Был предоставлен отсутствующий или недействительный веб-сайт.
+      Ошибка! Отсутствующий или недействительный сайт был предоставлен.
     </div>
   </template>
   <template id="invalid-display-name-length">
     <div class="error message" translate="yes">
-      Ошибка! Было предоставлено имя отсутствующее или недействительное отображение
+      Ошибка! Отсутствует или указано неверное отображаемое имя
     </div>
   </template>
 </body>

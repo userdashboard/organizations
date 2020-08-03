@@ -10,7 +10,7 @@
 </head>
 <body>
   <h1 translate="yes">Hariri ${organization.organizationid}</h1>
-  <p translate="yes">Weka maelezo yako ya mwasiliani kuwa sahihi na yamesasishwa.</p>
+  <p translate="yes">Weka habari yako ya mawasiliano kuwa sahihi na mpya.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/edit-organization?organizationid=${organization.organizationid}" name="submit-form">
     <div class="pure-control-group">
@@ -27,27 +27,27 @@
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      Mafanikio! Taarifa ya Shirika lako imesasishwa
+      Kufanikiwa! Habari ya shirika lako imesasishwa
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Kosa! Kosa lisilojulikana kwa ulitolekea
+      Kosa! Kosa lisilojulikana limetokea
     </div>
   </template>
   <template id="invalid-organization-name">
     <div class="error message" translate="yes">
-      Kosa! Jina la Shirika la kukosa au batili lilieanwa
+      Kosa! Jina la shirika linalokosekana au batili lilitolewa
     </div>
   </template>
   <template id="invalid-organization-name-length">
     <div class="error message" translate="yes">
-      Kosa! Urefu batili wa jina la Shirika
+      Kosa! Urefu wa jina batili la shirika
     </div>
   </template>
   <template id="invalid-organization-email">
     <div class="error message" translate="yes">
-      Kosa! Baruapepe ya shirika iliyopotea au batili imetolewa
+      Kosa! Barua pepe ya shirika iliyoshindwa au batili ilitolewa
     </div>
   </template>
 </body>

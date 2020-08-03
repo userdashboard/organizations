@@ -2,15 +2,15 @@
 <html lang="en" data-navbar="/account/organizations/navbar-organization.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Tape ${organization.organizationid}</title>
+  <title translate="yes">Tapē ${organization.organizationid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Tape ${organization.organizationid}</h1>
-  <p translate="yes">O le a vave ona tape le faalapotopotoga ma e le mafai ona toe malosi.</p>
+  <h1 translate="yes">Tapē ${organization.organizationid}</h1>
+  <p translate="yes">O le a faʻaleaogaina vave le faʻalapotopotoga ma ua le mafai ona toe maua mai.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/delete-organization?organizationid=${organization.organizationid}" name="submit-form">
     <div class="pure-control-group">
@@ -18,17 +18,17 @@
       <input id="organizationName" type="text" maxlength="100" readonly>
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Tapeese le faalapotopotoga</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Tapē ese le faʻalapotopotoga</button>
     </div>
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      Manuia! Ua tapeese tumau le faalapotopotoga
+      Manuia! Ua leva ona tape atoa le faʻalapotopotoga
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Mea sese! O se mea sese ocurred le tapeeseina o le faalapotopotoga
+      Sese! Na iai se mea sese i le tapeina ole faʻalapotopotoga
     </div>
   </template>
 </body>

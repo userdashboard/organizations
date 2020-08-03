@@ -2,19 +2,19 @@
 <html lang="en" data-navbar="/account/organizations/navbar.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">招待を受諾する</title>
+  <title translate="yes">招待を受ける</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">招待を受諾する</h1>
+  <h1 translate="yes">招待を受ける</h1>
   <p translate="yes">コードを入力すると、組織のメンバーになります。</p>
   <div id="message-container"></div>
   <form id="submit-form" class="pure-form pure-form-stacked" action="/account/organizations/accept-invitation" name="submit-form">
     <div class="pure-control-group">
-      <label for="invitationid" translate="yes">招待 ID</label>
+      <label for="invitationid" translate="yes">招待ID</label>
       <input id="invitationid" name="invitationid" type="text" maxlength="100">
     </div>
     <div class="pure-control-group">
@@ -26,30 +26,30 @@
       <label for="profileid" translate="yes">既存のプロファイルを使用</label>
       <select id="profileid" name="profileid">
         <option value="" translate="yes">
-          既存のプロファイルを選択する
+          既存のプロファイルを選択
         </option>
       </select>
     </div>
-    <h3 translate="yes">新しいプロファイルの作成</h3>
+    <h3 translate="yes">新しいプロファイルを作成</h3>
     <div id="display-name-container" class="pure-control-group">
       <label for="display-name" translate="yes">表示名</label>
       <input required="" id="display-name" name="display-name" type="text" maxlength="1000">
     </div>
     <div id="display-email-container" class="pure-control-group">
-      <label for="display-email" translate="yes">メールの表示</label>
+      <label for="display-email" translate="yes">メールを表示</label>
       <input required="" id="display-email" name="display-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="contact-email-container" class="pure-control-group">
-      <label for="contact-email" translate="yes">連絡先の電子メール</label>
+      <label for="contact-email" translate="yes">連絡先メールアドレス</label>
       <input required="" id="contact-email" name="contact-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="full-name-container">
       <div class="pure-control-group">
-        <label for="first-name" translate="yes">名</label>
+        <label for="first-name" translate="yes">ファーストネーム</label>
       <input required="" id="first-name" name="first-name" type="text" maxlength="1000">
       </div>
       <div class="pure-control-group">
-        <label for="last-name" translate="yes">姓</label>
+        <label for="last-name" translate="yes">苗字</label>
       <input required="" id="last-name" name="last-name" type="text" maxlength="1000">
       </div>
     </div>
@@ -68,7 +68,7 @@
       <input required="" id="occupation" name="occupation" type="text" maxlength="1000">
     </div>
     <div id="location-container" class="pure-control-group">
-      <label for="location" translate="yes">場所</label>
+      <label for="location" translate="yes">ロケーション</label>
       <input required="" id="location" name="location" type="text" maxlength="1000">
     </div>
     <div id="company-name-container" class="pure-control-group">
@@ -80,12 +80,12 @@
       <input required="" id="website" name="website" type="text" maxlength="1000">
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">組織に参加する</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">組織に参加</button>
     </div>
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      成功！これで、組織のメンバーになります。
+      成功！あなたは現在、組織のメンバーです
     </div>
   </template>
   <template id="invalid-invitation">
@@ -95,17 +95,17 @@
   </template>
   <template id="invalid-secret-code">
     <div class="error message" translate="yes">
-      エラー！招待コードが正しくありません
+      エラー！招待コードが間違っている
     </div>
   </template>
   <template id="invalid-invitationid">
     <div class="error message" translate="yes">
-      エラー！出席依頼がないか、無効な招待状が提供されました
+      エラー！欠落しているか無効な招待状が提供されました
     </div>
   </template>
   <template id="invalid-account">
     <div class="error message" translate="yes">
-      エラー！お前がこの組織のメンバーである
+      エラー！この組織の所有者またはメンバーです
     </div>
   </template>
   <template id="unknown-error">
@@ -120,22 +120,22 @@
   </template>
   <template id="invalid-organization-name">
     <div class="error message" translate="yes">
-      エラー！組織名が見つからないか無効です
+      エラー！存在しないか無効な組織名が指定されました
     </div>
   </template>
   <template id="invalid-organization-name-length">
     <div class="error message" translate="yes">
-      エラー！組織名の長さが無効です
+      エラー！無効な組織名の長さ
     </div>
   </template>
   <template id="invalid-organization-email">
     <div class="error message" translate="yes">
-      エラー！組織のメールが見つからないか無効です。
+      エラー！組織のメールがないか、無効です
     </div>
   </template>
   <template id="success">
     <div class="success message" translate="yes">
-      成功！組織は正常に作成されました
+      成功！組織が正常に作成されました
     </div>
   </template>
   <template id="unknown-error">
@@ -145,77 +145,77 @@
   </template>
   <template id="invalid-first-name">
     <div class="error message" translate="yes">
-      エラー！指定された名前が見つからないか無効です
+      エラー！指定された名がないか、無効です
     </div>
   </template>
   <template id="invalid-first-name-length">
     <div class="error message" translate="yes">
-      エラー！無効な名が指定されました
+      エラー！無効な名が入力されました
     </div>
   </template>
   <template id="invalid-last-name">
     <div class="error message" translate="yes">
-      エラー！指定された姓または名前が見つからないか、または無効です
+      エラー！存在しないか無効な姓が指定されました
     </div>
   </template>
   <template id="invalid-last-name-length">
     <div class="error message" translate="yes">
-      エラー！無効な姓が指定されました
+      エラー！無効な姓が入力されました
     </div>
   </template>
   <template id="invalid-contact-email">
     <div class="error message" translate="yes">
-      エラー！無効な連絡先の電子メール アドレス
+      エラー！無効な連絡先メールアドレス
     </div>
   </template>
   <template id="invalid-display-email">
     <div class="error message" translate="yes">
-      エラー！表示電子メール アドレスが無効です
+      エラー！無効な表示メールアドレス
     </div>
   </template>
   <template id="invalid-display-name">
     <div class="error message" translate="yes">
-      エラー！表示名が見つからないか無効です
+      エラー！表示名がないか、無効です
     </div>
   </template>
   <template id="invalid-dob">
     <div class="error message" translate="yes">
-      エラー！生年月日が見つからないか無効です
+      エラー！欠落または無効な生年月日が指定されました
     </div>
   </template>
   <template id="invalid-phone">
     <div class="error message" translate="yes">
-      エラー！電話が見つからないか無効です。
+      エラー！紛失または無効な電話が提供されました。
     </div>
   </template>
   <template id="invalid-occupation">
     <div class="error message" translate="yes">
-      エラー！欠損または無効な職業が提供されました。
+      エラー！欠落または無効な職業が提供されました。
     </div>
   </template>
   <template id="invalid-location">
     <div class="error message" translate="yes">
-      エラー！指定された場所が見つからないか、または無効です。
+      エラー！存在しないか無効な場所が指定されました。
     </div>
   </template>
   <template id="invalid-company-name">
     <div class="error message" translate="yes">
-      エラー！会社名が見つからないか、または無効です。
+      エラー！欠落しているか無効な会社名が指定されました。
     </div>
   </template>
   <template id="invalid-website">
     <div class="error message" translate="yes">
-      エラー！Web サイトが見つからないか無効です。
+      エラー！存在しないか無効なウェブサイトが提供されました。
     </div>
   </template>
   <template id="invalid-display-name-length">
     <div class="error message" translate="yes">
-      エラー！表示名が見つからないか無効です
+      エラー！表示名がないか、無効です
     </div>
   </template>
   <template id="invalid-profileid">
     <div class="error message" translate="yes">
-      エラー！プロファイルが見つからないか無効です。
+      エラー！欠落しているか無効なプロファイルが選択されました。
     </div>
   </template>
 </body>

@@ -10,7 +10,7 @@
 </head>
 <body>
   <h1 translate="yes">刪除 ${invitation.invitationid}</h1>
-  <p translate="yes">邀請將立即刪除,無法恢復。</p>
+  <p translate="yes">邀請將被立即刪除，並且無法恢復。</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/delete-invitation?invitationid=${invitation.invitationid}" name="submit-form">
     <div class="pure-controls">
@@ -22,12 +22,12 @@
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      成功!邀請已永久刪除
+      成功！邀請已被永久刪除
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      錯誤!刪除邀請時發生錯誤
+      錯誤！刪除邀請時發生錯誤
     </div>
   </template>
 </body>

@@ -10,7 +10,7 @@
 </head>
 <body>
   <h1 translate="yes">Eliminar ${organization.organizationid}</h1>
-  <p translate="yes">La organización se eliminará inmediatamente y no se podrá recuperar.</p>
+  <p translate="yes">La organización se eliminará de inmediato y no se puede recuperar.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/delete-organization?organizationid=${organization.organizationid}" name="submit-form">
     <div class="pure-control-group">
@@ -23,12 +23,12 @@
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      ¡Éxito! La organización ha sido eliminada permanentemente
+      ¡Éxito! La organización ha sido eliminada permanentemente.
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      ¡Error! Se ha producido un error al eliminar la organización
+      ¡Error! Se produjo un error al eliminar la organización.
     </div>
   </template>
 </body>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" data-navbar="/account/organizations/navbar.html">
+<head>
+  <meta charset="utf-8">
+  <title translate="yes">Прымі запрашэнне</title>
+  <link href="/public/pure-min.css" rel="stylesheet">
+  <link href="/public/content.css" rel="stylesheet">
+  <link href="/public/content-additional.css" rel="stylesheet">
+  <base target="_top" href="/">
+</head>
+<body>
+  <h1 translate="yes">Прымі запрашэнне</h1>
+  <p translate="yes">Вы ўвойдзеце ў склад арганізацыі пасля ўводу кода.</p>
+  <div id="message-container"></div>
+  <form id="submit-form" class="pure-form pure-form-stacked" action="/account/organizations/accept-invitation" name="submit-form">
+    <div class="pure-control-group">
+      <label for="invitationid" translate="yes">ID запрашэння</label>
+      <input id="invitationid" name="invitationid" type="text" maxlength="100">
+    </div>
+    <div class="pure-control-group">
+      <label for="secret-code" translate="yes">Код запрашэння</label>
+      <input id="secret-code" name="secret-code" type="text" maxlength="100">
+    </div>
+    <h2 translate="yes">Інфармацыя пра сяброўства</h2>
+    <div id="existing-profile-container" class="pure-control-group">
+      <label for="profileid" translate="yes">Выкарыстоўвайце існуючы профіль</label>
+      <select id="profileid" name="profileid">
+        <option value="" translate="yes">
+          Выберыце існуючы профіль
+        </option>
+      </select>
+    </div>
+    <h3 translate="yes">Стварыце новы профіль</h3>
+    <div id="display-name-container" class="pure-control-group">
+      <label for="display-name" translate="yes">Паказаць імя</label>
+      <input required="" id="display-name" name="display-name" type="text" maxlength="1000">
+    </div>
+    <div id="display-email-container" class="pure-control-group">
+      <label for="display-email" translate="yes">Паказаць электронную пошту</label>
+      <input required="" id="display-email" name="display-email" type="text" maxlength="1000" size="50">
+    </div>
+    <div id="contact-email-container" class="pure-control-group">
+      <label for="contact-email" translate="yes">Кантактная пошта</label>
+      <input required="" id="contact-email" name="contact-email" type="text" maxlength="1000" size="50">
+    </div>
+    <div id="full-name-container">
+      <div class="pure-control-group">
+        <label for="first-name" translate="yes">Імя</label>
+      <input required="" id="first-name" name="first-name" type="text" maxlength="1000">
+      </div>
+      <div class="pure-control-group">
+        <label for="last-name" translate="yes">Прозвішча</label>
+      <input required="" id="last-name" name="last-name" type="text" maxlength="1000">
+      </div>
+    </div>
+    <div id="dob-container">
+      <div class="pure-control-group">
+        <label for="dob" translate="yes">Дата нараджэння</label>
+      <input required="" id="dob" name="dob" type="text" maxlength="11">
+      </div>
+    </div>
+    <div id="phone-container" class="pure-control-group">
+      <label for="phone" translate="yes">Тэлефон</label>
+      <input required="" id="phone" name="phone" type="text" maxlength="1000">
+    </div>
+    <div id="occupation-container" class="pure-control-group">
+      <label for="occupation" translate="yes">Прафесія</label>
+      <input required="" id="occupation" name="occupation" type="text" maxlength="1000">
+    </div>
+    <div id="location-container" class="pure-control-group">
+      <label for="location" translate="yes">Размяшчэнне</label>
+      <input required="" id="location" name="location" type="text" maxlength="1000">
+    </div>
+    <div id="company-name-container" class="pure-control-group">
+      <label for="company-name" translate="yes">Назва кампаніі</label>
+      <input required="" id="company-name" name="company-name" type="text" maxlength="1000">
+    </div>
+    <div id="website-container" class="pure-control-group">
+      <label for="website" translate="yes">Вэб-сайт</label>
+      <input required="" id="website" name="website" type="text" maxlength="1000">
+    </div>
+    <div class="pure-controls">
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Далучайцеся да арганізацыі</button>
+    </div>
+  </form>
+  <template id="success">
+    <div class="success message" translate="yes">
+      Поспех! Цяпер вы член арганізацыі
+    </div>
+  </template>
+  <template id="invalid-invitation">
+    <div class="error message" translate="yes">
+      Памылка! Запрашэнне больш недаступна
+    </div>
+  </template>
+  <template id="invalid-secret-code">
+    <div class="error message" translate="yes">
+      Памылка! Код запрашэння няправільны
+    </div>
+  </template>
+  <template id="invalid-invitationid">
+    <div class="error message" translate="yes">
+      Памылка! Прапалае няправільнае запрашэнне
+    </div>
+  </template>
+  <template id="invalid-account">
+    <div class="error message" translate="yes">
+      Памылка! Вы валодаеце ці з'яўляецеся членам гэтай арганізацыі
+    </div>
+  </template>
+  <template id="unknown-error">
+    <div class="error message" translate="yes">
+      Памылка! Узнікла невядомая памылка
+    </div>
+  </template>
+  <template id="profile-option">
+    <option value="${profile.profileid}">
+      ${profile.displayName} / ${profile.displayEmail}
+    </option>
+  </template>
+  <template id="invalid-organization-name">
+    <div class="error message" translate="yes">
+      Памылка! Указана якая адсутнічае альбо недапушчальная назва арганізацыі
+    </div>
+  </template>
+  <template id="invalid-organization-name-length">
+    <div class="error message" translate="yes">
+      Памылка! Няправільная даўжыня назвы арганізацыі
+    </div>
+  </template>
+  <template id="invalid-organization-email">
+    <div class="error message" translate="yes">
+      Памылка! Была прадастаўлена адсутнічае альбо несапраўдная электронная пошта
+    </div>
+  </template>
+  <template id="success">
+    <div class="success message" translate="yes">
+      Поспех! Арганізацыя была створана паспяхова
+    </div>
+  </template>
+  <template id="unknown-error">
+    <div class="error message" translate="yes">
+      Памылка! Адбылася памылка пры стварэнні арганізацыі
+    </div>
+  </template>
+  <template id="invalid-first-name">
+    <div class="error message" translate="yes">
+      Памылка! Адсутнічае альбо несапраўднае імя
+    </div>
+  </template>
+  <template id="invalid-first-name-length">
+    <div class="error message" translate="yes">
+      Памылка! Указана несапраўднае імя
+    </div>
+  </template>
+  <template id="invalid-last-name">
+    <div class="error message" translate="yes">
+      Памылка! Адсутнічае альбо несапраўднае прозвішча было прадастаўлена
+    </div>
+  </template>
+  <template id="invalid-last-name-length">
+    <div class="error message" translate="yes">
+      Памылка! Указана няправільнае прозвішча
+    </div>
+  </template>
+  <template id="invalid-contact-email">
+    <div class="error message" translate="yes">
+      Памылка! Несапраўдны адрас электроннай пошты
+    </div>
+  </template>
+  <template id="invalid-display-email">
+    <div class="error message" translate="yes">
+      Памылка! Несапраўдны адрас адлюстравання электроннай пошты
+    </div>
+  </template>
+  <template id="invalid-display-name">
+    <div class="error message" translate="yes">
+      Памылка! Указанае імя адсутнічае альбо недапушчальнае
+    </div>
+  </template>
+  <template id="invalid-dob">
+    <div class="error message" translate="yes">
+      Памылка! Была прадастаўлена адсутнічае альбо несапраўдная дата нараджэння
+    </div>
+  </template>
+  <template id="invalid-phone">
+    <div class="error message" translate="yes">
+      Памылка! Быў прадастаўлены адсутны альбо несапраўдны тэлефон.
+    </div>
+  </template>
+  <template id="invalid-occupation">
+    <div class="error message" translate="yes">
+      Памылка! Адсутнічае альбо несапраўдны занятак быў прадастаўлены.
+    </div>
+  </template>
+  <template id="invalid-location">
+    <div class="error message" translate="yes">
+      Памылка! Адсутнічае альбо недапушчальнае месцазнаходжанне было прадастаўлена.
+    </div>
+  </template>
+  <template id="invalid-company-name">
+    <div class="error message" translate="yes">
+      Памылка! Уведзена невядомая ці несапраўдная назва кампаніі.
+    </div>
+  </template>
+  <template id="invalid-website">
+    <div class="error message" translate="yes">
+      Памылка! Адсутнічае альбо несапраўдны вэб-сайт быў прадастаўлены.
+    </div>
+  </template>
+  <template id="invalid-display-name-length">
+    <div class="error message" translate="yes">
+      Памылка! Указанае імя адсутнічае альбо недапушчальнае
+    </div>
+  </template>
+  <template id="invalid-profileid">
+    <div class="error message" translate="yes">
+      Памылка! Выбраны адсутнічае альбо недапушчальны профіль.
+    </div>
+  </template>
+</body>
+</html>

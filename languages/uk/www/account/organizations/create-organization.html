@@ -2,15 +2,15 @@
 <html lang="en" data-navbar="/account/organizations/navbar-organizations.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Створити організацію</title>
+  <title translate="yes">Створіть організацію</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Створити організацію</h1>
-  <p translate="yes">Організації можуть використовуватися для спільного доступу до ресурсів.</p>
+  <h1 translate="yes">Створіть організацію</h1>
+  <p translate="yes">Організації можуть використовуватися для обміну доступу до ресурсів.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/create-organization" name="submit-form">
     <div class="pure-control-group">
@@ -18,29 +18,29 @@
       <input id="name" name="name" type="text" maxlength="100">
     </div>
     <div class="pure-control-group">
-      <label for="email" translate="yes">Контактна адреса електронної пошти</label>
+      <label for="email" translate="yes">Контактна електронна пошта</label>
       <input id="email" name="email" type="text" maxlength="100">
     </div>
     <h2 translate="yes">Інформація про членство</h2>
     <div id="existing-profile-container" class="pure-control-group">
-      <label for="profileid" translate="yes">Використання наявного профілю</label>
+      <label for="profileid" translate="yes">Використовуйте наявний профіль</label>
       <select id="profileid" name="profileid">
         <option value="" translate="yes">
           Виберіть існуючий профіль
         </option>
       </select>
     </div>
-    <h3 translate="yes">Створити новий профіль</h3>
+    <h3 translate="yes">Створіть новий профіль</h3>
     <div id="display-name-container" class="pure-control-group">
-      <label for="display-name" translate="yes">Коротке ім'я</label>
+      <label for="display-name" translate="yes">Відображуване ім’я</label>
       <input required="" id="display-name" name="display-name" type="text" maxlength="1000">
     </div>
     <div id="display-email-container" class="pure-control-group">
-      <label for="display-email" translate="yes">Відображуване електронне повідомлення</label>
+      <label for="display-email" translate="yes">Відобразити електронну пошту</label>
       <input required="" id="display-email" name="display-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="contact-email-container" class="pure-control-group">
-      <label for="contact-email" translate="yes">Контактна адреса електронної пошти</label>
+      <label for="contact-email" translate="yes">Контактна електронна пошта</label>
       <input required="" id="contact-email" name="contact-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="full-name-container">
@@ -49,7 +49,7 @@
         <input required="" id="first-name" name="first-name" type="text" maxlength="1000">
       </div>
       <div class="pure-control-group">
-        <label for="last-name" translate="yes">Прізвищем</label>
+        <label for="last-name" translate="yes">Прізвище</label>
         <input required="" id="last-name" name="last-name" type="text" maxlength="1000">
       </div>
     </div>
@@ -64,7 +64,7 @@
       <input required="" id="phone" name="phone" type="text" maxlength="1000">
     </div>
     <div id="occupation-container" class="pure-control-group">
-      <label for="occupation" translate="yes">Окупації</label>
+      <label for="occupation" translate="yes">Професія</label>
       <input required="" id="occupation" name="occupation" type="text" maxlength="1000">
     </div>
     <div id="location-container" class="pure-control-group">
@@ -76,11 +76,11 @@
       <input required="" id="company-name" name="company-name" type="text" maxlength="1000">
     </div>
     <div id="website-container" class="pure-control-group">
-      <label for="website" translate="yes">Сайт</label>
+      <label for="website" translate="yes">Веб-сайт</label>
       <input required="" id="website" name="website" type="text" maxlength="1000">
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Створити організацію</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Створіть організацію</button>
     </div>
   </form>
   <template id="profile-option">
@@ -90,103 +90,103 @@
   </template>
   <template id="invalid-organization-name">
     <div class="error message" translate="yes">
-      Помилка! Надане відсутнє або неприпустиме ім'я організації
+      Помилка! Було вказано відсутню або недійсну назву організації
     </div>
   </template>
   <template id="invalid-organization-name-length">
     <div class="error message" translate="yes">
-      Помилка! Неприпустима Довжина імені організації
+      Помилка! Недійсна довжина назви організації
     </div>
   </template>
   <template id="invalid-organization-email">
     <div class="error message" translate="yes">
-      Помилка! Відсутня або недійсна електронна пошта організації
+      Помилка! Було надано електронну пошту відсутньої чи недійсної організації
     </div>
   </template>
   <template id="success">
     <div class="success message" translate="yes">
-      Успіху! Організація успішно створена
-      <p><a class="pure-button pure-button-primary" href="/account/organizations/create-invitation?organizationid=${organization.organizationid}" translate="yes">Створити запрошення</a></p>
+      Успіху! Організація створена успішно
+      <p><a class="pure-button pure-button-primary" href="/account/organizations/create-invitation?organizationid=${organization.organizationid}" translate="yes">Створіть запрошення</a></p>
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Помилка! Сталася помилка під час створення організації
+      Помилка! Під час створення організації сталася помилка
     </div>
   </template>
   <template id="invalid-first-name">
     <div class="error message" translate="yes">
-      Помилка! Відсутнє або неприпустиме ім'я, надане
+      Помилка! Надане відсутнє або недійсне ім’я
     </div>
   </template>
   <template id="invalid-first-name-length">
     <div class="error message" translate="yes">
-      Помилка! Надане неприпустиме ім'я
+      Помилка! Було надано недійсне ім’я
     </div>
   </template>
   <template id="invalid-last-name">
     <div class="error message" translate="yes">
-      Помилка! Надане відсутнє або неприпустиме прізвище
+      Помилка! Було вказано прізвище відсутнє або недійсне
     </div>
   </template>
   <template id="invalid-last-name-length">
     <div class="error message" translate="yes">
-      Помилка! Надане неприпустиме прізвище
+      Помилка! Було надано недійсне прізвище
     </div>
   </template>
   <template id="invalid-contact-email">
     <div class="error message" translate="yes">
-      Помилка! Неприпустима Контактна адреса електронної пошти
+      Помилка! Неправильна контактна електронна адреса
     </div>
   </template>
   <template id="invalid-display-email">
     <div class="error message" translate="yes">
-      Помилка! Неприпустима відображуваної адреси електронної пошти
+      Помилка! Неправильна відображувана електронна адреса
     </div>
   </template>
   <template id="invalid-display-name">
     <div class="error message" translate="yes">
-      Помилка! Надане відсутнє або неприпустиме коротке ім'я
+      Помилка! Було вказано відсутнє або недійсне відображуване ім’я
     </div>
   </template>
   <template id="invalid-dob">
     <div class="error message" translate="yes">
-      Помилка! Була надана відсутня або неприпустима дата народження
+      Помилка! Була вказана відсутня або недійсна дата народження
     </div>
   </template>
   <template id="invalid-phone">
     <div class="error message" translate="yes">
-      Помилка! Було надано відсутній або неприпустимий телефон.
+      Помилка! Був наданий відсутній або недійсний телефон.
     </div>
   </template>
   <template id="invalid-occupation">
     <div class="error message" translate="yes">
-      Помилка! Було надано відсутню або недійсну професію.
+      Помилка! Було надано відсутнє або недійсне заняття.
     </div>
   </template>
   <template id="invalid-location">
     <div class="error message" translate="yes">
-      Помилка! Було надано відсутнє або неприпустиме розташування.
+      Помилка! Було надано пропущене або недійсне місцезнаходження.
     </div>
   </template>
   <template id="invalid-company-name">
     <div class="error message" translate="yes">
-      Помилка! Надане відсутнє або неприпустиме ім'я компанії.
+      Помилка! Було вказано відсутню або недійсну назву компанії.
     </div>
   </template>
   <template id="invalid-website">
     <div class="error message" translate="yes">
-      Помилка! Наданий веб-сайт відсутній або неприпустимий.
+      Помилка! Був наданий веб-сайт, що відсутній або недійсний.
     </div>
   </template>
   <template id="invalid-display-name-length">
     <div class="error message" translate="yes">
-      Помилка! Надане відсутнє або неприпустиме коротке ім'я
+      Помилка! Було вказано відсутнє або недійсне відображуване ім’я
     </div>
   </template>
   <template id="invalid-profileid">
     <div class="error message" translate="yes">
-      Помилка! Вибрано відсутній або неприпустимий профіль.
+      Помилка! Вибрано відсутній або недійсний профіль.
     </div>
   </template>
 </body>

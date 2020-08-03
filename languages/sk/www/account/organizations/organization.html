@@ -2,14 +2,14 @@
 <html lang="en" data-navbar="/account/organizations/navbar-organization.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Zobraziť ${organization.organizationid}</title>
+  <title translate="yes">vyhliadka ${organization.organizationid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Zobraziť ${organization.organizationid}</h1>
+  <h1 translate="yes">vyhliadka ${organization.organizationid}</h1>
   <table id="organizations-table" class="pure-table pure-table-striped data-table">
     <tbody id="${organization.organizationid}">
       <tr>
@@ -17,17 +17,17 @@
         <td>${organization.organizationid}</td>
       </tr>
       <tr>
-        <th translate="yes">meno</th>
+        <th translate="yes">názov</th>
         <td>${organization.name}</td>
       </tr>
       <tr>
-        <th translate="yes">E-mail</th>
+        <th translate="yes">e-mail</th>
         <td>
           <a href="mailto:${organization.email}">${organization.email}</a>
         </td>
       </tr>
       <tr>
-        <th translate="yes">Vytvorený</th>
+        <th translate="yes">Vytvorené</th>
         <td>${organization.createdFormatted}</td>
       </tr>
     </tbody>

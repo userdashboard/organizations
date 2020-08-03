@@ -2,15 +2,15 @@
 <html lang="en" data-navbar="/account/organizations/navbar-membership.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Izbrisati ${membership.membershipid}</title>
+  <title translate="yes">Izbriši ${membership.membershipid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Izbrisati ${membership.membershipid}</h1>
-  <p translate="yes">Članstvo će se odmah izbrisati i ne može se oporaviti.</p>
+  <h1 translate="yes">Izbriši ${membership.membershipid}</h1>
+  <p translate="yes">Članstvo će biti odmah izbrisano i nije ih moguće vratiti.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/delete-membership?membershipid=${membership.membershipid}" name="submit-form">
     <div class="pure-control-group">
@@ -28,7 +28,7 @@
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Greška! Nepoznata greška je ocurila
+      Greška! Došlo je do nepoznate pogreške
     </div>
   </template>
 </body>

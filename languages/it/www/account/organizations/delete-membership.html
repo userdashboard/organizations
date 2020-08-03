@@ -10,7 +10,7 @@
 </head>
 <body>
   <h1 translate="yes">Elimina ${membership.membershipid}</h1>
-  <p translate="yes">L'iscrizione verrà cancellata immediatamente e non potrà essere recuperata.</p>
+  <p translate="yes">L'iscrizione verrà immediatamente cancellata e non potrà essere recuperata.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/delete-membership?membershipid=${membership.membershipid}" name="submit-form">
     <div class="pure-control-group">
@@ -18,12 +18,12 @@
       <input id="organizationName" type="text" maxlength="100" readonly>
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Elimina appartenenza</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Elimina iscrizione</button>
     </div>
   </form>
   <template id="success">
     <div class="error message" translate="yes">
-      Errore! L'iscrizione è stata eliminata definitivamente
+      Errore! L'iscrizione è stata definitivamente cancellata
     </div>
   </template>
   <template id="unknown-error">

@@ -10,25 +10,25 @@
 </head>
 <body>
   <h1 translate="yes">Efase ${membership.membershipid}</h1>
-  <p translate="yes">Manm yo pral efase imedyatman epi yo pa ka refe.</p>
+  <p translate="yes">Manm nan pral efase imedyatman epi yo pa kapab refè.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/delete-membership?membershipid=${membership.membershipid}" name="submit-form">
     <div class="pure-control-group">
-      <label for="organizationName" translate="yes">Oganizasyon</label>
+      <label for="organizationName" translate="yes">.Ganizasyon</label>
       <input id="organizationName" type="text" maxlength="100" readonly>
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Efase manm</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Efase manm yo</button>
     </div>
   </form>
   <template id="success">
     <div class="error message" translate="yes">
-      Ere! Manm yo te pemanans efase
+      Erè! Manm yo te efase nèt
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Ere! Yon ere enkoni owoulo nan wouj
+      Erè! Yon erè enkoni te fèt
     </div>
   </template>
 </body>

@@ -10,7 +10,7 @@
 </head>
 <body>
   <h1 translate="yes">Editar ${membership.membershipid} profile</h1>
-  <p translate="yes">Cualquier otra membresía que comparta este perfil, u otro uso del usuario, también se actualizará.</p>
+  <p translate="yes">También se actualizará cualquier otra membresía que comparta este perfil u otro uso del mismo.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/edit-membership-profile?membershipid=${membership.membershipid}" name="submit-form">
     <div id="display-name-container" class="pure-control-group">
@@ -22,12 +22,12 @@
       <input required="" id="display-email" name="display-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="contact-email-container" class="pure-control-group">
-      <label for="contact-email" translate="yes">Correo electrónico de contacto</label>
+      <label for="contact-email" translate="yes">Email de contacto</label>
       <input required="" id="contact-email" name="contact-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="full-name-container">
       <div class="pure-control-group">
-        <label for="first-name" translate="yes">Nombre</label>
+        <label for="first-name" translate="yes">Nombre de pila</label>
         <input required="" id="first-name" name="first-name" type="text" maxlength="1000">
       </div>
       <div class="pure-control-group">
@@ -54,7 +54,7 @@
       <input required="" id="location" name="location" type="text" maxlength="1000">
     </div>
     <div id="company-name-container" class="pure-control-group">
-      <label for="company-name" translate="yes">Nombre de la empresa</label>
+      <label for="company-name" translate="yes">Nombre de empresa</label>
       <input required="" id="company-name" name="company-name" type="text" maxlength="1000">
     </div>
     <div id="website-container" class="pure-control-group">
@@ -62,7 +62,7 @@
       <input required="" id="website" name="website" type="text" maxlength="1000">
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Actualizar la membresía</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Actualizar membresía</button>
     </div>
   </form>
   <template id="success">
@@ -72,22 +72,22 @@
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      ¡Error! Se ha producido un error desconocido
+      ¡Error! Un error desconocido ocurrió
     </div>
   </template>
   <template id="invalid-first-name">
     <div class="error message" translate="yes">
-      ¡Error! Se proporciona un nombre que falta o no es válido
+      ¡Error! Un nombre faltante o inválido proporcionado
     </div>
   </template>
   <template id="invalid-first-name-length">
     <div class="error message" translate="yes">
-      ¡Error! Se proporcionó un nombre de pila no válido
+      ¡Error! Se proporcionó un nombre no válido
     </div>
   </template>
   <template id="invalid-last-name">
     <div class="error message" translate="yes">
-      ¡Error! Se proporcionó un apellido faltante o no válido
+      ¡Error! Se proporcionó un apellido faltante o inválido
     </div>
   </template>
   <template id="invalid-last-name-length">
@@ -107,42 +107,42 @@
   </template>
   <template id="invalid-display-name">
     <div class="error message" translate="yes">
-      ¡Error! Se proporcionó un nombre para mostrar que falta o no es válido
+      ¡Error! Se proporcionó un nombre para mostrar faltante o no válido
     </div>
   </template>
   <template id="invalid-dob">
     <div class="error message" translate="yes">
-      ¡Error! Se proporcionó una fecha de nacimiento perdida o inválida
+      ¡Error! Se proporcionó una fecha de nacimiento faltante o inválida
     </div>
   </template>
   <template id="invalid-phone">
     <div class="error message" translate="yes">
-      ¡Error! Se proporcionó un teléfono perdido o no válido.
+      ¡Error! Se proporcionó un teléfono faltante o no válido.
     </div>
   </template>
   <template id="invalid-occupation">
     <div class="error message" translate="yes">
-      ¡Error! Se proporcionó una ocupación desaparecida o no válida.
+      ¡Error! Se proporcionó una ocupación faltante o inválida.
     </div>
   </template>
   <template id="invalid-location">
     <div class="error message" translate="yes">
-      ¡Error! Se proporcionó una ubicación que falta o no es válida.
+      ¡Error! Se proporcionó una ubicación faltante o no válida.
     </div>
   </template>
   <template id="invalid-company-name">
     <div class="error message" translate="yes">
-      ¡Error! Se proporcionó un nombre de empresa que faltaba o no es válido.
+      ¡Error! Se proporcionó un nombre de empresa faltante o no válido.
     </div>
   </template>
   <template id="invalid-website">
     <div class="error message" translate="yes">
-      ¡Error! Se proporcionó un sitio web que faltaba o no es válido.
+      ¡Error! Se proporcionó un sitio web faltante o no válido.
     </div>
   </template>
   <template id="invalid-display-name-length">
     <div class="error message" translate="yes">
-      ¡Error! Se proporcionó un nombre para mostrar que falta o no es válido
+      ¡Error! Se proporcionó un nombre para mostrar faltante o no válido
     </div>
   </template>
 </body>

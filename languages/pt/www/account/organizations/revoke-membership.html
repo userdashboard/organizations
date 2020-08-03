@@ -2,15 +2,15 @@
 <html lang="en" data-navbar="/account/organizations/navbar-membership.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Revogar a adesão ${membership.membershipid}</title>
+  <title translate="yes">Revogar associação a ${membership.membershipid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Revogar a adesão ${membership.membershipid}</h1>
-  <p translate="yes">Isto removerá imediatamente o membro do organizaiton.</p>
+  <h1 translate="yes">Revogar a associação de ${membership.membershipid}</h1>
+  <p translate="yes">Isso removerá imediatamente o membro da organização.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/revoke-membership?membershipid=${membership.membershipid}" name="submit-form">
     <div class="pure-control-group">
@@ -18,17 +18,17 @@
       <input id="organizationName" type="text" maxlength="100" readonly>
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Eliminar a adesão</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Excluir associação</button>
     </div>
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      Que sucesso! A adesão foi permanentemente eliminada
+      Sucesso! A associação foi excluída permanentemente
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Um erro! Um erro desconhecido ocorrido
+      Erro! Ocorreu um erro desconhecido
     </div>
   </template>
 </body>

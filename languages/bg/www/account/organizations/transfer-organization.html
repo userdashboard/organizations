@@ -2,22 +2,22 @@
 <html lang="en" data-navbar="/account/organizations/navbar-organization.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Прехвърляне на собствеността на ${organization.organizationid}</title>
+  <title translate="yes">Прехвърлете собствеността върху ${organization.organizationid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Прехвърляне на собствеността на ${organization.organizationid}</h1>
-  <p translate="yes">Това веднага ще промени собственика на организациятаитон.</p>
+  <h1 translate="yes">Прехвърлете собствеността върху ${organization.organizationid}</h1>
+  <p translate="yes">Това веднага ще промени собственика на организацията.</p>
   <div id="message-container"></div>
   <table id="organizations-table" class="pure-table object-table">
     <thead>
       <tr>
         <th>ID</th>
-        <th translate="yes">Име</th>
-        <th translate="yes">Имейл</th>
+        <th translate="yes">име</th>
+        <th translate="yes">електронна поща</th>
         <th translate="yes">Създаден</th>
       </tr>
     </thead>
@@ -35,12 +35,12 @@
       <label for="accountid" translate="yes">Нов собственик на организация</label>
       <select id="accountid" name="accountid">
         <option value="" translate="yes">
-          Избор на нов собственик
+          Изберете нов собственик
         </option>
       </select>
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Организация за прехвърляне</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Организация на трансфера</button>
     </div>
   </form>
   <template id="membership-option-template">
@@ -50,12 +50,12 @@
   </template>
   <template id="success">
     <div class="success message" translate="yes">
-      Успех! Прехвърлили сте организацията на новия собственик
+      Успех! Прехвърлихте организацията на новия собственик
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Грешка! Възникна грешка при прехвърляне на организацията
+      Грешка! Възникна грешка при прехвърлянето на организацията
     </div>
   </template>
   <template id="invalid-accountid">

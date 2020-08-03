@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" data-navbar="/account/organizations/navbar-organization.html">
+<head>
+  <meta charset="utf-8">
+  <title translate="yes">ဖိတ်ကြားချက်ကိုဖန်တီးပါ ${organization.organizationid}</title>
+  <link href="/public/pure-min.css" rel="stylesheet">
+  <link href="/public/content.css" rel="stylesheet">
+  <link href="/public/organizations/organizations-content.css" rel="stylesheet">
+  <link href="/public/content-additional.css" rel="stylesheet">
+  <base target="_top" href="/">
+</head>
+<body>
+  <h1 translate="yes">ဖိတ်ကြားချက်ကိုဖန်တီးပါ ${organization.organizationid}</h1>
+  <p translate="yes">ဖိတ်ကြားမှုကုဒ်များသည်လူများကိုသင်၏အဖွဲ့အစည်းသို့ဝင်ရောက်ခွင့်ပေးသည်။</p>
+  <div id="message-container"></div>
+  <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/create-invitation?organizationid=${organization.organizationid}" name="submit-form">
+    <div class="pure-control-group">
+      <label for="organization-name" translate="yes">အဖွဲ့အစည်း</label>
+      <input id="organization-name" type="text" maxlength="100" readonly>
+    </div>
+    <div class="pure-control-group">
+      <label for="secret-code" translate="yes">လျှို့ဝှက်ကုဒ်</label>
+      <input id="secret-code" name="secret-code" type="text" maxlength="100">
+    </div>
+    <div class="pure-controls">
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">ဖိတ်ကြားချက်ကိုဖန်တီးပါ</button>
+    </div>
+  </form>
+  <template id="unknown-error">
+    <div class="error message" translate="yes">
+      အမှား! အမည်မသိအမှားတစ်ခုဖြစ်ပွားခဲ့သည်
+    </div>
+  </template>
+  <template id="invalid-secret-code">
+    <div class="error message" translate="yes">
+      အမှား! လျှို့ဝှက်ကုဒ်ပျောက်နေသည်သို့မဟုတ်မမှန်ကန်ပါ
+    </div>
+  </template>
+  <template id="invalid-secret-code-length">
+    <div class="error message" translate="yes">
+      အမှား! လျှို့ဝှက်ကုဒ်မှာမမှန်ကန်တဲ့အရှည်ရှိတယ်
+    </div>
+  </template>
+  <template id="success">
+    <div class="success message">
+      <p translate="yes">အောင်မြင်ပြီ သင်၏လျှို့ဝှက်ကုဒ်နှင့်ဤ link ကိုဆက်သွယ်ရန်တစ်စုံတစ်ယောက်အားပေးပါ</p>
+      <div class="invitation-link">
+        <input type="text" readonly value="${organization.dashboardServer}/account/organizations/accept-invitation?invitationid=${organization.invitationid}">
+      </div>
+    </div>
+  </template>
+</body>
+</html>

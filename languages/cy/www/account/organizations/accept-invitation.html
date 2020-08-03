@@ -10,23 +10,23 @@
 </head>
 <body>
   <h1 translate="yes">Derbyn gwahoddiad</h1>
-  <p translate="yes">Byddwch yn dod yn aelod o'r sefydliad ar ôl mynd i mewn i'r Cod.</p>
+  <p translate="yes">Byddwch yn dod yn aelod o'r sefydliad ar ôl nodi'r cod.</p>
   <div id="message-container"></div>
   <form id="submit-form" class="pure-form pure-form-stacked" action="/account/organizations/accept-invitation" name="submit-form">
     <div class="pure-control-group">
-      <label for="invitationid" translate="yes">ID gwahoddiad</label>
+      <label for="invitationid" translate="yes">ID y gwahoddiad</label>
       <input id="invitationid" name="invitationid" type="text" maxlength="100">
     </div>
     <div class="pure-control-group">
-      <label for="secret-code" translate="yes">Cod gwahoddiad</label>
+      <label for="secret-code" translate="yes">Cod gwahodd</label>
       <input id="secret-code" name="secret-code" type="text" maxlength="100">
     </div>
-    <h2 translate="yes">Gwybodaeth am aelodaeth</h2>
+    <h2 translate="yes">Gwybodaeth aelodaeth</h2>
     <div id="existing-profile-container" class="pure-control-group">
-      <label for="profileid" translate="yes">Defnyddio'r proffil presennol</label>
+      <label for="profileid" translate="yes">Defnyddiwch y proffil presennol</label>
       <select id="profileid" name="profileid">
         <option value="" translate="yes">
-          Dewis proffil sy'n bodoli eisoes
+          Dewiswch broffil sy'n bodoli eisoes
         </option>
       </select>
     </div>
@@ -36,11 +36,11 @@
       <input required="" id="display-name" name="display-name" type="text" maxlength="1000">
     </div>
     <div id="display-email-container" class="pure-control-group">
-      <label for="display-email" translate="yes">Dangos ebost</label>
+      <label for="display-email" translate="yes">E-bost arddangos</label>
       <input required="" id="display-email" name="display-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="contact-email-container" class="pure-control-group">
-      <label for="contact-email" translate="yes">E-bost cyswllt</label>
+      <label for="contact-email" translate="yes">Cysylltwch ag e-bost</label>
       <input required="" id="contact-email" name="contact-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="full-name-container">
@@ -55,7 +55,7 @@
     </div>
     <div id="dob-container">
       <div class="pure-control-group">
-        <label for="dob" translate="yes">Dyddiad geni</label>
+        <label for="dob" translate="yes">Dyddiad Geni</label>
       <input required="" id="dob" name="dob" type="text" maxlength="11">
       </div>
     </div>
@@ -64,7 +64,7 @@
       <input required="" id="phone" name="phone" type="text" maxlength="1000">
     </div>
     <div id="occupation-container" class="pure-control-group">
-      <label for="occupation" translate="yes">Meddiannaeth</label>
+      <label for="occupation" translate="yes">Galwedigaeth</label>
       <input required="" id="occupation" name="occupation" type="text" maxlength="1000">
     </div>
     <div id="location-container" class="pure-control-group">
@@ -76,7 +76,7 @@
       <input required="" id="company-name" name="company-name" type="text" maxlength="1000">
     </div>
     <div id="website-container" class="pure-control-group">
-      <label for="website" translate="yes">Wefan</label>
+      <label for="website" translate="yes">Gwefan</label>
       <input required="" id="website" name="website" type="text" maxlength="1000">
     </div>
     <div class="pure-controls">
@@ -95,22 +95,22 @@
   </template>
   <template id="invalid-secret-code">
     <div class="error message" translate="yes">
-      Gwall! Mae'r Cod gwahoddiad yn anghywir
+      Gwall! Mae'r cod gwahoddiad yn anghywir
     </div>
   </template>
   <template id="invalid-invitationid">
     <div class="error message" translate="yes">
-      Gwall! Cafwyd gwahoddiad ar goll neu'n annilys
+      Gwall! Cafwyd gwahoddiad coll neu annilys
     </div>
   </template>
   <template id="invalid-account">
     <div class="error message" translate="yes">
-      Gwall! Ydych yn berchen neu'n aelod o'r sefydliad hwn
+      Gwall! Rydych chi'n berchen ar y sefydliad hwn neu'n aelod ohono
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Gwall! Gwall anhysbys ocurred
+      Gwall! Digwyddodd gwall anhysbys
     </div>
   </template>
   <template id="profile-option">
@@ -130,7 +130,7 @@
   </template>
   <template id="invalid-organization-email">
     <div class="error message" translate="yes">
-      Gwall! Darparwyd ebost sefydliad sydd ar goll neu'n annilys
+      Gwall! Darparwyd e-bost sefydliad coll neu annilys
     </div>
   </template>
   <template id="success">
@@ -140,12 +140,12 @@
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Gwall! Mae gwall wedi digwydd wrth greu'r sefydliad
+      Gwall! Digwyddodd gwall wrth greu'r sefydliad
     </div>
   </template>
   <template id="invalid-first-name">
     <div class="error message" translate="yes">
-      Gwall! Enw cyntaf coll neu annilys wedi'i ddarparu
+      Gwall! Darperir enw cyntaf coll neu annilys
     </div>
   </template>
   <template id="invalid-first-name-length">
@@ -160,17 +160,17 @@
   </template>
   <template id="invalid-last-name-length">
     <div class="error message" translate="yes">
-      Gwall! Rhoddwyd enw olaf annilys
+      Gwall! Darparwyd enw olaf annilys
     </div>
   </template>
   <template id="invalid-contact-email">
     <div class="error message" translate="yes">
-      Gwall! Cyfeiriad ebost cyswllt annilys
+      Gwall! Cyfeiriad e-bost cyswllt annilys
     </div>
   </template>
   <template id="invalid-display-email">
     <div class="error message" translate="yes">
-      Gwall! Cyfeiriad e-bost dangosydd annilys
+      Gwall! Cyfeiriad e-bost arddangos annilys
     </div>
   </template>
   <template id="invalid-display-name">
@@ -180,32 +180,32 @@
   </template>
   <template id="invalid-dob">
     <div class="error message" translate="yes">
-      Gwall! Darparwyd dyddiad geni sydd ar goll neu'n annilys
+      Gwall! Darparwyd dyddiad geni ar goll neu annilys
     </div>
   </template>
   <template id="invalid-phone">
     <div class="error message" translate="yes">
-      Gwall! Darparwyd ffôn a oedd ar goll neu'n annilys.
+      Gwall! Darparwyd ffôn coll neu annilys.
     </div>
   </template>
   <template id="invalid-occupation">
     <div class="error message" translate="yes">
-      Gwall! Darparwyd galwedigaeth goll neu annilys.
+      Gwall! Darparwyd galwedigaeth ar goll neu annilys.
     </div>
   </template>
   <template id="invalid-location">
     <div class="error message" translate="yes">
-      Gwall! Darparwyd lleoliad ar goll neu'n annilys.
+      Gwall! Darparwyd lleoliad coll neu annilys.
     </div>
   </template>
   <template id="invalid-company-name">
     <div class="error message" translate="yes">
-      Gwall! Darparwyd enw cwmni ar goll neu annilys.
+      Gwall! Darparwyd enw cwmni coll neu annilys.
     </div>
   </template>
   <template id="invalid-website">
     <div class="error message" translate="yes">
-      Gwall! Darparwyd gwefan ar goll neu annilys.
+      Gwall! Darparwyd gwefan goll neu annilys.
     </div>
   </template>
   <template id="invalid-display-name-length">

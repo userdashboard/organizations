@@ -2,23 +2,23 @@
 <html lang="en" data-navbar="/account/organizations/navbar-organization.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Whakawhiti pupuritanga o ${organization.organizationid}</title>
+  <title translate="yes">Whakawhiti whenua o ${organization.organizationid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Whakawhiti pupuritanga o ${organization.organizationid}</h1>
-  <p translate="yes">Ka huri tonu tēnei i te kaipupuru o te organizaiton.</p>
+  <h1 translate="yes">Whakawhiti whenua o ${organization.organizationid}</h1>
+  <p translate="yes">Ka huri tonu tenei i te rangatira o te whakahaere.</p>
   <div id="message-container"></div>
   <table id="organizations-table" class="pure-table object-table">
     <thead>
       <tr>
         <th>ID</th>
         <th translate="yes">Ingoa</th>
-        <th translate="yes">Īmēra</th>
-        <th translate="yes">Waihangatia</th>
+        <th translate="yes">Emailmera</th>
+        <th translate="yes">I hanga</th>
       </tr>
     </thead>
     <tr id="${organization.organizationid}">
@@ -32,15 +32,15 @@
   </table>
   <form id="submit-form" class="pure-form pure-form-stacked" action="/account/organizations/transfer-organization?organizationid=${organization.organizationid}" name="submit-form">
     <div class="pure-control-group">
-      <label for="accountid" translate="yes">Rangatira whakahaere hou</label>
+      <label for="accountid" translate="yes">Kaipupuri whakahaere hou</label>
       <select id="accountid" name="accountid">
         <option value="" translate="yes">
-          Tīpakohia te kaipupuru hōu
+          Tīpakohia rangatira hou
         </option>
       </select>
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Whakawhiti whakahaere</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Whakawhiti whakawhiti</button>
     </div>
   </form>
   <template id="membership-option-template">
@@ -50,17 +50,17 @@
   </template>
   <template id="success">
     <div class="success message" translate="yes">
-      Angitu! Kua whakawhiti koe i te whakahaere ki te kaipupuru hou
+      Ka angitu! Kua whakawhiti i te whakahaere ki te rangatira hou
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Hē! I hapa i te whakawhiti i te whakahaere
+      He hapa! Kua puta he hapa kei te whakawhiti i te whakariterite
     </div>
   </template>
   <template id="invalid-accountid">
     <div class="error message" translate="yes">
-      Hē! Kua tīpakohia, kua tukua rānei tētahi kaiwhiwhi muhu
+      He hapa! I tohua he kaiwhiwhi hoha ranei
     </div>
   </template>
 </body>

@@ -11,7 +11,7 @@
 </head>
 <body>
   <h1 translate="yes">Einladung erstellen für ${organization.organizationid}</h1>
-  <p translate="yes">Einladungscodes ermöglichen es Personen, Ihrer Organisation beizutreten.</p>
+  <p translate="yes">Mit Einladungscodes können Personen Ihrer Organisation beitreten.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/create-invitation?organizationid=${organization.organizationid}" name="submit-form">
     <div class="pure-control-group">
@@ -19,7 +19,7 @@
       <input id="organization-name" type="text" maxlength="100" readonly>
     </div>
     <div class="pure-control-group">
-      <label for="secret-code" translate="yes">Geheimcode</label>
+      <label for="secret-code" translate="yes">Geheim Code</label>
       <input id="secret-code" name="secret-code" type="text" maxlength="100">
     </div>
     <div class="pure-controls">
@@ -28,22 +28,22 @@
   </form>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Fehler! Ein unbekannter Fehler ist aufgetreten
+      Error! Ein unbekannter Fehler ist aufgetreten
     </div>
   </template>
   <template id="invalid-secret-code">
     <div class="error message" translate="yes">
-      Fehler! Der geheime Code fehlt oder ist ungültig.
+      Error! Der Geheimcode fehlt oder ist ungültig
     </div>
   </template>
   <template id="invalid-secret-code-length">
     <div class="error message" translate="yes">
-      Fehler! Der geheime Code hat eine ungültige Länge
+      Error! Der Geheimcode hat eine ungültige Länge
     </div>
   </template>
   <template id="success">
     <div class="success message">
-      <p translate="yes">Erfolg! Geben Sie Ihren geheimen Code und diesen Link an eine Person, der Sie beitreten möchten:</p>
+      <p translate="yes">Erfolg! Geben Sie Ihren Geheimcode und diesen Link an jemanden weiter, dem Sie beitreten möchten:</p>
       <div class="invitation-link">
         <input type="text" readonly value="${organization.dashboardServer}/account/organizations/accept-invitation?invitationid=${organization.invitationid}">
       </div>

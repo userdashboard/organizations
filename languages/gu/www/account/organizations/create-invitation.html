@@ -11,7 +11,7 @@
 </head>
 <body>
   <h1 translate="yes">માટે આમંત્રણ બનાવો ${organization.organizationid}</h1>
-  <p translate="yes">આમંત્રણ સંહિતાઓ લોકોને તમારી સંસ્થામાં જોડાવાની મંજૂરી આપે છે.</p>
+  <p translate="yes">આમંત્રણ કોડ લોકોને તમારી સંસ્થામાં જોડાવા દે છે.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/create-invitation?organizationid=${organization.organizationid}" name="submit-form">
     <div class="pure-control-group">
@@ -19,7 +19,7 @@
       <input id="organization-name" type="text" maxlength="100" readonly>
     </div>
     <div class="pure-control-group">
-      <label for="secret-code" translate="yes">ખાનગી કોડ</label>
+      <label for="secret-code" translate="yes">ગુપ્ત કોડ</label>
       <input id="secret-code" name="secret-code" type="text" maxlength="100">
     </div>
     <div class="pure-controls">
@@ -28,22 +28,22 @@
   </form>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      ભૂલ! અજ્ઞાત ભૂલ ઉદ્ભવી
+      ભૂલ! અજ્ unknownાત ભૂલ આવી
     </div>
   </template>
   <template id="invalid-secret-code">
     <div class="error message" translate="yes">
-      ભૂલ! ખાનગી કોડ ગુમ થયેલ છે અથવા અયોગ્ય છે
+      ભૂલ! ગુપ્ત કોડ ગુમ અથવા અમાન્ય છે
     </div>
   </template>
   <template id="invalid-secret-code-length">
     <div class="error message" translate="yes">
-      ભૂલ! ખાનગી કોડ ની અયોગ્ય લંબાઈ છે
+      ભૂલ! ગુપ્ત કોડની અમાન્ય લંબાઈ છે
     </div>
   </template>
   <template id="success">
     <div class="success message">
-      <p translate="yes">સફળતા! તમારો સિક્રેટ કોડ અને જોડાવા માટે કોઈને આ કડી આપો:</p>
+      <p translate="yes">સફળતા! જોડાવા માટે કોઈને તમારો ગુપ્ત કોડ અને આ લિંક આપો:</p>
       <div class="invitation-link">
         <input type="text" readonly value="${organization.dashboardServer}/account/organizations/accept-invitation?invitationid=${organization.invitationid}">
       </div>

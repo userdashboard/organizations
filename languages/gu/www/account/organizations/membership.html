@@ -2,14 +2,14 @@
 <html lang="en" data-navbar="/account/organizations/navbar-membership.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">દેખાવ ${membership.membershipid}</title>
+  <title translate="yes">જુઓ ${membership.membershipid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">દેખાવ ${membership.membershipid}</h1>
+  <h1 translate="yes">જુઓ ${membership.membershipid}</h1>
   <table id="memberships-table" class="pure-table data-table">
     <tbody id="${membership.membershipid}">
       <tr>
@@ -17,15 +17,15 @@
         <td>${membership.membershipid}</td>
       </tr>
       <tr>
-        <th translate="yes">બનાવેલ છે</th>
+        <th translate="yes">બનાવ્યું</th>
         <td>${membership.createdFormatted}</td>
       </tr>
       <tr id="full-name">
-        <th translate="yes">આખું નામ</th>
+        <th translate="yes">પૂરું નામ</th>
         <td>${membership.firstName} ${membership.lastName}</td>
       </tr>
       <tr id="contact-email">
-        <th translate="yes">સંપર્ક ઇમેઇલ</th>
+        <th translate="yes">ઈ - મેલ સંપર્ક</th>
         <td>
           <a href="mailto:${membership.contactEmail}">${membership.contactEmail}</a>
         </td>
@@ -41,7 +41,7 @@
         </td>
       </tr>
       <tr id="dob">
-        <th translate="yes">જન્મની તારીખ</th>
+        <th translate="yes">જન્મ તારીખ</th>
         <td>${membership.dob}</td>
       </tr>
       <tr id="phone">
@@ -57,7 +57,7 @@
         <td>${membership.location}</td>
       </tr>
       <tr id="company-name">
-        <th translate="yes">કંપનીનું નામ</th>
+        <th translate="yes">કંપની નું નામ</th>
         <td>${membership.companyName}</td>
       </tr>
       <tr id="website">

@@ -10,7 +10,7 @@
 </head>
 <body>
   <h1 translate="yes">删除 ${invitation.invitationid}</h1>
-  <p translate="yes">邀请将立即删除，无法恢复。</p>
+  <p translate="yes">邀请将被立即删除，并且无法恢复。</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/delete-invitation?invitationid=${invitation.invitationid}" name="submit-form">
     <div class="pure-controls">
@@ -27,7 +27,7 @@
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      错误！删除邀请时出错
+      错误！删除邀请时发生错误
     </div>
   </template>
 </body>

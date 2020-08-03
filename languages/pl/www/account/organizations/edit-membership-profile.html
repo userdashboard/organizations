@@ -2,27 +2,27 @@
 <html lang="en" data-navbar="/account/organizations/navbar-membership.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Edytuj ${membership.membershipid} profile</title>
+  <title translate="yes">Edytować ${membership.membershipid} profile</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Edytuj ${membership.membershipid} profile</h1>
-  <p translate="yes">Wszelkie inne członkostwo udostępniające ten profil lub inne jego wykorzystanie również zostaną zaktualizowane.</p>
+  <h1 translate="yes">Edytować ${membership.membershipid} profile</h1>
+  <p translate="yes">Wszelkie inne członkostwa korzystające z tego profilu lub inne jego użycie również zostaną zaktualizowane.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/edit-membership-profile?membershipid=${membership.membershipid}" name="submit-form">
     <div id="display-name-container" class="pure-control-group">
-      <label for="display-name" translate="yes">Nazwa wyświetlana</label>
+      <label for="display-name" translate="yes">Wyświetlana nazwa</label>
       <input required="" id="display-name" name="display-name" type="text" maxlength="1000">
     </div>
     <div id="display-email-container" class="pure-control-group">
-      <label for="display-email" translate="yes">Wyświetlanie wiadomości e-mail</label>
+      <label for="display-email" translate="yes">Wyświetl e-mail</label>
       <input required="" id="display-email" name="display-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="contact-email-container" class="pure-control-group">
-      <label for="contact-email" translate="yes">Kontakt z pocztą e-mail</label>
+      <label for="contact-email" translate="yes">Kontaktowy adres e-mail</label>
       <input required="" id="contact-email" name="contact-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="full-name-container">
@@ -50,7 +50,7 @@
       <input required="" id="occupation" name="occupation" type="text" maxlength="1000">
     </div>
     <div id="location-container" class="pure-control-group">
-      <label for="location" translate="yes">Lokalizacji</label>
+      <label for="location" translate="yes">Lokalizacja</label>
       <input required="" id="location" name="location" type="text" maxlength="1000">
     </div>
     <div id="company-name-container" class="pure-control-group">
@@ -62,7 +62,7 @@
       <input required="" id="website" name="website" type="text" maxlength="1000">
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Aktualizowanie członkostwa</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Zaktualizuj członkostwo</button>
     </div>
   </form>
   <template id="success">
@@ -72,12 +72,12 @@
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Błąd! Nieznany błąd
+      Błąd! Wystąpił nieznany błąd
     </div>
   </template>
   <template id="invalid-first-name">
     <div class="error message" translate="yes">
-      Błąd! Podane brakujące lub nieprawidłowe imię
+      Błąd! Podano brakujące lub nieprawidłowe imię
     </div>
   </template>
   <template id="invalid-first-name-length">
@@ -87,7 +87,7 @@
   </template>
   <template id="invalid-last-name">
     <div class="error message" translate="yes">
-      Błąd! Pod warunkiem podania brakującego lub nieprawidłowego nazwiska
+      Błąd! Podano brakujące lub nieprawidłowe nazwisko
     </div>
   </template>
   <template id="invalid-last-name-length">
@@ -107,22 +107,22 @@
   </template>
   <template id="invalid-display-name">
     <div class="error message" translate="yes">
-      Błąd! Podana została brakuna lub nieprawidłowa nazwa wyświetlana
+      Błąd! Podano brakującą lub nieprawidłową nazwę wyświetlaną
     </div>
   </template>
   <template id="invalid-dob">
     <div class="error message" translate="yes">
-      Błąd! Podano zaginioną lub nieważną datę urodzenia
+      Błąd! Podano brakującą lub nieprawidłową datę urodzenia
     </div>
   </template>
   <template id="invalid-phone">
     <div class="error message" translate="yes">
-      Błąd! Podany został brakujący lub nieprawidłowy telefon.
+      Błąd! Podano brakujący lub nieprawidłowy telefon.
     </div>
   </template>
   <template id="invalid-occupation">
     <div class="error message" translate="yes">
-      Błąd! Zawód zaginiony lub nieważny został zapewniony.
+      Błąd! Podano brakujący lub nieprawidłowy zawód.
     </div>
   </template>
   <template id="invalid-location">
@@ -132,17 +132,17 @@
   </template>
   <template id="invalid-company-name">
     <div class="error message" translate="yes">
-      Błąd! Podana została brak owa lub nieprawidłowa nazwa firmy.
+      Błąd! Podano brakującą lub nieprawidłową nazwę firmy.
     </div>
   </template>
   <template id="invalid-website">
     <div class="error message" translate="yes">
-      Błąd! Udostępniono brakującą lub nieprawidłową witrynę sieci Web.
+      Błąd! Podano brakującą lub nieprawidłową witrynę internetową.
     </div>
   </template>
   <template id="invalid-display-name-length">
     <div class="error message" translate="yes">
-      Błąd! Podana została brakuna lub nieprawidłowa nazwa wyświetlana
+      Błąd! Podano brakującą lub nieprawidłową nazwę wyświetlaną
     </div>
   </template>
 </body>

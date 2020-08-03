@@ -2,23 +2,23 @@
 <html lang="en" data-navbar="/account/organizations/navbar-organization.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Trasferiment tas-sjieda ta' ${organization.organizationid}</title>
+  <title translate="yes">Trasferiment tas - sjieda ta ' ${organization.organizationid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Trasferiment tas-sjieda ta' ${organization.organizationid}</h1>
-  <p translate="yes">Dan ibiddel immedjatament is-sid ta 'l-organizzatur.</p>
+  <h1 translate="yes">Trasferiment tas - sjieda ta ' ${organization.organizationid}</h1>
+  <p translate="yes">Dan se jbiddel minnufih is-sid tal-organizzazzjoni.</p>
   <div id="message-container"></div>
   <table id="organizations-table" class="pure-table object-table">
     <thead>
       <tr>
         <th>ID</th>
         <th translate="yes">Isem</th>
-        <th translate="yes">Posta elettronika</th>
-        <th translate="yes">Maħluqa</th>
+        <th translate="yes">Email</th>
+        <th translate="yes">Maħluq</th>
       </tr>
     </thead>
     <tr id="${organization.organizationid}">
@@ -32,7 +32,7 @@
   </table>
   <form id="submit-form" class="pure-form pure-form-stacked" action="/account/organizations/transfer-organization?organizationid=${organization.organizationid}" name="submit-form">
     <div class="pure-control-group">
-      <label for="accountid" translate="yes">Sid l-organizzazzjoni l-ġdida</label>
+      <label for="accountid" translate="yes">Sid ta 'organizzazzjoni ġdida</label>
       <select id="accountid" name="accountid">
         <option value="" translate="yes">
           Agħżel sid ġdid
@@ -40,7 +40,7 @@
       </select>
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Organizzazzjoni tat-trasferiment</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Organizzazzjoni tat-trasferimenti</button>
     </div>
   </form>
   <template id="membership-option-template">
@@ -50,17 +50,17 @@
   </template>
   <template id="success">
     <div class="success message" translate="yes">
-      Suċċess! Ittrasferijt l-organizzazzjoni lis-sid il-ġdid
+      Suċċess! Inti ttrasferixxa l-organizzazzjoni lis-sid il-ġdid
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Żball! Sar żball fit-trasferiment tal-organizzazzjoni
+      Żball! Sar żball meta ttrasferiet l-organizzazzjoni
     </div>
   </template>
   <template id="invalid-accountid">
     <div class="error message" translate="yes">
-      Żball! Intgħażel riċevitur invalidu jew ġie pprovdut
+      Żball! Reċipjent invalidu ġie magħżul jew ipprovdut
     </div>
   </template>
 </body>

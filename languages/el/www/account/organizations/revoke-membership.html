@@ -9,8 +9,8 @@
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Ανάκληση ιδιότητας μέλους ${membership.membershipid}</h1>
-  <p translate="yes">Αυτό θα απομακρύνει αμέσως το μέλος από το οργανογνώμων.</p>
+  <h1 translate="yes">Ανάκληση μέλους του ${membership.membershipid}</h1>
+  <p translate="yes">Αυτό θα αφαιρέσει αμέσως το μέλος από τον οργανισμό.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/revoke-membership?membershipid=${membership.membershipid}" name="submit-form">
     <div class="pure-control-group">
@@ -18,17 +18,17 @@
       <input id="organizationName" type="text" maxlength="100" readonly>
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Διαγραφή ιδιότητας μέλους</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Διαγραφή συνδρομής</button>
     </div>
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      Επιτυχία! Η ιδιότητα μέλους έχει διαγραφεί οριστικά
+      Επιτυχία! Η συνδρομή έχει διαγραφεί οριστικά
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Σφάλμα! Ένα άγνωστο σφάλμα ocurred
+      Λάθος! Συνέβη ένα άγνωστο σφάλμα
     </div>
   </template>
 </body>

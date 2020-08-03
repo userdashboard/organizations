@@ -2,23 +2,23 @@
 <html lang="en" data-navbar="/account/organizations/navbar-organization.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Пренос власништва над ${organization.organizationid}</title>
+  <title translate="yes">Пренесите власништво над ${organization.organizationid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Пренос власништва над ${organization.organizationid}</h1>
-  <p translate="yes">То ће одмах променити власника организаитон.</p>
+  <h1 translate="yes">Пренесите власништво над ${organization.organizationid}</h1>
+  <p translate="yes">Ово ће одмах променити власника организације.</p>
   <div id="message-container"></div>
   <table id="organizations-table" class="pure-table object-table">
     <thead>
       <tr>
         <th>ID</th>
         <th translate="yes">Име</th>
-        <th translate="yes">Е - поште</th>
-        <th translate="yes">Креирали</th>
+        <th translate="yes">Емаил</th>
+        <th translate="yes">Направљено</th>
       </tr>
     </thead>
     <tr id="${organization.organizationid}">
@@ -32,15 +32,15 @@
   </table>
   <form id="submit-form" class="pure-form pure-form-stacked" action="/account/organizations/transfer-organization?organizationid=${organization.organizationid}" name="submit-form">
     <div class="pure-control-group">
-      <label for="accountid" translate="yes">Власник нове организације</label>
+      <label for="accountid" translate="yes">Нови власник организације</label>
       <select id="accountid" name="accountid">
         <option value="" translate="yes">
-          Изабери новог власника
+          Изаберите новог власника
         </option>
       </select>
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Пренеси организацију</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Организација трансфера</button>
     </div>
   </form>
   <template id="membership-option-template">
@@ -50,7 +50,7 @@
   </template>
   <template id="success">
     <div class="success message" translate="yes">
-      Успех! Пребацила си организацију на новог власника
+      Успех! Организацију сте пренели новом власнику
     </div>
   </template>
   <template id="unknown-error">
@@ -60,7 +60,7 @@
   </template>
   <template id="invalid-accountid">
     <div class="error message" translate="yes">
-      Грешка! Изабран је неважећи прималац
+      Грешка! Неважећи прималац је изабран или обезбеђен
     </div>
   </template>
 </body>

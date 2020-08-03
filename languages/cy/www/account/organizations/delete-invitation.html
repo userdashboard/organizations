@@ -10,7 +10,7 @@
 </head>
 <body>
   <h1 translate="yes">Dileu ${invitation.invitationid}</h1>
-  <p translate="yes">Caiff y gwahoddiad ei ddileu ar unwaith ac ni ellir ei adfer.</p>
+  <p translate="yes">Bydd y gwahoddiad yn cael ei ddileu ar unwaith ac ni ellir ei adfer.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/delete-invitation?invitationid=${invitation.invitationid}" name="submit-form">
     <div class="pure-controls">
@@ -22,12 +22,12 @@
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      Llwyddiant! Mae'r gwahoddiad wedi ei ddileu yn barhaol
+      Llwyddiant! Mae'r gwahoddiad wedi'i ddileu yn barhaol
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Gwall! Gwall ocurred dileu'r gwahoddiad
+      Gwall! Digwyddodd gwall wrth ddileu'r gwahoddiad
     </div>
   </template>
 </body>

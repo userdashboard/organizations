@@ -2,15 +2,15 @@
 <html lang="en" data-navbar="/account/organizations/navbar-organization.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Διαγράψετε ${organization.organizationid}</title>
+  <title translate="yes">Διαγράφω ${organization.organizationid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Διαγράψετε ${organization.organizationid}</h1>
-  <p translate="yes">Ο οργανισμός θα διαγραφεί αμέσως και δεν είναι δυνατή η ανάκτησή του.</p>
+  <h1 translate="yes">Διαγράφω ${organization.organizationid}</h1>
+  <p translate="yes">Ο οργανισμός θα διαγραφεί αμέσως και δεν μπορεί να ανακτηθεί.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/delete-organization?organizationid=${organization.organizationid}" name="submit-form">
     <div class="pure-control-group">
@@ -28,7 +28,7 @@
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Σφάλμα! Ένα σφάλμα που εντοπίστηκε κατά τη διαγραφή του οργανισμού
+      Λάθος! Παρουσιάστηκε σφάλμα κατά τη διαγραφή του οργανισμού
     </div>
   </template>
 </body>

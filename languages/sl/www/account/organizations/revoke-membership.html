@@ -2,7 +2,7 @@
 <html lang="en" data-navbar="/account/organizations/navbar-membership.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Preklic membershipof ${membership.membershipid}</title>
+  <title translate="yes">Prekličite člansko skupščino ${membership.membershipid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
@@ -10,7 +10,7 @@
 </head>
 <body>
   <h1 translate="yes">Prekličite članstvo v ${membership.membershipid}</h1>
-  <p translate="yes">To bo takoj odstraniti člana iz organizaiton.</p>
+  <p translate="yes">Tako bo član takoj odstranjen iz organizacije.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/revoke-membership?membershipid=${membership.membershipid}" name="submit-form">
     <div class="pure-control-group">
@@ -28,7 +28,7 @@
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Napaka! Neznana napaka med pridobivanjem napake
+      Napaka! Prišlo je do neznane napake
     </div>
   </template>
 </body>

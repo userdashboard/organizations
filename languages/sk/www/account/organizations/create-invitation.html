@@ -11,11 +11,11 @@
 </head>
 <body>
   <h1 translate="yes">Vytvoriť pozvánku pre ${organization.organizationid}</h1>
-  <p translate="yes">Kódy pozvánok umožňujú používateľom pripojiť sa k vašej organizácii.</p>
+  <p translate="yes">Kódy pozvánok umožňujú ľuďom vstúpiť do vašej organizácie.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/create-invitation?organizationid=${organization.organizationid}" name="submit-form">
     <div class="pure-control-group">
-      <label for="organization-name" translate="yes">Organizácie</label>
+      <label for="organization-name" translate="yes">Organizácia</label>
       <input id="organization-name" type="text" maxlength="100" readonly>
     </div>
     <div class="pure-control-group">
@@ -43,7 +43,7 @@
   </template>
   <template id="success">
     <div class="success message">
-      <p translate="yes">Úspech! Dajte svoj tajný kód a tento odkaz na niekoho, kto sa pripojiť:</p>
+      <p translate="yes">Úspech! Zadajte svoj tajný kód a tento odkaz niekomu, kto sa pripojí:</p>
       <div class="invitation-link">
         <input type="text" readonly value="${organization.dashboardServer}/account/organizations/accept-invitation?invitationid=${organization.invitationid}">
       </div>

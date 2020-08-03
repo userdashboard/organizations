@@ -2,7 +2,7 @@
 <html lang="en" data-navbar="/account/organizations/navbar-organization.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Davetiye oluşturma ${organization.organizationid}</title>
+  <title translate="yes">İçin davetiye oluştur ${organization.organizationid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/organizations/organizations-content.css" rel="stylesheet">
@@ -10,12 +10,12 @@
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Davetiye oluşturma ${organization.organizationid}</h1>
-  <p translate="yes">Davet kodları, kişilerin kuruluşunuza katılmasına izin verir.</p>
+  <h1 translate="yes">İçin davetiye oluştur ${organization.organizationid}</h1>
+  <p translate="yes">Davetiye kodları kullanıcıların kuruluşunuza katılmasına olanak tanır.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/create-invitation?organizationid=${organization.organizationid}" name="submit-form">
     <div class="pure-control-group">
-      <label for="organization-name" translate="yes">Organizasyon</label>
+      <label for="organization-name" translate="yes">organizasyon</label>
       <input id="organization-name" type="text" maxlength="100" readonly>
     </div>
     <div class="pure-control-group">
@@ -23,7 +23,7 @@
       <input id="secret-code" name="secret-code" type="text" maxlength="100">
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Davet oluşturma</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Davetiye oluştur</button>
     </div>
   </form>
   <template id="unknown-error">
@@ -38,12 +38,12 @@
   </template>
   <template id="invalid-secret-code-length">
     <div class="error message" translate="yes">
-      Hata! Gizli kodun geçersiz bir uzunluğu vardır
+      Hata! Gizli kodun uzunluğu geçersiz
     </div>
   </template>
   <template id="success">
     <div class="success message">
-      <p translate="yes">Başarı! Gizli kodunuzu ve bu bağlantıyı katılmak üzere birine verin:</p>
+      <p translate="yes">Başarı! Gizli kodunuzu ve bu bağlantıyı katılmak için birine verin:</p>
       <div class="invitation-link">
         <input type="text" readonly value="${organization.dashboardServer}/account/organizations/accept-invitation?invitationid=${organization.invitationid}">
       </div>

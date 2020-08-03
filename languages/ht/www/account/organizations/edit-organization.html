@@ -10,44 +10,44 @@
 </head>
 <body>
   <h1 translate="yes">Edit ${organization.organizationid}</h1>
-  <p translate="yes">Kenbe enfomasyon kontak ou korek ak monte-a-dat.</p>
+  <p translate="yes">Kenbe enfòmasyon kontak ou kòrèk ak monte-a dat.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/edit-organization?organizationid=${organization.organizationid}" name="submit-form">
     <div class="pure-control-group">
-      <label for="name" translate="yes">fe-apel</label>
+      <label for="name" translate="yes">Non</label>
       <input id="name" name="name" type="text" maxlength="100">
     </div>
     <div class="pure-control-group">
-      <label for="email" translate="yes">Imel</label>
+      <label for="email" translate="yes">Imèl</label>
       <input id="email" name="email" type="text" maxlength="100">
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Mizajou Oganizasyon</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Mizajou òganizasyon</button>
     </div>
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      Sikse! Enfomasyon Oganizasyon ou te mete ajou
+      Siksè! Enfòmasyon sou òganizasyon ou te mete ajou
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Ere! Yon ere enkoni owoulo nan wouj
+      Erè! Yon erè enkoni te fèt
     </div>
   </template>
   <template id="invalid-organization-name">
     <div class="error message" translate="yes">
-      Ere! Yo te bay yon non Oganizasyon ki manke oswa valab
+      Erè! Yo te bay yon non òganizasyon ki manke oswa ki pa valab
     </div>
   </template>
   <template id="invalid-organization-name-length">
     <div class="error message" translate="yes">
-      Ere! Valab longe non Oganizasyon
+      Erè! Non òganizasyon non valab longè
     </div>
   </template>
   <template id="invalid-organization-email">
     <div class="error message" translate="yes">
-      Ere! Yon imel ki manke oswa envalid Oganizasyon te bay
+      Erè! Yo voye yon imèl òganizasyon ki manke oswa ki pa valab
     </div>
   </template>
 </body>

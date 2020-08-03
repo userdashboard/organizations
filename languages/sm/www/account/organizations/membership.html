@@ -2,14 +2,14 @@
 <html lang="en" data-navbar="/account/organizations/navbar-membership.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Vaaiga ${membership.membershipid}</title>
+  <title translate="yes">Vaʻai ${membership.membershipid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Vaaiga ${membership.membershipid}</h1>
+  <h1 translate="yes">Vaʻai ${membership.membershipid}</h1>
   <table id="memberships-table" class="pure-table data-table">
     <tbody id="${membership.membershipid}">
       <tr>
@@ -17,7 +17,7 @@
         <td>${membership.membershipid}</td>
       </tr>
       <tr>
-        <th translate="yes">Foafoaina</th>
+        <th translate="yes">Na faia</th>
         <td>${membership.createdFormatted}</td>
       </tr>
       <tr id="full-name">
@@ -25,17 +25,17 @@
         <td>${membership.firstName} ${membership.lastName}</td>
       </tr>
       <tr id="contact-email">
-        <th translate="yes">Imeli faafesootai</th>
+        <th translate="yes">Faʻafesoʻotaʻi imeli</th>
         <td>
           <a href="mailto:${membership.contactEmail}">${membership.contactEmail}</a>
         </td>
       </tr>
       <tr id="display-name">
-        <th translate="yes">Igoa faaali</th>
+        <th translate="yes">Faaali le igoa</th>
         <td>${membership.displayName}</td>
       </tr>
       <tr id="display-email">
-        <th translate="yes">Faaali le imeli</th>
+        <th translate="yes">Faaalia imeli</th>
         <td>
           <a href="mailto:${membership.displayEmail}">${membership.displayEmail}</a>
         </td>
@@ -57,11 +57,11 @@
         <td>${membership.location}</td>
       </tr>
       <tr id="company-name">
-        <th translate="yes">Igoa o le vaega</th>
+        <th translate="yes">Igoa ole kamupani</th>
         <td>${membership.companyName}</td>
       </tr>
       <tr id="website">
-        <th translate="yes">Uepisaite</th>
+        <th translate="yes">Upega Tafaʻilagi</th>
         <td>
           <a href="${membership.website}">${membership.website}</a>
         </td>

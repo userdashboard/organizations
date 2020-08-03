@@ -2,15 +2,15 @@
 <html lang="en" data-navbar="/account/organizations/navbar-membership.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Revocar el membershipde ${membership.membershipid}</title>
+  <title translate="yes">Revocar l'adhesió ${membership.membershipid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Revocar la pertinença a ${membership.membershipid}</h1>
-  <p translate="yes">Això eliminarà immediatament el membre de l'organizaiton.</p>
+  <h1 translate="yes">Revocar la pertinença ${membership.membershipid}</h1>
+  <p translate="yes">Això eliminarà immediatament el membre de l’organització.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/revoke-membership?membershipid=${membership.membershipid}" name="submit-form">
     <div class="pure-control-group">
@@ -18,17 +18,17 @@
       <input id="organizationName" type="text" maxlength="100" readonly>
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Suprimeix la pertinença</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Elimina la pertinença</button>
     </div>
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      Èxit! La pertinença s'ha suprimit permanentment
+      Èxit! L'adhesió s'ha suprimit definitivament
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Error! Un ocurred d'error desconegut
+      Error! S'ha produït un error desconegut
     </div>
   </template>
 </body>

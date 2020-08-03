@@ -2,28 +2,28 @@
 <html lang="en" data-navbar="/account/organizations/navbar.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Aċċetta l-istedina</title>
+  <title translate="yes">Aċċetta stedina</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Aċċetta l-istedina</h1>
-  <p translate="yes">Inti se ssir membru ta 'l-organizzazzjoni wara li tidħol fil-kodiċi.</p>
+  <h1 translate="yes">Aċċetta stedina</h1>
+  <p translate="yes">Inti ser issir membru ta 'l-organizzazzjoni wara li ddaħħal il-kodiċi.</p>
   <div id="message-container"></div>
   <form id="submit-form" class="pure-form pure-form-stacked" action="/account/organizations/accept-invitation" name="submit-form">
     <div class="pure-control-group">
-      <label for="invitationid" translate="yes">ID tal-istedina</label>
+      <label for="invitationid" translate="yes">ID tal-Istedina</label>
       <input id="invitationid" name="invitationid" type="text" maxlength="100">
     </div>
     <div class="pure-control-group">
-      <label for="secret-code" translate="yes">Kodiċi tal-istedina</label>
+      <label for="secret-code" translate="yes">Kodiċi ta 'l-istedina</label>
       <input id="secret-code" name="secret-code" type="text" maxlength="100">
     </div>
-    <h2 translate="yes">Informazzjoni dwar is-sħubija</h2>
+    <h2 translate="yes">Informazzjoni dwar is-Sħubija</h2>
     <div id="existing-profile-container" class="pure-control-group">
-      <label for="profileid" translate="yes">Uża l-profil eżistenti</label>
+      <label for="profileid" translate="yes">Uża profil eżistenti</label>
       <select id="profileid" name="profileid">
         <option value="" translate="yes">
           Agħżel profil eżistenti
@@ -32,7 +32,7 @@
     </div>
     <h3 translate="yes">Oħloq profil ġdid</h3>
     <div id="display-name-container" class="pure-control-group">
-      <label for="display-name" translate="yes">Isem id-displej</label>
+      <label for="display-name" translate="yes">Uri l-isem</label>
       <input required="" id="display-name" name="display-name" type="text" maxlength="1000">
     </div>
     <div id="display-email-container" class="pure-control-group">
@@ -40,22 +40,22 @@
       <input required="" id="display-email" name="display-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="contact-email-container" class="pure-control-group">
-      <label for="contact-email" translate="yes">Email ta 'kuntatt</label>
+      <label for="contact-email" translate="yes">Email ta ’kuntatt</label>
       <input required="" id="contact-email" name="contact-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="full-name-container">
       <div class="pure-control-group">
-        <label for="first-name" translate="yes">L-ewwel isem</label>
+        <label for="first-name" translate="yes">Isem</label>
       <input required="" id="first-name" name="first-name" type="text" maxlength="1000">
       </div>
       <div class="pure-control-group">
-        <label for="last-name" translate="yes">Isem</label>
+        <label for="last-name" translate="yes">Kunjom</label>
       <input required="" id="last-name" name="last-name" type="text" maxlength="1000">
       </div>
     </div>
     <div id="dob-container">
       <div class="pure-control-group">
-        <label for="dob" translate="yes">id-data tat-twelid</label>
+        <label for="dob" translate="yes">Data tat-twelid</label>
       <input required="" id="dob" name="dob" type="text" maxlength="11">
       </div>
     </div>
@@ -64,7 +64,7 @@
       <input required="" id="phone" name="phone" type="text" maxlength="1000">
     </div>
     <div id="occupation-container" class="pure-control-group">
-      <label for="occupation" translate="yes">Xogħol</label>
+      <label for="occupation" translate="yes">Okkupazzjoni</label>
       <input required="" id="occupation" name="occupation" type="text" maxlength="1000">
     </div>
     <div id="location-container" class="pure-control-group">
@@ -72,7 +72,7 @@
       <input required="" id="location" name="location" type="text" maxlength="1000">
     </div>
     <div id="company-name-container" class="pure-control-group">
-      <label for="company-name" translate="yes">Isem il-kumpanija</label>
+      <label for="company-name" translate="yes">Isem tal-Kumpanija</label>
       <input required="" id="company-name" name="company-name" type="text" maxlength="1000">
     </div>
     <div id="website-container" class="pure-control-group">
@@ -80,12 +80,12 @@
       <input required="" id="website" name="website" type="text" maxlength="1000">
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Ingħaqad fl-organizzazzjoni</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Ingħaqad ma 'organizzazzjoni</button>
     </div>
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      Suċċess! Issa inti membru tal-organizzazzjoni
+      Suċċess! Inti issa membru tal-organizzazzjoni
     </div>
   </template>
   <template id="invalid-invitation">
@@ -95,22 +95,22 @@
   </template>
   <template id="invalid-secret-code">
     <div class="error message" translate="yes">
-      Żball! Il-kodiċi tal-istedina mhuwiex korrett
+      Żball! Il-kodiċi tal-istedina mhix korretta
     </div>
   </template>
   <template id="invalid-invitationid">
     <div class="error message" translate="yes">
-      Żball! Ġiet ipprovduta stedina nieqsa jew invalida
+      Żball! Ingħatat stedina nieqsa jew invalida
     </div>
   </template>
   <template id="invalid-account">
     <div class="error message" translate="yes">
-      Żball! Inti stess jew inti membru ta 'din l-organizzazzjoni
+      Żball! Int proprjetarju jew tkun membru ta 'din l-organizzazzjoni
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Żball! Żball mhux magħruf okkupat
+      Żball! Żball mhux magħruf seħħ
     </div>
   </template>
   <template id="profile-option">
@@ -120,17 +120,17 @@
   </template>
   <template id="invalid-organization-name">
     <div class="error message" translate="yes">
-      Żball! Ġie pprovdut isem ta' organizzazzjoni nieqes jew invalidu
+      Żball! Ġie pprovdut isem ta 'organizzazzjoni nieqes jew invalidu
     </div>
   </template>
   <template id="invalid-organization-name-length">
     <div class="error message" translate="yes">
-      Żball! Tul tal-isem ta' l-organizzazzjoni invalidu
+      Żball! It-tul tal-isem tal-organizzazzjoni mhux validu
     </div>
   </template>
   <template id="invalid-organization-email">
     <div class="error message" translate="yes">
-      Żball! Ġie pprovdut email ta' organizzazzjoni nieqsa jew invalida
+      Żball! Email elettronika ta 'organizzazzjoni nieqsa jew invalida ġiet ipprovduta
     </div>
   </template>
   <template id="success">
@@ -140,12 +140,12 @@
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Żball! Sar żball fil-ħolqien tal-organizzazzjoni
+      Żball! Sejjer żball fil-ħolqien tal-organizzazzjoni
     </div>
   </template>
   <template id="invalid-first-name">
     <div class="error message" translate="yes">
-      Żball! Isem nieqes jew invalidu pprovdut
+      Żball! L-ewwel isem mogħti nieqes jew invalidu mogħti
     </div>
   </template>
   <template id="invalid-first-name-length">
@@ -155,37 +155,37 @@
   </template>
   <template id="invalid-last-name">
     <div class="error message" translate="yes">
-      Żball! Ġie pprovdut isem tal-aħħar nieqes jew invalidu
+      Żball! Kunjom kunjom nieqes jew invalidu
     </div>
   </template>
   <template id="invalid-last-name-length">
     <div class="error message" translate="yes">
-      Żball! Ġie pprovdut isem invalidu
+      Żball! Kunjom invalidu ġie mogħti
     </div>
   </template>
   <template id="invalid-contact-email">
     <div class="error message" translate="yes">
-      Żball! Indirizz elettroniku ta' kuntatt invalidu
+      Żball! Indirizz tal-email ta 'kuntatt mhux validu
     </div>
   </template>
   <template id="invalid-display-email">
     <div class="error message" translate="yes">
-      Żball! Indirizz elettroniku tad-displej invalidu
+      Żball! Indirizz tal-email tal-wiri mhux validu
     </div>
   </template>
   <template id="invalid-display-name">
     <div class="error message" translate="yes">
-      Żball! Ġie pprovdut isem tad-displej nieqes jew invalidu
+      Żball! Ġie pprovdut isem tal-wiri nieqes jew invalidu
     </div>
   </template>
   <template id="invalid-dob">
     <div class="error message" translate="yes">
-      Żball! Ġiet ipprovduta data tat-twelid nieqsa jew invalida
+      Żball! Data tat-twelid nieqsa jew invalida ġiet ipprovduta
     </div>
   </template>
   <template id="invalid-phone">
     <div class="error message" translate="yes">
-      Żball! Ġie pprovdut telefown nieqes jew invalidu.
+      Żball! Ġie pprovdut telefon nieqes jew invalidu.
     </div>
   </template>
   <template id="invalid-occupation">
@@ -195,22 +195,22 @@
   </template>
   <template id="invalid-location">
     <div class="error message" translate="yes">
-      Żball! Ġie pprovdut post nieqes jew invalidu.
+      Żball! Post provdut nieqes jew invalidu.
     </div>
   </template>
   <template id="invalid-company-name">
     <div class="error message" translate="yes">
-      Żball! Ġie pprovdut isem il-kumpanija nieqes jew invalidu.
+      Żball! Ġie pprovdut isem tal-kumpanija nieqes jew invalidu.
     </div>
   </template>
   <template id="invalid-website">
     <div class="error message" translate="yes">
-      Żball! Ġiet ipprovduta websajt nieqsa jew invalida.
+      Żball! Websajt nieqsa jew invalida ġiet ipprovduta.
     </div>
   </template>
   <template id="invalid-display-name-length">
     <div class="error message" translate="yes">
-      Żball! Ġie pprovdut isem tad-displej nieqes jew invalidu
+      Żball! Ġie pprovdut isem tal-wiri nieqes jew invalidu
     </div>
   </template>
   <template id="invalid-profileid">

@@ -10,7 +10,7 @@
 </head>
 <body>
   <h1 translate="yes">Supprimer ${invitation.invitationid}</h1>
-  <p translate="yes">L’invitation sera supprimée immédiatement et ne pourra pas être récupérée.</p>
+  <p translate="yes">L'invitation sera supprimée immédiatement et ne pourra pas être récupérée.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/delete-invitation?invitationid=${invitation.invitationid}" name="submit-form">
     <div class="pure-controls">
@@ -22,12 +22,12 @@
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      Succès! L’invitation a été définitivement supprimée
+      Succès! L'invitation a été supprimée définitivement
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Erreur! Une erreur a omis de supprimer l’invitation
+      Erreur! Une erreur s'est produite lors de la suppression de l'invitation
     </div>
   </template>
 </body>

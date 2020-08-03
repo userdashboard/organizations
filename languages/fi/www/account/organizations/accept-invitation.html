@@ -10,23 +10,23 @@
 </head>
 <body>
   <h1 translate="yes">Hyväksy kutsu</h1>
-  <p translate="yes">Sinusta tulee organisaation jäsen koodin syöttämisen jälkeen.</p>
+  <p translate="yes">Sinusta tulee järjestön jäsen koodin syöttämisen jälkeen.</p>
   <div id="message-container"></div>
   <form id="submit-form" class="pure-form pure-form-stacked" action="/account/organizations/accept-invitation" name="submit-form">
     <div class="pure-control-group">
-      <label for="invitationid" translate="yes">Kutsun tunnus</label>
+      <label for="invitationid" translate="yes">Kutsutunnus</label>
       <input id="invitationid" name="invitationid" type="text" maxlength="100">
     </div>
     <div class="pure-control-group">
-      <label for="secret-code" translate="yes">Kutsun koodi</label>
+      <label for="secret-code" translate="yes">Kutsukoodi</label>
       <input id="secret-code" name="secret-code" type="text" maxlength="100">
     </div>
-    <h2 translate="yes">Jäsentiedot</h2>
+    <h2 translate="yes">Jäsenyystiedot</h2>
     <div id="existing-profile-container" class="pure-control-group">
-      <label for="profileid" translate="yes">Käytä aiemmin luotua profiilia</label>
+      <label for="profileid" translate="yes">Käytä olemassa olevaa profiilia</label>
       <select id="profileid" name="profileid">
         <option value="" translate="yes">
-          Aiemmin luodun profiilin valitseminen
+          Valitse olemassa oleva profiili
         </option>
       </select>
     </div>
@@ -40,7 +40,7 @@
       <input required="" id="display-email" name="display-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="contact-email-container" class="pure-control-group">
-      <label for="contact-email" translate="yes">Yhteystiedot sähköposti</label>
+      <label for="contact-email" translate="yes">Ota yhteyttä sähköpostitse</label>
       <input required="" id="contact-email" name="contact-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="full-name-container">
@@ -55,7 +55,7 @@
     </div>
     <div id="dob-container">
       <div class="pure-control-group">
-        <label for="dob" translate="yes">Syntymäpäivämäärä</label>
+        <label for="dob" translate="yes">Syntymäaika</label>
       <input required="" id="dob" name="dob" type="text" maxlength="11">
       </div>
     </div>
@@ -64,7 +64,7 @@
       <input required="" id="phone" name="phone" type="text" maxlength="1000">
     </div>
     <div id="occupation-container" class="pure-control-group">
-      <label for="occupation" translate="yes">Ammatti</label>
+      <label for="occupation" translate="yes">ammatti</label>
       <input required="" id="occupation" name="occupation" type="text" maxlength="1000">
     </div>
     <div id="location-container" class="pure-control-group">
@@ -76,7 +76,7 @@
       <input required="" id="company-name" name="company-name" type="text" maxlength="1000">
     </div>
     <div id="website-container" class="pure-control-group">
-      <label for="website" translate="yes">Sivusto</label>
+      <label for="website" translate="yes">Verkkosivusto</label>
       <input required="" id="website" name="website" type="text" maxlength="1000">
     </div>
     <div class="pure-controls">
@@ -95,12 +95,12 @@
   </template>
   <template id="invalid-secret-code">
     <div class="error message" translate="yes">
-      Virhe! Kutsukoodi on virheellinen
+      Virhe! Kutsukoodi on väärä
     </div>
   </template>
   <template id="invalid-invitationid">
     <div class="error message" translate="yes">
-      Virhe! Puuttuva tai virheellinen kutsu
+      Virhe! Puuttuva tai virheellinen kutsu toimitettiin
     </div>
   </template>
   <template id="invalid-account">
@@ -110,7 +110,7 @@
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Virhe! Tuntematon virhe
+      Virhe! Tapahtui tuntematon virhe
     </div>
   </template>
   <template id="profile-option">
@@ -120,7 +120,7 @@
   </template>
   <template id="invalid-organization-name">
     <div class="error message" translate="yes">
-      Virhe! Annettu organisaationimi puuttuu tai ei kelpaa
+      Virhe! Puuttuva tai virheellinen organisaation nimi annettiin
     </div>
   </template>
   <template id="invalid-organization-name-length">
@@ -130,7 +130,7 @@
   </template>
   <template id="invalid-organization-email">
     <div class="error message" translate="yes">
-      Virhe! Puuttuva tai virheellinen organisaatiosähköposti annettuna
+      Virhe! Puuttuva tai virheellinen organisaation sähköpostiosoite toimitettiin
     </div>
   </template>
   <template id="success">
@@ -140,82 +140,82 @@
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Virhe! Virhe luotaessa organisaatiota
+      Virhe! Organisaation luomisessa tapahtui virhe
     </div>
   </template>
   <template id="invalid-first-name">
     <div class="error message" translate="yes">
-      Virhe! Annettu etunimi puuttuu tai ei kelpaa
+      Virhe! Annettu puuttuva tai virheellinen etunimi
     </div>
   </template>
   <template id="invalid-first-name-length">
     <div class="error message" translate="yes">
-      Virhe! Etunimi ei kelpaa
+      Virhe! Etunimi annettiin virheellisesti
     </div>
   </template>
   <template id="invalid-last-name">
     <div class="error message" translate="yes">
-      Virhe! Annettu sukunimi puuttuu tai ei kelpaa
+      Virhe! Puuttuva tai virheellinen sukunimi annettiin
     </div>
   </template>
   <template id="invalid-last-name-length">
     <div class="error message" translate="yes">
-      Virhe! Annettu sukunimi ei kelpaa
+      Virhe! Virheellinen sukunimi annettiin
     </div>
   </template>
   <template id="invalid-contact-email">
     <div class="error message" translate="yes">
-      Virhe! Virheellinen yhteyshenkilön sähköpostiosoite
+      Virhe! Virheellinen yhteysosoite
     </div>
   </template>
   <template id="invalid-display-email">
     <div class="error message" translate="yes">
-      Virhe! Virheellinen näyttösähköpostiosoite
+      Virhe! Virheellinen näkyvä sähköpostiosoite
     </div>
   </template>
   <template id="invalid-display-name">
     <div class="error message" translate="yes">
-      Virhe! Näyttönimi puuttuu tai se ei kelpaa
+      Virhe! Puuttuva tai virheellinen näyttönimi annettiin
     </div>
   </template>
   <template id="invalid-dob">
     <div class="error message" translate="yes">
-      Virhe! Puuttuva tai virheellinen syntymäaika annettiin
+      Virhe! Syntymäaika puuttui tai oli virheellinen
     </div>
   </template>
   <template id="invalid-phone">
     <div class="error message" translate="yes">
-      Virhe! Annettu puhelin puuttuu tai ei kelpaa.
+      Virhe! Puuttuva tai virheellinen puhelin toimitettiin.
     </div>
   </template>
   <template id="invalid-occupation">
     <div class="error message" translate="yes">
-      Virhe! Kadotettiin tai se on virheellinen ammatti.
+      Virhe! Puuttuva tai virheellinen ammatti annettiin.
     </div>
   </template>
   <template id="invalid-location">
     <div class="error message" translate="yes">
-      Virhe! Annettu sijainti puuttuu tai ei kelpaa.
+      Virhe! Puuttuva tai virheellinen sijainti annettiin.
     </div>
   </template>
   <template id="invalid-company-name">
     <div class="error message" translate="yes">
-      Virhe! Yrityksen nimi puuttuu tai se ei kelpaa.
+      Virhe! Puuttuva tai virheellinen yrityksen nimi annettiin.
     </div>
   </template>
   <template id="invalid-website">
     <div class="error message" translate="yes">
-      Virhe! Puuttuva tai virheellinen sivusto toimitettiin.
+      Virhe! Tarjottiin puuttuva tai virheellinen verkkosivusto.
     </div>
   </template>
   <template id="invalid-display-name-length">
     <div class="error message" translate="yes">
-      Virhe! Näyttönimi puuttuu tai se ei kelpaa
+      Virhe! Puuttuva tai virheellinen näyttönimi annettiin
     </div>
   </template>
   <template id="invalid-profileid">
     <div class="error message" translate="yes">
-      Virhe! Profiili puuttuu tai se ei kelpaa.
+      Virhe! Puuttuva tai virheellinen profiili valittiin.
     </div>
   </template>
 </body>

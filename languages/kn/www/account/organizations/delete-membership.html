@@ -2,33 +2,33 @@
 <html lang="en" data-navbar="/account/organizations/navbar-membership.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">ಅಳಿಸು ${membership.membershipid}</title>
+  <title translate="yes">ಅಳಿಸಿ ${membership.membershipid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">ಅಳಿಸು ${membership.membershipid}</h1>
-  <p translate="yes">ಸದಸ್ಯತ್ವವನ್ನು ತಕ್ಷಣ ಅಳಿಸಲಾಗುತ್ತದೆ ಮತ್ತು ಅದನ್ನು ಮರುಪ್ರಾಪ್ತಿಮಾಡಲು ಸಾಧ್ಯವಿಲ್ಲ.</p>
+  <h1 translate="yes">ಅಳಿಸಿ ${membership.membershipid}</h1>
+  <p translate="yes">ಸದಸ್ಯತ್ವವನ್ನು ತಕ್ಷಣ ಅಳಿಸಲಾಗುತ್ತದೆ ಮತ್ತು ಮರುಪಡೆಯಲಾಗುವುದಿಲ್ಲ.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/delete-membership?membershipid=${membership.membershipid}" name="submit-form">
     <div class="pure-control-group">
-      <label for="organizationName" translate="yes">ಸಂಘಟನೆ</label>
+      <label for="organizationName" translate="yes">ಸಂಸ್ಥೆ</label>
       <input id="organizationName" type="text" maxlength="100" readonly>
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">ಸದಸ್ಯತ್ವವನ್ನು ಅಳಿಸು</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">ಸದಸ್ಯತ್ವವನ್ನು ಅಳಿಸಿ</button>
     </div>
   </form>
   <template id="success">
     <div class="error message" translate="yes">
-      ತಪ್ಪು! ಸದಸ್ಯತ್ವವನ್ನು ಶಾಶ್ವತವಾಗಿ ಅಳಿಸಲಾಗಿದೆ
+      ದೋಷ! ಸದಸ್ಯತ್ವವನ್ನು ಶಾಶ್ವತವಾಗಿ ಅಳಿಸಲಾಗಿದೆ
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      ತಪ್ಪು! ಅಜ್ಞಾತ ದೋಷ
+      ದೋಷ! ಅಜ್ಞಾತ ದೋಷ ಸಂಭವಿಸಿದೆ
     </div>
   </template>
 </body>

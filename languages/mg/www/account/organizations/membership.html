@@ -2,14 +2,14 @@
 <html lang="en" data-navbar="/account/organizations/navbar-membership.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Hijery ${membership.membershipid}</title>
+  <title translate="yes">View ${membership.membershipid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Hijery ${membership.membershipid}</h1>
+  <h1 translate="yes">View ${membership.membershipid}</h1>
   <table id="memberships-table" class="pure-table data-table">
     <tbody id="${membership.membershipid}">
       <tr>
@@ -17,7 +17,7 @@
         <td>${membership.membershipid}</td>
       </tr>
       <tr>
-        <th translate="yes">Nahary</th>
+        <th translate="yes">Noforonina</th>
         <td>${membership.createdFormatted}</td>
       </tr>
       <tr id="full-name">
@@ -25,17 +25,17 @@
         <td>${membership.firstName} ${membership.lastName}</td>
       </tr>
       <tr id="contact-email">
-        <th translate="yes">Alefaso amin' ny email</th>
+        <th translate="yes">Mifandraisa mailaka</th>
         <td>
           <a href="mailto:${membership.contactEmail}">${membership.contactEmail}</a>
         </td>
       </tr>
       <tr id="display-name">
-        <th translate="yes">Asehoy ny anaran'</th>
+        <th translate="yes">Anarana isehoana</th>
         <td>${membership.displayName}</td>
       </tr>
       <tr id="display-email">
-        <th translate="yes">Asehoy ny email</th>
+        <th translate="yes">Asehoy ny mailaka</th>
         <td>
           <a href="mailto:${membership.displayEmail}">${membership.displayEmail}</a>
         </td>
@@ -45,23 +45,23 @@
         <td>${membership.dob}</td>
       </tr>
       <tr id="phone">
-        <th translate="yes">Telefaonina</th>
+        <th translate="yes">Phone</th>
         <td>${membership.phone}</td>
       </tr>
       <tr id="occupation">
-        <th translate="yes">Anton asa</th>
+        <th translate="yes">asa</th>
         <td>${membership.occupation}</td>
       </tr>
       <tr id="location">
-        <th translate="yes">Toerana</th>
+        <th translate="yes">Location</th>
         <td>${membership.location}</td>
       </tr>
       <tr id="company-name">
-        <th translate="yes">Anaran' ny andiany</th>
+        <th translate="yes">Anaran'ny orinasa</th>
         <td>${membership.companyName}</td>
       </tr>
       <tr id="website">
-        <th translate="yes">Tranonkala</th>
+        <th translate="yes">Website</th>
         <td>
           <a href="${membership.website}">${membership.website}</a>
         </td>

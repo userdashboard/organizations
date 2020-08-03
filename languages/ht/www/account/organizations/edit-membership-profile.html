@@ -10,7 +10,7 @@
 </head>
 <body>
   <h1 translate="yes">Edit ${membership.membershipid} profile</h1>
-  <p translate="yes">Nenpot lot manm pataje pwofil sa a, oswa lot itilizasyon li, yo pral mete ajou tou.</p>
+  <p translate="yes">Nenpòt lòt manm ki pataje pwofil sa a, oswa lòt l 'nan li, yo pral mete ajou tou.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/edit-membership-profile?membershipid=${membership.membershipid}" name="submit-form">
     <div id="display-name-container" class="pure-control-group">
@@ -18,16 +18,16 @@
       <input required="" id="display-name" name="display-name" type="text" maxlength="1000">
     </div>
     <div id="display-email-container" class="pure-control-group">
-      <label for="display-email" translate="yes">Montre imel</label>
+      <label for="display-email" translate="yes">Montre imèl</label>
       <input required="" id="display-email" name="display-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="contact-email-container" class="pure-control-group">
-      <label for="contact-email" translate="yes">Kontakte imel</label>
+      <label for="contact-email" translate="yes">Kontakte imèl</label>
       <input required="" id="contact-email" name="contact-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="full-name-container">
       <div class="pure-control-group">
-        <label for="first-name" translate="yes">Prenon</label>
+        <label for="first-name" translate="yes">Premye non</label>
         <input required="" id="first-name" name="first-name" type="text" maxlength="1000">
       </div>
       <div class="pure-control-group">
@@ -37,16 +37,16 @@
     </div>
     <div id="dob-container">
       <div class="pure-control-group">
-        <label for="dob" translate="yes">dat fet</label>
+        <label for="dob" translate="yes">Dat nesans</label>
         <input required="" id="dob" name="dob" type="text" maxlength="11">
       </div>
     </div>
     <div id="phone-container" class="pure-control-group">
-      <label for="phone" translate="yes">Telefon</label>
+      <label for="phone" translate="yes">Telefòn</label>
       <input required="" id="phone" name="phone" type="text" maxlength="1000">
     </div>
     <div id="occupation-container" class="pure-control-group">
-      <label for="occupation" translate="yes">Metye</label>
+      <label for="occupation" translate="yes">Okipasyon</label>
       <input required="" id="occupation" name="occupation" type="text" maxlength="1000">
     </div>
     <div id="location-container" class="pure-control-group">
@@ -54,95 +54,95 @@
       <input required="" id="location" name="location" type="text" maxlength="1000">
     </div>
     <div id="company-name-container" class="pure-control-group">
-      <label for="company-name" translate="yes">Non konpayi</label>
+      <label for="company-name" translate="yes">Non Konpayi</label>
       <input required="" id="company-name" name="company-name" type="text" maxlength="1000">
     </div>
     <div id="website-container" class="pure-control-group">
-      <label for="website" translate="yes">Sit entenet</label>
+      <label for="website" translate="yes">Sit wèb</label>
       <input required="" id="website" name="website" type="text" maxlength="1000">
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Mizajou manm</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Mizajou manm yo</button>
     </div>
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      Sikse! Enfomasyon sou manm ou a te mete ajou
+      Siksè! Enfòmasyon sou manm ou an te ajou
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Ere! Yon ere enkoni owoulo nan wouj
+      Erè! Yon erè enkoni te fèt
     </div>
   </template>
   <template id="invalid-first-name">
     <div class="error message" translate="yes">
-      Ere! Yon non ki manke oswa envalid premye yo bay
+      Erè! Yon non ki bay oswa ki manke valab bay
     </div>
   </template>
   <template id="invalid-first-name-length">
     <div class="error message" translate="yes">
-      Ere! Yo te bay yon premye non
+      Erè! Yo te bay yon premye non valab
     </div>
   </template>
   <template id="invalid-last-name">
     <div class="error message" translate="yes">
-      Ere! Yo te bay yon non ki manke oswa envalid denye
+      Erè! Yo te bay yon siyati ki manke oswa ki pa valab
     </div>
   </template>
   <template id="invalid-last-name-length">
     <div class="error message" translate="yes">
-      Ere! Yo te bay yon denye non
+      Erè! Yo te bay yon siyati ki pa valab
     </div>
   </template>
   <template id="invalid-contact-email">
     <div class="error message" translate="yes">
-      Ere! Valab Adres imel kontak
+      Erè! Adrès imèl kontak ki pa valab
     </div>
   </template>
   <template id="invalid-display-email">
     <div class="error message" translate="yes">
-      Ere! Envalid Adres imel ekspozisyon
+      Erè! Adrès imèl ekspozisyon valab
     </div>
   </template>
   <template id="invalid-display-name">
     <div class="error message" translate="yes">
-      Ere! Yon non ekspozisyon ki manke oswa envalid te bay
+      Erè! Yo te bay yon non ekspozisyon ki manke oswa ki valab
     </div>
   </template>
   <template id="invalid-dob">
     <div class="error message" translate="yes">
-      Ere! Yon dat ki manke oswa envalid nan nesans te bay
+      Erè! Yo te bay yon dat nesans oswa ki pa valab
     </div>
   </template>
   <template id="invalid-phone">
     <div class="error message" translate="yes">
-      Ere! Yo te bay yon telefon ki manke oswa envalid.
+      Erè! Yo te bay yon telefòn ki manke oswa ki pa valab.
     </div>
   </template>
   <template id="invalid-occupation">
     <div class="error message" translate="yes">
-      Ere! Yo te bay yon okipasyon ki manke oubyen ki envalid.
+      Erè! Yo te fè yon okipasyon ki manke oswa ki pa valab.
     </div>
   </template>
   <template id="invalid-location">
     <div class="error message" translate="yes">
-      Ere! Yo te bay yon kote ki manke oswa envalid.
+      Erè! Yo te bay yon kote ki manke oswa ki pa valab.
     </div>
   </template>
   <template id="invalid-company-name">
     <div class="error message" translate="yes">
-      Ere! Yon non konpayi ki manke oswa envalid te bay.
+      Erè! Yo te bay yon non konpayi ki manke oswa ki valab.
     </div>
   </template>
   <template id="invalid-website">
     <div class="error message" translate="yes">
-      Ere! Yon sit entenet ki manke oswa envalid te bay.
+      Erè! Yo te bay yon sit wèb ki manke oswa ki valab.
     </div>
   </template>
   <template id="invalid-display-name-length">
     <div class="error message" translate="yes">
-      Ere! Yon non ekspozisyon ki manke oswa envalid te bay
+      Erè! Yo te bay yon non ekspozisyon ki manke oswa ki valab
     </div>
   </template>
 </body>

@@ -2,14 +2,14 @@
 <html lang="en" data-navbar="/account/organizations/navbar-membership.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Vizualizare ${membership.membershipid}</title>
+  <title translate="yes">Vedere ${membership.membershipid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Vizualizare ${membership.membershipid}</h1>
+  <h1 translate="yes">Vedere ${membership.membershipid}</h1>
   <table id="memberships-table" class="pure-table data-table">
     <tbody id="${membership.membershipid}">
       <tr>
@@ -17,31 +17,31 @@
         <td>${membership.membershipid}</td>
       </tr>
       <tr>
-        <th translate="yes">Creat</th>
+        <th translate="yes">Creată</th>
         <td>${membership.createdFormatted}</td>
       </tr>
       <tr id="full-name">
-        <th translate="yes">Nume complet</th>
+        <th translate="yes">Numele complet</th>
         <td>${membership.firstName} ${membership.lastName}</td>
       </tr>
       <tr id="contact-email">
-        <th translate="yes">E-mail de contact</th>
+        <th translate="yes">Emailul de contact</th>
         <td>
           <a href="mailto:${membership.contactEmail}">${membership.contactEmail}</a>
         </td>
       </tr>
       <tr id="display-name">
-        <th translate="yes">Nume afișat</th>
+        <th translate="yes">Numele afisat</th>
         <td>${membership.displayName}</td>
       </tr>
       <tr id="display-email">
-        <th translate="yes">Afișare e-mail</th>
+        <th translate="yes">Afișați un e-mail</th>
         <td>
           <a href="mailto:${membership.displayEmail}">${membership.displayEmail}</a>
         </td>
       </tr>
       <tr id="dob">
-        <th translate="yes">Data nașterii</th>
+        <th translate="yes">Data de nastere</th>
         <td>${membership.dob}</td>
       </tr>
       <tr id="phone">
@@ -53,15 +53,15 @@
         <td>${membership.occupation}</td>
       </tr>
       <tr id="location">
-        <th translate="yes">Locația</th>
+        <th translate="yes">Locație</th>
         <td>${membership.location}</td>
       </tr>
       <tr id="company-name">
-        <th translate="yes">Numele companiei</th>
+        <th translate="yes">Numele Companiei</th>
         <td>${membership.companyName}</td>
       </tr>
       <tr id="website">
-        <th translate="yes">Site web</th>
+        <th translate="yes">website</th>
         <td>
           <a href="${membership.website}">${membership.website}</a>
         </td>

@@ -2,23 +2,23 @@
 <html lang="en" data-navbar="/account/organizations/navbar-organization.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">પરિવહન માલિકી ${organization.organizationid}</title>
+  <title translate="yes">ની માલિકી સ્થાનાંતરિત કરો ${organization.organizationid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">પરિવહન માલિકી ${organization.organizationid}</h1>
-  <p translate="yes">તેનાથી આયોજકના માલિકને તાત્કાલિક બદલી નાખશે.</p>
+  <h1 translate="yes">ની માલિકી સ્થાનાંતરિત કરો ${organization.organizationid}</h1>
+  <p translate="yes">આ તરત જ સંસ્થાના માલિકને બદલશે.</p>
   <div id="message-container"></div>
   <table id="organizations-table" class="pure-table object-table">
     <thead>
       <tr>
         <th>ID</th>
         <th translate="yes">નામ</th>
-        <th translate="yes">ઈમેઈલ</th>
-        <th translate="yes">બનાવેલ છે</th>
+        <th translate="yes">ઇમેઇલ</th>
+        <th translate="yes">બનાવ્યું</th>
       </tr>
     </thead>
     <tr id="${organization.organizationid}">
@@ -35,12 +35,12 @@
       <label for="accountid" translate="yes">નવી સંસ્થા માલિક</label>
       <select id="accountid" name="accountid">
         <option value="" translate="yes">
-          નવો માલિક પસંદ કરો
+          નવા માલિકની પસંદગી કરો
         </option>
       </select>
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">પરિવહન સંસ્થા</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">સંસ્થા સ્થાનાંતરિત કરો</button>
     </div>
   </form>
   <template id="membership-option-template">
@@ -50,17 +50,17 @@
   </template>
   <template id="success">
     <div class="success message" translate="yes">
-      સફળતા! તમે સંસ્થાને નવા માલિકને ટ્રાન્સફર કરી છે
+      સફળતા! તમે સંસ્થાને નવા માલિક પર સ્થાનાંતરિત કરી છે
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      ભૂલ! સંસ્થાને ટ્રાન્સફર કરવામાં ભૂલ ઉદ્ભવી
+      ભૂલ! સંગઠનને સ્થાનાંતરિત કરવામાં ભૂલ આવી
     </div>
   </template>
   <template id="invalid-accountid">
     <div class="error message" translate="yes">
-      ભૂલ! અયોગ્ય પ્રાપ્તકર્તા પસંદ કરેલ અથવા પૂરો પાડેલ
+      ભૂલ! અમાન્ય પ્રાપ્તિકર્તાની પસંદગી અથવા પ્રદાન કરવામાં આવી હતી
     </div>
   </template>
 </body>

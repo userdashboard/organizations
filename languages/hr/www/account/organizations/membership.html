@@ -2,14 +2,14 @@
 <html lang="en" data-navbar="/account/organizations/navbar-membership.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Pogledaj ${membership.membershipid}</title>
+  <title translate="yes">Pogled ${membership.membershipid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Pogledaj ${membership.membershipid}</h1>
+  <h1 translate="yes">Pogled ${membership.membershipid}</h1>
   <table id="memberships-table" class="pure-table data-table">
     <tbody id="${membership.membershipid}">
       <tr>
@@ -17,7 +17,7 @@
         <td>${membership.membershipid}</td>
       </tr>
       <tr>
-        <th translate="yes">Stvorio</th>
+        <th translate="yes">stvoren</th>
         <td>${membership.createdFormatted}</td>
       </tr>
       <tr id="full-name">
@@ -25,7 +25,7 @@
         <td>${membership.firstName} ${membership.lastName}</td>
       </tr>
       <tr id="contact-email">
-        <th translate="yes">E-pošta za kontakt</th>
+        <th translate="yes">Email za kontakt</th>
         <td>
           <a href="mailto:${membership.contactEmail}">${membership.contactEmail}</a>
         </td>
@@ -35,13 +35,13 @@
         <td>${membership.displayName}</td>
       </tr>
       <tr id="display-email">
-        <th translate="yes">Prikaz e-pošte</th>
+        <th translate="yes">Prikažite e-poštu</th>
         <td>
           <a href="mailto:${membership.displayEmail}">${membership.displayEmail}</a>
         </td>
       </tr>
       <tr id="dob">
-        <th translate="yes">datum rođenja</th>
+        <th translate="yes">Datum rođenja</th>
         <td>${membership.dob}</td>
       </tr>
       <tr id="phone">
@@ -49,11 +49,11 @@
         <td>${membership.phone}</td>
       </tr>
       <tr id="occupation">
-        <th translate="yes">Zanimanje</th>
+        <th translate="yes">Okupacija</th>
         <td>${membership.occupation}</td>
       </tr>
       <tr id="location">
-        <th translate="yes">Lokacija</th>
+        <th translate="yes">Mjesto</th>
         <td>${membership.location}</td>
       </tr>
       <tr id="company-name">
@@ -61,7 +61,7 @@
         <td>${membership.companyName}</td>
       </tr>
       <tr id="website">
-        <th translate="yes">Web stranice</th>
+        <th translate="yes">Web stranica</th>
         <td>
           <a href="${membership.website}">${membership.website}</a>
         </td>

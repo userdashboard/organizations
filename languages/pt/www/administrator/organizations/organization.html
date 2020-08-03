@@ -2,14 +2,14 @@
 <html lang="en" data-navbar="/administrator/organizations/navbar-organization.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Ver ${organization.organizationid}</title>
+  <title translate="yes">Visão ${organization.organizationid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Ver ${organization.organizationid}</h1>
+  <h1 translate="yes">Visão ${organization.organizationid}</h1>
   <table id="organizations-table" class="pure-table data-table">
     <tbody id="${organization.organizationid}">
       <tr>
@@ -21,13 +21,13 @@
         <td>${organization.name}</td>
       </tr>
       <tr>
-        <th translate="yes">E-mail</th>
+        <th translate="yes">O email</th>
         <td>
           <a href="mailto:${organization.email}">${organization.email}</a>
         </td>
       </tr>
       <tr>
-        <th translate="yes">Criado</th>
+        <th translate="yes">Criada</th>
         <td>${organization.createdFormatted}</td>
       </tr>
     </tbody>

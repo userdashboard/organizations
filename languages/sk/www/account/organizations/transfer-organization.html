@@ -10,15 +10,15 @@
 </head>
 <body>
   <h1 translate="yes">Prevod vlastníctva ${organization.organizationid}</h1>
-  <p translate="yes">Tým sa okamžite zmení majiteľ organizaiton.</p>
+  <p translate="yes">To okamžite zmení vlastníka organizácie.</p>
   <div id="message-container"></div>
   <table id="organizations-table" class="pure-table object-table">
     <thead>
       <tr>
         <th>ID</th>
-        <th translate="yes">meno</th>
-        <th translate="yes">E-mail</th>
-        <th translate="yes">Vytvorený</th>
+        <th translate="yes">názov</th>
+        <th translate="yes">e-mail</th>
+        <th translate="yes">Vytvorené</th>
       </tr>
     </thead>
     <tr id="${organization.organizationid}">
@@ -35,12 +35,12 @@
       <label for="accountid" translate="yes">Nový vlastník organizácie</label>
       <select id="accountid" name="accountid">
         <option value="" translate="yes">
-          Vybrať nového vlastníka
+          Vyberte nového vlastníka
         </option>
       </select>
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Organizácia prenosu</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Prevodná organizácia</button>
     </div>
   </form>
   <template id="membership-option-template">
@@ -50,7 +50,7 @@
   </template>
   <template id="success">
     <div class="success message" translate="yes">
-      Úspech! Preniesli ste organizáciu na nového vlastníka
+      Úspech! Organizáciu ste preniesli na nového vlastníka
     </div>
   </template>
   <template id="unknown-error">

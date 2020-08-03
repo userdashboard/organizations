@@ -2,7 +2,7 @@
 <html lang="en" data-navbar="/account/organizations/navbar-organization.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">の招待を作成します ${organization.organizationid}</title>
+  <title translate="yes">の招待状を作成 ${organization.organizationid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/organizations/organizations-content.css" rel="stylesheet">
@@ -10,8 +10,8 @@
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">の招待を作成します ${organization.organizationid}</h1>
-  <p translate="yes">招待コードを使用すると、ユーザーは組織に参加できます。</p>
+  <h1 translate="yes">の招待状を作成 ${organization.organizationid}</h1>
+  <p translate="yes">招待コードにより、人々はあなたの組織に参加することができます。</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/create-invitation?organizationid=${organization.organizationid}" name="submit-form">
     <div class="pure-control-group">
@@ -23,7 +23,7 @@
       <input id="secret-code" name="secret-code" type="text" maxlength="100">
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">招待状の作成</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">招待状を作成</button>
     </div>
   </form>
   <template id="unknown-error">
@@ -33,17 +33,17 @@
   </template>
   <template id="invalid-secret-code">
     <div class="error message" translate="yes">
-      エラー！シークレット コードがないか、無効です
+      エラー！シークレットコードがないか、無効です
     </div>
   </template>
   <template id="invalid-secret-code-length">
     <div class="error message" translate="yes">
-      エラー！シークレット コードの長さが無効です
+      エラー！シークレットコードの長さが無効です
     </div>
   </template>
   <template id="success">
     <div class="success message">
-      <p translate="yes">成功！秘密のコードとこのリンクを誰かに参加してもらいます。</p>
+      <p translate="yes">成功！参加する誰かにあなたの秘密のコードとこのリンクを渡してください：</p>
       <div class="invitation-link">
         <input type="text" readonly value="${organization.dashboardServer}/account/organizations/accept-invitation?invitationid=${organization.invitationid}">
       </div>

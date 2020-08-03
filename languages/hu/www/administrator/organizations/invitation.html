@@ -2,14 +2,14 @@
 <html lang="en" data-navbar="/administrator/organizations/navbar-invitation.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Nézd ${invitation.invitationid}</title>
+  <title translate="yes">Kilátás ${invitation.invitationid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Nézd ${invitation.invitationid}</h1>
+  <h1 translate="yes">Kilátás ${invitation.invitationid}</h1>
   <table id="invitations-table" class="pure-table data-table">
     <tbody id="${invitation.invitationid}">
       <tr>
@@ -17,7 +17,7 @@
         <td>${invitation.invitationid}</td>
       </tr>
       <tr>
-        <th translate="yes">Létrehozott</th>
+        <th translate="yes">Alkotó</th>
         <td>${invitation.createdFormatted}</td>
       </tr>
       <tr>
@@ -30,7 +30,7 @@
         <td id="membership">
           <a href="/administrator/organizations/membership?membershipid=${invitation.membershipid}">${invitation.membershipid}</a>
         </td>
-        <td id="no-membership" translate="yes">Senki sem</td>
+        <td id="no-membership" translate="yes">Senki</td>
       </tr>
     </tbody>
   </table>

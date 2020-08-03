@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" data-navbar="/account/organizations/navbar-invitation.html">
+<head>
+  <meta charset="utf-8">
+  <title translate="yes">Chotsani ${invitation.invitationid}</title>
+  <link href="/public/pure-min.css" rel="stylesheet">
+  <link href="/public/content.css" rel="stylesheet">
+  <link href="/public/content-additional.css" rel="stylesheet">
+  <base target="_top" href="/">
+</head>
+<body>
+  <h1 translate="yes">Chotsani ${invitation.invitationid}</h1>
+  <p translate="yes">Kuyitanaku kuchotsedwa pomwepo ndipo sikungabwezenso.</p>
+  <div id="message-container"></div>
+  <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/delete-invitation?invitationid=${invitation.invitationid}" name="submit-form">
+    <div class="pure-controls">
+      <div class="pure-control-group">
+        <label for="organizationName" translate="yes">Bungwe</label>
+        <input id="organizationName" type="text" maxlength="100" readonly>
+      </div><button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Chotsani</button>
+    </div>
+  </form>
+  <template id="success">
+    <div class="success message" translate="yes">
+      Kupambana! Kuitanira kuchotsedwa kale
+    </div>
+  </template>
+  <template id="unknown-error">
+    <div class="error message" translate="yes">
+      Zolakwika! Panali vuto pothetsa pempholi
+    </div>
+  </template>
+</body>
+</html>

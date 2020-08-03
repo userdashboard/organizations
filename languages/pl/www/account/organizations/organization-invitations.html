@@ -2,15 +2,15 @@
 <html lang="en" data-navbar="/account/organizations/navbar-organization.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Zaproszenia do ${organization.organizationid}</title>
+  <title translate="yes">Zaproszenia na ${organization.organizationid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Zaproszenia do ${organization.organizationid}</h1>
-  <p><a href="/account/organizations/create-invitation?organizationid=${organization.organizationid}" class="pure-button" translate="yes">Tworzenie zaproszenia</a></p>
+  <h1 translate="yes">Zaproszenia na ${organization.organizationid}</h1>
+  <p><a href="/account/organizations/create-invitation?organizationid=${organization.organizationid}" class="pure-button" translate="yes">Utwórz zaproszenie</a></p>
   <div id="no-invitations">
     <p translate="yes">Organizacja nie ma jeszcze żadnych zaproszeń.</p>
   </div>
@@ -18,9 +18,9 @@
     <thead>
       <tr>
         <th>ID</th>
-        <th translate="yes">Utworzone</th>
-        <th translate="yes">Akceptowane</th>
-        <th translate="yes">Członkostwa</th>
+        <th translate="yes">Utworzony</th>
+        <th translate="yes">Zaakceptowany</th>
+        <th translate="yes">Członkostwo</th>
       </tr>
     </thead>
   </table>

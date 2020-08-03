@@ -2,7 +2,7 @@
 <html lang="en" data-navbar="/account/organizations/navbar-organization.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Crearea invitației pentru ${organization.organizationid}</title>
+  <title translate="yes">Creați invitație pentru ${organization.organizationid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/organizations/organizations-content.css" rel="stylesheet">
@@ -10,12 +10,12 @@
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Crearea invitației pentru ${organization.organizationid}</h1>
-  <p translate="yes">Codurile de invitație permit persoanelor să se alăture organizației dvs.</p>
+  <h1 translate="yes">Creați invitație pentru ${organization.organizationid}</h1>
+  <p translate="yes">Codurile de invitație permit oamenilor să se alăture organizației tale.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/create-invitation?organizationid=${organization.organizationid}" name="submit-form">
     <div class="pure-control-group">
-      <label for="organization-name" translate="yes">Organizaţie</label>
+      <label for="organization-name" translate="yes">Organizare</label>
       <input id="organization-name" type="text" maxlength="100" readonly>
     </div>
     <div class="pure-control-group">
@@ -23,17 +23,17 @@
       <input id="secret-code" name="secret-code" type="text" maxlength="100">
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Creare invitație</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Creați invitație</button>
     </div>
   </form>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Eroare! Eroare necunoscută
+      Eroare! O eroare necunoscută s-a întamplat
     </div>
   </template>
   <template id="invalid-secret-code">
     <div class="error message" translate="yes">
-      Eroare! Codul secret lipsește sau nu este valid
+      Eroare! Codul secret lipsește sau este nevalid
     </div>
   </template>
   <template id="invalid-secret-code-length">
@@ -43,7 +43,7 @@
   </template>
   <template id="success">
     <div class="success message">
-      <p translate="yes">Succes! Dă codul secret și acest link la cineva să se alăture:</p>
+      <p translate="yes">Succes! Dă-ți codul tău secret și acest link către cineva să se alăture:</p>
       <div class="invitation-link">
         <input type="text" readonly value="${organization.dashboardServer}/account/organizations/accept-invitation?invitationid=${organization.invitationid}">
       </div>

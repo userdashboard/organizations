@@ -2,15 +2,15 @@
 <html lang="en" data-navbar="/account/organizations/navbar-membership.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Mengedit ${membership.membershipid} profile</title>
+  <title translate="yes">Edit ${membership.membershipid} profile</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Mengedit ${membership.membershipid} profile</h1>
-  <p translate="yes">Keanggotaan lainnya yang berbagi profil ini, atau penggunaan lain dari itu, akan diperbarui juga.</p>
+  <h1 translate="yes">Edit ${membership.membershipid} profile</h1>
+  <p translate="yes">Keanggotaan lain yang membagikan profil ini, atau penggunaan lainnya, akan diperbarui juga.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/edit-membership-profile?membershipid=${membership.membershipid}" name="submit-form">
     <div id="display-name-container" class="pure-control-group">
@@ -22,7 +22,7 @@
       <input required="" id="display-email" name="display-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="contact-email-container" class="pure-control-group">
-      <label for="contact-email" translate="yes">Kontak email</label>
+      <label for="contact-email" translate="yes">Kontak Email</label>
       <input required="" id="contact-email" name="contact-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="full-name-container">
@@ -31,7 +31,7 @@
         <input required="" id="first-name" name="first-name" type="text" maxlength="1000">
       </div>
       <div class="pure-control-group">
-        <label for="last-name" translate="yes">Nama belakang</label>
+        <label for="last-name" translate="yes">nama keluarga</label>
         <input required="" id="last-name" name="last-name" type="text" maxlength="1000">
       </div>
     </div>
@@ -54,11 +54,11 @@
       <input required="" id="location" name="location" type="text" maxlength="1000">
     </div>
     <div id="company-name-container" class="pure-control-group">
-      <label for="company-name" translate="yes">Nama perusahaan</label>
+      <label for="company-name" translate="yes">Nama Perusahaan</label>
       <input required="" id="company-name" name="company-name" type="text" maxlength="1000">
     </div>
     <div id="website-container" class="pure-control-group">
-      <label for="website" translate="yes">Website</label>
+      <label for="website" translate="yes">Situs web</label>
       <input required="" id="website" name="website" type="text" maxlength="1000">
     </div>
     <div class="pure-controls">
@@ -67,12 +67,12 @@
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      Sukses! Informasi keanggotaan Anda telah diperbarui
+      Keberhasilan! Informasi keanggotaan Anda telah diperbarui
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Kesalahan! Kesalahan tak dikenal terjadi
+      Kesalahan! Terjadi kesalahan yang tidak diketahui
     </div>
   </template>
   <template id="invalid-first-name">
@@ -82,17 +82,17 @@
   </template>
   <template id="invalid-first-name-length">
     <div class="error message" translate="yes">
-      Kesalahan! Nama pertama yang tidak valid diberikan
+      Kesalahan! Nama depan yang tidak valid diberikan
     </div>
   </template>
   <template id="invalid-last-name">
     <div class="error message" translate="yes">
-      Kesalahan! Nama belakang yang hilang atau tidak valid diberikan
+      Kesalahan! Nama belakang yang hilang atau tidak valid disediakan
     </div>
   </template>
   <template id="invalid-last-name-length">
     <div class="error message" translate="yes">
-      Kesalahan! Nama terakhir yang tidak valid diberikan
+      Kesalahan! Nama belakang yang tidak valid diberikan
     </div>
   </template>
   <template id="invalid-contact-email">
@@ -112,12 +112,12 @@
   </template>
   <template id="invalid-dob">
     <div class="error message" translate="yes">
-      Kesalahan! Tanggal lahir yang hilang atau tidak sah diberikan
+      Kesalahan! Tanggal lahir yang hilang atau tidak valid diberikan
     </div>
   </template>
   <template id="invalid-phone">
     <div class="error message" translate="yes">
-      Kesalahan! Telepon yang hilang atau tidak valid telah disediakan.
+      Kesalahan! Telepon yang hilang atau tidak valid disediakan.
     </div>
   </template>
   <template id="invalid-occupation">
@@ -127,17 +127,17 @@
   </template>
   <template id="invalid-location">
     <div class="error message" translate="yes">
-      Kesalahan! Lokasi yang hilang atau tidak valid telah disediakan.
+      Kesalahan! Lokasi yang hilang atau tidak valid disediakan.
     </div>
   </template>
   <template id="invalid-company-name">
     <div class="error message" translate="yes">
-      Kesalahan! Nama perusahaan yang hilang atau tidak valid telah disediakan.
+      Kesalahan! Nama perusahaan yang hilang atau tidak valid diberikan.
     </div>
   </template>
   <template id="invalid-website">
     <div class="error message" translate="yes">
-      Kesalahan! Situs web yang hilang atau tidak valid telah disediakan.
+      Kesalahan! Situs web yang hilang atau tidak valid disediakan.
     </div>
   </template>
   <template id="invalid-display-name-length">

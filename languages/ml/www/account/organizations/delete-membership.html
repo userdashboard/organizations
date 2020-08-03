@@ -2,15 +2,15 @@
 <html lang="en" data-navbar="/account/organizations/navbar-membership.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">നീക്കം ചെയ്യുക ${membership.membershipid}</title>
+  <title translate="yes">ഇല്ലാതാക്കുക ${membership.membershipid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">നീക്കം ചെയ്യുക ${membership.membershipid}</h1>
-  <p translate="yes">അംഗത്വം ഉടനടി ഇല്ലാതാക്കപ്പെടും, വീണ്ടെടുക്കാൻ കഴിയില്ല.</p>
+  <h1 translate="yes">ഇല്ലാതാക്കുക ${membership.membershipid}</h1>
+  <p translate="yes">അംഗത്വം ഉടനടി ഇല്ലാതാക്കും, അത് വീണ്ടെടുക്കാൻ കഴിയില്ല.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/delete-membership?membershipid=${membership.membershipid}" name="submit-form">
     <div class="pure-control-group">
@@ -23,12 +23,12 @@
   </form>
   <template id="success">
     <div class="error message" translate="yes">
-      തെറ്റ്! അംഗത്വം ശാശ്വതമായി നീക്കം ചെയ്തിരിക്കുന്നു
+      പിശക്! അംഗത്വം ശാശ്വതമായി ഇല്ലാതാക്കി
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      തെറ്റ്! അപരിചിതമായ പിശക്
+      പിശക്! ഒരു അജ്ഞാത പിശക് സംഭവിച്ചു
     </div>
   </template>
 </body>

@@ -10,15 +10,15 @@
 </head>
 <body>
   <h1 translate="yes">Převod vlastnictví ${organization.organizationid}</h1>
-  <p translate="yes">Tím se okamžitě změní majitel pořadatele.</p>
+  <p translate="yes">To okamžitě změní vlastníka organizace.</p>
   <div id="message-container"></div>
   <table id="organizations-table" class="pure-table object-table">
     <thead>
       <tr>
         <th>ID</th>
-        <th translate="yes">Jméno</th>
-        <th translate="yes">E-mail</th>
-        <th translate="yes">Vytvořen</th>
+        <th translate="yes">název</th>
+        <th translate="yes">E-mailem</th>
+        <th translate="yes">Vytvořeno</th>
       </tr>
     </thead>
     <tr id="${organization.organizationid}">
@@ -35,12 +35,12 @@
       <label for="accountid" translate="yes">Nový vlastník organizace</label>
       <select id="accountid" name="accountid">
         <option value="" translate="yes">
-          Vybrat nového vlastníka
+          Vyberte nového vlastníka
         </option>
       </select>
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Organizace převodu</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Transferová organizace</button>
     </div>
   </form>
   <template id="membership-option-template">
@@ -50,17 +50,17 @@
   </template>
   <template id="success">
     <div class="success message" translate="yes">
-      Úspěch! Převedli jste organizaci na nového vlastníka.
+      Úspěch! Převedli jste organizaci na nového vlastníka
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Chyba! Při přenosu organizace došlo k chybě.
+      Chyba! Při přenosu organizace došlo k chybě
     </div>
   </template>
   <template id="invalid-accountid">
     <div class="error message" translate="yes">
-      Chyba! Byl vybrán nebo poskytnut neplatný příjemce.
+      Chyba! Byl vybrán nebo poskytnut neplatný příjemce
     </div>
   </template>
 </body>

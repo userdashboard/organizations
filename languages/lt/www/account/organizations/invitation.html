@@ -2,14 +2,14 @@
 <html lang="en" data-navbar="/account/organizations/navbar-invitation.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Rodyti ${invitation.invitationid}</title>
+  <title translate="yes">Vaizdas ${invitation.invitationid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Rodyti ${invitation.invitationid}</h1>
+  <h1 translate="yes">Vaizdas ${invitation.invitationid}</h1>
   <table id="invitations-table" class="pure-table data-table">
     <tbody id="${invitation.invitationid}">
       <tr>
@@ -21,12 +21,12 @@
         <td>${invitation.createdFormatted}</td>
       </tr>
       <tr>
-        <th translate="yes">Priimtas</th>
+        <th translate="yes">Priimta</th>
         <td id="accepted" translated="yes">Yes</td>
         <td id="not-accepted" translated="yes">No</td>
       </tr>
       <tr>
-        <th translate="yes">Narystės</th>
+        <th translate="yes">Narystė</th>
         <td id="membership">
           <a href="/account/organizations/membership?membershipid=${invitation.membershipid}">${invitation.membershipid}</a>
         </td>

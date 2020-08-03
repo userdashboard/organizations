@@ -2,15 +2,15 @@
 <html lang="en" data-navbar="/account/organizations/navbar-organization.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Teditja ${organization.organizationid}</title>
+  <title translate="yes">Editja ${organization.organizationid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Teditja ${organization.organizationid}</h1>
-  <p translate="yes">Żomm l-informazzjoni ta' kuntatt tiegħek korretta u aġġornata.</p>
+  <h1 translate="yes">Editja ${organization.organizationid}</h1>
+  <p translate="yes">Żomm l-informazzjoni ta 'kuntatt tiegħek korretta u aġġornata.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/edit-organization?organizationid=${organization.organizationid}" name="submit-form">
     <div class="pure-control-group">
@@ -18,11 +18,11 @@
       <input id="name" name="name" type="text" maxlength="100">
     </div>
     <div class="pure-control-group">
-      <label for="email" translate="yes">Posta elettronika</label>
+      <label for="email" translate="yes">Email</label>
       <input id="email" name="email" type="text" maxlength="100">
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Organizzazzjoni ta' aġġornament</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Organizzazzjoni ta ’aġġornament</button>
     </div>
   </form>
   <template id="success">
@@ -32,22 +32,22 @@
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Żball! Żball mhux magħruf okkupat
+      Żball! Żball mhux magħruf seħħ
     </div>
   </template>
   <template id="invalid-organization-name">
     <div class="error message" translate="yes">
-      Żball! Ġie pprovdut isem ta' organizzazzjoni nieqes jew invalidu
+      Żball! Ġie pprovdut isem ta 'organizzazzjoni nieqes jew invalidu
     </div>
   </template>
   <template id="invalid-organization-name-length">
     <div class="error message" translate="yes">
-      Żball! Tul tal-isem ta' l-organizzazzjoni invalidu
+      Żball! It-tul tal-isem tal-organizzazzjoni mhux validu
     </div>
   </template>
   <template id="invalid-organization-email">
     <div class="error message" translate="yes">
-      Żball! Ġie pprovdut email ta' organizzazzjoni nieqsa jew invalida
+      Żball! Email elettronika ta 'organizzazzjoni nieqsa jew invalida ġiet ipprovduta
     </div>
   </template>
 </body>

@@ -2,15 +2,15 @@
 <html lang="en" data-navbar="/account/organizations/navbar-organization.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Editar ${organization.organizationid}</title>
+  <title translate="yes">Edita ${organization.organizationid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Editar ${organization.organizationid}</h1>
-  <p translate="yes">Mantingueu la informació de contacte correcta i actualitzada.</p>
+  <h1 translate="yes">Edita ${organization.organizationid}</h1>
+  <p translate="yes">Manteniu la informació de contacte correcta i actualitzada.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/edit-organization?organizationid=${organization.organizationid}" name="submit-form">
     <div class="pure-control-group">
@@ -22,32 +22,32 @@
       <input id="email" name="email" type="text" maxlength="100">
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Actualitza l'organització</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Actualització de l'organització</button>
     </div>
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      Èxit! La informació de l'organització s'ha actualitzat
+      Èxit! La informació de la vostra organització s'ha actualitzat
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Error! Un ocurred d'error desconegut
+      Error! S'ha produït un error desconegut
     </div>
   </template>
   <template id="invalid-organization-name">
     <div class="error message" translate="yes">
-      Error! Es va proporcionar un nom d'organització absent o no vàlid
+      Error! S'ha proporcionat un nom d'organització no vàlid
     </div>
   </template>
   <template id="invalid-organization-name-length">
     <div class="error message" translate="yes">
-      Error! Longitud del nom de l'organització no vàlida
+      Error! La longitud del nom de l'organització no és vàlida
     </div>
   </template>
   <template id="invalid-organization-email">
     <div class="error message" translate="yes">
-      Error! Es va proporcionar un correu electrònic de l'organització absent o no vàlid
+      Error! Es va proporcionar un correu electrònic d’organització que falta o no vàlid
     </div>
   </template>
 </body>

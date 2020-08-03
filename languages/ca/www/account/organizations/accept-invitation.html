@@ -10,33 +10,33 @@
 </head>
 <body>
   <h1 translate="yes">Accepta la invitació</h1>
-  <p translate="yes">Vostè es convertirà en un membre de l'organització després d'introduir el codi.</p>
+  <p translate="yes">Després d'haver introduït el codi, us convertireu en un membre de l'organització.</p>
   <div id="message-container"></div>
   <form id="submit-form" class="pure-form pure-form-stacked" action="/account/organizations/accept-invitation" name="submit-form">
     <div class="pure-control-group">
-      <label for="invitationid" translate="yes">Invitació ID</label>
+      <label for="invitationid" translate="yes">ID de la invitació</label>
       <input id="invitationid" name="invitationid" type="text" maxlength="100">
     </div>
     <div class="pure-control-group">
       <label for="secret-code" translate="yes">Codi d'invitació</label>
       <input id="secret-code" name="secret-code" type="text" maxlength="100">
     </div>
-    <h2 translate="yes">Informació d'afiliació</h2>
+    <h2 translate="yes">Informació sobre membres</h2>
     <div id="existing-profile-container" class="pure-control-group">
-      <label for="profileid" translate="yes">Utilitza el perfil existent</label>
+      <label for="profileid" translate="yes">Utilitzeu el perfil existent</label>
       <select id="profileid" name="profileid">
         <option value="" translate="yes">
           Seleccioneu un perfil existent
         </option>
       </select>
     </div>
-    <h3 translate="yes">Crea un perfil nou</h3>
+    <h3 translate="yes">Crea un nou perfil</h3>
     <div id="display-name-container" class="pure-control-group">
-      <label for="display-name" translate="yes">Nom de visualització</label>
+      <label for="display-name" translate="yes">Mostra el nom</label>
       <input required="" id="display-name" name="display-name" type="text" maxlength="1000">
     </div>
     <div id="display-email-container" class="pure-control-group">
-      <label for="display-email" translate="yes">Correu electrònic de visualització</label>
+      <label for="display-email" translate="yes">Mostra el correu electrònic</label>
       <input required="" id="display-email" name="display-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="contact-email-container" class="pure-control-group">
@@ -45,7 +45,7 @@
     </div>
     <div id="full-name-container">
       <div class="pure-control-group">
-        <label for="first-name" translate="yes">Primer nom</label>
+        <label for="first-name" translate="yes">Nom</label>
       <input required="" id="first-name" name="first-name" type="text" maxlength="1000">
       </div>
       <div class="pure-control-group">
@@ -72,7 +72,7 @@
       <input required="" id="location" name="location" type="text" maxlength="1000">
     </div>
     <div id="company-name-container" class="pure-control-group">
-      <label for="company-name" translate="yes">Nom de l'empresa</label>
+      <label for="company-name" translate="yes">Nom de la companyia</label>
       <input required="" id="company-name" name="company-name" type="text" maxlength="1000">
     </div>
     <div id="website-container" class="pure-control-group">
@@ -80,12 +80,12 @@
       <input required="" id="website" name="website" type="text" maxlength="1000">
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Unir organització</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Unir-se a l'organització</button>
     </div>
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      Èxit! Ara ets membre de l'organització
+      Èxit! Ara ets membre de l’organització
     </div>
   </template>
   <template id="invalid-invitation">
@@ -100,17 +100,17 @@
   </template>
   <template id="invalid-invitationid">
     <div class="error message" translate="yes">
-      Error! Es va proporcionar una invitació perduda o no vàlida
+      Error! S'ha proporcionat una invitació que no és vàlida
     </div>
   </template>
   <template id="invalid-account">
     <div class="error message" translate="yes">
-      Error! Sou propietari o membre d'aquesta organització
+      Error! És propietari o membre d’aquest organisme
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Error! Un ocurred d'error desconegut
+      Error! S'ha produït un error desconegut
     </div>
   </template>
   <template id="profile-option">
@@ -120,22 +120,22 @@
   </template>
   <template id="invalid-organization-name">
     <div class="error message" translate="yes">
-      Error! Es va proporcionar un nom d'organització absent o no vàlid
+      Error! S'ha proporcionat un nom d'organització no vàlid
     </div>
   </template>
   <template id="invalid-organization-name-length">
     <div class="error message" translate="yes">
-      Error! Longitud del nom de l'organització no vàlida
+      Error! La longitud del nom de l'organització no és vàlida
     </div>
   </template>
   <template id="invalid-organization-email">
     <div class="error message" translate="yes">
-      Error! Es va proporcionar un correu electrònic de l'organització absent o no vàlid
+      Error! Es va proporcionar un correu electrònic d’organització que falta o no vàlid
     </div>
   </template>
   <template id="success">
     <div class="success message" translate="yes">
-      Èxit! L'organització ha estat creada amb èxit
+      Èxit! L’organització s’ha creat amb èxit
     </div>
   </template>
   <template id="unknown-error">
@@ -145,77 +145,77 @@
   </template>
   <template id="invalid-first-name">
     <div class="error message" translate="yes">
-      Error! Un nom de primera falta o no vàlid proporcionat
+      Error! Es proporciona un nom que falta o no vàlid
     </div>
   </template>
   <template id="invalid-first-name-length">
     <div class="error message" translate="yes">
-      Error! Es va proporcionar un primer nom no vàlid
+      Error! S'ha proporcionat un nom no vàlid
     </div>
   </template>
   <template id="invalid-last-name">
     <div class="error message" translate="yes">
-      Error! Es va proporcionar un nom d'últim desaparegut o no vàlid
+      Error! Es va proporcionar un cognom que falta o no vàlid
     </div>
   </template>
   <template id="invalid-last-name-length">
     <div class="error message" translate="yes">
-      Error! Es va proporcionar un cognom vàlid
+      Error! Es va proporcionar un cognom no vàlid
     </div>
   </template>
   <template id="invalid-contact-email">
     <div class="error message" translate="yes">
-      Error! Adreça electrònica de contacte no vàlida
+      Error! L'adreça de correu electrònic de contacte no és vàlida
     </div>
   </template>
   <template id="invalid-display-email">
     <div class="error message" translate="yes">
-      Error! Adreça electrònica de visualització no vàlida
+      Error! L'adreça de correu electrònic de visualització no és vàlida
     </div>
   </template>
   <template id="invalid-display-name">
     <div class="error message" translate="yes">
-      Error! Es va proporcionar un nom de visualització que falta o no vàlid
+      Error! S'ha proporcionat un nom de visualització que falta o no vàlid
     </div>
   </template>
   <template id="invalid-dob">
     <div class="error message" translate="yes">
-      Error! Es va proporcionar una data de naixement inexistent o no vàlida
+      Error! Es va proporcionar una data de naixement que falta o no vàlida
     </div>
   </template>
   <template id="invalid-phone">
     <div class="error message" translate="yes">
-      Error! Es va proporcionar un telèfon que faltava o no vàlid.
+      Error! S'ha proporcionat un telèfon no vàlid o no vàlid.
     </div>
   </template>
   <template id="invalid-occupation">
     <div class="error message" translate="yes">
-      Error! Es va proporcionar una ocupació perduda o invàlida.
+      Error! Es va proporcionar una ocupació no vàlida o no vàlida.
     </div>
   </template>
   <template id="invalid-location">
     <div class="error message" translate="yes">
-      Error! Es va proporcionar una ubicació perduda o no vàlida.
+      Error! Es va proporcionar una ubicació no vàlida.
     </div>
   </template>
   <template id="invalid-company-name">
     <div class="error message" translate="yes">
-      Error! Es va proporcionar un nom d'empresa desaparegut o no vàlid.
+      Error! S'ha proporcionat un nom de l'empresa no vàlid o no vàlid.
     </div>
   </template>
   <template id="invalid-website">
     <div class="error message" translate="yes">
-      Error! Es va proporcionar un lloc web absent o no vàlid.
+      Error! S'ha proporcionat un lloc web no vàlid o no vàlid.
     </div>
   </template>
   <template id="invalid-display-name-length">
     <div class="error message" translate="yes">
-      Error! Es va proporcionar un nom de visualització que falta o no vàlid
+      Error! S'ha proporcionat un nom de visualització que falta o no vàlid
     </div>
   </template>
   <template id="invalid-profileid">
     <div class="error message" translate="yes">
-      Error! Se seleccionava un perfil desaparegut o invàlid.
+      Error! S'ha seleccionat un perfil desaparegut o no vàlid.
     </div>
   </template>
 </body>

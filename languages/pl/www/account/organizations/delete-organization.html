@@ -10,15 +10,15 @@
 </head>
 <body>
   <h1 translate="yes">Usunąć ${organization.organizationid}</h1>
-  <p translate="yes">Organizacja zostanie natychmiast usunięta i nie będzie można jej odzyskać.</p>
+  <p translate="yes">Organizacja zostanie natychmiast usunięta i nie będzie można jej przywrócić.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/delete-organization?organizationid=${organization.organizationid}" name="submit-form">
     <div class="pure-control-group">
-      <label for="organizationName" translate="yes">Organizacji</label>
+      <label for="organizationName" translate="yes">Organizacja</label>
       <input id="organizationName" type="text" maxlength="100" readonly>
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Usuwanie organizacji</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Usuń organizację</button>
     </div>
   </form>
   <template id="success">

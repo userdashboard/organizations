@@ -10,11 +10,11 @@
 </head>
 <body>
   <h1 translate="yes">Видалити ${organization.organizationid}</h1>
-  <p translate="yes">Організація буде негайно видалена і не може бути відновлена.</p>
+  <p translate="yes">Організацію буде негайно видалено та її неможливо відновити.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/delete-organization?organizationid=${organization.organizationid}" name="submit-form">
     <div class="pure-control-group">
-      <label for="organizationName" translate="yes">Організації</label>
+      <label for="organizationName" translate="yes">Організація</label>
       <input id="organizationName" type="text" maxlength="100" readonly>
     </div>
     <div class="pure-controls">
@@ -23,12 +23,12 @@
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      Успіху! Організацію видалено остаточно
+      Успіху! Організацію остаточно видалено
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Помилка! Сталася помилка під час видалення організації
+      Помилка! Під час видалення організації сталася помилка
     </div>
   </template>
 </body>

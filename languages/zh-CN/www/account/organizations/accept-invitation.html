@@ -10,27 +10,27 @@
 </head>
 <body>
   <h1 translate="yes">接受邀请</h1>
-  <p translate="yes">输入代码后，您将成为组织的成员。</p>
+  <p translate="yes">输入代码后，您将成为该组织的成员。</p>
   <div id="message-container"></div>
   <form id="submit-form" class="pure-form pure-form-stacked" action="/account/organizations/accept-invitation" name="submit-form">
     <div class="pure-control-group">
-      <label for="invitationid" translate="yes">邀请 ID</label>
+      <label for="invitationid" translate="yes">邀请编号</label>
       <input id="invitationid" name="invitationid" type="text" maxlength="100">
     </div>
     <div class="pure-control-group">
-      <label for="secret-code" translate="yes">邀请代码</label>
+      <label for="secret-code" translate="yes">邀请码</label>
       <input id="secret-code" name="secret-code" type="text" maxlength="100">
     </div>
     <h2 translate="yes">会员信息</h2>
     <div id="existing-profile-container" class="pure-control-group">
-      <label for="profileid" translate="yes">使用现有配置文件</label>
+      <label for="profileid" translate="yes">使用现有的个人资料</label>
       <select id="profileid" name="profileid">
         <option value="" translate="yes">
-          选择现有配置文件
+          选择一个现有的配置文件
         </option>
       </select>
     </div>
-    <h3 translate="yes">创建新配置文件</h3>
+    <h3 translate="yes">建立新的个人资料</h3>
     <div id="display-name-container" class="pure-control-group">
       <label for="display-name" translate="yes">显示名称</label>
       <input required="" id="display-name" name="display-name" type="text" maxlength="1000">
@@ -49,7 +49,7 @@
       <input required="" id="first-name" name="first-name" type="text" maxlength="1000">
       </div>
       <div class="pure-control-group">
-        <label for="last-name" translate="yes">姓氏</label>
+        <label for="last-name" translate="yes">姓</label>
       <input required="" id="last-name" name="last-name" type="text" maxlength="1000">
       </div>
     </div>
@@ -64,7 +64,7 @@
       <input required="" id="phone" name="phone" type="text" maxlength="1000">
     </div>
     <div id="occupation-container" class="pure-control-group">
-      <label for="occupation" translate="yes">职业</label>
+      <label for="occupation" translate="yes">占用</label>
       <input required="" id="occupation" name="occupation" type="text" maxlength="1000">
     </div>
     <div id="location-container" class="pure-control-group">
@@ -72,7 +72,7 @@
       <input required="" id="location" name="location" type="text" maxlength="1000">
     </div>
     <div id="company-name-container" class="pure-control-group">
-      <label for="company-name" translate="yes">公司名称</label>
+      <label for="company-name" translate="yes">公司名</label>
       <input required="" id="company-name" name="company-name" type="text" maxlength="1000">
     </div>
     <div id="website-container" class="pure-control-group">
@@ -85,22 +85,22 @@
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      成功！您现在是组织的成员
+      成功！您现在是该组织的成员
     </div>
   </template>
   <template id="invalid-invitation">
     <div class="error message" translate="yes">
-      错误！邀请不再可用
+      错误！邀请已不再可用
     </div>
   </template>
   <template id="invalid-secret-code">
     <div class="error message" translate="yes">
-      错误！邀请代码不正确
+      错误！邀请码不正确
     </div>
   </template>
   <template id="invalid-invitationid">
     <div class="error message" translate="yes">
-      错误！提供了缺少或无效的邀请
+      错误！提供的邀请缺失或无效
     </div>
   </template>
   <template id="invalid-account">
@@ -110,7 +110,7 @@
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      错误！发生未知错误
+      错误！出现未知错误
     </div>
   </template>
   <template id="profile-option">
@@ -120,7 +120,7 @@
   </template>
   <template id="invalid-organization-name">
     <div class="error message" translate="yes">
-      错误！提供了缺少或无效的组织名称
+      错误！提供的组织名称缺失或无效
     </div>
   </template>
   <template id="invalid-organization-name-length">
@@ -130,57 +130,57 @@
   </template>
   <template id="invalid-organization-email">
     <div class="error message" translate="yes">
-      错误！提供了缺少或无效的组织电子邮件
+      错误！提供了丢失或无效的组织电子邮件
     </div>
   </template>
   <template id="success">
     <div class="success message" translate="yes">
-      成功！已成功创建组织
+      成功！该组织已成功创建
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      错误！创建组织时出错
+      错误！建立机构时发生错误
     </div>
   </template>
   <template id="invalid-first-name">
     <div class="error message" translate="yes">
-      错误！提供缺少或无效的名字
+      错误！提供的姓氏缺失或无效
     </div>
   </template>
   <template id="invalid-first-name-length">
     <div class="error message" translate="yes">
-      错误！提供了无效的名字
+      错误！提供的名字无效
     </div>
   </template>
   <template id="invalid-last-name">
     <div class="error message" translate="yes">
-      错误！提供了缺失或无效的姓氏
+      错误！提供的姓氏缺失或无效
     </div>
   </template>
   <template id="invalid-last-name-length">
     <div class="error message" translate="yes">
-      错误！提供了无效的姓氏
+      错误！提供的姓氏无效
     </div>
   </template>
   <template id="invalid-contact-email">
     <div class="error message" translate="yes">
-      错误！无效的联系人电子邮件地址
+      错误！无效的联系电子邮件地址
     </div>
   </template>
   <template id="invalid-display-email">
     <div class="error message" translate="yes">
-      错误！无效显示电子邮件地址
+      错误！无效的显示电子邮件地址
     </div>
   </template>
   <template id="invalid-display-name">
     <div class="error message" translate="yes">
-      错误！提供了缺失或无效的显示名称
+      错误！提供的显示名称缺失或无效
     </div>
   </template>
   <template id="invalid-dob">
     <div class="error message" translate="yes">
-      错误！提供了失踪或无效的出生日期
+      错误！遗失或无效的出生日期
     </div>
   </template>
   <template id="invalid-phone">
@@ -190,12 +190,12 @@
   </template>
   <template id="invalid-occupation">
     <div class="error message" translate="yes">
-      错误！提供了失踪或无效的占领。
+      错误！提供了丢失或无效的职业。
     </div>
   </template>
   <template id="invalid-location">
     <div class="error message" translate="yes">
-      错误！提供了缺失或无效的位置。
+      错误！提供了丢失或无效的位置。
     </div>
   </template>
   <template id="invalid-company-name">
@@ -205,17 +205,17 @@
   </template>
   <template id="invalid-website">
     <div class="error message" translate="yes">
-      错误！提供了缺少或无效的网站。
+      错误！提供了一个丢失或无效的网站。
     </div>
   </template>
   <template id="invalid-display-name-length">
     <div class="error message" translate="yes">
-      错误！提供了缺失或无效的显示名称
+      错误！提供的显示名称缺失或无效
     </div>
   </template>
   <template id="invalid-profileid">
     <div class="error message" translate="yes">
-      错误！已选择缺失或无效的配置文件。
+      错误！选择了丢失或无效的配置文件。
     </div>
   </template>
 </body>

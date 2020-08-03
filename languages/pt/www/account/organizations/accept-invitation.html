@@ -2,15 +2,15 @@
 <html lang="en" data-navbar="/account/organizations/navbar.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Aceite convite</title>
+  <title translate="yes">Aceitar convite</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Aceite convite</h1>
-  <p translate="yes">Tornar-se-á membro da organização depois de introduzir o código.</p>
+  <h1 translate="yes">Aceitar convite</h1>
+  <p translate="yes">Você se tornará membro da organização depois de inserir o código.</p>
   <div id="message-container"></div>
   <form id="submit-form" class="pure-form pure-form-stacked" action="/account/organizations/accept-invitation" name="submit-form">
     <div class="pure-control-group">
@@ -18,12 +18,12 @@
       <input id="invitationid" name="invitationid" type="text" maxlength="100">
     </div>
     <div class="pure-control-group">
-      <label for="secret-code" translate="yes">Código de convite</label>
+      <label for="secret-code" translate="yes">Código de Convite</label>
       <input id="secret-code" name="secret-code" type="text" maxlength="100">
     </div>
-    <h2 translate="yes">Informação sobre adesão</h2>
+    <h2 translate="yes">Informações sobre membros</h2>
     <div id="existing-profile-container" class="pure-control-group">
-      <label for="profileid" translate="yes">Utilize o perfil existente</label>
+      <label for="profileid" translate="yes">Usar perfil existente</label>
       <select id="profileid" name="profileid">
         <option value="" translate="yes">
           Selecione um perfil existente
@@ -32,15 +32,15 @@
     </div>
     <h3 translate="yes">Criar novo perfil</h3>
     <div id="display-name-container" class="pure-control-group">
-      <label for="display-name" translate="yes">Nome do visor</label>
+      <label for="display-name" translate="yes">Nome em Exibição</label>
       <input required="" id="display-name" name="display-name" type="text" maxlength="1000">
     </div>
     <div id="display-email-container" class="pure-control-group">
-      <label for="display-email" translate="yes">Exibir e-mail</label>
+      <label for="display-email" translate="yes">Exibir email</label>
       <input required="" id="display-email" name="display-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="contact-email-container" class="pure-control-group">
-      <label for="contact-email" translate="yes">E-mail de contato</label>
+      <label for="contact-email" translate="yes">Email de contato</label>
       <input required="" id="contact-email" name="contact-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="full-name-container">
@@ -76,41 +76,41 @@
       <input required="" id="company-name" name="company-name" type="text" maxlength="1000">
     </div>
     <div id="website-container" class="pure-control-group">
-      <label for="website" translate="yes">Site</label>
+      <label for="website" translate="yes">Local na rede Internet</label>
       <input required="" id="website" name="website" type="text" maxlength="1000">
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Junte-se à organização</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Participar da organização</button>
     </div>
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      Que sucesso! Agora é membro da organização.
+      Sucesso! Agora você é membro da organização
     </div>
   </template>
   <template id="invalid-invitation">
     <div class="error message" translate="yes">
-      Um erro! O convite já não está disponível.
+      Erro! O convite não está mais disponível
     </div>
   </template>
   <template id="invalid-secret-code">
     <div class="error message" translate="yes">
-      Um erro! O código de convite está incorreto.
+      Erro! O código do convite está incorreto
     </div>
   </template>
   <template id="invalid-invitationid">
     <div class="error message" translate="yes">
-      Um erro! Foi fornecido um convite em falta ou inválido
+      Erro! Um convite ausente ou inválido foi fornecido
     </div>
   </template>
   <template id="invalid-account">
     <div class="error message" translate="yes">
-      Um erro! Você é dono ou é membro desta organização
+      Erro! Você possui ou é membro desta organização
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Um erro! Um erro desconhecido ocorrido
+      Erro! Ocorreu um erro desconhecido
     </div>
   </template>
   <template id="profile-option">
@@ -120,102 +120,102 @@
   </template>
   <template id="invalid-organization-name">
     <div class="error message" translate="yes">
-      Um erro! Foi fornecido um nome de organização desaparecido ou inválido
+      Erro! Um nome de organização ausente ou inválido foi fornecido
     </div>
   </template>
   <template id="invalid-organization-name-length">
     <div class="error message" translate="yes">
-      Um erro! Comprimento do nome da organização inválido
+      Erro! Comprimento de nome da organização inválido
     </div>
   </template>
   <template id="invalid-organization-email">
     <div class="error message" translate="yes">
-      Um erro! Um e-mail de organização desaparecido ou inválido foi fornecido
+      Erro! Um e-mail da organização ausente ou inválido foi fornecido
     </div>
   </template>
   <template id="success">
     <div class="success message" translate="yes">
-      Que sucesso! A organização foi criada com sucesso
+      Sucesso! A organização foi criada com sucesso
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Um erro! Ocorreu um erro ao criar a organização
+      Erro! Ocorreu um erro ao criar a organização
     </div>
   </template>
   <template id="invalid-first-name">
     <div class="error message" translate="yes">
-      Um erro! Um nome em falta ou inválido fornecido
+      Erro! Um nome ausente ou inválido fornecido
     </div>
   </template>
   <template id="invalid-first-name-length">
     <div class="error message" translate="yes">
-      Um erro! Um primeiro nome inválido foi fornecido
+      Erro! Um primeiro nome inválido foi fornecido
     </div>
   </template>
   <template id="invalid-last-name">
     <div class="error message" translate="yes">
-      Um erro! Um apelido desaparecido ou inválido foi fornecido
+      Erro! Um sobrenome ausente ou inválido foi fornecido
     </div>
   </template>
   <template id="invalid-last-name-length">
     <div class="error message" translate="yes">
-      Um erro! Um apelido inválido foi fornecido
+      Erro! Um sobrenome inválido foi fornecido
     </div>
   </template>
   <template id="invalid-contact-email">
     <div class="error message" translate="yes">
-      Um erro! Endereço de e-mail de contato inválido
+      Erro! Endereço de email de contato inválido
     </div>
   </template>
   <template id="invalid-display-email">
     <div class="error message" translate="yes">
-      Um erro! Endereço de e-mail de exibição inválido
+      Erro! Endereço de e-mail de exibição inválido
     </div>
   </template>
   <template id="invalid-display-name">
     <div class="error message" translate="yes">
-      Um erro! Foi fornecido um nome de exibição em falta ou inválido
+      Erro! Um nome de exibição ausente ou inválido foi fornecido
     </div>
   </template>
   <template id="invalid-dob">
     <div class="error message" translate="yes">
-      Um erro! Foi fornecida uma data de nascimento desaparecida ou inválida
+      Erro! Foi fornecida uma data de nascimento ausente ou inválida
     </div>
   </template>
   <template id="invalid-phone">
     <div class="error message" translate="yes">
-      Um erro! Foi fornecido um telefone desaparecido ou inválido.
+      Erro! Um telefone ausente ou inválido foi fornecido.
     </div>
   </template>
   <template id="invalid-occupation">
     <div class="error message" translate="yes">
-      Um erro! Foi fornecida uma ocupação desaparecida ou inválida.
+      Erro! Uma ocupação ausente ou inválida foi fornecida.
     </div>
   </template>
   <template id="invalid-location">
     <div class="error message" translate="yes">
-      Um erro! Foi fornecido um local desaparecido ou inválido.
+      Erro! Um local ausente ou inválido foi fornecido.
     </div>
   </template>
   <template id="invalid-company-name">
     <div class="error message" translate="yes">
-      Um erro! Foi fornecido um nome de empresa desaparecido ou inválido.
+      Erro! Um nome de empresa ausente ou inválido foi fornecido.
     </div>
   </template>
   <template id="invalid-website">
     <div class="error message" translate="yes">
-      Um erro! Foi fornecido um site desaparecido ou inválido.
+      Erro! Um site ausente ou inválido foi fornecido.
     </div>
   </template>
   <template id="invalid-display-name-length">
     <div class="error message" translate="yes">
-      Um erro! Foi fornecido um nome de exibição em falta ou inválido
+      Erro! Um nome de exibição ausente ou inválido foi fornecido
     </div>
   </template>
   <template id="invalid-profileid">
     <div class="error message" translate="yes">
-      Um erro! Foi selecionado um perfil desaparecido ou inválido.
+      Erro! Um perfil ausente ou inválido foi selecionado.
     </div>
   </template>
 </body>

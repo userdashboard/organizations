@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" data-navbar="/account/organizations/navbar-organization.html">
+<head>
+  <meta charset="utf-8">
+  <title translate="yes">Sinthani ${organization.organizationid}</title>
+  <link href="/public/pure-min.css" rel="stylesheet">
+  <link href="/public/content.css" rel="stylesheet">
+  <link href="/public/content-additional.css" rel="stylesheet">
+  <base target="_top" href="/">
+</head>
+<body>
+  <h1 translate="yes">Sinthani ${organization.organizationid}</h1>
+  <p translate="yes">Sungani zidziwitso zanu.</p>
+  <div id="message-container"></div>
+  <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/edit-organization?organizationid=${organization.organizationid}" name="submit-form">
+    <div class="pure-control-group">
+      <label for="name" translate="yes">Dzinalo</label>
+      <input id="name" name="name" type="text" maxlength="100">
+    </div>
+    <div class="pure-control-group">
+      <label for="email" translate="yes">Imelo</label>
+      <input id="email" name="email" type="text" maxlength="100">
+    </div>
+    <div class="pure-controls">
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Sinthani bungwe</button>
+    </div>
+  </form>
+  <template id="success">
+    <div class="success message" translate="yes">
+      Kupambana! Chidziwitso cha bungwe lanu chasinthidwa
+    </div>
+  </template>
+  <template id="unknown-error">
+    <div class="error message" translate="yes">
+      Zolakwika! Kulakwitsa kosadziwika
+    </div>
+  </template>
+  <template id="invalid-organization-name">
+    <div class="error message" translate="yes">
+      Zolakwika! Bungwe losowa kapena lolakwika la bungwe lidaperekedwa
+    </div>
+  </template>
+  <template id="invalid-organization-name-length">
+    <div class="error message" translate="yes">
+      Zolakwika! Kutalika kwa dzina lolakwika kwa gulu
+    </div>
+  </template>
+  <template id="invalid-organization-email">
+    <div class="error message" translate="yes">
+      Zolakwika! Imelo yakusowa kapena yosavomerezeka idaperekedwa
+    </div>
+  </template>
+</body>
+</html>

@@ -10,11 +10,11 @@
 </head>
 <body>
   <h1 translate="yes">Eyða ${membership.membershipid}</h1>
-  <p translate="yes">Aðild verður eytt strax og ekki er hægt að endurheimta þau.</p>
+  <p translate="yes">Aðildinni verður eytt strax og ekki er hægt að endurheimta það.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/delete-membership?membershipid=${membership.membershipid}" name="submit-form">
     <div class="pure-control-group">
-      <label for="organizationName" translate="yes">Fyrirtæki</label>
+      <label for="organizationName" translate="yes">Skipulag</label>
       <input id="organizationName" type="text" maxlength="100" readonly>
     </div>
     <div class="pure-controls">
@@ -23,12 +23,12 @@
   </form>
   <template id="success">
     <div class="error message" translate="yes">
-      Villa! Aðild hefur verið endanlega eytt
+      Villa! Aðildinni hefur verið eytt varanlega
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Villa! Óþekkt villa varð
+      Villa! Óþekkt villa kom upp
     </div>
   </template>
 </body>

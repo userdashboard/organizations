@@ -10,15 +10,15 @@
 </head>
 <body>
   <h1 translate="yes">Redaguoti ${organization.organizationid}</h1>
-  <p translate="yes">Laikykite savo kontaktinę informaciją teisingą ir naujausią.</p>
+  <p translate="yes">Laikykite savo teisingą ir atnaujintą kontaktinę informaciją.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/edit-organization?organizationid=${organization.organizationid}" name="submit-form">
     <div class="pure-control-group">
-      <label for="name" translate="yes">vardas, pavadinimas</label>
+      <label for="name" translate="yes">vardas</label>
       <input id="name" name="name" type="text" maxlength="100">
     </div>
     <div class="pure-control-group">
-      <label for="email" translate="yes">El. pašto</label>
+      <label for="email" translate="yes">Pašto adresą</label>
       <input id="email" name="email" type="text" maxlength="100">
     </div>
     <div class="pure-controls">
@@ -27,17 +27,17 @@
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      Sėkmės! Jūsų organizacijos informacija atnaujinta
+      Sėkmė! Jūsų organizacijos informacija buvo atnaujinta
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Klaida! Nežinoma klaida, ocurred
+      Klaida! Įvyko nežinoma klaida
     </div>
   </template>
   <template id="invalid-organization-name">
     <div class="error message" translate="yes">
-      Klaida! Pateiktas trūkstamas arba neleistinas organizacijos pavadinimas
+      Klaida! Buvo pateiktas trūkstamas arba netinkamas organizacijos pavadinimas
     </div>
   </template>
   <template id="invalid-organization-name-length">
@@ -47,7 +47,7 @@
   </template>
   <template id="invalid-organization-email">
     <div class="error message" translate="yes">
-      Klaida! Pateiktas trūkstamas arba netinkamas organizacijos el. paštas
+      Klaida! Buvo pateiktas trūkstamas arba netinkamas organizacijos el. Pašto adresas
     </div>
   </template>
 </body>

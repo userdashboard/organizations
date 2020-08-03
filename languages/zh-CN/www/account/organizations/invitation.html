@@ -17,20 +17,20 @@
         <td>${invitation.invitationid}</td>
       </tr>
       <tr>
-        <th translate="yes">创建</th>
+        <th translate="yes">已建立</th>
         <td>${invitation.createdFormatted}</td>
       </tr>
       <tr>
-        <th translate="yes">接受</th>
+        <th translate="yes">公认</th>
         <td id="accepted" translated="yes">Yes</td>
         <td id="not-accepted" translated="yes">No</td>
       </tr>
       <tr>
-        <th translate="yes">会员</th>
+        <th translate="yes">会员资格</th>
         <td id="membership">
           <a href="/account/organizations/membership?membershipid=${invitation.membershipid}">${invitation.membershipid}</a>
         </td>
-        <td id="no-membership" translate="yes">没</td>
+        <td id="no-membership" translate="yes">没有人</td>
       </tr>
     </tbody>
   </table>

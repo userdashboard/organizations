@@ -2,37 +2,37 @@
 <html lang="en" data-navbar="/account/organizations/navbar.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Þiggja boð</title>
+  <title translate="yes">Samþykkja boð</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Þiggja boð</h1>
-  <p translate="yes">Þú verður meðlimur í samtökunum eftir að hafa slegið inn kóðann.</p>
+  <h1 translate="yes">Samþykkja boð</h1>
+  <p translate="yes">Þú verður aðili að samtökunum eftir að þú slærð inn kóðann.</p>
   <div id="message-container"></div>
   <form id="submit-form" class="pure-form pure-form-stacked" action="/account/organizations/accept-invitation" name="submit-form">
     <div class="pure-control-group">
-      <label for="invitationid" translate="yes">AUÐKENNI boðs</label>
+      <label for="invitationid" translate="yes">Auðkenni boðs</label>
       <input id="invitationid" name="invitationid" type="text" maxlength="100">
     </div>
     <div class="pure-control-group">
-      <label for="secret-code" translate="yes">Kóði fyrir boð</label>
+      <label for="secret-code" translate="yes">Boðsnúmer</label>
       <input id="secret-code" name="secret-code" type="text" maxlength="100">
     </div>
     <h2 translate="yes">Upplýsingar um aðild</h2>
     <div id="existing-profile-container" class="pure-control-group">
-      <label for="profileid" translate="yes">Nota fyrirliggjandi forstillingu</label>
+      <label for="profileid" translate="yes">Notaðu núverandi snið</label>
       <select id="profileid" name="profileid">
         <option value="" translate="yes">
-          Velja fyrirliggjandi forstillingu
+          Veldu snið sem fyrir er
         </option>
       </select>
     </div>
-    <h3 translate="yes">Búa til nýja forstillingu</h3>
+    <h3 translate="yes">Búðu til nýjan prófíl</h3>
     <div id="display-name-container" class="pure-control-group">
-      <label for="display-name" translate="yes">Birta nafn</label>
+      <label for="display-name" translate="yes">Sýna nafn</label>
       <input required="" id="display-name" name="display-name" type="text" maxlength="1000">
     </div>
     <div id="display-email-container" class="pure-control-group">
@@ -40,12 +40,12 @@
       <input required="" id="display-email" name="display-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="contact-email-container" class="pure-control-group">
-      <label for="contact-email" translate="yes">Hafa samband í tölvupósti</label>
+      <label for="contact-email" translate="yes">Hafðu samband við tölvupóst</label>
       <input required="" id="contact-email" name="contact-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="full-name-container">
       <div class="pure-control-group">
-        <label for="first-name" translate="yes">Fornafn</label>
+        <label for="first-name" translate="yes">Fyrsta nafn</label>
       <input required="" id="first-name" name="first-name" type="text" maxlength="1000">
       </div>
       <div class="pure-control-group">
@@ -60,11 +60,11 @@
       </div>
     </div>
     <div id="phone-container" class="pure-control-group">
-      <label for="phone" translate="yes">Síma</label>
+      <label for="phone" translate="yes">Sími</label>
       <input required="" id="phone" name="phone" type="text" maxlength="1000">
     </div>
     <div id="occupation-container" class="pure-control-group">
-      <label for="occupation" translate="yes">Atvinna</label>
+      <label for="occupation" translate="yes">Starf</label>
       <input required="" id="occupation" name="occupation" type="text" maxlength="1000">
     </div>
     <div id="location-container" class="pure-control-group">
@@ -76,41 +76,41 @@
       <input required="" id="company-name" name="company-name" type="text" maxlength="1000">
     </div>
     <div id="website-container" class="pure-control-group">
-      <label for="website" translate="yes">Website</label>
+      <label for="website" translate="yes">Vefsíða</label>
       <input required="" id="website" name="website" type="text" maxlength="1000">
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Ganga í samtökin</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Vertu með í samtökum</button>
     </div>
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      Árangri! Þú ert nú meðlimur í samtökunum
+      Árangur! Þú ert nú meðlimur í samtökunum
     </div>
   </template>
   <template id="invalid-invitation">
     <div class="error message" translate="yes">
-      Villa! Útboðið er ekki lengur aðgengilegt
+      Villa! Boðið er ekki lengur í boði
     </div>
   </template>
   <template id="invalid-secret-code">
     <div class="error message" translate="yes">
-      Villa! Útboðskóðinn er rangur
+      Villa! Boðskóðinn er rangur
     </div>
   </template>
   <template id="invalid-invitationid">
     <div class="error message" translate="yes">
-      Villa! Boðið var upp á vantar eða ógilt boð
+      Villa! Boðið var upp á eða ógilt boð
     </div>
   </template>
   <template id="invalid-account">
     <div class="error message" translate="yes">
-      Villa! Þú átt eða ert meðlimur í þessum samtökum
+      Villa! Þú átt eða ert aðili að þessari stofnun
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Villa! Óþekkt villa varð
+      Villa! Óþekkt villa kom upp
     </div>
   </template>
   <template id="profile-option">
@@ -120,102 +120,102 @@
   </template>
   <template id="invalid-organization-name">
     <div class="error message" translate="yes">
-      Villa! Gefið var upp vantar eða Ótækt heiti fyrirtækis
+      Villa! Nafn eða ógilt heiti fyrirtækis var gefið upp
     </div>
   </template>
   <template id="invalid-organization-name-length">
     <div class="error message" translate="yes">
-      Villa! Ógilt heiti fyrirtækis lengd
+      Villa! Ógild nafnlengd stofnunar
     </div>
   </template>
   <template id="invalid-organization-email">
     <div class="error message" translate="yes">
-      Villa! Tölvupóstur sem vantar eða var ógilt var veittur
+      Villa! Tölvupóstfang vantaði eða ógildur var afhentur
     </div>
   </template>
   <template id="success">
     <div class="success message" translate="yes">
-      Árangri! Fyrirtækið hefur verið stofnað með góðum árangri
+      Árangur! Skipulagið hefur verið stofnað með góðum árangri
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Villa! Villa kom upp við stofnun fyrirtækisins
+      Villa! Villa kom upp við stofnun samtakanna
     </div>
   </template>
   <template id="invalid-first-name">
     <div class="error message" translate="yes">
-      Villa! Fornafn sem vantar eða er ógilt
+      Villa! Fornafn vantar eða ógilt
     </div>
   </template>
   <template id="invalid-first-name-length">
     <div class="error message" translate="yes">
-      Villa! Gefið var ógilt fornafn
+      Villa! Ógilt fornafn var gefið upp
     </div>
   </template>
   <template id="invalid-last-name">
     <div class="error message" translate="yes">
-      Villa! Gefið var upp vantar eða ógilt eftirnafn
+      Villa! Eftirnafn eða ógilt eftirnafn var gefið upp
     </div>
   </template>
   <template id="invalid-last-name-length">
     <div class="error message" translate="yes">
-      Villa! Lagt var fram ógilt eftirnafn
+      Villa! Ógilt eftirnafn var gefið upp
     </div>
   </template>
   <template id="invalid-contact-email">
     <div class="error message" translate="yes">
-      Villa! Ógilt tölvupóstfang tengiliðar
+      Villa! Ógilt netfang tengiliðar
     </div>
   </template>
   <template id="invalid-display-email">
     <div class="error message" translate="yes">
-      Villa! Ógilt birtingarnetfang
+      Villa! Ógilt netfang fyrir skjáinn
     </div>
   </template>
   <template id="invalid-display-name">
     <div class="error message" translate="yes">
-      Villa! Gefið var upp vantar eða ótækt Birtingarheiti
+      Villa! Nafn eða ógilt skjánafn var gefið upp
     </div>
   </template>
   <template id="invalid-dob">
     <div class="error message" translate="yes">
-      Villa! Gefinn var upp týndur eða ógildur Fæðingardagur
+      Villa! Uppgefinn eða ógildur fæðingardagur var gefinn upp
     </div>
   </template>
   <template id="invalid-phone">
     <div class="error message" translate="yes">
-      Villa! Gefinn var upp týndur eða ógildur sími.
+      Villa! Síma sem vantar eða ógildur var til staðar.
     </div>
   </template>
   <template id="invalid-occupation">
     <div class="error message" translate="yes">
-      Villa! Boðið var upp á vantraust eða ógilt starf.
+      Villa! Starfs saknað eða ógild var veitt.
     </div>
   </template>
   <template id="invalid-location">
     <div class="error message" translate="yes">
-      Villa! Gefin var upp ótæk eða ógild staðsetning.
+      Villa! Uppgefin eða ógild staðsetning var gefin upp.
     </div>
   </template>
   <template id="invalid-company-name">
     <div class="error message" translate="yes">
-      Villa! Gefið var upp vantar eða Ótækt heiti fyrirtækis.
+      Villa! Nafn fyrirtækis vantar eða ógilt.
     </div>
   </template>
   <template id="invalid-website">
     <div class="error message" translate="yes">
-      Villa! Boðið var upp á vantar eða Ógilt vefsvæði.
+      Villa! Uppgefin eða ógild vefsíða var til staðar.
     </div>
   </template>
   <template id="invalid-display-name-length">
     <div class="error message" translate="yes">
-      Villa! Gefið var upp vantar eða ótækt Birtingarheiti
+      Villa! Nafn eða ógilt skjánafn var gefið upp
     </div>
   </template>
   <template id="invalid-profileid">
     <div class="error message" translate="yes">
-      Villa! Vantar eða Ógilt snið var valið.
+      Villa! Prófíllinn sem vantar eða ógildur var valinn.
     </div>
   </template>
 </body>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" data-navbar="/account/organizations/navbar.html">
+<head>
+  <meta charset="utf-8">
+  <title translate="yes">Akzeptéieren Invitatioun</title>
+  <link href="/public/pure-min.css" rel="stylesheet">
+  <link href="/public/content.css" rel="stylesheet">
+  <link href="/public/content-additional.css" rel="stylesheet">
+  <base target="_top" href="/">
+</head>
+<body>
+  <h1 translate="yes">Akzeptéieren Invitatioun</h1>
+  <p translate="yes">Dir gitt Member vun der Organisatioun nodeems Dir de Code agin hutt.</p>
+  <div id="message-container"></div>
+  <form id="submit-form" class="pure-form pure-form-stacked" action="/account/organizations/accept-invitation" name="submit-form">
+    <div class="pure-control-group">
+      <label for="invitationid" translate="yes">Invitatioun ID</label>
+      <input id="invitationid" name="invitationid" type="text" maxlength="100">
+    </div>
+    <div class="pure-control-group">
+      <label for="secret-code" translate="yes">Invitatioun Code</label>
+      <input id="secret-code" name="secret-code" type="text" maxlength="100">
+    </div>
+    <h2 translate="yes">Memberschaft Informatiounen</h2>
+    <div id="existing-profile-container" class="pure-control-group">
+      <label for="profileid" translate="yes">Benotzt existent Profil</label>
+      <select id="profileid" name="profileid">
+        <option value="" translate="yes">
+          Wielt e existent Profil
+        </option>
+      </select>
+    </div>
+    <h3 translate="yes">Neie Profil erstellen</h3>
+    <div id="display-name-container" class="pure-control-group">
+      <label for="display-name" translate="yes">Unzeigenumm</label>
+      <input required="" id="display-name" name="display-name" type="text" maxlength="1000">
+    </div>
+    <div id="display-email-container" class="pure-control-group">
+      <label for="display-email" translate="yes">Affichéiert E-Mail</label>
+      <input required="" id="display-email" name="display-email" type="text" maxlength="1000" size="50">
+    </div>
+    <div id="contact-email-container" class="pure-control-group">
+      <label for="contact-email" translate="yes">Kontakt E-Mail</label>
+      <input required="" id="contact-email" name="contact-email" type="text" maxlength="1000" size="50">
+    </div>
+    <div id="full-name-container">
+      <div class="pure-control-group">
+        <label for="first-name" translate="yes">Virnumm</label>
+      <input required="" id="first-name" name="first-name" type="text" maxlength="1000">
+      </div>
+      <div class="pure-control-group">
+        <label for="last-name" translate="yes">Familljennumm</label>
+      <input required="" id="last-name" name="last-name" type="text" maxlength="1000">
+      </div>
+    </div>
+    <div id="dob-container">
+      <div class="pure-control-group">
+        <label for="dob" translate="yes">Gebuertsdatum</label>
+      <input required="" id="dob" name="dob" type="text" maxlength="11">
+      </div>
+    </div>
+    <div id="phone-container" class="pure-control-group">
+      <label for="phone" translate="yes">Telefon</label>
+      <input required="" id="phone" name="phone" type="text" maxlength="1000">
+    </div>
+    <div id="occupation-container" class="pure-control-group">
+      <label for="occupation" translate="yes">Besetzung</label>
+      <input required="" id="occupation" name="occupation" type="text" maxlength="1000">
+    </div>
+    <div id="location-container" class="pure-control-group">
+      <label for="location" translate="yes">Standuert</label>
+      <input required="" id="location" name="location" type="text" maxlength="1000">
+    </div>
+    <div id="company-name-container" class="pure-control-group">
+      <label for="company-name" translate="yes">Firmen Numm</label>
+      <input required="" id="company-name" name="company-name" type="text" maxlength="1000">
+    </div>
+    <div id="website-container" class="pure-control-group">
+      <label for="website" translate="yes">Websäit</label>
+      <input required="" id="website" name="website" type="text" maxlength="1000">
+    </div>
+    <div class="pure-controls">
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Maacht mat Organisatioun</button>
+    </div>
+  </form>
+  <template id="success">
+    <div class="success message" translate="yes">
+      Erfolleg! Dir sidd elo e Member vun der Organisatioun
+    </div>
+  </template>
+  <template id="invalid-invitation">
+    <div class="error message" translate="yes">
+      Feeler! D'Invitatioun ass net méi verfügbar
+    </div>
+  </template>
+  <template id="invalid-secret-code">
+    <div class="error message" translate="yes">
+      Feeler! D'Invitatiounscode ass falsch
+    </div>
+  </template>
+  <template id="invalid-invitationid">
+    <div class="error message" translate="yes">
+      Feeler! Eng fehlend oder ongëlteg Invitatioun gouf ugebueden
+    </div>
+  </template>
+  <template id="invalid-account">
+    <div class="error message" translate="yes">
+      Feeler! Dir hutt oder sidd Member vun dëser Organisatioun
+    </div>
+  </template>
+  <template id="unknown-error">
+    <div class="error message" translate="yes">
+      Feeler! En onbekannte Feeler ass geschitt
+    </div>
+  </template>
+  <template id="profile-option">
+    <option value="${profile.profileid}">
+      ${profile.displayName} / ${profile.displayEmail}
+    </option>
+  </template>
+  <template id="invalid-organization-name">
+    <div class="error message" translate="yes">
+      Feeler! E fehlenden oder ongëltegen Organisatiounsnumm gouf uginn
+    </div>
+  </template>
+  <template id="invalid-organization-name-length">
+    <div class="error message" translate="yes">
+      Feeler! Ongëlteg Organisatiounsnumm Längt
+    </div>
+  </template>
+  <template id="invalid-organization-email">
+    <div class="error message" translate="yes">
+      Feeler! Eng fehlend oder ongëlteg Organisatiouns E-Mail gouf geliwwert
+    </div>
+  </template>
+  <template id="success">
+    <div class="success message" translate="yes">
+      Erfolleg! D'Organisatioun gouf erfollegräich erstallt
+    </div>
+  </template>
+  <template id="unknown-error">
+    <div class="error message" translate="yes">
+      Feeler! E Feeler ass beim Organiséiere vun der Organisatioun
+    </div>
+  </template>
+  <template id="invalid-first-name">
+    <div class="error message" translate="yes">
+      Feeler! E fehlenden oder ongëltegsten Virnumm ugebueden
+    </div>
+  </template>
+  <template id="invalid-first-name-length">
+    <div class="error message" translate="yes">
+      Feeler! En ongëltegen Virnumm gouf ugebueden
+    </div>
+  </template>
+  <template id="invalid-last-name">
+    <div class="error message" translate="yes">
+      Feeler! E fehlenden oder ongëltegen Numm gouf uginn
+    </div>
+  </template>
+  <template id="invalid-last-name-length">
+    <div class="error message" translate="yes">
+      Feeler! En ongëltege Familljennumm gouf ugebueden
+    </div>
+  </template>
+  <template id="invalid-contact-email">
+    <div class="error message" translate="yes">
+      Feeler! Ongëlteg Kontakt E-mail Adress
+    </div>
+  </template>
+  <template id="invalid-display-email">
+    <div class="error message" translate="yes">
+      Feeler! Ongëlteg E-Mailadress
+    </div>
+  </template>
+  <template id="invalid-display-name">
+    <div class="error message" translate="yes">
+      Feeler! E fehlenden oder ongültege Displaynumm gouf uginn
+    </div>
+  </template>
+  <template id="invalid-dob">
+    <div class="error message" translate="yes">
+      Feeler! E fehlenden oder ongëltegen Gebuertsdatum gouf presentéiert
+    </div>
+  </template>
+  <template id="invalid-phone">
+    <div class="error message" translate="yes">
+      Feeler! E vermësst oder ongëlteg Telefon gouf geliwwert.
+    </div>
+  </template>
+  <template id="invalid-occupation">
+    <div class="error message" translate="yes">
+      Feeler! Eng fehlend oder ongëlteg Besetzung gouf zur Verfügung gestallt.
+    </div>
+  </template>
+  <template id="invalid-location">
+    <div class="error message" translate="yes">
+      Feeler! Eng fehlend oder ongëlteg Plaz war zur Verfügung gestallt
+    </div>
+  </template>
+  <template id="invalid-company-name">
+    <div class="error message" translate="yes">
+      Feeler! E vermësst oder ongülteg Firma Numm gouf ugebueden.
+    </div>
+  </template>
+  <template id="invalid-website">
+    <div class="error message" translate="yes">
+      Feeler! Eng fehlend oder ongëlteg Websäit gouf presentéiert.
+    </div>
+  </template>
+  <template id="invalid-display-name-length">
+    <div class="error message" translate="yes">
+      Feeler! E fehlenden oder ongültege Displaynumm gouf uginn
+    </div>
+  </template>
+  <template id="invalid-profileid">
+    <div class="error message" translate="yes">
+      Feeler! E fehlend oder ongëlteg Profil gouf gewielt.
+    </div>
+  </template>
+</body>
+</html>

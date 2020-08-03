@@ -2,15 +2,15 @@
 <html lang="en" data-navbar="/account/organizations/navbar-organization.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">సవరించు ${organization.organizationid}</title>
+  <title translate="yes">మార్చు ${organization.organizationid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">సవరించు ${organization.organizationid}</h1>
-  <p translate="yes">మీ కాంటాక్ట్ సమాచారాన్ని సరైనది మరియు తాజాగా ఉంచండి.</p>
+  <h1 translate="yes">మార్చు ${organization.organizationid}</h1>
+  <p translate="yes">మీ సంప్రదింపు సమాచారాన్ని సరైనదిగా మరియు తాజాగా ఉంచండి.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/edit-organization?organizationid=${organization.organizationid}" name="submit-form">
     <div class="pure-control-group">
@@ -22,32 +22,32 @@
       <input id="email" name="email" type="text" maxlength="100">
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">ఆర్గనైజేషన్ అప్ డేట్ చేయండి</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">సంస్థను నవీకరించండి</button>
     </div>
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      విజయం! మీ ఆర్గనైజేషన్ సమాచారం అప్ డేట్ చేయబడింది
+      విజయం! మీ సంస్థ సమాచారం నవీకరించబడింది
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      తప్పు! తెలియని దోషం
+      లోపం! తెలియని లోపం సంభవించింది
     </div>
   </template>
   <template id="invalid-organization-name">
     <div class="error message" translate="yes">
-      తప్పు! మిస్ అయిన లేదా చెల్లుబాటు కాని ఆర్గనైజేషన్ పేరు ఇవ్వబడింది
+      లోపం! తప్పిపోయిన లేదా చెల్లని సంస్థ పేరు అందించబడింది
     </div>
   </template>
   <template id="invalid-organization-name-length">
     <div class="error message" translate="yes">
-      తప్పు! చెల్లని సంస్థ పేరు పొడవు
+      లోపం! సంస్థ పేరు పొడవు చెల్లదు
     </div>
   </template>
   <template id="invalid-organization-email">
     <div class="error message" translate="yes">
-      తప్పు! మిస్ అయిన లేదా చెల్లుబాటు కాని ఆర్గనైజేషన్ ఇమెయిల్ అందించబడింది
+      లోపం! తప్పిపోయిన లేదా చెల్లని సంస్థ ఇమెయిల్ అందించబడింది
     </div>
   </template>
 </body>

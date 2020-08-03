@@ -2,14 +2,14 @@
 <html lang="en" data-navbar="/account/organizations/navbar-membership.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Xem ${membership.membershipid}</title>
+  <title translate="yes">Lượt xem ${membership.membershipid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Xem ${membership.membershipid}</h1>
+  <h1 translate="yes">Lượt xem ${membership.membershipid}</h1>
   <table id="memberships-table" class="pure-table data-table">
     <tbody id="${membership.membershipid}">
       <tr>
@@ -21,11 +21,11 @@
         <td>${membership.createdFormatted}</td>
       </tr>
       <tr id="full-name">
-        <th translate="yes">Tên đầy đủ</th>
+        <th translate="yes">Họ và tên</th>
         <td>${membership.firstName} ${membership.lastName}</td>
       </tr>
       <tr id="contact-email">
-        <th translate="yes">Email liên hệ</th>
+        <th translate="yes">Địa chỉ email liên lạc</th>
         <td>
           <a href="mailto:${membership.contactEmail}">${membership.contactEmail}</a>
         </td>
@@ -61,7 +61,7 @@
         <td>${membership.companyName}</td>
       </tr>
       <tr id="website">
-        <th translate="yes">Trang web</th>
+        <th translate="yes">Trang mạng</th>
         <td>
           <a href="${membership.website}">${membership.website}</a>
         </td>

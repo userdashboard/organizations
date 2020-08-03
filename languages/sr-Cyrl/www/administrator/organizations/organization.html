@@ -2,14 +2,14 @@
 <html lang="en" data-navbar="/administrator/organizations/navbar-organization.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Приказ ${organization.organizationid}</title>
+  <title translate="yes">Поглед ${organization.organizationid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Приказ ${organization.organizationid}</h1>
+  <h1 translate="yes">Поглед ${organization.organizationid}</h1>
   <table id="organizations-table" class="pure-table data-table">
     <tbody id="${organization.organizationid}">
       <tr>
@@ -21,13 +21,13 @@
         <td>${organization.name}</td>
       </tr>
       <tr>
-        <th translate="yes">Е - поште</th>
+        <th translate="yes">Емаил</th>
         <td>
           <a href="mailto:${organization.email}">${organization.email}</a>
         </td>
       </tr>
       <tr>
-        <th translate="yes">Креирали</th>
+        <th translate="yes">Направљено</th>
         <td>${organization.createdFormatted}</td>
       </tr>
     </tbody>

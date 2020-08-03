@@ -10,14 +10,14 @@
 </head>
 <body>
   <h1 translate="yes">Nodot īpašumtiesības uz ${organization.organizationid}</h1>
-  <p translate="yes">Tas nekavējoties mainīt īpašnieku organizaiton.</p>
+  <p translate="yes">Tas nekavējoties mainīs organizācijas īpašnieku.</p>
   <div id="message-container"></div>
   <table id="organizations-table" class="pure-table object-table">
     <thead>
       <tr>
         <th>ID</th>
-        <th translate="yes">vārds</th>
-        <th translate="yes">E - pasta</th>
+        <th translate="yes">Vārds</th>
+        <th translate="yes">E-pasts</th>
         <th translate="yes">Izveidots</th>
       </tr>
     </thead>
@@ -35,12 +35,12 @@
       <label for="accountid" translate="yes">Jauns organizācijas īpašnieks</label>
       <select id="accountid" name="accountid">
         <option value="" translate="yes">
-          Atlasīt jaunu īpašnieku
+          Atlasiet jauno īpašnieku
         </option>
       </select>
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Pārsūtīt organizāciju</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Pārcelšanas organizācija</button>
     </div>
   </form>
   <template id="membership-option-template">
@@ -50,17 +50,17 @@
   </template>
   <template id="success">
     <div class="success message" translate="yes">
-      Panākumus! Jūs esat pārsūtījis organizāciju jaunajam īpašniekam
+      Panākumi! Jūs esat nodevis organizāciju jaunajam īpašniekam
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Kļūda! Pārsūtot organizāciju , radās kļūda
+      Kļūda! Pārceļot organizāciju, radās kļūda
     </div>
   </template>
   <template id="invalid-accountid">
     <div class="error message" translate="yes">
-      Kļūda! Tika atlasīts vai norādīts nederīgs adresāts
+      Kļūda! Tika izvēlēts vai sniegts nederīgs adresāts
     </div>
   </template>
 </body>

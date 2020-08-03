@@ -2,14 +2,14 @@
 <html lang="en" data-navbar="/account/organizations/navbar-invitation.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Prikaz ${invitation.invitationid}</title>
+  <title translate="yes">Pogled ${invitation.invitationid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Prikaz ${invitation.invitationid}</h1>
+  <h1 translate="yes">Pogled ${invitation.invitationid}</h1>
   <table id="invitations-table" class="pure-table data-table">
     <tbody id="${invitation.invitationid}">
       <tr>
@@ -17,11 +17,11 @@
         <td>${invitation.invitationid}</td>
       </tr>
       <tr>
-        <th translate="yes">Kreiran</th>
+        <th translate="yes">Napravljeno</th>
         <td>${invitation.createdFormatted}</td>
       </tr>
       <tr>
-        <th translate="yes">Prihvatila</th>
+        <th translate="yes">Prihvaćeno</th>
         <td id="accepted" translated="yes">Yes</td>
         <td id="not-accepted" translated="yes">No</td>
       </tr>

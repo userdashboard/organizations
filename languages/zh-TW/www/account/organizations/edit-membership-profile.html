@@ -10,7 +10,7 @@
 </head>
 <body>
   <h1 translate="yes">編輯 ${membership.membershipid} profile</h1>
-  <p translate="yes">共用此設定檔或此配置檔的其他使用的其他成員資格也將更新。</p>
+  <p translate="yes">共享此配置文件或使用該配置文件的其他任何成員資格也會被更新。</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/edit-membership-profile?membershipid=${membership.membershipid}" name="submit-form">
     <div id="display-name-container" class="pure-control-group">
@@ -22,16 +22,16 @@
       <input required="" id="display-email" name="display-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="contact-email-container" class="pure-control-group">
-      <label for="contact-email" translate="yes">聯絡電子郵件</label>
+      <label for="contact-email" translate="yes">聯繫電子郵件</label>
       <input required="" id="contact-email" name="contact-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="full-name-container">
       <div class="pure-control-group">
-        <label for="first-name" translate="yes">名稱</label>
+        <label for="first-name" translate="yes">名字</label>
         <input required="" id="first-name" name="first-name" type="text" maxlength="1000">
       </div>
       <div class="pure-control-group">
-        <label for="last-name" translate="yes">姓氏</label>
+        <label for="last-name" translate="yes">姓</label>
         <input required="" id="last-name" name="last-name" type="text" maxlength="1000">
       </div>
     </div>
@@ -46,7 +46,7 @@
       <input required="" id="phone" name="phone" type="text" maxlength="1000">
     </div>
     <div id="occupation-container" class="pure-control-group">
-      <label for="occupation" translate="yes">職業</label>
+      <label for="occupation" translate="yes">佔用</label>
       <input required="" id="occupation" name="occupation" type="text" maxlength="1000">
     </div>
     <div id="location-container" class="pure-control-group">
@@ -54,7 +54,7 @@
       <input required="" id="location" name="location" type="text" maxlength="1000">
     </div>
     <div id="company-name-container" class="pure-control-group">
-      <label for="company-name" translate="yes">公司名稱</label>
+      <label for="company-name" translate="yes">公司名</label>
       <input required="" id="company-name" name="company-name" type="text" maxlength="1000">
     </div>
     <div id="website-container" class="pure-control-group">
@@ -62,87 +62,87 @@
       <input required="" id="website" name="website" type="text" maxlength="1000">
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">更新成員資格</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">更新會員</button>
     </div>
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      成功!您的會員資訊已更新
+      成功！您的會員信息已更新
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      錯誤!發生未知的錯誤
+      錯誤！出現未知錯誤
     </div>
   </template>
   <template id="invalid-first-name">
     <div class="error message" translate="yes">
-      錯誤!提供缺少或無效的名稱
+      錯誤！提供的姓氏缺失或無效
     </div>
   </template>
   <template id="invalid-first-name-length">
     <div class="error message" translate="yes">
-      錯誤!提供不合法的名稱
+      錯誤！提供的名字無效
     </div>
   </template>
   <template id="invalid-last-name">
     <div class="error message" translate="yes">
-      錯誤!提供遺失或無效的姓氏
+      錯誤！提供的姓氏缺失或無效
     </div>
   </template>
   <template id="invalid-last-name-length">
     <div class="error message" translate="yes">
-      錯誤!提供無效的姓氏
+      錯誤！提供的姓氏無效
     </div>
   </template>
   <template id="invalid-contact-email">
     <div class="error message" translate="yes">
-      錯誤!不合法的聯絡人電子郵件地址
+      錯誤！無效的聯繫電子郵件地址
     </div>
   </template>
   <template id="invalid-display-email">
     <div class="error message" translate="yes">
-      錯誤!不合法顯示電子郵件地址
+      錯誤！無效的顯示電子郵件地址
     </div>
   </template>
   <template id="invalid-display-name">
     <div class="error message" translate="yes">
-      錯誤!提供遺失或不合法的顯示名稱
+      錯誤！提供的顯示名稱缺失或無效
     </div>
   </template>
   <template id="invalid-dob">
     <div class="error message" translate="yes">
-      錯誤!提供失蹤或無效的出生日期
+      錯誤！遺失或無效的出生日期
     </div>
   </template>
   <template id="invalid-phone">
     <div class="error message" translate="yes">
-      錯誤!提供了丟失或無效的電話。
+      錯誤！提供了丟失或無效的電話。
     </div>
   </template>
   <template id="invalid-occupation">
     <div class="error message" translate="yes">
-      錯誤!提供了失蹤或無效的佔領。
+      錯誤！提供了丟失或無效的職業。
     </div>
   </template>
   <template id="invalid-location">
     <div class="error message" translate="yes">
-      錯誤!提供了缺失或無效的位置。
+      錯誤！提供了丟失或無效的位置。
     </div>
   </template>
   <template id="invalid-company-name">
     <div class="error message" translate="yes">
-      錯誤!提供了缺失或無效的公司名稱。
+      錯誤！提供了缺失或無效的公司名稱。
     </div>
   </template>
   <template id="invalid-website">
     <div class="error message" translate="yes">
-      錯誤!提供了缺少或無效的網站。
+      錯誤！提供了一個丟失或無效的網站。
     </div>
   </template>
   <template id="invalid-display-name-length">
     <div class="error message" translate="yes">
-      錯誤!提供遺失或不合法的顯示名稱
+      錯誤！提供的顯示名稱缺失或無效
     </div>
   </template>
 </body>

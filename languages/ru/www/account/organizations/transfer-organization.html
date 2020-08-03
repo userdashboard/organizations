@@ -10,15 +10,15 @@
 </head>
 <body>
   <h1 translate="yes">Передача права собственности на ${organization.organizationid}</h1>
-  <p translate="yes">Это сразу же изменит владельца организайтона.</p>
+  <p translate="yes">Это немедленно изменит владельца организации.</p>
   <div id="message-container"></div>
   <table id="organizations-table" class="pure-table object-table">
     <thead>
       <tr>
         <th>ID</th>
-        <th translate="yes">Имя</th>
-        <th translate="yes">Отправить по электронной почте</th>
-        <th translate="yes">Создан</th>
+        <th translate="yes">название</th>
+        <th translate="yes">Эл. адрес</th>
+        <th translate="yes">созданный</th>
       </tr>
     </thead>
     <tr id="${organization.organizationid}">
@@ -35,12 +35,12 @@
       <label for="accountid" translate="yes">Новый владелец организации</label>
       <select id="accountid" name="accountid">
         <option value="" translate="yes">
-          Выбрать нового владельца
+          Выберите нового владельца
         </option>
       </select>
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Трансферная организация</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Организация трансфера</button>
     </div>
   </form>
   <template id="membership-option-template">
@@ -55,12 +55,12 @@
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Ошибка! Произошла ошибка передачи организации
+      Ошибка! Произошла ошибка при переносе организации
     </div>
   </template>
   <template id="invalid-accountid">
     <div class="error message" translate="yes">
-      Ошибка! Выбранный или предоставленный недействительный получатель
+      Ошибка! Недопустимый получатель был выбран или предоставлен
     </div>
   </template>
 </body>

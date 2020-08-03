@@ -19,11 +19,11 @@
       <input id="organization-name" type="text" maxlength="100" readonly>
     </div>
     <div class="pure-control-group">
-      <label for="secret-code" translate="yes">Kode Rahasia</label>
+      <label for="secret-code" translate="yes">Kode rahasia</label>
       <input id="secret-code" name="secret-code" type="text" maxlength="100">
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Membuat undangan</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Buat undangan</button>
     </div>
   </form>
   <template id="unknown-error">
@@ -33,17 +33,17 @@
   </template>
   <template id="invalid-secret-code">
     <div class="error message" translate="yes">
-      Kesalahan! Kode Rahasia hilang atau tidak valid
+      Kesalahan! Kode rahasia tidak ada atau tidak valid
     </div>
   </template>
   <template id="invalid-secret-code-length">
     <div class="error message" translate="yes">
-      Kesalahan! Kode Rahasia memiliki panjang yang tidak valid
+      Kesalahan! Kode rahasia memiliki panjang yang tidak valid
     </div>
   </template>
   <template id="success">
     <div class="success message">
-      <p translate="yes">Sukses! Berikan kode rahasia Anda dan link ini kepada seseorang untuk bergabung:</p>
+      <p translate="yes">Keberhasilan! Berikan kode rahasia Anda dan tautan ini kepada seseorang untuk bergabung:</p>
       <div class="invitation-link">
         <input type="text" readonly value="${organization.dashboardServer}/account/organizations/accept-invitation?invitationid=${organization.invitationid}">
       </div>

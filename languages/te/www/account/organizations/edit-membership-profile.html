@@ -2,15 +2,15 @@
 <html lang="en" data-navbar="/account/organizations/navbar-membership.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">సవరించు ${membership.membershipid} profile</title>
+  <title translate="yes">మార్చు ${membership.membershipid} profile</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">సవరించు ${membership.membershipid} profile</h1>
-  <p translate="yes">ఈ ప్రొఫైల్ భాగస్వామ్యం చేసే ఏదైనా ఇతర సభ్యత్వం, లేదా దాని యొక్క ఇతర వినియోగం కూడా అప్ డేట్ చేయబడుతుంది.</p>
+  <h1 translate="yes">మార్చు ${membership.membershipid} profile</h1>
+  <p translate="yes">ఈ ప్రొఫైల్u200cను భాగస్వామ్యం చేసే ఇతర సభ్యత్వం లేదా దాని యొక్క ఇతర వినియోగం కూడా నవీకరించబడుతుంది.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/edit-membership-profile?membershipid=${membership.membershipid}" name="submit-form">
     <div id="display-name-container" class="pure-control-group">
@@ -18,11 +18,11 @@
       <input required="" id="display-name" name="display-name" type="text" maxlength="1000">
     </div>
     <div id="display-email-container" class="pure-control-group">
-      <label for="display-email" translate="yes">ఇమెయిల్ ప్రదర్శించు</label>
+      <label for="display-email" translate="yes">ఇమెయిల్u200cను ప్రదర్శించు</label>
       <input required="" id="display-email" name="display-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="contact-email-container" class="pure-control-group">
-      <label for="contact-email" translate="yes">ఇమెయిల్ ని సంప్రదించండి</label>
+      <label for="contact-email" translate="yes">ఇమెయిల్u200cను సంప్రదించండి</label>
       <input required="" id="contact-email" name="contact-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="full-name-container">
@@ -58,91 +58,91 @@
       <input required="" id="company-name" name="company-name" type="text" maxlength="1000">
     </div>
     <div id="website-container" class="pure-control-group">
-      <label for="website" translate="yes">వెబ్ సైట్</label>
+      <label for="website" translate="yes">వెబ్సైట్</label>
       <input required="" id="website" name="website" type="text" maxlength="1000">
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">సభ్యత్వాన్ని నవీకరించు</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">సభ్యత్వాన్ని నవీకరించండి</button>
     </div>
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      విజయం! మీ సభ్యత్వ సమాచారం అప్ డేట్ చేయబడింది
+      విజయం! మీ సభ్యత్వ సమాచారం నవీకరించబడింది
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      తప్పు! తెలియని దోషం
+      లోపం! తెలియని లోపం సంభవించింది
     </div>
   </template>
   <template id="invalid-first-name">
     <div class="error message" translate="yes">
-      తప్పు! ఒక మిస్ అయిన లేదా చెల్లుబాటు కాని మొదటి పేరు అందించబడింది
+      లోపం! తప్పిపోయిన లేదా చెల్లని మొదటి పేరు అందించబడింది
     </div>
   </template>
   <template id="invalid-first-name-length">
     <div class="error message" translate="yes">
-      తప్పు! చెల్లని మొదటి పేరు ఇవ్వబడింది
+      లోపం! చెల్లని మొదటి పేరు అందించబడింది
     </div>
   </template>
   <template id="invalid-last-name">
     <div class="error message" translate="yes">
-      తప్పు! ఒక మిస్ అయిన లేదా చెల్లుబాటు కాని చివరి పేరు ఇవ్వబడింది
+      లోపం! తప్పిపోయిన లేదా చెల్లని చివరి పేరు అందించబడింది
     </div>
   </template>
   <template id="invalid-last-name-length">
     <div class="error message" translate="yes">
-      తప్పు! చెల్లని చివరి పేరు ఇవ్వబడింది
+      లోపం! చెల్లని చివరి పేరు అందించబడింది
     </div>
   </template>
   <template id="invalid-contact-email">
     <div class="error message" translate="yes">
-      తప్పు! చెల్లని కాంటాక్ట్ ఇమెయిల్ చిరునామా
+      లోపం! సంప్రదింపు ఇమెయిల్ చిరునామా చెల్లదు
     </div>
   </template>
   <template id="invalid-display-email">
     <div class="error message" translate="yes">
-      తప్పు! చెల్లని ప్రదర్శన ఇమెయిల్ చిరునామా
+      లోపం! ప్రదర్శన ఇమెయిల్ చిరునామా చెల్లదు
     </div>
   </template>
   <template id="invalid-display-name">
     <div class="error message" translate="yes">
-      తప్పు! మిస్ అయిన లేదా చెల్లుబాటు కాని డిస్ ప్లే పేరు అందించబడింది
+      లోపం! తప్పిపోయిన లేదా చెల్లని ప్రదర్శన పేరు అందించబడింది
     </div>
   </template>
   <template id="invalid-dob">
     <div class="error message" translate="yes">
-      తప్పు! తప్పిపోయిన లేదా చెల్లుబాటు కాని పుట్టిన తేదీ ఇవ్వబడింది
+      లోపం! తప్పిపోయిన లేదా చెల్లని పుట్టిన తేదీ అందించబడింది
     </div>
   </template>
   <template id="invalid-phone">
     <div class="error message" translate="yes">
-      తప్పు! మిస్ అయిన లేదా చెల్లుబాటు కాని ఫోన్ అందించబడింది.
+      లోపం! తప్పిపోయిన లేదా చెల్లని ఫోన్ అందించబడింది.
     </div>
   </template>
   <template id="invalid-occupation">
     <div class="error message" translate="yes">
-      తప్పు! ఒక తప్పిపోయిన లేదా చెల్లని వృత్తి అందించబడింది.
+      లోపం! తప్పిపోయిన లేదా చెల్లని వృత్తి అందించబడింది.
     </div>
   </template>
   <template id="invalid-location">
     <div class="error message" translate="yes">
-      తప్పు! మిస్ అయిన లేదా చెల్లుబాటు కాని లొకేషన్ అందించబడింది.
+      లోపం! తప్పిపోయిన లేదా చెల్లని స్థానం అందించబడింది.
     </div>
   </template>
   <template id="invalid-company-name">
     <div class="error message" translate="yes">
-      తప్పు! మిస్ అయిన లేదా చెల్లుబాటు కాని కంపెనీ పేరు ఇవ్వబడింది.
+      లోపం! తప్పిపోయిన లేదా చెల్లని కంపెనీ పేరు అందించబడింది.
     </div>
   </template>
   <template id="invalid-website">
     <div class="error message" translate="yes">
-      తప్పు! ఒక మిస్ అయిన లేదా చెల్లుబాటు కాని వెబ్ సైట్ అందించబడింది.
+      లోపం! తప్పిపోయిన లేదా చెల్లని వెబ్u200cసైట్ అందించబడింది.
     </div>
   </template>
   <template id="invalid-display-name-length">
     <div class="error message" translate="yes">
-      తప్పు! మిస్ అయిన లేదా చెల్లుబాటు కాని డిస్ ప్లే పేరు అందించబడింది
+      లోపం! తప్పిపోయిన లేదా చెల్లని ప్రదర్శన పేరు అందించబడింది
     </div>
   </template>
 </body>

@@ -11,7 +11,7 @@
 </head>
 <body>
   <h1 translate="yes">Créer une invitation pour ${organization.organizationid}</h1>
-  <p translate="yes">Les codes d’invitation permettent aux personnes de se joindre à votre organisation.</p>
+  <p translate="yes">Les codes d'invitation permettent aux personnes de rejoindre votre organisation.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/create-invitation?organizationid=${organization.organizationid}" name="submit-form">
     <div class="pure-control-group">
@@ -28,12 +28,12 @@
   </form>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Erreur! Une erreur inconnue s’est produite
+      Erreur! Une erreur inconnue est survenue
     </div>
   </template>
   <template id="invalid-secret-code">
     <div class="error message" translate="yes">
-      Erreur! Le code secret est manquant ou non valide
+      Erreur! Le code secret est manquant ou invalide
     </div>
   </template>
   <template id="invalid-secret-code-length">
@@ -43,7 +43,7 @@
   </template>
   <template id="success">
     <div class="success message">
-      <p translate="yes">Succès! Donnez votre code secret et ce lien à quelqu’un à rejoindre:</p>
+      <p translate="yes">Succès! Donnez votre code secret et ce lien à quelqu'un à rejoindre:</p>
       <div class="invitation-link">
         <input type="text" readonly value="${organization.dashboardServer}/account/organizations/accept-invitation?invitationid=${organization.invitationid}">
       </div>

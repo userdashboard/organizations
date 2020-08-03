@@ -2,15 +2,15 @@
 <html lang="en" data-navbar="/account/organizations/navbar-membership.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">సభ్యత్వాలను రద్దు చేయండి ${membership.membershipid}</title>
+  <title translate="yes">సభ్యులను ఉపసంహరించుకోండి ${membership.membershipid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">యొక్క సభ్యత్వాన్ని రద్దు చేయండి ${membership.membershipid}</h1>
-  <p translate="yes">ఇది వెంటనే ఆర్గనైజేషన్ నుంచి సభ్యుడిని తొలగిస్తుంది.</p>
+  <h1 translate="yes">యొక్క సభ్యత్వాన్ని ఉపసంహరించుకోండి ${membership.membershipid}</h1>
+  <p translate="yes">ఇది వెంటనే సభ్యుడిని సంస్థ నుండి తొలగిస్తుంది.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/revoke-membership?membershipid=${membership.membershipid}" name="submit-form">
     <div class="pure-control-group">
@@ -18,7 +18,7 @@
       <input id="organizationName" type="text" maxlength="100" readonly>
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">సభ్యత్వాన్ని తొలగించు</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">సభ్యత్వాన్ని తొలగించండి</button>
     </div>
   </form>
   <template id="success">
@@ -28,7 +28,7 @@
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      తప్పు! తెలియని దోషం
+      లోపం! తెలియని లోపం సంభవించింది
     </div>
   </template>
 </body>

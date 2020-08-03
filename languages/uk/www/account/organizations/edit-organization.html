@@ -10,7 +10,7 @@
 </head>
 <body>
   <h1 translate="yes">Редагувати ${organization.organizationid}</h1>
-  <p translate="yes">Тримайте вашу контактну інформацію правильною та актуальної.</p>
+  <p translate="yes">Підтримуйте свою контактну інформацію правильною та актуальною.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/edit-organization?organizationid=${organization.organizationid}" name="submit-form">
     <div class="pure-control-group">
@@ -18,7 +18,7 @@
       <input id="name" name="name" type="text" maxlength="100">
     </div>
     <div class="pure-control-group">
-      <label for="email" translate="yes">Електронної пошти</label>
+      <label for="email" translate="yes">Електронна пошта</label>
       <input id="email" name="email" type="text" maxlength="100">
     </div>
     <div class="pure-controls">
@@ -27,27 +27,27 @@
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      Успіху! Відомості про організацію оновлено
+      Успіху! Інформація про вашу організацію оновлена
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Помилка! Невідома помилка сталася
+      Помилка! Сталася невідома помилка
     </div>
   </template>
   <template id="invalid-organization-name">
     <div class="error message" translate="yes">
-      Помилка! Надане відсутнє або неприпустиме ім'я організації
+      Помилка! Було вказано відсутню або недійсну назву організації
     </div>
   </template>
   <template id="invalid-organization-name-length">
     <div class="error message" translate="yes">
-      Помилка! Неприпустима Довжина імені організації
+      Помилка! Недійсна довжина назви організації
     </div>
   </template>
   <template id="invalid-organization-email">
     <div class="error message" translate="yes">
-      Помилка! Відсутня або недійсна електронна пошта організації
+      Помилка! Було надано електронну пошту відсутньої чи недійсної організації
     </div>
   </template>
 </body>

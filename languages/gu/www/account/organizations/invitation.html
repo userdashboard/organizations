@@ -2,14 +2,14 @@
 <html lang="en" data-navbar="/account/organizations/navbar-invitation.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">દેખાવ ${invitation.invitationid}</title>
+  <title translate="yes">જુઓ ${invitation.invitationid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">દેખાવ ${invitation.invitationid}</h1>
+  <h1 translate="yes">જુઓ ${invitation.invitationid}</h1>
   <table id="invitations-table" class="pure-table data-table">
     <tbody id="${invitation.invitationid}">
       <tr>
@@ -17,11 +17,11 @@
         <td>${invitation.invitationid}</td>
       </tr>
       <tr>
-        <th translate="yes">બનાવેલ છે</th>
+        <th translate="yes">બનાવ્યું</th>
         <td>${invitation.createdFormatted}</td>
       </tr>
       <tr>
-        <th translate="yes">સ્વીકારેલ</th>
+        <th translate="yes">સ્વીકાર્યું</th>
         <td id="accepted" translated="yes">Yes</td>
         <td id="not-accepted" translated="yes">No</td>
       </tr>
@@ -30,7 +30,7 @@
         <td id="membership">
           <a href="/account/organizations/membership?membershipid=${invitation.membershipid}">${invitation.membershipid}</a>
         </td>
-        <td id="no-membership" translate="yes">કોઈ નથી</td>
+        <td id="no-membership" translate="yes">કોઈ નહી</td>
       </tr>
     </tbody>
   </table>

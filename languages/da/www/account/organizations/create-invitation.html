@@ -11,7 +11,7 @@
 </head>
 <body>
   <h1 translate="yes">Opret invitation til ${organization.organizationid}</h1>
-  <p translate="yes">Invitationskoder giver personer mulighed for at deltage i organisationen.</p>
+  <p translate="yes">Invitationskoder giver folk mulighed for at tilmelde dig din organisation.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/create-invitation?organizationid=${organization.organizationid}" name="submit-form">
     <div class="pure-control-group">
@@ -43,7 +43,7 @@
   </template>
   <template id="success">
     <div class="success message">
-      <p translate="yes">Succes! Giv din hemmelige kode og dette link til nogen til at deltage:</p>
+      <p translate="yes">Succes! Giv din hemmelige kode og dette link til nogen, der kan deltage:</p>
       <div class="invitation-link">
         <input type="text" readonly value="${organization.dashboardServer}/account/organizations/accept-invitation?invitationid=${organization.invitationid}">
       </div>

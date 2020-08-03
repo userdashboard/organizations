@@ -2,14 +2,14 @@
 <html lang="en" data-navbar="/administrator/organizations/navbar-invitation.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">நோக்கு ${invitation.invitationid}</title>
+  <title translate="yes">காண்க ${invitation.invitationid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">நோக்கு ${invitation.invitationid}</h1>
+  <h1 translate="yes">காண்க ${invitation.invitationid}</h1>
   <table id="invitations-table" class="pure-table data-table">
     <tbody id="${invitation.invitationid}">
       <tr>
@@ -17,20 +17,20 @@
         <td>${invitation.invitationid}</td>
       </tr>
       <tr>
-        <th translate="yes">உருவாக்க</th>
+        <th translate="yes">உருவாக்கப்பட்டது</th>
         <td>${invitation.createdFormatted}</td>
       </tr>
       <tr>
-        <th translate="yes">ஏற்கப்பட்டது</th>
+        <th translate="yes">ஏற்றுக்கொள்ளப்பட்டது</th>
         <td id="accepted">${invitation.acceptedFormatted}</td>
         <td id="not-accepted" translated="yes">No</td>
       </tr>
       <tr>
-        <th translate="yes">உறுப்பினர் நிலை</th>
+        <th translate="yes">உறுப்பினர்</th>
         <td id="membership">
           <a href="/administrator/organizations/membership?membershipid=${invitation.membershipid}">${invitation.membershipid}</a>
         </td>
-        <td id="no-membership" translate="yes">ஒருவரும் இலார்</td>
+        <td id="no-membership" translate="yes">யாரும் இல்லை</td>
       </tr>
     </tbody>
   </table>

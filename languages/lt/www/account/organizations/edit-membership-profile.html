@@ -10,7 +10,7 @@
 </head>
 <body>
   <h1 translate="yes">Redaguoti ${membership.membershipid} profile</h1>
-  <p translate="yes">Bet kuri kita narystė, bendrinanti šį profilį, arba kitoks jo naudojimas, taip pat bus atnaujinta.</p>
+  <p translate="yes">Bus atnaujintos ir visos kitos narystės turinčios narystės šiame profilyje arba kitokios jo naudojimo galimybės.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/edit-membership-profile?membershipid=${membership.membershipid}" name="submit-form">
     <div id="display-name-container" class="pure-control-group">
@@ -18,16 +18,16 @@
       <input required="" id="display-name" name="display-name" type="text" maxlength="1000">
     </div>
     <div id="display-email-container" class="pure-control-group">
-      <label for="display-email" translate="yes">Rodyti el. paštą</label>
+      <label for="display-email" translate="yes">Rodyti el. Paštą</label>
       <input required="" id="display-email" name="display-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="contact-email-container" class="pure-control-group">
-      <label for="contact-email" translate="yes">Kontaktinis el. paštas</label>
+      <label for="contact-email" translate="yes">Kontaktinis Elektroninis paštas</label>
       <input required="" id="contact-email" name="contact-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="full-name-container">
       <div class="pure-control-group">
-        <label for="first-name" translate="yes">Vardas</label>
+        <label for="first-name" translate="yes">Pirmas vardas</label>
         <input required="" id="first-name" name="first-name" type="text" maxlength="1000">
       </div>
       <div class="pure-control-group">
@@ -37,20 +37,20 @@
     </div>
     <div id="dob-container">
       <div class="pure-control-group">
-        <label for="dob" translate="yes">gimimo data</label>
+        <label for="dob" translate="yes">Gimimo data</label>
         <input required="" id="dob" name="dob" type="text" maxlength="11">
       </div>
     </div>
     <div id="phone-container" class="pure-control-group">
-      <label for="phone" translate="yes">Telefono</label>
+      <label for="phone" translate="yes">Telefonas</label>
       <input required="" id="phone" name="phone" type="text" maxlength="1000">
     </div>
     <div id="occupation-container" class="pure-control-group">
-      <label for="occupation" translate="yes">Okupacijos</label>
+      <label for="occupation" translate="yes">Pareigos</label>
       <input required="" id="occupation" name="occupation" type="text" maxlength="1000">
     </div>
     <div id="location-container" class="pure-control-group">
-      <label for="location" translate="yes">Vietą</label>
+      <label for="location" translate="yes">Vieta</label>
       <input required="" id="location" name="location" type="text" maxlength="1000">
     </div>
     <div id="company-name-container" class="pure-control-group">
@@ -58,66 +58,66 @@
       <input required="" id="company-name" name="company-name" type="text" maxlength="1000">
     </div>
     <div id="website-container" class="pure-control-group">
-      <label for="website" translate="yes">Svetainėje</label>
+      <label for="website" translate="yes">Interneto svetainė</label>
       <input required="" id="website" name="website" type="text" maxlength="1000">
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Atnaujinti narystę</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Atnaujinkite narystę</button>
     </div>
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      Sėkmės! Jūsų narystės informacija atnaujinta
+      Sėkmė! Jūsų narystės informacija buvo atnaujinta
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Klaida! Nežinoma klaida, ocurred
+      Klaida! Įvyko nežinoma klaida
     </div>
   </template>
   <template id="invalid-first-name">
     <div class="error message" translate="yes">
-      Klaida! Pateiktas trūkstamas arba neleistinas vardas
+      Klaida! Pateiktas trūkstamas arba netinkamas vardas
     </div>
   </template>
   <template id="invalid-first-name-length">
     <div class="error message" translate="yes">
-      Klaida! Pateiktas neleistinas vardas
+      Klaida! Buvo pateiktas neteisingas vardas
     </div>
   </template>
   <template id="invalid-last-name">
     <div class="error message" translate="yes">
-      Klaida! Pateiktas trūkstamas arba neleistinas pavardė
+      Klaida! Buvo pateikta trūkstama arba netinkama pavardė
     </div>
   </template>
   <template id="invalid-last-name-length">
     <div class="error message" translate="yes">
-      Klaida! Pateiktas neleistinas pavardė
+      Klaida! Buvo pateikta neteisinga pavardė
     </div>
   </template>
   <template id="invalid-contact-email">
     <div class="error message" translate="yes">
-      Klaida! Netinkamas kontakto el. pašto adresas
+      Klaida! Neteisingas kontaktinis el. Pašto adresas
     </div>
   </template>
   <template id="invalid-display-email">
     <div class="error message" translate="yes">
-      Klaida! Neleistinas rodomas el. pašto adresas
+      Klaida! Neteisingas rodomas el. Pašto adresas
     </div>
   </template>
   <template id="invalid-display-name">
     <div class="error message" translate="yes">
-      Klaida! Pateiktas trūkstamas arba neleistinas rodomas pavadinimas
+      Klaida! Pateiktas trūkstamas arba netinkamas rodomas vardas
     </div>
   </template>
   <template id="invalid-dob">
     <div class="error message" translate="yes">
-      Klaida! Nebuvo arba buvo pateikta netinkama gimimo data
+      Klaida! Buvo pateikta trūkstama arba negaliojanti gimimo data
     </div>
   </template>
   <template id="invalid-phone">
     <div class="error message" translate="yes">
-      Klaida! Pateiktas trūkstamas arba netinkamas telefonas.
+      Klaida! Buvo pateiktas trūkstamas arba netinkamas telefonas.
     </div>
   </template>
   <template id="invalid-occupation">
@@ -127,22 +127,22 @@
   </template>
   <template id="invalid-location">
     <div class="error message" translate="yes">
-      Klaida! Pateikta trūkstama arba netinkama vieta.
+      Klaida! Nurodyta trūkstama arba netinkama vieta.
     </div>
   </template>
   <template id="invalid-company-name">
     <div class="error message" translate="yes">
-      Klaida! Pateiktas trūkstamas arba netinkamas įmonės pavadinimas.
+      Klaida! Nurodytas trūkstamas arba netinkamas įmonės pavadinimas.
     </div>
   </template>
   <template id="invalid-website">
     <div class="error message" translate="yes">
-      Klaida! Pateikta trūkstama arba netinkama svetainė.
+      Klaida! Buvo pateikta trūkstama arba netinkama svetainė.
     </div>
   </template>
   <template id="invalid-display-name-length">
     <div class="error message" translate="yes">
-      Klaida! Pateiktas trūkstamas arba neleistinas rodomas pavadinimas
+      Klaida! Pateiktas trūkstamas arba netinkamas rodomas vardas
     </div>
   </template>
 </body>

@@ -2,7 +2,7 @@
 <html lang="en" data-navbar="/account/organizations/navbar-organization.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Kreiraj pozivnicu za ${organization.organizationid}</title>
+  <title translate="yes">Kreirajte pozivnicu za ${organization.organizationid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/organizations/organizations-content.css" rel="stylesheet">
@@ -10,8 +10,8 @@
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Kreiraj pozivnicu za ${organization.organizationid}</h1>
-  <p translate="yes">Pozivne šifre dozvoljavaju ljudima da se pridruže vašoj organizaciji.</p>
+  <h1 translate="yes">Kreirajte pozivnicu za ${organization.organizationid}</h1>
+  <p translate="yes">Pozivni pozivi omogućavaju ljudima da se pridruže vašoj organizaciji.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/create-invitation?organizationid=${organization.organizationid}" name="submit-form">
     <div class="pure-control-group">
@@ -23,27 +23,27 @@
       <input id="secret-code" name="secret-code" type="text" maxlength="100">
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Kreiraj pozivnicu</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Kreirajte pozivnicu</button>
     </div>
   </form>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Greška! Dogodila se nepoznata greška
+      Greška! Došlo je do nepoznate pogreške
     </div>
   </template>
   <template id="invalid-secret-code">
     <div class="error message" translate="yes">
-      Greška! Tajna šifra nedostaje ili Nevažeća
+      Greška! Tajni kod nedostaje ili je nevažeći
     </div>
   </template>
   <template id="invalid-secret-code-length">
     <div class="error message" translate="yes">
-      Greška! Tajna šifra ima nevažeću dužinu
+      Greška! Tajni kod ima nevažeću dužinu
     </div>
   </template>
   <template id="success">
     <div class="success message">
-      <p translate="yes">Uspjeh! Dajte svoju tajnu šifru i ovu vezu sa nekim da vam se pridruži:</p>
+      <p translate="yes">Uspeh! Dajte svoj tajni kod i ovu vezu nekome da se pridruži:</p>
       <div class="invitation-link">
         <input type="text" readonly value="${organization.dashboardServer}/account/organizations/accept-invitation?invitationid=${organization.invitationid}">
       </div>

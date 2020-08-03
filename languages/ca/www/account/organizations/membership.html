@@ -2,14 +2,14 @@
 <html lang="en" data-navbar="/account/organizations/navbar-membership.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Mostra ${membership.membershipid}</title>
+  <title translate="yes">Veure ${membership.membershipid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Mostra ${membership.membershipid}</h1>
+  <h1 translate="yes">Veure ${membership.membershipid}</h1>
   <table id="memberships-table" class="pure-table data-table">
     <tbody id="${membership.membershipid}">
       <tr>
@@ -17,11 +17,11 @@
         <td>${membership.membershipid}</td>
       </tr>
       <tr>
-        <th translate="yes">Creada</th>
+        <th translate="yes">Creat</th>
         <td>${membership.createdFormatted}</td>
       </tr>
       <tr id="full-name">
-        <th translate="yes">Nom complert</th>
+        <th translate="yes">Nom complet</th>
         <td>${membership.firstName} ${membership.lastName}</td>
       </tr>
       <tr id="contact-email">
@@ -31,11 +31,11 @@
         </td>
       </tr>
       <tr id="display-name">
-        <th translate="yes">Nom de visualització</th>
+        <th translate="yes">Mostra el nom</th>
         <td>${membership.displayName}</td>
       </tr>
       <tr id="display-email">
-        <th translate="yes">Correu electrònic de visualització</th>
+        <th translate="yes">Mostra el correu electrònic</th>
         <td>
           <a href="mailto:${membership.displayEmail}">${membership.displayEmail}</a>
         </td>
@@ -57,7 +57,7 @@
         <td>${membership.location}</td>
       </tr>
       <tr id="company-name">
-        <th translate="yes">Nom de l'empresa</th>
+        <th translate="yes">Nom de la companyia</th>
         <td>${membership.companyName}</td>
       </tr>
       <tr id="website">

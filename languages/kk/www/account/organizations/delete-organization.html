@@ -2,33 +2,33 @@
 <html lang="en" data-navbar="/account/organizations/navbar-organization.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Өшіру ${organization.organizationid}</title>
+  <title translate="yes">Жою ${organization.organizationid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Өшіру ${organization.organizationid}</h1>
-  <p translate="yes">Ұйым бірден жойылады және қалпына келтіруге болмайды.</p>
+  <h1 translate="yes">Жою ${organization.organizationid}</h1>
+  <p translate="yes">Ұйым дереу жойылады және қалпына келтірілмейді.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/delete-organization?organizationid=${organization.organizationid}" name="submit-form">
     <div class="pure-control-group">
-      <label for="organizationName" translate="yes">Ұйым</label>
+      <label for="organizationName" translate="yes">Ұйымдастыру</label>
       <input id="organizationName" type="text" maxlength="100" readonly>
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Ұйымды өшіру</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Ұйымды жою</button>
     </div>
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      Табыс! Ұйым біржолата жойылды
+      Жетістік! Ұйым біржола жойылды
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Қате! Ұйымды жою қатесі
+      Қате! Ұйымды жою кезінде қате пайда болды
     </div>
   </template>
 </body>

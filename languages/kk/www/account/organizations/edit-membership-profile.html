@@ -10,11 +10,11 @@
 </head>
 <body>
   <h1 translate="yes">Өңдеу ${membership.membershipid} profile</h1>
-  <p translate="yes">Осы профильді ортақ пайдаланатын кез келген басқа мүшелік немесе оның басқа қолданысы да жаңартылады.</p>
+  <p translate="yes">Бұл профильді бөлісетін кез-келген мүшелік немесе оны басқа пайдалану да жаңартылады.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/edit-membership-profile?membershipid=${membership.membershipid}" name="submit-form">
     <div id="display-name-container" class="pure-control-group">
-      <label for="display-name" translate="yes">Көрсету атауы</label>
+      <label for="display-name" translate="yes">Көрсетілетін атау</label>
       <input required="" id="display-name" name="display-name" type="text" maxlength="1000">
     </div>
     <div id="display-email-container" class="pure-control-group">
@@ -22,7 +22,7 @@
       <input required="" id="display-email" name="display-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="contact-email-container" class="pure-control-group">
-      <label for="contact-email" translate="yes">Контакт электрондық поштасы</label>
+      <label for="contact-email" translate="yes">Байланыс электрондық поштасы</label>
       <input required="" id="contact-email" name="contact-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="full-name-container">
@@ -31,13 +31,13 @@
         <input required="" id="first-name" name="first-name" type="text" maxlength="1000">
       </div>
       <div class="pure-control-group">
-        <label for="last-name" translate="yes">Тегі</label>
+        <label for="last-name" translate="yes">Тек</label>
         <input required="" id="last-name" name="last-name" type="text" maxlength="1000">
       </div>
     </div>
     <div id="dob-container">
       <div class="pure-control-group">
-        <label for="dob" translate="yes">Туған күні</label>
+        <label for="dob" translate="yes">Туған кезі</label>
         <input required="" id="dob" name="dob" type="text" maxlength="11">
       </div>
     </div>
@@ -50,11 +50,11 @@
       <input required="" id="occupation" name="occupation" type="text" maxlength="1000">
     </div>
     <div id="location-container" class="pure-control-group">
-      <label for="location" translate="yes">Орын</label>
+      <label for="location" translate="yes">Орналасуы</label>
       <input required="" id="location" name="location" type="text" maxlength="1000">
     </div>
     <div id="company-name-container" class="pure-control-group">
-      <label for="company-name" translate="yes">Компанияның атауы</label>
+      <label for="company-name" translate="yes">Компанияның Аты</label>
       <input required="" id="company-name" name="company-name" type="text" maxlength="1000">
     </div>
     <div id="website-container" class="pure-control-group">
@@ -67,52 +67,52 @@
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      Табыс! Мүшелік туралы ақпарат жаңартылды
+      Жетістік! Сіздің мүшелік туралы мәліметтер жаңартылды
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Қате! Белгісіз қате
+      Қате! Белгісіз қате пайда болды
     </div>
   </template>
   <template id="invalid-first-name">
     <div class="error message" translate="yes">
-      Қате! Жоқ немесе жарамсыз бірінші атау
+      Қате! Ат жоқ немесе жарамсыз
     </div>
   </template>
   <template id="invalid-first-name-length">
     <div class="error message" translate="yes">
-      Қате! Жарамсыз бірінші атау берілді
+      Қате! Жарамсыз атау берілген
     </div>
   </template>
   <template id="invalid-last-name">
     <div class="error message" translate="yes">
-      Қате! Жоқ немесе жарамсыз тегі берілді
+      Қате! Жоқ немесе жарамсыз фамилия берілген
     </div>
   </template>
   <template id="invalid-last-name-length">
     <div class="error message" translate="yes">
-      Қате! Жарамсыз тегі берілді
+      Қате! Жарамсыз фамилия берілген
     </div>
   </template>
   <template id="invalid-contact-email">
     <div class="error message" translate="yes">
-      Қате! Контакт электрондық пошта мекенжайы дұрыс емес
+      Қате! Жарамсыз электрондық пошта мекенжайы
     </div>
   </template>
   <template id="invalid-display-email">
     <div class="error message" translate="yes">
-      Қате! Электрондық пошта мекенжайын көрсету дұрыс емес
+      Қате! Жарамсыз көрсетілетін электрондық пошта мекенжайы
     </div>
   </template>
   <template id="invalid-display-name">
     <div class="error message" translate="yes">
-      Қате! Жоқ немесе жарамсыз дисплей атауы берілді
+      Қате! Жоқ немесе жарамсыз дисплей атауы берілген
     </div>
   </template>
   <template id="invalid-dob">
     <div class="error message" translate="yes">
-      Қате! Хабар-ошарсыз жоғалған немесе жарамсыз туған күні көрсетілді
+      Қате! Жетіспеген немесе жарамсыз туған күні көрсетілген
     </div>
   </template>
   <template id="invalid-phone">
@@ -122,17 +122,17 @@
   </template>
   <template id="invalid-occupation">
     <div class="error message" translate="yes">
-      Қате! Хабар-ошарсыз кеткен немесе жарамсыз кәсіп пен қызмет түрі қамтамасыз етілді.
+      Қате! Жетіспейтін немесе жарамсыз мамандық берілген.
     </div>
   </template>
   <template id="invalid-location">
     <div class="error message" translate="yes">
-      Қате! Жоқ немесе жарамсыз орын берілді.
+      Қате! Жоқ немесе жарамсыз орын ұсынылды.
     </div>
   </template>
   <template id="invalid-company-name">
     <div class="error message" translate="yes">
-      Қате! Жоқ немесе жарамсыз компания атауы берілді.
+      Қате! Компанияның жоқ немесе жарамсыз атауы ұсынылды.
     </div>
   </template>
   <template id="invalid-website">
@@ -142,7 +142,7 @@
   </template>
   <template id="invalid-display-name-length">
     <div class="error message" translate="yes">
-      Қате! Жоқ немесе жарамсыз дисплей атауы берілді
+      Қате! Жоқ немесе жарамсыз дисплей атауы берілген
     </div>
   </template>
 </body>

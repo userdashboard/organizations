@@ -2,14 +2,14 @@
 <html lang="en" data-navbar="/administrator/organizations/navbar-invitation.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Көрініс ${invitation.invitationid}</title>
+  <title translate="yes">Көру ${invitation.invitationid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Көрініс ${invitation.invitationid}</h1>
+  <h1 translate="yes">Көру ${invitation.invitationid}</h1>
   <table id="invitations-table" class="pure-table data-table">
     <tbody id="${invitation.invitationid}">
       <tr>
@@ -17,7 +17,7 @@
         <td>${invitation.invitationid}</td>
       </tr>
       <tr>
-        <th translate="yes">Құрылып қалар</th>
+        <th translate="yes">Жасалды</th>
         <td>${invitation.createdFormatted}</td>
       </tr>
       <tr>
@@ -30,7 +30,7 @@
         <td id="membership">
           <a href="/administrator/organizations/membership?membershipid=${invitation.membershipid}">${invitation.membershipid}</a>
         </td>
-        <td id="no-membership" translate="yes">Ешкім жоқ</td>
+        <td id="no-membership" translate="yes">Ешкім</td>
       </tr>
     </tbody>
   </table>

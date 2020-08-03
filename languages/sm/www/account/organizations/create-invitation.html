@@ -2,7 +2,7 @@
 <html lang="en" data-navbar="/account/organizations/navbar-organization.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Fatu le valaaulia mo ${organization.organizationid}</title>
+  <title translate="yes">Fatu valaaulia mo ${organization.organizationid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/organizations/organizations-content.css" rel="stylesheet">
@@ -10,8 +10,8 @@
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Fatu le valaaulia mo ${organization.organizationid}</h1>
-  <p translate="yes">O numera o le valaaulia e mafai ai e tagata ona auai i la outou faalapotopotoga.</p>
+  <h1 translate="yes">Fatu valaaulia mo ${organization.organizationid}</h1>
+  <p translate="yes">Valaaulia tusi faʻatagaina tagata e auai i lau faʻalapotopotoga.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/create-invitation?organizationid=${organization.organizationid}" name="submit-form">
     <div class="pure-control-group">
@@ -19,31 +19,31 @@
       <input id="organization-name" type="text" maxlength="100" readonly>
     </div>
     <div class="pure-control-group">
-      <label for="secret-code" translate="yes">Numera faalilolilo</label>
+      <label for="secret-code" translate="yes">Tulafono lilo</label>
       <input id="secret-code" name="secret-code" type="text" maxlength="100">
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Fatu le valaaulia</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Fatu valaaulia</button>
     </div>
   </form>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Mea sese! Na tupu se mea sese e le mailoa
+      Sese! O se mea sese le iloa na tupu
     </div>
   </template>
   <template id="invalid-secret-code">
     <div class="error message" translate="yes">
-      Mea sese! O loo misi pe e le taulia le numera faalilolilo
+      Sese! O le tulafono faalilolilo o loʻo misi pe ua le saʻo
     </div>
   </template>
   <template id="invalid-secret-code-length">
     <div class="error message" translate="yes">
-      Mea sese! E sese le umi o le numera faalilolilo
+      Sese! E le aoga le umi o le tulafono faalilolilo
     </div>
   </template>
   <template id="success">
     <div class="success message">
-      <p translate="yes">Manuia! Tuu atu lau numera lilo ma le sootaga lenei i se tasi e auai:</p>
+      <p translate="yes">Manuia! Tuʻu lau faʻamatalaga faalilolilo ma lenei sootaga i se tasi e faʻatasi:</p>
       <div class="invitation-link">
         <input type="text" readonly value="${organization.dashboardServer}/account/organizations/accept-invitation?invitationid=${organization.invitationid}">
       </div>

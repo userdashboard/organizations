@@ -2,22 +2,22 @@
 <html lang="en" data-navbar="/account/organizations/navbar-organization.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Mentransfer kepemilikan ${organization.organizationid}</title>
+  <title translate="yes">Mentransfer kepemilikan atas ${organization.organizationid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Mentransfer kepemilikan ${organization.organizationid}</h1>
-  <p translate="yes">Ini akan segera mengubah pemilik organizaiton.</p>
+  <h1 translate="yes">Mentransfer kepemilikan atas ${organization.organizationid}</h1>
+  <p translate="yes">Ini akan segera mengubah pemilik organisasi.</p>
   <div id="message-container"></div>
   <table id="organizations-table" class="pure-table object-table">
     <thead>
       <tr>
         <th>ID</th>
         <th translate="yes">Nama</th>
-        <th translate="yes">Email</th>
+        <th translate="yes">Surel</th>
         <th translate="yes">Dibuat</th>
       </tr>
     </thead>
@@ -40,7 +40,7 @@
       </select>
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Organisasi transfer</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Organisasi pemindahan</button>
     </div>
   </form>
   <template id="membership-option-template">
@@ -50,12 +50,12 @@
   </template>
   <template id="success">
     <div class="success message" translate="yes">
-      Sukses! Anda telah mentransfer organisasi ke pemilik baru
+      Keberhasilan! Anda telah mentransfer organisasi ke pemilik baru
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Kesalahan! Terjadi galat mentransfer organisasi
+      Kesalahan! Terjadi kesalahan saat mentransfer organisasi
     </div>
   </template>
   <template id="invalid-accountid">

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" data-navbar="/account/organizations/navbar-organization.html">
+<head>
+  <meta charset="utf-8">
+  <title translate="yes">Редакцияләү ${organization.organizationid}</title>
+  <link href="/public/pure-min.css" rel="stylesheet">
+  <link href="/public/content.css" rel="stylesheet">
+  <link href="/public/content-additional.css" rel="stylesheet">
+  <base target="_top" href="/">
+</head>
+<body>
+  <h1 translate="yes">Редакцияләү ${organization.organizationid}</h1>
+  <p translate="yes">Контакт мәгълүматыгызны дөрес һәм заманча саклагыз.</p>
+  <div id="message-container"></div>
+  <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/edit-organization?organizationid=${organization.organizationid}" name="submit-form">
+    <div class="pure-control-group">
+      <label for="name" translate="yes">Исем</label>
+      <input id="name" name="name" type="text" maxlength="100">
+    </div>
+    <div class="pure-control-group">
+      <label for="email" translate="yes">Электрон почта</label>
+      <input id="email" name="email" type="text" maxlength="100">
+    </div>
+    <div class="pure-controls">
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Оештыруны яңарту</button>
+    </div>
+  </form>
+  <template id="success">
+    <div class="success message" translate="yes">
+      Уңыш! Сезнең оешма турында мәгълүмат яңартылды
+    </div>
+  </template>
+  <template id="unknown-error">
+    <div class="error message" translate="yes">
+      Хата! Билгесез хата килеп чыкты
+    </div>
+  </template>
+  <template id="invalid-organization-name">
+    <div class="error message" translate="yes">
+      Хата! Organizationгалган яки яраксыз оешма исеме күрсәтелде
+    </div>
+  </template>
+  <template id="invalid-organization-name-length">
+    <div class="error message" translate="yes">
+      Хата! Дөрес булмаган оешма исеме озынлыгы
+    </div>
+  </template>
+  <template id="invalid-organization-email">
+    <div class="error message" translate="yes">
+      Хата! Missingгалган яки яраксыз оешма электрон почтасы бирелде
+    </div>
+  </template>
+</body>
+</html>

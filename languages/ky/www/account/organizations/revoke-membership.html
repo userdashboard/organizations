@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" data-navbar="/account/organizations/navbar-membership.html">
+<head>
+  <meta charset="utf-8">
+  <title translate="yes">Мүчөлүктү жокко чыгаруу ${membership.membershipid}</title>
+  <link href="/public/pure-min.css" rel="stylesheet">
+  <link href="/public/content.css" rel="stylesheet">
+  <link href="/public/content-additional.css" rel="stylesheet">
+  <base target="_top" href="/">
+</head>
+<body>
+  <h1 translate="yes">Мүчөлүгүн жокко чыгаруу ${membership.membershipid}</h1>
+  <p translate="yes">Бул мүчөнү дароо уюмдан чыгарат.</p>
+  <div id="message-container"></div>
+  <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/revoke-membership?membershipid=${membership.membershipid}" name="submit-form">
+    <div class="pure-control-group">
+      <label for="organizationName" translate="yes">уюм</label>
+      <input id="organizationName" type="text" maxlength="100" readonly>
+    </div>
+    <div class="pure-controls">
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Мүчөлүктү жок кылуу</button>
+    </div>
+  </form>
+  <template id="success">
+    <div class="success message" translate="yes">
+      Ийгилик! Мүчөлүк биротоло жок кылынды
+    </div>
+  </template>
+  <template id="unknown-error">
+    <div class="error message" translate="yes">
+      Error! Белгисиз ката кетти
+    </div>
+  </template>
+</body>
+</html>

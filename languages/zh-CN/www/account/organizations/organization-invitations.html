@@ -2,25 +2,25 @@
 <html lang="en" data-navbar="/account/organizations/navbar-organization.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">邀请函 ${organization.organizationid}</title>
+  <title translate="yes">邀请 ${organization.organizationid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">邀请函 ${organization.organizationid}</h1>
+  <h1 translate="yes">邀请 ${organization.organizationid}</h1>
   <p><a href="/account/organizations/create-invitation?organizationid=${organization.organizationid}" class="pure-button" translate="yes">创建邀请</a></p>
   <div id="no-invitations">
-    <p translate="yes">组织尚未收到任何邀请。</p>
+    <p translate="yes">该组织还没有任何邀请。</p>
   </div>
   <table id="invitations-table" class="pure-table pure-table-striped list-table">
     <thead>
       <tr>
         <th>ID</th>
-        <th translate="yes">创建</th>
-        <th translate="yes">接受</th>
-        <th translate="yes">会员</th>
+        <th translate="yes">已建立</th>
+        <th translate="yes">公认</th>
+        <th translate="yes">会员资格</th>
       </tr>
     </thead>
   </table>

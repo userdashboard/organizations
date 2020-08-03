@@ -2,23 +2,23 @@
 <html lang="en" data-navbar="/account/organizations/navbar-membership.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">ಸಂಕಲನ ${membership.membershipid} profile</title>
+  <title translate="yes">ತಿದ್ದು ${membership.membershipid} profile</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">ಸಂಕಲನ ${membership.membershipid} profile</h1>
-  <p translate="yes">ಈ ಪ್ರೊಫೈಲ್ ಅನ್ನು ಹಂಚಿಕೊಳ್ಳುವ ಇತರ ಯಾವುದೇ ಸದಸ್ಯತ್ವ, ಅಥವಾ ಅದರ ಇತರ ಬಳಕೆಯನ್ನು ಸಹ ನವೀಕರಿಸಲಾಗುವುದು.</p>
+  <h1 translate="yes">ತಿದ್ದು ${membership.membershipid} profile</h1>
+  <p translate="yes">ಈ ಪ್ರೊಫೈಲ್ ಅನ್ನು ಹಂಚಿಕೊಳ್ಳುವ ಯಾವುದೇ ಸದಸ್ಯತ್ವ, ಅಥವಾ ಅದರ ಇತರ ಬಳಕೆಯನ್ನು ಸಹ ನವೀಕರಿಸಲಾಗುತ್ತದೆ.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/edit-membership-profile?membershipid=${membership.membershipid}" name="submit-form">
     <div id="display-name-container" class="pure-control-group">
-      <label for="display-name" translate="yes">ಪ್ರದರ್ಶನ ಹೆಸರು</label>
+      <label for="display-name" translate="yes">ಪ್ರದರ್ಶಕ ಹೆಸರು</label>
       <input required="" id="display-name" name="display-name" type="text" maxlength="1000">
     </div>
     <div id="display-email-container" class="pure-control-group">
-      <label for="display-email" translate="yes">ಇಮೇಲ್ ಪ್ರದರ್ಶಿಸು</label>
+      <label for="display-email" translate="yes">ಇಮೇಲ್ ಪ್ರದರ್ಶಿಸಿ</label>
       <input required="" id="display-email" name="display-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="contact-email-container" class="pure-control-group">
@@ -27,11 +27,11 @@
     </div>
     <div id="full-name-container">
       <div class="pure-control-group">
-        <label for="first-name" translate="yes">ಮೊದಲ ಹೆಸರು</label>
+        <label for="first-name" translate="yes">ಮೊದಲ ಹೆಸರು</label>
         <input required="" id="first-name" name="first-name" type="text" maxlength="1000">
       </div>
       <div class="pure-control-group">
-        <label for="last-name" translate="yes">ಕೊನೆಯ ಹೆಸರು</label>
+        <label for="last-name" translate="yes">ಕೊನೆಯ ಹೆಸರು</label>
         <input required="" id="last-name" name="last-name" type="text" maxlength="1000">
       </div>
     </div>
@@ -50,19 +50,19 @@
       <input required="" id="occupation" name="occupation" type="text" maxlength="1000">
     </div>
     <div id="location-container" class="pure-control-group">
-      <label for="location" translate="yes">ಸ್ಥಾನ</label>
+      <label for="location" translate="yes">ಸ್ಥಳ</label>
       <input required="" id="location" name="location" type="text" maxlength="1000">
     </div>
     <div id="company-name-container" class="pure-control-group">
-      <label for="company-name" translate="yes">ಕಂಪನಿಯ ಹೆಸರು</label>
+      <label for="company-name" translate="yes">ಸಂಸ್ಥೆಯ ಹೆಸರು</label>
       <input required="" id="company-name" name="company-name" type="text" maxlength="1000">
     </div>
     <div id="website-container" class="pure-control-group">
-      <label for="website" translate="yes">ವೆಬ್ ಸೈಟ್</label>
+      <label for="website" translate="yes">ಜಾಲತಾಣ</label>
       <input required="" id="website" name="website" type="text" maxlength="1000">
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">ಸದಸ್ಯತ್ವನವೀಕರಿಸಿ</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">ಸದಸ್ಯತ್ವವನ್ನು ನವೀಕರಿಸಿ</button>
     </div>
   </form>
   <template id="success">
@@ -72,77 +72,77 @@
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      ತಪ್ಪು! ಅಜ್ಞಾತ ದೋಷ
+      ದೋಷ! ಅಜ್ಞಾತ ದೋಷ ಸಂಭವಿಸಿದೆ
     </div>
   </template>
   <template id="invalid-first-name">
     <div class="error message" translate="yes">
-      ತಪ್ಪು! ಒಂದು ಕಾಣೆಯಾಗಿದೆ ಅಥವಾ ಅಮಾನ್ಯ ಮೊದಲ ಹೆಸರು ನೀಡಲಾಗಿದೆ
+      ದೋಷ! ಕಾಣೆಯಾದ ಅಥವಾ ಅಮಾನ್ಯ ಮೊದಲ ಹೆಸರನ್ನು ಒದಗಿಸಲಾಗಿದೆ
     </div>
   </template>
   <template id="invalid-first-name-length">
     <div class="error message" translate="yes">
-      ತಪ್ಪು! ಅಮಾನ್ಯ ಮೊದಲ ಹೆಸರು ನೀಡಲಾಗಿದೆ
+      ದೋಷ! ಅಮಾನ್ಯ ಮೊದಲ ಹೆಸರನ್ನು ಒದಗಿಸಲಾಗಿದೆ
     </div>
   </template>
   <template id="invalid-last-name">
     <div class="error message" translate="yes">
-      ತಪ್ಪು! ಕಾಣೆಯಾದ ಅಥವಾ ಅಮಾನ್ಯ ಕೊನೆಯ ಹೆಸರು ಒದಗಿಸಲಾಗಿದೆ
+      ದೋಷ! ಕಾಣೆಯಾದ ಅಥವಾ ಅಮಾನ್ಯ ಕೊನೆಯ ಹೆಸರನ್ನು ಒದಗಿಸಲಾಗಿದೆ
     </div>
   </template>
   <template id="invalid-last-name-length">
     <div class="error message" translate="yes">
-      ತಪ್ಪು! ಅಮಾನ್ಯ ಕೊನೆಯ ಹೆಸರು ನೀಡಲಾಗಿದೆ
+      ದೋಷ! ಅಮಾನ್ಯ ಕೊನೆಯ ಹೆಸರನ್ನು ಒದಗಿಸಲಾಗಿದೆ
     </div>
   </template>
   <template id="invalid-contact-email">
     <div class="error message" translate="yes">
-      ತಪ್ಪು! ಅಮಾನ್ಯ ಸಂಪರ್ಕ ಇಮೇಲ್ ವಿಳಾಸ
+      ದೋಷ! ಅಮಾನ್ಯ ಸಂಪರ್ಕ ಇಮೇಲ್ ವಿಳಾಸ
     </div>
   </template>
   <template id="invalid-display-email">
     <div class="error message" translate="yes">
-      ತಪ್ಪು! ಅಮಾನ್ಯ ಪ್ರದರ್ಶನ ಇಮೇಲ್ ವಿಳಾಸ
+      ದೋಷ! ಅಮಾನ್ಯ ಪ್ರದರ್ಶನ ಇಮೇಲ್ ವಿಳಾಸ
     </div>
   </template>
   <template id="invalid-display-name">
     <div class="error message" translate="yes">
-      ತಪ್ಪು! ಕಾಣೆಯಾಗಿರುವ ಅಥವಾ ಅಮಾನ್ಯ ಪ್ರದರ್ಶನ ಹೆಸರು ನೀಡಲಾಗಿದೆ
+      ದೋಷ! ಕಾಣೆಯಾದ ಅಥವಾ ಅಮಾನ್ಯ ಪ್ರದರ್ಶನ ಹೆಸರನ್ನು ಒದಗಿಸಲಾಗಿದೆ
     </div>
   </template>
   <template id="invalid-dob">
     <div class="error message" translate="yes">
-      ತಪ್ಪು! ಒಂದು ಕಾಣೆಯಾದ ಅಥವಾ ಅಮಾನ್ಯ ವಾದ ಜನ್ಮ ದಿನಾಂಕವನ್ನು ಒದಗಿಸಲಾಗಿದೆ
+      ದೋಷ! ಕಾಣೆಯಾದ ಅಥವಾ ಅಮಾನ್ಯ ಜನ್ಮ ದಿನಾಂಕವನ್ನು ಒದಗಿಸಲಾಗಿದೆ
     </div>
   </template>
   <template id="invalid-phone">
     <div class="error message" translate="yes">
-      ತಪ್ಪು! ಕಾಣೆಯಾದ ಅಥವಾ ಅಮಾನ್ಯ ವಾದ ಫೋನ್ ಅನ್ನು ಒದಗಿಸಲಾಗಿತ್ತು.
+      ದೋಷ! ಕಾಣೆಯಾದ ಅಥವಾ ಅಮಾನ್ಯ ಫೋನ್ ಒದಗಿಸಲಾಗಿದೆ.
     </div>
   </template>
   <template id="invalid-occupation">
     <div class="error message" translate="yes">
-      ತಪ್ಪು! ಒಂದು ಕಾಣೆಯಾದ ಅಥವಾ ಅಮಾನ್ಯ ವಾದ ಉದ್ಯೋಗವನ್ನು ಒದಗಿಸಲಾಯಿತು.
+      ದೋಷ! ಕಾಣೆಯಾದ ಅಥವಾ ಅಮಾನ್ಯ ಉದ್ಯೋಗವನ್ನು ಒದಗಿಸಲಾಗಿದೆ.
     </div>
   </template>
   <template id="invalid-location">
     <div class="error message" translate="yes">
-      ತಪ್ಪು! ಕಾಣೆಯಾದ ಅಥವಾ ಅಮಾನ್ಯ ಸ್ಥಾನವನ್ನು ಒದಗಿಸಲಾಗಿದೆ.
+      ದೋಷ! ಕಾಣೆಯಾದ ಅಥವಾ ಅಮಾನ್ಯ ಸ್ಥಳವನ್ನು ಒದಗಿಸಲಾಗಿದೆ.
     </div>
   </template>
   <template id="invalid-company-name">
     <div class="error message" translate="yes">
-      ತಪ್ಪು! ಕಾಣೆಯಾದ ಅಥವಾ ಅಮಾನ್ಯ ವಾದ ಕಂಪನಿಯ ಹೆಸರನ್ನು ಒದಗಿಸಲಾಗಿದೆ.
+      ದೋಷ! ಕಾಣೆಯಾದ ಅಥವಾ ಅಮಾನ್ಯ ಕಂಪನಿಯ ಹೆಸರನ್ನು ಒದಗಿಸಲಾಗಿದೆ.
     </div>
   </template>
   <template id="invalid-website">
     <div class="error message" translate="yes">
-      ತಪ್ಪು! ಕಾಣೆಯಾದ ಅಥವಾ ಅಮಾನ್ಯ ವೆಬ್ ಸೈಟ್ ಅನ್ನು ಒದಗಿಸಲಾಗಿದೆ.
+      ದೋಷ! ಕಾಣೆಯಾದ ಅಥವಾ ಅಮಾನ್ಯ ವೆಬ್u200cಸೈಟ್ ಒದಗಿಸಲಾಗಿದೆ.
     </div>
   </template>
   <template id="invalid-display-name-length">
     <div class="error message" translate="yes">
-      ತಪ್ಪು! ಕಾಣೆಯಾಗಿರುವ ಅಥವಾ ಅಮಾನ್ಯ ಪ್ರದರ್ಶನ ಹೆಸರು ನೀಡಲಾಗಿದೆ
+      ದೋಷ! ಕಾಣೆಯಾದ ಅಥವಾ ಅಮಾನ್ಯ ಪ್ರದರ್ಶನ ಹೆಸರನ್ನು ಒದಗಿಸಲಾಗಿದೆ
     </div>
   </template>
 </body>

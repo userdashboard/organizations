@@ -2,23 +2,23 @@
 <html lang="en" data-navbar="/account/organizations/navbar-organization.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Transferul dreptului de proprietate asupra ${organization.organizationid}</title>
+  <title translate="yes">Transferați proprietatea ${organization.organizationid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Transferul dreptului de proprietate asupra ${organization.organizationid}</h1>
-  <p translate="yes">Acest lucru va schimba imediat proprietarul organizaiton.</p>
+  <h1 translate="yes">Transferați proprietatea ${organization.organizationid}</h1>
+  <p translate="yes">Acest lucru va schimba imediat proprietarul organizației.</p>
   <div id="message-container"></div>
   <table id="organizations-table" class="pure-table object-table">
     <thead>
       <tr>
         <th>ID</th>
-        <th translate="yes">Numele</th>
+        <th translate="yes">Nume</th>
         <th translate="yes">E-mail</th>
-        <th translate="yes">Creat</th>
+        <th translate="yes">Creată</th>
       </tr>
     </thead>
     <tr id="${organization.organizationid}">
@@ -32,15 +32,15 @@
   </table>
   <form id="submit-form" class="pure-form pure-form-stacked" action="/account/organizations/transfer-organization?organizationid=${organization.organizationid}" name="submit-form">
     <div class="pure-control-group">
-      <label for="accountid" translate="yes">Proprietar de organizație nou</label>
+      <label for="accountid" translate="yes">Nou proprietar al organizației</label>
       <select id="accountid" name="accountid">
         <option value="" translate="yes">
-          Selectare proprietar nou
+          Selectați proprietarul nou
         </option>
       </select>
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Organizația de transfer</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Organizarea transferurilor</button>
     </div>
   </form>
   <template id="membership-option-template">
@@ -55,12 +55,12 @@
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Eroare! Eroare la transferul organizației
+      Eroare! A apărut o eroare la transferarea organizației
     </div>
   </template>
   <template id="invalid-accountid">
     <div class="error message" translate="yes">
-      Eroare! S-a selectat sau s-a furnizat un destinatar nevalid
+      Eroare! Un destinatar nevalid a fost selectat sau furnizat
     </div>
   </template>
 </body>

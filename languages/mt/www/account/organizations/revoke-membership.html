@@ -2,15 +2,15 @@
 <html lang="en" data-navbar="/account/organizations/navbar-membership.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Revoka tas-sħubija ta' ${membership.membershipid}</title>
+  <title translate="yes">Revoka sħubijaof ${membership.membershipid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Irrevoka s-sħubija ${membership.membershipid}</h1>
-  <p translate="yes">Dan immedjatament ineħħi lill-membru mill-organizzatur.</p>
+  <h1 translate="yes">Revoka sħubija ta ' ${membership.membershipid}</h1>
+  <p translate="yes">Dan se jneħħi mill-ewwel il-membru mill-organizzazzjoni.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/revoke-membership?membershipid=${membership.membershipid}" name="submit-form">
     <div class="pure-control-group">
@@ -23,12 +23,12 @@
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      Suċċess! Is-sħubija tħassret b'mod permanenti
+      Suċċess! Is-sħubija ġiet imħassra b'mod permanenti
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Żball! Żball mhux magħruf okkupat
+      Żball! Żball mhux magħruf seħħ
     </div>
   </template>
 </body>

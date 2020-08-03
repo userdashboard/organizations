@@ -2,27 +2,27 @@
 <html lang="en" data-navbar="/account/organizations/navbar-membership.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Modifier ${membership.membershipid} profile</title>
+  <title translate="yes">Éditer ${membership.membershipid} profile</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Modifier ${membership.membershipid} profile</h1>
-  <p translate="yes">Toute autre adhésion partageant ce profil, ou toute autre utilisation de celui-ci, sera également mise à jour.</p>
+  <h1 translate="yes">Éditer ${membership.membershipid} profile</h1>
+  <p translate="yes">Tout autre membre partageant ce profil, ou toute autre utilisation de celui-ci, sera également mis à jour.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/edit-membership-profile?membershipid=${membership.membershipid}" name="submit-form">
     <div id="display-name-container" class="pure-control-group">
-      <label for="display-name" translate="yes">Nom d’affichage</label>
+      <label for="display-name" translate="yes">Afficher un nom</label>
       <input required="" id="display-name" name="display-name" type="text" maxlength="1000">
     </div>
     <div id="display-email-container" class="pure-control-group">
-      <label for="display-email" translate="yes">Afficher le courrier électronique</label>
+      <label for="display-email" translate="yes">Afficher l'e-mail</label>
       <input required="" id="display-email" name="display-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="contact-email-container" class="pure-control-group">
-      <label for="contact-email" translate="yes">Courriel de contact</label>
+      <label for="contact-email" translate="yes">Email du contact</label>
       <input required="" id="contact-email" name="contact-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="full-name-container">
@@ -54,35 +54,35 @@
       <input required="" id="location" name="location" type="text" maxlength="1000">
     </div>
     <div id="company-name-container" class="pure-control-group">
-      <label for="company-name" translate="yes">Nom de l’entreprise</label>
+      <label for="company-name" translate="yes">Nom de la compagnie</label>
       <input required="" id="company-name" name="company-name" type="text" maxlength="1000">
     </div>
     <div id="website-container" class="pure-control-group">
-      <label for="website" translate="yes">site internet</label>
+      <label for="website" translate="yes">Site Internet</label>
       <input required="" id="website" name="website" type="text" maxlength="1000">
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Mettre à jour l’adhésion</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Mettre à jour l'adhésion</button>
     </div>
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      Succès! Vos informations sur vos membres ont été mises à jour
+      Succès! Vos informations d'adhésion ont été mises à jour
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Erreur! Une erreur inconnue écured
+      Erreur! Une erreur inconnue est survenue
     </div>
   </template>
   <template id="invalid-first-name">
     <div class="error message" translate="yes">
-      Erreur! Un prénom manquant ou non valide fourni
+      Erreur! Un prénom manquant ou invalide fourni
     </div>
   </template>
   <template id="invalid-first-name-length">
     <div class="error message" translate="yes">
-      Erreur! Un prénom non valide a été fourni
+      Erreur! Un prénom invalide a été fourni
     </div>
   </template>
   <template id="invalid-last-name">
@@ -92,22 +92,22 @@
   </template>
   <template id="invalid-last-name-length">
     <div class="error message" translate="yes">
-      Erreur! Un nom de famille non valide a été fourni
+      Erreur! Un nom de famille incorrect a été fourni
     </div>
   </template>
   <template id="invalid-contact-email">
     <div class="error message" translate="yes">
-      Erreur! Adresse de messagerie de contact non valide
+      Erreur! Adresse e-mail de contact non valide
     </div>
   </template>
   <template id="invalid-display-email">
     <div class="error message" translate="yes">
-      Erreur! Adresse de messagerie d’affichage non valide
+      Erreur! Adresse e-mail à afficher incorrecte
     </div>
   </template>
   <template id="invalid-display-name">
     <div class="error message" translate="yes">
-      Erreur! Un nom d’affichage manquant ou non valide a été fourni
+      Erreur! Un nom d'affichage manquant ou non valide a été fourni
     </div>
   </template>
   <template id="invalid-dob">
@@ -122,7 +122,7 @@
   </template>
   <template id="invalid-occupation">
     <div class="error message" translate="yes">
-      Erreur! Une occupation manquante ou invalide a été fournie.
+      Erreur! Une profession manquante ou invalide a été fournie.
     </div>
   </template>
   <template id="invalid-location">
@@ -132,7 +132,7 @@
   </template>
   <template id="invalid-company-name">
     <div class="error message" translate="yes">
-      Erreur! Un nom d’entreprise manquant ou non valide a été fourni.
+      Erreur! Un nom d'entreprise manquant ou non valide a été fourni.
     </div>
   </template>
   <template id="invalid-website">
@@ -142,7 +142,7 @@
   </template>
   <template id="invalid-display-name-length">
     <div class="error message" translate="yes">
-      Erreur! Un nom d’affichage manquant ou non valide a été fourni
+      Erreur! Un nom d'affichage manquant ou non valide a été fourni
     </div>
   </template>
 </body>

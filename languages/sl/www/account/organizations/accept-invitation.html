@@ -10,33 +10,33 @@
 </head>
 <body>
   <h1 translate="yes">Sprejmi povabilo</h1>
-  <p translate="yes">Po vnosu kode boste postali član organizacije.</p>
+  <p translate="yes">Po vnosu kode postanete član organizacije.</p>
   <div id="message-container"></div>
   <form id="submit-form" class="pure-form pure-form-stacked" action="/account/organizations/accept-invitation" name="submit-form">
     <div class="pure-control-group">
-      <label for="invitationid" translate="yes">ID povabila</label>
+      <label for="invitationid" translate="yes">ID vabila</label>
       <input id="invitationid" name="invitationid" type="text" maxlength="100">
     </div>
     <div class="pure-control-group">
-      <label for="secret-code" translate="yes">Vabilo zbornik</label>
+      <label for="secret-code" translate="yes">Koda povabila</label>
       <input id="secret-code" name="secret-code" type="text" maxlength="100">
     </div>
-    <h2 translate="yes">Informacije o članstvu</h2>
+    <h2 translate="yes">Podatki o članstvu</h2>
     <div id="existing-profile-container" class="pure-control-group">
-      <label for="profileid" translate="yes">Uporaba obstoječega profila</label>
+      <label for="profileid" translate="yes">Uporabite obstoječi profil</label>
       <select id="profileid" name="profileid">
         <option value="" translate="yes">
-          Izbira obstoječega profila
+          Izberite obstoječi profil
         </option>
       </select>
     </div>
-    <h3 translate="yes">Ustvarjanje novega profila</h3>
+    <h3 translate="yes">Ustvari nov profil</h3>
     <div id="display-name-container" class="pure-control-group">
       <label for="display-name" translate="yes">Prikazno ime</label>
       <input required="" id="display-name" name="display-name" type="text" maxlength="1000">
     </div>
     <div id="display-email-container" class="pure-control-group">
-      <label for="display-email" translate="yes">Prikaz e-pošte</label>
+      <label for="display-email" translate="yes">Prikaži e-pošto</label>
       <input required="" id="display-email" name="display-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="contact-email-container" class="pure-control-group">
@@ -45,7 +45,7 @@
     </div>
     <div id="full-name-container">
       <div class="pure-control-group">
-        <label for="first-name" translate="yes">Ime in priimek</label>
+        <label for="first-name" translate="yes">Ime</label>
       <input required="" id="first-name" name="first-name" type="text" maxlength="1000">
       </div>
       <div class="pure-control-group">
@@ -55,7 +55,7 @@
     </div>
     <div id="dob-container">
       <div class="pure-control-group">
-        <label for="dob" translate="yes">datum rojstva</label>
+        <label for="dob" translate="yes">Datum rojstva</label>
       <input required="" id="dob" name="dob" type="text" maxlength="11">
       </div>
     </div>
@@ -68,19 +68,19 @@
       <input required="" id="occupation" name="occupation" type="text" maxlength="1000">
     </div>
     <div id="location-container" class="pure-control-group">
-      <label for="location" translate="yes">Lokacijo</label>
+      <label for="location" translate="yes">Lokacija</label>
       <input required="" id="location" name="location" type="text" maxlength="1000">
     </div>
     <div id="company-name-container" class="pure-control-group">
-      <label for="company-name" translate="yes">Naziv podjetja</label>
+      <label for="company-name" translate="yes">Ime podjetja</label>
       <input required="" id="company-name" name="company-name" type="text" maxlength="1000">
     </div>
     <div id="website-container" class="pure-control-group">
-      <label for="website" translate="yes">Spletni strani</label>
+      <label for="website" translate="yes">Spletna stran</label>
       <input required="" id="website" name="website" type="text" maxlength="1000">
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Pridruži se organizaciji</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Pridružite se organizaciji</button>
     </div>
   </form>
   <template id="success">
@@ -95,22 +95,22 @@
   </template>
   <template id="invalid-secret-code">
     <div class="error message" translate="yes">
-      Napaka! Koda povabila je napačna
+      Napaka! Koda povabila ni pravilna
     </div>
   </template>
   <template id="invalid-invitationid">
     <div class="error message" translate="yes">
-      Napaka! Določeno je bilo manjkajočo ali neveljavno povabilo
+      Napaka! Priskrbljeno je bilo manjkajoče ali neveljavno povabilo
     </div>
   </template>
   <template id="invalid-account">
     <div class="error message" translate="yes">
-      Napaka! Imate ali ste član te organizacije
+      Napaka! Ste lastnik ali član te organizacije
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Napaka! Neznana napaka med pridobivanjem napake
+      Napaka! Prišlo je do neznane napake
     </div>
   </template>
   <template id="profile-option">
@@ -120,7 +120,7 @@
   </template>
   <template id="invalid-organization-name">
     <div class="error message" translate="yes">
-      Napaka! Na voljo je bilo manjkajočo ali neveljavno ime organizacije
+      Napaka! Vstavljeno je bilo manjkajoče ali neveljavno ime organizacije
     </div>
   </template>
   <template id="invalid-organization-name-length">
@@ -130,7 +130,7 @@
   </template>
   <template id="invalid-organization-email">
     <div class="error message" translate="yes">
-      Napaka! Na voljo je bila manjkajoča ali neveljavna e-pošta organizacije
+      Napaka! Vstavljeno je bilo manjkajoče ali neveljavno e-poštno sporočilo organizacije
     </div>
   </template>
   <template id="success">
@@ -140,82 +140,82 @@
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Napaka! Prišlo je do napake pri ustvarjanju organizacije
+      Napaka! Pri ustvarjanju organizacije je prišlo do napake
     </div>
   </template>
   <template id="invalid-first-name">
     <div class="error message" translate="yes">
-      Napaka! Manjkajočo ali neveljavno ime, ki je bilo
+      Napaka! Navedeno manjkajoče ali neveljavno ime
     </div>
   </template>
   <template id="invalid-first-name-length">
     <div class="error message" translate="yes">
-      Napaka! Zagotovljeno je bilo neveljavno ime
+      Napaka! Vneseno je neveljavno ime
     </div>
   </template>
   <template id="invalid-last-name">
     <div class="error message" translate="yes">
-      Napaka! Določeno je bilo manjkajočo ali neveljavno priimek
+      Napaka! Vstavljeno je bilo manjkajoče ali neveljavno priimek
     </div>
   </template>
   <template id="invalid-last-name-length">
     <div class="error message" translate="yes">
-      Napaka! Zagotovljeno je bilo neveljavno priimek
+      Napaka! Navedli smo neveljaven priimek
     </div>
   </template>
   <template id="invalid-contact-email">
     <div class="error message" translate="yes">
-      Napaka! Neveljaven kontaktni e-poštni naslov
+      Napaka! Neveljaven e-poštni naslov za stike
     </div>
   </template>
   <template id="invalid-display-email">
     <div class="error message" translate="yes">
-      Napaka! Neveljaven prikazni e-poštni naslov
+      Napaka! Neveljaven prikaz e-poštnega naslova
     </div>
   </template>
   <template id="invalid-display-name">
     <div class="error message" translate="yes">
-      Napaka! Določeno je bilo manjkajočo ali neveljavno prikazno ime
+      Napaka! Vstavljeno je bilo manjkajoče ali neveljavno prikazno ime
     </div>
   </template>
   <template id="invalid-dob">
     <div class="error message" translate="yes">
-      Napaka! Določen je bil manjkajoči ali neveljaven datum rojstva
+      Napaka! Naveden je bil manjkajoči ali neveljaven datum rojstva
     </div>
   </template>
   <template id="invalid-phone">
     <div class="error message" translate="yes">
-      Napaka! Na voljo je bil manjkajoči ali neveljaven telefon.
+      Napaka! Vstavljen je bil manjkajoči ali neveljaven telefon.
     </div>
   </template>
   <template id="invalid-occupation">
     <div class="error message" translate="yes">
-      Napaka! Predvidena je bila manjkajoča ali neveljavna dejavnost.
+      Napaka! Zagotovljeni so bili manjkajoči ali neveljavni poklici.
     </div>
   </template>
   <template id="invalid-location">
     <div class="error message" translate="yes">
-      Napaka! Na voljo je manjkajoča ali neveljavna lokacija.
+      Napaka! Zagotovljena je bila manjkajoča ali neveljavna lokacija.
     </div>
   </template>
   <template id="invalid-company-name">
     <div class="error message" translate="yes">
-      Napaka! Na voljo je bilo manjkajočo ali neveljavno ime podjetja.
+      Napaka! Navedeno je bilo manjkajoče ali neveljavno ime podjetja.
     </div>
   </template>
   <template id="invalid-website">
     <div class="error message" translate="yes">
-      Napaka! Na voljo je manjkajoča ali neveljavna spletna stran.
+      Napaka! Zagotovljeno je bilo manjkajoče ali neveljavno spletno mesto.
     </div>
   </template>
   <template id="invalid-display-name-length">
     <div class="error message" translate="yes">
-      Napaka! Določeno je bilo manjkajočo ali neveljavno prikazno ime
+      Napaka! Vstavljeno je bilo manjkajoče ali neveljavno prikazno ime
     </div>
   </template>
   <template id="invalid-profileid">
     <div class="error message" translate="yes">
-      Napaka! Izbran je bil manjkajoči ali neveljaven profil.
+      Napaka! Izbran je bil manjkajoč ali neveljaven profil.
     </div>
   </template>
 </body>

@@ -2,15 +2,15 @@
 <html lang="en" data-navbar="/account/organizations/navbar-membership.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Chỉnh sửa ${membership.membershipid} profile</title>
+  <title translate="yes">Biên tập ${membership.membershipid} profile</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Chỉnh sửa ${membership.membershipid} profile</h1>
-  <p translate="yes">Bất kỳ thành viên khác chia sẻ hồ sơ này, hoặc sử dụng khác của nó, sẽ được cập nhật quá.</p>
+  <h1 translate="yes">Biên tập ${membership.membershipid} profile</h1>
+  <p translate="yes">Bất kỳ thành viên khác chia sẻ hồ sơ này, hoặc sử dụng khác của nó, cũng sẽ được cập nhật.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/edit-membership-profile?membershipid=${membership.membershipid}" name="submit-form">
     <div id="display-name-container" class="pure-control-group">
@@ -22,7 +22,7 @@
       <input required="" id="display-email" name="display-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="contact-email-container" class="pure-control-group">
-      <label for="contact-email" translate="yes">Email liên hệ</label>
+      <label for="contact-email" translate="yes">Địa chỉ email liên lạc</label>
       <input required="" id="contact-email" name="contact-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="full-name-container">
@@ -31,7 +31,7 @@
         <input required="" id="first-name" name="first-name" type="text" maxlength="1000">
       </div>
       <div class="pure-control-group">
-        <label for="last-name" translate="yes">Tên cuối</label>
+        <label for="last-name" translate="yes">Họ</label>
         <input required="" id="last-name" name="last-name" type="text" maxlength="1000">
       </div>
     </div>
@@ -58,41 +58,41 @@
       <input required="" id="company-name" name="company-name" type="text" maxlength="1000">
     </div>
     <div id="website-container" class="pure-control-group">
-      <label for="website" translate="yes">Trang web</label>
+      <label for="website" translate="yes">Trang mạng</label>
       <input required="" id="website" name="website" type="text" maxlength="1000">
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Cập Nhật thành viên</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Cập nhật thành viên</button>
     </div>
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      Success! Thông tin thành viên của bạn đã được Cập Nhật
+      Sự thành công! Thông tin thành viên của bạn đã được cập nhật
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Lỗi! Một lỗi không rõ xảy ra
+      Lỗi! Xảy ra lỗi không xác định
     </div>
   </template>
   <template id="invalid-first-name">
     <div class="error message" translate="yes">
-      Lỗi! Tên đầu tiên thiếu hoặc không hợp lệ được cung cấp
+      Lỗi! Tên bị thiếu hoặc không hợp lệ được cung cấp
     </div>
   </template>
   <template id="invalid-first-name-length">
     <div class="error message" translate="yes">
-      Lỗi! Tên không hợp lệ được cung cấp
+      Lỗi! Một tên không hợp lệ đã được cung cấp
     </div>
   </template>
   <template id="invalid-last-name">
     <div class="error message" translate="yes">
-      Lỗi! Tên cuối cùng bị thiếu hoặc không hợp lệ được cung cấp
+      Lỗi! Tên cuối cùng bị thiếu hoặc không hợp lệ đã được cung cấp
     </div>
   </template>
   <template id="invalid-last-name-length">
     <div class="error message" translate="yes">
-      Lỗi! Tên cuối cùng không hợp lệ được cung cấp
+      Lỗi! Họ không hợp lệ đã được cung cấp
     </div>
   </template>
   <template id="invalid-contact-email">
@@ -102,47 +102,47 @@
   </template>
   <template id="invalid-display-email">
     <div class="error message" translate="yes">
-      Lỗi! Địa chỉ email Hiển thị không hợp lệ
+      Lỗi! Địa chỉ email hiển thị không hợp lệ
     </div>
   </template>
   <template id="invalid-display-name">
     <div class="error message" translate="yes">
-      Lỗi! Tên hiển thị bị thiếu hoặc không hợp lệ được cung cấp
+      Lỗi! Một tên hiển thị bị thiếu hoặc không hợp lệ đã được cung cấp
     </div>
   </template>
   <template id="invalid-dob">
     <div class="error message" translate="yes">
-      Lỗi! Ngày sinh bị thiếu hoặc không hợp lệ đã được cung cấp
+      Lỗi! Một ngày sinh bị thiếu hoặc không hợp lệ đã được cung cấp
     </div>
   </template>
   <template id="invalid-phone">
     <div class="error message" translate="yes">
-      Lỗi! Điện thoại bị thiếu hoặc không hợp lệ đã được cung cấp.
+      Lỗi! Một điện thoại bị thiếu hoặc không hợp lệ đã được cung cấp.
     </div>
   </template>
   <template id="invalid-occupation">
     <div class="error message" translate="yes">
-      Lỗi! Một thiếu hoặc không hợp lệ chiếm đóng đã được cung cấp.
+      Lỗi! Một nghề nghiệp bị thiếu hoặc không hợp lệ đã được cung cấp.
     </div>
   </template>
   <template id="invalid-location">
     <div class="error message" translate="yes">
-      Lỗi! Vị trí bị thiếu hoặc không hợp lệ đã được cung cấp.
+      Lỗi! Một vị trí bị thiếu hoặc không hợp lệ đã được cung cấp.
     </div>
   </template>
   <template id="invalid-company-name">
     <div class="error message" translate="yes">
-      Lỗi! Tên công ty bị thiếu hoặc không hợp lệ được cung cấp.
+      Lỗi! Một tên công ty bị thiếu hoặc không hợp lệ đã được cung cấp.
     </div>
   </template>
   <template id="invalid-website">
     <div class="error message" translate="yes">
-      Lỗi! Trang web bị thiếu hoặc không hợp lệ đã được cung cấp.
+      Lỗi! Một trang web bị thiếu hoặc không hợp lệ đã được cung cấp.
     </div>
   </template>
   <template id="invalid-display-name-length">
     <div class="error message" translate="yes">
-      Lỗi! Tên hiển thị bị thiếu hoặc không hợp lệ được cung cấp
+      Lỗi! Một tên hiển thị bị thiếu hoặc không hợp lệ đã được cung cấp
     </div>
   </template>
 </body>

@@ -10,11 +10,11 @@
 </head>
 <body>
   <h1 translate="yes">Uitnodiging accepteren</h1>
-  <p translate="yes">Na het invoeren van de code wordt u lid van de organisatie.</p>
+  <p translate="yes">Na het invoeren van de code word je lid van de organisatie.</p>
   <div id="message-container"></div>
   <form id="submit-form" class="pure-form pure-form-stacked" action="/account/organizations/accept-invitation" name="submit-form">
     <div class="pure-control-group">
-      <label for="invitationid" translate="yes">Uitnodigings-id</label>
+      <label for="invitationid" translate="yes">Uitnodiging ID</label>
       <input id="invitationid" name="invitationid" type="text" maxlength="100">
     </div>
     <div class="pure-control-group">
@@ -23,14 +23,14 @@
     </div>
     <h2 translate="yes">Lidmaatschapsinformatie</h2>
     <div id="existing-profile-container" class="pure-control-group">
-      <label for="profileid" translate="yes">Bestaand profiel gebruiken</label>
+      <label for="profileid" translate="yes">Gebruik bestaand profiel</label>
       <select id="profileid" name="profileid">
         <option value="" translate="yes">
-          Een bestaand profiel selecteren
+          Selecteer een bestaand profiel
         </option>
       </select>
     </div>
-    <h3 translate="yes">Nieuw profiel maken</h3>
+    <h3 translate="yes">Maak een nieuw profiel aan</h3>
     <div id="display-name-container" class="pure-control-group">
       <label for="display-name" translate="yes">Weergavenaam</label>
       <input required="" id="display-name" name="display-name" type="text" maxlength="1000">
@@ -40,7 +40,7 @@
       <input required="" id="display-email" name="display-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="contact-email-container" class="pure-control-group">
-      <label for="contact-email" translate="yes">E-mail opnemen</label>
+      <label for="contact-email" translate="yes">Contact email</label>
       <input required="" id="contact-email" name="contact-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="full-name-container">
@@ -68,7 +68,7 @@
       <input required="" id="occupation" name="occupation" type="text" maxlength="1000">
     </div>
     <div id="location-container" class="pure-control-group">
-      <label for="location" translate="yes">Locatie</label>
+      <label for="location" translate="yes">Plaats</label>
       <input required="" id="location" name="location" type="text" maxlength="1000">
     </div>
     <div id="company-name-container" class="pure-control-group">
@@ -80,17 +80,17 @@
       <input required="" id="website" name="website" type="text" maxlength="1000">
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Lid worden van de organisatie</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Word lid van de organisatie</button>
     </div>
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      Succes! U bent nu lid van de organisatie
+      Succes! Je bent nu lid van de organisatie
     </div>
   </template>
   <template id="invalid-invitation">
     <div class="error message" translate="yes">
-      Fout! De uitnodiging is niet meer beschikbaar
+      Fout! De uitnodiging is niet langer beschikbaar
     </div>
   </template>
   <template id="invalid-secret-code">
@@ -100,17 +100,17 @@
   </template>
   <template id="invalid-invitationid">
     <div class="error message" translate="yes">
-      Fout! Er is een ontbrekende of ongeldige uitnodiging verstrekt
+      Fout! Er is een ontbrekende of ongeldige uitnodiging opgegeven
     </div>
   </template>
   <template id="invalid-account">
     <div class="error message" translate="yes">
-      Fout! U bent eigenaar van of bent lid van deze organisatie
+      Fout! U bezit of bent lid van deze organisatie
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Fout! Er is een onbekende fout gemaakt
+      Fout! Een onbekende fout is opgetreden
     </div>
   </template>
   <template id="profile-option">
@@ -125,17 +125,17 @@
   </template>
   <template id="invalid-organization-name-length">
     <div class="error message" translate="yes">
-      Fout! Ongeldige naamslengte van de organisatie
+      Fout! Ongeldige lengte van organisatienaam
     </div>
   </template>
   <template id="invalid-organization-email">
     <div class="error message" translate="yes">
-      Fout! Er is een ontbrekende of ongeldige organisatie-e-mail ontvangen
+      Fout! Er is een ontbrekend of ongeldig e-mailadres van de organisatie opgegeven
     </div>
   </template>
   <template id="success">
     <div class="success message" translate="yes">
-      Succes! De organisatie is gemaakt met succes
+      Succes! De organisatie is met succes gemaakt
     </div>
   </template>
   <template id="unknown-error">
@@ -145,7 +145,7 @@
   </template>
   <template id="invalid-first-name">
     <div class="error message" translate="yes">
-      Fout! Een ontbrekende of ongeldige voornaam
+      Fout! Een ontbrekende of ongeldige voornaam opgegeven
     </div>
   </template>
   <template id="invalid-first-name-length">
@@ -165,12 +165,12 @@
   </template>
   <template id="invalid-contact-email">
     <div class="error message" translate="yes">
-      Fout! Ongeldig e-mailadres met contactpersonen
+      Fout! Ongeldig e-mailadres voor contact
     </div>
   </template>
   <template id="invalid-display-email">
     <div class="error message" translate="yes">
-      Fout! Ongeldig e-mailadres voor weergeven
+      Fout! Ongeldig e-mailadres voor weergave
     </div>
   </template>
   <template id="invalid-display-name">
@@ -180,17 +180,17 @@
   </template>
   <template id="invalid-dob">
     <div class="error message" translate="yes">
-      Fout! Er is een ontbrekende of ongeldige geboortedatum verstrekt
+      Fout! Er is een ontbrekende of ongeldige geboortedatum opgegeven
     </div>
   </template>
   <template id="invalid-phone">
     <div class="error message" translate="yes">
-      Fout! Er is een ontbrekende of ongeldige telefoon verstrekt.
+      Fout! Er is een ontbrekende of ongeldige telefoon opgegeven.
     </div>
   </template>
   <template id="invalid-occupation">
     <div class="error message" translate="yes">
-      Fout! Een ontbrekend of ongeldig beroep werd verstrekt.
+      Fout! Er werd een ontbrekend of ongeldig beroep opgegeven.
     </div>
   </template>
   <template id="invalid-location">
@@ -205,7 +205,7 @@
   </template>
   <template id="invalid-website">
     <div class="error message" translate="yes">
-      Fout! Er is een ontbrekende of ongeldige website verstrekt.
+      Fout! Er is een ontbrekende of ongeldige website opgegeven.
     </div>
   </template>
   <template id="invalid-display-name-length">

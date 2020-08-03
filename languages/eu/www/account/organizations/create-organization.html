@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" data-navbar="/account/organizations/navbar-organizations.html">
+<head>
+  <meta charset="utf-8">
+  <title translate="yes">Sortu erakundea</title>
+  <link href="/public/pure-min.css" rel="stylesheet">
+  <link href="/public/content.css" rel="stylesheet">
+  <link href="/public/content-additional.css" rel="stylesheet">
+  <base target="_top" href="/">
+</head>
+<body>
+  <h1 translate="yes">Sortu erakundea</h1>
+  <p translate="yes">Erakundeak baliabideetarako sarbidea partekatzeko erabil daitezke.</p>
+  <div id="message-container"></div>
+  <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/create-organization" name="submit-form">
+    <div class="pure-control-group">
+      <label for="name" translate="yes">Erakundearen izena</label>
+      <input id="name" name="name" type="text" maxlength="100">
+    </div>
+    <div class="pure-control-group">
+      <label for="email" translate="yes">Harremanetarako posta elektronikoa</label>
+      <input id="email" name="email" type="text" maxlength="100">
+    </div>
+    <h2 translate="yes">Bazkideen informazioa</h2>
+    <div id="existing-profile-container" class="pure-control-group">
+      <label for="profileid" translate="yes">Erabili lehendik dagoen profila</label>
+      <select id="profileid" name="profileid">
+        <option value="" translate="yes">
+          Hautatu lehendik dagoen profila
+        </option>
+      </select>
+    </div>
+    <h3 translate="yes">Sortu profil berria</h3>
+    <div id="display-name-container" class="pure-control-group">
+      <label for="display-name" translate="yes">Bistaratu izena</label>
+      <input required="" id="display-name" name="display-name" type="text" maxlength="1000">
+    </div>
+    <div id="display-email-container" class="pure-control-group">
+      <label for="display-email" translate="yes">Bistaratu helbide elektronikoa</label>
+      <input required="" id="display-email" name="display-email" type="text" maxlength="1000" size="50">
+    </div>
+    <div id="contact-email-container" class="pure-control-group">
+      <label for="contact-email" translate="yes">Harremanetarako posta elektronikoa</label>
+      <input required="" id="contact-email" name="contact-email" type="text" maxlength="1000" size="50">
+    </div>
+    <div id="full-name-container">
+      <div class="pure-control-group">
+        <label for="first-name" translate="yes">Izena</label>
+        <input required="" id="first-name" name="first-name" type="text" maxlength="1000">
+      </div>
+      <div class="pure-control-group">
+        <label for="last-name" translate="yes">Abizena</label>
+        <input required="" id="last-name" name="last-name" type="text" maxlength="1000">
+      </div>
+    </div>
+    <div id="dob-container">
+      <div class="pure-control-group">
+        <label for="dob" translate="yes">Jaioteguna</label>
+        <input required="" id="dob" name="dob" type="text" maxlength="11">
+      </div>
+    </div>
+    <div id="phone-container" class="pure-control-group">
+      <label for="phone" translate="yes">Telefono</label>
+      <input required="" id="phone" name="phone" type="text" maxlength="1000">
+    </div>
+    <div id="occupation-container" class="pure-control-group">
+      <label for="occupation" translate="yes">Lanbidea</label>
+      <input required="" id="occupation" name="occupation" type="text" maxlength="1000">
+    </div>
+    <div id="location-container" class="pure-control-group">
+      <label for="location" translate="yes">Kokalekua</label>
+      <input required="" id="location" name="location" type="text" maxlength="1000">
+    </div>
+    <div id="company-name-container" class="pure-control-group">
+      <label for="company-name" translate="yes">Sozietatearen izena</label>
+      <input required="" id="company-name" name="company-name" type="text" maxlength="1000">
+    </div>
+    <div id="website-container" class="pure-control-group">
+      <label for="website" translate="yes">Web</label>
+      <input required="" id="website" name="website" type="text" maxlength="1000">
+    </div>
+    <div class="pure-controls">
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Sortu erakundea</button>
+    </div>
+  </form>
+  <template id="profile-option">
+    <option value="${profile.profileid}">
+      ${profile.displayName} / ${profile.displayEmail}
+    </option>
+  </template>
+  <template id="invalid-organization-name">
+    <div class="error message" translate="yes">
+      Akatsa! Erakundearen izen falta edo baliogabea eman da
+    </div>
+  </template>
+  <template id="invalid-organization-name-length">
+    <div class="error message" translate="yes">
+      Akatsa! Erakundearen izenaren luzera baliogabea
+    </div>
+  </template>
+  <template id="invalid-organization-email">
+    <div class="error message" translate="yes">
+      Akatsa! Erakunde elektroniko bat falta edo baliogabea izan da
+    </div>
+  </template>
+  <template id="success">
+    <div class="success message" translate="yes">
+      Arrakasta! Erakundea arrakastaz sortu da
+      <p><a class="pure-button pure-button-primary" href="/account/organizations/create-invitation?organizationid=${organization.organizationid}" translate="yes">Gonbidapenak sortu</a></p>
+    </div>
+  </template>
+  <template id="unknown-error">
+    <div class="error message" translate="yes">
+      Akatsa! Errorea gertatu da erakundea sortzean
+    </div>
+  </template>
+  <template id="invalid-first-name">
+    <div class="error message" translate="yes">
+      Akatsa! Izena edo izen baliogabea eman da
+    </div>
+  </template>
+  <template id="invalid-first-name-length">
+    <div class="error message" translate="yes">
+      Akatsa! Izena baliogabea eman da
+    </div>
+  </template>
+  <template id="invalid-last-name">
+    <div class="error message" translate="yes">
+      Akatsa! Abizen falta edo baliogabea eman da
+    </div>
+  </template>
+  <template id="invalid-last-name-length">
+    <div class="error message" translate="yes">
+      Akatsa! Abizen baliogabea eman da
+    </div>
+  </template>
+  <template id="invalid-contact-email">
+    <div class="error message" translate="yes">
+      Akatsa! Harremanetarako helbide baliogabea
+    </div>
+  </template>
+  <template id="invalid-display-email">
+    <div class="error message" translate="yes">
+      Akatsa! Bistaratzeko helbide elektronikoa baliogabea
+    </div>
+  </template>
+  <template id="invalid-display-name">
+    <div class="error message" translate="yes">
+      Akatsa! Bistaratzeko izen falta edo baliogabea eman da
+    </div>
+  </template>
+  <template id="invalid-dob">
+    <div class="error message" translate="yes">
+      Akatsa! Jaiotze data falta edo baliogabea eman zen
+    </div>
+  </template>
+  <template id="invalid-phone">
+    <div class="error message" translate="yes">
+      Akatsa! Telefono falta edo baliogabea eman da.
+    </div>
+  </template>
+  <template id="invalid-occupation">
+    <div class="error message" translate="yes">
+      Akatsa! Lanpostu falta edo baliogabea eman zen.
+    </div>
+  </template>
+  <template id="invalid-location">
+    <div class="error message" translate="yes">
+      Akatsa! Kokapen falta edo baliogabea eman da.
+    </div>
+  </template>
+  <template id="invalid-company-name">
+    <div class="error message" translate="yes">
+      Akatsa! Enpresaren izen falta edo baliogabea eman da.
+    </div>
+  </template>
+  <template id="invalid-website">
+    <div class="error message" translate="yes">
+      Akatsa! Webgune falta edo baliogabea eman zen.
+    </div>
+  </template>
+  <template id="invalid-display-name-length">
+    <div class="error message" translate="yes">
+      Akatsa! Bistaratzeko izen falta edo baliogabea eman da
+    </div>
+  </template>
+  <template id="invalid-profileid">
+    <div class="error message" translate="yes">
+      Akatsa! Profil falta edo baliogabea hautatu da.
+    </div>
+  </template>
+</body>
+</html>

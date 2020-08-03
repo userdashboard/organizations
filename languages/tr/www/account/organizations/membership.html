@@ -2,14 +2,14 @@
 <html lang="en" data-navbar="/account/organizations/navbar-membership.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Görüntüle ${membership.membershipid}</title>
+  <title translate="yes">Görünüm ${membership.membershipid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Görüntüle ${membership.membershipid}</h1>
+  <h1 translate="yes">Görünüm ${membership.membershipid}</h1>
   <table id="memberships-table" class="pure-table data-table">
     <tbody id="${membership.membershipid}">
       <tr>
@@ -17,25 +17,25 @@
         <td>${membership.membershipid}</td>
       </tr>
       <tr>
-        <th translate="yes">Oluşturulan</th>
+        <th translate="yes">düzenlendi</th>
         <td>${membership.createdFormatted}</td>
       </tr>
       <tr id="full-name">
-        <th translate="yes">Tam ad</th>
+        <th translate="yes">Ad Soyad</th>
         <td>${membership.firstName} ${membership.lastName}</td>
       </tr>
       <tr id="contact-email">
-        <th translate="yes">İletişim e-posta</th>
+        <th translate="yes">İletişim E-posta</th>
         <td>
           <a href="mailto:${membership.contactEmail}">${membership.contactEmail}</a>
         </td>
       </tr>
       <tr id="display-name">
-        <th translate="yes">Görüntü adı</th>
+        <th translate="yes">Ekran adı</th>
         <td>${membership.displayName}</td>
       </tr>
       <tr id="display-email">
-        <th translate="yes">E-postayı görüntüleme</th>
+        <th translate="yes">Görüntülü e-posta</th>
         <td>
           <a href="mailto:${membership.displayEmail}">${membership.displayEmail}</a>
         </td>
@@ -49,19 +49,19 @@
         <td>${membership.phone}</td>
       </tr>
       <tr id="occupation">
-        <th translate="yes">Işgal</th>
+        <th translate="yes">Meslek</th>
         <td>${membership.occupation}</td>
       </tr>
       <tr id="location">
-        <th translate="yes">Konum</th>
+        <th translate="yes">yer</th>
         <td>${membership.location}</td>
       </tr>
       <tr id="company-name">
-        <th translate="yes">Şirket adı</th>
+        <th translate="yes">Şirket Adı</th>
         <td>${membership.companyName}</td>
       </tr>
       <tr id="website">
-        <th translate="yes">Web sitesi</th>
+        <th translate="yes">İnternet sitesi</th>
         <td>
           <a href="${membership.website}">${membership.website}</a>
         </td>

@@ -10,24 +10,24 @@
 </head>
 <body>
   <h1 translate="yes">Whakatika ${membership.membershipid} profile</h1>
-  <p translate="yes">Ko ētahi atu mema e tiritahi ana i tēnei kōtaha, ka whakahōu anō rānei.</p>
+  <p translate="yes">Ko etahi atu mema e tiritiri ana i tenei kii, i etahi atu whakamahinga ranei, ka whakahoutia ano hoki.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/edit-membership-profile?membershipid=${membership.membershipid}" name="submit-form">
     <div id="display-name-container" class="pure-control-group">
-      <label for="display-name" translate="yes">Ingoa whakaatu</label>
+      <label for="display-name" translate="yes">Whakaatuhia te ingoa</label>
       <input required="" id="display-name" name="display-name" type="text" maxlength="1000">
     </div>
     <div id="display-email-container" class="pure-control-group">
-      <label for="display-email" translate="yes">Whakaatu īmēra</label>
+      <label for="display-email" translate="yes">Whakaatuhia te imeera</label>
       <input required="" id="display-email" name="display-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="contact-email-container" class="pure-control-group">
-      <label for="contact-email" translate="yes">Īmēra hoapā</label>
+      <label for="contact-email" translate="yes">Whakauru atu ki nga imeera</label>
       <input required="" id="contact-email" name="contact-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="full-name-container">
       <div class="pure-control-group">
-        <label for="first-name" translate="yes">Ingoa Tuatahi</label>
+        <label for="first-name" translate="yes">Ingoa tuatahi</label>
         <input required="" id="first-name" name="first-name" type="text" maxlength="1000">
       </div>
       <div class="pure-control-group">
@@ -37,7 +37,7 @@
     </div>
     <div id="dob-container">
       <div class="pure-control-group">
-        <label for="dob" translate="yes">Rā whānau</label>
+        <label for="dob" translate="yes">Ra whanau</label>
         <input required="" id="dob" name="dob" type="text" maxlength="11">
       </div>
     </div>
@@ -46,7 +46,7 @@
       <input required="" id="phone" name="phone" type="text" maxlength="1000">
     </div>
     <div id="occupation-container" class="pure-control-group">
-      <label for="occupation" translate="yes">Mahi</label>
+      <label for="occupation" translate="yes">Te Hokohoko noho</label>
       <input required="" id="occupation" name="occupation" type="text" maxlength="1000">
     </div>
     <div id="location-container" class="pure-control-group">
@@ -54,7 +54,7 @@
       <input required="" id="location" name="location" type="text" maxlength="1000">
     </div>
     <div id="company-name-container" class="pure-control-group">
-      <label for="company-name" translate="yes">Ingoa kamupene</label>
+      <label for="company-name" translate="yes">Ingoa o Kamupene</label>
       <input required="" id="company-name" name="company-name" type="text" maxlength="1000">
     </div>
     <div id="website-container" class="pure-control-group">
@@ -62,87 +62,87 @@
       <input required="" id="website" name="website" type="text" maxlength="1000">
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Whakahōu mematanga</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Whakahoutia te mema</button>
     </div>
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      Angitu! Kua whakahōungia ō mōhiohio mematanga
+      Ka angitu! Kua whakahoutia o panui mema
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Hē! He hapa tē mōhiotia ocurred
+      He hapa! Kua puta he hapa kaore i te mohiotia
     </div>
   </template>
   <template id="invalid-first-name">
     <div class="error message" translate="yes">
-      Hē! Kua ngaro te ingoa tuatahi, muhu rānei
+      He hapa! Ko tetahi ingoa tuatahi kua ngaro, kaore ranei i tohaina
     </div>
   </template>
   <template id="invalid-first-name-length">
     <div class="error message" translate="yes">
-      Hē! I tukuna tētahi ingoa tuatahi
+      He hapa! I tukuna he ingoa tuatahi kore
     </div>
   </template>
   <template id="invalid-last-name">
     <div class="error message" translate="yes">
-      Hē! I tukuna tētahi ingoa whakamutunga, muhu rānei
+      He hapa! I whakaratohia tetahi ingoa whakamutunga ranei kua ngaro
     </div>
   </template>
   <template id="invalid-last-name-length">
     <div class="error message" translate="yes">
-      Hē! I tukuna tētahi ingoa whakamutunga muhu
+      He hapa! I tukuna he ingoa whakamutunga he korero
     </div>
   </template>
   <template id="invalid-contact-email">
     <div class="error message" translate="yes">
-      Hē! Wāhitau īmēra hoapā muhu
+      He hapa! Wāhitau imeera takawaenga
     </div>
   </template>
   <template id="invalid-display-email">
     <div class="error message" translate="yes">
-      Hē! Wāhitau īmēra whakaatu muhu
+      He hapa! Wāhitau imeera whakaatu kore
     </div>
   </template>
   <template id="invalid-display-name">
     <div class="error message" translate="yes">
-      Hē! I tukuna tētahi ingoa whakaatu, muhu rānei
+      He hapa! Kua whakaratohia he ingoa whakaatu ngaro ranei mo te kore
     </div>
   </template>
   <template id="invalid-dob">
     <div class="error message" translate="yes">
-      Hē! I tukuna tētahi, te rā muhu rānei o te whānau
+      He hapa! I whakaratohia tetahi ra whanau kaore i te ngaro, kaore ranei
     </div>
   </template>
   <template id="invalid-phone">
     <div class="error message" translate="yes">
-      Hē! I tukuna tētahi waea, muhu rānei.
+      He hapa! Kua whakaratohia he waea ngaro ranei kaore i te he.
     </div>
   </template>
   <template id="invalid-occupation">
     <div class="error message" translate="yes">
-      Hē! I tukuna tētahi, mahi muhu rānei.
+      He hapa! I whakawhiwhia tetahi mahi ngaro ranei kaore i te tika.
     </div>
   </template>
   <template id="invalid-location">
     <div class="error message" translate="yes">
-      Hē! I tukuna tētahi tauwāhi ngaro, muhu rānei.
+      He hapa! I whakaratohia te waahi ngaro ranei i te waahi ranei.
     </div>
   </template>
   <template id="invalid-company-name">
     <div class="error message" translate="yes">
-      Hē! I tukuna tētahi ingoa kamupene, muhu rānei.
+      He hapa! Kua whakaratohia tetahi ingoa kamupene ngaro, kaore ranei.
     </div>
   </template>
   <template id="invalid-website">
     <div class="error message" translate="yes">
-      Hē! I tukuna tētahi paetukutuku ngaro, muhu rānei.
+      He hapa! Kua whakaratohia tetahi paetukutuku paetukutuku ngaro ranei.
     </div>
   </template>
   <template id="invalid-display-name-length">
     <div class="error message" translate="yes">
-      Hē! I tukuna tētahi ingoa whakaatu, muhu rānei
+      He hapa! Kua whakaratohia he ingoa whakaatu ngaro ranei mo te kore
     </div>
   </template>
 </body>

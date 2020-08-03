@@ -2,33 +2,33 @@
 <html lang="en" data-navbar="/account/organizations/navbar-organization.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Naikinti ${organization.organizationid}</title>
+  <title translate="yes">Ištrinti ${organization.organizationid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Naikinti ${organization.organizationid}</h1>
-  <p translate="yes">Organizacija bus panaikinta iš karto ir jos atkurti negalėsite.</p>
+  <h1 translate="yes">Ištrinti ${organization.organizationid}</h1>
+  <p translate="yes">Organizacija bus nedelsiant ištrinta ir jos atkurti negalima.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/delete-organization?organizationid=${organization.organizationid}" name="submit-form">
     <div class="pure-control-group">
-      <label for="organizationName" translate="yes">Organizacijos</label>
+      <label for="organizationName" translate="yes">Organizacija</label>
       <input id="organizationName" type="text" maxlength="100" readonly>
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Naikinti organizaciją</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Ištrinti organizaciją</button>
     </div>
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      Sėkmės! Organizacija panaikinta visam laikui
+      Sėkmė! Organizacija buvo visam laikui ištrinta
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Klaida! Klaida, kurią įvyko organizacijos naikinimas
+      Klaida! Ištrinant organizaciją įvyko klaida
     </div>
   </template>
 </body>

@@ -10,27 +10,27 @@
 </head>
 <body>
   <h1 translate="yes">સંસ્થા બનાવો</h1>
-  <p translate="yes">સંસાધનોની પહોંચની વહેંચણી માટે સંસ્થાઓનો ઉપયોગ થઈ શકે છે.</p>
+  <p translate="yes">સંસાધનોનો ઉપયોગ સંસાધનોની વહેંચણી માટે થઈ શકે છે.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/create-organization" name="submit-form">
     <div class="pure-control-group">
-      <label for="name" translate="yes">સંસ્થાનું નામ</label>
+      <label for="name" translate="yes">સંસ્થા નુ નામ</label>
       <input id="name" name="name" type="text" maxlength="100">
     </div>
     <div class="pure-control-group">
-      <label for="email" translate="yes">સંપર્ક ઇમેઇલ</label>
+      <label for="email" translate="yes">ઈ - મેલ સંપર્ક</label>
       <input id="email" name="email" type="text" maxlength="100">
     </div>
-    <h2 translate="yes">સભ્યપદ જાણકારી</h2>
+    <h2 translate="yes">સભ્યપદ માહિતી</h2>
     <div id="existing-profile-container" class="pure-control-group">
-      <label for="profileid" translate="yes">હાલની રૂપરેખા વાપરો</label>
+      <label for="profileid" translate="yes">હાલની પ્રોફાઇલનો ઉપયોગ કરો</label>
       <select id="profileid" name="profileid">
         <option value="" translate="yes">
-          હાલની રૂપરેખા પસંદ કરો
+          અસ્તિત્વમાં છે તે પ્રોફાઇલ પસંદ કરો
         </option>
       </select>
     </div>
-    <h3 translate="yes">નવી રૂપરેખા બનાવો</h3>
+    <h3 translate="yes">નવી પ્રોફાઇલ બનાવો</h3>
     <div id="display-name-container" class="pure-control-group">
       <label for="display-name" translate="yes">નામ દર્શાવો</label>
       <input required="" id="display-name" name="display-name" type="text" maxlength="1000">
@@ -40,7 +40,7 @@
       <input required="" id="display-email" name="display-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="contact-email-container" class="pure-control-group">
-      <label for="contact-email" translate="yes">સંપર્ક ઇમેઇલ</label>
+      <label for="contact-email" translate="yes">ઈ - મેલ સંપર્ક</label>
       <input required="" id="contact-email" name="contact-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="full-name-container">
@@ -55,7 +55,7 @@
     </div>
     <div id="dob-container">
       <div class="pure-control-group">
-        <label for="dob" translate="yes">જન્મની તારીખ</label>
+        <label for="dob" translate="yes">જન્મ તારીખ</label>
         <input required="" id="dob" name="dob" type="text" maxlength="11">
       </div>
     </div>
@@ -72,7 +72,7 @@
       <input required="" id="location" name="location" type="text" maxlength="1000">
     </div>
     <div id="company-name-container" class="pure-control-group">
-      <label for="company-name" translate="yes">કંપનીનું નામ</label>
+      <label for="company-name" translate="yes">કંપની નું નામ</label>
       <input required="" id="company-name" name="company-name" type="text" maxlength="1000">
     </div>
     <div id="website-container" class="pure-control-group">
@@ -90,103 +90,103 @@
   </template>
   <template id="invalid-organization-name">
     <div class="error message" translate="yes">
-      ભૂલ! ગુમ થયેલ અથવા અયોગ્ય સંસ્થા નામ પૂરુ પાડેલ હતું
+      ભૂલ! ગુમ અથવા અમાન્ય સંસ્થા નામ પ્રદાન કરવામાં આવ્યું હતું
     </div>
   </template>
   <template id="invalid-organization-name-length">
     <div class="error message" translate="yes">
-      ભૂલ! અયોગ્ય સંસ્થા નામ લંબાઈ
+      ભૂલ! અમાન્ય સંસ્થા નામની લંબાઈ
     </div>
   </template>
   <template id="invalid-organization-email">
     <div class="error message" translate="yes">
-      ભૂલ! ગુમ થયેલ અથવા અયોગ્ય સંસ્થા ઇમેઇલ પૂરો પાડવામાં આવ્યો હતો
+      ભૂલ! ગુમ અથવા અમાન્ય સંસ્થા ઇમેઇલ પ્રદાન કરવામાં આવ્યું હતું
     </div>
   </template>
   <template id="success">
     <div class="success message" translate="yes">
-      સફળતા! સંસ્થાની સફળતાપૂર્વક રચના કરવામાં આવી છે
+      સફળતા! સંસ્થા સફળતાપૂર્વક બનાવવામાં આવી છે
       <p><a class="pure-button pure-button-primary" href="/account/organizations/create-invitation?organizationid=${organization.organizationid}" translate="yes">આમંત્રણો બનાવો</a></p>
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      ભૂલ! સંસ્થાને બનાવી રહ્યા હોય ત્યારે ભૂલ ઉદ્ભવી
+      ભૂલ! સંગઠન બનાવવામાં ભૂલ આવી
     </div>
   </template>
   <template id="invalid-first-name">
     <div class="error message" translate="yes">
-      ભૂલ! ગુમ થયેલ અથવા અયોગ્ય પ્રથમ નામ પૂરુ પાડેલ છે
+      ભૂલ! ગુમ અથવા અમાન્ય નામ પ્રદાન થયેલ છે
     </div>
   </template>
   <template id="invalid-first-name-length">
     <div class="error message" translate="yes">
-      ભૂલ! અયોગ્ય પ્રથમ નામ પૂરુ પાડેલ હતું
+      ભૂલ! એક અમાન્ય નામ પ્રદાન કરવામાં આવ્યું હતું
     </div>
   </template>
   <template id="invalid-last-name">
     <div class="error message" translate="yes">
-      ભૂલ! ગુમ થયેલ અથવા અયોગ્ય છેલ્લું નામ પૂરુ પાડેલ હતું
+      ભૂલ! ગુમ અથવા અમાન્ય છેલ્લું નામ પ્રદાન કરાયું હતું
     </div>
   </template>
   <template id="invalid-last-name-length">
     <div class="error message" translate="yes">
-      ભૂલ! અયોગ્ય છેલ્લું નામ પૂરુ પાડેલ હતું
+      ભૂલ! અમાન્ય છેલ્લું નામ પ્રદાન કરાયું હતું
     </div>
   </template>
   <template id="invalid-contact-email">
     <div class="error message" translate="yes">
-      ભૂલ! અયોગ્ય સંપર્ક ઇમેઇલ સરનામું
+      ભૂલ! અમાન્ય સંપર્ક ઇમેઇલ સરનામું
     </div>
   </template>
   <template id="invalid-display-email">
     <div class="error message" translate="yes">
-      ભૂલ! અયોગ્ય ડિસ્પ્લે ઇમેઇલ સરનામું
+      ભૂલ! અમાન્ય ડિસ્પ્લે ઇમેઇલ સરનામું
     </div>
   </template>
   <template id="invalid-display-name">
     <div class="error message" translate="yes">
-      ભૂલ! ગુમ થયેલ અથવા અયોગ્ય ડિસ્પ્લે નામ પૂરુ પાડેલ હતું
+      ભૂલ! ગુમ અથવા અમાન્ય ડિસ્પ્લે નામ પ્રદાન કરાયું હતું
     </div>
   </template>
   <template id="invalid-dob">
     <div class="error message" translate="yes">
-      ભૂલ! ગુમ થયેલ અથવા અયોગ્ય જન્મ તારીખ પૂરી પાડવામાં આવી હતી
+      ભૂલ! ગુમ અથવા અમાન્ય જન્મ તારીખ પ્રદાન કરવામાં આવી હતી
     </div>
   </template>
   <template id="invalid-phone">
     <div class="error message" translate="yes">
-      ભૂલ! ગુમ થયેલ અથવા અયોગ્ય ફોન પૂરો પાડવામાં આવ્યો હતો.
+      ભૂલ! ગુમ અથવા અમાન્ય ફોન પૂરો પાડવામાં આવ્યો હતો.
     </div>
   </template>
   <template id="invalid-occupation">
     <div class="error message" translate="yes">
-      ભૂલ! ગુમ થયેલ અથવા અયોગ્ય વ્યવસાય પૂરો પાડવામાં આવ્યો હતો.
+      ભૂલ! ગુમ અથવા અમાન્ય વ્યવસાય પૂરો પાડવામાં આવ્યો હતો.
     </div>
   </template>
   <template id="invalid-location">
     <div class="error message" translate="yes">
-      ભૂલ! ગુમ થયેલ અથવા અયોગ્ય સ્થાન પૂરું પાડવામાં આવ્યું હતું.
+      ભૂલ! ગુમ અથવા અમાન્ય સ્થાન પ્રદાન કરવામાં આવ્યું હતું.
     </div>
   </template>
   <template id="invalid-company-name">
     <div class="error message" translate="yes">
-      ભૂલ! ગુમ થયેલ અથવા અયોગ્ય કંપનીનું નામ પૂરું પાડવામાં આવ્યું હતું.
+      ભૂલ! ગુમ અથવા અમાન્ય કંપની નામ પ્રદાન કરવામાં આવ્યું હતું.
     </div>
   </template>
   <template id="invalid-website">
     <div class="error message" translate="yes">
-      ભૂલ! ગુમ થયેલ અથવા અયોગ્ય વેબસાઇટ પૂરી પાડવામાં આવી હતી.
+      ભૂલ! ગુમ અથવા અમાન્ય વેબસાઇટ પ્રદાન કરવામાં આવી હતી.
     </div>
   </template>
   <template id="invalid-display-name-length">
     <div class="error message" translate="yes">
-      ભૂલ! ગુમ થયેલ અથવા અયોગ્ય ડિસ્પ્લે નામ પૂરુ પાડેલ હતું
+      ભૂલ! ગુમ અથવા અમાન્ય ડિસ્પ્લે નામ પ્રદાન કરાયું હતું
     </div>
   </template>
   <template id="invalid-profileid">
     <div class="error message" translate="yes">
-      ભૂલ! ગુમ થયેલ અથવા અયોગ્ય રૂપરેખા પસંદ થયેલ હતી.
+      ભૂલ! ગુમ અથવા અમાન્ય પ્રોફાઇલ પસંદ કરવામાં આવી હતી.
     </div>
   </template>
 </body>

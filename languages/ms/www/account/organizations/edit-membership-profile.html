@@ -10,7 +10,7 @@
 </head>
 <body>
   <h1 translate="yes">Edit ${membership.membershipid} profile</h1>
-  <p translate="yes">Mana-mana keahlian lain berkongsi profil ini, atau penggunaan lain itu, akan dikemaskini juga.</p>
+  <p translate="yes">Sebarang keahlian lain yang berkongsi profil ini, atau penggunaannya yang lain, akan dikemas kini juga.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/edit-membership-profile?membershipid=${membership.membershipid}" name="submit-form">
     <div id="display-name-container" class="pure-control-group">
@@ -22,7 +22,7 @@
       <input required="" id="display-email" name="display-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="contact-email-container" class="pure-control-group">
-      <label for="contact-email" translate="yes">E-mel kenalan</label>
+      <label for="contact-email" translate="yes">E-mel hubungan</label>
       <input required="" id="contact-email" name="contact-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="full-name-container">
@@ -31,13 +31,13 @@
         <input required="" id="first-name" name="first-name" type="text" maxlength="1000">
       </div>
       <div class="pure-control-group">
-        <label for="last-name" translate="yes">Nama akhir</label>
+        <label for="last-name" translate="yes">Nama terakhir</label>
         <input required="" id="last-name" name="last-name" type="text" maxlength="1000">
       </div>
     </div>
     <div id="dob-container">
       <div class="pure-control-group">
-        <label for="dob" translate="yes">tarikh lahir</label>
+        <label for="dob" translate="yes">Tarikh lahir</label>
         <input required="" id="dob" name="dob" type="text" maxlength="11">
       </div>
     </div>
@@ -54,7 +54,7 @@
       <input required="" id="location" name="location" type="text" maxlength="1000">
     </div>
     <div id="company-name-container" class="pure-control-group">
-      <label for="company-name" translate="yes">Nama Syarikat</label>
+      <label for="company-name" translate="yes">Nama syarikat</label>
       <input required="" id="company-name" name="company-name" type="text" maxlength="1000">
     </div>
     <div id="website-container" class="pure-control-group">
@@ -67,37 +67,37 @@
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      Kejayaan! Maklumat keahlian anda telah dikemaskini
+      Berjaya! Maklumat keahlian anda telah dikemas kini
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Ralat! Satu ralat yang tidak diketahui ocurred
+      Ralat! Ralat tidak diketahui berlaku
     </div>
   </template>
   <template id="invalid-first-name">
     <div class="error message" translate="yes">
-      Ralat! Nama pertama yang hilang atau tidak sah
+      Ralat! Nama pertama yang hilang atau tidak sah disediakan
     </div>
   </template>
   <template id="invalid-first-name-length">
     <div class="error message" translate="yes">
-      Ralat! Nama pertama tidak sah telah disediakan
+      Ralat! Nama depan yang tidak betul telah diberikan
     </div>
   </template>
   <template id="invalid-last-name">
     <div class="error message" translate="yes">
-      Ralat! Nama akhir yang hilang atau tidak sah telah disediakan
+      Ralat! Nama belakang yang hilang atau tidak sah telah diberikan
     </div>
   </template>
   <template id="invalid-last-name-length">
     <div class="error message" translate="yes">
-      Ralat! Nama terakhir yang tidak sah telah disediakan
+      Ralat! Nama belakang yang tidak sah telah diberikan
     </div>
   </template>
   <template id="invalid-contact-email">
     <div class="error message" translate="yes">
-      Ralat! Alamat e-mel kenalan tidak sah
+      Ralat! Alamat e-mel hubungan tidak sah
     </div>
   </template>
   <template id="invalid-display-email">
@@ -112,7 +112,7 @@
   </template>
   <template id="invalid-dob">
     <div class="error message" translate="yes">
-      Ralat! Tarikh lahir yang hilang atau tidak sah telah disediakan
+      Ralat! Tarikh lahir yang hilang atau tidak sah telah diberikan
     </div>
   </template>
   <template id="invalid-phone">
@@ -122,7 +122,7 @@
   </template>
   <template id="invalid-occupation">
     <div class="error message" translate="yes">
-      Ralat! Pendudukan yang hilang atau tidak sah telah disediakan.
+      Ralat! Pekerjaan yang hilang atau tidak sah telah disediakan.
     </div>
   </template>
   <template id="invalid-location">
@@ -132,12 +132,12 @@
   </template>
   <template id="invalid-company-name">
     <div class="error message" translate="yes">
-      Ralat! Nama Syarikat yang hilang atau tidak sah telah disediakan.
+      Ralat! Nama syarikat yang hilang atau tidak sah telah diberikan.
     </div>
   </template>
   <template id="invalid-website">
     <div class="error message" translate="yes">
-      Ralat! Tapak web yang hilang atau tidak sah telah disediakan.
+      Ralat! Laman web yang hilang atau tidak sah telah disediakan.
     </div>
   </template>
   <template id="invalid-display-name-length">

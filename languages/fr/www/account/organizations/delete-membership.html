@@ -10,7 +10,7 @@
 </head>
 <body>
   <h1 translate="yes">Supprimer ${membership.membershipid}</h1>
-  <p translate="yes">L’adhésion sera supprimée immédiatement et ne peut pas être récupérée.</p>
+  <p translate="yes">L'adhésion sera supprimée immédiatement et ne pourra pas être récupérée.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/delete-membership?membershipid=${membership.membershipid}" name="submit-form">
     <div class="pure-control-group">
@@ -18,17 +18,17 @@
       <input id="organizationName" type="text" maxlength="100" readonly>
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Supprimer l’adhésion</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Supprimer l'adhésion</button>
     </div>
   </form>
   <template id="success">
     <div class="error message" translate="yes">
-      Erreur! L’adhésion a été définitivement supprimée
+      Erreur! L'adhésion a été définitivement supprimée
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Erreur! Une erreur inconnue écured
+      Erreur! Une erreur inconnue est survenue
     </div>
   </template>
 </body>

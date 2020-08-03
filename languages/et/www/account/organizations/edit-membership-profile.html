@@ -2,15 +2,15 @@
 <html lang="en" data-navbar="/account/organizations/navbar-membership.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Redigeerida ${membership.membershipid} profile</title>
+  <title translate="yes">Redigeeri ${membership.membershipid} profile</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Redigeerida ${membership.membershipid} profile</h1>
-  <p translate="yes">Värskendatakse ka kõiki teisi liikmesusi, mis jagavad seda profiili või muud selle kasutamist.</p>
+  <h1 translate="yes">Redigeeri ${membership.membershipid} profile</h1>
+  <p translate="yes">Uuendatakse ka kõiki teisi seda profiili jagavaid liikmeid või selle muud kasutamist.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/edit-membership-profile?membershipid=${membership.membershipid}" name="submit-form">
     <div id="display-name-container" class="pure-control-group">
@@ -18,11 +18,11 @@
       <input required="" id="display-name" name="display-name" type="text" maxlength="1000">
     </div>
     <div id="display-email-container" class="pure-control-group">
-      <label for="display-email" translate="yes">Kuva meil</label>
+      <label for="display-email" translate="yes">Kuva e-post</label>
       <input required="" id="display-email" name="display-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="contact-email-container" class="pure-control-group">
-      <label for="contact-email" translate="yes">Võta meiliga ühendust</label>
+      <label for="contact-email" translate="yes">Kontakt e-post</label>
       <input required="" id="contact-email" name="contact-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="full-name-container">
@@ -46,7 +46,7 @@
       <input required="" id="phone" name="phone" type="text" maxlength="1000">
     </div>
     <div id="occupation-container" class="pure-control-group">
-      <label for="occupation" translate="yes">Okupatsiooni</label>
+      <label for="occupation" translate="yes">Amet</label>
       <input required="" id="occupation" name="occupation" type="text" maxlength="1000">
     </div>
     <div id="location-container" class="pure-control-group">
@@ -58,16 +58,16 @@
       <input required="" id="company-name" name="company-name" type="text" maxlength="1000">
     </div>
     <div id="website-container" class="pure-control-group">
-      <label for="website" translate="yes">Veebilehel</label>
+      <label for="website" translate="yes">Veebisait</label>
       <input required="" id="website" name="website" type="text" maxlength="1000">
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Värskenda liikmesust</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Uuendage liikmesust</button>
     </div>
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      Edu! Teie liikmesuse teavet on värskendatud
+      Edu! Teie liikmelisuse andmeid on värskendatud
     </div>
   </template>
   <template id="unknown-error">
@@ -77,42 +77,42 @@
   </template>
   <template id="invalid-first-name">
     <div class="error message" translate="yes">
-      Viga! Esitatud puudub või sobimatu eesnimi
+      Viga! Esitatud on puudu või kehtetu eesnimi
     </div>
   </template>
   <template id="invalid-first-name-length">
     <div class="error message" translate="yes">
-      Viga! Esitati sobimatu eesnimi
+      Viga! Esitati kehtetu eesnimi
     </div>
   </template>
   <template id="invalid-last-name">
     <div class="error message" translate="yes">
-      Viga! Esitati puuduv või sobimatu perekonnanimi
+      Viga! Esitati puuduv või kehtetu perekonnanimi
     </div>
   </template>
   <template id="invalid-last-name-length">
     <div class="error message" translate="yes">
-      Viga! Esitati sobimatu perekonnanimi
+      Viga! Esitati kehtetu perekonnanimi
     </div>
   </template>
   <template id="invalid-contact-email">
     <div class="error message" translate="yes">
-      Viga! Kontakti e-posti aadress ei sobi
+      Viga! Vale kontaktisiku e-posti aadress
     </div>
   </template>
   <template id="invalid-display-email">
     <div class="error message" translate="yes">
-      Viga! Kehtetu kuvatav meiliaadress
+      Viga! Vale kuvatav e-posti aadress
     </div>
   </template>
   <template id="invalid-display-name">
     <div class="error message" translate="yes">
-      Viga! Esitati puuduv või sobimatu kuvatav nimi
+      Viga! Esitati puuduv või kehtetu kuvatav nimi
     </div>
   </template>
   <template id="invalid-dob">
     <div class="error message" translate="yes">
-      Viga! Esitati puuduv või kehtetu sünniaeg
+      Viga! Esitati puuduv või kehtetu sünnikuupäev
     </div>
   </template>
   <template id="invalid-phone">
@@ -122,12 +122,12 @@
   </template>
   <template id="invalid-occupation">
     <div class="error message" translate="yes">
-      Viga! Esitati puuduv või kehtetu amet.
+      Viga! Pakuti puuduvat või kehtetut ametit.
     </div>
   </template>
   <template id="invalid-location">
     <div class="error message" translate="yes">
-      Viga! Esitati puuduv või sobimatu asukoht.
+      Viga! Esitati puuduv või kehtetu asukoht.
     </div>
   </template>
   <template id="invalid-company-name">
@@ -137,12 +137,12 @@
   </template>
   <template id="invalid-website">
     <div class="error message" translate="yes">
-      Viga! Esitati puuduv või sobimatu veebisait.
+      Viga! Esitati puuduv või kehtetu veebisait.
     </div>
   </template>
   <template id="invalid-display-name-length">
     <div class="error message" translate="yes">
-      Viga! Esitati puuduv või sobimatu kuvatav nimi
+      Viga! Esitati puuduv või kehtetu kuvatav nimi
     </div>
   </template>
 </body>

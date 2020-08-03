@@ -11,7 +11,7 @@
 </head>
 <body>
   <h1 translate="yes">创建邀请 ${organization.organizationid}</h1>
-  <p translate="yes">邀请代码允许人们加入您的组织。</p>
+  <p translate="yes">邀请码允许人们加入您的组织。</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/create-invitation?organizationid=${organization.organizationid}" name="submit-form">
     <div class="pure-control-group">
@@ -19,7 +19,7 @@
       <input id="organization-name" type="text" maxlength="100" readonly>
     </div>
     <div class="pure-control-group">
-      <label for="secret-code" translate="yes">秘密代码</label>
+      <label for="secret-code" translate="yes">密码</label>
       <input id="secret-code" name="secret-code" type="text" maxlength="100">
     </div>
     <div class="pure-controls">
@@ -28,7 +28,7 @@
   </form>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      错误！发生未知错误
+      错误！出现未知错误
     </div>
   </template>
   <template id="invalid-secret-code">
@@ -38,12 +38,12 @@
   </template>
   <template id="invalid-secret-code-length">
     <div class="error message" translate="yes">
-      错误！密码的长度无效
+      错误！密码长度无效
     </div>
   </template>
   <template id="success">
     <div class="success message">
-      <p translate="yes">成功！提供您的密码和此链接给要加入的人：</p>
+      <p translate="yes">成功！提供您的密码和此链接以供其他人加入：</p>
       <div class="invitation-link">
         <input type="text" readonly value="${organization.dashboardServer}/account/organizations/accept-invitation?invitationid=${organization.invitationid}">
       </div>

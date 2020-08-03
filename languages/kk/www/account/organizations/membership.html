@@ -2,14 +2,14 @@
 <html lang="en" data-navbar="/account/organizations/navbar-membership.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Көрініс ${membership.membershipid}</title>
+  <title translate="yes">Көру ${membership.membershipid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Көрініс ${membership.membershipid}</h1>
+  <h1 translate="yes">Көру ${membership.membershipid}</h1>
   <table id="memberships-table" class="pure-table data-table">
     <tbody id="${membership.membershipid}">
       <tr>
@@ -17,7 +17,7 @@
         <td>${membership.membershipid}</td>
       </tr>
       <tr>
-        <th translate="yes">Құрылып қалар</th>
+        <th translate="yes">Жасалды</th>
         <td>${membership.createdFormatted}</td>
       </tr>
       <tr id="full-name">
@@ -25,13 +25,13 @@
         <td>${membership.firstName} ${membership.lastName}</td>
       </tr>
       <tr id="contact-email">
-        <th translate="yes">Контакт электрондық поштасы</th>
+        <th translate="yes">Байланыс электрондық поштасы</th>
         <td>
           <a href="mailto:${membership.contactEmail}">${membership.contactEmail}</a>
         </td>
       </tr>
       <tr id="display-name">
-        <th translate="yes">Көрсету атауы</th>
+        <th translate="yes">Көрсетілетін атау</th>
         <td>${membership.displayName}</td>
       </tr>
       <tr id="display-email">
@@ -41,7 +41,7 @@
         </td>
       </tr>
       <tr id="dob">
-        <th translate="yes">Туған күні</th>
+        <th translate="yes">Туған кезі</th>
         <td>${membership.dob}</td>
       </tr>
       <tr id="phone">
@@ -53,11 +53,11 @@
         <td>${membership.occupation}</td>
       </tr>
       <tr id="location">
-        <th translate="yes">Орын</th>
+        <th translate="yes">Орналасуы</th>
         <td>${membership.location}</td>
       </tr>
       <tr id="company-name">
-        <th translate="yes">Компанияның атауы</th>
+        <th translate="yes">Компанияның Аты</th>
         <td>${membership.companyName}</td>
       </tr>
       <tr id="website">

@@ -2,27 +2,27 @@
 <html lang="en" data-navbar="/account/organizations/navbar-membership.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Faasao ${membership.membershipid} profile</title>
+  <title translate="yes">Faʻatonutonu ${membership.membershipid} profile</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Faasao ${membership.membershipid} profile</h1>
-  <p translate="yes">Soo se isi lava tagata o le Ekalesia o loo faasoaina atu lenei talaaga otooto, po o se isi faaaogaaga o ia mea, o le a faafouina foi.</p>
+  <h1 translate="yes">Faʻatonutonu ${membership.membershipid} profile</h1>
+  <p translate="yes">Soʻo seisi lava sui faʻasoa i lenei tulaga, poʻo nisi foi faʻaaogaga o le a, o le a faʻafouina foi.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/edit-membership-profile?membershipid=${membership.membershipid}" name="submit-form">
     <div id="display-name-container" class="pure-control-group">
-      <label for="display-name" translate="yes">Igoa faaali</label>
+      <label for="display-name" translate="yes">Faaali le igoa</label>
       <input required="" id="display-name" name="display-name" type="text" maxlength="1000">
     </div>
     <div id="display-email-container" class="pure-control-group">
-      <label for="display-email" translate="yes">Faaali le imeli</label>
+      <label for="display-email" translate="yes">Faaalia imeli</label>
       <input required="" id="display-email" name="display-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="contact-email-container" class="pure-control-group">
-      <label for="contact-email" translate="yes">Imeli faafesootai</label>
+      <label for="contact-email" translate="yes">Faʻafesoʻotaʻi imeli</label>
       <input required="" id="contact-email" name="contact-email" type="text" maxlength="1000" size="50">
     </div>
     <div id="full-name-container">
@@ -31,7 +31,7 @@
         <input required="" id="first-name" name="first-name" type="text" maxlength="1000">
       </div>
       <div class="pure-control-group">
-        <label for="last-name" translate="yes">Faaiu</label>
+        <label for="last-name" translate="yes">Igoa mulimuli</label>
         <input required="" id="last-name" name="last-name" type="text" maxlength="1000">
       </div>
     </div>
@@ -54,95 +54,95 @@
       <input required="" id="location" name="location" type="text" maxlength="1000">
     </div>
     <div id="company-name-container" class="pure-control-group">
-      <label for="company-name" translate="yes">Igoa o le vaega</label>
+      <label for="company-name" translate="yes">Igoa ole kamupani</label>
       <input required="" id="company-name" name="company-name" type="text" maxlength="1000">
     </div>
     <div id="website-container" class="pure-control-group">
-      <label for="website" translate="yes">Uepisaite</label>
+      <label for="website" translate="yes">Upega Tafaʻilagi</label>
       <input required="" id="website" name="website" type="text" maxlength="1000">
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Faafou le pepa faamaumau</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Faafou sui auai</button>
     </div>
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      Manuia! Ua uma ona faafouina faamatalaga o lou tagata auai
+      Manuia! Ua maeʻa faʻafouina ou faʻamatalaga sa auai
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Mea sese! O se mea sese e le mailoa ocurred
+      Sese! O se mea sese le iloa na tupu
     </div>
   </template>
   <template id="invalid-first-name">
     <div class="error message" translate="yes">
-      Mea sese! O se igoa muamua ua misi pe le taulia ua saunia
+      Sese! Ua leiloa le igoa muamua leiloa
     </div>
   </template>
   <template id="invalid-first-name-length">
     <div class="error message" translate="yes">
-      Mea sese! O se igoa muamua e le taulia sa tuuina atu
+      Sese! E leʻi faʻaigoaina se igoa muamua
     </div>
   </template>
   <template id="invalid-last-name">
     <div class="error message" translate="yes">
-      Mea sese! O se vaega o loo misi po o le e le o faaaogaina le igoa mulimuli na tuuina atu
+      Sese! Na tuʻuina le igoa mulimuli ua leiloa pe leai
     </div>
   </template>
   <template id="invalid-last-name-length">
     <div class="error message" translate="yes">
-      Mea sese! Sa tuuina atu se le taulia o le igoa mulimuli
+      Sese! Sa le faʻaigoaina le igoa mulimuli
     </div>
   </template>
   <template id="invalid-contact-email">
     <div class="error message" translate="yes">
-      Mea sese! E le o faaaogaina le tuatusi imeli e faafesootai ai
+      Sese! Le saʻo le tuatusi imeli o le fesootaiga
     </div>
   </template>
   <template id="invalid-display-email">
     <div class="error message" translate="yes">
-      Mea sese! E le o aoga le tuatusi imeli
+      Sese! Lē saʻo le tuatusi imeli imeli
     </div>
   </template>
   <template id="invalid-display-name">
     <div class="error message" translate="yes">
-      Mea sese! O se igoa faaali pe le o faaalia na tuuina mai
+      Sese! Na le faʻaalia foi le leai o se igoa faʻaalia
     </div>
   </template>
   <template id="invalid-dob">
     <div class="error message" translate="yes">
-      Mea sese! Na saunia se aso na misi pe le aoga o le fanau
+      Sese! Na leiloa po o le le aoga aso o le fanau mai
     </div>
   </template>
   <template id="invalid-phone">
     <div class="error message" translate="yes">
-      Mea sese! O se telefoni o loo misi pe le aoga sa tuuina atu.
+      Sese! Na faʻaogaina se telefoni ua leiloa poʻo le le aoga.
     </div>
   </template>
   <template id="invalid-occupation">
     <div class="error message" translate="yes">
-      Mea sese! Na tuuina atu i ai se galuega o loo misi po o le le aoga.
+      Sese! Na le mauaina pe leai foi se galuega.
     </div>
   </template>
   <template id="invalid-location">
     <div class="error message" translate="yes">
-      Mea sese! Ua saunia se nofoaga o loo misi pe le o faaaogaina.
+      Sese! Na iai le nofoaga na leiloa pe leai foi.
     </div>
   </template>
   <template id="invalid-company-name">
     <div class="error message" translate="yes">
-      Mea sese! Na tuuina atu se igoa o le vaega o loo misi pe le o faaaogaina.
+      Sese! Ua leiloa pe leai se igoa igoa ole kamupani.
     </div>
   </template>
   <template id="invalid-website">
     <div class="error message" translate="yes">
-      Mea sese! Na tuuina atu i ai se uepisaite o loo misi po o le le aoga.
+      Sese! Na leiloa pe le aoga le upega tafailagi.
     </div>
   </template>
   <template id="invalid-display-name-length">
     <div class="error message" translate="yes">
-      Mea sese! O se igoa faaali pe le o faaalia na tuuina mai
+      Sese! Na le faʻaalia foi le leai o se igoa faʻaalia
     </div>
   </template>
 </body>

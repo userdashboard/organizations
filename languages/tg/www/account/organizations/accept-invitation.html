@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" data-navbar="/account/organizations/navbar.html">
+<head>
+  <meta charset="utf-8">
+  <title translate="yes">Даъватро қабул кунед</title>
+  <link href="/public/pure-min.css" rel="stylesheet">
+  <link href="/public/content.css" rel="stylesheet">
+  <link href="/public/content-additional.css" rel="stylesheet">
+  <base target="_top" href="/">
+</head>
+<body>
+  <h1 translate="yes">Даъватро қабул кунед</h1>
+  <p translate="yes">Пас аз ворид кардани рамз шумо узви созмон хоҳед шуд.</p>
+  <div id="message-container"></div>
+  <form id="submit-form" class="pure-form pure-form-stacked" action="/account/organizations/accept-invitation" name="submit-form">
+    <div class="pure-control-group">
+      <label for="invitationid" translate="yes">Шиносномаи даъватнома</label>
+      <input id="invitationid" name="invitationid" type="text" maxlength="100">
+    </div>
+    <div class="pure-control-group">
+      <label for="secret-code" translate="yes">Рамзи даъват</label>
+      <input id="secret-code" name="secret-code" type="text" maxlength="100">
+    </div>
+    <h2 translate="yes">Маълумот дар бораи аъзогӣ</h2>
+    <div id="existing-profile-container" class="pure-control-group">
+      <label for="profileid" translate="yes">Истифода профили мавҷуда</label>
+      <select id="profileid" name="profileid">
+        <option value="" translate="yes">
+          Профили мавҷударо интихоб кунед
+        </option>
+      </select>
+    </div>
+    <h3 translate="yes">Профили нав эҷод кунед</h3>
+    <div id="display-name-container" class="pure-control-group">
+      <label for="display-name" translate="yes">Бозтоби ном</label>
+      <input required="" id="display-name" name="display-name" type="text" maxlength="1000">
+    </div>
+    <div id="display-email-container" class="pure-control-group">
+      <label for="display-email" translate="yes">Нишони почтаи электронӣ</label>
+      <input required="" id="display-email" name="display-email" type="text" maxlength="1000" size="50">
+    </div>
+    <div id="contact-email-container" class="pure-control-group">
+      <label for="contact-email" translate="yes">Тамос бо почтаи электронӣ</label>
+      <input required="" id="contact-email" name="contact-email" type="text" maxlength="1000" size="50">
+    </div>
+    <div id="full-name-container">
+      <div class="pure-control-group">
+        <label for="first-name" translate="yes">Ном</label>
+      <input required="" id="first-name" name="first-name" type="text" maxlength="1000">
+      </div>
+      <div class="pure-control-group">
+        <label for="last-name" translate="yes">Насаб</label>
+      <input required="" id="last-name" name="last-name" type="text" maxlength="1000">
+      </div>
+    </div>
+    <div id="dob-container">
+      <div class="pure-control-group">
+        <label for="dob" translate="yes">Таърихи таввалуд</label>
+      <input required="" id="dob" name="dob" type="text" maxlength="11">
+      </div>
+    </div>
+    <div id="phone-container" class="pure-control-group">
+      <label for="phone" translate="yes">Телефон</label>
+      <input required="" id="phone" name="phone" type="text" maxlength="1000">
+    </div>
+    <div id="occupation-container" class="pure-control-group">
+      <label for="occupation" translate="yes">Машғулият</label>
+      <input required="" id="occupation" name="occupation" type="text" maxlength="1000">
+    </div>
+    <div id="location-container" class="pure-control-group">
+      <label for="location" translate="yes">Ҷойгиршавӣ</label>
+      <input required="" id="location" name="location" type="text" maxlength="1000">
+    </div>
+    <div id="company-name-container" class="pure-control-group">
+      <label for="company-name" translate="yes">Номи ширкат</label>
+      <input required="" id="company-name" name="company-name" type="text" maxlength="1000">
+    </div>
+    <div id="website-container" class="pure-control-group">
+      <label for="website" translate="yes">Вебсайт</label>
+      <input required="" id="website" name="website" type="text" maxlength="1000">
+    </div>
+    <div class="pure-controls">
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Ҳамроҳ шудан ба созмон</button>
+    </div>
+  </form>
+  <template id="success">
+    <div class="success message" translate="yes">
+      Муваффақият! Шумо ҳоло узви ин созмон мебошед
+    </div>
+  </template>
+  <template id="invalid-invitation">
+    <div class="error message" translate="yes">
+      Хатогӣ! Даъват дигар дастрас нест
+    </div>
+  </template>
+  <template id="invalid-secret-code">
+    <div class="error message" translate="yes">
+      Хатогӣ! Рамзи даъват нодуруст аст
+    </div>
+  </template>
+  <template id="invalid-invitationid">
+    <div class="error message" translate="yes">
+      Хатогӣ! Даъвати беэътибор ё беэътибор пешниҳод карда шуд
+    </div>
+  </template>
+  <template id="invalid-account">
+    <div class="error message" translate="yes">
+      Хатогӣ! Шумо соҳиби ин ё он аъзои ин созмон ҳастед
+    </div>
+  </template>
+  <template id="unknown-error">
+    <div class="error message" translate="yes">
+      Хатогӣ! Хатогии номаълум рух дод
+    </div>
+  </template>
+  <template id="profile-option">
+    <option value="${profile.profileid}">
+      ${profile.displayName} / ${profile.displayEmail}
+    </option>
+  </template>
+  <template id="invalid-organization-name">
+    <div class="error message" translate="yes">
+      Хатогӣ! Номи гумшуда ё беэътибор номи созмон дода шудааст
+    </div>
+  </template>
+  <template id="invalid-organization-name-length">
+    <div class="error message" translate="yes">
+      Хатогӣ! Дарозии номи созмон беэътибор аст
+    </div>
+  </template>
+  <template id="invalid-organization-email">
+    <div class="error message" translate="yes">
+      Хатогӣ! Суроғаи почтаи электронии гумшуда ё беэътиборро таъмин карданд
+    </div>
+  </template>
+  <template id="success">
+    <div class="success message" translate="yes">
+      Муваффақият! Ташкилот бомуваффақият таъсис ёфтааст
+    </div>
+  </template>
+  <template id="unknown-error">
+    <div class="error message" translate="yes">
+      Хатогӣ! Ҳангоми ташкили созмон хатогӣ ба амал омад
+    </div>
+  </template>
+  <template id="invalid-first-name">
+    <div class="error message" translate="yes">
+      Хатогӣ! Номи нопурра ё беэътибор дода шудааст
+    </div>
+  </template>
+  <template id="invalid-first-name-length">
+    <div class="error message" translate="yes">
+      Хатогӣ! Номи номувофиқ дода шудааст
+    </div>
+  </template>
+  <template id="invalid-last-name">
+    <div class="error message" translate="yes">
+      Хатогӣ! Номи номуайян ё беэътибор дода шудааст
+    </div>
+  </template>
+  <template id="invalid-last-name-length">
+    <div class="error message" translate="yes">
+      Хатогӣ! Номи номуайян оварда шудааст
+    </div>
+  </template>
+  <template id="invalid-contact-email">
+    <div class="error message" translate="yes">
+      Хатогӣ! Суроғаи почтаи электронии тамос нодуруст аст
+    </div>
+  </template>
+  <template id="invalid-display-email">
+    <div class="error message" translate="yes">
+      Хатогӣ! Суроғаи почтаи электронии намоишӣ нодуруст
+    </div>
+  </template>
+  <template id="invalid-display-name">
+    <div class="error message" translate="yes">
+      Хатогӣ! Номи намоиши номуайян ё номувофиқ дода шудааст
+    </div>
+  </template>
+  <template id="invalid-dob">
+    <div class="error message" translate="yes">
+      Хатогӣ! Таърихи гумшуда ё беэътибор таваллуд шудааст
+    </div>
+  </template>
+  <template id="invalid-phone">
+    <div class="error message" translate="yes">
+      Хатогӣ! Телефони гумшуда ё беэътибор дода шуд.
+    </div>
+  </template>
+  <template id="invalid-occupation">
+    <div class="error message" translate="yes">
+      Хатогӣ! Машғулияти гумшуда ё беэътибор дода шуд.
+    </div>
+  </template>
+  <template id="invalid-location">
+    <div class="error message" translate="yes">
+      Хатогӣ! Ҷойи гумшуда ё беэътибор дода шудааст.
+    </div>
+  </template>
+  <template id="invalid-company-name">
+    <div class="error message" translate="yes">
+      Хатогӣ! Номи ширкатҳои гумшуда ё беэътибор дода шудааст.
+    </div>
+  </template>
+  <template id="invalid-website">
+    <div class="error message" translate="yes">
+      Хатогӣ! Вебсайти гумшуда ё беэътибор таъмин карда шуд.
+    </div>
+  </template>
+  <template id="invalid-display-name-length">
+    <div class="error message" translate="yes">
+      Хатогӣ! Номи намоиши номуайян ё номувофиқ дода шудааст
+    </div>
+  </template>
+  <template id="invalid-profileid">
+    <div class="error message" translate="yes">
+      Хатогӣ! Профили гумшуда ё беэътибор интихоб карда шуд.
+    </div>
+  </template>
+</body>
+</html>

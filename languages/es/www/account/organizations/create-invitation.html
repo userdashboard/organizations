@@ -28,7 +28,7 @@
   </form>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      ¡Error! Se ha producido un error desconocido
+      ¡Error! Un error desconocido ocurrió
     </div>
   </template>
   <template id="invalid-secret-code">
@@ -38,12 +38,12 @@
   </template>
   <template id="invalid-secret-code-length">
     <div class="error message" translate="yes">
-      ¡Error! El código secreto tiene una longitud no válida
+      ¡Error! El código secreto tiene una longitud no válida.
     </div>
   </template>
   <template id="success">
     <div class="success message">
-      <p translate="yes">¡Éxito! Proporcione su código secreto y este enlace a alguien a quien unirse:</p>
+      <p translate="yes">¡Éxito! Entregue su código secreto y este enlace a alguien para unirse:</p>
       <div class="invitation-link">
         <input type="text" readonly value="${organization.dashboardServer}/account/organizations/accept-invitation?invitationid=${organization.invitationid}">
       </div>

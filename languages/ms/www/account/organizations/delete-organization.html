@@ -2,33 +2,33 @@
 <html lang="en" data-navbar="/account/organizations/navbar-organization.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Menghapuskan ${organization.organizationid}</title>
+  <title translate="yes">Padam ${organization.organizationid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Menghapuskan ${organization.organizationid}</h1>
-  <p translate="yes">Organisasi akan dihapuskan serta-merta dan tidak boleh diperolehi semula.</p>
+  <h1 translate="yes">Padam ${organization.organizationid}</h1>
+  <p translate="yes">Organisasi akan dihapuskan dengan segera dan tidak dapat dipulihkan.</p>
   <div id="message-container"></div>
   <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/delete-organization?organizationid=${organization.organizationid}" name="submit-form">
     <div class="pure-control-group">
-      <label for="organizationName" translate="yes">Organisasi</label>
+      <label for="organizationName" translate="yes">Pertubuhan</label>
       <input id="organizationName" type="text" maxlength="100" readonly>
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Hapuskan organisasi</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Padamkan organisasi</button>
     </div>
   </form>
   <template id="success">
     <div class="success message" translate="yes">
-      Kejayaan! Organisasi telah dihapuskan secara kekal
+      Berjaya! Organisasi telah dipadamkan secara kekal
     </div>
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      Ralat! Ralat ocurred menghapuskan organisasi
+      Ralat! Ralat berlaku semasa menghapus organisasi
     </div>
   </template>
 </body>
