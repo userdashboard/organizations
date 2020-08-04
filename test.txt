@@ -154,7 +154,7 @@
       ✓ should require a document
       ✓ should require a total greater than 0
       ✓ should require an offset less than total
-      ✓ should accept null or string offset (39ms)
+      ✓ should accept null or string offset (43ms)
       ✓ should enforce global page size
       ✓ should override global page size
 
@@ -178,13 +178,13 @@
 
   internal-api/proxy
     Proxy#pass
-      ✓ should include x-accountid header (39ms)
+      ✓ should include x-accountid header (48ms)
       ✓ should include x-sessionid header
       ✓ should include x-dashboard-server header
       ✓ should create x-application-server-token header
       ✓ should include referer header
       ✓ should send POST data
-      ✓ should send multipart POST data
+      ✓ should send multipart POST data (51ms)
       ✓ should send file upload POST data
       ✓ should execute proxy handlers
 
@@ -268,15 +268,15 @@
       ✓ should add multiple properties
       ✓ should skip duplicates
     StorageList#count
-      ✓ should count the items (3606ms)
+      ✓ should count the items (3607ms)
       ✓ should not count removed items (4806ms)
     StorageList#remove
-      ✓ should remove the item (2402ms)
+      ✓ should remove the item (2403ms)
     StorageList#list
-      ✓ should change page size (4810ms)
-      ✓ should enforce offset (3606ms)
+      ✓ should change page size (4808ms)
+      ✓ should enforce offset (3605ms)
     StorageList#listAll
-      ✓ should return all records (7214ms)
+      ✓ should return all records (7212ms)
 
   internal-api/storage-object
     getProperties
@@ -336,90 +336,90 @@
 
   /account/change-password
     view
-      ✓ should present the form (650ms)
+      ✓ should present the form (636ms)
     submit
-      ✓ should apply new password (screenshots) (52723ms)
+      ✓ should apply new password (screenshots) (51232ms)
     errors
-      ✓ invalid-new-password (1681ms)
-      ✓ invalid-new-password-length (1998ms)
-      ✓ invalid-confirm-password (1883ms)
-      ✓ invalid-password (1575ms)
+      ✓ invalid-new-password (1676ms)
+      ✓ invalid-new-password-length (1931ms)
+      ✓ invalid-confirm-password (1863ms)
+      ✓ invalid-password (1556ms)
 
   /account/change-username
     view
-      ✓ should present the form (482ms)
+      ✓ should present the form (486ms)
     submit
-      ✓ should apply new username (screenshots) (44828ms)
+      ✓ should apply new username (screenshots) (43735ms)
     errors
-      ✓ invalid-new-username (1386ms)
-      ✓ invalid-new-username-length (1369ms)
-      ✓ invalid-password (1752ms)
+      ✓ invalid-new-username (1371ms)
+      ✓ invalid-new-username-length (1377ms)
+      ✓ invalid-password (1739ms)
 
   /account/create-profile
     view
-      ✓ should present the form (480ms)
-      ✓ should have elements for full-name (494ms)
-      ✓ should have elements for contact-email (483ms)
-      ✓ should have elements for display-email (478ms)
-      ✓ should have elements for dob (482ms)
-      ✓ should have elements for phone (488ms)
-      ✓ should have elements for occupation (498ms)
-      ✓ should have elements for location (491ms)
-      ✓ should have elements for company-name (480ms)
-      ✓ should have elements for website (478ms)
+      ✓ should present the form (506ms)
+      ✓ should have elements for full-name (479ms)
+      ✓ should have elements for contact-email (488ms)
+      ✓ should have elements for display-email (474ms)
+      ✓ should have elements for dob (476ms)
+      ✓ should have elements for phone (483ms)
+      ✓ should have elements for occupation (454ms)
+      ✓ should have elements for location (505ms)
+      ✓ should have elements for company-name (491ms)
+      ✓ should have elements for website (499ms)
     submit
-      ✓ should create profile (screenshots) (61886ms)
-      ✓ should create profile with full-name (1275ms)
-      ✓ should create profile and set default (1303ms)
-      ✓ should create profile with display name (1097ms)
-      ✓ should create profile with contact-email (1409ms)
-      ✓ should create profile with display-email (1511ms)
-      ✓ should create profile with dob in YYYY-MM-DD (1184ms)
-      ✓ should create profile with dob in MM-DD-YYYY (1188ms)
-      ✓ should create profile with phone (1607ms)
-      ✓ should create profile with occupation (1686ms)
-      ✓ should create profile with location (1670ms)
-      ✓ should create profile with company-name (1557ms)
-      ✓ should create profile with website (1609ms)
+      ✓ should create profile (screenshots) (60615ms)
+      ✓ should create profile with full-name (1299ms)
+      ✓ should create profile and set default (1290ms)
+      ✓ should create profile with display name (1176ms)
+      ✓ should create profile with contact-email (1549ms)
+      ✓ should create profile with display-email (1617ms)
+      ✓ should create profile with dob in YYYY-MM-DD (1222ms)
+      ✓ should create profile with dob in MM-DD-YYYY (1227ms)
+      ✓ should create profile with phone (1627ms)
+      ✓ should create profile with occupation (1623ms)
+      ✓ should create profile with location (1639ms)
+      ✓ should create profile with company-name (1644ms)
+      ✓ should create profile with website (1656ms)
     errors
-      ✓ invalid-first-name (977ms)
-      ✓ invalid-first-name-length (2151ms)
-      ✓ invalid-last-name (1005ms)
-      ✓ invalid-last-name-length (2218ms)
-      ✓ invalid-contact-email (1827ms)
-      ✓ invalid-display-email (1846ms)
-      ✓ invalid-display-name (837ms)
-      ✓ invalid-display-name-length (1885ms)
-      ✓ invalid-dob (1838ms)
-      ✓ invalid-phone (790ms)
-      ✓ invalid-occupation (829ms)
-      ✓ invalid-location (838ms)
+      ✓ invalid-first-name (1001ms)
+      ✓ invalid-first-name-length (2156ms)
+      ✓ invalid-last-name (976ms)
+      ✓ invalid-last-name-length (2161ms)
+      ✓ invalid-contact-email (1822ms)
+      ✓ invalid-display-email (1839ms)
+      ✓ invalid-display-name (828ms)
+      ✓ invalid-display-name-length (1889ms)
+      ✓ invalid-dob (1906ms)
+      ✓ invalid-phone (851ms)
+      ✓ invalid-occupation (849ms)
+      ✓ invalid-location (801ms)
       ✓ invalid-company-name (810ms)
-      ✓ invalid-website (831ms)
+      ✓ invalid-website (840ms)
 
   /account/create-reset-code
     view
-      ✓ should present the form (495ms)
+      ✓ should present the form (505ms)
     submit
-      ✓ should create reset code (screenshots) (39956ms)
+      ✓ should create reset code (screenshots) (38601ms)
     errors
-      ✓ invalid-secret-code (907ms)
-      ✓ invalid-secret-code-length (1817ms)
+      ✓ invalid-secret-code (881ms)
+      ✓ invalid-secret-code-length (1830ms)
 
   /account/delete-account-complete
     view
-      ✓ should present 3 days remaining message (1387ms)
-      ✓ should present 7 days remaining message (1421ms)
-      ✓ should present instant deletion message (1416ms)
-      ✓ should present instant delete message (screenshots) (32970ms)
+      ✓ should present 3 days remaining message (1425ms)
+      ✓ should present 7 days remaining message (1389ms)
+      ✓ should present instant deletion message (1401ms)
+      ✓ should present instant delete message (screenshots) (32218ms)
 
   /account/delete-account
     view
-      ✓ should present the form (520ms)
+      ✓ should present the form (545ms)
     submit
-      ✓ should mark account deleted (screenshots) (32776ms)
+      ✓ should mark account deleted (screenshots) (31854ms)
     errors
-      ✓ invalid-password (993ms)
+      ✓ invalid-password (1050ms)
 
   /account/delete-profile
     before
@@ -427,100 +427,100 @@
     exceptions
       ✓ invalid-profileid
       ✓ invalid-profile
-      ✓ invalid-account (65ms)
+      ✓ invalid-account (84ms)
     view
-      ✓ should present the form (474ms)
+      ✓ should present the form (503ms)
     submit
-      ✓ should delete profile (screenshots) (64486ms)
+      ✓ should delete profile (screenshots) (62783ms)
 
   /account/delete-reset-code
     before
-      ✓ should bind data
+      ✓ should bind data (39ms)
     exceptions
       ✓ invalid-reset-codeid
-      ✓ invalid-account (46ms)
+      ✓ invalid-account (51ms)
     view
-      ✓ should present the form (491ms)
+      ✓ should present the form (508ms)
     submit
-      ✓ should delete reset code (screenshots) (52763ms)
+      ✓ should delete reset code (screenshots) (51056ms)
 
   /account/edit-profile
     view
-      ✓ should present the form (484ms)
-      ✓ should have elements for full-name (479ms)
-      ✓ should have elements for display-name (501ms)
-      ✓ should have elements for contact-email (484ms)
-      ✓ should have elements for display-email (493ms)
-      ✓ should have elements for dob (484ms)
-      ✓ should have elements for phone (483ms)
-      ✓ should have elements for occupation (500ms)
-      ✓ should have elements for location (473ms)
-      ✓ should have elements for company-name (541ms)
-      ✓ should have elements for website (494ms)
+      ✓ should present the form (488ms)
+      ✓ should have elements for full-name (500ms)
+      ✓ should have elements for display-name (529ms)
+      ✓ should have elements for contact-email (513ms)
+      ✓ should have elements for display-email (528ms)
+      ✓ should have elements for dob (505ms)
+      ✓ should have elements for phone (475ms)
+      ✓ should have elements for occupation (521ms)
+      ✓ should have elements for location (478ms)
+      ✓ should have elements for company-name (512ms)
+      ✓ should have elements for website (502ms)
     submit
-      ✓ should update profile (screenshots) (97034ms)
-      ✓ should update profile with full-name (1329ms)
-      ✓ should update profile with display name (1175ms)
-      ✓ should update profile with contact-email (1576ms)
-      ✓ should update profile with display-email (1513ms)
-      ✓ should update profile with dob in YYYY-MM-DD (1238ms)
-      ✓ should update profile with dob in MM-DD-YYYY (1222ms)
-      ✓ should update profile with phone (1636ms)
-      ✓ should update profile with occupation (1648ms)
-      ✓ should update profile with location (1619ms)
-      ✓ should update profile with company-name (1606ms)
-      ✓ should update profile with website (1673ms)
+      ✓ should update profile (screenshots) (95391ms)
+      ✓ should update profile with full-name (1274ms)
+      ✓ should update profile with display name (1174ms)
+      ✓ should update profile with contact-email (1551ms)
+      ✓ should update profile with display-email (1540ms)
+      ✓ should update profile with dob in YYYY-MM-DD (1225ms)
+      ✓ should update profile with dob in MM-DD-YYYY (1225ms)
+      ✓ should update profile with phone (1654ms)
+      ✓ should update profile with occupation (1662ms)
+      ✓ should update profile with location (1671ms)
+      ✓ should update profile with company-name (1623ms)
+      ✓ should update profile with website (1645ms)
     errors
-      ✓ invalid-first-name (999ms)
-      ✓ invalid-first-name-length (2219ms)
-      ✓ invalid-last-name (982ms)
-      ✓ invalid-last-name-length (2180ms)
-      ✓ invalid-contact-email (1845ms)
-      ✓ invalid-display-email (1810ms)
-      ✓ invalid-display-name (839ms)
-      ✓ invalid-display-name-length (1936ms)
+      ✓ invalid-first-name (991ms)
+      ✓ invalid-first-name-length (2262ms)
+      ✓ invalid-last-name (996ms)
+      ✓ invalid-last-name-length (2200ms)
+      ✓ invalid-contact-email (1856ms)
+      ✓ invalid-display-email (1826ms)
+      ✓ invalid-display-name (862ms)
+      ✓ invalid-display-name-length (1900ms)
       ✓ invalid-dob (1852ms)
-      ✓ invalid-phone (845ms)
-      ✓ invalid-occupation (882ms)
-      ✓ invalid-location (825ms)
-      ✓ invalid-company-name (849ms)
-      ✓ invalid-website (831ms)
+      ✓ invalid-phone (855ms)
+      ✓ invalid-occupation (874ms)
+      ✓ invalid-location (805ms)
+      ✓ invalid-company-name (857ms)
+      ✓ invalid-website (871ms)
 
   /account/end-all-sessions
     view
       ✓ should present the form (477ms)
     submit
-      ✓ should generate a new session key (screenshots) (31088ms)
+      ✓ should generate a new session key (screenshots) (30174ms)
 
   /account/end-session
     before
       ✓ should bind data to req
     view
-      ✓ should present the form (504ms)
+      ✓ should present the form (475ms)
     submit
-      ✓ should end the session (screenshots) (53455ms)
-      ✓ should end current session (771ms)
+      ✓ should end the session (screenshots) (51504ms)
+      ✓ should end current session (755ms)
 
   /account
     view
-      ✓ should return page (screenshots) (17183ms)
-      ✓ should not link to account preferences (17193ms)
-      ✓ should link to account preferences (17198ms)
+      ✓ should return page (screenshots) (16862ms)
+      ✓ should not link to account preferences (16898ms)
+      ✓ should link to account preferences (16821ms)
 
   /account/language
     exceptions
       ✓ should require language enabled
     view
-      ✓ should present the form (459ms)
+      ✓ should present the form (464ms)
     submit
-      ✓ should change the language (screenshots) (33174ms)
+      ✓ should change the language (screenshots) (32221ms)
 
   /account/profile
     before
       ✓ should bind data to req
     view
-      ✓ should present the profile table (screenshots) (41530ms)
-      ✓ should show fields if data exists (4326ms)
+      ✓ should present the profile table (screenshots) (39990ms)
+      ✓ should show fields if data exists (4269ms)
 
   /account/profiles
     before
@@ -529,76 +529,76 @@
       ✓ should return one page (screenshots)
       ✓ should change page size
       ✓ should change offset
-      ✓ should show fields if data exists (4296ms)
+      ✓ should show fields if data exists (4278ms)
 
   /account/register
     view
-      ✓ should present the form (375ms)
-      ✓ should disable the form (389ms)
-      ✓ should have elements for full-name (364ms)
-      ✓ should have elements for contact-email (375ms)
-      ✓ should have elements for display-email (372ms)
-      ✓ should have elements for dob (383ms)
-      ✓ should have elements for phone (362ms)
-      ✓ should have elements for occupation (376ms)
-      ✓ should have elements for location (378ms)
-      ✓ should have elements for company-name (380ms)
+      ✓ should present the form (387ms)
+      ✓ should disable the form (364ms)
+      ✓ should have elements for full-name (370ms)
+      ✓ should have elements for contact-email (410ms)
+      ✓ should have elements for display-email (373ms)
+      ✓ should have elements for dob (394ms)
+      ✓ should have elements for phone (369ms)
+      ✓ should have elements for occupation (364ms)
+      ✓ should have elements for location (370ms)
+      ✓ should have elements for company-name (364ms)
       ✓ should have elements for website (376ms)
     submit
-      ✓ should create new account with full name (6543ms)
-      ✓ should create new profile with contact email (6777ms)
-      ✓ should create new profile with display email (6801ms)
-      ✓ should create new profile with display name (6338ms)
-      ✓ should create new profile with dob in YYYY-MM-DD (6449ms)
-      ✓ should create new profile with dob in MM-DD-YYYY (6444ms)
-      ✓ should create new profile with phone (6916ms)
-      ✓ should create new profile with occupation (6879ms)
-      ✓ should create new profile with location (6913ms)
-      ✓ should create new profile with company-name (6882ms)
-      ✓ should create new profile with website (6892ms)
-      ✓ should create 20-minute session (6181ms)
-      ✓ should create account (screenshots) (95256ms)
+      ✓ should create new account with full name (6546ms)
+      ✓ should create new profile with contact email (6860ms)
+      ✓ should create new profile with display email (6713ms)
+      ✓ should create new profile with display name (6375ms)
+      ✓ should create new profile with dob in YYYY-MM-DD (6460ms)
+      ✓ should create new profile with dob in MM-DD-YYYY (6457ms)
+      ✓ should create new profile with phone (6866ms)
+      ✓ should create new profile with occupation (6919ms)
+      ✓ should create new profile with location (6888ms)
+      ✓ should create new profile with company-name (6889ms)
+      ✓ should create new profile with website (6920ms)
+      ✓ should create 20-minute session (6147ms)
+      ✓ should create account (screenshots) (94265ms)
     errors
-      ✓ invalid-username (5395ms)
-      ✓ invalid-username-length (5418ms)
-      ✓ invalid-password (5399ms)
-      ✓ invalid-password-length (5158ms)
-      ✓ invalid-confirm (5514ms)
-      ✓ invalid-first-name (6254ms)
-      ✓ invalid-first-name-length (12759ms)
-      ✓ invalid-last-name (6250ms)
-      ✓ invalid-last-name-length (12797ms)
-      ✓ invalid-contact-email (12366ms)
-      ✓ invalid-display-email (12400ms)
-      ✓ invalid-display-name (6094ms)
-      ✓ invalid-display-name-length (12463ms)
-      ✓ invalid-dob (12511ms)
-      ✓ invalid-phone (6102ms)
-      ✓ invalid-occupation (6063ms)
-      ✓ invalid-location (6110ms)
-      ✓ invalid-company-name (6069ms)
-      ✓ invalid-website (6121ms)
+      ✓ invalid-username (5406ms)
+      ✓ invalid-username-length (5435ms)
+      ✓ invalid-password (5395ms)
+      ✓ invalid-password-length (5199ms)
+      ✓ invalid-confirm (5532ms)
+      ✓ invalid-first-name (6268ms)
+      ✓ invalid-first-name-length (12786ms)
+      ✓ invalid-last-name (6235ms)
+      ✓ invalid-last-name-length (12817ms)
+      ✓ invalid-contact-email (12419ms)
+      ✓ invalid-display-email (12322ms)
+      ✓ invalid-display-name (6116ms)
+      ✓ invalid-display-name-length (12419ms)
+      ✓ invalid-dob (12521ms)
+      ✓ invalid-phone (6090ms)
+      ✓ invalid-occupation (6074ms)
+      ✓ invalid-location (6100ms)
+      ✓ invalid-company-name (6092ms)
+      ✓ invalid-website (6085ms)
 
   /account/reset-account
     view
-      ✓ should present the form (356ms)
+      ✓ should present the form (367ms)
     submit
-      ✓ should reset session key (6822ms)
-      ✓ should reset code last used (6838ms)
-      ✓ should sign in (screenshots) (139641ms)
+      ✓ should reset session key (6854ms)
+      ✓ should reset code last used (6851ms)
+      ✓ should sign in (screenshots) (138251ms)
     errors
-      ✓ invalid-username (5689ms)
-      ✓ invalid-secret-code (5605ms)
-      ✓ invalid-new-password (5578ms)
-      ✓ invalid-new-password-length (5383ms)
-      ✓ invalid-confirm-password (5594ms)
+      ✓ invalid-username (5669ms)
+      ✓ invalid-secret-code (5598ms)
+      ✓ invalid-new-password (5555ms)
+      ✓ invalid-new-password-length (5387ms)
+      ✓ invalid-confirm-password (5600ms)
       ✓ invalid-account (6668ms)
 
   /account/reset-code
     before
       ✓ should bind data to req
     view
-      ✓ should present the reset code table (screenshots) (31762ms)
+      ✓ should present the reset code table (screenshots) (31035ms)
 
   /account/reset-codes
     before
@@ -610,24 +610,24 @@
 
   /account/restore-account
     view
-      ✓ should present the form (459ms)
+      ✓ should present the form (450ms)
     submit
-      ✓ should unset account deleted (screenshots) (131171ms)
+      ✓ should unset account deleted (screenshots) (129774ms)
     errors
-      ✓ invalid-username (5330ms)
-      ✓ invalid-password (5303ms)
-      ✓ invalid-account (5756ms)
+      ✓ invalid-username (5324ms)
+      ✓ invalid-password (5348ms)
+      ✓ invalid-account (5724ms)
 
   /account/session
     before
       ✓ should bind data to req
     view
-      ✓ should present the session table (screenshots) (32221ms)
+      ✓ should present the session table (screenshots) (31574ms)
 
   /account/sessions
     before
       ✓ should bind data to req
-      ✓ should exclude ended sessions (534ms)
+      ✓ should exclude ended sessions (550ms)
     view
       ✓ should return one page (screenshots)
       ✓ should change page size
@@ -637,42 +637,42 @@
     before
       ✓ should bind data to req
     view
-      ✓ should present the form (494ms)
+      ✓ should present the form (495ms)
     submit
-      ✓ should set the profile as default (screenshots) (63053ms)
+      ✓ should set the profile as default (screenshots) (62282ms)
 
   /account/signin
     view
-      ✓ should present the form (380ms)
+      ✓ should present the form (363ms)
     submit
-      ✓ should create session expiring in 20 minutes as default (5874ms)
-      ✓ should create session expiring in 20 minutes (6026ms)
-      ✓ should create session expiring in 8 hours (12024ms)
-      ✓ should create session expiring in 30 days (5959ms)
-      ✓ should sign in (screenshots) (93365ms)
+      ✓ should create session expiring in 20 minutes as default (5902ms)
+      ✓ should create session expiring in 20 minutes (6017ms)
+      ✓ should create session expiring in 8 hours (12090ms)
+      ✓ should create session expiring in 30 days (6082ms)
+      ✓ should sign in (screenshots) (91775ms)
     errors
-      ✓ invalid-username (4948ms)
-      ✓ invalid-password (5652ms)
+      ✓ invalid-username (4964ms)
+      ✓ invalid-password (5627ms)
 
   /account/signout-complete
     view
-      ✓ should sign out (screenshots) (22081ms)
+      ✓ should sign out (screenshots) (21074ms)
 
   /account/signout
     view
-      ✓ should end the session (560ms)
-      ✓ should redirect to signout complete page (549ms)
-      ✓ should signout (screenshots) (17237ms)
+      ✓ should end the session (540ms)
+      ✓ should redirect to signout complete page (513ms)
+      ✓ should signout (screenshots) (16724ms)
 
   /account/verify
     view
-      ✓ should present the form (452ms)
+      ✓ should present the form (427ms)
     submit
-      ✓ should mark session as verified (5895ms)
-      ✓ should verify session (screenshots) (69497ms)
+      ✓ should mark session as verified (5907ms)
+      ✓ should verify session (screenshots) (68243ms)
     errors
-      ✓ invalid-username (5052ms)
-      ✓ invalid-password (5688ms)
+      ✓ invalid-username (5002ms)
+      ✓ invalid-password (5643ms)
 
   /administrator/account-profiles
     before
@@ -703,13 +703,13 @@
 
   /administrator/account
     before
-      ✓ should bind data to req (41ms)
+      ✓ should bind data to req (57ms)
     view
-      ✓ should present the account table (screenshots) (30451ms)
-      ✓ should present the profile table (542ms)
-      ✓ should present the sessions table (526ms)
-      ✓ should hide empty reset codes table (530ms)
-      ✓ should present a populated reset codes table (550ms)
+      ✓ should present the account table (screenshots) (28757ms)
+      ✓ should present the profile table (502ms)
+      ✓ should present the sessions table (474ms)
+      ✓ should hide empty reset codes table (498ms)
+      ✓ should present a populated reset codes table (484ms)
 
   /administrator/accounts
     before
@@ -731,52 +731,52 @@
 
   /administrator/assign-administrator
     before
-      ✓ should bind data to req (38ms)
+      ✓ should bind data to req (45ms)
     view
-      ✓ should present the form (486ms)
+      ✓ should present the form (511ms)
     submit
-      ✓ should apply account update (screenshots) (54520ms)
+      ✓ should apply account update (screenshots) (53176ms)
 
   /administrator/create-reset-code
     before
-      ✓ should bind data to req (41ms)
+      ✓ should bind data to req (39ms)
     view
-      ✓ should present the form (509ms)
+      ✓ should present the form (487ms)
     submit
-      ✓ should create reset code (screenshots) (59502ms)
+      ✓ should create reset code (screenshots) (57178ms)
     errors
-      ✓ invalid-secret-code (919ms)
-      ✓ invalid-secret-code-length (1880ms)
+      ✓ invalid-secret-code (935ms)
+      ✓ invalid-secret-code-length (1849ms)
 
   /administrator/delete-account
     exceptions
       ✓ should reject invalid accountid
     before
-      ✓ should bind data to req (39ms)
+      ✓ should bind data to req (43ms)
     view
-      ✓ should present the form (505ms)
+      ✓ should present the form (500ms)
     submit
-      ✓ should immediately delete (screenshots) (57139ms)
+      ✓ should immediately delete (screenshots) (54866ms)
 
   /administrator/delete-schedule
     before
-      ✓ should bind data to req (63ms)
+      ✓ should bind data to req (95ms)
     view
-      ✓ should present the deleted accounts table (screenshots) (24829ms)
-      ✓ should return one page (571ms)
-      ✓ should change page size (590ms)
-      ✓ should change offset (548ms)
+      ✓ should present the deleted accounts table (screenshots) (23976ms)
+      ✓ should return one page (568ms)
+      ✓ should change page size (591ms)
+      ✓ should change offset (560ms)
 
   /administrator
     view
-      ✓ should return page (screenshots) (16472ms)
+      ✓ should return page (screenshots) (16003ms)
 
   /administrator/profile
     before
-      ✓ should bind data to req (52ms)
+      ✓ should bind data to req (44ms)
     view
-      ✓ should present the profile table (screenshots) (39489ms)
-      ✓ should show fields if data exists (4216ms)
+      ✓ should present the profile table (screenshots) (37969ms)
+      ✓ should show fields if data exists (4218ms)
 
   /administrator/profiles
     before
@@ -785,13 +785,13 @@
       ✓ should return one page (screenshots)
       ✓ should change page size
       ✓ should change offset
-      ✓ should show fields if data exists (4391ms)
+      ✓ should show fields if data exists (4291ms)
 
   /administrator/reset-code
     before
-      ✓ should bind data to req (39ms)
+      ✓ should bind data to req (45ms)
     view
-      ✓ should present the reset code table (screenshots) (31055ms)
+      ✓ should present the reset code table (screenshots) (29683ms)
 
   /administrator/reset-codes
     before
@@ -804,50 +804,50 @@
 
   /administrator/reset-session-key
     before
-      ✓ should bind data to req (39ms)
+      ✓ should bind data to req (44ms)
     view
-      ✓ should present the form (488ms)
+      ✓ should present the form (513ms)
     submit
-      ✓ should reset session key (screenshots) (55589ms)
+      ✓ should reset session key (screenshots) (53639ms)
 
   /administrator/revoke-administrator
     before
-      ✓ should bind data to req (39ms)
+      ✓ should bind data to req (46ms)
     view
-      ✓ should present the form (502ms)
+      ✓ should present the form (504ms)
     submit
-      ✓ should revoke administrator status (screenshots) (54579ms)
+      ✓ should revoke administrator status (screenshots) (52392ms)
 
   /administrator/schedule-account-delete
     before
-      ✓ should bind data to req (38ms)
+      ✓ should bind data to req (41ms)
     view
-      ✓ should present the form (491ms)
+      ✓ should present the form (476ms)
     submit
-      ✓ should schedule account for deletion (screenshots) (56307ms)
+      ✓ should schedule account for deletion (screenshots) (54400ms)
 
   /administrator/session
     before
-      ✓ should bind data to req
+      ✓ should bind data to req (51ms)
     view
-      ✓ should present the session table (screenshots) (30875ms)
+      ✓ should present the session table (screenshots) (29696ms)
 
   /administrator/sessions
     before
       ✓ should bind data to req
     view
       ✓ should present the sessions table (screenshots)
-      ✓ should return one page (506ms)
+      ✓ should return one page (543ms)
       ✓ should change page size
       ✓ should change offset
 
   /administrator/transfer-ownership
     before
-      ✓ should bind data to req (41ms)
+      ✓ should bind data to req (40ms)
     view
-      ✓ should present the form (516ms)
+      ✓ should present the form (501ms)
     submit
-      ✓ should change ownership (screenshots) (55098ms)
+      ✓ should change ownership (screenshots) (53067ms)
 
   /api/administrator/account
     exceptions
@@ -855,15 +855,15 @@
         ✓ unspecified querystring accountid
         ✓ invalid querystring accountid
     returns
-      ✓ object
+      ✓ object (41ms)
     redacts
-      ✓ usernameHash
-      ✓ passwordHash
-      ✓ sessionKey
+      ✓ usernameHash (51ms)
+      ✓ passwordHash (44ms)
+      ✓ sessionKey (41ms)
 
   /api/administrator/accounts-count
     returns
-      ✓ integer (70ms)
+      ✓ integer (84ms)
 
   /api/administrator/accounts
     receives
@@ -881,7 +881,7 @@
 
   /api/administrator/administrator-accounts-count
     returns
-      ✓ integer (46ms)
+      ✓ integer (49ms)
 
   /api/administrator/administrator-accounts
     receives
@@ -903,13 +903,13 @@
         ✓ unspecified querystring accountid
         ✓ invalid querystring accountid
       invalid-secret-code
-        ✓ missing posted secret-code (43ms)
+        ✓ missing posted secret-code (39ms)
       invalid-secret-code-length
-        ✓ invalid posted secret-code length (39ms)
+        ✓ invalid posted secret-code length (45ms)
     returns
       ✓ object (42ms)
     configuration
-      ✓ environment MINIMUM_RESET_CODE_LENGTH
+      ✓ environment MINIMUM_RESET_CODE_LENGTH (40ms)
       ✓ environment MAXIMUM_RESET_CODE_LENGTH (41ms)
 
   /api/administrator/delete-account
@@ -918,27 +918,27 @@
         ✓ missing querystring accountid
         ✓ invalid querystring accountid
     receieves
-      ✓ querystring accountid (50ms)
+      ✓ querystring accountid (44ms)
     returns
-      ✓ boolean (41ms)
+      ✓ boolean (49ms)
 
   /api/administrator/deleted-accounts-count
     returns
-      ✓ querystring accountid (117ms)
+      ✓ querystring accountid (101ms)
 
   /api/administrator/deleted-accounts
     receives
-      ✓ optional querystring offset (integer) (75ms)
-      ✓ optional querystring limit (integer) (55ms)
-      ✓ optional querystring all (boolean) (74ms)
+      ✓ optional querystring offset (integer) (94ms)
+      ✓ optional querystring limit (integer) (65ms)
+      ✓ optional querystring all (boolean) (95ms)
     returns
-      ✓ array (55ms)
+      ✓ array (68ms)
     redacts
-      ✓ usernameHash
-      ✓ passwordHash
-      ✓ sessionKey (45ms)
+      ✓ usernameHash (46ms)
+      ✓ passwordHash (49ms)
+      ✓ sessionKey (46ms)
     configuration
-      ✓ environment PAGE_SIZE (96ms)
+      ✓ environment PAGE_SIZE (126ms)
 
   /api/administrator/profile
     exceptions
@@ -946,11 +946,11 @@
         ✓ missing querystring profileid
         ✓ invalid querystring profileid
     returns
-      ✓ object
+      ✓ object (52ms)
 
   /api/administrator/profiles-count
     returns
-      ✓ integer (65ms)
+      ✓ integer (89ms)
 
   /api/administrator/profiles
     receives
@@ -969,10 +969,10 @@
         ✓ missing querystring accountid
         ✓ invalid querystring accountid
       invalid-account
-        ✓ accessing account is not owner (41ms)
-        ✓ querystring accountid is not administrator (40ms)
+        ✓ accessing account is not owner (40ms)
+        ✓ querystring accountid is not administrator (41ms)
     returns
-      ✓ object (38ms)
+      ✓ object (73ms)
 
   /api/administrator/reset-code
     exceptions
@@ -980,13 +980,13 @@
         ✓ missing querystring codeid
         ✓ invalid querystring codeid
     returns
-      ✓ object
+      ✓ object (45ms)
     redacts
-      ✓ secretCodeHash
+      ✓ secretCodeHash (45ms)
 
   /api/administrator/reset-codes-count
     returns
-      ✓ integer (84ms)
+      ✓ integer (100ms)
 
   /api/administrator/reset-codes
     receives
@@ -1007,11 +1007,11 @@
         ✓ missing querystring accountid
         ✓ invalid querystring accountid
     invalid-account
-      ✓ ineligible querystring account is deleted
+      ✓ ineligible querystring account is deleted (53ms)
     requires
-      ✓ querystring accountid is not deleted (39ms)
+      ✓ querystring accountid is not deleted (51ms)
     returns
-      ✓ object (46ms)
+      ✓ object (51ms)
 
   /api/administrator/session
     exceptions
@@ -1019,13 +1019,13 @@
         ✓ unspecified querystring accountid
         ✓ invalid querystring sessionid
     returns
-      ✓ object
+      ✓ object (41ms)
     redacts
-      ✓ tokenHash
+      ✓ tokenHash (40ms)
 
   /api/administrator/sessions-count
     returns
-      ✓ integer (73ms)
+      ✓ integer (88ms)
 
   /api/administrator/sessions
     receives
@@ -1050,7 +1050,7 @@
     requires
       ✓ querystring accountid is not administrator
     returns
-      ✓ object
+      ✓ object (44ms)
 
   /api/administrator/set-account-deleted
     exceptions
@@ -1058,11 +1058,11 @@
         ✓ unspecified querystring accountid
         ✓ invalid querystring accountid
       invalid-account
-        ✓ ineligible querystring account is already deleted
+        ✓ ineligible querystring account is already deleted (47ms)
     invalid-account
-      ✓ querystring accountid is deleted
+      ✓ querystring accountid is deleted (45ms)
     returns
-      ✓ object
+      ✓ object (43ms)
     configuration
       ✓ environment DELETE_DELAY (41ms)
 
@@ -1072,14 +1072,14 @@
         ✓ missing querystring accountid
         ✓ invalid querystring accountid
       invalid-account
-        ✓ ineligible accessing account (52ms)
+        ✓ ineligible accessing account (62ms)
         ✓ ineligible querystring account is already owner
     requires
-      ✓ accessing account is owner (51ms)
+      ✓ accessing account is owner (60ms)
       ✓ querystring account is not owner
-      ✓ querystring account is not deleted (39ms)
+      ✓ querystring account is not deleted (50ms)
     returns
-      ✓ object
+      ✓ object (46ms)
 
   /api/user/account
     exceptions
@@ -1087,7 +1087,7 @@
         ✓ missing querystring accountid
         ✓ invalid querystring accountid
       invalid-account
-        ✓ ineligible accessing account
+        ✓ ineligible accessing account (38ms)
     returns
       ✓ object
     redacts
@@ -1155,7 +1155,7 @@
       ✓ environment MINIMUM_PASSWORD_LENGTH
       ✓ environment MAXIMUM_PASSWORD_LENGTH
       ✓ environment REQUIRE_PROFILE
-      ✓ environment USER_PROFILE_FIELDS (74ms)
+      ✓ environment USER_PROFILE_FIELDS (70ms)
       ✓ environment MINIMUM_PROFILE_FIRST_NAME_LENGTH
       ✓ environment MAXIMUM_PROFILE_FIRST_NAME_LENGTH
       ✓ environment MINIMUM_PROFILE_LAST_NAME_LENGTH
@@ -1164,7 +1164,7 @@
       ✓ environment MAXIMUM_PROFILE_DISPLAY_NAME_LENGTH
       ✓ environment MINIMUM_PROFILE_COMPANY_NAME_LENGTH
       ✓ environment MAXIMUM_PROFILE_COMPANY_NAME_LENGTH
-      ✓ override req.userProfileFields (47ms)
+      ✓ override req.userProfileFields (51ms)
 
   /api/user/create-profile
     exceptions
@@ -1172,7 +1172,7 @@
         ✓ missing querystring accountid
         ✓ invalid querystring accountid
       invalid-accountid
-        ✓ ineligible accessing account
+        ✓ ineligible accessing account (42ms)
       invalid-first-name
         ✓ missing posted first-name
       invalid-first-name-length
@@ -1219,7 +1219,7 @@
     returns
       ✓ object
     configuration
-      ✓ environment USER_PROFILE_FIELDS (48ms)
+      ✓ environment USER_PROFILE_FIELDS (58ms)
       ✓ environment MINIMUM_PROFILE_FIRST_NAME_LENGTH
       ✓ environment MAXIMUM_PROFILE_FIRST_NAME_LENGTH
       ✓ environment MINIMUM_PROFILE_LAST_NAME_LENGTH
@@ -1228,7 +1228,7 @@
       ✓ environment MAXIMUM_PROFILE_DISPLAY_NAME_LENGTH
       ✓ environment MINIMUM_PROFILE_COMPANY_NAME_LENGTH
       ✓ environment MAXIMUM_PROFILE_COMPANY_NAME_LENGTH
-      ✓ override req.userProfileFields
+      ✓ override req.userProfileFields (42ms)
 
   /api/user/create-reset-code
     exceptions
@@ -1236,14 +1236,14 @@
         ✓ missing querystring accountid
         ✓ invalid querystring accountid
       invalid-accountid
-        ✓ ineligible accessing account (38ms)
+        ✓ ineligible accessing account (48ms)
       invalid-secret-code
         ✓ missing posted secret-code
       invalid-secret-code-length
         ✓ posted secret code too short
         ✓ posted secret code too long
     returns
-      ✓ object
+      ✓ object (73ms)
 
   /api/user/create-session
     exceptions
@@ -1264,7 +1264,7 @@
       invalid-profile
         ✓ querystring profileid is default contact profile
       invalid-account
-        ✓ ineligible querystring profileid
+        ✓ ineligible querystring profileid (39ms)
     returns
       ✓ boolean
 
@@ -1274,7 +1274,7 @@
         ✓ missing querystring codeid
         ✓ invalid querystring codeid
       invalid-account
-        ✓ ineligible querystring codeid (46ms)
+        ✓ ineligible querystring codeid (41ms)
     returns
       ✓ boolean
 
@@ -1294,7 +1294,7 @@
         ✓ missing querystring accountid
         ✓ invalid querystring accountid
       invalid-account
-        ✓ ineligible accessing account
+        ✓ ineligible accessing account (44ms)
     returns
       ✓ integer
 
@@ -1304,7 +1304,7 @@
         ✓ missing querystring accountid
         ✓ invalid querystring accountid
       invalid-account
-        ✓ ineligible accessing account
+        ✓ ineligible accessing account (41ms)
     receives
       ✓ optional querystring offset (integer)
       ✓ optional querystring limit (integer)
@@ -1347,7 +1347,7 @@
         ✓ missing querystring codeid
         ✓ invalid querystring codeid
       invalid-account
-        ✓ ineligible querystring codeid
+        ✓ ineligible querystring codeid (84ms)
     returns
       ✓ object
     redacts
@@ -1359,9 +1359,9 @@
         ✓ missing querystring accountid
         ✓ invalid querystring accountid
       invalid-account
-        ✓ ineligible accessing account
+        ✓ ineligible accessing account (42ms)
     returns
-      ✓ integer
+      ✓ integer (52ms)
 
   /api/user/reset-codes
     exceptions
@@ -1369,7 +1369,7 @@
         ✓ missing querystring accountid
         ✓ invalid querystring accountid
       invalid-account
-        ✓ ineligible accessing account
+        ✓ ineligible accessing account (53ms)
     receives
       ✓ optional querystring offset (integer)
       ✓ optional querystring limit (integer)
@@ -1387,7 +1387,7 @@
         ✓ missing querystring accountid
         ✓ invalid querystring accountid
       invalid-account
-        ✓ ineligible accessing account
+        ✓ ineligible accessing account (43ms)
     returns
       ✓ boolean
 
@@ -1397,7 +1397,7 @@
         ✓ missing querystring sessionid
         ✓ invalid querystring sessionid
       invalid-account
-        ✓ ineligible querystring sessionid
+        ✓ ineligible querystring sessionid (41ms)
     returns
       ✓ object
     redacts
@@ -1409,9 +1409,9 @@
         ✓ missing querystring accountid
         ✓ invalid querystring accountid
       invalid-account
-        ✓ ineligible accessing account
+        ✓ ineligible accessing account (38ms)
     returns
-      ✓ integer
+      ✓ integer (41ms)
 
   /api/user/sessions
     exceptions
@@ -1419,7 +1419,7 @@
         ✓ missing querystring accountid
         ✓ invalid querystring accountid
       invalid-account
-        ✓ ineligible accessing account
+        ✓ ineligible accessing account (38ms)
     receives
       ✓ optional querystring offset (integer)
       ✓ optional querystring limit (integer)
@@ -1435,7 +1435,7 @@
         ✓ missing querystring accountid
         ✓ invalid querystring accountid
       invalid-account
-        ✓ ineligible accessing account
+        ✓ ineligible accessing account (43ms)
       invalid-password
         ✓ missing posted password
         ✓ invalid posted password
@@ -1450,7 +1450,7 @@
         ✓ missing querystring accountid
         ✓ invalid querystring accountid
       invalid-account
-        ✓ ineligible accessing account (39ms)
+        ✓ ineligible accessing account (38ms)
       invalid-language
         ✓ missing posted language
         ✓ invalid posted language
@@ -1465,10 +1465,10 @@
         ✓ missing querystring accountid
         ✓ invalid querystring accountid
       invalid-account
-        ✓ ineligible accessing account
+        ✓ ineligible accessing account (41ms)
       invalid-password
         ✓ missing posted password
-        ✓ invalid posted password
+        ✓ invalid posted password (45ms)
       invalid-new-password
         ✓ missing posted new-password
       invalid-new-password-length
@@ -1483,7 +1483,7 @@
         ✓ missing querystring accountid
         ✓ invalid querystring accountid
       invalid-account
-        ✓ ineligible accessing account
+        ✓ ineligible accessing account (66ms)
       invalid-profileid
         ✓ missing posted profileid
         ✓ invalid posted profileid
@@ -1496,7 +1496,7 @@
         ✓ missing querystring accountid
         ✓ invalid querystring accountid
       invalid-account
-        ✓ ineligible accessing account (41ms)
+        ✓ ineligible accessing account (40ms)
       invalid-password
         ✓ missing posted password
         ✓ invalid posted password
@@ -1516,7 +1516,7 @@
       invalid-session
         ✓ querystring sessionid is not active session
       invalid-account
-        ✓ ineligible querystring sessionid (40ms)
+        ✓ ineligible querystring sessionid (42ms)
     returns
       ✓ object
 
@@ -1526,7 +1526,7 @@
         ✓ missing querystring sessionid
         ✓ invalid querystring sessionid
       invalid-account
-        ✓ ineligible querystring sessionid (43ms)
+        ✓ ineligible querystring sessionid (54ms)
     returns
       ✓ object
 
@@ -1541,7 +1541,7 @@
         ✓ missing posted first-name
       invalid-first-name-length
         ✓ posted first-name too short
-        ✓ posted first-name too long (39ms)
+        ✓ posted first-name too long
       invalid-last-name
         ✓ missing posted last-name
       invalid-last-name-length
@@ -1583,7 +1583,7 @@
     returns
       ✓ object
     configuration
-      ✓ environment USER_PROFILE_FIELDS (45ms)
+      ✓ environment USER_PROFILE_FIELDS (52ms)
       ✓ environment MINIMUM_PROFILE_FIRST_NAME_LENGTH
       ✓ environment MAXIMUM_PROFILE_FIRST_NAME_LENGTH
       ✓ environment MINIMUM_PROFILE_LAST_NAME_LENGTH
@@ -1618,142 +1618,142 @@
 
   /account/organizations/accept-invitation
     view
-      ✓ should present the form (488ms)
-      ✓ should exclude invalid profiles (524ms)
+      ✓ should present the form (502ms)
+      ✓ should exclude invalid profiles (538ms)
     submit
-      ✓ should accept valid existing profile (2163ms)
-      ✓ should accept invitation and create profile (screenshots) (59454ms)
+      ✓ should accept valid existing profile (2184ms)
+      ✓ should accept invitation and create profile (screenshots) (57135ms)
     errors
-      ✓ invalid-account (4039ms)
+      ✓ invalid-account (3938ms)
 
   /account/organizations/create-invitation
     exceptions
-      ✓ invalid-account (66ms)
+      ✓ invalid-account (73ms)
     before
       ✓ should bind data to req
     view
-      ✓ should present the form (489ms)
+      ✓ should present the form (511ms)
     submit
-      ✓ should create invitation (screenshots) (69151ms)
+      ✓ should create invitation (screenshots) (66936ms)
 
   /account/organizations/create-organization
     view
-      ✓ should present the form (519ms)
+      ✓ should present the form (530ms)
     submit
-      ✓ should accept valid existing profile (1546ms)
-      ✓ should create organization (screenshots) (42493ms)
+      ✓ should accept valid existing profile (1545ms)
+      ✓ should create organization (screenshots) (43057ms)
     errors
-      ✓ invalid-organization-name (1158ms)
-      ✓ invalid-organization-name-length (3464ms)
-      ✓ invalid-organization-email (1947ms)
+      ✓ invalid-organization-name (1217ms)
+      ✓ invalid-organization-name-length (3486ms)
+      ✓ invalid-organization-email (1916ms)
 
   /account/organizations/delete-invitation
     exceptions
-      ✓ invalid-account (57ms)
+      ✓ invalid-account (66ms)
     before
-      ✓ should bind data
+      ✓ should bind data (38ms)
     view
-      ✓ should present the form (508ms)
+      ✓ should present the form (497ms)
     submit
-      ✓ should delete invitation (screenshots) (67871ms)
+      ✓ should delete invitation (screenshots) (65243ms)
 
   /account/organizations/delete-membership
     exceptions
-      ✓ invalid-account (94ms)
+      ✓ invalid-account (91ms)
     before
-      ✓ should bind data to req (61ms)
+      ✓ should bind data to req (81ms)
     view
-      ✓ should present the form (543ms)
+      ✓ should present the form (536ms)
     submit
-      ✓ should delete membership (screenshots) (55942ms)
+      ✓ should delete membership (screenshots) (53425ms)
 
   /account/organizations/delete-organization
     exceptions
-      ✓ invalid-account (56ms)
+      ✓ invalid-account (67ms)
     before
       ✓ should bind data to req
     view
-      ✓ should present the form (490ms)
+      ✓ should present the form (466ms)
     submit
-      ✓ should delete organization (screenshots) (64235ms)
+      ✓ should delete organization (screenshots) (61907ms)
 
   /account/organizations/edit-membership-profile
     view
-      ✓ should present the form (515ms)
-      ✓ should have elements for full-name (540ms)
-      ✓ should have elements for display-name (521ms)
-      ✓ should have elements for contact-email (524ms)
-      ✓ should have elements for display-email (518ms)
-      ✓ should have elements for dob (500ms)
-      ✓ should have elements for phone (511ms)
-      ✓ should have elements for occupation (578ms)
-      ✓ should have elements for location (528ms)
-      ✓ should have elements for company-name (518ms)
-      ✓ should have elements for website (519ms)
+      ✓ should present the form (550ms)
+      ✓ should have elements for full-name (531ms)
+      ✓ should have elements for display-name (551ms)
+      ✓ should have elements for contact-email (545ms)
+      ✓ should have elements for display-email (531ms)
+      ✓ should have elements for dob (513ms)
+      ✓ should have elements for phone (554ms)
+      ✓ should have elements for occupation (522ms)
+      ✓ should have elements for location (525ms)
+      ✓ should have elements for company-name (539ms)
+      ✓ should have elements for website (570ms)
     submit
-      ✓ should update profile (screenshots) (89190ms)
-      ✓ should update profile with full-name (1297ms)
-      ✓ should update profile with display name (1176ms)
-      ✓ should update profile with contact-email (1572ms)
-      ✓ should update profile with display-email (1492ms)
-      ✓ should update profile with dob in YYYY-MM-DD (1265ms)
-      ✓ should update profile with dob in MM-DD-YYYY (1233ms)
-      ✓ should update profile with phone (1672ms)
-      ✓ should update profile with occupation (1646ms)
-      ✓ should update profile with location (1681ms)
-      ✓ should update profile with company-name (1654ms)
-      ✓ should update profile with website (1679ms)
+      ✓ should update profile (screenshots) (86805ms)
+      ✓ should update profile with full-name (1311ms)
+      ✓ should update profile with display name (1174ms)
+      ✓ should update profile with contact-email (1795ms)
+      ✓ should update profile with display-email (1602ms)
+      ✓ should update profile with dob in YYYY-MM-DD (1278ms)
+      ✓ should update profile with dob in MM-DD-YYYY (1274ms)
+      ✓ should update profile with phone (1692ms)
+      ✓ should update profile with occupation (1671ms)
+      ✓ should update profile with location (1696ms)
+      ✓ should update profile with company-name (1675ms)
+      ✓ should update profile with website (1644ms)
     errors
-      ✓ invalid-first-name (1012ms)
-      ✓ invalid-first-name-length (2267ms)
-      ✓ invalid-last-name (1025ms)
-      ✓ invalid-last-name-length (2268ms)
-      ✓ invalid-contact-email (1830ms)
-      ✓ invalid-display-email (1863ms)
-      ✓ invalid-display-name (871ms)
-      ✓ invalid-display-name-length (1947ms)
-      ✓ invalid-dob (1933ms)
-      ✓ invalid-phone (855ms)
-      ✓ invalid-occupation (906ms)
-      ✓ invalid-location (878ms)
-      ✓ invalid-company-name (885ms)
-      ✓ invalid-website (917ms)
+      ✓ invalid-first-name (1011ms)
+      ✓ invalid-first-name-length (2217ms)
+      ✓ invalid-last-name (1036ms)
+      ✓ invalid-last-name-length (2226ms)
+      ✓ invalid-contact-email (1842ms)
+      ✓ invalid-display-email (1862ms)
+      ✓ invalid-display-name (869ms)
+      ✓ invalid-display-name-length (1917ms)
+      ✓ invalid-dob (1896ms)
+      ✓ invalid-phone (878ms)
+      ✓ invalid-occupation (885ms)
+      ✓ invalid-location (847ms)
+      ✓ invalid-company-name (886ms)
+      ✓ invalid-website (859ms)
 
   /account/organizations/edit-organization
     exceptions
-      ✓ should require owner (61ms)
+      ✓ should require owner (52ms)
     before
       ✓ should bind data to req
     view
-      ✓ should present the form (493ms)
+      ✓ should present the form (484ms)
     submit
-      ✓ should apply organization update (screenshots) (72594ms)
+      ✓ should apply organization update (screenshots) (71723ms)
     errors
-      ✓ invalid-organization-name (1381ms)
-      ✓ invalid-organization-name-length (2013ms)
-      ✓ invalid-organization-email (1074ms)
+      ✓ invalid-organization-name (1469ms)
+      ✓ invalid-organization-name-length (1994ms)
+      ✓ invalid-organization-email (1090ms)
 
   /account/organizations/index
     before
-      ✓ should bind data to req (78ms)
+      ✓ should bind data to req (85ms)
     view
-      ✓ should have row for each organization (487ms)
-      ✓ should have row for each membership (screenshots) (16941ms)
+      ✓ should have row for each organization (513ms)
+      ✓ should have row for each membership (screenshots) (16508ms)
 
   /account/organizations/invitation
     before
-      ✓ should require owner (49ms)
+      ✓ should require owner (60ms)
       ✓ should bind data to req
     view
-      ✓ should have row for invitation (screenshots) (63375ms)
+      ✓ should have row for invitation (screenshots) (61059ms)
 
   /account/organizations/membership
     before
-      ✓ should reject non-member (70ms)
-      ✓ should bind data to req (52ms)
+      ✓ should reject non-member (124ms)
+      ✓ should bind data to req (66ms)
     view
-      ✓ should have row for membership (screenshots) (36156ms)
-      ✓ should show profile fields if data exists (2937ms)
+      ✓ should have row for membership (screenshots) (34909ms)
+      ✓ should show profile fields if data exists (3052ms)
 
   /account/organizations/memberships
     before
@@ -1762,11 +1762,11 @@
       ✓ should return one page (screenshots)
       ✓ should change page size
       ✓ should change offset
-      ✓ should show profile fields if data exists (4136ms)
+      ✓ should show profile fields if data exists (4213ms)
 
   /account/organizations/organization-invitations
     before
-      ✓ should require owner (57ms)
+      ✓ should require owner (82ms)
       ✓ should bind data to req
     view
       ✓ should return one page (screenshots)
@@ -1783,10 +1783,10 @@
 
   /account/organizations/organization
     before
-      ✓ should reject non-member (47ms)
-      ✓ should bind data to req (55ms)
+      ✓ should reject non-member (48ms)
+      ✓ should bind data to req (60ms)
     view
-      ✓ should have row for organization (screenshots) (40243ms)
+      ✓ should have row for organization (screenshots) (39125ms)
 
   /account/organizations/organizations
     before
@@ -1798,36 +1798,36 @@
 
   /account/organizations/revoke-membership
     exceptions
-      ✓ invalid-account (71ms)
+      ✓ invalid-account (70ms)
     before
-      ✓ should bind data to req (62ms)
+      ✓ should bind data to req (67ms)
     view
-      ✓ should present the form (524ms)
+      ✓ should present the form (547ms)
     submit
-      ✓ should delete membership (screenshots) (83187ms)
+      ✓ should delete membership (screenshots) (80193ms)
 
   /account/organizations/transfer-organization
     exceptions
-      ✓ invalid-account (57ms)
+      ✓ invalid-account (68ms)
     before
-      ✓ should bind data to req (64ms)
+      ✓ should bind data to req (65ms)
     view
-      ✓ should present the form (516ms)
+      ✓ should present the form (544ms)
     submit
-      ✓ should transfer ownership (screenshots) (64212ms)
+      ✓ should transfer ownership (screenshots) (61909ms)
 
   /administrator/organizations/index
     before
-      ✓ should bind data to req (109ms)
+      ✓ should bind data to req (123ms)
     view
-      ✓ should have row for each organization (screenshots) (20630ms)
-      ✓ should have organization row for each membership (554ms)
+      ✓ should have row for each organization (screenshots) (20074ms)
+      ✓ should have organization row for each membership (561ms)
 
   /administrator/organizations/invitation
     before
-      ✓ should bind data to req (48ms)
+      ✓ should bind data to req (67ms)
     view
-      ✓ should have row for invitation (screenshots) (39951ms)
+      ✓ should have row for invitation (screenshots) (38909ms)
 
   /administrator/organizations/invitations
     before
@@ -1839,9 +1839,9 @@
 
   /administrator/organizations/membership
     before
-      ✓ should bind data to req (74ms)
+      ✓ should bind data to req (98ms)
     view
-      ✓ should have row for membership (screenshots) (40926ms)
+      ✓ should have row for membership (screenshots) (39606ms)
 
   /administrator/organizations/memberships
     before
@@ -1850,7 +1850,7 @@
       ✓ should return one page (screenshots)
       ✓ should change page size
       ✓ should change offset
-      ✓ should show profile fields if data exists (4369ms)
+      ✓ should show profile fields if data exists (4353ms)
 
   /administrator/organizations/organization-invitations
     before
@@ -1870,9 +1870,9 @@
 
   /administrator/organizations/organization
     before
-      ✓ should bind data to req (75ms)
+      ✓ should bind data to req (92ms)
     view
-      ✓ should have row for organization (screenshots) (22923ms)
+      ✓ should have row for organization (screenshots) (22042ms)
 
   /administrator/organizations/organizations
     before
@@ -1888,13 +1888,13 @@
         ✓ missing querystring invitationid
         ✓ invalid querystring invitationid
     returns
-      ✓ object (47ms)
+      ✓ object (57ms)
     redacts
-      ✓ secretCodeHash (47ms)
+      ✓ secretCodeHash (53ms)
 
   /api/administrator/organizations/invitations-count
     returns
-      ✓ integer (120ms)
+      ✓ integer (133ms)
 
   /api/administrator/organizations/invitations
     receives
@@ -1914,11 +1914,11 @@
         ✓ missing querystring membershipid
         ✓ invalid querystring membershipid
     returns
-      ✓ object (71ms)
+      ✓ object (88ms)
 
   /api/administrator/organizations/memberships-count
     returns
-      ✓ integer (157ms)
+      ✓ integer (186ms)
 
   /api/administrator/organizations/memberships
     receives
@@ -1938,11 +1938,11 @@
         ✓ unspecified querystring organizationid
         ✓ invalid querystring organizationid
     returns
-      ✓ object (43ms)
+      ✓ object (59ms)
 
   /api/administrator/organizations/organizations-count
     returns
-      ✓ integer (92ms)
+      ✓ integer (115ms)
 
   /api/administrator/organizations/organizations
     receives
@@ -1966,7 +1966,7 @@
         ✓ posted secret-code too short
         ✓ posted secret-code too long
       invalid-account
-        ✓ accessing account is not organization owner (55ms)
+        ✓ accessing account is not organization owner (53ms)
     receives
       ✓ required posted secret-code
     returns
@@ -1978,26 +1978,26 @@
         ✓ missing querystring invitationid
         ✓ invalid querystring invitationid
       invalid-invitation
-        ✓ querystring invitationid has been used (82ms)
-        ✓ posted secret-code has been used (71ms)
+        ✓ querystring invitationid has been used (90ms)
+        ✓ posted secret-code has been used (97ms)
       invalid-secret-code
-        ✓ missing posted secret-code (46ms)
-        ✓ invalid posted secret-code (45ms)
+        ✓ missing posted secret-code (59ms)
+        ✓ invalid posted secret-code (59ms)
       invalid-account
-        ✓ accessing account is organization owner
-        ✓ accessing account is organization member (58ms)
+        ✓ accessing account is organization owner (40ms)
+        ✓ accessing account is organization member (86ms)
       invalid-profileid
-        ✓ missing posted profileid (50ms)
-        ✓ invalid posted profileid (54ms)
+        ✓ missing posted profileid (68ms)
+        ✓ invalid posted profileid (53ms)
       invalid-profile
-        ✓ ineligible posted profileid is missing fields (47ms)
+        ✓ ineligible posted profileid is missing fields (58ms)
       invalid-invitation
-        ✓ querystring invitationid is not open invitation (70ms)
+        ✓ querystring invitationid is not open invitation (91ms)
     receives
-      ✓ required posted secret-code (50ms)
-      ✓ required posted profileid (52ms)
+      ✓ required posted secret-code (59ms)
+      ✓ required posted profileid (68ms)
     returns
-      ✓ object (54ms)
+      ✓ object (60ms)
 
   /api/user/organizations/create-organization
     exceptions
@@ -2016,7 +2016,7 @@
     receives
       ✓ required posted organization-email
       ✓ required posted organization-name
-      ✓ required posted profileid
+      ✓ required posted profileid (43ms)
     returns
       ✓ object
 
@@ -2026,11 +2026,11 @@
         ✓ missing querystring invitationid
         ✓ invalid querystring invitationid
       invalid-invitation
-        ✓ querystring invitationid is used invitation (54ms)
+        ✓ querystring invitationid is used invitation (76ms)
       invalid-account
-        ✓ accessing account is not organization owner (43ms)
+        ✓ accessing account is not organization owner (57ms)
     returns
-      ✓ boolean
+      ✓ boolean (40ms)
 
   /api/user/organizations/delete-membership
     exceptions
@@ -2038,9 +2038,9 @@
         ✓ missing querystring membershipid
         ✓ invalid querystring membershipid
       invalid-account
-        ✓ accessing account is not membership or organization owner (68ms)
+        ✓ accessing account is not membership or organization owner (88ms)
     returns
-      ✓ boolean (55ms)
+      ✓ boolean (71ms)
 
   /api/user/organizations/delete-organization
     exceptions
@@ -2048,7 +2048,7 @@
         ✓ missing querystring organizationid
         ✓ invalid querystring organizationid
       invalid-account
-        ✓ accessing account does not own organization (51ms)
+        ✓ accessing account does not own organization (75ms)
     returns
       ✓ boolean
 
@@ -2058,7 +2058,7 @@
         ✓ missing querystring invitationid
         ✓ invalid querystring invitationid
       invalid-account
-        ✓ accessing account is not organization owner (75ms)
+        ✓ accessing account is not organization owner (72ms)
     returns
       ✓ object
     redacts
@@ -2070,17 +2070,17 @@
         ✓ missing querystring accountid
         ✓ invalid querystring accountid
       invalid-account
-        ✓ ineligible accessing account (56ms)
+        ✓ ineligible accessing account (65ms)
     returns
-      ✓ integer
+      ✓ integer (46ms)
 
   /api/user/organizations/invitations
     exceptions
       invalid-accountid
         ✓ missing querystring accountid
-        ✓ invalid querystring accountid
+        ✓ invalid querystring accountid (70ms)
       invalid-account
-        ✓ ineligible accessing account (55ms)
+        ✓ ineligible accessing account (66ms)
     receives
       ✓ optional querystring offset (integer)
       ✓ optional querystring limit (integer)
@@ -2097,9 +2097,9 @@
         ✓ missing querystring membershipid
         ✓ invalid querystring membershipid
       invalid-account
-        ✓ accessing account must be organization member or owner (73ms)
+        ✓ accessing account must be organization member or owner (78ms)
     returns
-      ✓ object (53ms)
+      ✓ object (62ms)
 
   /api/user/organizations/memberships-count
     exceptions
@@ -2107,9 +2107,9 @@
         ✓ missing querystring accountid
         ✓ invalid querystring accountid
       invalid-account
-        ✓ ineligible accessing account (56ms)
+        ✓ ineligible accessing account (66ms)
     returns
-      ✓ integer (118ms)
+      ✓ integer (161ms)
 
   /api/user/organizations/memberships
     exceptions
@@ -2117,7 +2117,7 @@
         ✓ missing querystring accountid
         ✓ invalid querystring accountid
       invalid-account
-        ✓ ineligible accessing account (55ms)
+        ✓ ineligible accessing account (74ms)
     receives
       ✓ optional querystring offset (integer)
       ✓ optional querystring limit (integer)
@@ -2134,7 +2134,7 @@
         ✓ missing querystring invitationid
         ✓ invalid querystring invitationid
       invalid-invitation
-        ✓ querystring invitationid is used (54ms)
+        ✓ querystring invitationid is used (69ms)
     returns
       ✓ object
 
@@ -2144,11 +2144,11 @@
         ✓ missing querystring invitationid
         ✓ invalid querystring invitationid
       invalid-invitation
-        ✓ querystring invitationid is used (56ms)
+        ✓ querystring invitationid is used (67ms)
     returns
-      ✓ object (54ms)
+      ✓ object (51ms)
     redacts
-      ✓ secretCodeHash (45ms)
+      ✓ secretCodeHash (62ms)
 
   /api/user/organizations/organization-membership
     exceptions
@@ -2156,9 +2156,9 @@
         ✓ missing querystring organizationid
         ✓ invalid querystring organizationid
       invalid-account
-        ✓ accessing account must be organization member (76ms)
+        ✓ accessing account must be organization member (82ms)
     returns
-      ✓ object (54ms)
+      ✓ object (65ms)
 
   /api/user/organizations/organization
     exceptions
@@ -2166,7 +2166,7 @@
         ✓ missing querystring organizationid
         ✓ invalid querystring organizationid
       invalid-account
-        ✓ accessing account must be organization member (70ms)
+        ✓ accessing account must be organization member (81ms)
     returns
       ✓ object
 
@@ -2176,9 +2176,9 @@
         ✓ missing querystring accountid
         ✓ invalid querystring accountid
       invalid-account
-        ✓ ineligible accessing account (62ms)
+        ✓ ineligible accessing account (77ms)
     returns
-      ✓ integer (39ms)
+      ✓ integer (53ms)
 
   /api/user/organizations/organizations
     exceptions
@@ -2186,7 +2186,7 @@
         ✓ missing querystring accountid
         ✓ invalid querystring accountid
       invalid-account
-        ✓ ineligible accessing account (56ms)
+        ✓ ineligible accessing account (75ms)
     receives
       ✓ optional querystring offset (integer)
       ✓ optional querystring limit (integer)
@@ -2205,11 +2205,11 @@
         ✓ posted accountid is missing
         ✓ posted accountid is invalid
       invalid-account
-        ✓ accessing account is not organization owner (57ms)
-        ✓ posted accountid is organization owner
-        ✓ posted accountid is not member (42ms)
+        ✓ accessing account is not organization owner (62ms)
+        ✓ posted accountid is organization owner (53ms)
+        ✓ posted accountid is not member (47ms)
     returns
-      ✓ object (58ms)
+      ✓ object (60ms)
 
   /api/user/organizations/update-organization
     exceptions
@@ -2217,7 +2217,7 @@
         ✓ missing querystring organizationid
         ✓ invalid querystring organizationid
       invalid-account
-        ✓ accessing account is not organization owner (56ms)
+        ✓ accessing account is not organization owner (64ms)
       invalid-organization-name
         ✓ missing posted name
       invalid-organization-name-length
