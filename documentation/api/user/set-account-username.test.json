@@ -1,0 +1,17 @@
+{
+  "object": "account",
+  "accountid": "account_f9823d4",
+  "usernameHash": "9c86f6971b431c461079b79dbee0e2238fa1877284033c7bf4cd216ac12337668d595e5a20a19f16975ea19ce354627978bfdf6350b1d85f2c9404b39a18a9e5",
+  "passwordHash": "$2a$04$jxmcuh.k5ZxQW5WHp8xhy.i2IpW.uMqK5KHEMfnoLcY1BMGKfMSuG",
+  "sessionKey": "7ed74a02f6530c4631db16e12114802fcb6ae152365661fe91afab0b9c8cd3f9",
+  "sessionKeyNumber": 1,
+  "created": 1596556897,
+  "administrator": 1596556897,
+  "owner": 1596556897,
+  "firstName": "Burley",
+  "lastName": "King",
+  "contactEmail": "Burley.King76@gmail.com",
+  "profileid": "profile_e83daea",
+  "lastSignedIn": 1596556897,
+  "usernameLastChanged": 1596556897
+}

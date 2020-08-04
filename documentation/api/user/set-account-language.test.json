@@ -1,0 +1,17 @@
+{
+  "object": "account",
+  "accountid": "account_82f436c",
+  "usernameHash": "4fcb1a9846a384050a14ca448332fb77fe58255ef624966195a115295cfed216b8ce471018457d3ab4f42851109632c4e0d4b73b6aae1ce6411c012d9a02bc53",
+  "passwordHash": "$2a$04$w348fFmdRYtFEOLCqcQte.gbiHqA5ITL4dZKCK2jF30eUYG2b5YSO",
+  "sessionKey": "aacc226415a58ddad01879afe5472dced6b0e179961148af14a275709a278560",
+  "sessionKeyNumber": 1,
+  "created": 1596556897,
+  "administrator": 1596556897,
+  "owner": 1596556897,
+  "firstName": "Hosea",
+  "lastName": "D'Amore",
+  "contactEmail": "Hosea34@hotmail.com",
+  "profileid": "profile_cbb1c1a",
+  "lastSignedIn": 1596556897,
+  "language": "es"
+}

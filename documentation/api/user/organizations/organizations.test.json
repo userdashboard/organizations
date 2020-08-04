@@ -1,0 +1,26 @@
+[
+  {
+    "object": "organization",
+    "ownerid": "account_0ac8def",
+    "organizationid": "organization_1b4e696",
+    "name": "My organization",
+    "email": "Aniyah.Halvorson40@yahoo.com",
+    "created": 1596558728
+  },
+  {
+    "object": "organization",
+    "ownerid": "account_0ac8def",
+    "organizationid": "organization_030f521",
+    "name": "My organization",
+    "email": "Aniyah.Halvorson40@yahoo.com",
+    "created": 1596558728
+  },
+  {
+    "object": "organization",
+    "ownerid": "account_0ac8def",
+    "organizationid": "organization_f943194",
+    "name": "My organization",
+    "email": "Aniyah.Halvorson40@yahoo.com",
+    "created": 1596558728
+  }
+]

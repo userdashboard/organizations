@@ -1,0 +1,17 @@
+{
+  "object": "account",
+  "accountid": "account_16d6767",
+  "usernameHash": "27f8bfdb014bf82602ab5973af6fb309a664a12adccb260d6a4857761087b0a3d5d7e94aa1dd10666512d8944faffd3b87d985cbb1f2f19fbd1d85ad4b82505a",
+  "passwordHash": "$2a$04$o4Ghr.I/pTyJzo9tQlP9x.Sru8RyE37BmD.nTnWkAtNSISmqy4slm",
+  "sessionKey": "b4b084d9e55e508e4965f6342f0897a55d065d44316e93117fdda7e83edc9412",
+  "sessionKeyNumber": 1,
+  "created": 1596556896,
+  "administrator": 1596556896,
+  "owner": 1596556896,
+  "firstName": "Ila",
+  "lastName": "Schaden",
+  "contactEmail": "Ila.Schaden99@gmail.com",
+  "profileid": "profile_8b9c171",
+  "lastSignedIn": 1596556896,
+  "deleted": 1597161695
+}
