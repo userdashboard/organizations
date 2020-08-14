@@ -1,6 +1,15 @@
 /* eslint-env mocha */
 global.applicationPath = global.applicationPath || __dirname
 const TestHelper = require('@userdashboard/dashboard/test-helper.js')
+TestHelper.defaultConfiguration.userProfileFields = ['full-name', 'contact-email']
+TestHelper.defaultConfiguration.membershipProfileFields = ['display-name', 'display-email']
+TestHelper.defaultConfiguration.minimumOrganizationNameLength = 1
+TestHelper.defaultConfiguration.maximumOrganizationNameLength = 100
+TestHelper.defaultConfiguration.minimumMembershipNameLength = 1
+TestHelper.defaultConfiguration.maximumMembershipNameLength = 100
+TestHelper.defaultConfiguration.minimumInvitationCodeLength = 1
+TestHelper.defaultConfiguration.maximumInvitationCodeLength = 100
+
 let organizations
 
 module.exports = {
@@ -13,26 +22,13 @@ for (const x in TestHelper) {
   module.exports[x] = TestHelper[x]
 }
 
-async function setupBeforeEach () {
-  global.userProfileFields = ['full-name', 'contact-email']
-  global.membershipProfileFields = ['display-name', 'display-email']
-  global.minimumOrganizationNameLength = 1
-  global.maximumOrganizationNameLength = 100
-  global.minimumMembershipNameLength = 1
-  global.maximumMembershipNameLength = 100
-  global.minimumInvitationCodeLength = 1
-  global.maximumInvitationCodeLength = 100
-}
-
 async function setupBefore () {
   organizations = require('./index.js')
   await organizations.setup()
 }
 
-module.exports.setupBeforeEach = setupBeforeEach
 module.exports.createProfile = createProfile
 
-beforeEach(setupBeforeEach)
 before(setupBefore)
 
 async function createOrganization (user, properties) {
