@@ -1,13 +1,14 @@
 /* eslint-env mocha */
 global.applicationPath = global.applicationPath || __dirname
-global.defaultConfiguration.userProfileFields = ['full-name', 'contact-email']
-global.defaultConfiguration.membershipProfileFields = ['display-name', 'display-email']
-global.defaultConfiguration.minimumOrganizationNameLength = 1
-global.defaultConfiguration.maximumOrganizationNameLength = 100
-global.defaultConfiguration.minimumMembershipNameLength = 1
-global.defaultConfiguration.maximumMembershipNameLength = 100
-global.defaultConfiguration.minimumInvitationCodeLength = 1
-global.defaultConfiguration.maximumInvitationCodeLength = 100
+global.testConfiguration = global.testConfiguration || {}
+global.testConfiguration.userProfileFields = ['full-name', 'contact-email']
+global.testConfiguration.membershipProfileFields = ['display-name', 'display-email']
+global.testConfiguration.minimumOrganizationNameLength = 1
+global.testConfiguration.maximumOrganizationNameLength = 100
+global.testConfiguration.minimumMembershipNameLength = 1
+global.testConfiguration.maximumMembershipNameLength = 100
+global.testConfiguration.minimumInvitationCodeLength = 1
+global.testConfiguration.maximumInvitationCodeLength = 100
 
 const TestHelper = require('@userdashboard/dashboard/test-helper.js')
 let organizations
