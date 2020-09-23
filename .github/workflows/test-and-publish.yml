@@ -74,7 +74,7 @@ jobs:
         GENERATE_SCREENSHOTS: true
         RESPONSE_PATH: "/home/runner/work/organizations/organizations/documentation"
         SCREENSHOT_PATH: "/home/runner/work/organizations/organizations/documentation/screenshots"
-        SCREENSHOT_LANGUAGES: "en,es"
+        SCREENSHOT_LANGUAGES: "en"
     - name: Generate supporting texts
       run: node main.js
       working-directory: /home/runner/work/organizations/organizations/

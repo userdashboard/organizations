@@ -1,5 +1,17 @@
-# Organizations module for Dashboard
-![Test suite status](https://github.com/userdashboard/organizations/workflows/test-and-publish/badge.svg?branch=master)
+# Documentation for Organizations
+
+#### Index
+
+- [Introduction](#organizations-module)
+- [Module contents](#module-contents)
+- [Import this module](#import-this-module)
+- [Storage engine](#storage-engine)
+- [Customizing membership profiles](#customizing-membership-profiles)
+- [Access the API](#access-the-api)
+- [Github repository](https://github.com/userdashboard/organizations)
+- [NPM package](https://npmjs.org/userdashboard/organizations)
+
+# Introduction
 
 Dashboard bundles everything a web app needs, all the "boilerplate" like signing in and changing passwords, into a parallel server so you can write a much smaller web app.
 
@@ -10,6 +22,20 @@ Your application server can use the Organizations module's API to fetch what org
 A complete UI is provided for users to create and manage their organizations and memberships, and a basic administrator UI is provided for oversight but has no actual functionality yet.
 
 Environment configuration variables are documented in `start-dev.sh`.  You can view API documentation in `api.txt`, or in more detail on the [documentation site](https://userdashboard.github.io/).  Join the freenode IRC #userdashboard chatroom for support - [Web IRC client](https://kiwiirc.com/nextclient/).
+
+# Module contents 
+
+Dashboard modules can add pages and API routes.  For more details check the `sitemap.txt` and `api.txt` or the online documentation.
+
+| Content type             |     |
+|--------------------------|-----|
+| Proxy scripts            |     |
+| Server scripts           |     |
+| Content scripts          |     |
+| User pages               | Yes |
+| User API routes          | Yes | 
+| Administrator pages      | Yes |
+| Administrator API routes | Yes | 
 
 ## Import this module
 
@@ -27,10 +53,10 @@ Edit your `package.json` to activate the module:
 
 ## Storage engine
 
-By default this module will share whatever storage you use for Dashboard.  You can specify a Dashboard storage module to use instead.
+By default this module will share whatever storage you use for Dashboard.  You can specify an alternate storage module to use instead, or the same module with a separate database.
 
-        ORGANIZATIONS_STORAGE=@userdashboard/storage-mongodb
-        ORGANIZATIONS_MONGODB_URL=mongo://localhost:27017/organizations
+    ORGANIZATIONS_STORAGE=@userdashboard/storage-mongodb
+    ORGANIZATIONS_MONGODB_URL=mongo://localhost:27017/organizations
 
 # Customizing membership profiles
 
@@ -52,19 +78,19 @@ Memberships designate a Profile which you can configure to collect the informati
 | company-name   |
 | website        |
 
-## Supporting your users
 
-Every page in Dashboard and official modules has a series of screenshots that demonstrate how to browse to the page and optionally what the page does.  If a user wants to change their password or cancel a subscription or submit a Connect registration, you can browse the screenshots on the [documentation site](https://userdashboard.github.io/).
+### Access the API
 
-### Request organization data from your application server
-
-Dashboard and official modules are completely API-driven and you can access the same APIs on behalf of the user making requests.  You perform `GET`, `POST`, `PATCH`, and `DELETE` HTTP requests against the API endpoints to fetch or modify data.  This example uses NodeJS to fetch the user's organizations from the Dashboard server, your application server can be in any language.
+Dashboard and official modules are completely API-driven and you can access the same APIs on behalf of the user making requests.  You perform `GET`, `POST`, `PATCH`, and `DELETE` HTTP requests against the API endpoints to fetch or modify data.  This example fetches the user's country information using NodeJS, you can do this with any language:
 
 You can view API documentation within the NodeJS modules' `api.txt` files, or on the [documentation site](https://userdashboard.github.io/organizations-api).
 
+    const memberships = await proxy(`/api/user/organizations/memberships?accountid=${accountid}&all=true`, accountid, sessionid)
+
+    const proxy = util.promisify((path, accountid, sessionid, callback) => {
         const requestOptions = {
             host: 'dashboard.example.com',
-            path: `/api/user/organizations/memberships?accountid=${accountid}`,
+            path: path,
             port: '443',
             method: 'GET',
             headers: {
@@ -76,20 +102,18 @@ You can view API documentation within the NodeJS modules' `api.txt` files, or on
             requestOptions.headers['x-accountid'] = accountid
             requestOptions.headers['x-sessionid'] = sessionid
         }
-        const membershipsArray = await proxy(requestOptions)
-
-        function proxy = util.promisify((requestOptions, callback) => {
-          const proxyRequest = require('https').request(requestOptions, (proxyResponse) => {
-              let body = ''
-              proxyResponse.on('data', (chunk) => {
-                  body += chunk
-              })
-              return proxyResponse.on('end', () => {
-                  return callback(null, JSON.parse(body))
-              })
-          })
-          proxyRequest.on('error', (error) => {
-              return callback(error)
-          })
-          return proxyRequest.end()
+        const proxyRequest = require('https').request(requestOptions, (proxyResponse) => {
+            let body = ''
+            proxyResponse.on('data', (chunk) => {
+                body += chunk
+            })
+            return proxyResponse.on('end', () => {
+                return callback(null, JSON.parse(body))
+            })
         })
+        proxyRequest.on('error', (error) => {
+            return callback(error)
+        })
+        return proxyRequest.end()
+      })
+    }
