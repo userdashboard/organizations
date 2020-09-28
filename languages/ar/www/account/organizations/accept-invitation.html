@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-navbar="/account/organizations/navbar.html">
+
 <head>
   <meta charset="utf-8">
   <title translate="yes">ةوعد لوبق</title>
@@ -8,11 +9,13 @@
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
+
 <body>
   <h1 translate="yes">ةوعد لوبق</h1>
   <p translate="yes">.زمرلا لاخدإ دعب ةمظنملا يف اًوضع حبصتس</p>
   <div id="message-container"></div>
-  <form id="submit-form" class="pure-form pure-form-stacked" action="/account/organizations/accept-invitation" name="submit-form">
+  <form id="submit-form" class="pure-form pure-form-stacked" action="/account/organizations/accept-invitation"
+    name="submit-form">
     <div class="pure-control-group">
       <label for="invitationid" translate="yes">فرعم ةوعد</label>
       <input id="invitationid" name="invitationid" type="text" maxlength="100">
@@ -46,17 +49,17 @@
     <div id="full-name-container">
       <div class="pure-control-group">
         <label for="first-name" translate="yes">لوالا مسالا</label>
-      <input required="" id="first-name" name="first-name" type="text" maxlength="1000">
+        <input required="" id="first-name" name="first-name" type="text" maxlength="1000">
       </div>
       <div class="pure-control-group">
         <label for="last-name" translate="yes">ةينكلا</label>
-      <input required="" id="last-name" name="last-name" type="text" maxlength="1000">
+        <input required="" id="last-name" name="last-name" type="text" maxlength="1000">
       </div>
     </div>
     <div id="dob-container">
       <div class="pure-control-group">
         <label for="dob" translate="yes">ةدالولا خيرات</label>
-      <input required="" id="dob" name="dob" type="text" maxlength="11">
+        <input required="" id="dob" name="dob" type="text" maxlength="11">
       </div>
     </div>
     <div id="phone-container" class="pure-control-group">
@@ -80,7 +83,8 @@
       <input required="" id="website" name="website" type="text" maxlength="1000">
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">ةمظنملا ىلإ مضنا</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Join
+        organization</button>
     </div>
   </form>
   <template id="success">
@@ -145,27 +149,27 @@
   </template>
   <template id="invalid-first-name">
     <div class="error message" translate="yes">
-      حلاص ريغ وأ دوقفم لوأ مسا ميدقت مت !أطخ
+      حلاص ريغ وأ دوقفم لوألا مسالا ريفوت مت !أطخ
     </div>
   </template>
   <template id="invalid-first-name-length">
     <div class="error message" translate="yes">
-      حلاص ريغ لوأ مسا ميدقت مت !أطخ
+      حلاص ريغ لوألا مسالا ريفوت مت !أطخ
     </div>
   </template>
   <template id="invalid-last-name">
     <div class="error message" translate="yes">
-      حلاص ريغ وأ دوقفم ريخأ مسا ميدقت مت !أطخ
+      حلاص ريغ وأ دوقفم ةلئاع مسا ريفوت مت !أطخ
     </div>
   </template>
   <template id="invalid-last-name-length">
     <div class="error message" translate="yes">
-      حلاص ريغ ريخأ مسا ميدقت مت !أطخ
+      حلاص ريغ ةلئاع مسا ريفوت مت !أطخ
     </div>
   </template>
   <template id="invalid-contact-email">
     <div class="error message" translate="yes">
-      حلاص ريغ لاصتالا ةهجل ينورتكلإلا ديربلا ناونع !أطخ
+      حلاص ريغ لاصتالل ينورتكلإلا ديربلا ناونع !أطخ
     </div>
   </template>
   <template id="invalid-display-email">
@@ -175,7 +179,7 @@
   </template>
   <template id="invalid-display-name">
     <div class="error message" translate="yes">
-      حلاص ريغ وأ دوقفم ضرع مسا ميدقت مت !أطخ
+      حلاص ريغ وأ دوقفم ضرع مسا ريفوت مت !أطخ
     </div>
   </template>
   <template id="invalid-dob">
@@ -205,12 +209,12 @@
   </template>
   <template id="invalid-website">
     <div class="error message" translate="yes">
-      .حلاص ريغ وأ دوقفم عقوم ريفوت مت !أطخ
+      .حلاص ريغ وأ دوقفم بيو عقوم ريفوت مت !أطخ
     </div>
   </template>
   <template id="invalid-display-name-length">
     <div class="error message" translate="yes">
-      حلاص ريغ وأ دوقفم ضرع مسا ميدقت مت !أطخ
+      حلاص ريغ وأ دوقفم ضرع مسا ريفوت مت !أطخ
     </div>
   </template>
   <template id="invalid-profileid">
@@ -219,4 +223,5 @@
     </div>
   </template>
 </body>
+
 </html>

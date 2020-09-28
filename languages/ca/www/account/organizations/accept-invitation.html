@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-navbar="/account/organizations/navbar.html">
+
 <head>
   <meta charset="utf-8">
   <title translate="yes">Accepta la invitació</title>
@@ -8,11 +9,13 @@
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
+
 <body>
   <h1 translate="yes">Accepta la invitació</h1>
   <p translate="yes">Després d'haver introduït el codi, us convertireu en un membre de l'organització.</p>
   <div id="message-container"></div>
-  <form id="submit-form" class="pure-form pure-form-stacked" action="/account/organizations/accept-invitation" name="submit-form">
+  <form id="submit-form" class="pure-form pure-form-stacked" action="/account/organizations/accept-invitation"
+    name="submit-form">
     <div class="pure-control-group">
       <label for="invitationid" translate="yes">ID de la invitació</label>
       <input id="invitationid" name="invitationid" type="text" maxlength="100">
@@ -32,7 +35,7 @@
     </div>
     <h3 translate="yes">Crea un nou perfil</h3>
     <div id="display-name-container" class="pure-control-group">
-      <label for="display-name" translate="yes">Mostra el nom</label>
+      <label for="display-name" translate="yes">Nom visible</label>
       <input required="" id="display-name" name="display-name" type="text" maxlength="1000">
     </div>
     <div id="display-email-container" class="pure-control-group">
@@ -46,17 +49,17 @@
     <div id="full-name-container">
       <div class="pure-control-group">
         <label for="first-name" translate="yes">Nom</label>
-      <input required="" id="first-name" name="first-name" type="text" maxlength="1000">
+        <input required="" id="first-name" name="first-name" type="text" maxlength="1000">
       </div>
       <div class="pure-control-group">
         <label for="last-name" translate="yes">Cognom</label>
-      <input required="" id="last-name" name="last-name" type="text" maxlength="1000">
+        <input required="" id="last-name" name="last-name" type="text" maxlength="1000">
       </div>
     </div>
     <div id="dob-container">
       <div class="pure-control-group">
         <label for="dob" translate="yes">Data de naixement</label>
-      <input required="" id="dob" name="dob" type="text" maxlength="11">
+        <input required="" id="dob" name="dob" type="text" maxlength="11">
       </div>
     </div>
     <div id="phone-container" class="pure-control-group">
@@ -80,7 +83,8 @@
       <input required="" id="website" name="website" type="text" maxlength="1000">
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Unir-se a l'organització</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Join
+        organization</button>
     </div>
   </form>
   <template id="success">
@@ -145,72 +149,72 @@
   </template>
   <template id="invalid-first-name">
     <div class="error message" translate="yes">
-      Error! Es proporciona un nom que falta o no vàlid
+      Error! S'ha proporcionat un nom perdut o no vàlid
     </div>
   </template>
   <template id="invalid-first-name-length">
     <div class="error message" translate="yes">
-      Error! S'ha proporcionat un nom no vàlid
+      Error! S'ha proporcionat un nom incorrecte
     </div>
   </template>
   <template id="invalid-last-name">
     <div class="error message" translate="yes">
-      Error! Es va proporcionar un cognom que falta o no vàlid
+      Error! S'ha proporcionat un cognom que no es troba o no és vàlid
     </div>
   </template>
   <template id="invalid-last-name-length">
     <div class="error message" translate="yes">
-      Error! Es va proporcionar un cognom no vàlid
+      Error! S'ha proporcionat un cognom no vàlid
     </div>
   </template>
   <template id="invalid-contact-email">
     <div class="error message" translate="yes">
-      Error! L'adreça de correu electrònic de contacte no és vàlida
+      Error! L'adreça electrònica de contacte no és vàlida
     </div>
   </template>
   <template id="invalid-display-email">
     <div class="error message" translate="yes">
-      Error! L'adreça de correu electrònic de visualització no és vàlida
+      Error! L'adreça electrònica de visualització no és vàlida
     </div>
   </template>
   <template id="invalid-display-name">
     <div class="error message" translate="yes">
-      Error! S'ha proporcionat un nom de visualització que falta o no vàlid
+      Error! S'ha proporcionat un nom de visualització que falta o no és vàlid
     </div>
   </template>
   <template id="invalid-dob">
     <div class="error message" translate="yes">
-      Error! Es va proporcionar una data de naixement que falta o no vàlida
+      Error! Es va proporcionar una data de naixement que falta o no és vàlida
     </div>
   </template>
   <template id="invalid-phone">
     <div class="error message" translate="yes">
-      Error! S'ha proporcionat un telèfon no vàlid o no vàlid.
+      Error! S'ha proporcionat un telèfon no vàlid o que falta.
     </div>
   </template>
   <template id="invalid-occupation">
     <div class="error message" translate="yes">
-      Error! Es va proporcionar una ocupació no vàlida o no vàlida.
+      Error! S'ha proporcionat una ocupació no vàlida o desapareguda.
     </div>
   </template>
   <template id="invalid-location">
     <div class="error message" translate="yes">
-      Error! Es va proporcionar una ubicació no vàlida.
+      Error! S'ha proporcionat una ubicació que falta o no és vàlida.
     </div>
   </template>
   <template id="invalid-company-name">
     <div class="error message" translate="yes">
-      Error! S'ha proporcionat un nom de l'empresa no vàlid o no vàlid.
+      Error! S'ha proporcionat un nom d'empresa que falta o no és vàlid.
     </div>
   </template>
   <template id="invalid-website">
     <div class="error message" translate="yes">
-      Error! S'ha proporcionat un lloc web no vàlid o no vàlid.
+      Error! S'ha proporcionat un lloc web que no existeix o no és vàlid.
     </div>
   </template>
   <template id="invalid-display-name-length">
     <div class="error message" translate="yes">
-      Error! S'ha proporcionat un nom de visualització que falta o no vàlid
+      Error! S'ha proporcionat un nom de visualització que falta o no és vàlid
     </div>
   </template>
   <template id="invalid-profileid">
@@ -219,4 +223,5 @@
     </div>
   </template>
 </body>
+
 </html>

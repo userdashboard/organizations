@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-navbar="/account/organizations/navbar-membership.html">
+
 <head>
   <meta charset="utf-8">
   <title translate="yes">Edità ${membership.membershipid} profile</title>
@@ -8,11 +9,13 @@
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
+
 <body>
   <h1 translate="yes">Edità ${membership.membershipid} profile</h1>
   <p translate="yes">Qualchese altra adunita chì sparta stu prufilu, o altre usu d'ella, serà ancu aghjurnatu.</p>
   <div id="message-container"></div>
-  <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/edit-membership-profile?membershipid=${membership.membershipid}" name="submit-form">
+  <form id="submit-form" method="post" class="pure-form pure-form-stacked"
+    action="/account/organizations/edit-membership-profile?membershipid=${membership.membershipid}" name="submit-form">
     <div id="display-name-container" class="pure-control-group">
       <label for="display-name" translate="yes">Nome di visualizazione</label>
       <input required="" id="display-name" name="display-name" type="text" maxlength="1000">
@@ -62,7 +65,8 @@
       <input required="" id="website" name="website" type="text" maxlength="1000">
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Aggiornà l'abbinazione</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Update
+        membership</button>
     </div>
   </form>
   <template id="success">
@@ -146,4 +150,5 @@
     </div>
   </template>
 </body>
+
 </html>

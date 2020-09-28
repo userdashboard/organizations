@@ -2,14 +2,14 @@
 <html lang="en" data-navbar="/account/organizations/navbar-membership.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">Տեսարան ${membership.membershipid}</title>
+  <title translate="yes">Դիտել ${membership.membershipid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">Տեսարան ${membership.membershipid}</h1>
+  <h1 translate="yes">Դիտել ${membership.membershipid}</h1>
   <table id="memberships-table" class="pure-table data-table">
     <tbody id="${membership.membershipid}">
       <tr>
@@ -21,7 +21,7 @@
         <td>${membership.createdFormatted}</td>
       </tr>
       <tr id="full-name">
-        <th translate="yes">Ամբողջական անուն</th>
+        <th translate="yes">Լրիվ անվանումը</th>
         <td>${membership.firstName} ${membership.lastName}</td>
       </tr>
       <tr id="contact-email">
@@ -31,7 +31,7 @@
         </td>
       </tr>
       <tr id="display-name">
-        <th translate="yes">Displayուցադրել անունը</th>
+        <th translate="yes">Displayուցադրման անունը</th>
         <td>${membership.displayName}</td>
       </tr>
       <tr id="display-email">
@@ -49,11 +49,11 @@
         <td>${membership.phone}</td>
       </tr>
       <tr id="occupation">
-        <th translate="yes">Զբաղմունք</th>
+        <th translate="yes">Բաղմունք</th>
         <td>${membership.occupation}</td>
       </tr>
       <tr id="location">
-        <th translate="yes">Գտնվելու վայրը</th>
+        <th translate="yes">Որտեղից</th>
         <td>${membership.location}</td>
       </tr>
       <tr id="company-name">

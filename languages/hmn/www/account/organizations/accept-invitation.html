@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-navbar="/account/organizations/navbar.html">
+
 <head>
   <meta charset="utf-8">
   <title translate="yes">Txais kev caw</title>
@@ -8,11 +9,13 @@
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
+
 <body>
   <h1 translate="yes">Txais kev caw</h1>
   <p translate="yes">Koj yuav dhau los ua tswvcuab hauv lub koomhaum tomqab nkag mus hauv cov cai.</p>
   <div id="message-container"></div>
-  <form id="submit-form" class="pure-form pure-form-stacked" action="/account/organizations/accept-invitation" name="submit-form">
+  <form id="submit-form" class="pure-form pure-form-stacked" action="/account/organizations/accept-invitation"
+    name="submit-form">
     <div class="pure-control-group">
       <label for="invitationid" translate="yes">Caw daim ID</label>
       <input id="invitationid" name="invitationid" type="text" maxlength="100">
@@ -46,17 +49,17 @@
     <div id="full-name-container">
       <div class="pure-control-group">
         <label for="first-name" translate="yes">Lub npe</label>
-      <input required="" id="first-name" name="first-name" type="text" maxlength="1000">
+        <input required="" id="first-name" name="first-name" type="text" maxlength="1000">
       </div>
       <div class="pure-control-group">
         <label for="last-name" translate="yes">Lub xeem</label>
-      <input required="" id="last-name" name="last-name" type="text" maxlength="1000">
+        <input required="" id="last-name" name="last-name" type="text" maxlength="1000">
       </div>
     </div>
     <div id="dob-container">
       <div class="pure-control-group">
         <label for="dob" translate="yes">Hnub yug</label>
-      <input required="" id="dob" name="dob" type="text" maxlength="11">
+        <input required="" id="dob" name="dob" type="text" maxlength="11">
       </div>
     </div>
     <div id="phone-container" class="pure-control-group">
@@ -80,7 +83,8 @@
       <input required="" id="website" name="website" type="text" maxlength="1000">
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Koom nrog koom haum</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Join
+        organization</button>
     </div>
   </form>
   <template id="success">
@@ -219,4 +223,5 @@
     </div>
   </template>
 </body>
+
 </html>

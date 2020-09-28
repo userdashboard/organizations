@@ -2,14 +2,14 @@
 <html lang="en" data-navbar="/administrator/organizations/navbar-invitation.html">
 <head>
   <meta charset="utf-8">
-  <title translate="yes">দৃশ্য ${invitation.invitationid}</title>
+  <title translate="yes">দেখুন ${invitation.invitationid}</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
 <body>
-  <h1 translate="yes">দৃশ্য ${invitation.invitationid}</h1>
+  <h1 translate="yes">দেখুন ${invitation.invitationid}</h1>
   <table id="invitations-table" class="pure-table data-table">
     <tbody id="${invitation.invitationid}">
       <tr>
@@ -17,13 +17,13 @@
         <td>${invitation.invitationid}</td>
       </tr>
       <tr>
-        <th translate="yes">নির্মিত</th>
+        <th translate="yes">তৈরি হয়েছে</th>
         <td>${invitation.createdFormatted}</td>
       </tr>
       <tr>
         <th translate="yes">গৃহীত</th>
         <td id="accepted">${invitation.acceptedFormatted}</td>
-        <td id="not-accepted" translate="yes">No</td>
+        <td id="not-accepted" translate="yes">না</td>
       </tr>
       <tr>
         <th translate="yes">সদস্যতা</th>

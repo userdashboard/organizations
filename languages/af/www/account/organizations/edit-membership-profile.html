@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" data-navbar="/account/organizations/navbar-membership.html">
+
 <head>
   <meta charset="utf-8">
-  <title translate="yes">wysig ${membership.membershipid} profile</title>
+  <title translate="yes">Wysig ${membership.membershipid} profile</title>
   <link href="/public/pure-min.css" rel="stylesheet">
   <link href="/public/content.css" rel="stylesheet">
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
+
 <body>
-  <h1 translate="yes">wysig ${membership.membershipid} profile</h1>
+  <h1 translate="yes">Wysig ${membership.membershipid} profile</h1>
   <p translate="yes">Enige ander lidmaatskap wat hierdie profiel deel, of die gebruik daarvan, word ook opgedateer.</p>
   <div id="message-container"></div>
-  <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/edit-membership-profile?membershipid=${membership.membershipid}" name="submit-form">
+  <form id="submit-form" method="post" class="pure-form pure-form-stacked"
+    action="/account/organizations/edit-membership-profile?membershipid=${membership.membershipid}" name="submit-form">
     <div id="display-name-container" class="pure-control-group">
       <label for="display-name" translate="yes">Vertoonnaam</label>
       <input required="" id="display-name" name="display-name" type="text" maxlength="1000">
@@ -42,7 +45,7 @@
       </div>
     </div>
     <div id="phone-container" class="pure-control-group">
-      <label for="phone" translate="yes">telefoon</label>
+      <label for="phone" translate="yes">Telefoon</label>
       <input required="" id="phone" name="phone" type="text" maxlength="1000">
     </div>
     <div id="occupation-container" class="pure-control-group">
@@ -50,7 +53,7 @@
       <input required="" id="occupation" name="occupation" type="text" maxlength="1000">
     </div>
     <div id="location-container" class="pure-control-group">
-      <label for="location" translate="yes">plek</label>
+      <label for="location" translate="yes">Ligging</label>
       <input required="" id="location" name="location" type="text" maxlength="1000">
     </div>
     <div id="company-name-container" class="pure-control-group">
@@ -58,11 +61,12 @@
       <input required="" id="company-name" name="company-name" type="text" maxlength="1000">
     </div>
     <div id="website-container" class="pure-control-group">
-      <label for="website" translate="yes">webwerf</label>
+      <label for="website" translate="yes">Webwerf</label>
       <input required="" id="website" name="website" type="text" maxlength="1000">
     </div>
     <div class="pure-controls">
-      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Dateer lidmaatskap op</button>
+      <button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">Update
+        membership</button>
     </div>
   </form>
   <template id="success">
@@ -77,7 +81,7 @@
   </template>
   <template id="invalid-first-name">
     <div class="error message" translate="yes">
-      Fout! 'N Voornaam of ontbrekende naam word voorsien
+      Fout! 'N Ontbrekende of ongeldige voornaam word verskaf
     </div>
   </template>
   <template id="invalid-first-name-length">
@@ -87,7 +91,7 @@
   </template>
   <template id="invalid-last-name">
     <div class="error message" translate="yes">
-      Fout! Daar is 'n ontbrekende of ongeldige van gegee
+      Fout! 'N Ontbrekende of ongeldige van is verskaf
     </div>
   </template>
   <template id="invalid-last-name-length">
@@ -107,12 +111,12 @@
   </template>
   <template id="invalid-display-name">
     <div class="error message" translate="yes">
-      Fout! 'N Vermiste of ongeldige vertoonnaam is verskaf
+      Fout! 'N Ontbrekende of ongeldige vertoonnaam is verskaf
     </div>
   </template>
   <template id="invalid-dob">
     <div class="error message" translate="yes">
-      Fout! 'N Ontbrekende of ongeldige geboortedatum is voorsien
+      Fout! 'N Ontbrekende of ongeldige geboortedatum is verskaf
     </div>
   </template>
   <template id="invalid-phone">
@@ -127,23 +131,24 @@
   </template>
   <template id="invalid-location">
     <div class="error message" translate="yes">
-      Fout! 'N Ontbrekende of ongeldige ligging is voorsien.
+      Fout! 'N Ontbrekende of ongeldige ligging is verskaf.
     </div>
   </template>
   <template id="invalid-company-name">
     <div class="error message" translate="yes">
-      Fout! 'N Vermiste of ongeldige maatskappy se naam is verskaf.
+      Fout! 'N Ontbrekende of ongeldige maatskappy se naam is verskaf.
     </div>
   </template>
   <template id="invalid-website">
     <div class="error message" translate="yes">
-      Fout! 'N Ontbrekende of ongeldige webwerf is voorsien.
+      Fout! 'N Ontbrekende of ongeldige webwerf is verskaf.
     </div>
   </template>
   <template id="invalid-display-name-length">
     <div class="error message" translate="yes">
-      Fout! 'N Vermiste of ongeldige vertoonnaam is verskaf
+      Fout! 'N Ontbrekende of ongeldige vertoonnaam is verskaf
     </div>
   </template>
 </body>
+
 </html>

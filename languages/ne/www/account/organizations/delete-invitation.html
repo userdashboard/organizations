@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-navbar="/account/organizations/navbar-invitation.html">
+
 <head>
   <meta charset="utf-8">
   <title translate="yes">मेटाउन ${invitation.invitationid}</title>
@@ -8,16 +9,19 @@
   <link href="/public/content-additional.css" rel="stylesheet">
   <base target="_top" href="/">
 </head>
+
 <body>
   <h1 translate="yes">मेटाउन ${invitation.invitationid}</h1>
   <p translate="yes">निम्ता तुरुन्त हटाइनेछ र पुन: प्राप्त गर्न सकिदैन।</p>
   <div id="message-container"></div>
-  <form id="submit-form" method="post" class="pure-form pure-form-stacked" action="/account/organizations/delete-invitation?invitationid=${invitation.invitationid}" name="submit-form">
+  <form id="submit-form" method="post" class="pure-form pure-form-stacked"
+    action="/account/organizations/delete-invitation?invitationid=${invitation.invitationid}" name="submit-form">
     <div class="pure-controls">
       <div class="pure-control-group">
         <label for="organizationName" translate="yes">संगठन</label>
         <input id="organizationName" type="text" maxlength="100" readonly>
-      </div><button type="submit" id="submit-button" class="pure-button pure-button-primary" translate="yes">मेटाउन</button>
+      </div><button type="submit" id="submit-button" class="pure-button pure-button-primary"
+        translate="yes">मेटाउन</button>
     </div>
   </form>
   <template id="success">
@@ -27,8 +31,9 @@
   </template>
   <template id="unknown-error">
     <div class="error message" translate="yes">
-      त्रुटि! निम्तो हटाउँदा त्रुटि देखा पर्u200dयो
+      Error! An error occurred deleting the invitation
     </div>
   </template>
 </body>
+
 </html>
