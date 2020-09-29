@@ -15,13 +15,7 @@
 
 Dashboard bundles everything a web app needs, all the "boilerplate" like signing in and changing passwords, into a parallel server so you can write a much smaller web app.
 
-The organizations module allows users to create organizations and invitations other users can accept to join.  Users must share the invitations themselves with the recipients.
-
-Your application server can use the Organizations module's API to fetch what organizations a user is in and use that data to allow shared access or assign ownership or whatever other purpose.
-
-A complete UI is provided for users to create and manage their organizations and memberships, and a basic administrator UI is provided for oversight but has no actual functionality yet.
-
-Environment configuration variables are documented in `start-dev.sh`.  You can view API documentation in `api.txt`, or in more detail on the [documentation site](https://userdashboard.github.io/).  Join the freenode IRC #userdashboard chatroom for support - [Web IRC client](https://kiwiirc.com/nextclient/).
+The Organizations module allows users to create organizations and invitations other users can accept to join.  Users must share the invitations themselves with the recipients.  Your application server can use the Organizations module's API to fetch what organizations a user is in and use that data to allow shared access or assign ownership or whatever other purpose.  A complete UI is provided for users to create and manage their organizations and memberships, and a basic administrator UI is provided for oversight.
 
 # Module contents 
 
