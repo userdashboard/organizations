@@ -19,7 +19,7 @@ The Organizations module allows users to create organizations and invitations ot
 
 # Module contents 
 
-Dashboard modules can add pages and API routes.  For more details check the `sitemap.txt` and `api.txt` or the online documentation.
+Dashboard modules can add pages and API routes.  For more details check the `sitemap.txt` and `api.txt` or `env.txt` also contained in the online documentation.
 
 | Content type             |     |
 |--------------------------|-----|
