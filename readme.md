@@ -89,12 +89,10 @@ You can view API documentation within the NodeJS modules' `api.txt` files, or on
             method: 'GET',
             headers: {
                 'x-application-server': 'application.example.com',
-                'x-application-server-token': process.env.APPLICATION_SERVER_TOKEN
+                'x-application-server-token': process.env.APPLICATION_SERVER_TOKEN,
+                'x-accountid': accountid,
+                'x-sessionid': sessionid
             }
-        }
-        if (accountid) {
-            requestOptions.headers['x-accountid'] = accountid
-            requestOptions.headers['x-sessionid'] = sessionid
         }
         const proxyRequest = require('https').request(requestOptions, (proxyResponse) => {
             let body = ''
