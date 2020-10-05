@@ -2,11 +2,11 @@
 http://localhost:9000
 
 Administrator menu:
-organizations/src/www/administrator/organizations "Organizations module"
+@userdashboard/organizations/src/www/administrator/organizations "Organizations module"
 /administrator "Dashboard administration"
 
 Account menu:
-organizations/src/www/account/organizations "Manage organizations"
+@userdashboard/organizations/src/www/account/organizations "Manage organizations"
 /account "My account"
 
 Special HTML files:
