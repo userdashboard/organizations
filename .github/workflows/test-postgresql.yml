@@ -35,9 +35,7 @@ jobs:
         npm install -g mocha
         rm node_modules/@userdashboard/organizations/*.js
         rm -rf node_modules/@userdashboard/organizations/src
-        rm -rf node_modules/@userdashboard/organizations/languages
         cp /home/runner/work/organizations/organizations/*.js node_modules/@userdashboard/organizations
-        cp -R /home/runner/work/organizations/organizations/languages/ node_modules/@userdashboard/organizations/languages/
         cp -R /home/runner/work/organizations/organizations/src/ node_modules/@userdashboard/organizations/src/
         echo "global.applicationPath = __dirname" > main.js
         PACKAGE=`cat package.json`
