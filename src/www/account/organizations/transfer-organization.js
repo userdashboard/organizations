@@ -41,7 +41,7 @@ async function renderPage (req, res, messageTemplate) {
     throw new Error('invalid-organization')
   }
   messageTemplate = messageTemplate || (req.query ? req.query.message : null)
-  const doc = dashboard.HTML.parse(req.route.html, req.data.organization, 'organization', req.language)
+  const doc = dashboard.HTML.parse(req.html || req.route.html, req.data.organization, 'organization', req.language)
   if (messageTemplate) {
     dashboard.HTML.renderTemplate(doc, null, messageTemplate, 'message-container')
     if (messageTemplate === 'success') {

@@ -28,7 +28,7 @@ async function beforeRequest (req) {
 }
 
 async function renderPage (req, res) {
-  const doc = dashboard.HTML.parse(req.route.html, req.data.organization, 'organization', req.language)
+  const doc = dashboard.HTML.parse(req.html || req.route.html, req.data.organization, 'organization', req.language)
   if (req.data.organization.ownerid !== req.account.accountid) {
     const invitationsLink = doc.getElementById(`invitations-link-${req.query.organizationid}`)
     invitationsLink.parentNode.removeChild(invitationsLink)

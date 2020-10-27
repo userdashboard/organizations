@@ -29,7 +29,7 @@ async function beforeRequest (req) {
 }
 
 async function renderPage (req, res) {
-  const doc = dashboard.HTML.parse(req.route.html, null, null, req.language)
+  const doc = dashboard.HTML.parse(req.html || req.route.html, null, null, req.language)
   if (req.data.memberships && req.data.memberships.length) {
     dashboard.HTML.renderTable(doc, req.data.memberships, 'membership-row', 'memberships-table')
     const noMemberships = doc.getElementById('no-memberships')
