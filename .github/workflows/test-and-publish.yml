@@ -24,17 +24,17 @@ jobs:
         git config --global user.name "${{ secrets.NAME }}"
         echo 2
         git config --global user.email "${{ secrets.EMAIL }}"
-        echo31
+        echo 3
         npm install
-        echo41
+        echo 4
         npm install @userdashboard/dashboard --no-save
-        echo51
+        echo 5
         npm version patch
         echo 6
         mkdir /tmp/project
         cd /tmp/project
         npm init -y
-        echo 71
+        echo 7
         npm install faker puppeteer@2.1.1 @userdashboard/dashboard @userdashboard/organizations @userdashboard/storage-redis
         echo 8
         npm install -g mocha standard
