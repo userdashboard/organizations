@@ -18,7 +18,7 @@ async function beforeRequest (req) {
 }
 
 async function renderPage (req, res) {
-  const doc = dashboard.HML.parse(req.html || req.route.html)
+  const doc = dashboard.HTML.parse(req.html || req.route.html)
   if (req.data.organizations && req.data.organizations.length) {
     dashboard.HTML.renderTable(doc, req.data.organizations, 'organization-row', 'organizations-table')
     if (req.data.total <= global.pageSize) {
