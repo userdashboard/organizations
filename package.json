@@ -1,21 +1,24 @@
 {
-  "name": "@userdashboard/organizations",
-  "version": "1.0.139",
+  "dashboard": {
+    "title": "Organizations module"
+  },
   "description": "Organizations module for Dashboard",
+  "peerDependencies": {
+    "@userdashboard/dashboard": ">=1"
+  },
+  "engines": {
+    "node": ">=14",
+    "npm": ">=6"
+  },
+  "license": "MIT",
   "main": "index.js",
+  "name": "@userdashboard/organizations",
   "repository": {
     "type": "git",
     "url": "git://github.com/userdashboard/organizations.git"
   },
-  "license": "MIT",
   "scripts": {
-    "test": "mocha --exit --inline-diffs --full-trace --bail --async-only --recursive --timeout 480000 --slow 480000 './{,!(public|node_modules)/**}/*.test.js'"
+    "test": "act -j test-fs-storage"
   },
-  "engines": {
-    "node": "12.18.4",
-    "npm": "6.14.6"
-  },
-  "dashboard": {
-    "title": "Organizations module"
-  }
+  "version": "1.0.139"
 }
