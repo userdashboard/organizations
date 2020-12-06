@@ -4,7 +4,7 @@
   },
   "description": "Organizations module for Dashboard",
   "peerDependencies": {
-    "@userdashboard/dashboard": ">=1"
+    "@userdashboard/dashboard": "latest"
   },
   "engines": {
     "node": ">=14",
@@ -20,5 +20,5 @@
   "scripts": {
     "test": "act -j test-fs-storage"
   },
-  "version": "1.0.140"
+  "version": "1.0.139"
 }
