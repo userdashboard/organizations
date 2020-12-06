@@ -1,5 +1,5 @@
-@userdashboard/dashboard 1.0.344
-http://localhost:9000
+@userdashboard/dashboard 1.0.358
+http://localhost:8000
 
 Administrator menu:
 @userdashboard/organizations/src/www/administrator/organizations "Organizations module"
