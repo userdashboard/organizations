@@ -28,7 +28,7 @@ async function beforeRequest (req) {
 }
 
 async function renderPage (req, res) {
-  const doc = dashboard.HTML.parse(req.html || req.route.html, req.data.organization, 'organization', req.language)
+  const doc = dashboard.HTML.parse(req.html || req.route.html, req.data.organization, 'organization')
   if (req.data.invitations && req.data.invitations.length) {
     dashboard.HTML.renderTable(doc, req.data.invitations, 'invitation-row', 'invitations-table')
     for (const invitation of req.data.invitations) {

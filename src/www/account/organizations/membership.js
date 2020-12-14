@@ -27,7 +27,7 @@ async function beforeRequest (req) {
 }
 
 async function renderPage (req, res) {
-  const doc = dashboard.HTML.parse(req.html || req.route.html, req.data.membership, 'membership', req.language)
+  const doc = dashboard.HTML.parse(req.html || req.route.html, req.data.membership, 'membership')
   await navbar.setup(doc, req.data.organization, req.account)
   const removeFields = [].concat(global.profileFields)
   const usedFields = []
