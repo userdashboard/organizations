@@ -24,142 +24,142 @@
 
   /account/organizations/accept-invitation
     view
-      ✓ should present the form (623ms)
-      ✓ should exclude invalid profiles (504ms)
+      ✓ should present the form (665ms)
+      ✓ should exclude invalid profiles (590ms)
     submit
-      ✓ should accept valid existing profile (2149ms)
-      ✓ should accept invitation and create profile (screenshots) (27898ms)
+      ✓ should accept valid existing profile (2287ms)
+      ✓ should accept invitation and create profile (screenshots) (35830ms)
     errors
-      ✓ invalid-account (3906ms)
+      ✓ invalid-account (4121ms)
 
   /account/organizations/create-invitation
     exceptions
-      ✓ invalid-account (72ms)
+      ✓ invalid-account (84ms)
     before
-      ✓ should bind data to req
+      ✓ should bind data to req (39ms)
     view
-      ✓ should present the form (451ms)
+      ✓ should present the form (535ms)
     submit
-      ✓ should create invitation (screenshots) (30649ms)
+      ✓ should create invitation (screenshots) (32531ms)
 
   /account/organizations/create-organization
     view
-      ✓ should present the form (459ms)
+      ✓ should present the form (512ms)
     submit
-      ✓ should accept valid existing profile (1560ms)
-      ✓ should create organization (screenshots) (19827ms)
+      ✓ should accept valid existing profile (1634ms)
+      ✓ should create organization (screenshots) (20884ms)
     errors
-      ✓ invalid-organization-name (1149ms)
-      ✓ invalid-organization-name-length (3382ms)
-      ✓ invalid-organization-email (1859ms)
+      ✓ invalid-organization-name (1214ms)
+      ✓ invalid-organization-name-length (3545ms)
+      ✓ invalid-organization-email (1954ms)
 
   /account/organizations/delete-invitation
     exceptions
-      ✓ invalid-account (43ms)
+      ✓ invalid-account (62ms)
     before
-      ✓ should bind data
+      ✓ should bind data (41ms)
     view
-      ✓ should present the form (469ms)
+      ✓ should present the form (508ms)
     submit
-      ✓ should delete invitation (screenshots) (29271ms)
+      ✓ should delete invitation (screenshots) (31347ms)
 
   /account/organizations/delete-membership
     exceptions
-      ✓ invalid-account (68ms)
+      ✓ invalid-account (98ms)
     before
-      ✓ should bind data to req (54ms)
+      ✓ should bind data to req (75ms)
     view
-      ✓ should present the form (470ms)
+      ✓ should present the form (548ms)
     submit
-      ✓ should delete membership (screenshots) (24120ms)
+      ✓ should delete membership (screenshots) (25750ms)
 
   /account/organizations/delete-organization
     exceptions
-      ✓ invalid-account (52ms)
+      ✓ invalid-account (89ms)
     before
       ✓ should bind data to req
     view
-      ✓ should present the form (501ms)
+      ✓ should present the form (526ms)
     submit
-      ✓ should delete organization (screenshots) (28624ms)
+      ✓ should delete organization (screenshots) (30006ms)
 
   /account/organizations/edit-membership-profile
     view
-      ✓ should present the form (488ms)
-      ✓ should have elements for full-name (496ms)
-      ✓ should have elements for display-name (505ms)
-      ✓ should have elements for contact-email (490ms)
-      ✓ should have elements for display-email (494ms)
-      ✓ should have elements for dob (502ms)
-      ✓ should have elements for phone (492ms)
-      ✓ should have elements for occupation (477ms)
-      ✓ should have elements for location (506ms)
-      ✓ should have elements for company-name (500ms)
-      ✓ should have elements for website (511ms)
+      ✓ should present the form (573ms)
+      ✓ should have elements for full-name (538ms)
+      ✓ should have elements for display-name (550ms)
+      ✓ should have elements for contact-email (555ms)
+      ✓ should have elements for display-email (565ms)
+      ✓ should have elements for dob (528ms)
+      ✓ should have elements for phone (598ms)
+      ✓ should have elements for occupation (559ms)
+      ✓ should have elements for location (603ms)
+      ✓ should have elements for company-name (561ms)
+      ✓ should have elements for website (562ms)
     submit
-      ✓ should update profile (screenshots) (40940ms)
-      ✓ should update profile with full-name (1295ms)
-      ✓ should update profile with display name (1166ms)
-      ✓ should update profile with contact-email (1436ms)
-      ✓ should update profile with display-email (1496ms)
-      ✓ should update profile with dob in YYYY-MM-DD (1189ms)
-      ✓ should update profile with dob in MM-DD-YYYY (1192ms)
-      ✓ should update profile with phone (1613ms)
-      ✓ should update profile with occupation (1595ms)
-      ✓ should update profile with location (1646ms)
-      ✓ should update profile with company-name (1582ms)
-      ✓ should update profile with website (1634ms)
+      ✓ should update profile (screenshots) (42713ms)
+      ✓ should update profile with full-name (1323ms)
+      ✓ should update profile with display name (1237ms)
+      ✓ should update profile with contact-email (1712ms)
+      ✓ should update profile with display-email (1430ms)
+      ✓ should update profile with dob in YYYY-MM-DD (1283ms)
+      ✓ should update profile with dob in MM-DD-YYYY (1299ms)
+      ✓ should update profile with phone (1732ms)
+      ✓ should update profile with occupation (1685ms)
+      ✓ should update profile with location (1742ms)
+      ✓ should update profile with company-name (1778ms)
+      ✓ should update profile with website (1711ms)
     errors
-      ✓ invalid-first-name (970ms)
-      ✓ invalid-first-name-length (2160ms)
-      ✓ invalid-last-name (990ms)
-      ✓ invalid-last-name-length (2199ms)
-      ✓ invalid-contact-email (1716ms)
-      ✓ invalid-display-email (1784ms)
-      ✓ invalid-display-name (857ms)
-      ✓ invalid-display-name-length (1850ms)
-      ✓ invalid-dob (1843ms)
-      ✓ invalid-phone (828ms)
-      ✓ invalid-occupation (809ms)
-      ✓ invalid-location (816ms)
-      ✓ invalid-company-name (807ms)
-      ✓ invalid-website (849ms)
+      ✓ invalid-first-name (1040ms)
+      ✓ invalid-first-name-length (2283ms)
+      ✓ invalid-last-name (1118ms)
+      ✓ invalid-last-name-length (2296ms)
+      ✓ invalid-contact-email (1906ms)
+      ✓ invalid-display-email (1904ms)
+      ✓ invalid-display-name (921ms)
+      ✓ invalid-display-name-length (1968ms)
+      ✓ invalid-dob (1987ms)
+      ✓ invalid-phone (891ms)
+      ✓ invalid-occupation (863ms)
+      ✓ invalid-location (903ms)
+      ✓ invalid-company-name (931ms)
+      ✓ invalid-website (889ms)
 
   /account/organizations/edit-organization
     exceptions
-      ✓ should require owner (38ms)
+      ✓ should require owner (62ms)
     before
       ✓ should bind data to req
     view
-      ✓ should present the form (458ms)
+      ✓ should present the form (503ms)
     submit
-      ✓ should apply organization update (screenshots) (32445ms)
+      ✓ should apply organization update (screenshots) (34333ms)
     errors
-      ✓ invalid-organization-name (1227ms)
-      ✓ invalid-organization-name-length (1931ms)
-      ✓ invalid-organization-email (1031ms)
+      ✓ invalid-organization-name (1501ms)
+      ✓ invalid-organization-name-length (2078ms)
+      ✓ invalid-organization-email (1114ms)
 
   /account/organizations/index
     before
-      ✓ should bind data to req (50ms)
+      ✓ should bind data to req (82ms)
     view
-      ✓ should have row for each organization (484ms)
-      ✓ should have row for each membership (screenshots) (7969ms)
+      ✓ should have row for each organization (523ms)
+      ✓ should have row for each membership (screenshots) (8354ms)
 
   /account/organizations/invitation
     before
-      ✓ should require owner (52ms)
-      ✓ should bind data to req
+      ✓ should require owner (81ms)
+      ✓ should bind data to req (45ms)
     view
-      ✓ should have row for invitation (screenshots) (28107ms)
+      ✓ should have row for invitation (screenshots) (29918ms)
 
   /account/organizations/membership
     before
-      ✓ should reject non-member (68ms)
-      ✓ should bind data to req (50ms)
+      ✓ should reject non-member (121ms)
+      ✓ should bind data to req (93ms)
     view
-      ✓ should have row for membership (screenshots) (15927ms)
-      ✓ should show profile fields if data exists (2799ms)
+      ✓ should have row for membership (screenshots) (17123ms)
+      ✓ should show profile fields if data exists (3188ms)
 
   /account/organizations/memberships
     before
@@ -168,11 +168,11 @@
       ✓ should return one page (screenshots)
       ✓ should change page size
       ✓ should change offset
-      ✓ should show profile fields if data exists (3882ms)
+      ✓ should show profile fields if data exists (4495ms)
 
   /account/organizations/organization-invitations
     before
-      ✓ should require owner (49ms)
+      ✓ should require owner (65ms)
       ✓ should bind data to req
     view
       ✓ should return one page (screenshots)
@@ -189,10 +189,10 @@
 
   /account/organizations/organization
     before
-      ✓ should reject non-member (38ms)
-      ✓ should bind data to req (46ms)
+      ✓ should reject non-member (65ms)
+      ✓ should bind data to req (73ms)
     view
-      ✓ should have row for organization (screenshots) (18125ms)
+      ✓ should have row for organization (screenshots) (19232ms)
 
   /account/organizations/organizations
     before
@@ -204,36 +204,36 @@
 
   /account/organizations/revoke-membership
     exceptions
-      ✓ invalid-account (53ms)
+      ✓ invalid-account (71ms)
     before
-      ✓ should bind data to req (46ms)
+      ✓ should bind data to req (93ms)
     view
-      ✓ should present the form (461ms)
+      ✓ should present the form (566ms)
     submit
-      ✓ should delete membership (screenshots) (36010ms)
+      ✓ should delete membership (screenshots) (38934ms)
 
   /account/organizations/transfer-organization
     exceptions
-      ✓ invalid-account (51ms)
+      ✓ invalid-account (72ms)
     before
-      ✓ should bind data to req (47ms)
+      ✓ should bind data to req (79ms)
     view
-      ✓ should present the form (493ms)
+      ✓ should present the form (568ms)
     submit
-      ✓ should transfer ownership (screenshots) (28422ms)
+      ✓ should transfer ownership (screenshots) (30596ms)
 
   /administrator/organizations/index
     before
-      ✓ should bind data to req (84ms)
+      ✓ should bind data to req (170ms)
     view
-      ✓ should have row for each organization (screenshots) (8773ms)
-      ✓ should have organization row for each membership (504ms)
+      ✓ should have row for each organization (screenshots) (9698ms)
+      ✓ should have organization row for each membership (584ms)
 
   /administrator/organizations/invitation
     before
-      ✓ should bind data to req (41ms)
+      ✓ should bind data to req (67ms)
     view
-      ✓ should have row for invitation (screenshots) (17813ms)
+      ✓ should have row for invitation (screenshots) (19002ms)
 
   /administrator/organizations/invitations
     before
@@ -245,9 +245,9 @@
 
   /administrator/organizations/membership
     before
-      ✓ should bind data to req (66ms)
+      ✓ should bind data to req (95ms)
     view
-      ✓ should have row for membership (screenshots) (18144ms)
+      ✓ should have row for membership (screenshots) (19599ms)
 
   /administrator/organizations/memberships
     before
@@ -256,7 +256,7 @@
       ✓ should return one page (screenshots)
       ✓ should change page size
       ✓ should change offset
-      ✓ should show profile fields if data exists (3944ms)
+      ✓ should show profile fields if data exists (4622ms)
 
   /administrator/organizations/organization-invitations
     before
@@ -276,9 +276,9 @@
 
   /administrator/organizations/organization
     before
-      ✓ should bind data to req (61ms)
+      ✓ should bind data to req (97ms)
     view
-      ✓ should have row for organization (screenshots) (10000ms)
+      ✓ should have row for organization (screenshots) (10885ms)
 
   /administrator/organizations/organizations
     before
@@ -294,13 +294,13 @@
         ✓ missing querystring invitationid
         ✓ invalid querystring invitationid
     returns
-      ✓ object (40ms)
+      ✓ object (65ms)
     redacts
-      ✓ secretCodeHash (48ms)
+      ✓ secretCodeHash (64ms)
 
   /api/administrator/organizations/invitations-count
     returns
-      ✓ integer (94ms)
+      ✓ integer (141ms)
 
   /api/administrator/organizations/invitations
     receives
@@ -320,11 +320,11 @@
         ✓ missing querystring membershipid
         ✓ invalid querystring membershipid
     returns
-      ✓ object (59ms)
+      ✓ object (103ms)
 
   /api/administrator/organizations/memberships-count
     returns
-      ✓ integer (127ms)
+      ✓ integer (199ms)
 
   /api/administrator/organizations/memberships
     receives
@@ -344,11 +344,11 @@
         ✓ unspecified querystring organizationid
         ✓ invalid querystring organizationid
     returns
-      ✓ object (38ms)
+      ✓ object (52ms)
 
   /api/administrator/organizations/organizations-count
     returns
-      ✓ integer (75ms)
+      ✓ integer (121ms)
 
   /api/administrator/organizations/organizations
     receives
@@ -365,14 +365,14 @@
     exceptions
       invalid-organizationid
         ✓ missing querystring organizationid
-        ✓ invalid querystring organizationid
+        ✓ invalid querystring organizationid (38ms)
       invalid-secret-code
-        ✓ missing posted secret-code
+        ✓ missing posted secret-code (47ms)
       invalid-secret-code-length
-        ✓ posted secret-code too short
-        ✓ posted secret-code too long
+        ✓ posted secret-code too short (38ms)
+        ✓ posted secret-code too long (38ms)
       invalid-account
-        ✓ accessing account is not organization owner
+        ✓ accessing account is not organization owner (49ms)
     receives
       ✓ required posted secret-code
     returns
@@ -384,26 +384,26 @@
         ✓ missing querystring invitationid
         ✓ invalid querystring invitationid
       invalid-invitation
-        ✓ querystring invitationid has been used (60ms)
-        ✓ posted secret-code has been used (60ms)
+        ✓ querystring invitationid has been used (107ms)
+        ✓ posted secret-code has been used (98ms)
       invalid-secret-code
-        ✓ missing posted secret-code (38ms)
-        ✓ invalid posted secret-code (43ms)
+        ✓ missing posted secret-code (63ms)
+        ✓ invalid posted secret-code (63ms)
       invalid-account
-        ✓ accessing account is organization owner
-        ✓ accessing account is organization member (64ms)
+        ✓ accessing account is organization owner (50ms)
+        ✓ accessing account is organization member (83ms)
       invalid-profileid
-        ✓ missing posted profileid (47ms)
-        ✓ invalid posted profileid (39ms)
+        ✓ missing posted profileid (59ms)
+        ✓ invalid posted profileid (92ms)
       invalid-profile
-        ✓ ineligible posted profileid is missing fields (40ms)
+        ✓ ineligible posted profileid is missing fields (63ms)
       invalid-invitation
-        ✓ querystring invitationid is not open invitation (58ms)
+        ✓ querystring invitationid is not open invitation (95ms)
     receives
-      ✓ required posted secret-code (43ms)
-      ✓ required posted profileid (43ms)
+      ✓ required posted secret-code (66ms)
+      ✓ required posted profileid (64ms)
     returns
-      ✓ object (43ms)
+      ✓ object (65ms)
 
   /api/user/organizations/create-organization
     exceptions
@@ -422,7 +422,7 @@
     receives
       ✓ required posted organization-email
       ✓ required posted organization-name
-      ✓ required posted profileid
+      ✓ required posted profileid (39ms)
     returns
       ✓ object
 
@@ -432,11 +432,11 @@
         ✓ missing querystring invitationid
         ✓ invalid querystring invitationid
       invalid-invitation
-        ✓ querystring invitationid is used invitation (44ms)
+        ✓ querystring invitationid is used invitation (72ms)
       invalid-account
-        ✓ accessing account is not organization owner (38ms)
+        ✓ accessing account is not organization owner (70ms)
     returns
-      ✓ boolean
+      ✓ boolean (38ms)
 
   /api/user/organizations/delete-membership
     exceptions
@@ -444,9 +444,9 @@
         ✓ missing querystring membershipid
         ✓ invalid querystring membershipid
       invalid-account
-        ✓ accessing account is not membership or organization owner (80ms)
+        ✓ accessing account is not membership or organization owner (87ms)
     returns
-      ✓ boolean (45ms)
+      ✓ boolean (77ms)
 
   /api/user/organizations/delete-organization
     exceptions
@@ -454,7 +454,7 @@
         ✓ missing querystring organizationid
         ✓ invalid querystring organizationid
       invalid-account
-        ✓ accessing account does not own organization (43ms)
+        ✓ accessing account does not own organization (60ms)
     returns
       ✓ boolean
 
@@ -464,11 +464,11 @@
         ✓ missing querystring invitationid
         ✓ invalid querystring invitationid
       invalid-account
-        ✓ accessing account is not organization owner (48ms)
+        ✓ accessing account is not organization owner (71ms)
     returns
-      ✓ object
+      ✓ object (39ms)
     redacts
-      ✓ secretCodeHash
+      ✓ secretCodeHash (39ms)
 
   /api/user/organizations/invitations-count
     exceptions
@@ -476,9 +476,9 @@
         ✓ missing querystring accountid
         ✓ invalid querystring accountid
       invalid-account
-        ✓ ineligible accessing account (53ms)
+        ✓ ineligible accessing account (72ms)
     returns
-      ✓ integer
+      ✓ integer (51ms)
 
   /api/user/organizations/invitations
     exceptions
@@ -486,7 +486,7 @@
         ✓ missing querystring accountid
         ✓ invalid querystring accountid
       invalid-account
-        ✓ ineligible accessing account (51ms)
+        ✓ ineligible accessing account (82ms)
     receives
       ✓ optional querystring offset (integer)
       ✓ optional querystring limit (integer)
@@ -503,9 +503,9 @@
         ✓ missing querystring membershipid
         ✓ invalid querystring membershipid
       invalid-account
-        ✓ accessing account must be organization member or owner (58ms)
+        ✓ accessing account must be organization member or owner (93ms)
     returns
-      ✓ object (51ms)
+      ✓ object (80ms)
 
   /api/user/organizations/memberships-count
     exceptions
@@ -513,9 +513,9 @@
         ✓ missing querystring accountid
         ✓ invalid querystring accountid
       invalid-account
-        ✓ ineligible accessing account (46ms)
+        ✓ ineligible accessing account (70ms)
     returns
-      ✓ integer (98ms)
+      ✓ integer (152ms)
 
   /api/user/organizations/memberships
     exceptions
@@ -523,7 +523,7 @@
         ✓ missing querystring accountid
         ✓ invalid querystring accountid
       invalid-account
-        ✓ ineligible accessing account (56ms)
+        ✓ ineligible accessing account (76ms)
     receives
       ✓ optional querystring offset (integer)
       ✓ optional querystring limit (integer)
@@ -540,9 +540,9 @@
         ✓ missing querystring invitationid
         ✓ invalid querystring invitationid
       invalid-invitation
-        ✓ querystring invitationid is used (47ms)
+        ✓ querystring invitationid is used (82ms)
     returns
-      ✓ object
+      ✓ object (41ms)
 
   /api/user/organizations/open-invitation
     exceptions
@@ -550,11 +550,11 @@
         ✓ missing querystring invitationid
         ✓ invalid querystring invitationid
       invalid-invitation
-        ✓ querystring invitationid is used (45ms)
+        ✓ querystring invitationid is used (68ms)
     returns
-      ✓ object
+      ✓ object (59ms)
     redacts
-      ✓ secretCodeHash (39ms)
+      ✓ secretCodeHash (53ms)
 
   /api/user/organizations/organization-membership
     exceptions
@@ -562,9 +562,9 @@
         ✓ missing querystring organizationid
         ✓ invalid querystring organizationid
       invalid-account
-        ✓ accessing account must be organization member (55ms)
+        ✓ accessing account must be organization member (85ms)
     returns
-      ✓ object (47ms)
+      ✓ object (82ms)
 
   /api/user/organizations/organization
     exceptions
@@ -572,7 +572,7 @@
         ✓ missing querystring organizationid
         ✓ invalid querystring organizationid
       invalid-account
-        ✓ accessing account must be organization member (55ms)
+        ✓ accessing account must be organization member (92ms)
     returns
       ✓ object
 
@@ -582,9 +582,9 @@
         ✓ missing querystring accountid
         ✓ invalid querystring accountid
       invalid-account
-        ✓ ineligible accessing account (45ms)
+        ✓ ineligible accessing account (79ms)
     returns
-      ✓ integer
+      ✓ integer (48ms)
 
   /api/user/organizations/organizations
     exceptions
@@ -592,7 +592,7 @@
         ✓ missing querystring accountid
         ✓ invalid querystring accountid
       invalid-account
-        ✓ ineligible accessing account (50ms)
+        ✓ ineligible accessing account (75ms)
     receives
       ✓ optional querystring offset (integer)
       ✓ optional querystring limit (integer)
@@ -609,13 +609,13 @@
         ✓ invalid querystring organizationid
       invalid-accountid
         ✓ posted accountid is missing
-        ✓ posted accountid is invalid
+        ✓ posted accountid is invalid (40ms)
       invalid-account
-        ✓ accessing account is not organization owner (54ms)
-        ✓ posted accountid is organization owner
-        ✓ posted accountid is not member
+        ✓ accessing account is not organization owner (76ms)
+        ✓ posted accountid is organization owner (40ms)
+        ✓ posted accountid is not member (57ms)
     returns
-      ✓ object (49ms)
+      ✓ object (68ms)
 
   /api/user/organizations/update-organization
     exceptions
@@ -623,12 +623,12 @@
         ✓ missing querystring organizationid
         ✓ invalid querystring organizationid
       invalid-account
-        ✓ accessing account is not organization owner (48ms)
+        ✓ accessing account is not organization owner (92ms)
       invalid-organization-name
         ✓ missing posted name
       invalid-organization-name-length
-        ✓ posted name is too short
-        ✓ posted name is too long
+        ✓ posted name is too short (39ms)
+        ✓ posted name is too long (43ms)
       invalid-organization-email
         ✓ missing posted email
         ✓ invalid posted email
@@ -639,5 +639,5 @@
       ✓ object
 
 
-  314 passing (14m)
+  314 passing (16m)
 
