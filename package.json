@@ -20,5 +20,5 @@
   "scripts": {
     "test": "act -j test-fs-storage"
   },
-  "version": "1.0.144"
+  "version": "1.0.145"
 }
